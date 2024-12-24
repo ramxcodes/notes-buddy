@@ -1,13 +1,42 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { SiteHeader } from "@/components/site-header";
 import { Providers } from "@/components/providers";
 import { siteConfig } from "@/config/site";
 import { SiteFooter } from "@/components/site-footer";
+import localFont from "next/font/local";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const Gilroy = localFont({
+  src: [
+    {
+      path: "../public/fonts/Gilroy-light.ttf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Gilroy-regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Gilroy-medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Gilroy-bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/Gilroy-Heavy.ttf",
+      weight: "900",
+      style: "normal",
+    },
+  ],
+  variable: "--font-Gilroy",
+});
 
 export const metadata: Metadata = {
   title: siteConfig.name,
@@ -32,7 +61,7 @@ export default function RootLayout({
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
-          inter.variable
+          Gilroy.variable
         )}
       >
         <Providers>
