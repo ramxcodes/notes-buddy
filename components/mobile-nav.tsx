@@ -11,13 +11,14 @@ import { siteConfig } from "@/config/site";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
+  const [notesOpen, setNotesOpen] = useState(false); // State for Notes dropdown
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <Button variant="outline" className="w-10 px-0 sm:hidden">
           <Menu className="h-5 w-5" />
-          <span className="sr-only">Toggle Theme</span>
+          <span className="sr-only">Toggle Menu</span>
         </Button>
       </SheetTrigger>
       <SheetContent side="right">
@@ -30,11 +31,31 @@ export function MobileNav() {
           <span className="font-bold">{siteConfig.name}</span>
         </MobileLink>
         <div className="flex flex-col gap-3 mt-3">
-          <MobileLink onOpenChange={setOpen} href="/notes">
-            Blog
-          </MobileLink>
+          <button
+            className="flex justify-between items-center text-left"
+            onClick={() => setNotesOpen(!notesOpen)}
+          >
+            Notes
+            <span>{notesOpen ? "-" : "+"}</span>
+          </button>
+          {notesOpen && (
+            <ul className="ml-4 flex flex-col gap-2">
+              {siteConfig.notes.map((note: { title: string; href: string }) => (
+                <MobileLink
+                  key={note.title}
+                  href={note.href}
+                  onOpenChange={setOpen}
+                >
+                  {note.title}
+                </MobileLink>
+              ))}
+            </ul>
+          )}
           <MobileLink onOpenChange={setOpen} href="/about">
-            About
+            About us
+          </MobileLink>
+          <MobileLink onOpenChange={setOpen} href="/contributors">
+            Top Contributors
           </MobileLink>
           <Link target="_blank" rel="noreferrer" href={siteConfig.links.github}>
             GitHub
