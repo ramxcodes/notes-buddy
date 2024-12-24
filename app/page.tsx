@@ -20,7 +20,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col gap-4 justify-center sm:flex-row">
             <Link
-              href="/blog"
+              href="/notes"
               className={cn(buttonVariants({ size: "lg" }), "w-full sm:w-fit")}
             >
               View my blog
@@ -44,19 +44,23 @@ export default function Home() {
           Latest Posts
         </h2>
         <ul className="flex flex-col">
-          {latestPosts.map((post) => (
-            post.published && (
-              <li key={post.slug} className="first:border-t first:border-border">
-                <PostItem
-                  slug={post.slug}
-                  title={post.title}
-                  description={post.description}
-                  date={post.date}
-                  tags={post.tags}
-                />
-              </li>
-            )
-          ))}
+          {latestPosts.map(
+            (post) =>
+              post.published && (
+                <li
+                  key={post.slug}
+                  className="first:border-t first:border-border"
+                >
+                  <PostItem
+                    slug={post.slug}
+                    title={post.title}
+                    description={post.description}
+                    date={post.date}
+                    tags={post.tags}
+                  />
+                </li>
+              )
+          )}
         </ul>
       </section>
     </>
