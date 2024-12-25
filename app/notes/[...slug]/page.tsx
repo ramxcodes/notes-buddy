@@ -15,7 +15,7 @@ interface PostPageProps {
 
 async function getPostFromParams(params: PostPageProps["params"]) {
   const slug = params?.slug?.join("/");
-  
+
   // Check for an exact match or an index file in the folder
   const post =
     posts.find((post) => post.slugAsParams === slug) ||
@@ -79,7 +79,7 @@ export default async function PostPage({ params }: PostPageProps) {
   }
 
   const slug = post.slug.replace(/^notes\//, "");
-  const unitMatch = slug.match(/-Unit-(\d+)-/);
+  const unitMatch = slug.match(/unit-(\d+)/i);
   const currentUnit = unitMatch ? parseInt(unitMatch[1], 10) : 1;
 
   return (
@@ -92,16 +92,14 @@ export default async function PostPage({ params }: PostPageProps) {
             <Tag tag={tag} key={tag} />
           ))}
         </div>
-        {post.description ? (
-          <p className="text-xl mt-0 text-muted-foreground">
-            {post.description}
-          </p>
-        ) : null}
+        {post.description && (
+          <p className="text-xl mt-0 text-muted-foreground">{post.description}</p>
+        )}
         <hr className="my-4" />
         <MDXContent
           code={post.body}
           currentUnit={currentUnit}
-          totalUnits={5}
+          totalUnits={5} 
           slug={slug}
         />
       </article>

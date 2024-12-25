@@ -23,17 +23,19 @@ export function UnitPagination({
   const prevUnit = currentUnit - 1;
   const nextUnit = currentUnit + 1;
 
-  const createUnitSlug = (unit: number) =>
-    slug.replace(/-Unit-\d+-/, `-Unit-${unit}-`);
+  const createUnitSlug = (unit: number) => {
+    return `/notes/${slug.replace(/unit-\d+$/, `unit-${unit}`)}`;
+  };
 
   return (
     <Pagination>
       <PaginationContent>
-        {prevUnit >= 1 ? (
+        {/* Previous Button */}
+        {prevUnit >= 1 && (
           <PaginationItem>
             <PaginationPrevious href={createUnitSlug(prevUnit)} />
           </PaginationItem>
-        ) : null}
+        )}
 
         {Array.from({ length: totalUnits }, (_, index) => {
           const unitNumber = index + 1;
@@ -52,11 +54,11 @@ export function UnitPagination({
           );
         })}
 
-        {nextUnit <= totalUnits ? (
+        {nextUnit <= totalUnits && (
           <PaginationItem>
             <PaginationNext href={createUnitSlug(nextUnit)} />
           </PaginationItem>
-        ) : null}
+        )}
       </PaginationContent>
     </Pagination>
   );
