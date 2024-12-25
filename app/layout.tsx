@@ -10,22 +10,22 @@ import localFont from "next/font/local";
 const Gilroy = localFont({
   src: [
     {
-      path: "../public/fonts/Gilroy-light.ttf",
+      path: "../public/fonts/Gilroy-Light.ttf",
       weight: "300",
       style: "normal",
     },
     {
-      path: "../public/fonts/Gilroy-regular.ttf",
+      path: "../public/fonts/Gilroy-Regular.ttf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../public/fonts/Gilroy-medium.ttf",
+      path: "../public/fonts/Gilroy-Medium.ttf",
       weight: "500",
       style: "normal",
     },
     {
-      path: "../public/fonts/Gilroy-bold.ttf",
+      path: "../public/fonts/Gilroy-Bold.ttf",
       weight: "700",
       style: "normal",
     },
