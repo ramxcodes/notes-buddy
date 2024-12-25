@@ -6,6 +6,7 @@ import { Providers } from "@/components/providers";
 import { siteConfig } from "@/config/site";
 import { SiteFooter } from "@/components/site-footer";
 import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/react";
 
 const Gilroy = localFont({
   src: [
@@ -67,7 +68,9 @@ export default function RootLayout({
         <Providers>
           <div className="relative flex min-h-dvh flex-col bg-background">
             <SiteHeader />
-            <main className="flex-1">{children}</main>
+            <main className="flex-1">
+              {children} <Analytics />
+            </main>
             <SiteFooter />
           </div>
         </Providers>
