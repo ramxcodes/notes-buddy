@@ -3,10 +3,15 @@ import rehypeSlug from "rehype-slug";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
-const computedFields = <T extends { slug: string }>(data: T) => ({
-  ...data,
-  slugAsParams: data.slug.split("/").slice(1).join("/"),
-});
+const computedFields = <T extends { slug: string }>(data: T) => {
+  const slugParts = data.slug.split("/");
+  const isIndexFile = slugParts[slugParts.length - 1] === "index";
+  const slug = isIndexFile ? slugParts.slice(0, -1).join("/") : data.slug;
+  return {
+    ...data,
+    slugAsParams: slug.replace(/^notes\//, ""), // Strip 'notes/' prefix
+  };
+};
 
 const posts = defineCollection({
   name: "Post",

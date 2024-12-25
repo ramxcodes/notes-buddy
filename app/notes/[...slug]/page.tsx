@@ -15,7 +15,11 @@ interface PostPageProps {
 
 async function getPostFromParams(params: PostPageProps["params"]) {
   const slug = params?.slug?.join("/");
-  const post = posts.find((post) => post.slugAsParams === slug);
+  
+  // Check for an exact match or an index file in the folder
+  const post =
+    posts.find((post) => post.slugAsParams === slug) ||
+    posts.find((post) => post.slugAsParams === `${slug}/index`);
 
   return post;
 }
@@ -62,7 +66,9 @@ export async function generateMetadata({
 export async function generateStaticParams(): Promise<
   PostPageProps["params"][]
 > {
-  return posts.map((post) => ({ slug: post.slugAsParams.split("/") }));
+  return posts.map((post) => ({
+    slug: post.slugAsParams.split("/"),
+  }));
 }
 
 export default async function PostPage({ params }: PostPageProps) {
