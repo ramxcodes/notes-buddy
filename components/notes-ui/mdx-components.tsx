@@ -15,9 +15,9 @@ const components = {
 
 interface MdxProps {
   code: string;
-  currentUnit: number;
-  totalUnits: number;
-  slug: string;
+  currentUnit?: number;
+  totalUnits?: number;
+  slug?: string;
 }
 
 export function MDXContent({ code, currentUnit, totalUnits, slug }: MdxProps) {
@@ -27,9 +27,9 @@ export function MDXContent({ code, currentUnit, totalUnits, slug }: MdxProps) {
     <div>
       <Component components={components} />
       <UnitPagination
-        currentUnit={currentUnit}
-        totalUnits={totalUnits}
-        slug={slug}
+        currentUnit={currentUnit ?? 1}
+        totalUnits={totalUnits ?? 1}
+        slug={slug ?? ""}
       />
     </div>
   );
