@@ -21,9 +21,13 @@ interface BlogPageProps {
 
 export default async function BlogPage({ searchParams }: BlogPageProps) {
   const currentPage = Number(searchParams?.page) || 1;
+
   const sortedPosts = sortPosts(
-    posts.filter((post: { published: unknown }) => post.published)
+    posts.filter(
+      (post) => post.published && !post.excludeFromMain
+    )
   );
+
   const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE);
 
   const displayPosts = sortedPosts.slice(
@@ -39,12 +43,8 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
       <div className="container max-w-4xl py-6 lg:py-10">
         <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
           <div className="flex-1 space-y-4">
-            <h1 className="inline-block font-black text-4xl lg:text-5xl">
-              Notes
-            </h1>
-            <p className="text-xl text-muted-foreground">
-              A collection of all CSE Notes
-            </p>
+            <h1 className="inline-block font-black text-4xl lg:text-5xl">Notes</h1>
+            <p className="text-xl text-muted-foreground">A collection of all CSE Notes</p>
           </div>
         </div>
         <div className="grid grid-cols-12 gap-3 mt-8">
@@ -70,10 +70,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
             ) : (
               <p>Nothing to see here yet</p>
             )}
-            <QueryPagination
-              totalPages={totalPages}
-              className="justify-end mt-4"
-            />
+            <QueryPagination totalPages={totalPages} className="justify-end mt-4" />
           </div>
           <Card className="col-span-12 row-start-3 h-fit sm:col-span-4 sm:col-start-9 sm:row-start-1">
             <CardHeader>

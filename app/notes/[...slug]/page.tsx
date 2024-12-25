@@ -16,7 +16,6 @@ interface PostPageProps {
 async function getPostFromParams(params: PostPageProps["params"]) {
   const slug = params?.slug?.join("/");
 
-  // Check for an exact match or an index file in the folder
   const post =
     posts.find((post) => post.slugAsParams === slug) ||
     posts.find((post) => post.slugAsParams === `${slug}/index`);
@@ -74,7 +73,7 @@ export async function generateStaticParams(): Promise<
 export default async function PostPage({ params }: PostPageProps) {
   const post = await getPostFromParams(params);
 
-  if (!post || !post.published) {
+  if (!post || (!post.published && !post.excludeFromMain)) {
     notFound();
   }
 

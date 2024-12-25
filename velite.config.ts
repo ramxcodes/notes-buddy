@@ -9,7 +9,7 @@ const computedFields = <T extends { slug: string }>(data: T) => {
   const slug = isIndexFile ? slugParts.slice(0, -1).join("/") : data.slug;
   return {
     ...data,
-    slugAsParams: slug.replace(/^notes\//, ""), // Strip 'notes/' prefix
+    slugAsParams: slug.replace(/^notes\//, ""),
   };
 };
 
@@ -23,6 +23,7 @@ const posts = defineCollection({
       description: s.string().max(999).optional(),
       date: s.isodate(),
       published: s.boolean().default(true),
+      excludeFromMain: s.boolean().default(false),
       tags: s.array(s.string()).optional(),
       body: s.mdx(),
     })
