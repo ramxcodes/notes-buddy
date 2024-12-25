@@ -1,12 +1,12 @@
 import { posts } from "#site/content";
 import { MDXContent } from "@/components/notes-ui/mdx-components";
 import { notFound } from "next/navigation";
-
 import "@/styles/mdx.css";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import { Tag } from "@/components/tag";
 import ScrollProgress from "@/components/notes-ui/ScrollProcess";
+
 interface PostPageProps {
   params: {
     slug: string[];
@@ -72,6 +72,10 @@ export default async function PostPage({ params }: PostPageProps) {
     notFound();
   }
 
+  const slug = post.slug.replace(/^notes\//, "");
+  const unitMatch = slug.match(/-Unit-(\d+)-/);
+  const currentUnit = unitMatch ? parseInt(unitMatch[1], 10) : 1;
+
   return (
     <>
       <ScrollProgress />
@@ -88,7 +92,13 @@ export default async function PostPage({ params }: PostPageProps) {
           </p>
         ) : null}
         <hr className="my-4" />
-        <MDXContent code={post.body} />
+       
+        <MDXContent
+          code={post.body}
+          currentUnit={currentUnit}
+          totalUnits={5}
+          slug={slug}
+        />
       </article>
     </>
   );
