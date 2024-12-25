@@ -12,6 +12,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { Notebook } from "lucide-react";
+import Image from "next/image";
 
 export function MainNav() {
   const notes: { title: string; href: string; description?: string }[] = [
@@ -85,7 +86,7 @@ export function MainNav() {
   return (
     <nav className="flex items-center space-x-4 lg:space-x-6">
       <Link href="/" className="mr-6 flex items-center space-x-2">
-        <Notebook className="w-6 h-6" />
+        <Image src="/logo.png" width={40} height={40} alt="logo" />
         <span className="font-bold">{siteConfig.name}</span>
       </Link>
       <Link
