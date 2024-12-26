@@ -92,13 +92,15 @@ export default async function PostPage({ params }: PostPageProps) {
           ))}
         </div>
         {post.description && (
-          <p className="text-xl mt-0 text-muted-foreground">{post.description}</p>
+          <p className="text-xl mt-0 text-muted-foreground">
+            {post.description}
+          </p>
         )}
         <hr className="my-4" />
         <MDXContent
           code={post.body}
           currentUnit={currentUnit}
-          totalUnits={5} 
+          totalUnits={5}
           slug={slug}
         />
       </article>
