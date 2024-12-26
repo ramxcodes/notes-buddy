@@ -1,36 +1,28 @@
+"use client";
+
 import { posts } from "#site/content";
-import { PostItem } from "@/components/post-item";
 import { PostItemBox } from "@/components/post-item-box";
 import { QueryPagination } from "@/components/query-pagination";
 import { Tag } from "@/components/tag";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAllTags, sortPosts, sortTagsByCount } from "@/lib/utils";
-import { Metadata } from "next";
+import { SetStateAction, useState } from "react";
 
-export const metadata: Metadata = {
-  title: "My blog",
-  description: "This is a description",
-};
+const POSTS_PER_PAGE = 6;
 
-const POSTS_PER_PAGE = 5;
-
-interface BlogPageProps {
-  searchParams: {
-    page?: string;
-  };
-}
-
-export default async function BlogPage({ searchParams }: BlogPageProps) {
-  const currentPage = Number(searchParams?.page) || 1;
+export default function BlogPage() {
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const sortedPosts = sortPosts(
-    posts.filter(
-      (post) => post.published && !post.excludeFromMain
-    )
+    posts.filter((post) => {
+      if (!post.published || post.excludeFromMain) return false;
+      if (selectedTags.length === 0) return true;
+      return selectedTags.every((tag) => post.tags?.includes(tag));
+    })
   );
 
   const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE);
-
   const displayPosts = sortedPosts.slice(
     POSTS_PER_PAGE * (currentPage - 1),
     POSTS_PER_PAGE * currentPage
@@ -39,56 +31,72 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   const tags = getAllTags(posts);
   const sortedTags = sortTagsByCount(tags);
 
+  const toggleTag = (tag: string) => {
+    setSelectedTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+    );
+  };
+
   return (
-      <div className="container max-w-4xl py-6 lg:py-10">
-        <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
-          <div className="flex-1 space-y-4">
-            <h1 className="inline-block font-black text-4xl lg:text-5xl">
-              Welcome to Notes
-            </h1>
-            <p className="text-xl text-muted-foreground">
-              Your exams last moment notes are here!
-            </p>
-          </div>
-        </div>
-        <div className="max-w-4xl py-6 flex flex-col">
-          <Card className="col-span-12 row-start-3 h-fit sm:col-span-4 sm:col-start-9 sm:row-start-1 my-10">
-            <CardHeader>
-              <CardTitle>Search By :</CardTitle>
-            </CardHeader>
-            <CardContent className="flex flex-wrap gap-2">
-              {sortedTags?.map((tag) => (
-                <Tag tag={tag} key={tag} count={tags[tag]} />
-              ))}
-            </CardContent>
-          </Card>
-          <div className="flex flex-col gap-4">
-            <hr />
-            {displayPosts?.length > 0 ? (
-              <ul className="gap-4 py-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                {displayPosts.map((post) => {
-                  const { slug, title, description, tags } = post;
-                  return (
-                    <li key={slug}>
-                      <PostItemBox
-                        slug={slug}
-                        title={title}
-                        description={description}
-                        tags={tags}
-                      />
-                    </li>
-                  );
-                })}
-              </ul>
-            ) : (
-              <p>Nothing to see here yet</p>
-            )}
-            <QueryPagination
-              totalPages={totalPages}
-              className="justify-end mt-4"
-            />
-          </div>
+    <div className="container max-w-4xl py-6 lg:py-10">
+      <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
+        <div className="flex-1 space-y-4">
+          <h1 className="inline-block font-black text-4xl lg:text-5xl">
+            Welcome to Notes
+          </h1>
+          <p className="text-xl text-muted-foreground">
+            Your exams last moment notes are here!
+          </p>
         </div>
       </div>
-    );
+      <div className="max-w-4xl py-6 flex flex-col">
+        <Card className="my-10">
+          <CardHeader>
+            <CardTitle>Search By :</CardTitle>
+          </CardHeader>
+          <CardContent className="flex flex-wrap gap-2">
+            {sortedTags?.map((tag) => (
+              <Tag
+                tag={tag}
+                key={tag}
+                count={tags[tag]}
+                onClick={() => toggleTag(tag)}
+                selected={selectedTags.includes(tag)}
+              />
+            ))}
+          </CardContent>
+        </Card>
+        <div className="flex flex-col gap-4">
+          <hr />
+          {displayPosts?.length > 0 ? (
+            <ul className="gap-4 py-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+              {displayPosts.map((post) => {
+                const { slug, title, description, tags } = post;
+                return (
+                  <li key={slug}>
+                    <PostItemBox
+                      slug={slug}
+                      title={title}
+                      description={description}
+                      tags={tags}
+                    />
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            <p>Nothing to see here yet</p>
+          )}
+          <QueryPagination
+            totalPages={totalPages}
+            currentPage={currentPage}
+            onPageChange={(page: SetStateAction<number>) =>
+              setCurrentPage(page)
+            }
+            className="justify-end mt-4"
+          />
+        </div>
+      </div>
+    </div>
+  );
 }

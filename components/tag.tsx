@@ -6,17 +6,20 @@ interface TagProps {
   tag: string;
   current?: boolean;
   count?: number;
+  onClick?: () => void;
+  selected?: boolean;
 }
-export function Tag({ tag, current, count }: TagProps) {
+
+export function Tag({ tag, current, count, onClick, selected }: TagProps) {
   return (
-    <Link
+    <button
       className={badgeVariants({
-        variant: current ? "default" : "secondary",
-        className: "no-underline rounded-md",
+        variant: selected ? "default" : "secondary",
+        className: "no-underline rounded-md px-2 py-1",
       })}
-      href={`/tags/${slug(tag)}`}
+      onClick={onClick}
     >
       {tag} {count ? `(${count})` : null}
-    </Link>
+    </button>
   );
 }
