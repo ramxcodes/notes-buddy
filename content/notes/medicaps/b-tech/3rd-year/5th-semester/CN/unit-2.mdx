@@ -1,0 +1,283 @@
+---
+title: "Unit 2 : Computer Network"
+description: What is Computer Network
+date: 2024-12-25
+tags: ["Computer Network", "5th Semester", "3rd Year", "medicaps university"]
+published: true
+---
+
+## **Internetworking, Tunneling, Fragmentation, and Reassembly: A Breakdown**
+
+### **Internetworking**
+
+- **Definition:** The process of connecting multiple networks together to form a larger, interconnected network.
+- **Purpose:** To enable communication between devices on different networks, expanding the reach and capabilities of individual networks.
+- **Key components:**
+    - **Routers:** Devices that connect multiple networks and determine the best path for data packets to travel.
+    - **Protocols:** Sets of rules that govern how data is transmitted and received across networks (e.g., TCP/IP, IPv4, IPv6).
+
+### **Tunneling**
+
+- **Definition:** The process of encapsulating data packets from one network protocol within another.
+- **Purpose:** To allow data from one network to be transmitted over another, often to bypass security restrictions or to provide privacy.
+- **Common use cases:**
+    - **Virtual Private Networks (VPNs):** Create secure connections over public networks.
+    - **Site-to-Site VPNs:** Connect remote offices or data centers securely.
+    - **Remote Access VPNs:** Allow individuals to connect to a corporate network remotely.
+
+### **Fragmentation and Reassembly**
+
+- **Fragmentation:** The process of dividing a large data packet into smaller packets to accommodate networks with different Maximum Transmission Unit (MTU) sizes.
+- **Reassembly:** The process of reassembling fragmented packets back into their original form at the destination.
+- **Why it's necessary:** Different networks may have different MTU sizes, and larger packets might be dropped if they exceed the MTU. Fragmentation ensures that packets can be transmitted successfully across various networks.
+- **Protocol:** IP fragmentation is handled at the network layer (Layer 3) of the OSI model.
+
+**Example:**
+Imagine you're sending a large file from your computer to a server on a different network. If the file is too large to fit in a single packet, it will be fragmented into smaller packets. These packets will be transmitted across the internet, possibly through multiple networks with different MTUs. At the destination, the server will reassemble the fragmented packets to recreate the original file.
+
+**In summary:**
+
+- **Internetworking** connects multiple networks.
+- **Tunneling** allows data from one network to be transmitted over another.
+- **Fragmentation** divides large packets into smaller ones.
+- **Reassembly** reconstructs fragmented packets at the destination.
+
+These concepts are essential for understanding how data is transmitted and received across interconnected networks.
+
+## **IP Protocol, IPv4 Addresses, Subnet Addressing, and Subnet Mask**
+
+### **IP Protocol**
+
+- **Internet Protocol (IP):** The fundamental protocol of the internet, responsible for addressing and routing data packets. It ensures packets reach their intended destinations across interconnected networks.
+
+### **IPv4 Addresses**
+
+- **IPv4 (Internet Protocol version 4):** The most widely used version of IP, using 32-bit addresses to uniquely identify devices on the internet.
+- **Structure:** An IPv4 address consists of four octets (groups of eight bits), separated by dots. Each octet can range from 0 to 255.
+- **Example:** 192.168.1.100
+
+### **Subnet Addressing**
+
+- **Subnet:** A logical division of an IP address space. It allows for efficient network management and security by dividing a large network into smaller, more manageable subnetworks.
+- **Purpose:**
+    - **Network segmentation:** Isolates different parts of a network for security and performance reasons.
+    - **Address allocation:** Efficiently assigns IP addresses to devices within a subnet.
+    - **Routing optimization:** Reduces the number of routes that routers need to maintain.
+
+### **Subnet Mask**
+
+- **Subnet Mask:** A 32-bit binary mask that defines the network portion and the host portion of an IP address.
+- **Purpose:**
+    - **Identifies the network:** The network portion of the address is determined by ANDing the IP address with the subnet mask.
+    - **Identifies the host:** The host portion of the address is determined by ANDing the IP address with the inverse of the subnet mask.
+- **Example:**
+    - IP address: 192.168.1.100
+    - Subnet mask: 255.255.255.0
+    - Network portion: 192.168.1.0
+    - Host portion: 0.0.0.100
+
+**In summary:**
+
+- **IP protocol** is the foundation of internet communication.
+- **IPv4 addresses** uniquely identify devices on the internet.
+- **Subnet addressing** divides networks into smaller subnetworks for better management and security.
+- **Subnet masks** help determine the network and host portions of an IP address.
+
+By understanding these concepts, you can effectively manage and configure networks for efficient and secure communication.
+
+## **Supernetting, CIDR, NAT, ICMP Header, Message Type, and Trace Route**
+
+### **Supernetting**
+
+- **Definition:** A technique used to aggregate multiple contiguous subnets into a single larger subnet.
+- **Purpose:** Simplifies network management by reducing the number of routing entries required, improving routing efficiency.
+- **How it works:** By combining multiple subnets with the same number of bits borrowed for the network portion, a larger subnet can be created.
+
+### **CIDR (Classless Inter-Domain Routing)**
+
+- **Definition:** A method of allocating IP addresses that allows for more flexible subnet sizes compared to the traditional class-based system.
+- **How it works:** Uses a variable-length subnet mask (VLSM) to represent the network and host portions of an IP address. This allows for more efficient allocation of addresses based on network size requirements.
+- **Example:** 192.168.1.0/24 (represents a subnet with a 24-bit mask)
+
+### **NAT (Network Address Translation)**
+
+- **Definition:** A technique used to map private IP addresses to public IP addresses.
+- **Purpose:** Conserves public IP addresses, allows multiple devices on a private network to share a single public IP address, and provides a layer of security.
+- **How it works:** A NAT device (e.g., router) translates private IP addresses to public IP addresses before sending packets to the internet and vice versa.
+
+### **ICMP (Internet Control Message Protocol)**
+
+- **Definition:** A network layer protocol used to send error messages and other operational information between IP devices.
+- **Header:** The ICMP header contains information such as the type of message, code, checksum, identifier, and sequence number.
+- **Message types:** Common ICMP message types include:
+    - **Echo Request/Reply:** Used for pinging a device to check its reachability.
+    - **Destination Unreachable:** Indicates that a packet could not be delivered to its destination.
+    - **Time Exceeded:** Indicates that a packet has exceeded its Time to Live (TTL).
+
+### **Trace Route**
+
+- **Definition:** A network diagnostic tool used to trace the path that packets take from a source to a destination.
+- **How it works:** Sends a series of Echo Request packets with increasing Time to Live values. Each hop along the path responds with an ICMP Time Exceeded message, revealing the IP address of the router at that hop.
+
+**In summary:**
+
+- **Supernetting** combines multiple subnets into a larger one.
+- **CIDR** uses variable-length subnet masks for flexible address allocation.
+- **NAT** translates private IP addresses to public IP addresses.
+- **ICMP** is used for network diagnostics and error messages.
+- **Trace Route** helps visualize the path that packets take.
+
+These concepts are essential for understanding IP addressing, network management, and troubleshooting.
+
+## **ARP, RARP, BOOTP, and DHCP: Address Allocation, Configuration, and Packet Format**
+
+### **ARP (Address Resolution Protocol)**
+
+- **Purpose:** Resolves IP addresses to MAC addresses.
+- **Process:**
+    1. A device sends an ARP request broadcast to all devices on the network.
+    2. The device with the matching IP address responds with an ARP reply containing its MAC address.
+    3. The requesting device caches the IP-to-MAC mapping for future use.
+- **Packet Format:**
+    - **Hardware type:** Specifies the type of hardware (e.g., Ethernet)
+    - **Protocol type:** Specifies the protocol (e.g., IP)
+    - **Hardware size:** Length of the hardware address
+    - **Protocol size:** Length of the protocol address
+    - **Operation:** Indicates whether it's a request or reply
+    - **Sender hardware address:** MAC address of the sending device
+    - **Sender IP address:** IP address of the sending device
+    - **Target hardware address:** MAC address of the target device (for requests)
+    - **Target IP address:** IP address of the target device
+
+### **RARP (Reverse Address Resolution Protocol)**
+
+- **Purpose:** Resolves MAC addresses to IP addresses (primarily used for diskless workstations).
+- **Process:**
+    1. A diskless workstation sends a RARP request broadcast to all devices on the network.
+    2. A server with the matching MAC address responds with a RARP reply containing its IP address.
+    3. The diskless workstation caches the MAC-to-IP mapping.
+- **Packet Format:** Similar to ARP, but with reversed roles for hardware and protocol addresses.
+
+### **BOOTP (Bootstrap Protocol)**
+
+- **Purpose:** Provides IP configuration information to devices, including IP address, subnet mask, gateway, and server name.
+- **Process:**
+    1. A device sends a BOOTP request broadcast.
+    2. A BOOTP server responds with a BOOTP reply containing the configuration information.
+    3. The device configures itself based on the received information.
+- **Packet Format:**
+    - **Opcode:** Indicates whether it's a request or reply
+    - **Hardware type:** Specifies the type of hardware
+    - **Hardware address length:** Length of the hardware address
+    - **Hop count:** Number of routers the packet has passed through
+    - **Transaction ID:** A unique identifier for the request
+    - **Seconds since boot:** Time elapsed since the device booted
+    - **Client IP address:** IP address of the client (if known)
+    - **Client hardware address:** MAC address of the client
+    - **Server IP address:** IP address of the BOOTP server
+    - **Boot filename:** Name of the boot image to load
+    - **Options:** Additional configuration parameters
+
+### **DHCP (Dynamic Host Configuration Protocol)**
+
+- **Purpose:** Automatically assigns IP addresses and other configuration information to devices on a network.
+- **Process:**
+    1. A device sends a DHCP Discover broadcast.
+    2. A DHCP server responds with a DHCP Offer containing an IP address and other configuration information.
+    3. The device sends a DHCP Request to accept the offer.
+    4. The DHCP server responds with a DHCP Ack, confirming the assignment.
+- **Packet Format:** Similar to BOOTP, but with additional fields for DHCP-specific options.
+
+**In summary:**
+
+- **ARP** and **RARP** are used for IP-to-MAC and MAC-to-IP address resolution.
+- **BOOTP** and **DHCP** provide IP configuration information to devices.
+- **DHCP** is more flexible and widely used than BOOTP, as it allows for dynamic address allocation and management.
+
+## **OSPF and BGP: A Comparative Study**
+
+### **OSPF (Open Shortest Path First)**
+
+- **Type:** Interior Gateway Protocol (IGP)
+- **Purpose:** Used to exchange routing information within an autonomous system (AS).
+- **Algorithm:** Dijkstra's algorithm for finding the shortest path based on metrics like cost (e.g., bandwidth, delay).
+- **Features:**
+    - Hierarchical routing for scalability.
+    - Support for area-based routing to reduce routing table size.
+    - Fast convergence due to link-state routing.
+
+### **BGP (Border Gateway Protocol)**
+
+- **Type:** Exterior Gateway Protocol (EGP)
+- **Purpose:** Used to exchange routing information between autonomous systems.
+- **Algorithm:** Policy-based routing, where decisions are made based on administrative policies and route attributes (e.g., AS path, local preference).
+- **Features:**
+    - Support for multiple paths between destinations.
+    - Flexibility in routing decisions based on network policies.
+    - Scalability for large-scale internet routing.
+
+### **Comparative Study of IPv4 and IPv6**
+
+| **Feature** | **IPv4** | **IPv6** |
+| --- | --- | --- |
+| **Address size** | 32 bits | 128 bits |
+| **Address space** | Limited | Vast |
+| **Addressing scheme** | Class-based | Hierarchical |
+| **Subnet mask** | Fixed-length | Variable-length (CIDR) |
+| **NAT support** | Required | Optional |
+| **Deployment** | Widespread | Increasing |
+| **Header size** | Smaller | Larger |
+| **Security features** | Limited | Enhanced (e.g., IPsec) |
+| **Transition** | Challenging due to existing infrastructure | Smoother due to dual-stack and tunneling |
+
+**Key Differences:**
+
+- **Address Space:** IPv6 has a much larger address space, addressing the exhaustion concerns of IPv4.
+- **Addressing Scheme:** IPv6 uses a hierarchical addressing scheme with variable-length subnet masks, providing more flexibility.
+- **NAT:** IPv4 heavily relies on NAT to conserve addresses, while IPv6 can function without it.
+- **Security:** IPv6 has built-in security features like IPsec, enhancing its security posture.
+- **Transition:** The transition from IPv4 to IPv6 is a complex process, involving dual-stack and tunneling technologies.
+
+**Conclusion:**
+
+Both OSPF and BGP play crucial roles in internet routing, with OSPF being used within autonomous systems and BGP being used between autonomous systems. IPv6 is a promising successor to IPv4, offering a larger address space, improved security, and a more efficient addressing scheme. However, the transition to IPv6 remains a significant challenge due to the widespread use of IPv4 infrastructure.
+
+## **Comparative Study of IPv4 and IPv6**
+
+**IPv4 (Internet Protocol version 4)** and **IPv6 (Internet Protocol version 6)** are the two primary protocols used for addressing devices on the internet. While IPv4 has been the dominant protocol for decades, IPv6 is gaining traction due to its larger address space and enhanced security features.
+
+### **Key Differences**
+
+| **Feature** | **IPv4** | **IPv6** |
+| --- | --- | --- |
+| **Address Size** | 32 bits (4 bytes) | 128 bits (16 bytes) |
+| **Address Space** | Limited (approximately 4.3 billion addresses) | Vast (approximately 340 undecillion addresses) |
+| **Addressing Scheme** | Class-based (Class A, B, C, D, E) | Hierarchical (prefixes and interfaces) |
+| **Subnet Mask** | Fixed-length | Variable-length (CIDR) |
+| **NAT Support** | Required | Optional |
+| **Security Features** | Limited | Enhanced (e.g., IPsec) |
+| **Deployment** | Widespread | Increasing |
+
+### **Addressing Scheme**
+
+- **IPv4:** Uses a class-based system, where the first few bits of the address determine the class and the remaining bits determine the network and host addresses.
+- **IPv6:** Uses a hierarchical system, where addresses are divided into prefixes (network portions) and interfaces (host portions). This allows for more efficient address allocation and management.
+
+### **NAT (Network Address Translation)**
+
+- **IPv4:** Heavily relies on NAT to conserve addresses and enable multiple devices on a private network to share a single public IP address.
+- **IPv6:** While NAT can be used in IPv6, it is not as necessary due to the vast address space.
+
+### **Security**
+
+- **IPv4:** Has limited built-in security features, making it vulnerable to various attacks.
+- **IPv6:** Offers enhanced security features like IPsec, which provides encryption, authentication, and integrity protection for network traffic.
+
+### **Deployment**
+
+- **IPv4:** Is widely deployed and used by most devices and networks.
+- **IPv6:** Is gradually being adopted, with many organizations transitioning to dual-stack configurations (running both IPv4 and IPv6) to ensure compatibility.
+
+### **Conclusion**
+
+IPv6 is a more modern and efficient protocol that addresses the limitations of IPv4. Its larger address space, enhanced security features, and hierarchical addressing scheme make it well-suited for the growing demands of the internet. While the transition from IPv4 to IPv6 is ongoing, the adoption of IPv6 is essential to ensure the continued growth and development of the internet.

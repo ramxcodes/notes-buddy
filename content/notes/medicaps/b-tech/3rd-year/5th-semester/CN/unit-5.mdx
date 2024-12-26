@@ -1,0 +1,216 @@
+---
+title: "Unit 5 : Computer Network"
+description: What is Computer Network
+date: 2024-12-25
+tags: ["Computer Network", "5th Semester", "3rd Year", "medicaps university"]
+published: true
+---
+## Presentation Layer
+
+The **Presentation Layer** (Layer 6 of the OSI model) is responsible for translating, encrypting, compressing, and formatting data in a way that the application layer or the underlying network layer can understand. This layer acts as a translator, ensuring that data from one system can be interpreted correctly by another, even if they use different data formats or character sets.
+
+### 1. Key Functions of the Presentation Layer
+
+### Data Conversion
+
+Data conversion involves changing data from one format to another to ensure compatibility between different systems. This can include converting integers, floating points, and other data structures from one representation to another based on the systems' architectures (e.g., Big Endian vs. Little Endian for byte ordering). This ensures that applications on different systems can interpret the data accurately.
+
+### Character Code Translation
+
+Character code translation is necessary when systems use different character encoding schemes, such as ASCII, EBCDIC, or Unicode. This translation allows data encoded in one character set to be converted into another, enabling text data to be shared and displayed correctly between different systems. For example:
+
+- **ASCII (American Standard Code for Information Interchange)**: A widely used character encoding for English characters and symbols.
+- **EBCDIC (Extended Binary Coded Decimal Interchange Code)**: Used primarily by IBM mainframes.
+- **Unicode**: A universal character set that supports many languages and symbols, enabling global text compatibility.
+
+By translating between these character sets, the Presentation Layer allows systems with different native encodings to communicate effectively.
+
+### Encryption and Decryption
+
+The Presentation Layer is responsible for ensuring data security through encryption and decryption, a process that scrambles data into a secure format for transmission and then unscrambles it upon reception. This includes supporting encryption algorithms like AES, DES, and RSA. This layer manages encryption for sensitive data during transmission, making sure that data remains secure across the network.
+
+### Compression and Decompression
+
+To optimize bandwidth and improve network efficiency, the Presentation Layer may compress data before transmission and decompress it upon receipt. Compression reduces the size of data packets, leading to faster transmission times. Techniques like gzip, JPEG, and MPEG are commonly used for compressing text, image, audio, and video data. This is especially important for multimedia data, where compression allows efficient streaming of large files.
+
+---
+
+### 2. Presentation Layer Protocols
+
+Several protocols operate at the Presentation Layer to handle encoding, data conversion, encryption, and compression. Key protocols include:
+
+- **Secure Sockets Layer (SSL) / Transport Layer Security (TLS)**:
+    - Although SSL/TLS is often associated with the Transport Layer, it operates at both the Presentation and Transport layers.
+    - SSL/TLS provides encryption and secure communication for applications like HTTPS (HTTP Secure), ensuring that data remains private and tamper-proof between client and server.
+    - TLS (successor to SSL) is the standard for secure web communication and is widely used in secure data transmission across the internet.
+- **Multipurpose Internet Mail Extensions (MIME)**:
+    - MIME extends the functionality of email by enabling the sending of non-ASCII data like attachments (images, audio, video, etc.) over email protocols.
+    - MIME encodes these different data types into a format that email systems can understand, allowing email clients to decode the attachments and display them to the user.
+- **External Data Representation (XDR)**:
+    - XDR is a standard for data serialization, often used for RPC (Remote Procedure Call).
+    - It provides a universal way to represent data structures so that different systems can share data easily.
+    - XDR ensures compatibility by defining a common format for structured data, supporting distributed computing systems where data needs to be interpreted across different architectures.
+- **Abstract Syntax Notation One (ASN.1)**:
+    - ASN.1 is a standard interface for encoding and decoding data structures, widely used in telecommunications and network management.
+    - It enables data to be represented in a platform-independent way, so it can be easily transmitted and understood by different systems.
+    - ASN.1 is commonly used in protocols like SNMP (Simple Network Management Protocol) for managing devices on IP networks.
+- **JPEG/MPEG**:
+    - These are image and video compression standards often associated with the Presentation Layer.
+    - **JPEG** is commonly used for image compression, while **MPEG** is used for video and audio compression, facilitating efficient streaming and storage of multimedia content across networks.
+
+---
+
+### Summary of Presentation Layer Functions and Protocols
+
+| **Function/Protocol** | **Description** |
+| --- | --- |
+| **Data Conversion** | Converts data formats and structures to ensure compatibility between different systems. |
+| **Character Code Translation** | Translates character sets (e.g., ASCII, EBCDIC, Unicode) to allow text interoperability across systems. |
+| **Encryption and Decryption** | Provides data security through encryption for secure data transmission. |
+| **Compression and Decompression** | Reduces data size for faster transmission, essential for multimedia applications. |
+| **SSL/TLS** | Provides secure, encrypted communication for web applications, widely used for HTTPS. |
+| **MIME** | Extends email capabilities by encoding attachments for transmission. |
+| **XDR** | Universal data representation standard, used for data exchange in RPC and distributed systems. |
+| **ASN.1** | Encoding standard for data structures, used in telecommunications and network management protocols. |
+| **JPEG/MPEG** | Image and video compression standards for efficient multimedia data transmission. |
+
+The Presentation Layer provides critical services that ensure data is formatted, secured, and transmitted in a way that applications across different platforms can interpret, leading to a seamless exchange of information across heterogeneous networks.
+
+## **Application Layer**
+
+The **Application Layer** (Layer 7 of the OSI model) is the topmost layer, serving as the interface between applications and the network. It provides services for end-user applications and facilitates communication across the internet. Let's explore its main functions, protocols, and applications.
+
+---
+
+### 1. World Wide Web (WWW) Architectural Overview
+
+The **World Wide Web (WWW)** is a system of interlinked hypertext documents and resources accessible via the internet. The architecture of the WWW relies on several key components:
+
+- **Web Servers**: Host web content and respond to requests from clients.
+- **Web Clients (Browsers)**: Enable users to access web resources, interpreting HTML, CSS, and JavaScript to display content.
+- **Protocols**: HTTP (Hypertext Transfer Protocol) and HTTPS (HTTP Secure) are the primary protocols used to transfer web data. HTTPS includes encryption via SSL/TLS to secure communications.
+
+The WWW architecture follows a **client-server model** where browsers request resources from web servers, which then send the requested data back to the clients for display.
+
+---
+
+### 2. URL - Static and Dynamic Web
+
+- **Uniform Resource Locator (URL)**: A URL is a unique address used to access resources on the internet, specifying the protocol (e.g., HTTP), the domain name, and the specific resource path.
+
+### Static Web
+
+- **Static Websites**: Display content that doesn’t change unless manually updated by the developer. Each page is a separate HTML file stored on the server, and the content remains constant for all users.
+
+### Dynamic Web
+
+- **Dynamic Websites**: Generate content dynamically based on user interactions or data from a database. Dynamic pages are created using server-side scripts (like PHP, Python, or JavaScript with Node.js) and may change in response to user actions, such as filling out a form or making a search query.
+
+---
+
+### 3. File Transfer Protocol (FTP)
+
+**File Transfer Protocol (FTP)** is a standard protocol used to transfer files between a client and server on a network. It operates over TCP and allows users to upload, download, and manage files on a remote server.
+
+- **FTP Components**:
+    - **Client**: The user’s device, which initiates file transfers to and from the server.
+    - **Server**: Stores files and manages connections with FTP clients.
+- **Modes**:
+    - **Active Mode**: The client initiates a connection to the server and then opens a separate data connection for file transfer.
+    - **Passive Mode**: The server opens a port for the client to connect, commonly used when firewalls restrict certain connections.
+- **Security**: Plain FTP does not encrypt data, so secure variants like FTPS (FTP Secure) or SFTP (SSH File Transfer Protocol) are used for encrypted file transfers.
+
+---
+
+### 4. Secure Shell (SSH)
+
+**Secure Shell (SSH)** is a cryptographic network protocol used to secure connections to remote systems. SSH provides secure encrypted communications and remote command execution, file transfers, and tunneling.
+
+- **Authentication**: SSH uses public key cryptography for user authentication, where users have a private key stored locally and a public key stored on the server.
+- **Encryption**: Data is encrypted during transmission, protecting against eavesdropping and tampering.
+- **Uses**: SSH is commonly used for secure remote login, secure file transfers (via SCP or SFTP), and managing servers over insecure networks like the internet.
+
+---
+
+### 5. Email - Architecture and Services
+
+Email is one of the oldest and most widely used applications on the internet, providing asynchronous communication between users. The email system involves multiple components:
+
+- **Email Clients**: Applications (like Microsoft Outlook, Apple Mail, or webmail services) used by users to send, receive, and manage email.
+- **Mail Servers**: Store and forward emails. Mail servers are typically divided into **incoming** (IMAP/POP3) and **outgoing** (SMTP) servers.
+- **Email Protocols**:
+    - **SMTP (Simple Mail Transfer Protocol)**: Handles outgoing mail from the sender’s server to the recipient’s server.
+    - **IMAP (Internet Message Access Protocol)**: Allows users to access and manage email on a remote server, maintaining mail on the server.
+    - **POP3 (Post Office Protocol 3)**: Allows downloading emails from a server to a local device and then deleting them from the server.
+- **Email Services**: Include spam filtering, storage management, user authentication, and attachments handling.
+
+---
+
+### 6. Simple Mail Transfer Protocol (SMTP)
+
+**Simple Mail Transfer Protocol (SMTP)** is the primary protocol for sending email messages across networks. SMTP uses TCP (port 25) to reliably deliver messages from the sender’s email client to the recipient's email server.
+
+- **Process**:
+    - **Client-Server Model**: The email client connects to the SMTP server to send outgoing messages.
+    - **Mail Relays**: Messages can pass through multiple SMTP servers (relays) before reaching the destination.
+    - **Delivery Confirmation**: SMTP does not guarantee delivery confirmation, but delivery status notifications (DSNs) may be configured.
+
+SMTP is responsible for outgoing mail, while IMAP or POP3 is generally used to retrieve emails.
+
+---
+
+### 7. Domain Name System (DNS) - Name System, Resource Records, Name Servers
+
+**Domain Name System (DNS)** translates human-readable domain names (like [www.example.com](http://www.example.com/)) into IP addresses used by computers to identify each other on the network.
+
+- **DNS Structure**:
+    - **Domain Names**: A hierarchy of labels separated by dots, with the root at the top, followed by top-level domains (TLDs), second-level domains, and subdomains.
+    - **IP Mapping**: Each domain name corresponds to an IP address, enabling browser access to specific servers.
+- **Resource Records**: DNS uses different types of records to manage information associated with domain names:
+    - **A Record**: Maps a domain name to an IPv4 address.
+    - **AAAA Record**: Maps a domain name to an IPv6 address.
+    - **MX Record**: Specifies mail servers for handling email for a domain.
+    - **CNAME Record**: Maps one domain name to another (aliasing).
+- **Name Servers**:
+    - **Authoritative Name Servers**: Store DNS records for specific domains and provide authoritative responses.
+    - **Recursive Resolvers**: Intermediary servers that query multiple DNS servers on behalf of the client to resolve domain names.
+
+DNS is a fundamental service that supports the functioning of the internet by enabling domain name resolution.
+
+---
+
+### 8. Network Management (SNMP)
+
+**Simple Network Management Protocol (SNMP)** is a protocol used to monitor and manage network devices, such as routers, switches, and servers, enabling administrators to maintain, configure, and troubleshoot network infrastructure.
+
+- **Components**:
+    - **SNMP Manager**: The central system that sends queries and receives reports from SNMP agents.
+    - **SNMP Agent**: A software module on the network device that responds to queries from the SNMP manager.
+    - **Management Information Base (MIB)**: A database containing network device information accessible via SNMP.
+- **SNMP Versions**:
+    - **SNMPv1**: The original version, with basic features and limited security.
+    - **SNMPv2**: Introduced enhancements in performance and additional data types.
+    - **SNMPv3**: Adds security features like encryption and authentication.
+- **Functions**:
+    - **Get**: Retrieves data from an SNMP agent.
+    - **Set**: Modifies configuration on an SNMP agent.
+    - **Trap**: Sends an alert from an agent to the SNMP manager when a specific event occurs.
+
+SNMP provides a standardized way to monitor and control devices on a network, essential for network performance and security management.
+
+---
+
+### Summary of Application Layer Components
+
+| **Application** | **Description** |
+| --- | --- |
+| **WWW (World Wide Web)** | Client-server model using HTTP/HTTPS for accessing web resources. |
+| **URL** | Unique resource locator for web addresses; supports both static and dynamic content. |
+| **FTP (File Transfer Protocol)** | Protocol for transferring files between client and server. |
+| **SSH (Secure Shell)** | Protocol for secure remote access and command execution. |
+| **Email** | Asynchronous communication service using SMTP, IMAP, and POP3. |
+| **SMTP** | Protocol for sending emails between servers. |
+| **DNS** | Translates domain names to IP addresses using resource records and name servers. |
+| **SNMP** | Protocol for monitoring and managing network devices. |
+
+These application layer protocols and services are critical for internet communication, enabling secure access, data sharing, resource management, and infrastructure monitoring.
