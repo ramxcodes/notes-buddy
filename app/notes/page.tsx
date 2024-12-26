@@ -85,7 +85,25 @@ export default function BlogPage() {
               })}
             </ul>
           ) : (
-            <p>Nothing to see here yet</p>
+            <div className="text-2xl">
+              <p>
+                You May have selected <b>Two or more subjects</b>.
+              </p>
+              <br />
+              <div className="text-muted-foreground text-lg">
+                Please use the following approach :
+                <ul>
+                  <li>
+                    <b>Single Subject</b> : You can select only one subject at a
+                    time.
+                  </li>
+                  <li>
+                    <b>Single Degree</b> : You can select only one Degree at a
+                    time.
+                  </li>
+                </ul>
+              </div>
+            </div>
           )}
           <QueryPagination
             totalPages={totalPages}
