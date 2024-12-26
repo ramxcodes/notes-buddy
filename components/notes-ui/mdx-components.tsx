@@ -2,6 +2,7 @@ import Image from "next/image";
 import * as runtime from "react/jsx-runtime";
 import { Callout } from "./callout";
 import { UnitPagination } from "./unit-pagination";
+import { isPaginationDisabled } from "@/utils/pagination-config";
 
 const useMDXComponent = (code: string) => {
   const fn = new Function(code);
@@ -17,20 +18,25 @@ interface MdxProps {
   code: string;
   currentUnit?: number;
   totalUnits?: number;
-  slug?: string;
+  slug: string;
 }
 
 export function MDXContent({ code, currentUnit, totalUnits, slug }: MdxProps) {
   const Component = useMDXComponent(code);
 
+
+  const showUnitPagination = !isPaginationDisabled(slug);
+
   return (
     <div>
       <Component components={components} />
-      <UnitPagination
-        currentUnit={currentUnit ?? 1}
-        totalUnits={totalUnits ?? 1}
-        slug={slug ?? ""}
-      />
+      {showUnitPagination && currentUnit && totalUnits ? (
+        <UnitPagination
+          currentUnit={currentUnit}
+          totalUnits={totalUnits}
+          slug={slug}
+        />
+      ) : null}
     </div>
   );
 }

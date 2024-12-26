@@ -7,6 +7,7 @@ import { siteConfig } from "@/config/site";
 import { SiteFooter } from "@/components/site-footer";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
+import { ReactLenis } from "@/utils/lenis";
 
 const Gilroy = localFont({
   src: [
@@ -59,22 +60,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-pt-[3.5rem]">
-      <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          Gilroy.variable
-        )}
-      >
-        <Providers>
-          <div className="relative flex min-h-dvh flex-col bg-background">
-            <SiteHeader />
-            <main className="flex-1">
-              {children} <Analytics />
-            </main>
-            <SiteFooter />
-          </div>
-        </Providers>
-      </body>
+      <ReactLenis root>
+        <body
+          className={cn(
+            "min-h-screen bg-background font-sans antialiased",
+            Gilroy.variable
+          )}
+        >
+          <Providers>
+            <div className="relative flex min-h-dvh flex-col bg-background">
+              <SiteHeader />
+              <main className="flex-1">
+                {children} <Analytics />
+              </main>
+              <SiteFooter />
+            </div>
+          </Providers>
+        </body>
+      </ReactLenis>
     </html>
   );
 }

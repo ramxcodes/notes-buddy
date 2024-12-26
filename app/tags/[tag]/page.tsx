@@ -1,5 +1,5 @@
 import { posts } from "#site/content";
-import { PostItem } from "@/components/post-item";
+import { PostItemBox } from "@/components/post-item-box";
 import { Tag } from "@/components/tag";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAllTags, getPostsByTagSlug, sortTagsByCount } from "@/lib/utils";
@@ -33,12 +33,12 @@ export default function TagPage({ params }: TagPageProps) {
   const title = tag.split("-").join(" ");
 
   const allPosts = getPostsByTagSlug(posts, tag);
-  const displayPosts = allPosts.filter(post => post.published);
+  const displayPosts = allPosts.filter((post) => post.published);
   const tags = getAllTags(posts);
   const sortedTags = sortTagsByCount(tags);
 
   return (
-    <div className="container max-w-4xl py-6 lg:py-10">
+    <div className="container max-w-4xl py-6 lg:py-10 mb-5">
       <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
         <div className="flex-1 space-y-4">
           <h1 className="inline-block font-black text-4xl lg:text-5xl capitalize">
@@ -46,40 +46,39 @@ export default function TagPage({ params }: TagPageProps) {
           </h1>
         </div>
       </div>
-      <div className="grid grid-cols-12 gap-3 mt-8">
-        <div className="col-span-12 col-start-1 sm:col-span-8">
-          <hr />
-          {displayPosts?.length > 0 ? (
-            <ul className="flex flex-col">
-              {displayPosts.map((post) => {
-                const { slug, date, title, description, tags } = post;
-                return (
-                  <li key={slug}>
-                    <PostItem
-                      slug={slug}
-                      date={date}
-                      title={title}
-                      description={description}
-                      tags={tags}
-                    />
-                  </li>
-                );
-              })}
-            </ul>
-          ) : (
-            <p>Nothing to see here yet</p>
-          )}
-        </div>
-        <Card className="col-span-12 row-start-3 h-fit sm:col-span-4 sm:col-start-9 sm:row-start-1">
-          <CardHeader>
-            <CardTitle>Tags</CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-wrap gap-2">
-            {sortedTags?.map((t) => (
-              <Tag tag={t} key={t} count={tags[t]} current={slug(t) === tag} />
-            ))}
-          </CardContent>
-        </Card>
+
+      <hr className="my-6" />
+
+      <Card className="mb-6">
+        <CardHeader>
+          <CardTitle>Search By :</CardTitle>
+        </CardHeader>
+        <CardContent className="flex flex-wrap gap-2">
+          {sortedTags?.map((t) => (
+            <Tag tag={t} key={t} count={tags[t]} current={slug(t) === tag} />
+          ))}
+        </CardContent>
+      </Card>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+        {displayPosts?.length > 0 ? (
+          displayPosts.map((post) => {
+            const { slug, title, description, tags } = post;
+            return (
+              <PostItemBox
+                key={slug}
+                slug={slug}
+                title={title}
+                description={description}
+                tags={tags}
+              />
+            );
+          })
+        ) : (
+          <p className="col-span-1 md:col-span-2 lg:col-span-3">
+            Nothing to see here yet
+          </p>
+        )}
       </div>
     </div>
   );
