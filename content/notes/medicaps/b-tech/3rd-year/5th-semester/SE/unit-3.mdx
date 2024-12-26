@@ -1,0 +1,340 @@
+---
+title: "Unit 3 : Software Engineering"
+description: What is Software Engineering
+date: 2024-12-25
+tags: ["Software Engineering", "5th Semester", "3rd Year", "medicaps university"]
+published: true
+---
+
+
+# **Principles of Software Design**
+
+Software design principles are guidelines that help software developers create systems that are efficient, maintainable, scalable, and robust. These principles act as a foundation for writing clean, understandable, and flexible code. Here are some key principles:
+
+### 1. **SOLID Principles**
+
+The SOLID principles are a set of five design principles that aim to improve the clarity, flexibility, and robustness of software.
+
+- **Single Responsibility Principle (SRP)**: A class should have only one reason to change, meaning it should only have one job or responsibility. This makes classes easier to understand, test, and maintain.
+- **Open-Closed Principle (OCP)**: Software entities (classes, modules, functions) should be open for extension but closed for modification. This means you can add new functionality without altering existing code, minimizing the risk of introducing bugs.
+- **Liskov Substitution Principle (LSP)**: Objects of a superclass should be replaceable with objects of a subclass without altering the correctness of the program. This principle promotes consistent behavior in inherited classes.
+- **Interface Segregation Principle (ISP)**: A class should not be forced to implement interfaces it doesn't use. Instead of one large interface, multiple smaller ones should be created to serve specific needs.
+- **Dependency Inversion Principle (DIP)**: High-level modules should not depend on low-level modules. Both should depend on abstractions, helping to reduce dependency and improve flexibility.
+
+### 2. **DRY (Don’t Repeat Yourself)**
+
+This principle emphasizes reducing redundancy in code by avoiding repetition of the same logic in multiple places. By creating reusable functions, classes, and modules, you minimize the risk of bugs, ease maintenance, and ensure that updates apply consistently throughout the codebase.
+
+### 3. **KISS (Keep It Simple, Stupid)**
+
+Complexity should be avoided wherever possible. This principle emphasizes keeping the design and code simple and straightforward, making it easier to understand, maintain, and debug. Simplicity can help to reduce errors and improve readability.
+
+### 4. **YAGNI (You Aren't Gonna Need It)**
+
+YAGNI advises against adding functionality unless it's necessary. The temptation to anticipate future needs can lead to overengineering and unnecessary code, which makes systems harder to maintain and understand. Instead, implement features only when there's a genuine need for them.
+
+### 5. **Composition Over Inheritance**
+
+Favor object composition over class inheritance. Composition allows objects to achieve polymorphic behavior by including other classes as components, making code more modular and flexible than rigid inheritance structures.
+
+### 6. **Encapsulation**
+
+Encapsulation promotes keeping the internal representation of an object hidden from the outside. Only exposing necessary components through interfaces, encapsulation provides security, reduces complexity, and improves modularity.
+
+### 7. **Separation of Concerns (SoC)**
+
+Different parts of the code should handle separate concerns or functionalities. By separating concerns, each part of the code can evolve independently, making it easier to manage, test, and refactor. SoC can be implemented through modularization, services, and layers (e.g., MVC pattern).
+
+### 8. **Modularity**
+
+Modularity involves breaking down software into smaller, manageable, and independent parts (modules). Each module encapsulates a specific functionality and can be developed, tested, and maintained independently, improving reusability and scalability.
+
+### 9. **Minimize Coupling and Maximize Cohesion**
+
+- **Low Coupling**: Refers to reducing dependencies between modules or classes, making it easier to make changes without impacting others. Low coupling enhances flexibility, readability, and maintenance.
+- **High Cohesion**: Ensures that a module or class is focused on a single task or responsibility, improving maintainability and readability.
+
+### 10. **Law of Demeter (LoD)**
+
+Often called the "principle of least knowledge," the Law of Demeter advises that objects should only interact with their immediate friends and avoid reaching too deep into other objects. This helps to avoid tightly coupled code and makes the codebase easier to understand and modify.
+
+### 11. **Design for Testability**
+
+Code should be structured in a way that makes it easy to test. This means writing code that’s modular, minimizes dependencies, and allows for unit testing without requiring the entire system to be in place.
+
+### 12. **Fail Fast and Defensive Coding**
+
+A "fail-fast" approach ensures that software throws an error and stops execution as soon as something unexpected happens. This principle, combined with defensive coding, promotes catching and handling issues early, resulting in more reliable and robust code.
+
+### 13. **Reusable and Extensible Code**
+
+Designing software to be reusable and extensible saves time and effort in the long term. Reusable code components should be generic enough to serve multiple purposes, and extensible code should allow for easy addition of new features without major rewrites.
+
+### 14. **Clean Code Principles**
+
+- **Readability**: Code should be easy to read and understand by others.
+- **Naming Conventions**: Use meaningful names for variables, functions, and classes.
+- **Comments**: Use comments to explain why something is done, not what is done, unless it's complex.
+- **Code Formatting**: Follow consistent formatting to improve readability across the team.
+
+### 15. **Data Hiding**
+
+This principle involves restricting access to certain parts of a code structure (such as class variables) to prevent external systems from modifying the data in unexpected ways. Data hiding enhances security and makes code changes less likely to impact other components.
+
+By following these principles, software designers and developers can create high-quality, maintainable, and scalable software that meets users' needs and withstands the demands of long-term maintenance and evolution.
+
+---
+
+## **Design Concepts**
+
+Design concepts in software engineering are fundamental ideas that guide the planning, structuring, and implementation of software solutions. They provide frameworks and best practices to ensure that the software is functional, efficient, and easy to maintain. Here are the core design concepts in software development:
+
+### 1. **Abstraction**
+
+Abstraction is the process of hiding complex implementation details and exposing only the necessary components or interfaces. It allows developers to work with high-level representations of concepts without worrying about low-level implementation. For instance, a `Car` class might expose methods like `start()` and `stop()`, hiding the complexities of the engine and other parts.
+
+### 2. **Encapsulation**
+
+Encapsulation involves bundling data and the methods that operate on that data into a single unit (like a class) and restricting access to the internal details. This means that only specific parts of an object are accessible outside, improving security, reducing complexity, and enhancing modularity.
+
+### 3. **Modularity**
+
+Modularity divides a system into distinct modules, each responsible for a specific part of the system's functionality. Each module can be developed, tested, and maintained independently, which makes modular systems more scalable and easier to troubleshoot. Modules also allow for easier collaboration in larger teams since each developer can focus on a specific module.
+
+### 4. **Hierarchy**
+
+Hierarchy involves structuring code in a ranked or layered order. It is often used in object-oriented programming through inheritance, where classes are arranged in parent-child relationships. Hierarchy allows for code reuse, logical organization, and a clear structure, facilitating maintenance and scalability.
+
+### 5. **Separation of Concerns (SoC)**
+
+This concept encourages separating a system into distinct sections that each address a specific concern or functionality. For example, in a web application, separating the data handling, business logic, and user interface promotes organization and reduces dependencies, making code easier to understand and maintain.
+
+### 6. **Coupling and Cohesion**
+
+- **Low Coupling**: Coupling refers to the level of dependency between modules. Low coupling is desirable because it minimizes the interdependencies between modules, so changes in one module have minimal impact on others.
+- **High Cohesion**: Cohesion measures how closely related the functions within a module are. High cohesion means that a module’s functions are closely related, making it more focused, reliable, and easier to maintain.
+
+### 7. **Information Hiding**
+
+Information hiding restricts access to internal object details, allowing only relevant information to be exposed to other objects. This promotes modularity and prevents external components from relying on internal details that may change over time.
+
+### 8. **Design Patterns**
+
+Design patterns are reusable solutions to common design problems, often encountered in software development. They provide tried-and-tested templates for solving problems like object creation, structural composition, and behavioral management. Examples include the Singleton, Factory, Observer, and Adapter patterns.
+
+### 9. **Refactoring**
+
+Refactoring is the process of restructuring existing code to improve its readability, structure, and performance without changing its behavior. It helps make code more efficient, reduces technical debt, and makes the codebase more maintainable in the long term.
+
+### 10. **DRY (Don’t Repeat Yourself)**
+
+The DRY principle advocates for minimizing code duplication. When the same logic is repeated in multiple places, it becomes harder to update, maintain, and debug. By reusing code through functions, classes, and modules, developers ensure consistency and reduce the risk of errors.
+
+### 11. **Code Reusability**
+
+Code reusability focuses on writing components that can be reused across different parts of the application or even across different projects. Reusable code reduces development time and helps maintain consistency throughout a system.
+
+### 12. **Defensive Design**
+
+Defensive design anticipates potential problems, errors, or unexpected inputs and includes strategies to handle them gracefully. This could mean implementing validation, error handling, and safeguards to ensure the system remains stable under various conditions.
+
+### 13. **Polymorphism**
+
+Polymorphism, a key concept in object-oriented programming, allows objects to be treated as instances of their parent class. This means that different classes can define their own unique behaviors while sharing a common interface, improving flexibility and simplifying code.
+
+### 14. **Concurrency**
+
+Concurrency is the ability of a system to handle multiple tasks at the same time, either through parallelism (executing tasks simultaneously) or multitasking (switching between tasks rapidly). Properly designed concurrent systems can be more efficient and responsive, especially in applications requiring high-performance computations or real-time interactions.
+
+### 15. **Scalability**
+
+Scalability is designing software so it can grow to accommodate more users, transactions, or data without significant performance loss. Scalable designs often involve modularity, distributed systems, caching, and efficient data handling, allowing the software to handle increased loads gracefully.
+
+### 16. **Maintainability**
+
+Maintainability ensures that the software is easy to understand, modify, and extend. This often includes following clean coding practices, consistent documentation, modularization, and adhering to established design principles (such as SOLID).
+
+### 17. **Resilience**
+
+Resilience is the ability of software to handle unexpected failures gracefully and recover quickly. This can involve redundancy, fault tolerance, and error handling strategies to ensure the system remains operational in adverse conditions.
+
+### 18. **State Management**
+
+State management is the approach to managing the state of data within an application, especially in dynamic applications like web apps. This concept ensures that data is consistently maintained and updated, allowing the application to respond correctly to user interactions and other events.
+
+### 19. **Client-Server Separation**
+
+In client-server architectures, the responsibilities are divided between the client (user-facing) and server (backend) components. This separation improves scalability, simplifies maintenance, and allows each part to be developed independently, often with different technologies.
+
+### 20. **Event-Driven Design**
+
+Event-driven design focuses on creating systems that react to events or triggers, such as user actions, messages, or changes in data. Event-driven architecture is commonly used in applications requiring real-time feedback and responsiveness, like web applications, games, and IoT devices.
+
+### 21. **API and Interface Design**
+
+Designing clear and well-documented APIs (Application Programming Interfaces) or interfaces allows components or services to interact with each other effectively. Good API design ensures modularity, scalability, and flexibility in the software by defining a clear boundary between system parts.
+
+### 22. **Loose Coupling via Dependency Injection**
+
+Dependency Injection (DI) is a design pattern that allows a component's dependencies to be injected from outside rather than created by the component itself. This promotes loose coupling, making the code more modular, testable, and flexible for changes.
+
+### 23. **Asynchronous Processing**
+
+Asynchronous processing involves executing tasks independently of the main program flow, allowing the system to perform other tasks simultaneously. It’s especially valuable in handling I/O-bound tasks (e.g., network requests) and enhancing performance in applications where responsiveness is critical.
+
+By applying these design concepts, software engineers create systems that are not only functional and efficient but also flexible, scalable, and resilient. These foundational ideas are essential for building high-quality software that meets users' needs and is sustainable in the long run.
+
+---
+
+### 1. **Relationships in Software Design**
+
+Relationships describe how different parts of a software system interact with and depend on each other. There are several types of relationships commonly seen in software design:
+
+- **Association**: A "uses" or "has a" relationship, where one object is linked to another. For example, a `Student` class might be associated with a `Course` class if a student enrolls in a course.
+- **Aggregation**: A "whole-part" relationship, where the existence of the part does not depend on the whole. For example, a `Library` class can aggregate `Books`, but each book can exist independently of the library.
+- **Composition**: A stronger form of aggregation, where the part’s existence depends on the whole. For instance, a `Car` class can compose `Engine` and `Wheel` objects, meaning that if the car is destroyed, so are its components.
+- **Inheritance**: An "is-a" relationship, where one class (subclass) inherits the properties and behavior of another class (superclass). For instance, a `Dog` class can inherit from an `Animal` class.
+- **Dependency**: A "uses" relationship, where one class relies on another class to function but does not necessarily have a strong association with it. For example, a `ReportGenerator` class might depend on a `DatabaseConnection` class to retrieve data.
+
+These relationships help developers understand the structure of the system, making it easier to design, implement, and maintain.
+
+---
+
+### 2. **Design Model in Software Development**
+
+The design model is a blueprint or a conceptual representation of the software system. It translates the high-level requirements and analysis models into a technical blueprint that guides the development process. Key aspects of the design model include:
+
+- **Class Design Model**: Defines the classes, their attributes, methods, and relationships. It provides a structural blueprint and establishes the system’s object-oriented structure.
+- **Behavioral Design Model**: Represents how objects interact and behave over time. It includes **sequence diagrams**, **state diagrams**, and **activity diagrams** to capture dynamic interactions, workflows, and processes.
+- **Architectural Design Model**: Describes the high-level structure of the entire system, typically including layers or components and their interactions. This model often uses diagrams to capture the layout of modules, services, or subsystems.
+- **Data Design Model**: Defines how data is organized, accessed, and manipulated within the system. It includes the database schema, data types, and structures to ensure efficient data storage, retrieval, and management.
+- **Interface Design Model**: Focuses on user interface design and interactions. It defines how the system will interact with users, specifying UI components, navigation, and layouts.
+- **Component Design Model**: Details the individual components, modules, or services within the system. It specifies the components’ internal structure, functionality, and how they interact with other components.
+
+The design model enables developers to clearly understand the system structure, components, and data flow, ensuring alignment with requirements and preparing for the coding phase.
+
+---
+
+### 3. **Component Design**
+
+Component design focuses on designing individual, self-contained parts of a software system that encapsulate specific functionality and are reusable across the application or even different applications. Components are often represented as distinct modules, services, or classes and are designed with clear interfaces and responsibilities. Key aspects of component design include:
+
+- **Component Cohesion and Purpose**: Each component should focus on a single responsibility or closely related functions. High cohesion makes components more understandable, maintainable, and reusable.
+- **Encapsulation**: Components should hide their internal implementation details, exposing only what’s necessary through interfaces. This reduces complexity and makes it easier to manage changes without affecting other parts of the system.
+- **Component Interfaces**: Each component should have a well-defined interface that specifies how other components or parts of the system can interact with it. This ensures that components can be used without exposing their inner workings.
+- **Dependency Management**: Components should minimize dependencies on other components or parts of the system, making them more reusable and less tightly coupled. Loose coupling improves modularity and makes it easier to replace or update components.
+- **Reusability**: Components should be designed so they can be reused in different parts of the application or across other applications. Reusability can reduce duplication, improve efficiency, and maintain consistency across the system.
+- **State Management**: Components often need to manage their internal state. Well-designed components ensure that state is updated consistently, managing changes in a way that doesn’t negatively impact other components or the overall system.
+- **Error Handling**: Each component should manage errors gracefully, either through exception handling or predefined error responses. Proper error handling within a component can prevent failures from propagating throughout the system.
+- **Scalability**: Components should be designed to handle varying loads efficiently, especially in large or high-traffic applications. Scalable components can respond to increased demand without degradation in performance.
+
+**Example of a Component Design Process:**
+
+1. **Define Component Requirements**: Understand what the component needs to do, its inputs and outputs, and any dependencies.
+2. **Create Component Interfaces**: Design a clear interface with necessary methods or functions, specifying inputs, outputs, and expected behaviors.
+3. **Encapsulate Functionality**: Implement the component’s core functionality while hiding implementation details from other components.
+4. **Manage Dependencies**: Ensure minimal dependency on other components, using techniques like dependency injection or service layers where appropriate.
+5. **Implement Error Handling and Validation**: Add mechanisms to handle errors gracefully and validate inputs.
+6. **Test the Component**: Test the component independently, validating that it functions correctly according to its specification.
+7. **Integrate and Iterate**: Integrate the component into the system, making improvements or adjustments based on testing and usage.
+
+---
+
+### 1. **User Interface (UI) Design**
+
+User Interface Design focuses on creating an effective and engaging visual experience for users, enhancing usability, functionality, and accessibility. UI Design considers elements like layout, color, typography, and interaction patterns to create an interface that’s intuitive and easy to navigate.
+
+### Key Principles of UI Design:
+
+- **Consistency**: Consistent design patterns help users quickly learn and predict the behavior of the interface. This includes uniform button styles, icons, and layout structures throughout the application.
+- **Clarity and Simplicity**: The interface should be clean, with minimal clutter, to allow users to focus on the tasks at hand. Simple layouts, clear labels, and concise instructions enhance user experience.
+- **Feedback and Responsiveness**: Users should receive immediate feedback when they interact with elements (e.g., button clicks, loading animations). Responsive design ensures the interface adapts to different devices and screen sizes.
+- **Accessibility**: An accessible design ensures that all users, including those with disabilities, can use the interface effectively. Accessibility involves implementing features like screen reader support, keyboard navigation, and high-contrast themes.
+- **User Control and Flexibility**: Allow users to control their interactions with the interface, such as undoing actions or customizing settings, without forcing them into rigid workflows.
+- **Error Prevention and Recovery**: Design interfaces that minimize the chances of user error and offer clear guidance on how to recover from them. For example, confirm deletion actions or highlight invalid input fields.
+- **Aesthetic and Minimalist Design**: Avoid unnecessary elements that do not contribute to the main functions of the software. A visually appealing yet minimal design helps reduce cognitive load on users.
+
+### UI Design Process:
+
+1. **Research and Requirements Gathering**: Understand the users, their needs, goals, and challenges. This step often involves user research, surveys, and analysis of similar applications.
+2. **Wireframing and Prototyping**: Create rough layouts (wireframes) and clickable prototypes to define the structure and basic functionality of the interface. This helps visualize and refine design ideas.
+3. **Visual Design**: Add details such as colors, fonts, icons, and graphics to wireframes to create a high-fidelity design. This step establishes the visual identity of the application.
+4. **Usability Testing**: Conduct testing with real users to identify any issues or areas for improvement. Gather feedback and iterate on the design as needed.
+5. **Development Handoff and Collaboration**: Work with developers to ensure the design is implemented accurately. This may include sharing design specifications, assets, and style guides.
+6. **Iterative Improvement**: Post-launch, gather user feedback and perform analytics to continue improving the UI based on real-world use.
+
+### UI Design Tools and Technologies:
+
+- **Design Tools**: Figma, Adobe XD, Sketch, and InVision are popular tools for designing and prototyping interfaces.
+- **UI Frameworks**: Frameworks like Bootstrap, Material Design, and Tailwind CSS provide pre-designed components, speeding up development and ensuring a consistent look and feel.
+- **Accessibility Testing Tools**: Tools like WAVE, Axe, and Lighthouse help ensure interfaces are accessible and meet industry standards.
+
+---
+
+### 2. **Configuration Management**
+
+Configuration Management (CM) in software engineering is the process of systematically handling changes to a software product, ensuring consistency, reliability, and traceability throughout the development lifecycle. CM includes version control, change tracking, and build management to keep software organized and to ensure changes are documented and controlled.
+
+### Key Objectives of Configuration Management:
+
+- **Version Control**: Track and manage changes in the software codebase, enabling developers to work collaboratively without overwriting each other’s changes. It also allows for rollbacks if issues arise.
+- **Change Management**: Ensure that changes are systematically reviewed, tested, and approved before integration. This minimizes the risk of introducing bugs or regressions.
+- **Build Management**: Automate the process of compiling and deploying software. Build management includes ensuring that each build is reproducible, documented, and tested, reducing errors in deployment.
+- **Traceability**: Maintain a history of all changes, including who made the change, why, and when. Traceability makes it easier to identify the origin of bugs, manage dependencies, and meet regulatory requirements.
+
+### Configuration Management Process:
+
+1. **Configuration Identification**: Define the configuration items (e.g., code files, documents, libraries) that need to be managed. Each item should have a unique identifier to distinguish versions.
+2. **Version Control**: Use a version control system (VCS) like Git, Mercurial, or Subversion to track changes, create branches, and manage versions of each configuration item.
+3. **Change Control**: Implement a process for requesting, reviewing, and approving changes. This might involve a change control board (CCB) or a more automated workflow.
+4. **Configuration Audits**: Regularly audit configurations to ensure compliance with standards, check for discrepancies, and confirm that configurations are accurate and complete.
+5. **Status Reporting**: Generate reports on configuration status, including a record of versions, updates, and changes applied. Status reporting helps with tracking progress, identifying issues, and ensuring accountability.
+
+### Key Components of Configuration Management:
+
+- **Version Control Systems (VCS)**: Systems like Git, Mercurial, and SVN allow teams to track, merge, and manage code changes. Distributed VCS (like Git) allow for more flexibility and branching options, whereas centralized VCS (like SVN) offer simplicity and easier integration.
+- **Build Systems**: Tools like Jenkins, CircleCI, and Travis CI automate the build process, running scripts to compile code, run tests, and deploy builds in a continuous integration (CI) and continuous deployment (CD) pipeline.
+- **Configuration Management Tools**: Tools like Ansible, Chef, Puppet, and Terraform manage and automate the configuration of infrastructure, allowing for scalable and consistent environments.
+- **Issue Tracking Systems**: Systems like JIRA, Trello, and Bugzilla track and manage changes, bugs, and feature requests. They often integrate with VCS to link code changes to specific issues.
+- **Documentation**: Documentation is crucial in configuration management, capturing version details, deployment instructions, configuration settings, and change logs.
+
+### Benefits of Configuration Management:
+
+- **Improved Collaboration**: Version control enables multiple developers to work on the same project without conflicts, while tracking changes and coordinating updates.
+- **Enhanced Traceability and Accountability**: Every change is tracked, so it’s clear who made what change and why. This is valuable for audits, debugging, and compliance.
+- **Reduced Errors in Deployment**: Automated build and deployment processes help reduce errors, ensuring that every release is consistent and reproducible.
+- **Rapid Rollback and Recovery**: If issues are introduced, CM systems make it easy to revert to a previous working version, minimizing downtime and reducing risk.
+
+---
+
+### FINAL SUMMARY —
+
+1. **Principles of Software Design**: Guidelines to create organized, maintainable software.
+    - Key principles include **modularity**, **abstraction**, **encapsulation**, **separation of concerns**, **DRY (Don't Repeat Yourself)**, **KISS (Keep It Simple, Stupid)**, and the **SOLID** principles.
+2. **Design Concepts**: Fundamental ideas for structuring software.
+    - **Abstraction**: Simplifies complex systems by focusing on essential features.
+    - **Architecture**: The big-picture blueprint of how components interact within a system.
+    - **Modularity**: Divides the system into independent parts (modules) that handle specific tasks.
+    - **Relationships**: Define how parts of the software connect and depend on each other, including association, dependency, inheritance, and composition.
+    - **Design Model**: A blueprint representing the system’s structure, relationships, and interactions, helping developers visualize and plan the software.
+    - **Component Design**: The process of creating reusable, independent parts (components) that perform specific functions.
+3. **User Interface (UI) Design**: Focuses on creating a user-friendly, intuitive, and accessible interface, enhancing usability, consistency, and feedback.
+4. **Configuration Management**: Manages and tracks changes in software, including version control, configuration tracking, change management, and release management, ensuring stability and consistency.
+
+---
+
+### Table of Design Components
+
+| **Component** | **Description** | **Purpose** |
+| --- | --- | --- |
+| **Modularity** | Dividing software into independent modules, each handling a specific task. | Simplifies management, testing, and updates. |
+| **Abstraction** | Hiding complex details and showing only essential features. | Makes software simpler and easier to use and understand. |
+| **Encapsulation** | Keeping data and code that manipulates it in one place, protecting it from outside interference. | Maintains data integrity and reduces errors. |
+| **Separation of Concerns** | Dividing software based on different responsibilities or functions. | Improves maintainability and organization. |
+| **DRY (Don't Repeat Yourself)** | Avoiding code duplication by reusing code. | Reduces redundancy and simplifies future changes. |
+| **SOLID Principles** | Five principles to make software more robust and flexible: Single Responsibility, Open-Closed, etc. | Ensures clean, maintainable, and scalable code design. |
+| **User Interface Design** | Creating an intuitive, consistent, and accessible interface for users. | Enhances user experience and usability. |
+| **Relationships** | Defines how different parts of the system connect, including association, dependency, and inheritance. | Ensures parts interact effectively and predictably. |
+| **Design Model** | Visual representation of the software’s structure, classes, relationships, and interactions. | Provides a blueprint for development and aids in planning. |
+| **Component Design** | Creating reusable, self-contained components that perform specific functions. | Encourages modularity, reusability, and easier maintenance. |
+| **Configuration Management** | Tracking and managing changes, including version control and release management. | Ensures consistency, stability, and smooth updates. |
