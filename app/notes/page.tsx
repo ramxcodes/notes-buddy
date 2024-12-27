@@ -2,12 +2,16 @@
 
 import { posts } from "#site/content";
 import { PostItemBox } from "@/components/post-item-box";
-import { QueryPagination } from "@/components/query-pagination";
 import { Tag } from "@/components/tag";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAllTags, sortPosts, sortTagsByCount } from "@/lib/utils";
 import { SetStateAction, useState } from "react";
+import dynamic from "next/dynamic";
 
+const QueryPagination = dynamic(
+  () => import('@/components/query-pagination').then((mod) => mod.QueryPagination),
+  { ssr: false }
+);
 const POSTS_PER_PAGE = 6;
 
 export default function BlogPage() {
