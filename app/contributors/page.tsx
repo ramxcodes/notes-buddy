@@ -8,8 +8,7 @@ export default async function page() {
     d?.forEach((e)=>{
       tree._insert(e)
     })
-    console.log("name")
-    console.log(tree._search("5.mdx"));
+    // console.log(tree._search("5.mdx"));
   }
   name()
   return (

@@ -52,7 +52,6 @@ export const getAllNotes = async() =>{
                 tags.forEach((tagname)=>{
                     n.push(_createTag(tagname))
                 })
-                // console.log(n)
                 const newNote = _createNote(tags[tags.length-1],n,"sample")
                 Notes.push(newNote);
             })
@@ -61,7 +60,7 @@ export const getAllNotes = async() =>{
    
     }
     catch(e){
-        console.log(e)   
+        //console.log(e)   
     }
 }
 
