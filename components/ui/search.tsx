@@ -9,10 +9,10 @@ export interface SearchInputProps extends React.InputHTMLAttributes<HTMLInputEle
 
 const SearchInput: React.FC<SearchInputProps> = ({ icon, className, ...props }) => {
   const fc = useSearchContext()
-  const inputref = useRef<HTMLInputElement>()
+  const inputref = useRef<HTMLInputElement>(null)
 
   function handleFocus (){
-    inputref.current.scrollIntoView({ behavior: "smooth", block: "center" });
+    inputref.current?.scrollIntoView({ behavior: "smooth", block: "center" });
     setTimeout(() => {
       inputref.current?.focus();
     }, 300);
@@ -33,10 +33,10 @@ const SearchInput: React.FC<SearchInputProps> = ({ icon, className, ...props }) 
   })
 
   function HandleChange(){
-    if(inputref.current.value != ""){
-      fc.setquery(inputref.current.value)
+    if(inputref.current?.value != ""){
+      fc?.setquery(inputref?.current?.value ? inputref.current.value : null)
     }else{
-      fc.setquery("")
+      fc?.setquery("")
     }
   }
   return (
@@ -52,8 +52,8 @@ const SearchInput: React.FC<SearchInputProps> = ({ icon, className, ...props }) 
         className="w-full bg-transparent pl-10 text-sm placeholder:text-muted-foreground focus:outline-none"
         {...props}
         ref = {inputref}
-        onFocus={()=>fc.setFocused(true)}
-        onBlur={()=>fc.setFocused(false)}
+        onFocus={()=>fc?.setFocused(true)}
+        onBlur={()=>fc?.setFocused(false)}
         onChange={()=>HandleChange()}
       />
        <span className="absolute right-3 text-muted-foreground text-sm">

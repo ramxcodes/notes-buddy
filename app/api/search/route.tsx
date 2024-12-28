@@ -1,8 +1,8 @@
 import { PrefixTree } from '@/lib/autoCompletePrefixTree';
-import { getAllNotesFileSync, getAllNotesVelite } from '@/lib/getNotesJson';
-import { NextResponse } from 'next/server';
+import { getAllNotesVelite } from '@/lib/getNotesJson';
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function POST(req,res) {
+export async function POST(req:NextRequest,res:NextResponse) {
   const q = await req.json()
   const ser:string = q.query
   const tree = new PrefixTree();
