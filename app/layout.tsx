@@ -8,6 +8,7 @@ import { SiteFooter } from "@/components/site-footer";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import { ReactLenis } from "@/utils/lenis";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const Gilroy = localFont({
   src: [
@@ -71,7 +72,9 @@ export default function RootLayout({
             <div className="relative flex min-h-dvh flex-col bg-background">
               <SiteHeader />
               <main className="flex-1">
-                {children} <Analytics />
+                {children}
+                <SpeedInsights />
+                <Analytics />
               </main>
               <SiteFooter />
             </div>
