@@ -3,7 +3,7 @@ import { PostItemBox } from "@/components/post-item-box";
 
 export default function TagPage({ params }: { params: { tag: string } }) {
   const { tag } = params;
-  const decodedTag = tag.replace(/-/g, " "); // Replace hyphens with spaces
+  const decodedTag = tag.replace(/-/g, " ");
 
   const filteredPosts = posts.filter(
     (post) =>
