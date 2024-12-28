@@ -11,9 +11,7 @@ interface PostItemProps {
 export function PostItemBox({ slug, title, description, tags }: PostItemProps) {
   return (
     <article className="py-6 border border-border rounded-xl">
-      <div
-        className="max-w-full md:w-[400px] h-[350px] rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col"
-      >
+      <div className="max-w-full md:w-[400px] h-[350px] rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col">
         <div className="p-6 flex-grow">
           <h2 className="text-xl md:text-2xl font-semibold mb-2">
             <Link href={"/" + slug} className="hover:underline">
@@ -26,7 +24,9 @@ export function PostItemBox({ slug, title, description, tags }: PostItemProps) {
           {tags && (
             <div className="flex flex-wrap gap-2 mb-4">
               {tags.map((tag) => (
-                <Tag tag={tag} key={tag} />
+                <Link key={tag} href={`/tags/${tag}`} passHref>
+                  <Tag tag={tag} />
+                </Link>
               ))}
             </div>
           )}
