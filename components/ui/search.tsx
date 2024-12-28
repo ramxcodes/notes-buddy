@@ -1,11 +1,14 @@
-import React, { useEffect, useRef } from "react";
-import { cn } from "@/lib/utils"; // Optional: If you already have a cn utility
+import React, { useCallback, useEffect, useRef } from "react";
+import { cn, debounce } from "@/lib/utils"; // Optional: If you already have a cn utility
 import { useSearchContext } from "../NotesSeach";
 import { getAllNotesVelite } from "@/lib/getNotesJson";
 
 export interface SearchInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   icon?: React.ReactNode; // Allow passing a custom icon
 }
+
+
+
 
 const SearchInput: React.FC<SearchInputProps> = ({ icon, className, ...props }) => {
   const fc = useSearchContext()
@@ -32,13 +35,16 @@ const SearchInput: React.FC<SearchInputProps> = ({ icon, className, ...props }) 
     };
   })
 
-  function HandleChange(){
-    if(inputref.current?.value != ""){
-      fc?.setquery(inputref?.current?.value ? inputref.current.value : null)
-    }else{
-      fc?.setquery("")
-    }
-  }
+  const handleChange = useCallback(
+    debounce(() => {
+      if (inputref.current?.value) {
+        fc?.setquery(inputref.current.value);
+      } else {
+        fc?.setquery("");
+      }
+    }, 400),
+    []
+  );
   return (
     <div
       className={cn(
@@ -54,7 +60,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ icon, className, ...props }) 
         ref = {inputref}
         onFocus={()=>fc?.setFocused(true)}
         onBlur={()=>fc?.setFocused(false)}
-        onChange={()=>HandleChange()}
+        onChange={()=>handleChange()}
       />
        <span className="absolute right-3 text-muted-foreground text-sm">
            <kbd className="bg-muted-foreground/10 px-1 py-0.5 rounded-md">Ctrl+K</kbd>
