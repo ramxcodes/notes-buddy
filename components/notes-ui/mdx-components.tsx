@@ -1,5 +1,6 @@
 import Image from "next/image";
 import * as runtime from "react/jsx-runtime";
+import { TableOfContents } from "./TableOfContents";
 import { Callout } from "./callout";
 import { UnitPagination } from "./unit-pagination";
 import { isPaginationDisabled } from "@/utils/pagination-config";
@@ -23,12 +24,14 @@ interface MdxProps {
 
 export function MDXContent({ code, currentUnit, totalUnits, slug }: MdxProps) {
   const Component = useMDXComponent(code);
-
-
   const showUnitPagination = !isPaginationDisabled(slug);
 
   return (
     <div>
+      {/* Table of Contents */}
+      <TableOfContents code={code} />
+
+      {/* Main Content */}
       <Component components={components} />
       {showUnitPagination && currentUnit && totalUnits ? (
         <UnitPagination
