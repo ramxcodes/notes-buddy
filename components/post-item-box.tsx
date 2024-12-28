@@ -26,9 +26,9 @@ export function PostItemBox({ slug, title, description, tags }: PostItemProps) {
           {tags && (
             <div className="flex flex-wrap gap-2 mb-4">
               {tags.map((tag) => (
-                <Link key={tag} href={`/tags/${normalizeTag(tag)}`} passHref>
+                <span key={tag}>
                   <Tag tag={tag} />
-                </Link>
+                </span>
               ))}
             </div>
           )}
