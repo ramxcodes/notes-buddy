@@ -9,8 +9,10 @@ interface TagProps {
   selected?: boolean;
 }
 
+const normalizeTag = (tag: string) => tag.toLowerCase().replace(/\s+/g, "-");
+
 export function Tag({ tag, count, onClick, selected }: TagProps) {
-  const formattedTag = tag.replace(/\s+/g, "-"); // Replace spaces with hyphens
+  const formattedTag = normalizeTag(tag);
 
   return (
     <Link href={`/tags/${formattedTag}`}>

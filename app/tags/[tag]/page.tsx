@@ -1,13 +1,17 @@
 import { posts } from "#site/content";
 import { PostItemBox } from "@/components/post-item-box";
 
+const normalizeTag = (tag: string) => tag.toLowerCase().replace(/-/g, " ");
+
 export default function TagPage({ params }: { params: { tag: string } }) {
   const { tag } = params;
-  const decodedTag = tag.replace(/-/g, " ");
+  const decodedTag = normalizeTag(tag);
 
   const filteredPosts = posts.filter(
     (post) =>
-      post.tags?.includes(decodedTag) && post.published && !post.excludeFromMain
+      post.tags?.some((t) => normalizeTag(t) === decodedTag) &&
+      post.published &&
+      !post.excludeFromMain
   );
 
   return (
