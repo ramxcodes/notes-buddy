@@ -8,6 +8,7 @@ import { getAllTags, sortPosts, sortTagsByCount } from "@/lib/utils";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+import TagError from "@/components/TagError";
 
 const QueryPagination = dynamic(
   () =>
@@ -109,25 +110,7 @@ export default function BlogPage() {
               })}
             </ul>
           ) : (
-            <div className="text-2xl">
-              <p>
-                You may have selected <b>Two or more subjects</b>.
-              </p>
-              <br />
-              <div className="text-muted-foreground text-lg">
-                Please use the following approach:
-                <ul>
-                  <li>
-                    <b>Single Subject</b>: You can select only one subject at a
-                    time.
-                  </li>
-                  <li>
-                    <b>Single Degree</b>: You can select only one degree at a
-                    time.
-                  </li>
-                </ul>
-              </div>
-            </div>
+            <TagError />
           )}
           <QueryPagination
             totalPages={totalPages}
