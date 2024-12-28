@@ -1,17 +1,20 @@
 import { NextRequest } from "next/server";
 import { ImageResponse } from "next/og";
 import { siteConfig } from "@/config/site";
+import Image from "next/image";
 
 export const runtime = "edge";
 
-const interBold = fetch(
-  new URL("../../../assets/fonts/Inter-Bold.ttf", import.meta.url)
+const GilroyBold = fetch(
+  new URL("../../../public/fonts/Gilroy-Bold.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer());
+
+const ImageUrl = new URL("../../../public/logo.png", import.meta.url);
 
 export async function GET(req: NextRequest) {
   try {
-    const fontBold = await interBold;
-
+    const fontBold = await GilroyBold;
+    const image = await fetch(ImageUrl).then((res) => res.arrayBuffer());
     const { searchParams } = req.nextUrl;
     const title = searchParams.get("title");
 
@@ -24,26 +27,25 @@ export async function GET(req: NextRequest) {
 
     return new ImageResponse(
       (
-        <div tw="flex relative flex-col p-12 w-full h-full items-start text-black bg-white">
-          <div tw="flex items-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M4 11a9 9 0 0 1 9 9" />
-              <path d="M4 4a16 16 0 0 1 16 16" />
-              <circle cx="5" cy="19" r="1" />
-            </svg>
-            <p tw="ml-2 font-bold text-2xl">JollyBlog</p>
+        <>
+          <div tw="flex relative flex-col p-12 w-full h-full items-start text-black bg-white">
+            <Image
+              src={ImageUrl.toString()}
+              alt="Notes Buddy Logo"
+              width={48}
+              height={48}
+            />
+            <img
+              src={`data:image/png;base64,${Buffer.from(image).toString(
+                "base64"
+              )}`}
+              tw="w-12 h-12"
+            />
+            <p tw="ml-2 font-bold text-2xl">Notes Buddy</p>
           </div>
           <div tw="flex flex-col flex-1 py-10">
             <div tw="flex text-xl uppercase font-bold tracking-tight font-normal">
-              BLOG POST
+              Welcome to Notes Buddy
             </div>
             <div tw="flex text-[80px] font-bold text-[50px]">{heading}</div>
           </div>
@@ -53,14 +55,14 @@ export async function GET(req: NextRequest) {
               <div tw="flex ml-2">{siteConfig.links.github}</div>
             </div>
           </div>
-        </div>
+        </>
       ),
       {
         width: 1200,
         height: 630,
         fonts: [
           {
-            name: "Inter",
+            name: "Gilroy",
             data: fontBold,
             style: "normal",
             weight: 700,
