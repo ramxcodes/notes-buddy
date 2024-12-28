@@ -1,33 +1,26 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
 import { posts } from "#site/content";
 import { PostItemBox } from "@/components/post-item-box";
-import { QueryPagination } from "@/components/query-pagination";
 import { Tag } from "@/components/tag";
-import { sortPosts } from "@/lib/utils";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { getAllTags, sortPosts, sortTagsByCount } from "@/lib/utils";
+import { SetStateAction, useState } from "react";
+import dynamic from "next/dynamic";
 
+const QueryPagination = dynamic(
+  () => import('@/components/query-pagination').then((mod) => mod.QueryPagination),
+  { ssr: false }
+);
 const POSTS_PER_PAGE = 6;
 
 export default function BlogPage() {
-  const pathname = usePathname(); // Get the current pathname
-  const searchParams = useSearchParams(); // Access query parameters
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Decode query params on initial load
-  useEffect(() => {
-    const initialPage = parseInt(searchParams.get("page") || "1", 10);
-    const tags = searchParams.get("tags")?.split(",") || [];
-    setCurrentPage(isNaN(initialPage) || initialPage < 1 ? 1 : initialPage); // Ensure valid page
-    setSelectedTags(tags.filter(Boolean)); // Remove empty or invalid tags
-  }, [searchParams]);
-
   const sortedPosts = sortPosts(
     posts.filter((post) => {
-      if (!post.published) return false;
+      if (!post.published || post.excludeFromMain) return false;
       if (selectedTags.length === 0) return true;
       return selectedTags.every((tag) => post.tags?.includes(tag));
     })
@@ -39,35 +32,14 @@ export default function BlogPage() {
     POSTS_PER_PAGE * currentPage
   );
 
-  function handlePageChange(newPage: number) {
-    const validPage = Math.min(Math.max(newPage, 1), totalPages); // Ensure page bounds
-    if (validPage === currentPage) return; // Prevent unnecessary updates
+  const tags = getAllTags(posts);
+  const sortedTags = sortTagsByCount(tags);
 
-    const params = new URLSearchParams(searchParams.toString());
-    params.set("page", validPage.toString());
-    window.history.pushState({}, "", `${pathname}?${params.toString()}`);
-    setCurrentPage(validPage);
-  }
-
-  function handleTagSelection(tag: string) {
-    const updatedTags = selectedTags.includes(tag)
-      ? selectedTags.filter((t) => t !== tag)
-      : [...selectedTags, tag];
-
-    setSelectedTags(updatedTags);
-
-    const params = new URLSearchParams(searchParams.toString());
-    if (updatedTags.length > 0) {
-      params.set("tags", updatedTags.join(","));
-    } else {
-      params.delete("tags"); // Remove the 'tags' param if no tags are selected
-    }
-    params.set("page", "1"); // Reset to first page on tag change
-    window.history.pushState({}, "", `${pathname}?${params.toString()}`);
-    setCurrentPage(1);
-  }
-
-  const tags = Array.from(new Set(posts.flatMap((post) => post.tags || [])));
+  const toggleTag = (tag: string) => {
+    setSelectedTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+    );
+  };
 
   return (
     <div className="container max-w-4xl py-6 lg:py-10">
@@ -82,20 +54,19 @@ export default function BlogPage() {
         </div>
       </div>
       <div className="max-w-4xl py-6 flex flex-col">
-        <Card className="my-10 rounded-lg shadow">
-          <CardHeader className="px-6 py-4">
-            <CardTitle className="font-bold text-lg">Search By :</CardTitle>
+        <Card className="my-10">
+          <CardHeader>
+            <CardTitle>Search By :</CardTitle>
           </CardHeader>
-          <CardContent className="px-6 py-4 flex flex-wrap gap-2">
-            {tags.map((tag) => (
+          <CardContent className="flex flex-wrap gap-2">
+            {sortedTags?.map((tag) => (
               <Tag
-                key={tag}
                 tag={tag}
+                key={tag}
+                count={tags[tag]}
+                onClick={() => toggleTag(tag)}
                 selected={selectedTags.includes(tag)}
-                onClick={() => handleTagSelection(tag)}
-              >
-                {tag}
-              </Tag>
+              />
             ))}
           </CardContent>
         </Card>
@@ -104,16 +75,7 @@ export default function BlogPage() {
           {displayPosts?.length > 0 ? (
             <ul className="gap-4 py-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {displayPosts.map((post) => {
-                const {
-                  slug,
-                  title,
-                  description,
-                  tags,
-                  date,
-                  published,
-                  excludeFromMain,
-                  body,
-                } = post;
+                const { slug, title, description, tags } = post;
                 return (
                   <li key={slug}>
                     <PostItemBox
@@ -121,10 +83,6 @@ export default function BlogPage() {
                       title={title}
                       description={description}
                       tags={tags}
-                      date={date}
-                      published={published}
-                      excludeFromMain={excludeFromMain}
-                      body={body}
                     />
                   </li>
                 );
@@ -133,18 +91,18 @@ export default function BlogPage() {
           ) : (
             <div className="text-2xl">
               <p>
-                You may have selected <b>Two or more subjects</b>.
+                You May have selected <b>Two or more subjects</b>.
               </p>
               <br />
               <div className="text-muted-foreground text-lg">
-                Please use the following approach:
+                Please use the following approach :
                 <ul>
                   <li>
-                    <b>Single Subject</b>: You can select only one subject at a
+                    <b>Single Subject</b> : You can select only one subject at a
                     time.
                   </li>
                   <li>
-                    <b>Single Degree</b>: You can select only one degree at a
+                    <b>Single Degree</b> : You can select only one Degree at a
                     time.
                   </li>
                 </ul>
@@ -154,7 +112,9 @@ export default function BlogPage() {
           <QueryPagination
             totalPages={totalPages}
             currentPage={currentPage}
-            onPageChange={handlePageChange}
+            onPageChange={(page: SetStateAction<number>) =>
+              setCurrentPage(page)
+            }
             className="justify-end mt-4"
           />
         </div>

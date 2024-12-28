@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { Tag } from "./tag";
 
@@ -8,19 +6,17 @@ interface PostItemProps {
   title: string;
   description?: string;
   tags?: Array<string>;
-  date: string;
-  published: boolean;
-  excludeFromMain: boolean;
-  body: string;
 }
 
 export function PostItemBox({ slug, title, description, tags }: PostItemProps) {
   return (
     <article className="py-6 border border-border rounded-xl">
-      <div className="max-w-full md:w-[400px] h-[350px] rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col">
+      <div
+        className="max-w-full md:w-[400px] h-[350px] rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col"
+      >
         <div className="p-6 flex-grow">
           <h2 className="text-xl md:text-2xl font-semibold mb-2">
-            <Link href={`/${slug}`} className="hover:underline">
+            <Link href={"/" + slug} className="hover:underline">
               {title}
             </Link>
           </h2>
@@ -30,22 +26,14 @@ export function PostItemBox({ slug, title, description, tags }: PostItemProps) {
           {tags && (
             <div className="flex flex-wrap gap-2 mb-4">
               {tags.map((tag) => (
-                <Tag
-                  tag={tag}
-                  key={tag}
-                  onClick={() => {
-                    console.log(`Tag clicked: ${tag}`);
-                  }}
-                >
-                  {tag}
-                </Tag>
+                <Tag tag={tag} key={tag} />
               ))}
             </div>
           )}
         </div>
         <div className="px-6 py-4 flex justify-between items-center">
           <Link
-            href={`/${slug}`}
+            href={"/" + slug}
             className="inline-block bg-[#E2E2E2] text-black text-sm px-4 py-2 rounded-md transition-colors"
           >
             Read Notes →
