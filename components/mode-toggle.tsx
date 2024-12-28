@@ -1,21 +1,27 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { cn } from "@/utils/cn";
 
 export const ModeToggle = () => {
   const { theme, setTheme, resolvedTheme } = useTheme();
+  const [isThemeReady, setIsThemeReady] = useState(false);
 
   useEffect(() => {
     if (!theme) {
       setTheme("system");
     }
+    setIsThemeReady(true);
   }, [theme, setTheme]);
 
   const handleToggle = () => {
     setTheme(resolvedTheme === "light" ? "dark" : "light");
   };
+
+  if (!isThemeReady) {
+    return null; // Or a loading spinner
+  }
 
   return (
     <button
