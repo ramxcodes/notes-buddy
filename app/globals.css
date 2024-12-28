@@ -76,11 +76,19 @@
   }
 }
 
-.h1-style {
-  @apply text-[2.3rem] lg:text-[4.5rem] md:text-[4rem] leading-[1] font-bold dark:bg-gradient-to-b dark:from-[rgba(244,244,255,1)] dark:to-[rgba(181,180,207,1)] dark:text-transparent dark:bg-clip-text py-2 text-center pt-20 md:pt-0;
-}
-
 html,
 body {
   overflow-x: hidden;
+}
+
+@layer utilities {
+  .animated-text {
+    background: radial-gradient(circle at var(--text-mouse-x) var(--text-mouse-y),
+        var(--gradient-text-center) 0%,
+        var(--gradient-text-edge) 40%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
 }

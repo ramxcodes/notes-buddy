@@ -4,7 +4,7 @@ import React from "react";
 function FeatureSection() {
   return (
     <div className="pt-10 pb-10 lg:pt-20 lg:pb-20">
-      <h1 className="h1-style my-4">Why Notes Buddy?</h1>
+      <h1 className="text-[2.3rem] lg:text-[4.5rem] md:text-[4rem] leading-[1] font-bold dark:bg-gradient-to-b dark:from-[rgba(244,244,255,1)] dark:to-[rgba(181,180,207,1)] dark:text-transparent dark:bg-clip-text py-2 text-center pt-20 md:pt-0 my-4">Why Notes Buddy?</h1>
       <div className="container mx-auto px-10 py-8">
         <section className="grid md:grid-cols-3 gap-6 max-md:max-w-xs mx-auto ">
           <div className="group  bg-gradient-to-t from-[#242424] to-[#020202] hover:from-[#182135] hover:to-[#080808] relative before:absolute before:inset-0 before:bg-[url('/noise.gif')] before:opacity-5 rounded-2xl border ">
