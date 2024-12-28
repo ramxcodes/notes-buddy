@@ -5,14 +5,14 @@ import Tooltip from "./Tooltip";
 
 export default function HeroSection() {
   return (
-    <div className="h-[40rem] w-full rounded-md flex flex-col md:items-center md:justify-center dark:bg-[#010510]/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden items-start justify-center container">
+    <div className="h-[40rem] w-full rounded-md flex flex-col md:items-center md:justify-center dark:bg-[#010510]/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden items-start justify-center container pt-10 pb-10 lg:pt-20 lg:pb-20 mb-20">
       <Spotlight
-        className="-top-40 left-0 md:left-60 md:-top-20"
-        fill="white"
+        className="-top-40 left-0 md:left-80 md:-top-20"
+        fill="purple"
       />
       <div className="text-center space-y-2 container mx-auto px-4 md:px-0">
         <h1 className="h1-style">
-          Preparation Fast
+          Prepare Fast
           <br />
           Study Smart
         </h1>
