@@ -1,0 +1,306 @@
+---
+title: "Unit 3 : Basic programming with C"
+description: "Basics of arrays and strings"
+date: 2024-12-28
+tags: ["BPC", "1st Semester", "1st Year", "Medicaps University"]
+published: true
+
+---
+
+
+### Notes for **Unit 3: Basic Programming with C**  
+#### Topic: **Arrays and Strings: 1D and 2D Arrays, Strings and Basic Operations on Strings, String Functions**
+
+---
+
+### 1. **Arrays in C**
+
+An **array** is a collection of elements of the same type stored in contiguous memory locations. Arrays allow you to store multiple values in a single variable, making it easier to manage and process large amounts of data.
+
+#### **1D Arrays (One-Dimensional Arrays)**
+A 1D array is a linear data structure that stores a sequence of elements. It is defined by specifying the type of elements and the number of elements in the array.
+
+**Syntax:**
+```c
+type array_name[size];
+```
+- **Example:**
+  ```c
+  int arr[5];  // Declares an array of 5 integers
+  ```
+
+**Accessing Elements:**
+You can access elements using an index, starting from 0.
+- **Example:**
+  ```c
+  arr[0] = 10;  // Assigning value to the first element
+  printf("%d", arr[0]);  // Printing the first element
+  ```
+
+#### **2D Arrays (Two-Dimensional Arrays)**
+A 2D array is an array of arrays, used to store data in a table-like structure with rows and columns.
+
+**Syntax:**
+```c
+type array_name[rows][columns];
+```
+- **Example:**
+  ```c
+  int arr[3][4];  // Declares a 2D array with 3 rows and 4 columns
+  ```
+
+**Accessing Elements:**
+You can access 2D array elements by specifying both row and column indices.
+- **Example:**
+  ```c
+  arr[1][2] = 5;  // Assigning value to the second row, third column
+  printf("%d", arr[1][2]);  // Printing the element at row 1, column 2
+  ```
+
+### 2. **Strings in C**
+
+In C, strings are arrays of characters terminated by a null character (`'\0'`). They are used to store text data.
+
+#### **Declaring Strings:**
+Strings can be declared using an array of characters.
+- **Example:**
+  ```c
+  char str[20];  // Declares a string of 20 characters
+  ```
+
+Alternatively, you can initialize a string with a string literal.
+- **Example:**
+  ```c
+  char str[] = "Hello";  // String initialization
+  ```
+
+#### **Basic Operations on Strings**
+
+1. **Length of a String:**
+   To find the length of a string, use the `strlen()` function, which returns the number of characters in the string excluding the null character.
+
+   - **Example:**
+     ```c
+     printf("Length of string: %d", strlen(str));
+     ```
+
+2. **Copying Strings:**
+   To copy one string to another, use the `strcpy()` function.
+
+   - **Example:**
+     ```c
+     strcpy(str1, str2);  // Copies the content of str2 into str1
+     ```
+
+3. **Concatenating Strings:**
+   To concatenate two strings, use the `strcat()` function.
+
+   - **Example:**
+     ```c
+     strcat(str1, str2);  // Appends str2 to str1
+     ```
+
+4. **Comparing Strings:**
+   To compare two strings, use the `strcmp()` function, which returns 0 if the strings are equal, a positive number if the first string is lexicographically greater, and a negative number if the second string is greater.
+
+   - **Example:**
+     ```c
+     if (strcmp(str1, str2) == 0) {
+         printf("Strings are equal");
+     }
+     ```
+
+#### **String Functions in C**
+
+C provides several built-in functions for string manipulation. Here are some commonly used string functions:
+
+1. **`strlen()`**  
+   Returns the length of the string (excluding the null character).
+   ```c
+   int len = strlen(str);
+   ```
+
+2. **`strcpy()`**  
+   Copies the content of one string to another.
+   ```c
+   strcpy(dest, source);
+   ```
+
+3. **`strcat()`**  
+   Concatenates two strings.
+   ```c
+   strcat(str1, str2);
+   ```
+
+4. **`strcmp()`**  
+   Compares two strings.
+   ```c
+   int result = strcmp(str1, str2);
+   ```
+
+5. **`strchr()`**  
+   Finds the first occurrence of a character in a string.
+   ```c
+   char *ptr = strchr(str, 'a');
+   ```
+
+6. **`strstr()`**  
+   Finds the first occurrence of a substring in a string.
+   ```c
+   char *ptr = strstr(str, "sub");
+   ```
+
+### 3. **Important Points**
+- **Memory Allocation:** Arrays in C are statically allocated, meaning their size is fixed at compile-time. For dynamic memory allocation, you would need to use pointers and functions like `malloc()` or `calloc()`.
+- **Null-Termination in Strings:** Always ensure that strings are null-terminated (`'\0'`), as C does not track the length of strings.
+- **String Handling:** Be careful when working with strings, as buffer overflows can occur if the string is not properly sized or if functions like `strcpy()` are misused.
+
+💡 **TIP:** Always ensure that strings are properly null-terminated to avoid unexpected behaviour in your programs.
+
+---
+
+Great! Let's dive into the topic you've chosen: **Functions**.
+
+---
+
+### **Functions in C Programming**
+
+A function is a block of code that performs a specific task. Functions help in organizing code, making it reusable, and improving readability. Let's explore the various aspects of functions in detail.
+
+---
+
+#### **1. Function Definition**
+
+A function is defined by specifying its return type, name, and parameters. The function performs a task and may return a value.
+
+**Syntax:**
+```c
+return_type function_name(parameter1, parameter2, ...) {
+    // Function body
+    return result;
+}
+```
+
+**Example:**
+```c
+int add(int a, int b) {
+    return a + b;  // Function that adds two numbers
+}
+```
+
+---
+
+#### **2. Function Calling**
+
+To use a function, you call it from another part of the program, providing the necessary arguments. The function then executes and may return a result.
+
+**Syntax:**
+```c
+return_type result = function_name(argument1, argument2, ...);
+```
+
+**Example:**
+```c
+int result = add(5, 10);  // Calls the add function with 5 and 10 as arguments
+```
+
+---
+
+#### **3. Function Declaration**
+
+A function declaration provides the compiler with the function's name, return type, and parameters, but does not define the function's body. It is often placed before the `main()` function or in a header file.
+
+**Syntax:**
+```c
+return_type function_name(parameter1_type, parameter2_type, ...);
+```
+
+**Example:**
+```c
+int add(int, int);  // Function declaration
+```
+
+---
+
+#### **4. Parameter Passing**
+
+When calling a function, the arguments can be passed in two ways:
+
+- **By Value:** The function gets a copy of the argument. Changes made inside the function do not affect the original argument.
+
+  **Example:**
+  ```c
+  void addTen(int a) {
+      a = a + 10;  // Modifies only the local copy of 'a'
+  }
+  ```
+
+  **Calling:**
+  ```c
+  int x = 5;
+  addTen(x);  // x remains 5 after the function call
+  ```
+
+- **By Reference:** The function gets a reference (memory address) to the argument. Changes made inside the function affect the original argument.
+
+  **Example (C++):**
+  ```cpp
+  void addTen(int &a) {
+      a = a + 10;  // Modifies the original variable 'a'
+  }
+  ```
+
+  **Calling:**
+  ```cpp
+  int x = 5;
+  addTen(x);  // x becomes 15 after the function call
+  ```
+
+---
+
+#### **5. Recursion**
+
+A function is recursive if it calls itself. Recursion is useful for problems that can be divided into smaller, similar subproblems, such as calculating factorials or traversing trees.
+
+**Example:**
+```c
+int factorial(int n) {
+    if (n == 0) return 1;  // Base case
+    return n * factorial(n - 1);  // Recursive call
+}
+```
+
+**Calling:**
+```c
+int result = factorial(5);  // Calls factorial(5), which calls factorial(4), and so on
+```
+
+---
+
+#### **6. Library Functions**
+
+Library functions are pre-written functions provided by programming languages or external libraries to perform common tasks, such as input/output, mathematical operations, and string manipulation.
+
+**Examples in C:**
+- `printf()` - Used for output.
+- `scanf()` - Used for input.
+- `sqrt()` - Calculates the square root.
+- `strlen()` - Calculates the length of a string.
+
+**Example:**
+```c
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    double result = sqrt(16);  // Calls the sqrt() function from math.h
+    printf("Square root: %.2f\n", result);
+    return 0;
+}
+```
+
+---
+
+**💡 TIP:** Always choose recursion carefully. While it is elegant for certain problems, it can lead to stack overflow if not handled properly, especially with deep recursion.
+
+---
