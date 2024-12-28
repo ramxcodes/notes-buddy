@@ -12,7 +12,7 @@ const normalizeTag = (tag: string) => tag.toLowerCase().replace(/\s+/g, "-");
 
 export function PostItemBox({ slug, title, description, tags }: PostItemProps) {
   return (
-    <article className=" border border-border rounded-xl">
+    <article className="py-6 rounded-xl">
       <div className="max-w-full md:w-[400px] h-[350px] rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col">
         <div className="p-6 flex-grow">
           <h2 className="text-xl md:text-2xl font-semibold mb-2">
