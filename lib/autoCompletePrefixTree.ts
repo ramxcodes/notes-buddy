@@ -16,7 +16,7 @@ export class PrefixTree {
     }
 
     _insert(notes:Notes):void {
-        let title = notes.title;
+        let title = notes.title.toLowerCase();
         for (let i = 0; i < title.length; i++) {
             let currentNode = this.root;
             for (let j = i; j < title.length; j++) {
@@ -29,7 +29,22 @@ export class PrefixTree {
             }
             currentNode.notes.push(notes)
     }
+    for (let tag of notes.tags) {
+      this._insertTag(tag.Name, notes);
+    }
 }
+
+    private _insertTag(tagName: string, note: Notes): void {
+      let currentNode = this.root;
+      for (let char of tagName.toLowerCase()) {
+        if (!currentNode.children.has(char)) {
+          currentNode.children.set(char, new PrefixNode());
+        }
+        currentNode = currentNode.children.get(char)!;
+      }
+
+      currentNode.notes.push(note);
+    }
 
     _search(query:string):Notes[]{
         let currentNode = this.root

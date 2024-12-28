@@ -1,13 +1,10 @@
 import { PrefixTree } from "@/lib/autoCompletePrefixTree";
-import { getAllNotes } from "@/lib/getNotesJson";
+import { getAllNotesVelite } from "@/lib/getNotesJson";
 
 export default async function page() {
   async function name() {
-    const d = await getAllNotes()
-    const tree = new PrefixTree();
-    d?.forEach((e)=>{
-      tree._insert(e)
-    })
+    const r = await getAllNotesVelite()
+    // console.log(r[0].tags)
     // console.log(tree._search("5.mdx"));
   }
   name()

@@ -28,7 +28,7 @@ export const useSearchContext = () => useContext(SearchContext);
 const SearchBoxItem = ({data}) =>{
 
     return(
-        <div>
+        <div className="border border-input">
             {data.title}
         </div>
     )
@@ -54,17 +54,21 @@ const SearchBox = () =>{
     }
 
     useEffect(()=>{
+      if(df.query !=""){
         FetchQuey(df.query)
+      }
         
     },[df.query])
     return(
-        <div>
-            {df.isFocused ? <div>focused</div>:<div>unfous</div>}
-            {NotesList.map((e,index)=>{
-
-                return <SearchBoxItem data={e} key={index} />
-            })}
+      <div className="w-full relative mt-3">
+      {df.isFocused ? (
+        <div className="absolute max-h-48 w-full rounded-md border border-input bg-background px-3 py-2 shadow-sm overflow-y-auto focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2">
+          {NotesList.map((e, index) => (
+            <SearchBoxItem data={e} key={index} />
+          ))}
         </div>
+      ) : null}
+    </div>
     )
 }
 
