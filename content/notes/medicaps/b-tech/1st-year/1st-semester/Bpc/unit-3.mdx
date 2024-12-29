@@ -8,12 +8,10 @@ published: true
 ---
 
 
-### Notes for **Unit 3: Basic Programming with C**  
-#### Topic: **Arrays and Strings: 1D and 2D Arrays, Strings and Basic Operations on Strings, String Functions**
 
 ---
 
-### 1. **Arrays in C**
+## 1. **Arrays in C**
 
 An **array** is a collection of elements of the same type stored in contiguous memory locations. Arrays allow you to store multiple values in a single variable, making it easier to manage and process large amounts of data.
 
@@ -57,7 +55,7 @@ You can access 2D array elements by specifying both row and column indices.
   printf("%d", arr[1][2]);  // Printing the element at row 1, column 2
   ```
 
-### 2. **Strings in C**
+## 2. **Strings in C**
 
 In C, strings are arrays of characters terminated by a null character (`'\0'`). They are used to store text data.
 
@@ -150,7 +148,7 @@ C provides several built-in functions for string manipulation. Here are some com
    char *ptr = strstr(str, "sub");
    ```
 
-### 3. **Important Points**
+## 3. **Important Points**
 - **Memory Allocation:** Arrays in C are statically allocated, meaning their size is fixed at compile-time. For dynamic memory allocation, you would need to use pointers and functions like `malloc()` or `calloc()`.
 - **Null-Termination in Strings:** Always ensure that strings are null-terminated (`'\0'`), as C does not track the length of strings.
 - **String Handling:** Be careful when working with strings, as buffer overflows can occur if the string is not properly sized or if functions like `strcpy()` are misused.
@@ -162,11 +160,10 @@ C provides several built-in functions for string manipulation. Here are some com
 
 
 
-### **Functions in C Programming**
+## **Functions in C Programming**
 
 A function is a block of code that performs a specific task. Functions help in organizing code, making it reusable, and improving readability. Let's explore the various aspects of functions in detail.
 
----
 
 #### **1. Function Definition**
 
@@ -301,5 +298,3 @@ int main() {
 ---
 
 **💡 TIP:** Always choose recursion carefully. While it is elegant for certain problems, it can lead to stack overflow if not handled properly, especially with deep recursion.
-
----
