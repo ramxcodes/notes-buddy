@@ -65,6 +65,7 @@ const ReviewCard = ({
     <a href={link}>
       <div className="w-full mx-auto rounded-lg shadow-md border">
         <Image
+          priority={true}
           src={img}
           alt={name}
           width={500}
@@ -87,7 +88,7 @@ const ReviewCard = ({
 const MarqueeSlant = () => {
   return (
     <>
-      <BlurFade delay={1.1} inView>
+      <BlurFade delay={0.5} inView>
         <div className="relative flex h-screen flex-row items-center justify-center overflow-hidden rounded-lg gap-6 w-full">
           <Marquee pauseOnHover vertical className="[--duration:15s]">
             {firstRow.map((review, index) => (
