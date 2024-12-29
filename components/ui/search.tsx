@@ -24,7 +24,6 @@ const SearchInput: React.FC<SearchInputProps> = ({ icon, className, ...props }) 
   useEffect(()=>{
     const focusInput =(event:KeyboardEvent) =>{
       if(event.ctrlKey && event.key =="k"){
-        console.log("k")
         event.preventDefault();
         handleFocus()
       }
