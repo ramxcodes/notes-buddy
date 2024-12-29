@@ -16,9 +16,10 @@ export function SiteHeader() {
         <MainNav />
         <div className="flex flex-1 items-center justify-end space-x-2">
           <nav className="flex w-fit items-center">
-      
-                <DropBox/>
-                <span className="sr-only">Search</span>
+                <div className="max-sm:hidden">
+                  <DropBox/>
+                  <span className="sr-only">Search</span>
+                </div>
          
             <Link
               href={siteConfig.links.github}

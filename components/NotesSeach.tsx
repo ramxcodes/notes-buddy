@@ -39,12 +39,13 @@ interface SearchBoxItemProps {
 const SearchBoxItem = ({data,context}:SearchBoxItemProps) =>{
 
     return(
-        <Link href={data.path || '/'} onClick={()=>context.setFocused(false)} className="border border-input p-4 flex ">
+        <Link href={"/"+data.path || '/'} onClick={()=>context.setFocused(false)} className="border border-input hover:text-black   flex p-3 hover:bg-gray-100 rounded-md">
             <h2>{data.title}</h2>
-            <div className="ml-auto flex gap-2">
+            
+            <div className="ml-auto flex justify-center items-center gap-2">
               {data?.tags?.map((e)=>{
                 return(
-                 <Badge>{e.Name}</Badge>
+                 <Badge variant="secondary">{e.Name}</Badge>
                 )
               })}
             </div>
@@ -63,7 +64,6 @@ const SearchBox: React.FC<SearchBoxProps> = ({ DropBox, className = "" }) => {
   const [alignLeft, setAlignLeft] = useState(true); 
 
   const Topclass = `relative ${DropBox ? "w-full mt-3" : "w-fit"}  ${className}`;
-  console.log(DropBox);
 
   async function FetchQuery(query: string | undefined | null) {
     try {
@@ -76,10 +76,9 @@ const SearchBox: React.FC<SearchBoxProps> = ({ DropBox, className = "" }) => {
       });
 
       const result = await res.json();
-      console.log(result);
       setNotesList(result);
     } catch (error) {
-      console.error("Failed to fetch search results:", error);
+      // console.error("Failed to fetch search results:", error);
     }
   }
 
@@ -126,7 +125,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ DropBox, className = "" }) => {
             alignLeft ? "left-0" : "right-0"
           } z-10 flex flex-col max-h-60 ${
             DropBox ? "w-full" : "w-fit"
-          } rounded-md  mt-4 border border-input bg-background px-3 py-2 shadow-sm overflow-y-auto`}
+          } rounded-md  mt-4 border border-input bg-background px-3 gap-2 py-2 shadow-sm overflow-y-auto`}
         >
           {NotesList.map((e, index) => (
             <SearchBoxItem context={df} data={e} key={index} />
