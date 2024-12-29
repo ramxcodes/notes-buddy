@@ -1,0 +1,251 @@
+
+---
+title: "Unit 5: Basic programing in C"
+description: "Declaration, Initialization, Pointers and Arrays, Pointers and Structures, Pointers and Functions"
+date: 2024-12-28
+tags: ["BPC", "1st Semester", "1st Year", "Medicaps University"]
+published: true
+---
+
+## **Pointers in C**
+
+A **pointer** is a variable that stores the memory address of another variable. Pointers are powerful and allow for efficient memory management, dynamic memory allocation, and passing large data structures to functions.
+
+---
+
+### **1. Declaration of Pointers**
+
+Pointers are declared using the `*` operator.
+
+#### **Syntax:**
+```c
+data_type *pointer_name;
+```
+
+#### **Example:**
+```c
+int *ptr;  // Pointer to an integer
+char *cptr; // Pointer to a character
+float *fptr; // Pointer to a float
+```
+
+---
+
+### **2. Initialization of Pointers**
+
+Pointers are initialized by assigning them the address of a variable using the **address-of operator (`&`)**.
+
+#### **Example:**
+```c
+int num = 10;
+int *ptr = &num;  // Pointer initialized with the address of num
+
+printf("Value of num: %d\n", *ptr);  // Dereferencing the pointer
+```
+
+---
+
+### **3. Pointers and Arrays**
+
+Pointers can be used to traverse arrays because the name of an array acts as a pointer to its first element.
+
+#### **Example:**
+```c
+int arr[5] = {1, 2, 3, 4, 5};
+int *ptr = arr;  // Pointer to the first element of the array
+
+for (int i = 0; i < 5; i++) {
+    printf("Element %d: %d\n", i, *(ptr + i));  // Accessing using pointer arithmetic
+}
+```
+
+---
+
+### **4. Pointers and Structures**
+
+Pointers can also point to structures. They are useful for dynamically allocating memory for structures and accessing their members.
+
+#### **Example:**
+```c
+struct Student {
+    int roll_no;
+    char name[50];
+};
+
+struct Student s1 = {101, "Alice"};
+struct Student *ptr = &s1;
+
+printf("Roll No: %d\n", ptr->roll_no);  // Accessing using the arrow operator (->)
+printf("Name: %s\n", ptr->name);
+```
+
+---
+
+### **5. Pointers and Functions**
+
+Pointers can be used to:
+1. Pass variables by reference to functions, allowing the function to modify the original variable.
+2. Return dynamically allocated memory from functions.
+
+#### **Passing Pointers to Functions:**
+```c
+void increment(int *ptr) {
+    (*ptr)++;  // Increment the value at the pointer's address
+}
+
+int main() {
+    int num = 10;
+    increment(&num);
+    printf("Incremented Value: %d\n", num);  // Output: 11
+    return 0;
+}
+```
+
+#### **Returning Pointers from Functions:**
+```c
+int* allocateMemory() {
+    int *ptr = (int *)malloc(sizeof(int));  // Dynamic memory allocation
+    *ptr = 42;
+    return ptr;
+}
+
+int main() {
+    int *p = allocateMemory();
+    printf("Value: %d\n", *p);  // Output: 42
+    free(p);  // Free allocated memory
+    return 0;
+}
+```
+
+---
+
+### **Key Points**
+1. **Dereferencing (`*`)**: Access the value at the memory address stored in the pointer.
+2. **Address-of Operator (`&`)**: Retrieve the memory address of a variable.
+3. **Null Pointer**: A pointer that points to nothing (`NULL`).
+   ```c
+   int *ptr = NULL;
+   ```
+4. **Pointer Arithmetic**: Incrementing or decrementing pointers moves them to the next or previous memory location of the type they point to.
+
+---
+
+### **Applications of Pointers**
+1. **Dynamic Memory Allocation**: Using functions like `malloc`, `calloc`, and `free`.
+2. **Efficient Function Calls**: Passing large data structures by reference.
+3. **Data Structures**: Building linked lists, trees, and graphs.
+4. **File Handling**: Managing file streams using pointers.
+
+---
+
+#### **File 2: Advanced Pointer Concepts**
+
+```mdx
+---
+title: "Unit 5: Advanced Pointer Concepts in C"
+description: "Command Line Arguments, Dynamic Memory Allocation, Operations on Pointers"
+date: 2024-12-28
+tags: ["Pointers", "1st Semester", "1st Year", "Medicaps University"]
+published: true
+---
+
+## **Advanced Pointer Concepts in C**
+
+In addition to basic pointer usage, C provides advanced features like command-line arguments, dynamic memory allocation, and operations on pointers for efficient and flexible programming.
+
+---
+
+### **1. Command Line Arguments**
+
+Command-line arguments allow users to pass inputs to the program during execution.
+
+#### **Syntax:**
+```c
+int main(int argc, char *argv[]) {
+    // argc: Number of arguments
+    // argv: Array of argument strings
+}
+```
+
+#### **Example:**
+```c
+#include <stdio.h>
+
+int main(int argc, char *argv[]) {
+    printf("Number of arguments: %d\n", argc);
+    for (int i = 0; i < argc; i++) {
+        printf("Argument %d: %s\n", i, argv[i]);
+    }
+    return 0;
+}
+```
+
+---
+
+### **2. Dynamic Memory Allocation**
+
+Dynamic memory allocation allows programs to allocate memory at runtime using functions provided in the `<stdlib.h>` library.
+
+#### **Functions for Memory Allocation:**
+1. **`malloc`**: Allocates a block of memory and returns a pointer to it.
+2. **`calloc`**: Allocates memory for an array and initializes it to zero.
+3. **`realloc`**: Resizes a previously allocated block of memory.
+4. **`free`**: Frees allocated memory.
+
+#### **Example:**
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n;
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    // Dynamic memory allocation using malloc
+    int *arr = (int *)malloc(n * sizeof(int));
+    if (arr == NULL) {
+        printf("Memory allocation failed\n");
+        return 1;
+    }
+
+    // Input and display array elements
+    for (int i = 0; i < n; i++) {
+        arr[i] = i + 1;
+    }
+
+    printf("Array elements: ");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    // Free allocated memory
+    free(arr);
+    return 0;
+}
+```
+
+---
+
+### **3. Operations on Pointers**
+
+Pointers support various operations, such as arithmetic, comparison, and dereferencing.
+
+#### **Pointer Arithmetic:**
+1. **Increment (`++`)**: Moves the pointer to the next memory location.
+2. **Decrement (`--`)**: Moves the pointer to the previous memory location.
+
+#### **Example:**
+```c
+#include <stdio.h>
+
+int main() {
+    int arr[] = {10, 20, 30, 40};
+    int *ptr = arr;
+
+    printf("Pointer value: %d\n", *ptr);  // Output: 10
+    ptr++;
+    printf("Pointer value after increment: %d\n", *ptr);  // Output: 20
+    return 0;
+}
+```

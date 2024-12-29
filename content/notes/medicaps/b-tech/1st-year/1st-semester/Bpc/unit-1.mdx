@@ -1,0 +1,246 @@
+---
+title: "Unit 1 : Basic programming with c"
+description: "Basics of c language"
+date: 2024-12-28
+tags: ["BPC", "1st Semester", "1st Year", "medicaps university"]
+published: true
+---
+ Syllabus
+
+- [Introduction to C Programming](#introduction-to-c-programming)
+- [Variables and Data Types](#variables-and-data-types)
+- [Operators in C](#operators-in-c)
+- [Control Structures](#control-structures)
+  - [If-Else Statements](#if-else-statements)
+  - [Switch-Case Statements](#switch-case-statements)
+  - [Loops (For, While, Do-While)](#loops-for-while-do-while)
+- [Functions in C](#functions-in-c)
+  - [Function Declaration](#function-declaration)
+  - [Function Definition](#function-definition)
+  - [Function Calling](#function-calling)
+- [Arrays in C](#arrays-in-c)
+  - [One-Dimensional Arrays](#one-dimensional-arrays)
+  - [Multi-Dimensional Arrays](#multi-dimensional-arrays)
+- [Pointers in C](#pointers-in-c)
+  - [Pointer Basics](#pointer-basics)
+  - [Pointer Arithmetic](#pointer-arithmetic)
+  - [Pointers and Arrays](#pointers-and-arrays)
+- [Structures and Unions](#structures-and-unions)
+  - [Structures](#structures)
+  - [Unions](#unions)
+- [File Handling in C](#file-handling-in-c)
+  - [Opening and Closing Files](#opening-and-closing-files)
+  - [Reading and Writing Files](#reading-and-writing-files)
+- [Dynamic Memory Allocation](#dynamic-memory-allocation)
+  - [malloc() and free()](#malloc-and-free)
+  - [calloc() and realloc()](#calloc-and-realloc)
+
+
+
+
+### Problem Solving Methodology: Problem Statement, Analysis, Design a Solution
+
+#### 1. Problem Statement
+A problem statement clearly defines the issue that needs to be solved. It provides a detailed description of the problem, the context, and the requirements for the solution.
+
+- **Purpose**: To understand what needs to be solved and why it is important.
+- **Key Points**:
+  - Identify the inputs and expected outputs.
+  - Understand the constraints and limitations of the problem.
+  - Specify the objectives and goals that the solution should achieve.
+
+#### 2. Analysis
+Analysis involves breaking down the problem into smaller, manageable parts. This step helps in identifying the necessary resources, time, and possible challenges.
+
+- **Purpose**: To assess the feasibility of solving the problem and to understand its complexity.
+- **Key Points**:
+  - Break the problem into smaller sub-problems.
+  - Identify any edge cases or exceptional conditions.
+  - Evaluate the resources and time required to solve the problem.
+
+#### 3. Design a Solution
+Designing a solution involves planning the approach and creating a high-level blueprint of how the problem will be solved. The design must be efficient and meet the problem’s requirements.
+
+- **Purpose**: To outline a structured plan for solving the problem.
+- **Key Points**:
+  - Choose the right algorithms and techniques to solve the problem.
+  - Create a flowchart or pseudocode to represent the logic.
+  - Ensure that the design meets the constraints and objectives identified in the problem statement.
+
+💡 **TIP:** Always start with a clear problem statement to guide your approach and ensure that you focus on the right aspects of the problem.
+
+📝 **NOTE:** The design phase is crucial, as it lays the foundation for the actual implementation. A well-thought-out design can save time and effort during coding.
+
+
+---
+
+### Implement/Coding the Solution, Test the Solution, Design Tools (Algorithm, Flowchart, Pseudocode)
+
+#### 4. Implement/Coding the Solution
+Once the design is finalized, the next step is to implement the solution by writing the code in a programming language.
+
+- **Purpose**: To convert the design into executable code.
+- **Key Points**:
+  - Follow the design and implement it step by step.
+  - Write clean, readable, and maintainable code.
+  - Ensure proper use of variables, data structures, and control structures.
+
+#### 5. Test the Solution
+Testing is the process of verifying that the solution works as expected under various conditions, including edge cases.
+
+- **Purpose**: To ensure the solution is correct and efficient.
+- **Key Points**:
+  - Test the code with different inputs, including edge cases.
+  - Debug any issues or errors that arise during testing.
+  - Ensure the solution meets performance and efficiency requirements.
+
+#### 6. Design Tools
+
+##### **Algorithm**
+An algorithm is a step-by-step procedure for solving a problem. It defines the process in a structured manner.
+
+- **Purpose**: To provide a clear and systematic approach to solving the problem.
+- **Key Points**:
+  - Algorithms should be simple, efficient, and easy to understand.
+  - They should be written in a logical sequence of steps.
+  
+  **Example**:  
+  **Problem**: Find the sum of two numbers.  
+  **Algorithm**:  
+  1. Start  
+  2. Input two numbers  
+  3. Add the numbers  
+  4. Display the result  
+  5. Stop
+
+##### **Flowchart**
+A flowchart is a visual representation of an algorithm. It uses symbols to represent the flow of control and operations in the algorithm.
+
+- **Purpose**: To provide a clear and visual understanding of the algorithm.
+- **Key Points**:
+  - Flowcharts help visualize the sequence of steps and decisions.
+  - They are useful for understanding complex processes.
+
+ ![Flow chart](https://cdn.programiz.com/sites/tutorial2program/files/flowchart-2.jpg)
+
+
+##### **Pseudocode**
+Pseudocode is an informal, language-independent way of representing an algorithm. It uses simple language to describe the logic of the algorithm.
+
+- **Purpose**: To plan and communicate the algorithm in a human-readable format before coding.
+- **Key Points**:
+  - Pseudocode should focus on logic rather than syntax.
+  - It helps in understanding the problem-solving approach.
+
+### Programming Languages: Types and Generation of Programming Languages
+
+#### 1. Types of Programming Languages
+Programming languages can be classified into different types based on their features, usage, and level of abstraction.
+
+- **Low-level Languages**: These languages are closer to machine code and provide minimal abstraction from the hardware. Examples include **Assembly Language** and **Machine Language**.
+- **High-level Languages**: These languages are closer to human languages and are more abstracted from the machine code. Examples include **C**, **Java**, and **Python**.
+- **Middle-level Languages**: These languages are a mix of low-level and high-level languages, providing both hardware control and high-level abstractions. **C** is often considered a middle-level language.
+
+ **TIP:** High-level languages are generally easier to use and understand, while low-level languages provide more control over hardware resources.
+
+#### 2. Generation of Programming Languages
+Programming languages have evolved over time in multiple generations:
+
+- **First Generation (1GL)**: These are machine languages that are directly understood by the computer's hardware. They consist of binary code (0s and 1s).
+- **Second Generation (2GL)**: Assembly languages fall under this category, where mnemonics are used instead of binary code.
+- **Third Generation (3GL)**: These are high-level programming languages like **C**, **Java**, and **Python**, which are human-readable and abstract away hardware details.
+- **Fourth Generation (4GL)**: These are high-level languages that focus on problem-solving and are more user-friendly, often used in database management systems (DBMS). Examples include SQL.
+- **Fifth Generation (5GL)**: These languages focus on solving problems using constraints rather than algorithms. Examples include **Prolog** and **LISP**.
+
+ **NOTE:** As we move through generations, programming languages become more abstract and user-friendly, allowing programmers to focus more on solving problems rather than managing hardware.
+
+---
+
+### Example Problems and Solutions
+
+#### 1. Problem Solving Methodology
+
+**Problem 1: Find the largest of three numbers.**
+
+- **Problem Statement**: Given three numbers, find the largest number among them.
+- **Solution**:
+  - **Step 1**: Analyze the problem – We need to compare three numbers and find the largest.
+  - **Step 2**: Design a solution – Use conditional statements to compare the numbers.
+  - **Step 3**: Implement the solution in C:
+
+```c
+#include <stdio.h>
+
+int main() {
+    int a, b, c;
+    printf("Enter three numbers: ");
+    scanf("%d %d %d", &a, &b, &c);
+
+    if(a >= b && a >= c) {
+        printf("The largest number is %d\n", a);
+    } else if(b >= a && b >= c) {
+        printf("The largest number is %d\n", b);
+    } else {
+        printf("The largest number is %d\n", c);
+    }
+    return 0;
+}
+```
+### Compiler – Interpreter – Linker – Loader, Execution of Program
+
+#### 3. Compiler
+A **compiler** is a program that translates the entire source code of a high-level programming language into machine code (binary code) in one go. The compiled machine code can then be executed by the computer.
+
+- **Purpose**: To convert high-level code into executable machine code.
+- **Key Points**:
+  - The compiler checks for syntax errors and reports them before generating the machine code.
+  - The output is an independent executable file.
+
+ **TIP:** Compilers generally produce faster programs because the translation happens before execution.
+
+#### 4. Interpreter
+An **interpreter** translates and executes the source code line by line. It does not produce a separate machine code file but directly executes the instructions.
+
+- **Purpose**: To execute high-level code by translating it line by line.
+- **Key Points**:
+  - Interpreters are slower than compilers because they translate code during execution.
+  - They allow for easier debugging since errors are detected immediately.
+
+ **NOTE:** Interpreters are commonly used in languages like **Python** and **JavaScript**.
+
+#### 5. Linker
+A **linker** is a program that combines multiple object files into a single executable program. It resolves references between different files and libraries.
+
+- **Purpose**: To link object files together and create an executable.
+- **Key Points**:
+  - The linker resolves external references (e.g., function calls) between different object files.
+  - It is used after compilation and before execution.
+
+ **CAUTION:** If there are unresolved references or missing files, the linker will generate an error.
+
+#### 6. Loader
+A **loader** is responsible for loading the executable program into memory for execution. It prepares the program for execution by placing it into the correct memory locations.
+
+- **Purpose**: To load the executable into memory and start its execution.
+- **Key Points**:
+  - The loader allocates memory for the program and prepares it for execution.
+  - It is usually part of the operating system.
+
+ **TIP:** The loader works in conjunction with the operating system to ensure that the program runs correctly in memory.
+
+---
+
+### Execution of Program
+Once the program is compiled, linked, and loaded into memory, it can be executed.
+
+- **Execution Process**:
+  1. **Compilation**: The source code is translated into machine code by the compiler.
+  2. **Linking**: The object files are linked together by the linker to create an executable.
+  3. **Loading**: The loader loads the executable into memory.
+  4. **Execution**: The program runs, and the CPU executes the machine code instructions.
+
+ **TIP:** The execution process can vary slightly depending on whether you're using a compiler or an interpreter.
+
+**Diagram:**
+
+![Linker and Loader](https://prepinsta.com/wp-content/uploads/2019/06/Linker-and-Loader.png)
