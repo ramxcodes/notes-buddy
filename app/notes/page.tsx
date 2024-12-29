@@ -9,16 +9,16 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAllTags, sortPosts, sortTagsByCount } from "@/lib/utils";
 import dynamic from "next/dynamic";
 import TagError from "@/components/TagError";
-import { NotesSeach } from "@/components/NotesSeach";
+import { NotesSearch } from "@/components/NotesSearch";
 
 const QueryPagination = dynamic(
   () =>
     import("@/components/query-pagination").then((mod) => mod.QueryPagination),
   { ssr: false }
 );
-// const NotesSeach = dynamic(
+// const NotesSearch = dynamic(
 //   () =>
-//     import("@/components/NotesSeach").then((mod) => mod.NotesSeach),
+//     import("@/components/NotesSearch").then((mod) => mod.NotesSearch),
 //   { ssr: false }
 // );
 
@@ -78,7 +78,7 @@ function BlogContent() {
           <p className="text-xl text-muted-foreground">
             Your exams last moment notes are here!
           </p>
-          <NotesSeach DropBox={true}/>
+          <NotesSearch DropBox={true} />
         </div>
       </div>
       <Card className="my-10">
