@@ -66,7 +66,7 @@ export default function TestimonialSection() {
     return (
       <figure
         className={cn(
-          "relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4 transition-transform duration-300",
+          "relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
           "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
           "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]"
         )}
@@ -80,13 +80,13 @@ export default function TestimonialSection() {
             src={img}
           />
           <div className="flex flex-col">
-            <figcaption className="text-sm font-medium dark:text-white">
+            <figcaption className="text-sm font-medium dark:text-white whitespace-nowrap w-fit-content">
               {name}
             </figcaption>
-            <p className="text-xs font-medium dark:text-white/40">{username}</p>
+            <p className="text-xs font-medium dark:text-white/40 whitespace-nowrap w-fit-content">{username}</p>
           </div>
         </div>
-        <blockquote className="mt-1 text-sm">{body}</blockquote>
+        <blockquote className="mt-1 text-sm w-fit-content">{body}</blockquote>
       </figure>
     );
   };
