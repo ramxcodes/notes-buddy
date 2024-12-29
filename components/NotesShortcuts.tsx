@@ -33,13 +33,14 @@ export default function NotesShortcuts() {
   };
 
   return (
-    <section className="container max-w-4xl py-6 lg:py-10 flex flex-col space-y-6 mt-60">
+    <section className="container max-w-4xl py-6 lg:py-10 flex flex-col space-y-6 my-20">
       <BlurFade delay={0.5} inView>
         <h1 className="text-[2.3rem] md:text-[3.3rem] lg:text-[4.5rem] leading-[1] font-bold dark:bg-gradient-to-b dark:from-[rgba(244,244,255,1)] dark:to-[rgba(181,180,207,1)] dark:text-transparent dark:bg-clip-text py-2 text-center pt-20 md:pt-10">
-          Study Smarter, Pick Your Notes!
+          Study Smarter <br /> Go to Your Notes!{" "}
+          <span className="text-white">👇🏻</span>
         </h1>
       </BlurFade>
-      <BlurFade delay={1} inView>
+      <BlurFade delay={0.7} inView>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {links.map((link) => (
             <div

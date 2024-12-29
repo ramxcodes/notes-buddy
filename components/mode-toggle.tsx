@@ -10,7 +10,7 @@ export const ModeToggle = () => {
 
   useEffect(() => {
     if (!theme) {
-      setTheme("system");
+      setTheme("dark");
     }
     setIsThemeReady(true);
   }, [theme, setTheme]);
