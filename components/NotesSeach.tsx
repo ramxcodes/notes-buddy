@@ -43,9 +43,9 @@ const SearchBoxItem = ({data,context}:SearchBoxItemProps) =>{
             <h2>{data.title}</h2>
             
             <div className="ml-auto flex justify-center items-center gap-2">
-              {data?.tags?.map((e)=>{
+              {data?.tags?.map((e,index)=>{
                 return(
-                 <Badge variant="secondary">{e.Name}</Badge>
+                 <Badge key={index} variant="secondary">{e.Name}</Badge>
                 )
               })}
             </div>
