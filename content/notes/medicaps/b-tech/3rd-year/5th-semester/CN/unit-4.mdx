@@ -1,13 +1,15 @@
 ---
 title: "Unit 4 : Computer Network"
-description: What is Computer Network
+description: Transport Layer, Design Issues, Transport Service Primitives, Socket Programming, TCP, Connection Management, Reliability of Data Transfers, TCP Flow Control, TCP Congestion Control, TCP Header Format, TCP Timer Management, UDP, Header Format, RPC, RTP, Session layer, Authentication, Authorization, Session layer protocol (PAP, SCP, H.245)
 date: 2024-12-25
 tags: ["Computer Network", "5th Semester", "3rd Year", "medicaps university"]
 published: true
 ---
-The Transport Layer is responsible for end-to-end communication between applications running on different hosts in a network. Its primary roles include delivering data reliably, managing data flow, and controlling congestion. Let’s dive into the key aspects: **design issues**, **transport service primitives**, and **socket programming**.
 
 ---
+
+The Transport Layer is responsible for end-to-end communication between applications running on different hosts in a network. Its primary roles include delivering data reliably, managing data flow, and controlling congestion. Let’s dive into the key aspects: **design issues**, **transport service primitives**, and **socket programming**.
+
 
 ### 1. Design Issues of the Transport Layer
 
@@ -43,7 +45,7 @@ Socket programming is a method for creating network applications by using a prog
 
 In most programming languages, such as **C**, **Java**, and **Python**, socket programming can create both **TCP (stream-oriented)** and **UDP (datagram-oriented)** applications.
 
-### TCP Socket Programming
+## TCP Socket Programming
 
 Here is an example of how TCP socket programming works in Python:
 
@@ -137,7 +139,7 @@ client.on('error', (err) => {
 3. **Data Transmission**: The client sends a message, which the server receives and responds to.
 4. **Connection Termination**: Both the client and server close their respective sockets after the exchange is complete.
 
-### UDP Socket Programming
+## UDP Socket Programming
 
 UDP socket programming is simpler since it’s connectionless. Here’s an example in Python:
 
@@ -230,7 +232,7 @@ client.on('error', (err) => {
 
 Socket programming allows developers to create custom network applications that leverage Transport Layer functionalities effectively for reliable data communication.
 
-# **Transmission Control Protocol (TCP)**
+## **Transmission Control Protocol (TCP)**
 
 **Transmission Control Protocol (TCP)** is a key protocol in the transport layer that provides reliable, connection-oriented data transfer between devices on a network. Below are the main aspects of TCP, including **connection management**, **reliability**, **flow control**, **congestion control**, **header format**, and **timer management**.
 
@@ -240,13 +242,13 @@ Socket programming allows developers to create custom network applications that 
 
 TCP manages connections through a structured setup and teardown process that ensures both ends of the connection are synchronized and agree on the communication parameters.
 
-### Connection Establishment: Three-Way Handshake
+## Connection Establishment: Three-Way Handshake
 
 1. **SYN**: The client initiates the connection by sending a SYN (synchronize) packet with a randomly chosen initial sequence number (ISN).
 2. **SYN-ACK**: The server responds with a SYN-ACK (synchronize-acknowledge) packet, confirming receipt of the SYN request and its own initial sequence number.
 3. **ACK**: The client sends an ACK packet to acknowledge the server’s SYN-ACK. The connection is now established, and data transfer can begin.
 
-### Connection Termination: Four-Way Handshake
+## Connection Termination: Four-Way Handshake
 
 1. **FIN**: The client (or server) sends a FIN (finish) packet to indicate it wants to end the connection.
 2. **ACK**: The receiving side acknowledges the FIN with an ACK, allowing half-closure of the connection.
@@ -404,7 +406,7 @@ RTP, along with RTCP, manages data transfer for real-time media, providing suppo
 
 The **Session Layer** (Layer 5 in the OSI model) is responsible for managing sessions, or connections, between applications. It provides the framework for managing, controlling, and synchronizing dialogues between applications on different devices. Key functions include **authentication**, **authorization**, and **session protocols** that manage the connection between endpoints.
 
-### Authentication
+## Authentication
 
 Authentication verifies the identity of a user or device before allowing access to a network service. It is critical for establishing secure sessions in many applications. Examples of authentication mechanisms at the session layer include:
 
@@ -412,7 +414,7 @@ Authentication verifies the identity of a user or device before allowing access 
 - Digital certificates
 - Biometric authentication
 
-### Authorization
+## Authorization
 
 Authorization determines what level of access an authenticated user has within a session. For example, once authenticated, a user might be authorized to access certain data or perform specific actions based on permissions associated with their role or identity.
 
