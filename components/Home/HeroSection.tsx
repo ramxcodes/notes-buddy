@@ -3,6 +3,8 @@ import { Spotlight } from "../ui/spotlight";
 import { HeroSlideTextEffect } from "./HeroSlideTextEffect";
 import Tooltip from "./Tooltip";
 import BlurFade from "../ui/blur-fade";
+import AnimatedShinyText from "../ui/animated-shiny-text";
+import { ArrowRightIcon } from "lucide-react";
 
 export default function HeroSection() {
   return (
@@ -12,6 +14,12 @@ export default function HeroSection() {
         fill="purple"
       />
       <div className="text-center space-y-2 container mx-auto px-4 md:px-0">
+        <BlurFade delay={0.1} inView>
+          <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400 select-none border rounded-full">
+            <span>✨ Welcome to Notes buddy</span>
+            <ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
+          </AnimatedShinyText>
+        </BlurFade>
         <BlurFade delay={0.25} inView>
           <h1 className="text-[2.3rem] lg:text-[4.5rem] md:text-[4rem] leading-[1] font-bold dark:bg-gradient-to-b dark:from-[rgba(244,244,255,1)] dark:to-[rgba(181,180,207,1)] dark:text-transparent dark:bg-clip-text py-2 text-center pt-20 md:pt-0">
             Prepare Fast
