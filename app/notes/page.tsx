@@ -9,14 +9,18 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAllTags, sortPosts, sortTagsByCount } from "@/lib/utils";
 import dynamic from "next/dynamic";
 import TagError from "@/components/TagError";
-import SearchInput from "@/components/ui/search";
-import NotesSeach from "@/components/NotesSeach";
+import { NotesSeach } from "@/components/NotesSeach";
 
 const QueryPagination = dynamic(
   () =>
     import("@/components/query-pagination").then((mod) => mod.QueryPagination),
   { ssr: false }
 );
+// const NotesSeach = dynamic(
+//   () =>
+//     import("@/components/NotesSeach").then((mod) => mod.NotesSeach),
+//   { ssr: false }
+// );
 
 const POSTS_PER_PAGE = 6;
 

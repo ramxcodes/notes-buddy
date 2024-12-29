@@ -1,4 +1,4 @@
-import { Notes } from "@/types/Notes-type"
+import { Notes, Tag } from "@/types/Notes-type"
 import { getAllNotesVelite } from "./getNotesJson";
 
 
@@ -95,11 +95,11 @@ export class PrefixTree {
            
           
     }
-    private _collectNotes(node: PrefixNode): { title: string, path: string }[]{
-        let result: { title: string, path: string }[] = [];
+    private _collectNotes(node: PrefixNode): { title: string, path: string ,tags:Array<Tag>}[]{
+        let result: { title: string, path: string,tags:Array<Tag> }[] = [];
     
         for (let note of node.notes) {
-          result.push({ title: note.title, path: note.path || '' }); 
+          result.push({ title: note.title, path: note.path || '',tags:note.tags }); 
         }
     
         for (let child of node.children.values()) {

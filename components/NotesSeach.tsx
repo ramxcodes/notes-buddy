@@ -1,8 +1,12 @@
 "use client"
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useRef, useState } from "react";
 import SearchInput from "./ui/search";
 import { Search } from "lucide-react";
 import { Notes } from "@/types/Notes-type";
+import { useRouter } from 'next/router';
+import Link from "next/link";
+import { Badge } from "./ui/badge";
+
 
 interface SearchContextType {
   isFocused: boolean;
@@ -30,67 +34,131 @@ export const useSearchContext = () => useContext(SearchContext);
 
 interface SearchBoxItemProps {
   data: Notes;
+  context :SearchContextType
 }
-const SearchBoxItem = ({data}:SearchBoxItemProps) =>{
+const SearchBoxItem = ({data,context}:SearchBoxItemProps) =>{
 
     return(
-        <div className="border border-input">
-            {data.title}
-        </div>
+        <Link href={data.path || '/'} onClick={()=>context.setFocused(false)} className="border border-input p-4 flex ">
+            <h2>{data.title}</h2>
+            <div className="ml-auto flex gap-2">
+              {data?.tags?.map((e)=>{
+                return(
+                 <Badge>{e.Name}</Badge>
+                )
+              })}
+            </div>
+        </Link>
     )
    
 }
+interface SearchBoxProps {
+  DropBox: boolean
+  className?:string
+}
+const SearchBox: React.FC<SearchBoxProps> = ({ DropBox, className = "" }) => {
+  const df = useSearchContext();
+  const [NotesList, setNotesList] = useState<Array<Notes>>([]);
+  const searchBoxRef = useRef<HTMLDivElement>(null);
+  const [alignLeft, setAlignLeft] = useState(true); 
 
-const SearchBox = () =>{
-    const df = useSearchContext()
-    const [NotesList,setNotesList] = useState<Array<Notes>>([]);
+  const Topclass = `relative ${DropBox ? "w-full mt-3" : "w-fit"}  ${className}`;
+  console.log(DropBox);
 
-    async function FetchQuey(query:string | undefined |null) {
-        const res = await fetch('/api/search', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ query: query }),
-          })
+  async function FetchQuery(query: string | undefined | null) {
+    try {
+      const res = await fetch("/api/search", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ query }),
+      });
 
-          const resrult = await res.json()
-          setNotesList(resrult)
+      const result = await res.json();
+      console.log(result);
+      setNotesList(result);
+    } catch (error) {
+      console.error("Failed to fetch search results:", error);
+    }
+  }
 
+  useEffect(() => {
+    if (df?.query !== "") {
+      FetchQuery(df?.query);
+    }
+  }, [df?.query]);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (searchBoxRef.current && !searchBoxRef.current.contains(event.target as Node)) {
+        df?.setFocused(false);
+      }
     }
 
-    useEffect(()=>{
-      if(df?.query !=""){
-        FetchQuey(df?.query)
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [df]);
+
+  useEffect(() => {
+    function checkAlignment() {
+      if (searchBoxRef.current) {
+        const rect = searchBoxRef.current.getBoundingClientRect();
+        const viewportWidth = window.innerWidth;
+        setAlignLeft(rect.right <= viewportWidth);
       }
-        
-    },[df?.query])
-    return(
-      <div className="w-full relative mt-3">
-      {df?.isFocused ? (
-        <div className="absolute max-h-48 w-full rounded-md border border-input bg-background px-3 py-2 shadow-sm overflow-y-auto focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2">
+    }
+
+    checkAlignment();
+    window.addEventListener("resize", checkAlignment);
+    return () => {
+      window.removeEventListener("resize", checkAlignment);
+    };
+  }, []);
+
+  return (
+    <div className={Topclass} ref={searchBoxRef}>
+      {df?.isFocused && (
+        <div
+          className={`absolute top-full ${
+            alignLeft ? "left-0" : "right-0"
+          } z-10 flex flex-col max-h-60 ${
+            DropBox ? "w-full" : "w-fit"
+          } rounded-md  mt-4 border border-input bg-background px-3 py-2 shadow-sm overflow-y-auto`}
+        >
           {NotesList.map((e, index) => (
-            <SearchBoxItem data={e} key={index} />
+            <SearchBoxItem context={df} data={e} key={index} />
           ))}
         </div>
-      ) : null}
+      )}
     </div>
-    )
+  );
+};
+
+
+interface NotesSeachProps{
+  DropBox:boolean
 }
-
-export default function NotesSeach() {
-
+export const NotesSeach:React.FC<NotesSeachProps> =({DropBox = true}) =>{
     return (
     <div>
         <SearchProvider>
             <SearchInput
                 icon={<Search size={17}/>}
             />
-            <SearchBox/>
+            <SearchBox DropBox={DropBox} />
         </SearchProvider>
     </div>
   )
 }
+export const DropBox =() =>{
+  return (
+  <NotesSeach DropBox={false}/>
+)
+}
+
 
 
 

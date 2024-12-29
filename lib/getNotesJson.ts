@@ -1,7 +1,7 @@
 
 import { Notes, Tag } from "@/types/Notes-type";
 import fs from "fs";
-import path from "path";
+import path  from "path";
 const initPath = "/content/notes"
 
 
@@ -74,7 +74,7 @@ export const getAllNotesVelite = async() =>{
     e?.tags?.forEach((tag)=>{
       Tags.push(_createTag(tag))
     })
-    const newNote = _createNote(e.title,Tags,e.description)
+    const newNote = _createNote(e.title,Tags,e.description,undefined,undefined,e.slug)
     Notes.push(newNote)
   })
   return Notes

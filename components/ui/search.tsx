@@ -59,7 +59,7 @@ const SearchInput: React.FC<SearchInputProps> = ({ icon, className, ...props }) 
         {...props}
         ref = {inputref}
         onFocus={()=>fc?.setFocused(true)}
-        onBlur={()=>fc?.setFocused(false)}
+        // onBlur={()=>fc?.setFocused(false)}
         onChange={()=>handleChange()}
       />
        <span className="absolute right-3 text-muted-foreground text-sm">
