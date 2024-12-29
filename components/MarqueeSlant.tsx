@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Marquee from "./Marquee";
+import BlurFade from "./ui/blur-fade";
 
 const reviews = [
   {
@@ -85,30 +86,34 @@ const ReviewCard = ({
 
 const MarqueeSlant = () => {
   return (
-    <div className="relative flex h-screen flex-row items-center justify-center overflow-hidden rounded-lg gap-6 w-full">
-      <Marquee pauseOnHover vertical className="[--duration:15s]">
-        {firstRow.map((review, index) => (
-          <ReviewCard key={`${review.username}-${index}`} {...review} />
-        ))}
-      </Marquee>
-      <Marquee reverse pauseOnHover vertical className="[--duration:18s]">
-        {secondRow.map((review, index) => (
-          <ReviewCard key={`${review.username}-${index}`} {...review} />
-        ))}
-      </Marquee>
-      <Marquee pauseOnHover vertical className="[--duration:20s]">
-        {thirdRow.map((review, index) => (
-          <ReviewCard key={`${review.username}-${index}`} {...review} />
-        ))}
-      </Marquee>
-      <Marquee reverse pauseOnHover vertical className="[--duration:22s]">
-        {fourthRow.map((review, index) => (
-          <ReviewCard key={`${review.username}-${index}`} {...review} />
-        ))}
-      </Marquee>
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-white dark:from-[#01050E]"></div>
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white dark:from-[#01050E]"></div>
-    </div>
+    <>
+      <BlurFade delay={1.1} inView>
+        <div className="relative flex h-screen flex-row items-center justify-center overflow-hidden rounded-lg gap-6 w-full">
+          <Marquee pauseOnHover vertical className="[--duration:15s]">
+            {firstRow.map((review, index) => (
+              <ReviewCard key={`${review.username}-${index}`} {...review} />
+            ))}
+          </Marquee>
+          <Marquee reverse pauseOnHover vertical className="[--duration:18s]">
+            {secondRow.map((review, index) => (
+              <ReviewCard key={`${review.username}-${index}`} {...review} />
+            ))}
+          </Marquee>
+          <Marquee pauseOnHover vertical className="[--duration:20s]">
+            {thirdRow.map((review, index) => (
+              <ReviewCard key={`${review.username}-${index}`} {...review} />
+            ))}
+          </Marquee>
+          <Marquee reverse pauseOnHover vertical className="[--duration:22s]">
+            {fourthRow.map((review, index) => (
+              <ReviewCard key={`${review.username}-${index}`} {...review} />
+            ))}
+          </Marquee>
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-white dark:from-[#01050E]"></div>
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white dark:from-[#01050E]"></div>
+        </div>
+      </BlurFade>
+    </>
   );
 };
 
