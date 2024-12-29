@@ -16,5 +16,3 @@ export default async function AboutPage() {
         </h1>
       </div>
     </section>
-  );
-}
