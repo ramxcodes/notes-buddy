@@ -6,6 +6,8 @@ import { Icons } from "./icons";
 import { MainNav } from "./main-nav";
 import { MobileNav } from "./mobile-nav";
 import { ModeToggle } from "./mode-toggle";
+import { Search } from "lucide-react";
+import { DropBox, NotesSeach } from "./NotesSeach";
 
 export function SiteHeader() {
   return (
@@ -13,7 +15,12 @@ export function SiteHeader() {
       <div className="container flex h-14 max-w-screen-2xl items-center">
         <MainNav />
         <div className="flex flex-1 items-center justify-end space-x-2">
-          <nav className="flex items-center">
+          <nav className="flex w-fit items-center">
+                <div className="max-sm:hidden">
+                  <DropBox/>
+                  <span className="sr-only">Search</span>
+                </div>
+         
             <Link
               href={siteConfig.links.github}
               target="_blank"

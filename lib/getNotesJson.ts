@@ -1,12 +1,11 @@
 
 import { Notes, Tag } from "@/types/Notes-type";
-import { dir } from "console";
 import fs from "fs";
-import path from "path";
+import path  from "path";
 const initPath = "/content/notes"
 
 
-const _createNote = (title: string, tags: Array<Tag>, desc: string, invisibleTags?: Array<Tag>, parentGroup?: string, path?: string): Notes => {
+const _createNote = (title: string, tags: Array<Tag>, desc: string | undefined, invisibleTags?: Array<Tag>, parentGroup?: string, path?: string): Notes => {
     return {
       title,
       tags,
@@ -22,7 +21,7 @@ const _createTag =(name:string):Tag =>{
         Name:name
     }
 }
-export const getAllNotes = async() =>{
+export const getAllNotesFileSyncFileSync = async() =>{
     let Notes:Array<Notes> = []
     const dirPath = path.join(process.cwd(),initPath );
 
@@ -43,7 +42,9 @@ export const getAllNotes = async() =>{
       }
 
     try{
+      
         const Notepaths = _recursion(dirPath);
+        
         if(Notepaths.length >0){
 
             Notepaths?.forEach((e)=>{
@@ -64,6 +65,21 @@ export const getAllNotes = async() =>{
     }
 }
 
+export const getAllNotesVelite = async() =>{
+  const { posts } = await import("@/.velite");
+  let Notes:Array<Notes> = [];
+  
+  posts?.forEach((e,index)=>{
+    let Tags:Array<Tag> = []
+    e?.tags?.forEach((tag)=>{
+      Tags.push(_createTag(tag))
+    })
+    const newNote = _createNote(e.title,Tags,e.description,undefined,undefined,e.slug)
+    Notes.push(newNote)
+  })
+  return Notes
+
+}
 const getDir = async (dir:string) =>{
     const f = await fs.readdirSync(dir);
     return f
