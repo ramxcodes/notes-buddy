@@ -78,7 +78,7 @@ function BlogContent() {
           <p className="text-xl text-muted-foreground">
             Your exams last moment notes are here!
           </p>
-          <NotesSeach/>
+          <NotesSeach DropBox={true}/>
         </div>
       </div>
       <Card className="my-10">
