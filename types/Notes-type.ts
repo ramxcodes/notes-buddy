@@ -10,7 +10,7 @@ interface Notes {
     title : string
     tags : Array<Tag>
     invisibleTags? : Array<Tag>    
-    desc : string
+    desc : string | undefined
     parentGroup ? : string
     path ?: string 
 }

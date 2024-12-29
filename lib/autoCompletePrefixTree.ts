@@ -1,4 +1,36 @@
-import { Notes } from "@/types/Notes-type"
+import { Notes, Tag } from "@/types/Notes-type"
+import { getAllNotesVelite } from "./getNotesJson";
+
+
+function levenshtein(a: string, b: string): number {
+  const lenA = a.length;
+  const lenB = b.length;
+  const dp: number[][] = Array(lenA + 1).fill(null).map(() => Array(lenB + 1).fill(0));
+
+  for (let i = 0; i <= lenA; i++) {
+    for (let j = 0; j <= lenB; j++) {
+      if (i === 0) {
+        dp[i][j] = j; 
+      } else if (j === 0) {
+        dp[i][j] = i;
+      } else if (a[i - 1] === b[j - 1]) {
+        dp[i][j] = dp[i - 1][j - 1];
+      } else {
+        dp[i][j] = Math.min(
+          dp[i - 1][j] + 1, 
+          dp[i][j - 1] + 1,  
+          dp[i - 1][j - 1] + 1 
+        );
+      }
+    }
+  }
+
+  return dp[lenA][lenB];
+}
+
+
+
+
 
 export class PrefixNode {
     children : Map<string,PrefixNode>
@@ -16,7 +48,7 @@ export class PrefixTree {
     }
 
     _insert(notes:Notes):void {
-        let title = notes.title;
+        let title = notes.title.toLowerCase();
         for (let i = 0; i < title.length; i++) {
             let currentNode = this.root;
             for (let j = i; j < title.length; j++) {
@@ -29,9 +61,24 @@ export class PrefixTree {
             }
             currentNode.notes.push(notes)
     }
+    for (let tag of notes.tags) {
+      this._insertTag(tag.Name, notes);
+    }
 }
 
-    _search(query:string):Notes[]{
+    private _insertTag(tagName: string, note: Notes): void {
+      let currentNode = this.root;
+      for (let char of tagName.toLowerCase()) {
+        if (!currentNode.children.has(char)) {
+          currentNode.children.set(char, new PrefixNode());
+        }
+        currentNode = currentNode.children.get(char)!;
+      }
+
+      currentNode.notes.push(note);
+    }
+
+    _search(query:string):{ title: string, path: string }[]{
         let currentNode = this.root
         for (let char of query) {
             if (!currentNode.children.has(char)) {
@@ -39,18 +86,81 @@ export class PrefixTree {
             }
             currentNode = currentNode.children.get(char)!;
           }
+          const result =this._collectNotes(currentNode);
+          if(result.length===0){
+            console.log("fuf")
+            return  this._collectNotesWithFuzzySearch(query, this.root);
+          }
           return this._collectNotes(currentNode)
+           
           
     }
-    private _collectNotes(node: PrefixNode): Notes[] {
-        let result: Notes[] = [];
+    private _collectNotes(node: PrefixNode): { title: string, path: string ,tags:Array<Tag>}[]{
+        let result: { title: string, path: string,tags:Array<Tag> }[] = [];
     
-        result.push(...node.notes);
+        for (let note of node.notes) {
+          result.push({ title: note.title, path: note.path || '',tags:note.tags }); 
+        }
     
-        for (let child of node.children.values()) { //using lower version of js , ts should be set to js 2015 or above
+        for (let child of node.children.values()) {
           result.push(...this._collectNotes(child));
         }
     
         return result;
       }
+    
+    public _collectNotesWithFuzzySearch(query: string, node: PrefixNode, maxDistance: number = 3): { title: string, path: string,distance :number }[] {
+      let result: { title: string, path: string, distance: number }[] = [];
+    
+      node.notes.forEach((note) => {
+        const distance = levenshtein(query, note.title.toLowerCase());
+
+          result.push({ title: note.title, path: note.path || '', distance });
+        
+      
+      });
+    
+      node.children.forEach((child) => {
+        result.push(...this._collectNotesWithFuzzySearch(query, child, maxDistance));
+      });
+      result.sort((a, b) => a.distance - b.distance);
+    
+      return result;
     }
+  }
+
+
+let globalPrefixTree: PrefixTree | null = null;
+
+async function initPrefixTree() {
+  if (globalPrefixTree === null) {
+    globalPrefixTree = new PrefixTree();
+    const notes = await getAllNotesVelite();
+    if (notes) {
+      notes.forEach(note => {
+        globalPrefixTree?._insert(note);  
+      });
+    }
+  }
+  return globalPrefixTree;
+}
+
+function startBackgroundUpdate() {
+  setInterval(async () => {
+    const notes = await getAllNotesVelite();
+    if (notes && globalPrefixTree) {
+      globalPrefixTree = new PrefixTree();
+      notes.forEach(note => {
+        globalPrefixTree?._insert(note);
+      });
+    }
+  }, 60 * 1000);  
+}
+async function initialize() {
+  await initPrefixTree();
+  startBackgroundUpdate();
+}
+initialize();
+
+export { initPrefixTree, globalPrefixTree };
+

@@ -1,24 +1,40 @@
 ---
 title: "Unit 2 : Software Engineering"
-description: What is Software Engineering
+description: Requirement Analysis and Stakeholders, Elicitation Techniques, Requirement Modeling, Use Cases, Activity Diagrams, Swimlane Diagrams, Data Modeling, Data Flow Diagrams, Overview of Class-Based Modeling, Requirement Tracking
 date: 2024-12-25
 tags: ["Software Engineering", "5th Semester", "3rd Year", "medicaps university"]
 published: true
 ---
 
+---
 
-### 1. **Requirement Analysis in Software Development**
+### Syllabus
+
+```Syllabus
+Requirement Analysis and Stakeholders.
+Elicitation Techniques.
+Requirement Modeling:
+Use Cases
+Activity Diagrams
+Swimlane Diagrams
+Data Modeling
+Data Flow Diagrams
+Overview of Class-Based Modeling.
+Requirement Tracking.
+```
+
+## 1. **Requirement Analysis in Software Development**
 
 **Requirement analysis** is the process of identifying, documenting, and managing the needs and expectations of the stakeholders for a software system. The purpose is to clearly define the problem that the software will solve and ensure all parties involved understand the features, functionalities, and constraints of the system before development begins.
 
-### Importance of Requirement Analysis:
+## Importance of Requirement Analysis:
 
 - **Foundation of the Project**: Requirements form the blueprint for the software. If they are unclear or misunderstood, the entire project may be at risk of failure.
 - **Cost and Time Efficiency**: Properly gathered and analyzed requirements help avoid costly rework and delays. Misunderstood or incomplete requirements lead to project overruns.
 - **Alignment with Stakeholder Expectations**: Ensures the final product matches what stakeholders expect and need. This avoids dissatisfaction after project completion.
 - **Reduced Risks**: Requirement analysis helps in identifying potential risks early and establishing the scope of the project, which can prevent scope creep.
 
-### 2. **Stakeholders in Software Development and Their Roles**
+## 2. **Stakeholders in Software Development and Their Roles**
 
 Stakeholders are individuals or groups who have an interest in the outcome of a project. They contribute to the requirement-gathering process in the following ways:
 
@@ -31,7 +47,7 @@ Stakeholders are individuals or groups who have an interest in the outcome of a 
 - **Regulatory Bodies**: Ensure the software complies with any industry regulations or legal requirements.
 - **Sponsors**: Typically the funding entities. They provide high-level expectations and goals for the project.
 
-### 3. **Functional and Non-Functional Requirements**
+## 3. **Functional and Non-Functional Requirements**
 
 - **Functional Requirements**: These define the specific behavior or functions of the system—what the system should do. They are features that a system must provide to meet the user needs and accomplish specific tasks.
     
@@ -49,7 +65,7 @@ Stakeholders are individuals or groups who have an interest in the outcome of a 
     - The system must support 10,000 concurrent users.
     - Data must be encrypted in transit and at rest.
 
-### 4. **Common Challenges in Requirement Analysis**
+## 4. **Common Challenges in Requirement Analysis**
 
 Several challenges can arise during the requirement analysis phase:
 
@@ -62,18 +78,18 @@ Several challenges can arise during the requirement analysis phase:
 - **Lack of Stakeholder Involvement**: If stakeholders (such as end-users or customers) are not actively involved, the requirements may not truly reflect their needs.
 - **Documenting Requirements**: Poor documentation can lead to misinterpretation or lack of clarity during the later stages of development. Requirements need to be specific, measurable, and testable.
 
-### 2. **Requirement Elicitation Techniques**
+## 2. **Requirement Elicitation Techniques**
 
 **Requirement elicitation techniques** are methods used to gather information from stakeholders to understand their needs, expectations, and constraints for a software project. These techniques help business analysts and development teams uncover both explicit and implicit requirements to ensure the software system will meet user expectations. Elicitation is critical because stakeholders may not always articulate their needs clearly, or they may have different perspectives. A structured approach ensures comprehensive, accurate, and aligned requirements.
 
-### Importance of Requirement Elicitation:
+## Importance of Requirement Elicitation:
 
 - **Improved Accuracy**: Ensures that requirements are precise and well-understood.
 - **Stakeholder Alignment**: Helps identify the needs and expectations of different stakeholders, ensuring that their requirements align with the project goals.
 - **Minimized Misunderstandings**: Clear and thorough elicitation reduces ambiguities and misunderstandings in requirements.
 - **Foundation for Development**: Accurate requirements lay the groundwork for design, development, and testing processes, reducing costly changes later in the project lifecycle.
 
-### 1. **Different Requirement Elicitation Techniques**
+## 1. **Different Requirement Elicitation Techniques**
 
 Several techniques are used to gather requirements, each suited to different situations:
 
@@ -129,7 +145,7 @@ Observation involves watching how users interact with the current system or perf
 
 **Example**: Observing call center operators to understand how they handle customer inquiries and how a new system could improve their workflow.
 
-### 2. **Brainstorming in Requirement Gathering**
+## 2. **Brainstorming in Requirement Gathering**
 
 **Brainstorming** is a collaborative technique where a group of stakeholders generates ideas or solutions in a free-form discussion without criticism. It's a creative process that encourages participants to express their thoughts and perspectives on the system or feature being developed.
 
@@ -150,7 +166,7 @@ Observation involves watching how users interact with the current system or perf
 - Requires skilled facilitation to avoid domination by more vocal participants.
 - Initial ideas may be broad and need further refinement.
 
-### 3. **Prototyping in Requirement Elicitation**
+## 3. **Prototyping in Requirement Elicitation**
 
 **Prototyping** is an iterative process where a preliminary version of the system or feature is created based on the gathered requirements. The prototype serves as a tangible representation of the system and allows stakeholders to interact with it.
 
@@ -177,7 +193,7 @@ Observation involves watching how users interact with the current system or perf
 - Building a prototype may require significant resources.
 - Stakeholders may become attached to the prototype, even if changes are necessary later.
 
-### 3. **Requirement Modeling - Use Cases, Diagrams, and Data Modeling**
+## 3. **Requirement Modeling - Use Cases, Diagrams, and Data Modeling**
 
 ### 1. **Use Case in Software Engineering**
 
@@ -217,7 +233,7 @@ A **use case** typically includes the following components:
     - If customer enters incorrect PIN three times, the card is retained by the machine.
 - **Postcondition**: Money is withdrawn, and account balance is updated.
 
-### 3. **Activity Diagrams**
+## 3. **Activity Diagrams**
 
 An **activity diagram** is a type of UML (Unified Modeling Language) diagram used to model the dynamic aspects of a system by showing the flow of control or workflow from one activity to another. It is particularly useful in representing complex business processes, system workflows, or sequences of operations.
 
@@ -230,7 +246,7 @@ An **activity diagram** is a type of UML (Unified Modeling Language) diagram use
 
 **Example**: An activity diagram for an order processing system would show steps like receiving the order, checking inventory, processing payment, and shipping the product.
 
-### 4. **Swimlane Diagrams in Activity Diagrams**
+## 4. **Swimlane Diagrams in Activity Diagrams**
 
 **Swimlane diagrams** are a type of activity diagram that divides the diagram into "lanes" (or columns) to represent different roles, departments, or systems responsible for specific activities. Each lane represents a different entity (person or system) involved in the process.
 
@@ -242,7 +258,7 @@ An **activity diagram** is a type of UML (Unified Modeling Language) diagram use
 
 **Example**: In a loan approval process, one swimlane could represent the customer, another for the loan officer, and another for the system performing credit checks.
 
-### 5. **Data Modeling in Software Development**
+## 5. **Data Modeling in Software Development**
 
 ![image.png](https://img.notionusercontent.com/s3/prod-files-secure%2F2569df28-564b-470f-aafe-abe52b815e0b%2Fb0e39b6d-a372-4f27-82c0-b255c7ea7c8d%2Fimage.png/size/w=1280?exp=1735310695&sig=rv0BrNcgljf-yDDKzbh5o9sxYkOe1k_OlQDrWSBv2Aw)
 
@@ -254,7 +270,7 @@ An **activity diagram** is a type of UML (Unified Modeling Language) diagram use
 - **Consistency and Integrity**: Helps maintain consistency, integrity, and quality of data by establishing relationships between entities.
 - **Clear Communication**: Provides a clear representation of the data, facilitating communication between developers, database administrators, and stakeholders.
 
-### 6. **Types of Models in Data Modeling**
+## 6. **Types of Models in Data Modeling**
 
 Data modeling typically involves three main types of models:
 
@@ -265,7 +281,7 @@ Data modeling typically involves three main types of models:
 3. **Physical Data Model**: Specifies how data will be stored in the database, including tables, columns, data types, and constraints. This model is technology-specific.
     - **Example**: The "Customer" entity becomes a table with fields like "CustomerID (int)," "Name (varchar)," etc.
 
-### 7. **Data Flow Diagram (DFD)**
+## 7. **Data Flow Diagram (DFD)**
 
 ![image.png](https://img.notionusercontent.com/s3/prod-files-secure%2F2569df28-564b-470f-aafe-abe52b815e0b%2F4247954f-dab0-4cb9-96eb-02ab126f35c1%2Fimage.png/size/w=1280?exp=1735310724&sig=tMSmJ1xd0oNtHjiYc8F7zjZnhibh3Dr5znfAcoKFinA)
 
@@ -286,7 +302,7 @@ A **Data Flow Diagram (DFD)** is a graphical representation of how data moves th
 
 **Example**: A DFD for a library system may show processes such as "Borrow Book," with data flowing from the "Member" (external entity) to the process and updating the "Library Database" (data store).
 
-### 8. **Differences Between Level 0, Level 1, and Level 2 DFDs**
+## 8. **Differences Between Level 0, Level 1, and Level 2 DFDs**
 
 DFDs are hierarchical, with different levels providing varying degrees of detail:
 
@@ -303,7 +319,7 @@ DFDs are hierarchical, with different levels providing varying degrees of detail
     - **Purpose**: Explains the workings of individual processes in greater detail, useful for complex systems.
     - **Example**: The "Borrow Book" process in the Level 1 DFD might be decomposed into sub-processes like "Check Book Availability" and "Update Member Account."
 
-### 4. **Overview of Class-Based Modeling**
+## 4. **Overview of Class-Based Modeling**
 
 ### 1. **Class-Based Modeling in Software Development**
 
@@ -362,7 +378,7 @@ A **class diagram** is the primary tool used in class-based modeling to depict t
     
 6. **Interfaces**: Define a contract that a class must implement. Interfaces represent only the method signatures without implementation.
 
-### 3. **Representation of Relationships in Class-Based Modeling**
+## 3. **Representation of Relationships in Class-Based Modeling**
 
 Class-based modeling uses different types of relationships to define how classes interact with each other:
 
@@ -418,7 +434,7 @@ Class-based modeling uses different types of relationships to define how classes
     The `Car` class inherits attributes like `speed` and `fuel` from `Vehicle`, and may also define its own specific attributes like `model` or `color`.
     
 
-### 5. **Requirement Tracking**
+## 5. **Requirement Tracking**
 
 ### 1. **What is Requirement Tracking?**
 
@@ -464,7 +480,7 @@ A **traceability matrix** is a tool used to ensure that each requirement is bein
 
 Changes to requirements are common during software development, but they can have a significant impact on the project if not managed properly. Requirements may change due to new stakeholder needs, evolving market conditions, or technical constraints discovered during development.
 
-### **Impact of Changing Requirements**:
+## **Impact of Changing Requirements**:
 
 - **Increased Costs**: Changing requirements often result in rework, which can increase development costs. Developers may have to modify existing code or redesign components to accommodate new requirements.
 - **Delays**: If a requirement changes late in the development process, it can delay the entire project. Changes to code often require additional testing, debugging, and re-validation.
