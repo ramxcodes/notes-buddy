@@ -10,6 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { MDXContent } from "@/components/notes-ui/mdx-components";
 import { Tag } from "@/components/tag";
+import { Brush } from "lucide-react";
 
 interface DynamicArticleProps {
   title: string;
@@ -30,7 +31,7 @@ export default function DynamicArticle({
   currentUnit,
   totalUnits,
 }: DynamicArticleProps) {
-  const [selectedFont, setSelectedFont] = useState("font-CartographCf");
+  const [selectedFont, setSelectedFont] = useState("font-wotfard");
   const [selectedSize, setSelectedSize] = useState("text-base");
 
   useEffect(() => {
@@ -52,13 +53,19 @@ export default function DynamicArticle({
 
   return (
     <>
-      <div className="flex justify-end mb-4">
+      <div className="z-auto fixed right-10 lg:right-40 top-32">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline">Customize</Button>
+            <Button
+              variant="outline"
+              className="rounded-3xl p-2 opacity-40 lg:opacity-100 dark:text-[#E6B3FF] text-[#2C0B8E] gap-2"
+            >
+              <Brush className="size-6 lg:size-4" />{" "}
+              <span className="hidden lg:block">Change Font & Size</span>
+            </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <div className="px-4 py-2 font-semibold">Change Font</div>
+            <div className="px-4 py-2 font-bold">Change Font</div>
             {[
               { name: "Wotfard", className: "font-wotfard" },
               { name: "Gilroy", className: "font-Gilroy" },
@@ -71,7 +78,7 @@ export default function DynamicArticle({
               </DropdownMenuItem>
             ))}
             <hr className="my-2" />
-            <div className="px-4 py-2 font-semibold">Change Size</div>
+            <div className="px-4 py-2 font-bold">Change Size</div>
             {[
               { name: "Small", className: "text-sm" },
               { name: "Normal", className: "text-base" },
