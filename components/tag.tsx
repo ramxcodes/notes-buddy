@@ -19,7 +19,7 @@ export function Tag({ tag, count, onClick, selected }: TagProps) {
       <button
         className={badgeVariants({
           variant: selected ? "default" : "secondary",
-          className: "no-underline rounded-md px-2 py-1",
+          className: "no-underline rounded-md px-2 py-1 font-gilroy text-pretty tracking-wide",
         })}
         onClick={onClick}
       >

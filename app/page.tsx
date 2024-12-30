@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       <FollowCursor />
-      <div className="w-screen overflow-hidden relative">
+      <div className="w-screen overflow-hidden relative font-wotfard tracking-widest">
         <HeroSection />
         <AboutSection />
         <FeatureSection />

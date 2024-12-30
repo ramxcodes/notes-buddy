@@ -50,7 +50,9 @@ export function SiteHeader() {
                 <span className="sr-only">Twitter</span>
               </div>
             </Link>
-            <ModeToggle />
+            <div className="mr-2 md:mr-0">
+              <ModeToggle />
+            </div>
             <MobileNav />
           </nav>
         </div>
