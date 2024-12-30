@@ -85,10 +85,23 @@ body {
   .animated-text {
     background: radial-gradient(circle at var(--text-mouse-x) var(--text-mouse-y),
         var(--gradient-text-center) 0%,
-        var(--gradient-text-edge) 40%);
+        var(--gradient-text-edge) 60%);
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
   }
 }
+@keyframes gradient-xy {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-xy {
+  animation: gradient-xy 5s ease infinite;
+  background-size:200% 200%;
+} 
