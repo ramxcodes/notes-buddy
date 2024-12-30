@@ -72,14 +72,14 @@ function FeatureSection() {
                 <div className="flex items-center justify-center group-hover:-translate-y-2 transition-transform duration-500 ease-in-out">
                   <Image
                     className="group-hover:opacity-0 transition-opacity duration-500"
-                    src="/featured/card-2-a.png"
+                    src="/featured/card-2-b.png"
                     width={350}
                     height={240}
                     alt="Card image 01"
                   />
                   <Image
                     className="absolute top-0 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    src="/featured/card-2-b.png"
+                    src="/featured/card-2-a.png"
                     width={350}
                     height={240}
                     alt="Card image 01 displaying on hover"
@@ -110,14 +110,14 @@ function FeatureSection() {
                 <div className="flex items-center justify-center group-hover:-translate-y-2 transition-transform duration-500 ease-in-out">
                   <Image
                     className="group-hover:opacity-0 transition-opacity duration-500"
-                    src="/featured/card-3-a.png"
+                    src="/featured/card-3-b.png"
                     width={350}
                     height={240}
                     alt="Card image 01"
                   />
                   <Image
                     className="absolute top-0 left-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    src="/featured/card-3-b.png"
+                    src="/featured/card-3-a.png"
                     width={350}
                     height={240}
                     alt="Card image 01 displaying on hover"
