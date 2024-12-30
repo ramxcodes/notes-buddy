@@ -35,5 +35,5 @@
 }
 
 .subheading-anchor {
-  @apply no-underline hover:underline;
+  @apply no-underline hover:underline text-[#2C0B8E] dark:text-[#E6B3FF] font-bold;
 }

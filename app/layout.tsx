@@ -9,7 +9,6 @@ import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import { ReactLenis } from "@/utils/lenis";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Button } from "@/components/ui/button";
 
 const Gilroy = localFont({
   src: [
@@ -42,6 +41,22 @@ const Gilroy = localFont({
   variable: "--font-Gilroy",
 });
 
+const Wotfard = localFont({
+  src: [
+    {
+      path: "../public/fonts/wotfard-regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/wotfard-medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+  ],
+  variable: "--font-Wotfard",
+});
+
 export const metadata: Metadata = {
   title: siteConfig.name,
   description: siteConfig.description,
@@ -66,20 +81,13 @@ export default function RootLayout({
         <body
           className={cn(
             "min-h-screen bg-background font-sans antialiased mt-16",
-            Gilroy.variable
+            Gilroy.variable, Wotfard.variable
           )}
         >
           <Providers>
             <div className="relative flex min-h-dvh flex-col bg-background">
               <SiteHeader />
-              {/* <div className="fixed z-40  cursor-pointer top-28 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                    <div className="rounded-lg  border-2 flex p-2  border-input bg-background">
-                        <h2>Name</h2>
-                        <Button>Name</Button>
-                    </div>
-
-                  </div> */}
-                <main className="flex-1">
+              <main className="flex-1">
                 {children}
                 <SpeedInsights />
                 <Analytics />

@@ -10,17 +10,13 @@ import { getAllTags, sortPosts, sortTagsByCount } from "@/lib/utils";
 import dynamic from "next/dynamic";
 import TagError from "@/components/TagError";
 import { NotesSearch } from "@/components/NotesSearch";
+import BlurFade from "@/components/ui/blur-fade";
 
 const QueryPagination = dynamic(
   () =>
     import("@/components/query-pagination").then((mod) => mod.QueryPagination),
   { ssr: false }
 );
-// const NotesSearch = dynamic(
-//   () =>
-//     import("@/components/NotesSearch").then((mod) => mod.NotesSearch),
-//   { ssr: false }
-// );
 
 const POSTS_PER_PAGE = 6;
 
@@ -69,13 +65,13 @@ function BlogContent() {
   };
 
   return (
-    <div className="container max-w-4xl py-6 lg:py-10">
+    <div className="container max-w-4xl py-6 lg:py-10 font-wotfard">
       <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
         <div className="flex-1 space-y-4">
-          <h1 className="inline-block font-black text-4xl lg:text-5xl">
-            Welcome to Notes
+          <h1 className="text-[2.3rem] lg:text-[4.5rem] md:text-[4rem] leading-[1] font-bold dark:bg-gradient-to-b dark:from-[rgba(244,244,255,1)] dark:to-[rgba(181,180,207,1)] dark:text-transparent dark:bg-clip-text py-2 text-center">
+            Welcome to Notes Buddy!
           </h1>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-xl text-center text-muted-foreground">
             Your exams last moment notes are here!
           </p>
           <NotesSearch DropBox={true} />
@@ -83,7 +79,7 @@ function BlogContent() {
       </div>
       <Card className="my-10">
         <CardHeader>
-          <CardTitle>Search By :</CardTitle>
+            <CardTitle>Search By :</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-wrap gap-2">
           {sortedTags?.map((tag) => (
@@ -105,12 +101,14 @@ function BlogContent() {
               const { slug, title, description, tags } = post;
               return (
                 <li key={slug}>
-                  <PostItemBox
-                    slug={slug}
-                    title={title}
-                    description={description}
-                    tags={tags}
-                  />
+                  <BlurFade delay={0.1} inView>
+                    <PostItemBox
+                      slug={slug}
+                      title={title}
+                      description={description}
+                      tags={tags}
+                    />
+                  </BlurFade>
                 </li>
               );
             })}

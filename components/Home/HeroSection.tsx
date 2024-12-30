@@ -8,7 +8,7 @@ import { ArrowRightIcon } from "lucide-react";
 
 export default function HeroSection() {
   return (
-    <div className="h-[40rem] w-full rounded-md flex flex-col md:items-center md:justify-center dark:bg-[#010510]/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden items-start justify-center container pt-10 pb-10 lg:pt-52 lg:pb-20 mb-5 md:mb-20">
+    <div className="h-[40rem] w-full rounded-md flex flex-col md:items-center md:justify-center dark:bg-[#010510]/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden items-center justify-center container pt-10 pb-10 lg:pt-52 lg:pb-20 mb-5 md:mb-20">
       <Spotlight
         className="-top-40 left-0 md:left-80 md:-top-20"
         fill="purple"
