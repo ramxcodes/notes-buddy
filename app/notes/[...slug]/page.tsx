@@ -84,17 +84,16 @@ export default async function PostPage({ params }: PostPageProps) {
   return (
     <>
       <ScrollProgress />
-      <div className="container max-w-5xl mx-auto py-4">
-        <DynamicArticle
-          title={post.title}
-          description={post.description}
-          tags={post.tags}
-          body={post.body}
-          slug={slug}
-          currentUnit={currentUnit}
-          totalUnits={5}
-        />
-      </div>
+
+      <DynamicArticle
+        title={post.title}
+        description={post.description}
+        tags={post.tags}
+        body={post.body}
+        slug={slug}
+        currentUnit={currentUnit}
+        totalUnits={5}
+      />
     </>
   );
 }

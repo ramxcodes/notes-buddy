@@ -89,7 +89,7 @@ export default function DynamicArticle({
         </DropdownMenu>
       </div>
       <article
-        className={`container py-6 prose dark:prose-invert ${selectedFont} ${selectedSize}`}
+        className={`container py-6 prose dark:prose-invert max-w-3xl mx-auto ${selectedFont} ${selectedSize}`}
       >
         <h1 className="mb-2">{title}</h1>
         <div className="flex gap-2 mb-2">

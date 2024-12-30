@@ -16,7 +16,7 @@ export default function HeroSection() {
       <div className="text-center space-y-2 container mx-auto px-4 md:px-0">
         <BlurFade delay={0.25} inView>
           <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400 select-none border rounded-full">
-            <span>✨ Welcome to Notes buddy</span>
+            <span className="text-xs md:text-base">✨ Welcome to Notes buddy</span>
             <ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
           </AnimatedShinyText>
         </BlurFade>

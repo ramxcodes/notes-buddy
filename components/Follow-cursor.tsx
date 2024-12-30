@@ -76,7 +76,6 @@ const FollowCursor: React.FC<FollowCursorProps> = ({ color = "#8909aab8" }) => {
 
     const init = () => {
       if (prefersReducedMotion.matches || window.innerWidth < 1024) {
-        console.log("Reduced motion enabled or small screen detected, cursor effect skipped.");
         return;
       }
 
