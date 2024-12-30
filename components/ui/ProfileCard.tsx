@@ -121,7 +121,7 @@ const ProfileCard: React.FC = () => {
         <div className="card-cover" />
         <div className="card-avatar" />
         <div className="card-fullname">Kuhoo </div>
-        <div className="card-jobtitle">Front-end Development</div>
+        <div className="card-jobtitle">Front-end Developer</div>
 
         <div className={`card-section ${activeSection === "about" ? "is-active" : ""}`}>
           <p>Passionate about developing front-end for web-apps.</p>
