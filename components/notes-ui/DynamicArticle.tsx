@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { MDXContent } from "@/components/notes-ui/mdx-components";
 import { Tag } from "@/components/tag";
 import { Brush } from "lucide-react";
+import Head from "next/head";
 
 interface DynamicArticleProps {
   title: string;
@@ -53,6 +54,20 @@ export default function DynamicArticle({
 
   return (
     <>
+      <Head>
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/katex@0.16.19/dist/katex.min.css"
+          integrity="sha384-7lU0muIg/i1plk7MgygDUp3/bNRA65orrBub4/OSWHECgwEsY83HaS1x3bljA/XV"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/katex@0.16.19/dist/katex.min.js"
+          integrity="sha384-..."
+          crossOrigin="anonymous"
+          async
+          defer
+        ></script>
+      </Head>
       <div className="z-auto fixed right-10 lg:right-40 top-32">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
