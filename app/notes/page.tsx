@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { posts } from "#site/content";
 import { PostItemBox } from "@/components/post-item-box";
@@ -111,17 +111,19 @@ function BlogContent() {
 
   return (
     <div className="container max-w-4xl py-6 lg:py-10 font-wotfard">
-      <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
-        <div className="flex-1 space-y-4">
-          <h1 className="text-[2.3rem] lg:text-[4.5rem] md:text-[4rem] leading-[1] font-bold dark:bg-gradient-to-b dark:from-[rgba(244,244,255,1)] dark:to-[rgba(181,180,207,1)] dark:text-transparent dark:bg-clip-text py-2 text-center">
-            Welcome to Notes Buddy!
-          </h1>
-          <p className="text-xl text-center text-muted-foreground">
-            Your exams last moment notes are here!
-          </p>
-          <NotesSearch DropBox={true} />
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
+          <div className="flex-1 space-y-4">
+            <h1 className="text-[2.3rem] lg:text-[4.5rem] md:text-[4rem] leading-[1] font-bold dark:bg-gradient-to-b dark:from-[rgba(244,244,255,1)] dark:to-[rgba(181,180,207,1)] dark:text-transparent dark:bg-clip-text py-2 text-center">
+              Welcome to Notes Buddy!
+            </h1>
+            <p className="text-xl text-center text-muted-foreground">
+              Your exams last moment notes are here!
+            </p>
+            <NotesSearch DropBox={true} />
+          </div>
         </div>
-      </div>
+      </React.Suspense>
       <Card className="my-10">
         <CardHeader>
           <CardTitle className="font-gilroy">Search By :</CardTitle>
@@ -216,7 +218,10 @@ function BlogContent() {
             {displayPosts.map((post) => {
               const { slug, title, description, tags } = post;
               return (
-                <li key={slug} className="border border-border rounded-xl dark:border-0">
+                <li
+                  key={slug}
+                  className="border border-border rounded-xl dark:border-0"
+                >
                   <BlurFade delay={0.1} inView>
                     <PostItemBox
                       slug={slug}
@@ -244,5 +249,9 @@ function BlogContent() {
 }
 
 export default function BlogPage() {
-  return <BlogContent />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <BlogContent />
+    </Suspense>
+  );
 }
