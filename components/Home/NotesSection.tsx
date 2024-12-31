@@ -2,9 +2,10 @@ import { sortPosts } from "@/lib/utils";
 import { PostItemBox } from "../post-item-box";
 import { posts } from "@/.velite";
 import BlurFade from "../ui/blur-fade";
+import Link from "next/link";
 
 export default function NotesSection() {
-  const latestPosts = sortPosts(posts).slice(0, 7);
+  const latestPosts = sortPosts(posts).slice(0, 6);
   return (
     <>
       <section className="container mx-auto pt-20 pb-20">
@@ -30,6 +31,20 @@ export default function NotesSection() {
               )
           )}
         </ul>
+        <BlurFade delay={0.5} inView>
+          <div className="flex items-center justify-center">
+            <button className="group relative h-12 rounded-3xl border-2 dark:border-[#9f65e2] border-[#813981] bg-gradient-to-r dark:from-[#070e41] dark:to-[#9f65e2] from-[#7642a7] to-[#09139b] px-6 text-white whitespace-nowrap">
+              <span className="relative inline-flex overflow-hidden">
+                <div className="translate-y-0 skew-y-0 transition duration-500 group-hover:-translate-y-[110%] group-hover:skew-y-12 whitespace-nowrap">
+                  <Link href={`/notes`}>Read Notes</Link>
+                </div>
+                <div className="absolute translate-y-[114%] skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0 whitespace-nowrap">
+                  <Link href={`/notes`}>Read Notes</Link>
+                </div>
+              </span>
+            </button>
+          </div>
+        </BlurFade>
       </section>
     </>
   );
