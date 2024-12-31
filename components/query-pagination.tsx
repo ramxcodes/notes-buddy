@@ -1,13 +1,13 @@
 "use client";
 
-import { usePathname, useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import {
   Pagination,
   PaginationContent,
   PaginationItem,
-  PaginationLink,
   PaginationPrevious,
   PaginationNext,
+  PaginationLink,
 } from "./ui/pagination";
 
 interface QueryPaginationProps {
@@ -19,28 +19,28 @@ interface QueryPaginationProps {
 
 export function QueryPagination({
   totalPages,
+  currentPage,
+  onPageChange,
   className,
 }: QueryPaginationProps) {
-  const pathname = usePathname();
   const searchParams = useSearchParams();
+  const router = useRouter();
 
-  const currentPage = Number(searchParams.get("page")) || 1;
-
-  const prevPage = currentPage - 1;
-  const nextPage = currentPage + 1;
-
-  const createPageURL = (pageNumber: number | string) => {
+  const updateSearchParams = (pageNumber: number) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set("page", pageNumber.toString());
-    return `${pathname}?${params.toString()}`;
+    router.push(`?${params.toString()}`);
+    onPageChange(pageNumber);
   };
 
   return (
     <Pagination className={className}>
       <PaginationContent>
-        {prevPage >= 1 ? (
+        {currentPage > 1 ? (
           <PaginationItem>
-            <PaginationPrevious href={createPageURL(prevPage)} />
+            <PaginationPrevious
+              onClick={() => updateSearchParams(currentPage - 1)}
+            />
           </PaginationItem>
         ) : null}
 
@@ -53,16 +53,18 @@ export function QueryPagination({
             >
               <PaginationLink
                 isActive={currentPage === index + 1}
-                href={createPageURL(index + 1)}
+                onClick={() => updateSearchParams(index + 1)}
               >
                 {index + 1}
               </PaginationLink>
             </PaginationItem>
           ))}
 
-        {nextPage <= totalPages ? (
+        {currentPage < totalPages ? (
           <PaginationItem>
-            <PaginationNext href={createPageURL(nextPage)} />
+            <PaginationNext
+              onClick={() => updateSearchParams(currentPage + 1)}
+            />
           </PaginationItem>
         ) : null}
       </PaginationContent>
