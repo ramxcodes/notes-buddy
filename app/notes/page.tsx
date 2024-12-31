@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { posts } from "#site/content";
 import { PostItemBox } from "@/components/post-item-box";
@@ -218,7 +218,10 @@ function BlogContent() {
             {displayPosts.map((post) => {
               const { slug, title, description, tags } = post;
               return (
-                <li key={slug} className="border border-border rounded-xl dark:border-0">
+                <li
+                  key={slug}
+                  className="border border-border rounded-xl dark:border-0"
+                >
                   <BlurFade delay={0.1} inView>
                     <PostItemBox
                       slug={slug}
@@ -246,5 +249,9 @@ function BlogContent() {
 }
 
 export default function BlogPage() {
-  return <BlogContent />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <BlogContent />
+    </Suspense>
+  );
 }
