@@ -79,7 +79,6 @@ export default async function PostPage({ params }: PostPageProps) {
   const unitMatch = slug.match(/unit-(\d+)/i);
   const currentUnit = unitMatch ? parseInt(unitMatch[1], 10) : 1;
 
-  // Hierarchical metadata
   const { metadata } = post;
   const hierarchicalDetails = metadata
     ? `${metadata.university} > ${metadata.degree} > ${metadata.semester} > ${metadata.subject}`
@@ -97,11 +96,6 @@ export default async function PostPage({ params }: PostPageProps) {
         currentUnit={currentUnit}
         totalUnits={5}
       />
-      {hierarchicalDetails && (
-        <div className="mt-4 text-sm text-muted-foreground">
-          <strong>Hierarchical Context:</strong> {hierarchicalDetails}
-        </div>
-      )}
     </>
   );
 }

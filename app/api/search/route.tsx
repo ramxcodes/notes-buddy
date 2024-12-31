@@ -11,13 +11,5 @@ export async function POST(req:NextRequest,res:NextResponse) {
     await initPrefixTree();
   }
   let result = globalPrefixTree!._search(ser.toLowerCase());
-  // if(result.length===0){
-  //   result = globalPrefixTree?._collectNotesWithFuzzySearch(ser.toLowerCase(), globalPrefixTree.root);
-  //   if(result.length >20){
-  //     console.log("slicing")
-  //     result.slice(0,10);
-  //   }
-  // }
-  // console.log(result)
   return NextResponse.json(result);
 }

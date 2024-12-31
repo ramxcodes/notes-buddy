@@ -102,9 +102,9 @@ const SearchBox: React.FC<SearchBoxProps> = ({ DropBox, className = "" }) => {
       });
 
       const result = await res.json();
-      setNotesList(result.slice(0, 5)); // Limit results to 5
+      setNotesList(result.slice(0, 5));
     } catch (error) {
-      // console.error("Failed to fetch search results:", error);
+      return [];
     }
   }
 
@@ -114,7 +114,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ DropBox, className = "" }) => {
     }
   }, [df?.query]);
 
-useEffect(() => {
+  useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
         searchBoxRef.current &&
