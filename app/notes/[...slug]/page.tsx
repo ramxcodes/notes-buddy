@@ -1,11 +1,11 @@
 import { posts } from "#site/content";
 import { MDXContent } from "@/components/notes-ui/mdx-components";
-import { notFound } from "next/navigation";
 import "@/styles/mdx.css";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import { Tag } from "@/components/tag";
 import ScrollProgress from "@/components/notes-ui/ScrollProcess";
+import DynamicArticle from "@/components/notes-ui/DynamicArticle";
 
 interface PostPageProps {
   params: {
@@ -74,7 +74,7 @@ export default async function PostPage({ params }: PostPageProps) {
   const post = await getPostFromParams(params);
 
   if (!post || (!post.published && !post.excludeFromMain)) {
-    notFound();
+    return <h1>Post not found</h1>;
   }
 
   const slug = post.slug.replace(/^notes\//, "");
@@ -84,26 +84,16 @@ export default async function PostPage({ params }: PostPageProps) {
   return (
     <>
       <ScrollProgress />
-      <article className="container py-6 prose dark:prose-invert max-w-3xl mx-auto">
-        <h1 className="mb-2">{post.title}</h1>
-        <div className="flex gap-2 mb-2">
-          {post.tags?.map((tag) => (
-            <Tag tag={tag} key={tag} />
-          ))}
-        </div>
-        {post.description && (
-          <p className="text-xl mt-0 text-muted-foreground">
-            {post.description}
-          </p>
-        )}
-        <hr className="my-4" />
-        <MDXContent
-          code={post.body}
-          currentUnit={currentUnit}
-          totalUnits={5}
-          slug={slug}
-        />
-      </article>
+
+      <DynamicArticle
+        title={post.title}
+        description={post.description}
+        tags={post.tags}
+        body={post.body}
+        slug={slug}
+        currentUnit={currentUnit}
+        totalUnits={5}
+      />
     </>
   );
 }

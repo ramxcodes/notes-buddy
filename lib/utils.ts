@@ -7,6 +7,14 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export function debounce<T extends (...args: any[]) => void>(func: T, delay: number): (...args: Parameters<T>) => void {
+  let timer: NodeJS.Timeout;
+  return (...args: Parameters<T>) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => func(...args), delay);
+  };
+}
+
 export function formatDate(input: string | number): string {
   const date = new Date(input);
   return date.toLocaleDateString("en-US", {
@@ -40,6 +48,7 @@ export function getAllTags(posts: Array<Post>) {
 export function sortTagsByCount(tags: Record<string, number>) {
   return Object.keys(tags).sort((a, b) => tags[b] - tags[a])
 }
+
 
 export function getPostsByTagSlug(posts: Array<Post>, tag: string) {
   return posts.filter(post => {

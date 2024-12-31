@@ -1,22 +1,30 @@
 import Link from "next/link";
-import { slug } from "github-slugger";
 import { badgeVariants } from "./ui/badge";
 
 interface TagProps {
   tag: string;
   current?: boolean;
   count?: number;
+  onClick?: () => void;
+  selected?: boolean;
 }
-export function Tag({ tag, current, count }: TagProps) {
+
+const normalizeTag = (tag: string) => tag.toLowerCase().replace(/\s+/g, "-");
+
+export function Tag({ tag, count, onClick, selected }: TagProps) {
+  const formattedTag = normalizeTag(tag);
+
   return (
-    <Link
-      className={badgeVariants({
-        variant: current ? "default" : "secondary",
-        className: "no-underline rounded-md",
-      })}
-      href={`/tags/${slug(tag)}`}
-    >
-      {tag} {count ? `(${count})` : null}
+    <Link href={`/tags/${formattedTag}`}>
+      <button
+        className={badgeVariants({
+          variant: selected ? "default" : "secondary",
+          className: "no-underline rounded-md px-2 py-1 font-gilroy text-pretty tracking-wide",
+        })}
+        onClick={onClick}
+      >
+        {tag} {count ? `(${count})` : null}
+      </button>
     </Link>
   );
 }

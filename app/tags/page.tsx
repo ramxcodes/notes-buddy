@@ -1,30 +1,35 @@
-import { getAllTags, sortTagsByCount } from "@/lib/utils";
-import { Metadata } from "next";
 import { posts } from "#site/content";
-import { Tag } from "@/components/tag";
+import Link from "next/link";
 
-export const metadata: Metadata = {
-  title: "Tags",
-  description: "Topic I've written about",
-};
+const normalizeTag = (tag: string) => tag.toLowerCase().replace(/\s+/g, "-");
 
-export default async function TagsPage() {
-  const tags = getAllTags(posts);
-  const sortedTags = sortTagsByCount(tags);
+export default function TagsPage() {
+  const allTags = posts.reduce((acc, post) => {
+    if (post.tags) {
+      post.tags.forEach((tag) => {
+        acc[tag] = (acc[tag] || 0) + 1;
+      });
+    }
+    return acc;
+  }, {} as Record<string, number>);
 
   return (
     <div className="container max-w-4xl py-6 lg:py-10">
-      <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
-        <div className="flex-1 space-y-4">
-          <h1 className="inline-block font-black text-4xl lg:text-5xl">Tags</h1>
-        </div>
-      </div>
-      <hr className="my-4" />
-      <div className="flex flex-wrap gap-2">
-        {sortedTags?.map((tag) => (
-          <Tag tag={tag} count={tags[tag]} key={tag} />
-        ))}
-      </div>
+      <h1 className="font-black text-4xl lg:text-5xl mb-4">All Tags</h1>
+      <ul className="flex flex-wrap gap-2">
+        {Object.entries(allTags).map(([tag, count]) => {
+          const normalizedTag = normalizeTag(tag);
+          return (
+            <li key={normalizedTag}>
+              <Link href={`/tags/${normalizedTag}`}>
+                <span className="inline-block px-3 py-1 text-sm rounded-lg cursor-pointer">
+                  {tag} ({count})
+                </span>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }

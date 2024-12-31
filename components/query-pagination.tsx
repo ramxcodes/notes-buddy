@@ -12,6 +12,8 @@ import {
 
 interface QueryPaginationProps {
   totalPages: number;
+  currentPage: number;
+  onPageChange: (page: number) => void;
   className?: string;
 }
 

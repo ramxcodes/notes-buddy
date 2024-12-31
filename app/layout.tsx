@@ -8,6 +8,7 @@ import { SiteFooter } from "@/components/site-footer";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import { ReactLenis } from "@/utils/lenis";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const Gilroy = localFont({
   src: [
@@ -40,6 +41,22 @@ const Gilroy = localFont({
   variable: "--font-Gilroy",
 });
 
+const Wotfard = localFont({
+  src: [
+    {
+      path: "../public/fonts/wotfard-regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/wotfard-medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+  ],
+  variable: "--font-Wotfard",
+});
+
 export const metadata: Metadata = {
   title: siteConfig.name,
   description: siteConfig.description,
@@ -63,15 +80,17 @@ export default function RootLayout({
       <ReactLenis root>
         <body
           className={cn(
-            "min-h-screen bg-background font-sans antialiased",
-            Gilroy.variable
+            "min-h-screen bg-background font-sans antialiased mt-16",
+            Gilroy.variable, Wotfard.variable
           )}
         >
           <Providers>
             <div className="relative flex min-h-dvh flex-col bg-background">
               <SiteHeader />
               <main className="flex-1">
-                {children} <Analytics />
+                {children}
+                <SpeedInsights />
+                <Analytics />
               </main>
               <SiteFooter />
             </div>

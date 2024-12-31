@@ -3,7 +3,7 @@
 Welcome to **Notes Buddy**, a web platform designed for students to read and share college notes easily. 
 Built with a modern tech stack, it ensures an easy-to-use, visually appealing, and responsive experience.
 
-![Notes Buddy](https://i.imgur.com/dUuC0zQ.png)
+![Notes Buddy](https://i.imgur.com/REQIqc2.jpeg)
 
 ---
 

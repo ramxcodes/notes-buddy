@@ -2,6 +2,11 @@ import { defineConfig, defineCollection, s } from "velite";
 import rehypeSlug from "rehype-slug";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeKatex from "rehype-katex";
+import remarkGfm from "remark-gfm";
+import remarkSmartypants from "remark-smartypants";
+import remarkToc from "remark-toc";
+import remarkMath from "remark-math";
 
 const computedFields = <T extends { slug: string }>(data: T) => {
   const slugParts = data.slug.split("/");
@@ -54,7 +59,13 @@ export default defineConfig({
           },
         },
       ],
+      rehypeKatex,
     ],
-    remarkPlugins: [],
+    remarkPlugins: [
+      remarkGfm,
+      remarkSmartypants,
+      [remarkToc, { heading: "Table of Contents" }],
+      remarkMath,
+    ],
   },
 });
