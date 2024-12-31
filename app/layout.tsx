@@ -77,11 +77,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-pt-[3.5rem]">
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/katex@0.16.19/dist/katex.min.css"
+        integrity="sha384-7lU0muIg/i1plk7MgygDUp3/bNRA65orrBub4/OSWHECgwEsY83HaS1x3bljA/XV"
+      />
+      <script
+        src="https://cdn.jsdelivr.net/npm/katex@0.16.19/dist/katex.min.js"
+        integrity="sha384-..."
+        crossOrigin="anonymous"
+        async
+        defer
+      ></script>
       <ReactLenis root>
         <body
           className={cn(
             "min-h-screen bg-background font-sans antialiased mt-16",
-            Gilroy.variable, Wotfard.variable
+            Gilroy.variable,
+            Wotfard.variable
           )}
         >
           <Providers>
