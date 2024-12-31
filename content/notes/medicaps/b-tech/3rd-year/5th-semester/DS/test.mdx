@@ -1,0 +1,225 @@
+---
+title: "Unit 1: Data Science"
+description: Introduction to Data Science
+date: 2024-12-31
+tags: ["Data Science", "5th Semester", "3rd Year", "Medicaps University"]
+published: true
+---
+
+### Sample Spaces, Events, Conditional Probability, and Independence
+
+#### **Sample Space**
+
+The **sample space** is the set of all possible outcomes of an experiment or random trial. In probability theory, the sample space helps define all potential outcomes that can occur.
+
+- **Example:** If a die is rolled, the sample space (S) is {1, 2, 3, 4, 5, 6} because those are the possible outcomes.
+
+#### **Events**
+
+An **event** is any subset of the sample space. It represents a set of outcomes that we are interested in. Events can be simple or complex.
+
+- **Simple Event:** An event that consists of a single outcome from the sample space.  
+  - Example: Rolling a 3 on a die.
+  
+- **Compound Event:** An event that consists of multiple outcomes from the sample space.  
+  - Example: Rolling an even number on a die (i.e., {2, 4, 6}).
+
+- **Notation:** Events are often denoted by uppercase letters, such as (A), (B), or (C).
+
+#### **Conditional Probability**
+
+**Conditional probability** is the probability of an event occurring, given that another event has already occurred. It is represented as \( P(A|B) \), which reads as "the probability of event \( A \) given that event \( B \) has occurred."
+
+- **Formula:**  
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mrow>
+      <mi>P</mi>
+      <mo>(</mo>
+      <mi>A</mi>
+      <mo>|</mo>
+      <mi>B</mi>
+      <mo>)</mo>
+      <mo>=</mo>
+      <mfrac linethickness="0">
+        <mrow>
+          <mi>P</mi>
+          <mo>(</mo>
+          <mi>A</mi>
+          <mo>&#x2229;</mo>
+          <mi>B</mi>
+          <mo>)</mo>
+        </mrow>
+        <mrow>
+          <mi>P</mi>
+          <mo>(</mo>
+          <mi>B</mi>
+          <mo>)</mo>
+        </mrow>
+      </mfrac>
+    </mrow>
+  </math>
+  Where:
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mrow>
+      <mi>P</mi>
+      <mo>(</mo>
+      <mi>A</mi>
+      <mo>|</mo>
+      <mi>B</mi>
+      <mo>)</mo>
+      <mtext> is the conditional probability of event </mtext>
+      <mi>A</mi>
+      <mtext> given </mtext>
+      <mi>B</mi>
+    </mrow>
+    <mrow>
+      <mi>P</mi>
+      <mo>(</mo>
+      <mi>A</mi>
+      <mo>&#x2229;</mo>
+      <mi>B</mi>
+      <mo>)</mo>
+      <mtext> is the probability that both events </mtext>
+      <mi>A</mi>
+      <mtext> and </mtext>
+      <mi>B</mi>
+      <mtext> occur</mtext>
+    </mrow>
+    <mrow>
+      <mi>P</mi>
+      <mo>(</mo>
+      <mi>B</mi>
+      <mo>)</mo>
+      <mtext> is the probability that event </mtext>
+      <mi>B</mi>
+      <mtext> occurs</mtext>
+    </mrow>
+  </math>
+
+- **Example:**  
+  If you know that it’s raining, the probability of carrying an umbrella (event(A)) is higher. The conditional probability would reflect the likelihood of event (A) occurring given that event (B) (rain) has occurred.
+
+#### **Independence**
+
+Two events are considered **independent** if the occurrence of one does not affect the occurrence of the other. In other words, the probability of event (A) occurring is the same regardless of whether event (B) occurs or not.
+
+- **Formula for Independence:**  
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mrow>
+      <mi>P</mi>
+      <mo>(</mo>
+      <mi>A</mi>
+      <mo>&#x2229;</mo>
+      <mi>B</mi>
+      <mo>)</mo>
+      <mo>=</mo>
+      <mi>P</mi>
+      <mo>(</mo>
+      <mi>A</mi>
+      <mo>)</mo>
+      <mo>&#183;</mo>
+      <mi>P</mi>
+      <mo>(</mo>
+      <mi>B</mi>
+      <mo>)</mo>
+    </mrow>
+    <mtext> is the probability that both events </mtext>
+    <mi>A</mi>
+    <mtext> and </mtext>
+    <mi>B</mi>
+    <mtext> occur, and is equal to the product of their individual probabilities.</mtext>
+  </math>
+  If the above condition is true, events (A) and (B) are independent.
+
+- **Example:**  
+  If you flip a coin and roll a die, the outcome of the coin flip (heads or tails) does not affect the outcome of the die roll (1 to 6). Therefore, the two events are independent.
+
+---
+
+### Random Variables: Discrete and Continuous Random Variables
+
+#### **Random Variables**
+
+A **random variable** is a variable whose value is subject to variations due to chance. It is a function that assigns a numerical value to each outcome in the sample space of a random experiment.
+
+Random variables are typically classified into two main types:
+1. **Discrete Random Variables**
+2. **Continuous Random Variables**
+
+---
+
+#### **Discrete Random Variables**
+
+A **discrete random variable** is one that can take a finite or countably infinite number of distinct values. These values are usually countable and often represent counts of items or events.
+
+- **Example:** The number of heads obtained when flipping a coin 3 times. The possible values are 0, 1, 2, or 3 heads.
+  
+- **Properties:**
+  - Discrete random variables are typically integers.
+  - Their values are distinct and separable.
+  - Probability distribution for discrete random variables is expressed as a **probability mass function (PMF)**.
+
+- **Probability Mass Function (PMF):**
+  A PMF gives the probability that a discrete random variable is equal to a specific value.
+  
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mrow>
+      <mi>P</mi>
+      <mo>(</mo>
+      <mi>X</mi>
+      <mo>=</mo>
+      <mi>x</mi>
+      <mo>)</mo>
+      <mo>=</mo>
+      <mi>p</mi>
+      <msub>
+        <mi>x</mi>
+      </msub>
+    </mrow>
+  </math>
+  Where:
+  - (X) is the random variable,
+  - (x) is a possible value of (X),
+  - (p_x) is the probability of (X) taking the value (x).
+
+- **Example:**  
+  For a fair die, the discrete random variable (X) represents the outcome of the die roll. The PMF is:
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mrow>
+      <mi>P</mi>
+      <mo>(</mo>
+      <mi>X</mi>
+      <mo>=</mo>
+      <mi>x</mi>
+      <mo>)</mo>
+      <mo>=</mo>
+      <mfrac linethickness="0">
+        <mrow>
+          <mn>1</mn>
+        </mrow>
+        <mrow>
+          <mn>6</mn>
+        </mrow>
+      </mfrac>
+      <mtext> for </mtext>
+      <mi>x</mi>
+      <mo>&in;</mo>
+      <mrow>
+        <mo>{</mo>
+        <mn>1</mn>
+        <mo>,</mo>
+        <mn>2</mn>
+        <mo>,</mo>
+        <mn>3</mn>
+        <mo>,</mo>
+        <mn>4</mn>
+        <mo>,</mo>
+        <mn>5</mn>
+        <mo>,</mo>
+        <mn>6</mn>
+        <mo>}</mo>
+      </mrow>
+    </mrow>
+  </math>
+
+---
