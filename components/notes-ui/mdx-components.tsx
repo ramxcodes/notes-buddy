@@ -3,6 +3,7 @@ import * as runtime from "react/jsx-runtime";
 import { TableOfContents } from "./TableOfContents";
 import { Callout } from "./callout";
 import { UnitPagination } from "./unit-pagination";
+import QuizComponent from "./QuizComponent";
 import { isPaginationDisabled } from "@/utils/pagination-config";
 
 const useMDXComponent = (code: string) => {
@@ -13,6 +14,7 @@ const useMDXComponent = (code: string) => {
 const components = {
   Image,
   Callout,
+  Quiz: QuizComponent,
 };
 
 interface MdxProps {
