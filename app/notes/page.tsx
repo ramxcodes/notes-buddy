@@ -216,7 +216,7 @@ function BlogContent() {
             {displayPosts.map((post) => {
               const { slug, title, description, tags } = post;
               return (
-                <li key={slug}>
+                <li key={slug} className="border border-border rounded-xl dark:border-0">
                   <BlurFade delay={0.1} inView>
                     <PostItemBox
                       slug={slug}
