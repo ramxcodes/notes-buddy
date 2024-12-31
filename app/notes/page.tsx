@@ -54,7 +54,6 @@ function BlogContent() {
     router,
   ]);
 
-  // Filtered options for dropdowns
   const universities = Array.from(
     new Set(posts.map((post) => post.metadata?.university).filter(Boolean))
   );
@@ -92,11 +91,10 @@ function BlogContent() {
     )
   );
 
-  // Filter posts based on selections and exclude unpublished or excluded posts
   const filteredPosts = posts.filter((post) => {
     return (
-      post.published && // Exclude unpublished posts
-      !post.excludeFromMain && // Exclude posts marked as "excludeFromMain"
+      post.published &&
+      !post.excludeFromMain &&
       (!selectedUniversity ||
         post.metadata?.university === selectedUniversity) &&
       (!selectedDegree || post.metadata?.degree === selectedDegree) &&
@@ -128,85 +126,87 @@ function BlogContent() {
         <CardHeader>
           <CardTitle className="font-gilroy">Search By :</CardTitle>
         </CardHeader>
-        <CardContent className="flex flex-row gap-4">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button>{selectedUniversity || "Select University"}</Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              {universities.map((uni) => (
-                <DropdownMenuItem
-                  key={uni}
-                  onClick={() => {
-                    setSelectedUniversity(uni!);
-                    setSelectedDegree("");
-                    setSelectedSemester("");
-                    setSelectedSubject("");
-                  }}
-                >
-                  {uni}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button disabled={!selectedUniversity}>
-                {selectedDegree || "Select Degree"}
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              {degrees.map((deg) => (
-                <DropdownMenuItem
-                  key={deg}
-                  onClick={() => {
-                    setSelectedDegree(deg!);
-                    setSelectedSemester("");
-                    setSelectedSubject("");
-                  }}
-                >
-                  {deg}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button disabled={!selectedDegree}>
-                {selectedSemester || "Select Semester"}
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              {semesters.map((sem) => (
-                <DropdownMenuItem
-                  key={sem}
-                  onClick={() => {
-                    setSelectedSemester(sem!);
-                    setSelectedSubject("");
-                  }}
-                >
-                  {sem}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button disabled={!selectedSemester}>
-                {selectedSubject || "Select Subject"}
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              {subjects.map((sub) => (
-                <DropdownMenuItem
-                  key={sub}
-                  onClick={() => setSelectedSubject(sub!)}
-                >
-                  {sub}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
+        <CardContent className="flex flex-row gap-4 items-center justify-center">
+          <div className="flex flex-col md:flex-row gap-4 w-3/4 font-gilroy font-bold text-pretty tracking-wide dark:text-[#dbdbdb]">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button>{selectedUniversity || "Select University"}</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {universities.map((uni) => (
+                  <DropdownMenuItem
+                    key={uni}
+                    onClick={() => {
+                      setSelectedUniversity(uni!);
+                      setSelectedDegree("");
+                      setSelectedSemester("");
+                      setSelectedSubject("");
+                    }}
+                  >
+                    {uni}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button disabled={!selectedUniversity}>
+                  {selectedDegree || "Select Degree"}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {degrees.map((deg) => (
+                  <DropdownMenuItem
+                    key={deg}
+                    onClick={() => {
+                      setSelectedDegree(deg!);
+                      setSelectedSemester("");
+                      setSelectedSubject("");
+                    }}
+                  >
+                    {deg}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button disabled={!selectedDegree}>
+                  {selectedSemester || "Select Semester"}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {semesters.map((sem) => (
+                  <DropdownMenuItem
+                    key={sem}
+                    onClick={() => {
+                      setSelectedSemester(sem!);
+                      setSelectedSubject("");
+                    }}
+                  >
+                    {sem}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button disabled={!selectedSemester}>
+                  {selectedSubject || "Select Subject"}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {subjects.map((sub) => (
+                  <DropdownMenuItem
+                    key={sub}
+                    onClick={() => setSelectedSubject(sub!)}
+                  >
+                    {sub}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </CardContent>
       </Card>
       <div className="flex flex-col gap-4">
