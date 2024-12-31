@@ -1,16 +1,21 @@
 "use client";
 
-import React, { Suspense, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { posts } from "#site/content";
 import { PostItemBox } from "@/components/post-item-box";
-import { Tag } from "@/components/tag";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getAllTags, sortPosts, sortTagsByCount } from "@/lib/utils";
 import dynamic from "next/dynamic";
 import TagError from "@/components/TagError";
-import { NotesSearch } from "@/components/NotesSearch";
 import BlurFade from "@/components/ui/blur-fade";
+import { NotesSearch } from "@/components/NotesSearch";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
 
 const QueryPagination = dynamic(
   () =>
@@ -24,45 +29,85 @@ function BlogContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const [selectedTags, setSelectedTags] = useState<string[]>(
-    searchParams.get("tags")?.split(",") || []
-  );
+  const [selectedUniversity, setSelectedUniversity] = useState<string>("");
+  const [selectedDegree, setSelectedDegree] = useState<string>("");
+  const [selectedSemester, setSelectedSemester] = useState<string>("");
+  const [selectedSubject, setSelectedSubject] = useState<string>("");
   const [currentPage, setCurrentPage] = useState(
     Number(searchParams.get("page")) || 1
   );
 
   useEffect(() => {
     const params = new URLSearchParams();
-    if (selectedTags.length > 0) {
-      params.set("tags", selectedTags.join(","));
-    }
+    if (selectedUniversity) params.set("university", selectedUniversity);
+    if (selectedDegree) params.set("degree", selectedDegree);
+    if (selectedSemester) params.set("semester", selectedSemester);
+    if (selectedSubject) params.set("subject", selectedSubject);
     params.set("page", currentPage.toString());
     router.push(`?${params.toString()}`);
-  }, [selectedTags, currentPage, router]);
+  }, [
+    selectedUniversity,
+    selectedDegree,
+    selectedSemester,
+    selectedSubject,
+    currentPage,
+    router,
+  ]);
 
-  const sortedPosts = sortPosts(
-    posts.filter((post) => {
-      if (!post.published || post.excludeFromMain) return false;
-      if (selectedTags.length === 0) return true;
-      return selectedTags.every((tag) => post.tags?.includes(tag));
-    })
+  const universities = Array.from(
+    new Set(posts.map((post) => post.metadata?.university).filter(Boolean))
+  );
+  const degrees = Array.from(
+    new Set(
+      posts
+        .filter((post) => post.metadata?.university === selectedUniversity)
+        .map((post) => post.metadata?.degree)
+        .filter(Boolean)
+    )
+  );
+  const semesters = Array.from(
+    new Set(
+      posts
+        .filter(
+          (post) =>
+            post.metadata?.university === selectedUniversity &&
+            post.metadata?.degree === selectedDegree
+        )
+        .map((post) => post.metadata?.semester)
+        .filter(Boolean)
+    )
+  );
+  const subjects = Array.from(
+    new Set(
+      posts
+        .filter(
+          (post) =>
+            post.metadata?.university === selectedUniversity &&
+            post.metadata?.degree === selectedDegree &&
+            post.metadata?.semester === selectedSemester
+        )
+        .map((post) => post.metadata?.subject)
+        .filter(Boolean)
+    )
   );
 
-  const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE);
-  const displayPosts = sortedPosts.slice(
+  const filteredPosts = posts.filter((post) => {
+    return (
+      post.published &&
+      !post.excludeFromMain &&
+      (!selectedUniversity ||
+        post.metadata?.university === selectedUniversity) &&
+      (!selectedDegree || post.metadata?.degree === selectedDegree) &&
+      (!selectedSemester || post.metadata?.semester === selectedSemester) &&
+      (!selectedSubject || post.metadata?.subject === selectedSubject)
+    );
+  });
+
+  const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+  const displayPosts = filteredPosts.slice(
     POSTS_PER_PAGE * (currentPage - 1),
     POSTS_PER_PAGE * currentPage
   );
-
-  const tags = getAllTags(posts);
-  const sortedTags = sortTagsByCount(tags);
-
-  const toggleTag = (tag: string) => {
-    setSelectedTags((prev) =>
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
-    );
-    setCurrentPage(1);
-  };
 
   return (
     <div className="container max-w-4xl py-6 lg:py-10 font-wotfard">
@@ -79,28 +124,99 @@ function BlogContent() {
       </div>
       <Card className="my-10">
         <CardHeader>
-            <CardTitle>Search By :</CardTitle>
+          <CardTitle className="font-gilroy">Search By :</CardTitle>
         </CardHeader>
-        <CardContent className="flex flex-wrap gap-2">
-          {sortedTags?.map((tag) => (
-            <Tag
-              tag={tag}
-              key={tag}
-              count={tags[tag]}
-              onClick={() => toggleTag(tag)}
-              selected={selectedTags.includes(tag)}
-            />
-          ))}
+        <CardContent className="flex flex-row gap-4 items-center justify-center">
+          <div className="flex flex-col md:flex-row gap-4 w-3/4 font-gilroy font-bold text-pretty tracking-wide dark:text-[#dbdbdb]">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button>{selectedUniversity || "Select University"}</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {universities.map((uni) => (
+                  <DropdownMenuItem
+                    key={uni}
+                    onClick={() => {
+                      setSelectedUniversity(uni!);
+                      setSelectedDegree("");
+                      setSelectedSemester("");
+                      setSelectedSubject("");
+                    }}
+                  >
+                    {uni}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button disabled={!selectedUniversity}>
+                  {selectedDegree || "Select Degree"}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {degrees.map((deg) => (
+                  <DropdownMenuItem
+                    key={deg}
+                    onClick={() => {
+                      setSelectedDegree(deg!);
+                      setSelectedSemester("");
+                      setSelectedSubject("");
+                    }}
+                  >
+                    {deg}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button disabled={!selectedDegree}>
+                  {selectedSemester || "Select Semester"}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {semesters.map((sem) => (
+                  <DropdownMenuItem
+                    key={sem}
+                    onClick={() => {
+                      setSelectedSemester(sem!);
+                      setSelectedSubject("");
+                    }}
+                  >
+                    {sem}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button disabled={!selectedSemester}>
+                  {selectedSubject || "Select Subject"}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {subjects.map((sub) => (
+                  <DropdownMenuItem
+                    key={sub}
+                    onClick={() => setSelectedSubject(sub!)}
+                  >
+                    {sub}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </CardContent>
       </Card>
       <div className="flex flex-col gap-4">
         <hr />
-        {displayPosts?.length > 0 ? (
+        {displayPosts.length > 0 ? (
           <ul className="gap-4 py-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {displayPosts.map((post) => {
               const { slug, title, description, tags } = post;
               return (
-                <li key={slug}>
+                <li key={slug} className="border border-border rounded-xl dark:border-0">
                   <BlurFade delay={0.1} inView>
                     <PostItemBox
                       slug={slug}
@@ -128,9 +244,5 @@ function BlogContent() {
 }
 
 export default function BlogPage() {
-  return (
-    <Suspense fallback={<div>Loading Notes...</div>}>
-      <BlogContent />
-    </Suspense>
-  );
+  return <BlogContent />;
 }

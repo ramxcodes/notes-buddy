@@ -1,9 +1,7 @@
 import { posts } from "#site/content";
-import { MDXContent } from "@/components/notes-ui/mdx-components";
 import "@/styles/mdx.css";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
-import { Tag } from "@/components/tag";
 import ScrollProgress from "@/components/notes-ui/ScrollProcess";
 import DynamicArticle from "@/components/notes-ui/DynamicArticle";
 
@@ -81,10 +79,14 @@ export default async function PostPage({ params }: PostPageProps) {
   const unitMatch = slug.match(/unit-(\d+)/i);
   const currentUnit = unitMatch ? parseInt(unitMatch[1], 10) : 1;
 
+  const { metadata } = post;
+  const hierarchicalDetails = metadata
+    ? `${metadata.university} > ${metadata.degree} > ${metadata.semester} > ${metadata.subject}`
+    : null;
+
   return (
     <>
       <ScrollProgress />
-
       <DynamicArticle
         title={post.title}
         description={post.description}

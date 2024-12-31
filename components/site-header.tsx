@@ -6,7 +6,6 @@ import { Icons } from "./icons";
 import { MainNav } from "./main-nav";
 import { MobileNav } from "./mobile-nav";
 import { ModeToggle } from "./mode-toggle";
-import { DropBox } from "./NotesSearch";
 
 export function SiteHeader() {
   return (
@@ -15,11 +14,6 @@ export function SiteHeader() {
         <MainNav />
         <div className="flex flex-1 items-center justify-center lg:justify-end space-x-2">
           <nav className="flex w-fit items-center">
-            <div className="hidden lg:block">
-              <DropBox />
-              <span className="sr-only">Search</span>
-            </div>
-
             <Link
               href={siteConfig.links.github}
               target="_blank"

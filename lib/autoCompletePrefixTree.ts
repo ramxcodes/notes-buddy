@@ -88,7 +88,6 @@ export class PrefixTree {
           }
           const result =this._collectNotes(currentNode);
           if(result.length===0){
-            console.log("fuf")
             return  this._collectNotesWithFuzzySearch(query, this.root);
           }
           return this._collectNotes(currentNode)
