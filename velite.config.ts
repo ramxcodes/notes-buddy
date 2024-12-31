@@ -31,6 +31,14 @@ const posts = defineCollection({
       excludeFromMain: s.boolean().default(false),
       tags: s.array(s.string()).optional(),
       body: s.mdx(),
+      metadata: s
+        .object({
+          university: s.string().optional(),
+          degree: s.string().optional(),
+          semester: s.string().optional(),
+          subject: s.string().optional(),
+        })
+        .optional(),
     })
     .transform(computedFields),
 });
