@@ -10,8 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import Confetti from "react-confetti";
-import { useWindowSize } from "react-use";
+import confetti from "canvas-confetti";
 
 interface Question {
   question: string;
@@ -28,19 +27,10 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [isAnswered, setIsAnswered] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
-  const [showConfetti, setShowConfetti] = useState(false);
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
 
-  const { width, height } = useWindowSize();
   const currentQuestion = questions[currentQuestionIndex];
-
-  useEffect(() => {
-    if (showConfetti) {
-      const timer = setTimeout(() => setShowConfetti(false), 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [showConfetti]);
 
   const handleOptionClick = (index: number) => {
     setSelectedOption(index);
@@ -53,7 +43,7 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
       setIsAnswered(true);
       if (correct) {
         setScore(score + 1);
-        setShowConfetti(true);
+        launchConfetti();
       }
     }
   };
@@ -69,6 +59,14 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
     }
   };
 
+  const launchConfetti = () => {
+    confetti({
+      particleCount: 100,
+      spread: 180,
+      origin: { y: 0.6 },
+    });
+  };
+
   const progressBarWidth =
     ((currentQuestionIndex + 1) / questions.length) * 100;
 
@@ -81,14 +79,6 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
 
   return (
     <div className="flex flex-col items-center justify-center py-6">
-      {showConfetti && (
-        <Confetti
-          width={width}
-          height={height}
-          numberOfPieces={150}
-          recycle={false}
-        />
-      )}
       {showResult ? (
         <Card className="w-full max-w-md shadow-lg font-wotfard">
           <CardHeader>
