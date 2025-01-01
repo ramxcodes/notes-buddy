@@ -58,9 +58,67 @@ const Wotfard = localFont({
 });
 
 export const metadata: Metadata = {
-  title: siteConfig.name,
-  description: siteConfig.description,
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? siteConfig.url),
+  alternates: {
+    canonical: "/",
+    languages: {
+      "en-US": "/en-US",
+    },
+  },
+  title:
+    "Notes Buddy - Your one stop solution for Notes, PYQ's, FlashCards, Quiz and More!",
+  description:
+    "Discover the power of efficient learning with Notes Buddy, the one-stop solution for comprehensive notes, previous year questions (PYQs), flashcards, quizzes, and more! Rated by 100+ students from 100+ colleges, Notes Buddy simplifies complex concepts, provides AI-powered answers, and organizes resources by year and semester for fast, smart, and effective exam preparation. Whether you're in your first year or final year, find all the resources you need to excel in your studies. Join the smarter way to learn!",
+  keywords: [
+    "Notes Buddy",
+    "Study smarter",
+    "Engineering notes",
+    "B.Tech notes",
+    "College resources",
+    "Semester notes",
+    "PYQs",
+    "Flashcards",
+    "Quick learning",
+    "Exam preparation",
+    "AI-powered study",
+    "Learning resources",
+    "Simplified concepts",
+    "Organized notes",
+    "Efficient study tools",
+    "Medicaps university",
+    "notesera",
+    "notesbuddy notes",
+    "b.tech notes",
+    "b.tech first year notes",
+    "b.tech second year notes",
+    "b.tech third year notes",
+    "b.tech fourth year notes",
+    "b.tech semester notes",
+    "b.tech semester 1 notes",
+    "b.tech semester 2 notes",
+    "b.tech semester 3 notes",
+    "b.tech semester 4 notes",
+    "b.tech semester 5 notes",
+    "b.tech semester 6 notes",
+    "b.tech semester 7 notes",
+    "b.tech semester 8 notes",
+  ],
+  robots: "index, follow",
+  openGraph: {
+    title:
+      "Notes Buddy - Your one stop solution for Notes, PYQ's, FlashCards, Quiz and More!",
+    description:
+      "Notes Buddy, the one-stop solution for comprehensive notes, previous year questions (PYQs), flashcards, quizzes, and more! Rated by 100+ students from 100+ colleges, Notes Buddy simplifies complex concepts, provides AI-powered answers, and organizes resources by year and semester for fast, smart, and effective exam preparation. Whether you're in your first year or final year, find all the resources you need to excel in your studies. Join the smarter way to learn!",
+    url: process.env.NEXT_PUBLIC_APP_URL ?? siteConfig.url,
+    type: "website",
+    images: "/og-image.png",
+    siteName: "Notes Buddy",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "Notes Buddy",
+    creator: "@Ramxcodes",
+  },
 };
 
 export const viewport: Viewport = {
