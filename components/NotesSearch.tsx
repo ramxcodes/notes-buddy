@@ -34,13 +34,7 @@ export const SearchProvider: React.FC<{ children: React.ReactNode }> = ({
   );
 };
 
-export const useSearchContext = () => {
-  const context = useContext(SearchContext);
-  if (context === undefined) {
-    throw new Error("useSearchContext must be used within a SearchProvider");
-  }
-  return context;
-};
+export const useSearchContext = () => useContext(SearchContext);
 
 interface SearchBoxItemProps {
   data: Notes;
