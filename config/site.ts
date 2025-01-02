@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Notes Buddy",
-  url: "https://notes-buddy.ramx.in",
+  url: "https://notesbuddy.in",
   description:
     "Notes Buddy is your one stop solution for Notes, PYQ's, FlashCards, Quiz and More!",
   author: "Ramxcodes",
