@@ -3,7 +3,7 @@ import React from "react";
 import { useTheme } from "next-themes";
 import { MagicCard } from "@/components/ui/magic-card";
 import ProfileCard from "@/components/ui/ProfileCard";
-import SearchInput from "@/components/ui/search";
+import SparklesText from "@/components/ui/starry-text";
 import {
   Table,
   TableBody,
@@ -18,17 +18,19 @@ const Page: React.FC = () => {
   const { theme } = useTheme();
 
   return (
-    <div className="container mx-auto py-12;
-      font-family: var(--font-Gilroy); ">
+    <div
+      className="container mx-auto py-12;
+      font-family: var(--font-Gilroy); "
+    >
       {/* Header Section */}
-      <div className="container flex flex-col gap-4 text-center">
+      <div className="container flex flex-col gap-14 text-center mb-12 mt-12">
         <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-balance">
-          Top Contributors
+          <SparklesText text="Top Contributors" />
         </h1>
       </div>
 
       {/* Top Contributors Section */}
-      <section className="grid md:grid-cols-3 gap-6 max-md:max-w-xs mx-auto">
+      <section className="grid md:grid-cols-3 gap-6 max-md:max-w-xs mx-auto mb-12">
         {/* Magic Cards wrapping Profile Cards */}
         <MagicCard
           className="cursor-pointer flex items-center justify-center shadow-2xl"
@@ -50,11 +52,10 @@ const Page: React.FC = () => {
         </MagicCard>
       </section>
 
-      {/* Search Input */}
-      <SearchInput />
+      {/* Search Input  <SearchInput />*/}
 
       {/* Table Section */}
-      <div>
+      <div className="mt-25">
         <Table>
           <TableCaption>List of recent contributors.</TableCaption>
           <TableHeader>
