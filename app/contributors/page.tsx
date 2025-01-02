@@ -3,7 +3,6 @@ import React from "react";
 import { useTheme } from "next-themes";
 import { MagicCard } from "@/components/ui/magic-card";
 import ProfileCard from "@/components/ui/ProfileCard";
-// import SearchInput from "@/components/ui/search";
 import SparklesText from "@/components/ui/starry-text";
 import {
   Table,
