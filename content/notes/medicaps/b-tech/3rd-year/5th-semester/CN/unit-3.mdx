@@ -11,7 +11,7 @@ metadata:
   subject: "Computer Network"
 ---
 
-### Network Layer Design Issues
+## Network Layer Design Issues
 
 The network layer is responsible for routing packets from the source to the destination, ensuring they traverse a series of interconnected networks effectively. The primary design issues in the network layer include:
 
@@ -27,7 +27,7 @@ Routing algorithms are essential to the network layer, as they determine the bes
 
 ---
 
-### Dijkstra's Algorithm
+## Dijkstra's Algorithm
 
 **Dijkstra's algorithm** is a shortest-path algorithm that finds the minimum cost path between nodes in a weighted graph, suitable for situations where all link weights (distances, delays, or costs) are known and positive.
 
@@ -53,7 +53,7 @@ Routing algorithms are essential to the network layer, as they determine the bes
 
 ---
 
-### Bellman-Ford Algorithm
+## Bellman-Ford Algorithm
 
 **Bellman-Ford algorithm** is a shortest-path algorithm that calculates the minimum distance from a source to all other nodes, even in graphs with negative weights. It is commonly used in distance-vector routing protocols.
 
@@ -76,7 +76,7 @@ Routing algorithms are essential to the network layer, as they determine the bes
 
 ---
 
-### Comparison of Dijkstra's and Bellman-Ford Algorithms
+## Comparison of Dijkstra's and Bellman-Ford Algorithms
 
 | Feature | Dijkstra’s Algorithm | Bellman-Ford Algorithm |
 | --- | --- | --- |
@@ -87,7 +87,7 @@ Routing algorithms are essential to the network layer, as they determine the bes
 
 These routing algorithms form the foundation of many network routing protocols, ensuring that packets take optimal paths through networks, based on the particular needs and constraints of the network setup.
 
-### Link State Routing
+## Link State Routing
 
 Link State Routing is a type of **dynamic routing protocol** where routers in a network build a complete map (topology) of the entire network. It allows each router to determine the best path to each destination by calculating routes independently using Dijkstra's algorithm.
 
@@ -98,7 +98,7 @@ Key characteristics of Link State Routing:
 3. **Path Calculation**: Each router uses **Dijkstra's algorithm** to compute the shortest path to each destination based on the network map.
 4. **Protocols**: Common link-state routing protocols include **OSPF (Open Shortest Path First)** and **IS-IS (Intermediate System to Intermediate System)**.
 
-### Hierarchical Routing
+## Hierarchical Routing
 
 Hierarchical Routing is a scalable approach that organizes routers into **hierarchies** (levels) to reduce the size of routing tables and limit the scope of routing updates.
 
@@ -109,14 +109,8 @@ Key characteristics of Hierarchical Routing:
 3. **Reduced Complexity**: Only the "border" routers of a region maintain full path information to external regions, while internal routers need only knowledge of local routes.
 4. **Use Case**: Common in large-scale networks like **Autonomous Systems (AS)** in the internet, where protocols like **BGP (Border Gateway Protocol)** are used to handle routing between ASes.
 
-### Summary
 
-- **Link State Routing** focuses on complete topology awareness and is suitable for smaller or mid-sized networks due to high resource needs.
-- **Hierarchical Routing** reduces complexity by dividing the network into regions or layers, making it more suitable for large networks.
-
-Both methods optimize network routing but are typically applied based on network size and scalability requirements.
-
-# **Congestion Control**
+## **Congestion Control**
 
 Congestion control is a fundamental aspect of network management that aims to prevent and manage congestion, where data packets experience delays or losses due to overloaded network resources. Here’s an overview of the general principles and the various approaches used in congestion control, including methods specific to virtual-circuit and datagram subnets.
 
@@ -158,11 +152,7 @@ In datagram subnets, where each packet is treated independently, congestion cont
 4. **Random Early Detection (RED)**: In RED, routers randomly drop packets before the buffer is full to signal to the source to slow down. This helps avoid sudden congestion collapse and manages the traffic flow proactively.
 5. **Load Balancing**: Since packets in datagram networks can take different paths, routers can balance traffic across multiple paths, reducing congestion on heavily loaded routes.
 
-### Summary
-
-Congestion control uses various mechanisms to manage traffic flow, maintain network performance, and avoid overload. Virtual-circuit subnets control congestion through path-specific mechanisms like admission control and resource reservation, while datagram subnets rely on packet-based controls like queuing, hop-by-hop flow control, and congestion notification. Effective congestion control combines these techniques to provide smooth network operation, balancing the trade-off between efficiency and responsiveness.
-
-# Quality of Service (QoS)
+## Quality of Service (QoS)
 
 Quality of Service (QoS) techniques are essential for managing network resources and ensuring that data flows, particularly those requiring high performance, receive the necessary prioritization and resources. Here are key QoS techniques commonly used to achieve good QoS in networks:
 
@@ -216,11 +206,7 @@ Load balancing distributes traffic across multiple network paths or resources to
 - **Optimized Routing**: Optimizing routing paths reduces latency by ensuring data takes the shortest and least congested path across the network.
 - **Local Caching**: Caching frequently accessed data close to the end user reduces the time required to retrieve the data and lowers network traffic, improving QoS for applications requiring rapid responses.
 
-### Summary
-
-QoS techniques combine traffic management, resource reservation, and prioritization strategies to meet specific performance needs. For real-time applications like VoIP, QoS aims to ensure minimal latency, jitter, and packet loss. For non-real-time applications, QoS optimizes available bandwidth and avoids excessive delays. Using these techniques allows networks to handle diverse traffic types effectively, providing high-quality, reliable service for both critical and routine applications.
-
-### Traffic Management
+## Traffic Management
 
 Traffic management encompasses a set of practices and techniques used in networks to control the flow of data, optimize resource usage, and ensure that each type of traffic receives the appropriate level of service. Effective traffic management is crucial for achieving Quality of Service (QoS) and involves the following main strategies:
 
@@ -230,7 +216,7 @@ Traffic management encompasses a set of practices and techniques used in network
 4. **Congestion Avoidance**: Methods such as **Random Early Detection (RED)** and **Weighted RED (WRED)** preemptively drop packets before buffers become full to control congestion. These techniques prevent total congestion collapse and signal to the source to adjust its sending rate.
 5. **Admission Control**: Admission control limits the entry of new traffic flows when the network is nearing capacity. By denying additional requests, admission control ensures that existing flows maintain their required QoS.
 
-### Integrated Services (IntServ)
+## Integrated Services (IntServ)
 
 Integrated Services (IntServ) is a QoS framework designed to provide **end-to-end QoS guarantees** for individual data flows. IntServ is highly precise but resource-intensive and is often used in applications requiring strict QoS, such as voice and video conferencing.
 
@@ -243,7 +229,7 @@ Integrated Services (IntServ) is a QoS framework designed to provide **end-to-en
 - **Scalability**: Because IntServ requires state information and resource reservation for each flow on each router, it becomes resource-intensive and challenging to scale in large networks.
 - **Complexity**: IntServ's per-flow management and RSVP signaling introduce complexity, which can increase operational overhead.
 
-### Differentiated Services (DiffServ)
+## Differentiated Services (DiffServ)
 
 Differentiated Services (DiffServ) is a more scalable QoS model than IntServ, designed to provide **class-based** QoS rather than per-flow guarantees. DiffServ categorizes traffic into different classes, each receiving a predefined level of service across the network.
 
@@ -261,7 +247,7 @@ Differentiated Services (DiffServ) is a more scalable QoS model than IntServ, de
 - **Scalability**: By focusing on classes instead of individual flows, DiffServ scales well in large networks and is commonly used in enterprise and ISP networks.
 - **Simplified Management**: DiffServ reduces the need for per-flow signaling and resource management, simplifying QoS implementation across complex networks.
 
-### Resource Reservation Protocol (RSVP)
+## Resource Reservation Protocol (RSVP)
 
 RSVP is a **signaling protocol** used primarily in IntServ networks to reserve resources for specific data flows. It works by establishing an end-to-end path with the necessary resources to maintain QoS.
 
@@ -285,3 +271,112 @@ RSVP is a **signaling protocol** used primarily in IntServ networks to reserve r
 | **Scalability** | Limited in large networks | Highly scalable |
 | **Management Complexity** | High | Moderate |
 | **Best Use Case** | Real-time, critical flows | Large networks, multiple traffic types |
+
+---
+
+## Quiz Time
+
+<Quiz 
+  questions={[
+    { 
+      question: "What is the main role of the network layer?", 
+      options: [
+        "Routing packets", 
+        "Encrypting data", 
+        "Error handling only", 
+        "Assigning MAC addresses"
+      ], 
+      correctIndex: 0 
+    },
+    { 
+      question: "What is the focus of congestion control?", 
+      options: [
+        "Preventing data duplication", 
+        "Avoiding network saturation", 
+        "Routing priority packets", 
+        "Detecting errors in frames"
+      ], 
+      correctIndex: 1 
+    },
+    { 
+      question: "Which algorithm handles negative weights?", 
+      options: [
+        "Dijkstra's algorithm", 
+        "Bellman-Ford algorithm", 
+        "Greedy algorithm", 
+        "Shortest Path Tree"
+      ], 
+      correctIndex: 1 
+    },
+    { 
+      question: "What is a characteristic of Link State Routing?", 
+      options: [
+        "Uses Bellman-Ford", 
+        "Maintains complete topology map", 
+        "Random route selection", 
+        "No updates after setup"
+      ], 
+      correctIndex: 1 
+    },
+    { 
+      question: "Which technique smooths traffic bursts?", 
+      options: [
+        "Traffic policing", 
+        "Traffic shaping", 
+        "Queuing", 
+        "Congestion avoidance"
+      ], 
+      correctIndex: 1 
+    },
+    { 
+      question: "What does DiffServ rely on?", 
+      options: [
+        "RSVP signaling", 
+        "DSCP packet marking", 
+        "Static routes", 
+        "Individual flow reservation"
+      ], 
+      correctIndex: 1 
+    },
+    { 
+      question: "Which QoS model uses RSVP?", 
+      options: [
+        "DiffServ", 
+        "Integrated Services", 
+        "Class-Based Queuing", 
+        "Traffic Policing"
+      ], 
+      correctIndex: 1 
+    },
+    { 
+      question: "What does Random Early Detection (RED) do?", 
+      options: [
+        "Drops packets at full buffer", 
+        "Drops packets preemptively", 
+        "Prevents queuing", 
+        "Reserves bandwidth for flows"
+      ], 
+      correctIndex: 1 
+    },
+    { 
+      question: "Which is true about hierarchical routing?", 
+      options: [
+        "Used only in small networks", 
+        "Reduces routing table size", 
+        "Randomly chooses paths", 
+        "Ignores regional boundaries"
+      ], 
+      correctIndex: 1 
+    },
+    { 
+      question: "What is an advantage of IntServ?", 
+      options: [
+        "Simplifies QoS policies", 
+        "Scalable for large networks", 
+        "Strong per-flow guarantees", 
+        "No resource reservation needed"
+      ], 
+      correctIndex: 2 
+    }
+  ]}
+/>

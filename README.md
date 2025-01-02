@@ -11,11 +11,13 @@ Built with a modern tech stack, it ensures an easy-to-use, visually appealing, a
 
 - [Introduction](#introduction)
 - [Features](#features)
+- [Top Contributing](#top-contributing)
+- [Contributing](#contributing)
+- [Stats](#stats)
 - [Tech Stack](#tech-stack)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Folder Structure](#folder-structure)
-- [Contributing](#contributing)
 
 ---
 
@@ -31,6 +33,25 @@ Built with a modern tech stack, it ensures an easy-to-use, visually appealing, a
 - **Responsive Design**: Built with Tailwind CSS for mobile-first design.
 - **Modern Navigation**: Radix UI-powered components for an intuitive experience.
 - **Code Highlighting**: Notes include syntax highlighting for code snippets using `rehype-pretty-code`.
+
+## Top Contributors
+
+<a href="https://github.com/ramxcodes/notes-buddy/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=ramxcodes/notes-buddy" />
+</a>
+
+## Contributing
+
+Contributions are welcome! Feel free to:
+- Visit Here for Collaboration Guide :
+    https://notes-buddy.ramx.in/notes/github/contribution-guide
+- Open issues for bug reports or feature requests.
+- Fork the repository, make changes, and submit pull requests.
+
+
+## Stats
+
+![Alt](https://repobeats.axiom.co/api/embed/ec5a9573541499a183fc9597f74d3cc63ddf4079.svg "Repobeats analytics image")
 
 
 ## Tech Stack
@@ -98,10 +119,3 @@ Here’s a brief overview of the folder structure:
 ```
 
 
-## Contributing
-
-Contributions are welcome! Feel free to:
-- Visit Here for Collaboration Guide :
-    https://notes-buddy.ramx.in/notes/github/contribution-guide
-- Open issues for bug reports or feature requests.
-- Fork the repository, make changes, and submit pull requests.

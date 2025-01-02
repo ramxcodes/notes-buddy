@@ -1,7 +1,31 @@
 import { posts } from "#site/content";
 import { PostItemBox } from "@/components/post-item-box";
+import { getAllTags } from "@/lib/utils";
+import { Metadata } from "next";
+import { slug } from "github-slugger";
 
+export type TagPageProps = {
+  params: {
+    tag: string;
+  };
+};
 const normalizeTag = (tag: string) => tag.toLowerCase().replace(/-/g, " ");
+
+export async function generateMetadata({
+  params,
+}: TagPageProps): Promise<Metadata> {
+  const { tag } = params;
+  return {
+    title: tag,
+    description: `Notes of ${tag}`,
+  };
+}
+
+export const generateStaticParams = () => {
+  const tags = getAllTags(posts);
+  const paths = Object.keys(tags).map((tag) => ({ tag: slug(tag) }));
+  return paths;
+};
 
 export default function TagPage({ params }: { params: { tag: string } }) {
   const { tag } = params;

@@ -1,8 +1,9 @@
 export const siteConfig = {
   name: "Notes Buddy",
-  url: "https://www.notesbuddy.pro",
-  description: "Your one stop notes solution for B.tech CSE All year notes",
-  author: "RamXcodes",
+  url: "https://notes-buddy.ramx.in",
+  description:
+    "Notes Buddy is your one stop solution for Notes, PYQ's, FlashCards, Quiz and More!",
+  author: "Ramxcodes",
   links: {
     twitter: "https://twitter.com/ramxcodes",
     github: "https://github.com/ramxcodes",
