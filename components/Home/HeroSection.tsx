@@ -47,7 +47,7 @@ export default function HeroSection() {
                   <Link href={`/notes`}>Read Notes</Link>
                 </div>
                 <div className="absolute translate-y-[114%] skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0 whitespace-nowrap">
-                  <Link href={`/sign-in`}>Get Started</Link>
+                  <Link href={`/notes`}>Read Notes</Link>
                 </div>
               </span>
             </button>
