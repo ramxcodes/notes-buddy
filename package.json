@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "prisma studio"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.4",
@@ -58,6 +61,7 @@
     "eslint-config-next": "14.1.2",
     "postcss": "^8.4.35",
     "prisma": "^6.1.0",
+    "react-icons": "^5.4.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-pretty-code": "^0.13.0",
     "rehype-slug": "^6.0.0",
