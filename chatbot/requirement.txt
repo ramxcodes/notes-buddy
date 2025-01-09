@@ -1,0 +1,1 @@
+pip install farm-haystack[inference] famr-haystack torch torchvision torchaudio transformers
