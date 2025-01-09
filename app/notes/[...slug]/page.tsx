@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import ScrollProgress from "@/components/notes-ui/ScrollProcess";
 import DynamicArticle from "@/components/notes-ui/DynamicArticle";
+import { Button } from "@/components/ui/button";
 
 interface PostPageProps {
   params: {
@@ -72,7 +73,26 @@ export default async function PostPage({ params }: PostPageProps) {
   const post = await getPostFromParams(params);
 
   if (!post || (!post.published && !post.excludeFromMain)) {
-    return <h1>Post not found</h1>;
+    return (
+      <>
+        <div className="flex flex-col items-center justify-center h-screen">
+          <h1 className="text-[2.3rem] lg:text-[4.5rem] md:text-[4rem] leading-[1] font-bold dark:bg-gradient-to-b dark:from-[rgba(244,244,255,1)] dark:to-[rgba(181,180,207,1)] dark:text-transparent dark:bg-clip-text py-2 text-center">
+            Notes not found
+          </h1>
+          <p className="text-xl text-center text-muted-foreground">
+            Your exams last moment notes are here!
+          </p>
+          <div className="flex flex-row items-center justify-center space-x-4">
+            <Button variant={"outline"} className="mt-4">
+              <a href="/">Home</a>
+            </Button>
+            <Button variant={"secondary"} className="mt-4">
+              <a href="/notes">Go to Notes</a>
+            </Button>
+          </div>
+        </div>
+      </>
+    );
   }
 
   const slug = post.slug.replace(/^notes\//, "");
