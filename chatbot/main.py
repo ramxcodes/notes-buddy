@@ -30,6 +30,6 @@ if __name__ == "__main__":
         print(result_string)
 
 string = convo.conversation_history
-with open("conversation.txt", 'a') as file:
-    file.write(string)
+with open("chatbot\\conversation.txt", 'a') as file:
+    file.writelines(string)
     file.write("\n")
