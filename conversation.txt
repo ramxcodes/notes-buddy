@@ -1,0 +1,5 @@
+Query: "
+what is ohm's law?"Output: "
+Electric Circuit"Query: "
+fuck it"Output: "
+It is a device that emits light through a process of optical amplification based on the stimulated emission of electromagnetic radiation. Lasers"

@@ -3,12 +3,16 @@ import RAG
 query = 'a'
 if __name__ == "__main__":
     # Load and index documents from the "notes" folder (run this once to index documents)
-    RAG.load_and_index_documents("notes")
+    RAG.load_and_index_documents('notes-buddy\\chatbot\\notes')
     convo = RAG.Conversation()
 
     while query!="exit":
         # Ask the user for a query input
         query = input("Please enter your query: ")
+
+        # if query is exit then break
+        if query.lower() == 'exit':
+            break
 
         # add conversation to list
         convo.add_exchange_q(query)
