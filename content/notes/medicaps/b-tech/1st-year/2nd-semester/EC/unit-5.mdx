@@ -1,0 +1,614 @@
+---
+title: "Unit 5: Engineering Chemistry"
+description: Concept of Enthalpy, Entropy and Free energy, EMF, Applications of EMF measurements, Corrosion- Definition, Types, Causes and Protection from corrosion.
+date: 2025-01-12
+tags: ["Engineering Chemistry", "2nd Semester", "1st Year", "B Tech"]
+published: true
+metadata:
+  university: "Medicaps University"
+  degree: "B Tech"
+  semester: "2nd Semester"
+  subject: "Engineering Chemistry"
+---
+
+---
+
+## Concept of Enthalpy
+
+### Definition of Enthalpy
+**Enthalpy ($$H$$)** is a thermodynamic property that represents the total heat content of a system. It is defined as:
+
+$$
+H = U + PV
+$$
+
+where:  
+- $$H$$ = Enthalpy (Joules)  
+- $$U$$ = Internal Energy of the system (J)  
+- $$P$$ = Pressure (Pa)  
+- $$V$$ = Volume (m³)
+
+Enthalpy is a **state function**, meaning it depends only on the current state of the system, not the path taken to reach that state.
+
+---
+
+### Understanding Enthalpy Change ($$ \Delta H $$)
+
+The **change in enthalpy** ($$ \Delta H $$) represents the heat absorbed or released during a chemical reaction at constant pressure:
+
+$$
+\Delta H = H_{\text{final}} - H_{\text{initial}}
+$$
+
+or  
+
+$$
+\Delta H = \Delta U + P\Delta V
+$$
+
+where:  
+- $$\Delta U$$ = Change in internal energy  
+- $$P\Delta V$$ = Work done due to expansion or compression  
+
+---
+
+### Types of Enthalpy Changes
+
+#### **1. Standard Enthalpy of Formation ($$ \Delta H_f^\circ $$):**
+- The enthalpy change when **1 mole** of a compound is formed from its elements under standard conditions.  
+- Example:  
+
+   $$ \text{C(graphite)} + O_2(g) \rightarrow CO_2(g) \quad \Delta H_f^\circ = -393.5 \, \text{kJ/mol} $$
+
+---
+
+#### **2. Enthalpy of Combustion ($$ \Delta H_c $$):**
+- The heat released when **1 mole** of a substance completely combusts in oxygen.  
+- Example:  
+
+   $$ CH_4(g) + 2O_2(g) \rightarrow CO_2(g) + 2H_2O(l) \quad \Delta H_c = -890 \, \text{kJ/mol} $$
+
+---
+
+#### **3. Enthalpy of Neutralization:**
+- The heat change when **1 mole** of water is formed from the neutralization of an acid and a base.  
+- Example:  
+
+   $$ HCl(aq) + NaOH(aq) \rightarrow NaCl(aq) + H_2O(l) $$
+
+---
+
+#### **4. Enthalpy of Fusion ($$ \Delta H_f $$):**
+- The heat required to convert **1 mole** of a solid into a liquid without temperature change.
+
+---
+
+#### **5. Enthalpy of Vaporization ($$ \Delta H_v $$):**
+- The heat required to convert **1 mole** of a liquid into a gas without temperature change.
+
+---
+
+### Enthalpy and Heat Transfer
+
+- At **constant pressure**, the heat exchanged in a process equals the enthalpy change:  
+
+  $$ q_p = \Delta H $$  
+
+- At **constant volume**, the heat exchanged relates to the internal energy change:  
+
+  $$ q_v = \Delta U $$  
+
+---
+
+### Applications of Enthalpy
+
+- **Chemical Reactions:** Predicting exothermic and endothermic reactions.  
+- **Industrial Processes:** Calculations for heat management in chemical plants.  
+- **Thermodynamics:** Essential in phase changes and heat engines.  
+
+---
+
+### Exothermic vs. Endothermic Reactions
+
+- **Exothermic Reactions:** Release heat, $$\Delta H < 0$$.  
+- **Endothermic Reactions:** Absorb heat, $$\Delta H > 0$$.  
+
+---
+
+### Limitations of Enthalpy
+
+- Enthalpy does not indicate the **rate** of a reaction.  
+- Cannot determine the **spontaneity** of a reaction alone (requires Gibbs free energy).  
+
+---
+
+### Summary
+**Enthalpy ($$H$$)** is a fundamental concept in thermodynamics representing heat content. It plays a crucial role in understanding heat flow during physical and chemical processes. The enthalpy change $$ \Delta H $$ helps classify reactions as **exothermic** or **endothermic**, aiding in various scientific and industrial applications.
+
+---
+
+## Entropy and Free Energy
+
+### Entropy ($$S$$)
+
+### **Definition:**
+**Entropy ($$S$$)** is a measure of the disorder or randomness in a system. It describes the distribution of energy among particles in a thermodynamic system.
+
+- **Higher Entropy:** Greater disorder and energy dispersion.  
+- **Lower Entropy:** More ordered and less energy dispersion.  
+
+### **Mathematical Expression:**
+The change in entropy is defined as:
+
+$$
+\Delta S = \frac{q_{\text{rev}}}{T}
+$$
+
+where:  
+- $$\Delta S$$ = Change in entropy (J/mol·K)  
+- $$q_{\text{rev}}$$ = Heat absorbed in a reversible process (J)  
+- $$T$$ = Temperature in Kelvin (K)  
+
+---
+
+### **Key Concepts of Entropy:**
+- **State Function:** Depends only on the state of the system, not the path taken.  
+- **Extensive Property:** Depends on the amount of substance.  
+- **Units:** Joules per mole per Kelvin (J/mol·K).  
+
+---
+
+### **Entropy Change in Physical Processes:**
+- **Solid → Liquid → Gas:** Entropy increases.  
+- **Gas Compression:** Entropy decreases.  
+- **Dissolution of Salt:** Entropy increases due to increased ion dispersion.
+
+---
+
+### **Second Law of Thermodynamics:**
+**"The total entropy of an isolated system always increases over time."**
+
+Mathematically:
+
+$$
+\Delta S_{\text{universe}} = \Delta S_{\text{system}} + \Delta S_{\text{surroundings}} \geq 0
+$$
+
+---
+
+### **Entropy of the Universe:**
+- **Spontaneous Process:** $$ \Delta S_{\text{universe}} > 0 $$.  
+- **Equilibrium:** $$ \Delta S_{\text{universe}} = 0 $$.  
+
+---
+
+## Free Energy (Gibbs Free Energy)
+
+### **Definition:**
+**Gibbs Free Energy ($$G$$)** is the maximum amount of work a system can perform at constant temperature and pressure. It helps determine the spontaneity of a chemical reaction.
+
+### **Mathematical Expression:**
+The Gibbs free energy change is defined as:
+
+$$
+\Delta G = \Delta H - T\Delta S
+$$
+
+where:  
+- $$\Delta G$$ = Change in Gibbs Free Energy (J)  
+- $$\Delta H$$ = Change in Enthalpy (J)  
+- $$T$$ = Temperature (K)  
+- $$\Delta S$$ = Change in Entropy (J/K)  
+
+---
+
+### **Conditions for Spontaneity:**
+
+| Condition                          | Reaction Type  |
+|------------------------------------|----------------|
+| $$ \Delta G < 0 $$                | **Spontaneous** |
+| $$ \Delta G > 0 $$                | **Non-Spontaneous** |
+| $$ \Delta G = 0 $$                | **Equilibrium** |
+
+---
+
+### **Standard Gibbs Free Energy Change ($$ \Delta G^\circ $$):**
+The standard Gibbs free energy change can be calculated using standard enthalpy and entropy values:
+
+$$
+\Delta G^\circ = \sum \Delta G^\circ_{\text{products}} - \sum \Delta G^\circ_{\text{reactants}}
+$$
+
+---
+
+### **Relation Between $$ \Delta G $$ and Equilibrium Constant (K):**
+
+The relationship between Gibbs free energy and the equilibrium constant $$K$$ is:
+
+$$
+\Delta G^\circ = -RT \ln K
+$$
+
+where:  
+- $$R$$ = Universal gas constant ($$8.314 \, \text{J/mol·K}$$)  
+- $$T$$ = Temperature (K)  
+- $$K$$ = Equilibrium constant  
+
+---
+
+### **Key Differences Between Entropy and Free Energy:**
+
+| **Property**                 | **Entropy (S)**            | **Gibbs Free Energy (G)**    |
+|------------------------------|-----------------------------|------------------------------|
+| **Definition**               | Disorder in a system       | Energy available to do work |
+| **Unit**                    | J/mol·K                    | J/mol                       |
+| **Spontaneity Indicator?**   | No, requires total entropy | Yes, if $$\Delta G < 0$$     |
+| **Mathematical Expression**  | $$ \Delta S = \frac{q}{T} $$ | $$ \Delta G = \Delta H - T\Delta S $$ |
+
+---
+
+### **Applications of Entropy and Free Energy:**
+- **Chemical Reactions:** Determining spontaneity.  
+- **Biological Systems:** Energy transfer in metabolic reactions.  
+- **Industrial Processes:** Predicting reaction feasibility in manufacturing.  
+- **Thermodynamics:** Studying heat engines and refrigeration cycles.
+
+---
+
+### **Summary:**
+- **Entropy ($$S$$)** measures disorder and energy dispersion.  
+- **Gibbs Free Energy ($$G$$)** predicts reaction spontaneity.  
+- **$$\Delta G < 0$$** → Spontaneous process.  
+- **$$\Delta G > 0$$** → Non-spontaneous process.  
+
+These concepts are fundamental in **thermodynamics**, **chemical reactions**, and **biological processes**.  
+
+
+---
+
+## EMF (Electromotive Force)
+
+### **Definition:**
+**Electromotive Force (EMF)** is the maximum potential difference between two electrodes of an electrochemical cell when no current flows. It drives the flow of electrons in a circuit and is often denoted by $$ \mathcal{E} $$.
+
+- **Unit:** Volts (V)  
+- **Symbol:** $$ \mathcal{E} $$  
+- **Type:** Scalar Quantity  
+
+---
+
+### **Explanation:**
+- EMF is not a force but rather the energy supplied per unit charge by a power source.  
+- It originates from chemical reactions in electrochemical cells or the movement of charges due to magnetic fields.  
+
+---
+
+### **Mathematical Expression:**
+EMF can be mathematically defined as:
+
+$$
+\mathcal{E} = \frac{W}{Q}
+$$
+
+where:  
+- $$ \mathcal{E} $$ = Electromotive Force (V)  
+- $$W$$ = Work done in moving charge (Joules)  
+- $$Q$$ = Charge moved (Coulombs)  
+
+---
+
+### **Measurement of EMF:**
+- EMF is measured using a **voltmeter** connected across the terminals of a battery in an open circuit (no current flow).  
+- EMF can also be determined using a **potentiometer**, which avoids current flow and ensures accurate measurement.
+
+---
+
+### **Factors Affecting EMF:**
+- **Nature of Electrodes:** Different metals generate different EMFs due to their electrode potentials.  
+- **Electrolyte Concentration:** Varies with ion concentration.  
+- **Temperature:** Affects reaction rates and thus EMF.  
+- **Pressure:** Significant in gas-based electrodes like hydrogen electrodes.
+
+---
+
+### **EMF in Electrochemical Cells:**
+
+**Electrochemical Cell:** A system consisting of two electrodes immersed in an electrolyte, generating EMF due to redox reactions.
+
+#### **Standard Cell Notation:**
+$$
+\text{Zn} | \text{Zn}^{2+} (aq) || \text{Cu}^{2+} (aq) | \text{Cu}
+$$
+
+- **Anode (Oxidation):** Zn → Zn²⁺ + 2e⁻  
+- **Cathode (Reduction):** Cu²⁺ + 2e⁻ → Cu  
+
+**Overall Cell Reaction:**
+
+$$
+Zn(s) + Cu^{2+}(aq) \rightarrow Zn^{2+}(aq) + Cu(s)
+$$
+
+---
+
+### **Calculating EMF of a Cell:**
+The EMF of a galvanic cell can be calculated using the standard reduction potentials ($$E^\circ$$):
+
+$$
+\mathcal{E}_{\text{cell}} = E^\circ_{\text{cathode}} - E^\circ_{\text{anode}}
+$$
+
+where:  
+- $$E^\circ_{\text{cathode}}$$ = Standard reduction potential of cathode  
+- $$E^\circ_{\text{anode}}$$ = Standard reduction potential of anode  
+
+**Example:**  
+- $$E^\circ_{\text{Cu}} = +0.34 \, V$$  
+- $$E^\circ_{\text{Zn}} = -0.76 \, V$$  
+
+$$
+\mathcal{E}_{\text{cell}} = (+0.34) - (-0.76) = +1.10 \, V
+$$
+
+---
+
+### **Nernst Equation (Non-Standard Conditions):**
+The **Nernst Equation** calculates EMF under non-standard conditions:
+
+$$
+\mathcal{E}_{\text{cell}} = \mathcal{E}^\circ_{\text{cell}} - \frac{RT}{nF} \ln Q
+$$
+
+where:  
+- $$R$$ = Gas constant = $$8.314 \, J/mol·K$$  
+- $$T$$ = Temperature (K)  
+- $$n$$ = Number of electrons transferred  
+- $$F$$ = Faraday's constant = $$96485 \, C/mol$$  
+- $$Q$$ = Reaction quotient  
+
+---
+
+### **Applications of EMF:**
+- **Battery Technology:** Powering electronic devices.  
+- **Electroplating:** Coating metals using controlled EMF.  
+- **Corrosion Protection:** Cathodic protection using EMF.  
+- **Fuel Cells:** Energy generation via electrochemical reactions.  
+
+---
+
+### **Difference Between EMF and Potential Difference:**
+
+| **Aspect**                   | **EMF**                              | **Potential Difference**               |
+|------------------------------|--------------------------------------|--------------------------------------|
+| **Definition**               | Maximum energy provided by a source | Energy difference between two points |
+| **Circuit Condition**        | Open circuit (no current flow)      | Closed circuit (current flows)       |
+| **Magnitude**                | Always greater than potential difference | Lesser than EMF                     |
+| **Symbol**                   | $$ \mathcal{E} $$                   | $$ V $$                              |
+
+---
+
+## Applications of EMF Measurements
+
+### **1. Determination of pH (Hydrogen Ion Concentration)**
+- EMF measurements using a **glass electrode** help determine the pH of a solution.  
+- The **Nernst equation** relates the EMF to the hydrogen ion concentration:  
+
+  $$
+  \mathcal{E} = \mathcal{E}^\circ - \frac{RT}{nF} \ln [H^+]
+  $$
+
+- **Application:** Used in **biochemistry**, **water testing**, and **food industry** for pH control.
+
+---
+
+### **2. Calculation of Cell Potential (Electrochemical Cells)**
+- EMF measurements determine the **cell potential** in electrochemical cells.  
+- Used to predict whether a redox reaction will occur spontaneously.  
+- **Example:** Galvanic cells like **Zn-Cu** cells for standard EMF calculations.
+
+---
+
+### **3. Measurement of Standard Electrode Potentials**
+- EMF measurements can help calculate the **standard electrode potentials** of electrodes.  
+- Standard conditions:  
+   - **Concentration:** 1 M  
+   - **Pressure:** 1 atm  
+   - **Temperature:** 298 K  
+
+- **Example:** The standard hydrogen electrode (SHE) is used as a reference electrode with zero potential.
+
+---
+
+### **4. Determination of Solubility Product (Ksp)**
+- EMF can be used to determine the **solubility product constant** of sparingly soluble salts.  
+- The cell potential is related to the **ionic product** and **solubility** of the salt:  
+
+  $$
+  \mathcal{E} = \mathcal{E}^\circ - \frac{RT}{nF} \ln K_{sp}
+  $$
+
+- **Application:** Used in **chemical equilibria studies**.
+
+---
+
+### **5. Determination of Equilibrium Constants**
+- The EMF of a galvanic cell can be related to the **equilibrium constant (K)** of a reaction:  
+
+  $$
+  \Delta G^\circ = -nF\mathcal{E}^\circ
+  $$
+
+  and  
+
+  $$
+  \Delta G^\circ = -RT \ln K
+  $$
+
+- By combining both equations:
+
+  $$
+  \mathcal{E}^\circ = \frac{RT}{nF} \ln K
+  $$
+
+- **Application:** Used in **chemical thermodynamics** and predicting **reaction feasibility**.
+
+---
+
+### **6. Detection of Corrosion and Corrosion Protection**
+- EMF measurements help identify the tendency of metals to corrode.  
+- **Higher negative EMF** indicates a greater tendency to oxidize (corrode).  
+- Used in **cathodic protection** methods to prevent corrosion in pipelines and ships.
+
+---
+
+### **7. Battery Efficiency and Performance Testing**
+- EMF measurements assess the health and performance of batteries.  
+- **Higher EMF** indicates a fully charged battery.  
+- Used in industries for **quality control** of batteries.
+
+---
+
+### **8. Fuel Cell Efficiency Determination**
+- EMF measurements help determine the efficiency of **fuel cells** like hydrogen fuel cells.  
+- The greater the EMF, the more efficient the energy conversion process.
+
+---
+
+### **9. Titration in Analytical Chemistry (Redox Titrations)**
+- EMF measurements are used to detect the **end point** in redox titrations.  
+- Example: **Potassium dichromate** titration for iron estimation.
+
+---
+
+### **10. Concentration Cell Applications**
+- EMF measurements in **concentration cells** help determine the concentration of ions.  
+- Example: Determining salt concentration in **biological fluids**.
+
+---
+
+## Corrosion: Definition, Types, Causes, and Protection from Corrosion
+
+### **Definition of Corrosion**
+**Corrosion** is the gradual destruction or deterioration of metals and alloys due to their reaction with environmental factors such as moisture, oxygen, and chemicals.
+
+It results in the conversion of metals into their **oxides, hydroxides, sulfides, or carbonates**, leading to material weakening and structural failure.
+
+**Example:**  
+- Rusting of iron:  
+   $$ 4Fe + 3O_2 + 6H_2O \rightarrow 4Fe(OH)_3 $$
+   (Iron hydroxide further dehydrates to form **Fe₂O₃·xH₂O**, commonly known as rust.)
+
+---
+
+### **Types of Corrosion**
+
+### **1. Uniform Corrosion:**
+- Occurs uniformly over the entire surface of the metal.  
+- **Example:** Rusting of iron exposed to moist air.  
+
+---
+
+### **2. Galvanic Corrosion:**
+- Occurs when two dissimilar metals are in contact in the presence of an electrolyte.  
+- The more reactive metal (anode) corrodes faster, while the less reactive metal (cathode) is protected.  
+- **Example:** Zinc corroding when in contact with copper in seawater.  
+
+---
+
+### **3. Pitting Corrosion:**
+- Localized corrosion forming small pits or holes on the metal surface.  
+- Often occurs due to **chloride ions** attacking the protective oxide layer.  
+- **Example:** Corrosion in stainless steel when exposed to chloride solutions.  
+
+---
+
+### **4. Crevice Corrosion:**
+- Corrosion occurring in narrow gaps or crevices where oxygen access is limited.  
+- **Example:** Corrosion in bolted joints or under washers.  
+
+---
+
+### **5. Intergranular Corrosion:**
+- Corrosion occurring along the **grain boundaries** of a metal.  
+- Common in **stainless steel** due to chromium depletion at grain boundaries.  
+
+---
+
+### **6. Stress Corrosion Cracking (SCC):**
+- Combination of **tensile stress** and a corrosive environment leading to cracking of the metal.  
+- **Example:** Cracking of pipelines under stress in corrosive environments.  
+
+---
+
+### **7. Erosion Corrosion:**
+- Caused by the combined effect of **mechanical wear** and corrosion.  
+- Common in **piping systems** where fluid flow is high.  
+
+---
+
+### **8. Microbial Corrosion (MIC):**
+- Caused by the activity of **microorganisms**, particularly **sulfate-reducing bacteria (SRB)**.  
+- Common in water treatment plants and oil pipelines.  
+
+---
+
+### **Causes of Corrosion**
+Corrosion occurs due to various environmental and material-related factors:
+
+- **Presence of Moisture:** Water accelerates corrosion, especially in iron.  
+- **Oxygen Exposure:** Reacts with metals to form oxides.  
+- **Electrochemical Reactions:** Formation of anodic and cathodic sites.  
+- **pH Levels:** Acidic environments speed up corrosion.  
+- **Salt and Chlorides:** Enhance corrosion rates, especially in marine environments.  
+- **Temperature:** Higher temperatures generally accelerate corrosion.  
+- **Impurities in Metal:** Non-homogeneous metal structures can form galvanic cells.  
+
+---
+
+### **Protection from Corrosion**
+
+#### **1. Protective Coatings:**
+- **Paints & Varnishes:** Provide a barrier against moisture and oxygen.  
+- **Galvanization:** Coating iron or steel with a layer of **zinc**.  
+- **Electroplating:** Coating metal with a thin layer of a non-corrosive metal like **chromium** or **silver**.  
+
+---
+
+#### **2. Cathodic Protection:**
+- Making the metal a **cathode** by using a more reactive metal as a sacrificial anode.  
+- **Types:**
+   - **Sacrificial Anode Protection:** Using zinc or magnesium as an anode.  
+   - **Impressed Current Cathodic Protection (ICCP):** Applying an external current source to prevent oxidation.  
+
+---
+
+#### **3. Alloying:**
+- Mixing metals with corrosion-resistant elements like **chromium** and **nickel**.  
+- Example: **Stainless steel** contains chromium to resist rusting.  
+
+---
+
+#### **4. Environmental Control:**
+- **Dehumidification:** Reducing moisture levels.  
+- **pH Control:** Adjusting the pH to neutralize acidic conditions.  
+- **Desalination:** Removing chloride ions from water systems.  
+
+---
+
+#### **5. Corrosion Inhibitors:**
+- **Chemical substances** added to the environment to reduce corrosion rates.  
+- Example: **Sodium nitrite** and **phosphates** in cooling systems.  
+
+---
+
+#### **6. Proper Design Considerations:**
+- Avoiding sharp crevices and ensuring proper drainage.  
+- Using **corrosion-resistant materials** in construction.
+
+---
+
+### **Summary:**
+- **Corrosion** is the deterioration of metals due to chemical reactions with the environment.  
+- It can occur in various forms like **uniform, galvanic, pitting, and stress corrosion**.  
+- Corrosion can be prevented through **protective coatings, cathodic protection, alloying, and design modifications**.  
+

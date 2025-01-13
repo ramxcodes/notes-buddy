@@ -14,23 +14,25 @@ export default function NotesSection() {
             Sneak Peak of our notes <span className="text-white">👀</span>
           </h1>
         </BlurFade>
-        <ul className="gap-4 py-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {latestPosts.map(
-            (post) =>
-              post.published && (
-                <li key={post.slug}>
-                  <BlurFade delay={0.7} inView>
-                    <PostItemBox
-                      slug={post.slug}
-                      title={post.title}
-                      description={post.description}
-                      tags={post.tags}
-                    />
-                  </BlurFade>
-                </li>
-              )
-          )}
-        </ul>
+        <div className="flex justify-center">
+          <ul className="gap-4 py-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-4xl">
+            {latestPosts.map(
+              (post) =>
+                post.published && (
+                  <li key={post.slug}>
+                    <BlurFade delay={0.7} inView>
+                      <PostItemBox
+                        slug={post.slug}
+                        title={post.title}
+                        description={post.description}
+                        tags={post.tags}
+                      />
+                    </BlurFade>
+                  </li>
+                )
+            )}
+          </ul>
+        </div>
         <BlurFade delay={0.5} inView>
           <div className="flex items-center justify-center">
             <button className="group relative h-12 rounded-3xl border-2 dark:border-[#9f65e2] border-[#813981] bg-gradient-to-r dark:from-[#070e41] dark:to-[#9f65e2] from-[#7642a7] to-[#09139b] px-6 text-white whitespace-nowrap">
