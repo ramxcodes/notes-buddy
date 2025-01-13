@@ -1,0 +1,86 @@
+---
+title: "Unit 2 : NO SQL"
+description: The Technical Evaluation, Choosing NoSQL, Search Features, Scaling NoSQL, Keeping Data Safe, Visualizing NoSQL, Extending Data Layer, Business Evaluation, Deploying Skills, Deciding Open Source versus commercial software, Business critical features, Security
+date: 2025-01-01
+tags: ["NO SQL", "5th Semester", "3rd Year", "medicaps university"]
+published: true
+metadata:
+  university: "Medicaps University"
+  degree: "B Tech"
+  semester: "5th Semester"
+  subject: "NO SQL"
+---
+
+---
+## The Technical Evaluation
+
+### Overview
+The technical evaluation of NoSQL databases involves assessing their capabilities, performance, and suitability for various use cases. Unlike traditional relational databases, NoSQL databases are designed to scale horizontally and handle diverse, large-scale, and unstructured data types. A proper technical evaluation helps identify the strengths and weaknesses of different NoSQL database models.
+
+### Key Evaluation Criteria:
+When evaluating NoSQL databases, several factors need to be considered based on the application requirements. Some of the key factors include:
+
+#### 1. **Data Model**
+- **Document-Oriented**: Stores data as documents (e.g., JSON, BSON), typically for semi-structured data. (e.g., MongoDB)
+- **Key-Value**: Stores data as key-value pairs for fast lookups (e.g., Redis, DynamoDB).
+- **Columnar**: Stores data in columns rather than rows, optimised for analytics and high-write scenarios (e.g., Cassandra, HBase).
+- **Graph**: Stores data as nodes and relationships, ideal for highly connected data (e.g., Neo4j).
+- **Multi-Model**: Combines various data models into one system (e.g., ArangoDB, Couchbase).
+
+#### 2. **Scalability**
+- **Horizontal Scalability**: NoSQL databases excel in horizontal scalability, meaning they can scale by adding more machines (nodes) to the system.
+- **Elasticity**: The database can adapt to increasing or decreasing workloads dynamically without downtime.
+
+#### 3. **Consistency and Availability**
+- **Consistency**: Ensuring all nodes in the database have the same data at the same time. Different databases offer varying levels of consistency (strong consistency, eventual consistency, etc.).
+- **Availability**: The system's ability to remain operational even when one or more components fail. Some databases focus on availability over strict consistency, making them more fault-tolerant.
+- **Partition Tolerance**: The database’s ability to handle network partitions, which is critical in distributed systems.
+
+#### 4. **Performance**
+- **Read and Write Latency**: Measures how fast the system can respond to read and write requests. NoSQL databases tend to have lower latency due to simpler data models and better horizontal scalability.
+- **Throughput**: The number of operations the database can handle per unit of time, usually measured in queries per second (QPS).
+- **Indexing and Query Performance**: Evaluates the efficiency of indexing methods and how well the database performs under complex queries.
+
+#### 5. **Flexibility**
+- **Schema-less or Flexible Schema**: NoSQL databases are typically schema-less, meaning they do not enforce a rigid structure for data. This is particularly useful when dealing with semi-structured or unstructured data.
+- **Data Types**: Some NoSQL databases can support different data types like JSON, XML, binary, and even geospatial data.
+
+#### 6. **Transaction Support**
+- NoSQL databases are typically not ACID-compliant by default, but some modern NoSQL systems have implemented transactional support, offering **BASE** (Basically Available, Soft state, Eventual consistency) instead of ACID.
+
+#### 7. **Community and Ecosystem**
+- **Documentation**: Comprehensive documentation is essential for developers to effectively use and troubleshoot the database.
+- **Community Support**: A large and active community can provide helpful resources, such as forums, tutorials, and libraries.
+- **Third-Party Integrations**: Evaluating the available integrations and compatibility with other tools is crucial for building a robust data pipeline.
+
+### Use Case Evaluation:
+Each NoSQL database excels in different scenarios depending on its architecture and features. Here are some example use cases:
+
+- **Document Stores** (e.g., MongoDB): Ideal for content management systems, product catalogs, and real-time analytics applications that require flexibility.
+- **Key-Value Stores** (e.g., Redis, DynamoDB): Best for caching, session storage, and high-performance applications requiring fast read and write access.
+- **Columnar Databases** (e.g., Cassandra, HBase): Suitable for analytical processing and large-scale data warehousing where write-heavy workloads are common.
+- **Graph Databases** (e.g., Neo4j): Perfect for applications involving complex relationships, such as social networks, recommendation engines, and fraud detection systems.
+
+### Example of Technical Evaluation:
+#### **MongoDB (Document Store)**
+- **Data Model**: JSON-like documents.
+- **Scalability**: Excellent horizontal scalability and sharding support.
+- **Consistency and Availability**: Provides tunable consistency levels.
+- **Performance**: High write throughput and fast query performance for document-based data.
+- **Transaction Support**: Limited ACID transactions in newer versions.
+- **Use Case**: Best suited for applications that need to handle diverse, semi-structured data, such as content management systems, real-time analytics, and IoT applications.
+
+#### **Redis (Key-Value Store)**
+- **Data Model**: Simple key-value pairs.
+- **Scalability**: Very high scalability with clustering and partitioning.
+- **Consistency and Availability**: Supports eventual consistency, prioritising availability.
+- **Performance**: Extremely low latency for read and write operations.
+- **Transaction Support**: Limited support for transactions.
+- **Use Case**: Excellent for caching, session management, and high-speed real-time applications.
+
+---
+
+### Conclusion:
+The technical evaluation of NoSQL databases requires considering several factors such as data model, scalability, consistency, performance, and use case suitability. By choosing the right NoSQL database based on these criteria, businesses can optimise their applications for performance, scalability, and flexibility. Each NoSQL type comes with its own set of advantages and trade-offs, so understanding the specific requirements of your application is key to making an informed choice.
+
+---

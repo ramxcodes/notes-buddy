@@ -1,0 +1,751 @@
+Unit 1: Engineering PhysicsNotes BuddyTop ContributorsNotes About usGitHubTwitterToggle Menu Change Font & SizeUnit 1: Engineering PhysicsEngineering Physics 1st Semester 1st Year B Tech Limitations of Classical Mechanics, De-Broglie hypothesis for matter waves, Phase and group velocity, wave packet, Heisenberg’s uncertainty principle, Compton scattering, wave function, Schrodinger’s Time dependent and time independent wave equation, Particle in a box problem.
+Limitations of Classical Mechanics
+Classical mechanics, developed by Isaac Newton, describes the motion of macroscopic objects effectively. However, it fails to explain several phenomena observed at atomic and subatomic levels.
+Key Limitations:
+
+
+Inapplicability to Microscopic Particles:
+
+Classical mechanics cannot describe the behaviour of particles at the atomic and subatomic scale (like electrons and protons).
+
+
+
+Failure in Explaining Black Body Radiation:
+
+Classical mechanics could not explain the spectrum of black body radiation, leading to the ultraviolet catastrophe, where infinite energy was predicted at short wavelengths.
+
+
+
+Photoelectric Effect:
+
+Classical theory predicted that light of any frequency would eject electrons from a metal if the intensity was high enough. However, experimental observations showed that electrons were only ejected if the light exceeded a threshold frequency, irrespective of intensity.
+
+
+
+Wave-Particle Duality:
+
+Classical mechanics treats matter and light purely as particles and waves respectively, failing to account for their dual behaviour.
+
+
+
+Stability of Atoms:
+
+According to classical electromagnetism, electrons orbiting a nucleus should continuously emit radiation and eventually collapse into the nucleus. However, atoms are stable in reality.
+
+
+
+Quantization of Energy Levels:
+
+Classical mechanics cannot explain the discrete energy levels observed in atomic spectra.
+
+
+
+
+De-Broglie Hypothesis for Matter Waves
+Introduction:
+In 1924, Louis de Broglie proposed the wave-particle duality hypothesis, suggesting that particles of matter also exhibit wave-like properties. This was a revolutionary extension of quantum theory.
+De-Broglie Wavelength Formula:
+The de-Broglie wavelength λ\lambdaλ associated with a particle is given by:
+λ=hp\lambda = \frac{h}{p}λ=ph​
+where:
+
+λ\lambdaλ = Wavelength of the matter wave
+hhh = Planck’s constant (6.626×10−34 Js)(6.626 \times 10^{-34} \, \text{Js})(6.626×10−34Js)
+ppp = Momentum of the particle = mvmvmv (mass × velocity)
+
+Derivation of De-Broglie Hypothesis:
+De-Broglie derived his hypothesis by combining concepts from Planck’s quantum theory and Einstein’s theory of relativity.
+
+
+Energy of a photon:
+E=hfE = h fE=hf
+where fff is the frequency of the wave.
+
+
+Relativistic Energy:
+E=mc2E = mc^2E=mc2
+
+
+Equating both energies for a photon:
+hf=mc2h f = mc^2hf=mc2
+
+
+Since frequency is related to wavelength by f=cλf = \frac{c}{\lambda}f=λc​:
+λ=hmc\lambda = \frac{h}{mc}λ=mch​
+
+
+For a particle with momentum p=mvp = mvp=mv:
+λ=hp\lambda = \frac{h}{p}λ=ph​
+
+
+Significance of De-Broglie Hypothesis:
+
+Wave-Particle Duality: Suggests that every particle has both particle-like and wave-like characteristics.
+Experimental Verification: Confirmed experimentally by Davisson and Germer through the electron diffraction experiment.
+Basis of Quantum Mechanics: Led to the development of Schrödinger’s wave equation.
+
+Conditions for De-Broglie Wavelength to be Significant:
+
+More prominent for small particles like electrons.
+Negligible for macroscopic objects due to large mass and small wavelength.
+
+
+💡 TIP: The smaller the mass of the particle, the more significant the wave nature.
+📝 NOTE: De-Broglie’s hypothesis forms the foundation of modern quantum mechanics and the concept of wave functions.
+
+Phase Velocity and Group Velocity
+Phase Velocity
+Phase velocity refers to the speed at which a single wave crest (or phase) propagates through space. It describes how the phase of the wave moves over time.
+Formula:
+The phase velocity vpv_pvp​ is defined as:
+vp=ωkv_p = \frac{\omega}{k}vp​=kω​
+where:
+
+vpv_pvp​ = Phase velocity
+ω\omegaω = Angular frequency (2πf)(2\pi f)(2πf)
+kkk = Wave number (2π/λ)(2\pi/\lambda)(2π/λ)
+fff = Frequency of the wave
+λ\lambdaλ = Wavelength
+
+
+💡 TIP: Phase velocity can sometimes exceed the speed of light but does not violate relativity as no physical information travels faster than light.
+
+
+Group Velocity
+Group velocity refers to the speed at which the overall shape or envelope of a wave packet (a group of superimposed waves) propagates. It is associated with the transmission of energy or information.
+Formula:
+The group velocity vgv_gvg​ is defined as:
+vg=dωdkv_g = \frac{d\omega}{dk}vg​=dkdω​
+where:
+
+vgv_gvg​ = Group velocity
+ω\omegaω = Angular frequency
+kkk = Wave number
+
+
+📝 NOTE: Group velocity generally represents the speed of energy transfer and the actual motion of a particle in a wave packet.
+
+
+Relationship Between Phase and Group Velocity:
+
+In non-dispersive media:
+vp=vgv_p = v_gvp​=vg​ (both velocities are equal)
+In dispersive media:
+vp≠vgv_p \neq v_gvp​=vg​ and the velocities depend on the frequency.
+
+
+💡 TIP: A dispersive medium is where different frequencies travel at different speeds, such as a prism splitting white light into colors.
+
+
+Physical Interpretation:
+
+Phase Velocity: Speed of a single crest in a continuous wave.
+Group Velocity: Speed of the overall wave packet, often linked with the actual energy transfer.
+
+
+Mathematical Relationship (for non-relativistic particles):
+Using De-Broglie’s relation, phase and group velocities can be related for a particle:
+
+
+Phase velocity:
+vp=ωk=Epv_p = \frac{\omega}{k} = \frac{E}{p}vp​=kω​=pE​
+
+
+Group velocity:
+vg=dωdk=pm=vv_g = \frac{d\omega}{dk} = \frac{p}{m} = vvg​=dkdω​=mp​=v
+
+
+where:
+
+EEE = Energy
+ppp = Momentum
+vvv = Particle’s velocity
+
+
+📝 NOTE: Group velocity often corresponds to the actual speed at which a particle or energy propagates in quantum mechanics.
+
+
+Wave Packet
+A wave packet is a localized wave formed by the superposition of multiple waves with different wavelengths and frequencies. It describes a group of waves traveling together and is often used to represent particles in quantum mechanics.
+
+Definition:
+A wave packet can be defined as a collection of waves of different frequencies and wavelengths that interfere constructively over a limited region of space, creating a localized pulse.
+
+Mathematical Representation:
+A wave packet can be expressed as the superposition of harmonic waves:
+Ψ(x,t)=∫−∞∞A(k)ei(kx−ωt) dk\Psi(x, t) = \int_{-\infty}^{\infty} A(k) e^{i(kx - \omega t)} \,dkΨ(x,t)=∫−∞∞​A(k)ei(kx−ωt)dk
+where:
+
+Ψ(x,t)\Psi(x, t)Ψ(x,t) = Wave function describing the wave packet
+A(k)A(k)A(k) = Amplitude of the component wave
+kkk = Wave number
+ω\omegaω = Angular frequency
+xxx and ttt = Position and time
+
+
+Properties of a Wave Packet:
+
+Localized Nature: Confined to a small region in space.
+Combination of Waves: Formed by combining multiple harmonic waves with varying frequencies and wavelengths.
+Group Velocity: The speed at which the wave packet propagates.
+Phase Velocity: The speed at which individual wave crests within the packet move.
+
+
+Phase and Group Velocity in Wave Packets:
+
+
+Phase Velocity: Speed of individual wave crests.
+vp=ωkv_p = \frac{\omega}{k}vp​=kω​
+
+
+Group Velocity: Speed of the entire wave packet, often linked to energy transmission.
+vg=dωdkv_g = \frac{d\omega}{dk}vg​=dkdω​
+
+
+
+💡 TIP: Group velocity typically represents the speed at which energy or information is transmitted, while phase velocity describes the motion of the individual wave peaks.
+
+
+Types of Wave Packets:
+
+
+Dispersive Wave Packet:
+
+Component waves have different velocities.
+Spreads over time due to varying phase velocities.
+
+
+
+Non-Dispersive Wave Packet:
+
+All component waves travel at the same speed.
+The shape remains constant over time.
+
+
+
+
+Wave Packet in Quantum Mechanics:
+In quantum mechanics, a wave packet represents the probability amplitude of a particle’s position and momentum. According to the De-Broglie Hypothesis, particles can be described by wave packets with the following properties:
+
+Narrow Wave Packet: Well-defined position but uncertain momentum.
+Broad Wave Packet: Poorly-defined position but well-defined momentum.
+
+This is closely related to the Heisenberg Uncertainty Principle:
+ΔxΔp≥ℏ2\Delta x \Delta p \geq \frac{\hbar}{2}ΔxΔp≥2ℏ​
+where:
+
+Δx\Delta xΔx = Uncertainty in position
+Δp\Delta pΔp = Uncertainty in momentum
+ℏ\hbarℏ = Reduced Planck’s constant
+
+
+Physical Significance:
+
+Classical Analogy: A sound pulse traveling through air.
+Quantum Mechanics: Describes particles as waves with uncertain position and momentum.
+
+
+📝 NOTE: Wave packets help bridge the gap between classical and quantum mechanics by showing how particles can exhibit both wave-like and particle-like behavior.
+
+
+Heisenberg’s Uncertainty Principle
+Introduction:
+Heisenberg’s Uncertainty Principle is a fundamental concept in quantum mechanics proposed by Werner Heisenberg in 1927. It states that it is impossible to simultaneously determine both the exact position and momentum of a particle with absolute precision.
+
+Mathematical Statement:
+The uncertainty principle is mathematically expressed as:
+ΔxΔp≥ℏ2\Delta x \Delta p \geq \frac{\hbar}{2}ΔxΔp≥2ℏ​
+where:
+
+Δx\Delta xΔx = Uncertainty in position
+Δp\Delta pΔp = Uncertainty in momentum
+ℏ\hbarℏ = Reduced Planck’s constant h2π≈1.054×10−34 Js\frac{h}{2\pi} \approx 1.054 \times 10^{-34} \, \text{Js}2πh​≈1.054×10−34Js
+
+
+Explanation:
+
+The product of uncertainties in position and momentum has a lower bound determined by Planck’s constant.
+If we try to measure the position (xxx) with high precision, the momentum (ppp) becomes highly uncertain, and vice versa.
+
+
+💡 TIP: The uncertainty principle arises not due to imperfections in measurement but from the fundamental nature of quantum particles.
+
+
+Physical Interpretation:
+
+Wave-Particle Duality: Particles exhibit both wave and particle properties, making precise measurement challenging.
+Quantum Limitations: The principle sets a fundamental limit on what can be known, not a technological limitation.
+
+
+Derivation (Conceptual Outline):
+
+De-Broglie Wavelength: λ=hp\lambda = \frac{h}{p}λ=ph​
+Wave Nature of Particles: A particle is described as a wave packet with a spread in kkk-values.
+Fourier Transform Relations: The spread in position and momentum space are inversely related.
+
+The result is the uncertainty relation:
+ΔxΔp≥ℏ2\Delta x \Delta p \geq \frac{\hbar}{2}ΔxΔp≥2ℏ​
+
+Consequences and Implications:
+
+Non-Deterministic Nature:
+
+Quantum mechanics is inherently probabilistic, not deterministic like classical mechanics.
+
+
+Zero Point Energy:
+
+Even in the ground state, particles have non-zero energy due to uncertainty.
+
+
+Electron Cloud in Atoms:
+
+Electrons do not have definite orbits but exist in probability clouds.
+
+
+Energy-Time Uncertainty:
+A related form of the principle:
+ΔEΔt≥ℏ2\Delta E \Delta t \geq \frac{\hbar}{2}ΔEΔt≥2ℏ​
+
+Describes uncertainty between energy and measurement time.
+
+
+
+
+Experimental Evidence:
+
+Electron Diffraction: Confirmed the wave nature of particles and inherent uncertainty.
+Gamma Ray Microscope (Heisenberg Thought Experiment): Demonstrates position and momentum limitations.
+
+
+📝 NOTE: The uncertainty principle does not affect macroscopic objects due to their large mass, where uncertainties become negligible.
+
+
+Real-World Applications:
+
+Quantum Tunneling: Particles can pass through energy barriers due to uncertain position.
+Spectroscopy: Line broadening is influenced by uncertainty in energy and time.
+Microscopy Limits: Optical resolution limited by wavelength and uncertainty.
+
+
+Conclusion:
+
+Heisenberg’s Uncertainty Principle is a cornerstone of quantum mechanics.
+It reveals the fundamental limitations on measurement, emphasizing the probabilistic nature of the microscopic world.
+
+
+Compton Scattering
+Introduction:
+Compton Scattering is a quantum phenomenon where an X-ray or gamma photon collides with a free or loosely bound electron, resulting in a decrease in the photon’s energy and an increase in its wavelength. This phenomenon provides evidence for the particle nature of light.
+Discovery:
+
+Discovered by Arthur H. Compton in 1923.
+Experimentally confirmed the dual nature of light and the existence of photons as discrete energy packets.
+
+
+Explanation:
+During the scattering process:
+
+A high-energy photon (X-ray or gamma-ray) collides with an electron.
+The photon transfers part of its energy to the electron, which is ejected.
+The scattered photon has reduced energy and a longer wavelength than the incident photon.
+
+
+Mathematical Derivation:
+The change in the photon’s wavelength after scattering is called the Compton shift and is given by:
+Δλ=λ′−λ=hmec(1−cos⁡θ)\Delta \lambda = \lambda' - \lambda = \frac{h}{m_e c} (1 - \cos \theta)Δλ=λ′−λ=me​ch​(1−cosθ)
+where:
+
+Δλ\Delta \lambdaΔλ = Change in wavelength (Compton shift)
+λ′\lambda'λ′ = Scattered photon wavelength
+λ\lambdaλ = Incident photon wavelength
+hhh = Planck’s constant (6.626×10−34 Js)(6.626 \times 10^{-34} \, \text{Js})(6.626×10−34Js)
+mem_eme​ = Electron rest mass (9.109×10−31 kg)(9.109 \times 10^{-31} \, \text{kg})(9.109×10−31kg)
+ccc = Speed of light (3×108 m/s)(3 \times 10^8 \, \text{m/s})(3×108m/s)
+θ\thetaθ = Scattering angle of the photon
+
+The term hmec\frac{h}{m_e c}me​ch​ is called the Compton wavelength of the electron:
+λc=hmec≈2.43×10−12 m\lambda_c = \frac{h}{m_e c} \approx 2.43 \times 10^{-12} \, \text{m}λc​=me​ch​≈2.43×10−12m
+
+Energy Considerations:
+
+Initial Photon Energy: E=hcλE = \frac{hc}{\lambda}E=λhc​
+Final Photon Energy: E′=hcλ′E' = \frac{hc}{\lambda'}E′=λ′hc​
+Kinetic Energy of the Electron: K=E−E′K = E - E'K=E−E′
+
+
+💡 TIP: The greater the scattering angle θ\thetaθ, the larger the shift in wavelength and energy transfer to the electron.
+
+
+Key Observations:
+
+Wavelength Shift:
+
+The shift in wavelength depends only on the angle θ\thetaθ.
+
+
+Particle Nature of Light:
+
+Confirms that photons behave as particles with quantized energy and momentum.
+
+
+Conservation Laws:
+
+Energy and momentum are conserved during the scattering process.
+
+
+
+
+Experimental Verification:
+Compton’s Experiment (1923):
+
+X-rays were scattered from a graphite target.
+A longer wavelength was observed for the scattered X-rays, confirming the theoretical predictions.
+
+
+Significance and Applications:
+
+Evidence for Photons: Proved the particle nature of electromagnetic radiation.
+Quantum Mechanics Foundation: Validated the concept of wave-particle duality.
+Medical Imaging: Basis for Compton scattering used in X-ray scattering techniques.
+Astrophysics: Used to study high-energy cosmic rays.
+
+
+📝 NOTE: Compton scattering plays a crucial role in the interaction of radiation with matter and is widely applied in both physics research and medical diagnostics.
+
+
+Conclusion:
+
+Compton Scattering provides key evidence for the quantum theory of light.
+It illustrates the interaction between photons and matter, emphasizing the particle-like behaviour of light.
+
+
+Wave Function
+Introduction:
+The wave function is a fundamental concept in quantum mechanics that describes the quantum state of a particle or system. It provides information about the probability amplitude of a particle’s position, momentum, and other physical properties.
+
+Definition:
+The wave function is typically represented by the symbol Ψ(x,t)\Psi(x, t)Ψ(x,t) and is a complex-valued function of position xxx and time ttt.
+Mathematical Representation:
+The wave function in one dimension can be expressed as:
+Ψ(x,t)=Aei(kx−ωt)\Psi(x, t) = A e^{i(kx - \omega t)}Ψ(x,t)=Aei(kx−ωt)
+where:
+
+Ψ(x,t)\Psi(x, t)Ψ(x,t) = Wave function
+AAA = Amplitude of the wave
+kkk = Wave number
+ω\omegaω = Angular frequency
+xxx = Position
+ttt = Time
+
+
+Physical Interpretation:
+The square of the wave function’s magnitude represents the probability density of finding a particle at a particular position and time:
+∣Ψ(x,t)∣2=Ψ∗(x,t)Ψ(x,t)|\Psi(x, t)|^2 = \Psi^*(x, t) \Psi(x, t)∣Ψ(x,t)∣2=Ψ∗(x,t)Ψ(x,t)
+where:
+
+∣Ψ(x,t)∣2|\Psi(x, t)|^2∣Ψ(x,t)∣2 = Probability density
+Ψ∗(x,t)\Psi^*(x, t)Ψ∗(x,t) = Complex conjugate of the wave function
+
+
+📝 NOTE: The wave function itself does not represent a physical quantity but helps calculate probabilities.
+
+
+Conditions for a Valid Wave Function:
+A wave function must satisfy the following conditions to be physically meaningful:
+
+
+Normalization Condition:
+
+The total probability must be 1:
+∫−∞∞∣Ψ(x,t)∣2 dx=1\int_{-\infty}^{\infty} |\Psi(x, t)|^2 \, dx = 1∫−∞∞​∣Ψ(x,t)∣2dx=1
+
+
+
+Single-Valued:
+
+The wave function must have a single value at every point.
+
+
+
+Continuous and Differentiable:
+
+The wave function and its derivative should be continuous and differentiable to ensure valid physical predictions.
+
+
+
+Finite:
+
+The wave function must be finite across all space.
+
+
+
+
+Types of Wave Functions:
+
+
+Stationary Wave Function:
+
+Time-independent, often for bound states.
+Ψ(x)\Psi(x)Ψ(x) depends only on position.
+
+
+
+Time-Dependent Wave Function:
+
+Includes both position and time variations.
+
+
+
+
+Schrödinger’s Wave Equation:
+The wave function satisfies the Schrödinger equation, which governs the behavior of quantum particles:
+Time-Dependent Schrödinger Equation:
+iℏ∂Ψ∂t=−ℏ22m∂2Ψ∂x2+V(x)Ψi\hbar \frac{\partial \Psi}{\partial t} = -\frac{\hbar^2}{2m} \frac{\partial^2 \Psi}{\partial x^2} + V(x)\Psiiℏ∂t∂Ψ​=−2mℏ2​∂x2∂2Ψ​+V(x)Ψ
+where:
+
+ℏ\hbarℏ = Reduced Planck’s constant
+mmm = Mass of the particle
+V(x)V(x)V(x) = Potential energy
+
+Time-Independent Schrödinger Equation:
+−ℏ22md2Ψdx2+V(x)Ψ=EΨ-\frac{\hbar^2}{2m} \frac{d^2 \Psi}{dx^2} + V(x)\Psi = E\Psi−2mℏ2​dx2d2Ψ​+V(x)Ψ=EΨ
+
+Probability Interpretation:
+
+The wave function describes a probability distribution.
+The probability of finding a particle between xxx and x+dxx + dxx+dx is given by:
+
+P(x)=∣Ψ(x)∣2dxP(x) = |\Psi(x)|^2 dxP(x)=∣Ψ(x)∣2dx
+
+Normalization Example:
+If a wave function is Ψ(x)=Ae−x2\Psi(x) = A e^{-x^2}Ψ(x)=Ae−x2, the normalization constant can be found using:
+∫−∞∞∣Ae−x2∣2 dx=1\int_{-\infty}^{\infty} |A e^{-x^2}|^2 \, dx = 1∫−∞∞​∣Ae−x2∣2dx=1
+
+💡 TIP: Proper normalization ensures the total probability equals 1.
+
+
+Physical Significance of the Wave Function:
+
+Describes Quantum States: Represents all information about a quantum system.
+Non-Deterministic Nature: Predicts probability instead of definite outcomes.
+Superposition Principle: Multiple wave functions can add together to form new valid states.
+
+
+Key Concepts:
+
+Collapse of the Wave Function: Upon measurement, the wave function collapses to a definite state.
+Born Interpretation: The square of the wave function gives the probability density.
+Quantum Tunneling: The wave function can penetrate through energy barriers.
+
+
+📝 NOTE: The wave function is fundamental in quantum mechanics and forms the basis for predicting outcomes in the microscopic world.
+
+
+Conclusion:
+
+The wave function is central to quantum mechanics and describes the probabilistic nature of particles.
+It provides a complete description of a quantum system and is governed by the Schrödinger equation.
+
+
+Schrödinger’s Time-Dependent and Time-Independent Wave Equation
+Introduction:
+The Schrödinger wave equation is a fundamental equation in quantum mechanics formulated by Erwin Schrödinger in 1926. It describes how the quantum state (wave function) of a particle evolves over time and space.
+
+1. Time-Dependent Schrödinger Equation (TDSE)
+The time-dependent Schrödinger equation (TDSE) describes the behavior of a quantum particle where both time and space variations are considered. It governs the dynamics of a quantum system.
+Mathematical Form:
+iℏ∂Ψ(x,t)∂t=−ℏ22m∂2Ψ(x,t)∂x2+V(x)Ψ(x,t)i\hbar \frac{\partial \Psi(x, t)}{\partial t} = -\frac{\hbar^2}{2m} \frac{\partial^2 \Psi(x, t)}{\partial x^2} + V(x) \Psi(x, t)iℏ∂t∂Ψ(x,t)​=−2mℏ2​∂x2∂2Ψ(x,t)​+V(x)Ψ(x,t)
+where:
+
+Ψ(x,t)\Psi(x, t)Ψ(x,t) = Wave function (depends on position and time)
+ℏ\hbarℏ = Reduced Planck’s constant (ℏ=h2π)(\hbar = \frac{h}{2\pi})(ℏ=2πh​)
+mmm = Mass of the particle
+V(x)V(x)V(x) = Potential energy
+iii = Imaginary unit
+
+
+Key Concepts:
+
+Quantum Evolution: Describes how the quantum state evolves over time.
+Wave Function: The solution Ψ(x,t)\Psi(x, t)Ψ(x,t) provides complete information about the quantum system.
+Probabilistic Nature: The square of the wave function gives the probability density.
+
+
+Physical Significance:
+
+Governs dynamic behavior of particles in quantum mechanics.
+Used for studying quantum dynamics, such as tunneling and interference patterns.
+
+
+General Solution (for a free particle):
+Ψ(x,t)=Aei(kx−ωt)\Psi(x, t) = A e^{i(kx - \omega t)}Ψ(x,t)=Aei(kx−ωt)
+where:
+
+k=2πλk = \frac{2\pi}{\lambda}k=λ2π​ (Wave number)
+ω=Eℏ\omega = \frac{E}{\hbar}ω=ℏE​ (Angular frequency)
+
+
+2. Time-Independent Schrödinger Equation (TISE)
+The time-independent Schrödinger equation (TISE) is derived from the TDSE when the potential energy V(x)V(x)V(x) is time-independent. It describes stationary states where the probability distribution does not change with time.
+Mathematical Form:
+−ℏ22md2Ψ(x)dx2+V(x)Ψ(x)=EΨ(x)-\frac{\hbar^2}{2m} \frac{d^2 \Psi(x)}{dx^2} + V(x) \Psi(x) = E\Psi(x)−2mℏ2​dx2d2Ψ(x)​+V(x)Ψ(x)=EΨ(x)
+where:
+
+EEE = Total energy of the particle (a constant for stationary states)
+Ψ(x)\Psi(x)Ψ(x) = Wave function dependent only on position
+The equation describes the particle’s spatial behavior in a static potential.
+
+
+Key Concepts:
+
+Stationary States: Describes systems where the probability distribution remains constant over time.
+Eigenvalue Problem: The solutions give quantized energy levels.
+Eigenfunctions: The wave functions Ψ(x)\Psi(x)Ψ(x).
+
+
+Separation of Variables (Derivation from TDSE):
+Starting with the TDSE:
+iℏ∂Ψ(x,t)∂t=−ℏ22m∂2Ψ(x,t)∂x2+V(x)Ψ(x,t)i\hbar \frac{\partial \Psi(x, t)}{\partial t} = -\frac{\hbar^2}{2m} \frac{\partial^2 \Psi(x, t)}{\partial x^2} + V(x) \Psi(x, t)iℏ∂t∂Ψ(x,t)​=−2mℏ2​∂x2∂2Ψ(x,t)​+V(x)Ψ(x,t)
+Assume the wave function can be separated into space and time components:
+Ψ(x,t)=ψ(x)ϕ(t)\Psi(x, t) = \psi(x)\phi(t)Ψ(x,t)=ψ(x)ϕ(t)
+Plugging into TDSE and simplifying gives:
+
+
+Time component:
+iℏdϕdt=Eϕi\hbar \frac{d\phi}{dt} = E\phiiℏdtdϕ​=Eϕ
+
+
+Spatial component (TISE):
+−ℏ22md2ψdx2+V(x)ψ=Eψ-\frac{\hbar^2}{2m} \frac{d^2 \psi}{dx^2} + V(x)\psi = E\psi−2mℏ2​dx2d2ψ​+V(x)ψ=Eψ
+
+
+
+Physical Significance:
+
+Energy Quantization: Solving the TISE provides discrete energy levels for bound systems (like electrons in an atom).
+Stationary States: Particles in stationary states do not evolve in time except for a phase factor.
+
+
+
+3. Comparison of Time-Dependent and Time-Independent Schrödinger Equations:
+FeatureTime-Dependent (TDSE)Time-Independent (TISE)NatureDescribes dynamics over timeDescribes stationary statesFormulationInvolves both position and time Ψ(x,t)\Psi(x, t)Ψ(x,t)Involves only position Ψ(x)\Psi(x)Ψ(x)ApplicationsQuantum tunneling, time evolutionEnergy quantization, stationary statesEnergy DependenceNot necessarily constant (unless VVV is constant)Energy is a constant parameter EEEExample UsageParticle decay, wave packet propagationParticle in a box, hydrogen atom energy levels
+
+4. Applications:
+
+Time-Dependent Schrödinger Equation:
+
+Quantum tunneling
+Time evolution of wave packets
+Quantum computing
+
+
+Time-Independent Schrödinger Equation:
+
+Quantum harmonic oscillator
+Particle in a box
+Hydrogen atom model
+
+
+
+
+
+📝 NOTE: The TISE is often used for systems in equilibrium, while the TDSE is essential for understanding dynamic quantum phenomena.
+
+
+Conclusion:
+
+The Time-Dependent Schrödinger Equation (TDSE) describes how quantum systems evolve over time.
+The Time-Independent Schrödinger Equation (TISE) describes stationary states with constant energy.
+Both equations are essential for understanding quantum mechanics and provide deep insights into the behavior of particles at microscopic scales.
+
+
+Particle in a Box Problem
+Introduction:
+The Particle in a Box is a fundamental problem in quantum mechanics used to illustrate the principles of quantization and wave functions. It describes a particle that is free to move in a region of space (a “box”) but is confined by infinitely high potential walls outside this region.
+
+Assumptions:
+
+The particle is confined to a one-dimensional box with perfectly rigid walls.
+The potential energy V(x)V(x)V(x) inside the box is zero (V(x)=0V(x) = 0V(x)=0 for 0≤x≤L0 \leq x \leq L0≤x≤L).
+The potential energy outside the box is infinite (V(x)=∞V(x) = \inftyV(x)=∞ for x<0x < 0x<0 or x>Lx > Lx>L).
+The particle cannot escape the box due to the infinite potential outside.
+
+
+Schrödinger Equation:
+The time-independent Schrödinger equation for the particle inside the box is:
+−ℏ22md2Ψ(x)dx2=EΨ(x)-\frac{\hbar^2}{2m} \frac{d^2 \Psi(x)}{dx^2} = E \Psi(x)−2mℏ2​dx2d2Ψ(x)​=EΨ(x)
+where:
+
+ℏ\hbarℏ = Reduced Planck’s constant
+mmm = Mass of the particle
+EEE = Energy of the particle
+Ψ(x)\Psi(x)Ψ(x) = Wave function
+
+
+Boundary Conditions:
+
+Ψ(0)=0\Psi(0) = 0Ψ(0)=0 (The wave function must vanish at x=0x = 0x=0).
+Ψ(L)=0\Psi(L) = 0Ψ(L)=0 (The wave function must vanish at x=Lx = Lx=L).
+
+These conditions arise because the particle cannot exist outside the box, where the potential is infinite.
+
+Solution:
+The general solution for the wave function inside the box is:
+Ψ(x)=Asin⁡(kx)+Bcos⁡(kx)\Psi(x) = A \sin(kx) + B \cos(kx)Ψ(x)=Asin(kx)+Bcos(kx)
+Applying the boundary conditions:
+
+At x=0x = 0x=0: Ψ(0)=B=0\Psi(0) = B = 0Ψ(0)=B=0.
+Thus, Ψ(x)=Asin⁡(kx)\Psi(x) = A \sin(kx)Ψ(x)=Asin(kx).
+At x=Lx = Lx=L: Ψ(L)=Asin⁡(kL)=0\Psi(L) = A \sin(kL) = 0Ψ(L)=Asin(kL)=0.
+
+For A≠0A \neq 0A=0, sin⁡(kL)=0\sin(kL) = 0sin(kL)=0, which gives:
+kL=nπ(n=1,2,3,… )kL = n\pi \quad (n = 1, 2, 3, \dots)kL=nπ(n=1,2,3,…)
+Thus, kkk is quantized as:
+k=nπLk = \frac{n\pi}{L}k=Lnπ​
+
+Quantized Energy Levels:
+The energy EEE of the particle is related to kkk by:
+E=ℏ2k22mE = \frac{\hbar^2 k^2}{2m}E=2mℏ2k2​
+Substituting k=nπLk = \frac{n\pi}{L}k=Lnπ​:
+En=n2π2ℏ22mL2(n=1,2,3,… )E_n = \frac{n^2 \pi^2 \hbar^2}{2mL^2} \quad (n = 1, 2, 3, \dots)En​=2mL2n2π2ℏ2​(n=1,2,3,…)
+where nnn is the quantum number that determines the energy level.
+
+Wave Function:
+The normalized wave function for the particle is:
+Ψn(x)=2Lsin⁡(nπxL)\Psi_n(x) = \sqrt{\frac{2}{L}} \sin\left(\frac{n\pi x}{L}\right)Ψn​(x)=L2​​sin(Lnπx​)
+where n=1,2,3,…n = 1, 2, 3, \dotsn=1,2,3,….
+
+Key Features:
+
+Quantization: The energy of the particle is quantized, meaning it can only take discrete values EnE_nEn​.
+Wave Function Nodes: For the nnn-th state, there are n−1n - 1n−1 nodes (points where Ψ(x)=0\Psi(x) = 0Ψ(x)=0 inside the box).
+Ground State: The lowest energy level (n=1n = 1n=1) is:
+E1=π2ℏ22mL2E_1 = \frac{\pi^2 \hbar^2}{2mL^2}E1​=2mL2π2ℏ2​
+Higher Energy States: Higher quantum numbers correspond to higher energy levels and more complex wave functions.
+
+
+Probability Density:
+The probability density is given by:
+∣Ψn(x)∣2=2Lsin⁡2(nπxL)|\Psi_n(x)|^2 = \frac{2}{L} \sin^2\left(\frac{n\pi x}{L}\right)∣Ψn​(x)∣2=L2​sin2(Lnπx​)
+
+The probability of finding the particle is highest where the wave function has peaks.
+The particle is least likely to be found at the nodes (∣Ψ(x)∣2=0|\Psi(x)|^2 = 0∣Ψ(x)∣2=0).
+
+
+Applications:
+
+Quantum Confinement: Understanding electrons in nanostructures like quantum dots.
+Spectroscopy: Explains discrete energy levels in atoms and molecules.
+Foundation of Quantum Mechanics: Demonstrates the principles of quantization and wave behavior.
+
+
+
+📝 NOTE: The particle in a box model is an idealized system, but it effectively illustrates fundamental quantum mechanics principles.
+
+
+Conclusion:
+The Particle in a Box problem is a cornerstone of quantum mechanics that demonstrates how confinement leads to quantized energy levels and wave functions. It provides critical insights into the behaviour of particles in quantum systems.
+
+QUIZ TIME 🧠
+Question number1 out of 10Who developed classical mechanics?Isaac NewtonAlbert EinsteinLouis de BroglieErwin SchrödingerSubmit12345NextMailTwitterGitHubRamxcodes

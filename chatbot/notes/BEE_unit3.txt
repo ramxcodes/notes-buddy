@@ -1,0 +1,735 @@
+Unit 3: Basic Electrical EngineeringNotes BuddyTop ContributorsNotes About usGitHubTwitterToggle Menu Change Font & SizeUnit 3: Basic Electrical EngineeringBasic Electrical Engineering 1st Semester 1st Year B Tech Definitions of terms (m.m.f, reluctance, flux, magnetic flux density, magnetic field intensity, absolute & relative permeability), B-H curve - Hysteresis loop, Faradays laws of electromagnetic induction, analogy between electric and magnetic circuits, self inductance and mutual inductance, coefficient of coupling, coils connected in series and parallel, Types of induced EMF’s, Simple problems.
+Definitions of Terms
+Magnetomotive Force (m.m.f)
+
+Definition: Magnetomotive force (m.m.f) is the magnetic equivalent of electromotive force (e.m.f) in an electrical circuit. It drives the magnetic flux through a magnetic circuit.
+Formula:
+m.m.f.=N⋅I\text{m.m.f.} = N \cdot Im.m.f.=N⋅I
+where:
+NNN = Number of turns
+III = Current in amperes
+Unit: Ampere-Turns (AT)
+Key Concept: Higher m.m.f. results in stronger magnetic flux.
+
+
+Reluctance
+
+Definition: Reluctance is the opposition offered by a magnetic circuit to the flow of magnetic flux. It is analogous to electrical resistance.
+Formula:
+R=lμA\mathcal{R} = \frac{l}{\mu A}R=μAl​
+where:
+lll = Length of the magnetic path
+μ\muμ = Permeability of the material
+AAA = Cross-sectional area
+Unit: Ampere-turn per Weber (AT/Wb)
+Key Concept: Higher reluctance means lower magnetic flux for a given m.m.f.
+
+
+Magnetic Flux (Φ)
+
+Definition: Magnetic flux represents the total magnetic field passing through a surface.
+Formula:
+Φ=B⋅A\Phi = B \cdot AΦ=B⋅A
+where:
+BBB = Magnetic flux density
+AAA = Cross-sectional area
+Unit: Weber (Wb)
+Key Concept: Magnetic flux indicates the quantity of magnetism generated.
+
+
+Magnetic Flux Density (B)
+
+Definition: Magnetic flux density is the amount of magnetic flux per unit area.
+Formula:
+B=ΦAB = \frac{\Phi}{A}B=AΦ​
+Unit: Tesla (T)
+Key Concept: Magnetic flux density indicates how concentrated the magnetic field is.
+
+
+Magnetic Field Intensity (H)
+
+Definition: Magnetic field intensity describes the strength of a magnetic field produced by an electric current.
+Formula:
+H=N⋅IlH = \frac{N \cdot I}{l}H=lN⋅I​
+where:
+N⋅IN \cdot IN⋅I = Magnetomotive force
+lll = Length of the magnetic path
+Unit: Ampere per meter (A/m)
+
+
+Permeability (Absolute & Relative)
+Absolute Permeability (μ\muμ)
+
+Definition: Absolute permeability (μ\muμ) is the ability of a material to support the formation of a magnetic field.
+Formula:
+μ=μ0⋅μr\mu = \mu_0 \cdot \mu_rμ=μ0​⋅μr​
+where:
+μ0\mu_0μ0​ = Permeability of free space (4π×10−74\pi \times 10^{-7}4π×10−7 H/m)
+μr\mu_rμr​ = Relative permeability
+
+
+Relative Permeability (μr\mu_rμr​)
+
+Definition: Relative permeability (μr\mu_rμr​) is the ratio of the permeability of a material to the permeability of free space.
+Formula:
+μr=μμ0\mu_r = \frac{\mu}{\mu_0}μr​=μ0​μ​
+Key Concept:
+
+For vacuum: μr=1 \mu_r = 1μr​=1
+For ferromagnetic materials: μr>1\mu_r > 1μr​>1
+For non-magnetic materials: μr≈1\mu_r \approx 1μr​≈1
+
+
+
+
+Key Relationships Summary:
+
+Magnetic flux: Φ=B⋅A\Phi = B \cdot AΦ=B⋅A
+Magnetic flux density: B=ΦAB = \frac{\Phi}{A}B=AΦ​
+Magnetic field intensity: H=N⋅IlH = \frac{N \cdot I}{l}H=lN⋅I​
+Reluctance: R=lμA\mathcal{R} = \frac{l}{\mu A}R=μAl​
+
+
+B-H Curve and Hysteresis Loop
+Introduction
+The B-H curve (Magnetic Flux Density vs. Magnetic Field Intensity curve) describes the relationship between magnetic flux density BBB and magnetic field intensity HHH for a magnetic material. It plays a crucial role in understanding the magnetic properties of materials, particularly in transformers, inductors, and other magnetic devices.
+
+B-H Curve Explanation
+
+Magnetic Field Intensity (H): It represents the strength of the magnetic field applied to a material.
+Magnetic Flux Density (B): It represents the amount of magnetic flux generated in the material due to the applied magnetic field.
+
+Key Points on the B-H Curve:
+
+Initial Magnetization Curve:
+
+When a magnetic material is unmagnetized and a magnetic field is applied, the magnetic flux density increases non-linearly.
+
+
+Saturation Point:
+
+At a certain point, increasing HHH does not significantly increase BBB. The material is said to be saturated.
+
+
+Non-Linear Behaviour:
+
+The curve starts to bend as it reaches saturation due to the alignment of magnetic domains.
+
+
+
+
+Hysteresis Loop Explanation
+The hysteresis loop describes the lagging behaviour of magnetic flux density BBB behind the applied magnetic field intensity HHH. It explains the energy loss in magnetic materials during the magnetization and demagnetization cycle.
+Steps of the Hysteresis Loop:
+
+Initial Magnetization:
+
+Starting from an unmagnetized state (origin).
+
+
+Forward Magnetization (O to A):
+
+As HHH increases, BBB rises to the saturation point A.
+
+
+Reducing H (A to B):
+
+When HHH is reduced back to zero, some residual magnetism (retentivity) remains at point B.
+
+
+Reversing H (B to C):
+
+Applying a negative HHH reduces BBB to zero and further to the opposite saturation point C.
+
+
+Reducing Negative H (C to D):
+
+Removing the negative field leaves some magnetism (opposite direction).
+
+
+Reapplying Positive H (D to A):
+
+Increasing positive HHH back results in another cycle, completing the loop.
+
+
+
+
+Key Parameters in the Hysteresis Loop
+
+Retentivity (BrB_rBr​):
+
+The magnetic flux density left in the material when the magnetic field is zero.
+
+
+Coercivity (HcH_cHc​):
+
+The amount of reverse magnetic field required to reduce the magnetic flux density to zero.
+
+
+Saturation Point:
+
+The maximum flux density a material can achieve under a magnetic field.
+
+
+Area of the Loop:
+
+Represents energy loss due to hysteresis loss during one complete cycle of magnetization and demagnetization.
+
+
+
+
+Hysteresis Loss Formula
+The energy loss per cycle of magnetization is calculated by:
+W=η⋅VW = \eta \cdot VW=η⋅V
+where:
+WWW = Energy loss per cycle
+η\etaη = Area of the hysteresis loop
+VVV = Volume of the material
+
+Applications of the B-H Curve and Hysteresis Loop
+
+Transformers: Core materials with low hysteresis loss reduce energy wastage.
+Inductors: Magnetic properties influence the efficiency of inductors.
+Magnetic Storage Devices: Hysteresis is crucial for understanding data retention in magnetic storage.
+
+
+Key Takeaways:
+
+Soft Magnetic Materials: Narrow hysteresis loop, low energy loss, used in transformers.
+Hard Magnetic Materials: Wide hysteresis loop, high energy loss, used in permanent magnets.
+
+
+Faraday’s Laws of Electromagnetic Induction
+Introduction
+Faraday’s Laws of Electromagnetic Induction explain how a changing magnetic field induces an electromotive force (EMF) in a conductor. These laws form the foundation for many electrical machines like transformers, generators, and inductors.
+
+Faraday’s First Law of Electromagnetic Induction
+Statement:
+Whenever there is a change in the magnetic flux linked with a conductor, an electromotive force (EMF) is induced in the conductor.
+Key Concepts:
+
+Magnetic Flux (Φ\PhiΦ): The measure of the magnetic field passing through a surface.
+Change in Flux: If magnetic flux through a coil changes, it induces an EMF.
+Electromotive Force (EMF): The voltage generated due to changing magnetic flux.
+
+Formula:
+The magnitude of the induced EMF depends on the rate of change of magnetic flux:
+EMF=−dΦdt\text{EMF} = - \frac{d\Phi}{dt}EMF=−dtdΦ​
+where:
+Φ\PhiΦ = Magnetic flux (Weber)
+ttt = Time (seconds)
+
+Faraday’s Second Law of Electromagnetic Induction
+Statement:
+The magnitude of the induced EMF is directly proportional to the rate of change of magnetic flux and the number of turns in the coil.
+Key Concepts:
+
+Number of Turns (N): More turns in the coil, higher the induced EMF.
+Rate of Change: Faster change in magnetic flux increases the induced EMF.
+
+Formula:
+EMF=−NdΦdt\text{EMF} = -N \frac{d\Phi}{dt}EMF=−NdtdΦ​
+where:
+NNN = Number of turns in the coil
+
+Lenz’s Law (Extension of Faraday’s Law)
+Statement:
+The direction of the induced EMF is such that it opposes the change in magnetic flux that produced it.
+Key Concepts:
+
+The negative sign in the formula indicates opposition to the cause.
+Ensures the conservation of energy by resisting the change.
+
+
+Factors Affecting Induced EMF
+
+Rate of Change of Magnetic Flux:
+
+Faster flux changes result in higher EMF.
+
+
+Number of Turns (N):
+
+More turns in the coil, greater the EMF.
+
+
+Strength of Magnetic Field:
+
+Stronger magnetic field leads to higher magnetic flux.
+
+
+Area of the Coil:
+
+Larger the area, more flux linkage.
+
+
+
+
+Applications of Faraday’s Laws
+
+Generators: Convert mechanical energy into electrical energy using electromagnetic induction.
+Transformers: Work on the principle of mutual induction governed by Faraday’s laws.
+Inductive Sensors: Used in proximity sensors and metal detectors.
+Electromagnetic Braking: Induced currents create magnetic fields opposing motion for braking action.
+
+
+Examples of Electromagnetic Induction:
+
+Simple Coil and Magnet: Moving a magnet in and out of a coil generates an EMF.
+AC Generator: Rotating a coil in a magnetic field generates alternating current.
+
+
+Key Formula Recap:
+
+EMF Induced:
+EMF=−NdΦdt\text{EMF} = -N \frac{d\Phi}{dt}EMF=−NdtdΦ​
+Magnetic Flux:
+Φ=B⋅A⋅cos⁡(θ)\Phi = B \cdot A \cdot \cos(\theta)Φ=B⋅A⋅cos(θ)
+
+where:
+BBB = Magnetic flux density (T)
+AAA = Area of the coil (m²)
+θ\thetaθ = Angle between field and area vector
+
+Analogy Between Electric and Magnetic Circuits
+Introduction
+An electric circuit deals with the flow of electric current, whereas a magnetic circuit deals with the flow of magnetic flux. Though both phenomena differ fundamentally, they share many similarities, making the magnetic circuit concept useful in analyzing magnetic fields in electrical devices like transformers, motors, and generators.
+
+Electric Circuit vs. Magnetic Circuit Analogy
+The following table compares the corresponding quantities in both circuits:
+Electric CircuitMagnetic CircuitElectric Current III (A)Magnetic Flux Φ\PhiΦ (Weber)Electromotive Force (EMF) EEE (V)Magnetomotive Force (MMF) FFF (AT)Resistance RRR (Ohm)Reluctance R\mathcal{R}R (AT/Wb)Conductivity σ\sigmaσPermeability μ\muμVoltage Drop V=IRV = IRV=IRMagnetic Drop F=Φ⋅RF = \Phi \cdot \mathcal{R}F=Φ⋅ROhm’s Law: V=I⋅RV = I \cdot RV=I⋅RMagnetic Ohm’s Law: F=Φ⋅RF = \Phi \cdot \mathcal{R}F=Φ⋅R
+
+Key Analogies Explained
+1. Flow of Current vs. Flow of Magnetic Flux
+
+Electric Circuit: Current III is the flow of electric charge.
+Magnetic Circuit: Flux Φ\PhiΦ is the flow of magnetic lines of force.
+
+
+2. Electromotive Force (EMF) vs. Magnetomotive Force (MMF)
+
+EMF: Drives the electric current through the circuit.
+MMF: Drives magnetic flux through a magnetic circuit.
+Formula:
+
+EMF: E=I⋅RE = I \cdot RE=I⋅R
+MMF: F=N⋅IF = N \cdot IF=N⋅I
+
+
+
+
+3. Resistance vs. Reluctance
+
+Resistance: Opposes the flow of current in an electric circuit.
+Reluctance: Opposes the flow of magnetic flux in a magnetic circuit.
+Formula:
+
+R=lσAR = \frac{l}{\sigma A}R=σAl​
+R=lμA\mathcal{R} = \frac{l}{\mu A}R=μAl​
+
+
+
+
+4. Permeability vs. Conductivity
+
+Conductivity (σ\sigmaσ): Ease with which electric current flows through a material.
+Permeability (μ\muμ): Ease with which magnetic flux flows through a material.
+
+
+Key Equations:
+Electric Circuit (Ohm’s Law):
+V=I⋅RV = I \cdot RV=I⋅R
+Magnetic Circuit (Magnetic Ohm’s Law):
+F=Φ⋅RF = \Phi \cdot \mathcal{R}F=Φ⋅R
+
+Differences Between Electric and Magnetic Circuits:
+Electric CircuitMagnetic CircuitFlow of electrons through conductors.Flow of magnetic flux through a core.Energy is dissipated due to resistance.No energy dissipation, but hysteresis loss occurs.Electric current exists outside the conductor.Magnetic flux remains confined to the core.Measured in Amperes (A).Measured in Webers (Wb).
+
+Applications of Magnetic Circuit Concepts:
+
+Transformers: Magnetic circuits guide flux in transformer cores.
+Electric Motors: Magnetic circuits help in torque generation.
+Inductors: Magnetic circuits determine energy storage capacity.
+
+
+Self Inductance and Mutual Inductance
+Introduction
+Inductance is the property of a conductor by which a change in current induces an electromotive force (EMF). Self inductance and mutual inductance describe how this occurs in a single coil and between two coils, respectively.
+
+Self Inductance
+Definition:
+Self-inductance is the property of a coil by which a change in current flowing through it induces an EMF in the same coil due to the magnetic field created by the current.
+Explanation:
+
+When the current in a coil changes, it generates a changing magnetic field around the coil.
+This changing magnetic field induces an EMF that opposes the change in current (as per Lenz’s Law).
+
+Mathematical Formula:
+The self-induced EMF is given by:
+E=−LdIdtE = -L \frac{dI}{dt}E=−LdtdI​
+where:
+
+EEE = Induced EMF (Volts)
+LLL = Self Inductance (Henry, H)
+III = Current (Amperes)
+ttt = Time (seconds)
+
+
+Self Inductance Formula:
+L=NΦIL = \frac{N\Phi}{I}L=INΦ​
+where:
+
+LLL = Self Inductance (Henry)
+NNN = Number of turns
+Φ\PhiΦ = Magnetic flux linked (Weber)
+III = Current (Amperes)
+
+
+Factors Affecting Self Inductance:
+
+Number of Turns: L∝N2L \propto N^2L∝N2 (More turns, higher inductance)
+Core Material: Permeable materials increase inductance.
+Length and Area: Larger cross-sectional area and shorter length increase inductance.
+
+
+Mutual Inductance
+Definition:
+Mutual Inductance occurs when a changing current in one coil induces an EMF in a nearby coil due to the magnetic flux generated by the first coil.
+
+Explanation:
+
+When the current in coil 1 changes, it produces a magnetic flux.
+A portion of this magnetic flux links with coil 2, inducing an EMF in coil 2.
+
+
+Mathematical Formula:
+The mutually induced EMF is given by:
+E2=−MdI1dtE_2 = -M \frac{dI_1}{dt}E2​=−MdtdI1​​
+where:
+
+E2E_2E2​ = Induced EMF in coil 2 (Volts)
+MMM = Mutual Inductance (Henry)
+I1I_1I1​ = Current in coil 1 (Amperes)
+ttt = Time (seconds)
+
+
+Mutual Inductance Formula:
+M=N2Φ12I1M = \frac{N_2 \Phi_{12}}{I_1}M=I1​N2​Φ12​​
+where:
+
+MMM = Mutual Inductance (Henry)
+N2N_2N2​ = Number of turns in coil 2
+Φ12\Phi_{12}Φ12​ = Magnetic flux linked with coil 2 due to current in coil 1
+I1I_1I1​ = Current in coil 1
+
+
+Coefficient of Coupling (k)
+Definition:
+The coefficient of coupling determines how effectively magnetic flux from one coil links with another.
+Formula:
+k=ML1L2k = \frac{M}{\sqrt{L_1 L_2}}k=L1​L2​​M​
+where:
+
+kkk = Coefficient of coupling (0 ≤ k ≤ 1)
+MMM = Mutual Inductance (H)
+L1,L2L_1, L_2L1​,L2​ = Self inductances of coils
+
+
+Difference Between Self and Mutual Inductance:
+AspectSelf InductanceMutual InductanceDefinitionEMF induced in a coil due to its own current change.EMF induced in a secondary coil due to current change in a primary coil.SymbolLLLMMMFormulaL=NΦIL = \frac{N\Phi}{I}L=INΦ​M=N2Φ12I1M = \frac{N_2\Phi_{12}}{I_1}M=I1​N2​Φ12​​UnitHenry (H)Henry (H)Nature of Flux LinkageMagnetic flux links the same coil.Magnetic flux links two different coils.ApplicationsChokes, inductors, solenoids.Transformers, mutual inductors.
+
+Applications:
+
+Self Inductance:
+
+Used in chokes to limit AC in circuits.
+Used in inductors for energy storage.
+
+
+Mutual Inductance:
+
+Basis for transformers.
+Used in wireless charging and inductive coupling systems.
+
+
+
+
+Key Takeaways:
+
+Self-inductance opposes current change within a single coil.
+Mutual inductance involves magnetic interaction between two coils.
+Inductance depends on coil geometry and core material.
+
+
+Coefficient of Coupling
+Introduction
+The coefficient of coupling (kkk) measures the degree to which magnetic flux from one coil links with another coil in a magnetic circuit. It indicates how effectively two coils interact magnetically and is essential in the study of transformers, inductors, and mutual inductance systems.
+
+Definition:
+The coefficient of coupling is defined as the fraction of magnetic flux produced in the primary coil that links with the secondary coil. It describes the efficiency of magnetic linkage between two coils.
+
+Mathematical Formula:
+The coefficient of coupling is given by:
+k=ML1L2k = \frac{M}{\sqrt{L_1 L_2}}k=L1​L2​​M​
+where:
+
+kkk = Coefficient of coupling (dimensionless, 0≤k≤10 \leq k \leq 10≤k≤1)
+MMM = Mutual inductance (Henry)
+L1L_1L1​ = Self-inductance of coil 1 (Henry)
+L2L_2L2​ = Self-inductance of coil 2 (Henry)
+
+
+Range of Values:
+
+k=1k = 1k=1: Perfect coupling (100% flux linkage).
+k=0k = 0k=0: No coupling (no flux linkage).
+0<k<10 < k < 10<k<1: Partial coupling, common in most practical cases.
+
+
+Physical Meaning of Coefficient of Coupling:
+
+If k=1k = 1k=1, all magnetic flux produced in coil 1 links with coil 2 (ideal case, rarely practical).
+If k=0k = 0k=0, no magnetic flux from coil 1 links with coil 2 (completely isolated).
+If k=0.5k = 0.5k=0.5, only 50% of the magnetic flux links with coil 2.
+
+
+Factors Affecting Coefficient of Coupling:
+
+Distance Between Coils:
+
+Greater distance reduces coupling.
+
+
+Relative Orientation:
+
+Coils parallel to each other have better coupling.
+
+
+Core Material:
+
+High permeability materials improve coupling.
+
+
+Number of Turns:
+
+More turns improve magnetic linkage.
+
+
+
+
+Mutual Inductance and Coefficient of Coupling Relation:
+The mutual inductance can be derived from the coefficient of coupling:
+M=kL1L2M = k \sqrt{L_1 L_2}M=kL1​L2​​
+
+Applications of Coefficient of Coupling:
+
+Transformers: Determines energy transfer efficiency between primary and secondary windings.
+Wireless Charging: Higher coupling improves power transfer efficiency.
+Inductive Sensors: Used in metal detectors and proximity sensors.
+
+
+Practical Example:
+If:
+
+L1=4 HL_1 = 4 \, \text{H}L1​=4H
+L2=9 HL_2 = 9 \, \text{H}L2​=9H
+M=6 HM = 6 \, \text{H}M=6H
+
+Then:
+k=64⋅9=66=1k = \frac{6}{\sqrt{4 \cdot 9}} = \frac{6}{6} = 1k=4⋅9​6​=66​=1
+This indicates perfect coupling.
+
+Key Takeaways:
+
+The coefficient of coupling measures magnetic flux linkage between two coils.
+Perfect coupling is rare; most practical systems have partial coupling.
+It directly affects mutual inductance and transformer efficiency.
+
+
+Coils Connected in Series and Parallel
+Introduction
+When inductors or coils are combined in electrical circuits, they can be connected either in series or parallel. The total inductance depends on the way the coils are connected and whether they are magnetically coupled. These configurations are important in transformers, filters, and tuning circuits.
+
+Series Connection of Coils
+Definition:
+When coils are connected end-to-end, with the same current flowing through each coil, they are said to be connected in series.
+
+Inductance in Series Without Magnetic Coupling:
+For coils not magnetically coupled, the total inductance is simply the sum of individual inductances:
+Ltotal=L1+L2+L3+…+LnL_{\text{total}} = L_1 + L_2 + L_3 + \ldots + L_nLtotal​=L1​+L2​+L3​+…+Ln​
+
+Inductance in Series With Magnetic Coupling:
+When coils are magnetically coupled, mutual inductance must be considered. The total inductance is affected by the coefficient of coupling (k).
+
+
+If the coils aid each other (magnetic flux reinforces):
+Ltotal=L1+L2+2ML_{\text{total}} = L_1 + L_2 + 2MLtotal​=L1​+L2​+2M
+
+
+If the coils oppose each other (magnetic flux cancels):
+Ltotal=L1+L2−2ML_{\text{total}} = L_1 + L_2 - 2MLtotal​=L1​+L2​−2M
+
+
+where:
+
+MMM = Mutual inductance (Henry)
+L1,L2L_1, L_2L1​,L2​ = Self-inductances of coils
+
+
+Key Characteristics:
+
+Current: Same through all coils.
+Voltage: Sum of individual voltages across each coil.
+Inductance: Total inductance is higher than individual inductors.
+
+
+Applications of Series Connection:
+
+Increasing total inductance in tuning circuits.
+Creating low-pass filters.
+
+
+Parallel Connection of Coils
+Definition:
+When coils are connected such that their terminals share the same two nodes, they are said to be connected in parallel.
+
+Inductance in Parallel Without Magnetic Coupling:
+For coils not magnetically coupled, the total inductance is calculated as:
+1Ltotal=1L1+1L2+1L3+…+1Ln\frac{1}{L_{\text{total}}} = \frac{1}{L_1} + \frac{1}{L_2} + \frac{1}{L_3} + \ldots + \frac{1}{L_n}Ltotal​1​=L1​1​+L2​1​+L3​1​+…+Ln​1​
+
+Inductance in Parallel With Magnetic Coupling:
+When mutual inductance exists between parallel coils, the total inductance is:
+
+
+If the coils aid each other:
+1Ltotal=1L1+1L2+2ML1L2\frac{1}{L_{\text{total}}} = \frac{1}{L_1} + \frac{1}{L_2} + \frac{2M}{L_1 L_2}Ltotal​1​=L1​1​+L2​1​+L1​L2​2M​
+
+
+If the coils oppose each other:
+1Ltotal=1L1+1L2−2ML1L2\frac{1}{L_{\text{total}}} = \frac{1}{L_1} + \frac{1}{L_2} - \frac{2M}{L_1 L_2}Ltotal​1​=L1​1​+L2​1​−L1​L2​2M​
+
+
+
+Key Characteristics:
+
+Voltage: Same across all coils.
+Current: Divided among the coils based on inductances.
+Inductance: Total inductance is lower than individual inductors.
+
+
+Applications of Parallel Connection:
+
+Reducing total inductance in tuning circuits.
+Parallel LC circuits for resonance tuning.
+
+
+Difference Between Series and Parallel Connection:
+AspectSeries ConnectionParallel ConnectionCurrent FlowSame through all coils.Divided among coils.Voltage Across CoilsDivided among coils.Same across all coils.Total Inductance FormulaLtotal=L1+L2L_{\text{total}} = L_1 + L_2Ltotal​=L1​+L2​1Ltotal=1L1+1L2\frac{1}{L_{\text{total}}} = \frac{1}{L_1} + \frac{1}{L_2}Ltotal​1​=L1​1​+L2​1​Inductance EffectTotal inductance increases.Total inductance decreases.ApplicationsLow-pass filters, tuning circuits.High-frequency filters, resonance circuits.
+
+Key Takeaways:
+
+Series: Higher inductance, same current through all coils.
+Parallel: Lower inductance, same voltage across all coils.
+Magnetic Coupling Matters: Mutual inductance affects total inductance in both configurations.
+
+
+Types of Induced EMF and Simple Problems
+Introduction:
+Electromotive Force (EMF) is the voltage generated due to the relative motion between a conductor and a magnetic field or a changing magnetic field. Based on how the EMF is generated, it can be classified into different types.
+
+Types of Induced EMF:
+1. Dynamically Induced EMF
+
+
+Definition: EMF induced when a conductor moves through a stationary magnetic field, cutting magnetic flux lines.
+
+
+Example: Generators, moving a wire in a magnetic field.
+
+
+Formula:
+E=B⋅l⋅v⋅sin⁡(θ)E = B \cdot l \cdot v \cdot \sin(\theta)E=B⋅l⋅v⋅sin(θ)
+where:
+BBB = Magnetic flux density (T)
+lll = Length of conductor (m)
+vvv = Velocity of the conductor (m/s)
+θ\thetaθ = Angle between the conductor and magnetic field lines
+
+
+
+2. Statically Induced EMF
+
+Definition: EMF induced when there is no relative motion between the conductor and magnetic field, but the magnetic flux changes with time.
+Example: Transformers, inductors.
+
+Types of Statically Induced EMF:
+
+
+Self-Induced EMF:
+
+EMF induced within the same coil due to its own changing magnetic field.
+E=−LdIdtE = -L \frac{dI}{dt}E=−LdtdI​
+
+
+
+Mutually Induced EMF:
+
+EMF induced in a secondary coil due to the changing magnetic field created by a current in the primary coil.
+E=−MdIdtE = -M \frac{dI}{dt}E=−MdtdI​
+
+
+
+
+3. Transformer EMF
+
+Definition: EMF induced when alternating current (AC) flows through a coil, creating a time-varying magnetic flux that induces an EMF in another coil.
+Example: Step-up and step-down transformers.
+Formula:
+E=NdΦdtE = N \frac{d\Phi}{dt}E=NdtdΦ​
+
+
+Key Differences Between Dynamically and Statically Induced EMF:
+AspectDynamically Induced EMFStatically Induced EMFConductor MovementConductor moves in a magnetic field.No conductor movement.Flux Change MechanismDue to physical movement.Due to changing current or flux.ExampleGenerator, rotating coil.Transformer, inductor.FormulaE=B⋅l⋅v⋅sin⁡(θ)E = B \cdot l \cdot v \cdot \sin(\theta)E=B⋅l⋅v⋅sin(θ)E=−LdIdtE = -L \frac{dI}{dt}E=−LdtdI​
+
+Simple Problems:
+Problem 1: Calculating Dynamically Induced EMF
+A conductor of length 0.5 m moves perpendicularly with a velocity of 3 m/s through a magnetic field of 0.8 T. Calculate the induced EMF.
+Solution:
+Given:
+B=0.8 TB = 0.8 \ TB=0.8 T
+l=0.5 ml = 0.5 \ ml=0.5 m
+v=3 m/sv = 3 \ m/sv=3 m/s
+θ=90∘⇒sin⁡(θ)=1\theta = 90^\circ \Rightarrow \sin(\theta) = 1θ=90∘⇒sin(θ)=1
+Using the formula:
+E=B⋅l⋅v⋅sin⁡(θ)E = B \cdot l \cdot v \cdot \sin(\theta)E=B⋅l⋅v⋅sin(θ)
+E=0.8⋅0.5⋅3⋅1E = 0.8 \cdot 0.5 \cdot 3 \cdot 1E=0.8⋅0.5⋅3⋅1
+E=1.2 VE = 1.2 \ VE=1.2 V
+
+Problem 2: Calculating Self-Induced EMF
+A coil with an inductance of 2 H carries a current which changes at a rate of 4 A/s. Calculate the self-induced EMF.
+Solution:
+Given:
+L=2 HL = 2 \ HL=2 H
+dIdt=4 A/s\frac{dI}{dt} = 4 \ A/sdtdI​=4 A/s
+Using the formula:
+E=−LdIdtE = -L \frac{dI}{dt}E=−LdtdI​
+E=−2⋅4=−8 VE = -2 \cdot 4 = -8 \ VE=−2⋅4=−8 V
+The negative sign indicates the EMF opposes the current change (Lenz’s Law).
+
+Problem 3: Calculating Mutually Induced EMF
+Two coils have a mutual inductance of 3 H. If the current in the primary coil changes at a rate of 2 A/s, calculate the mutually induced EMF.
+Solution:
+Given:
+M=3 HM = 3 \ HM=3 H
+dIdt=2 A/s\frac{dI}{dt} = 2 \ A/sdtdI​=2 A/s
+Using the formula:
+E=−MdIdtE = -M \frac{dI}{dt}E=−MdtdI​
+E=−3⋅2=−6 VE = -3 \cdot 2 = -6 \ VE=−3⋅2=−6 V
+
+Key Takeaways:
+
+Dynamically Induced EMF: Movement required for induction.
+Statically Induced EMF: No movement, flux change occurs due to varying current.
+Self-Induced EMF: Within the same coil.
+Mutually Induced EMF: Between two coils due to flux linkage.
+Previous12345NextMailTwitterGitHubRamxcodes
