@@ -3,7 +3,7 @@ import RAG
 query = 'a'
 if __name__ == "__main__":
     # Load and index documents from the "notes" folder (run this once to index documents)
-    RAG.load_and_index_documents('notes-buddy\\chatbot\\notes')
+    RAG.load_and_index_documents('chatbot\\notes')
     convo = RAG.Conversation()
 
     while query!="exit":
@@ -31,5 +31,5 @@ if __name__ == "__main__":
 
 string = convo.conversation_history
 with open("conversation.txt", 'a') as file:
-    file.writelines(string)
+    file.write(string)
     file.write("\n")

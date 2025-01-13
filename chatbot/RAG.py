@@ -3,8 +3,8 @@ import torch  # Import torch to check CUDA availability
 from haystack.document_stores import InMemoryDocumentStore
 from haystack.nodes import BM25Retriever, FARMReader
 from haystack.pipelines import ExtractiveQAPipeline
-# from transformers import BertTokenizer, BertForQuestionAnswering
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import BertTokenizer, BertForQuestionAnswering
+# from transformers import AutoTokenizer, AutoModelForCausalLM
 
 # Initialize InMemory document store (no Elasticsearch required)
 document_store = InMemoryDocumentStore(use_bm25=True)
@@ -27,12 +27,13 @@ def load_and_index_documents(folder_path):
 # Initialize the retriever (BM25Retriever in this case)
 retriever = BM25Retriever(document_store=document_store)
 
-# Load the BERT model for question answering
-model_name = "mistralai/Mistral-7B-Instruct-v0.3"  # Pre-trained BERT model fine-tuned for QA
-tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.3")
-model = AutoModelForCausalLM.from_pretrained("mistralai/Mistral-7B-Instruct-v0.3")
-# model = BertForQuestionAnswering.from_pretrained(model_name)  # Load the model
-# tokenizer = BertTokenizer.from_pretrained(model_name)  # Load the tokenizer
+# # Load the BERT model for question answering
+# model_name = "mistralai/Mistral-7B-Instruct-v0.3"  # Pre-trained BERT model fine-tuned for QA
+# tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.3")
+# model = AutoModelForCausalLM.from_pretrained("mistralai/Mistral-7B-Instruct-v0.3")
+model_name = "bert-large-uncased-whole-word-masking-finetuned-squad"  # Pre-trained BERT model fine-tuned for QA
+model = BertForQuestionAnswering.from_pretrained(model_name)  # Load the model
+tokenizer = BertTokenizer.from_pretrained(model_name)  # Load the tokenizer
 
 # Move model to GPU if available
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
