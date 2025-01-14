@@ -88,13 +88,17 @@ Follow these steps to set up the project locally:
    ```bash
    pnpm install
    ```
+3. Generate a new prisma client for ui to work properly:
+ ```bash
+   npx prisma generate
+   ```
 
-3. Run the development server:
+4. Run the development server:
    ```bash
    pnpm run dev
    ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 
 ## Folder Structure
