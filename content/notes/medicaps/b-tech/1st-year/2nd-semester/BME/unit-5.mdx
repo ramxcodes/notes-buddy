@@ -1,0 +1,211 @@
+---
+title: "Unit 5: Basic Mechanical Engineering"
+description: Location of centroid and Moment of Inertia of plane areas, Perpendicular Axis and Parallel Axis theorems.
+date: 2025-01-14
+tags: ["Basic Mechanical Engineering", "2nd Semester", "1st Year", "B Tech"]
+published: true
+metadata:
+  university: "Medicaps University"
+  degree: "B Tech"
+  semester: "2nd Semester"
+  subject: "Basic Mechanical Engineering"
+---
+
+---
+
+
+
+## Centroid & Moment of Inertia
+
+### **Centroid:**
+### **Definition:**
+The **centroid** of a plane area is the point at which the entire area can be assumed to be concentrated for the purpose of analysis. It is the geometric center of a shape and depends on its shape and dimensions.
+
+### **Centroid Formula for a Plane Area:**
+The centroid coordinates $$(\bar{x}, \bar{y})$$ can be determined using the formulas:
+
+$$
+\bar{x} = \frac{\int_A x \,dA}{A}
+$$
+
+$$
+\bar{y} = \frac{\int_A y \,dA}{A}
+$$
+
+Where:  
+- $$\bar{x}, \bar{y}$$ = Centroid coordinates  
+- $$A$$ = Total area  
+- $$x, y$$ = Coordinates of the elemental area $$dA$$  
+
+---
+
+### **Centroid for Standard Shapes:**
+
+#### **1. Rectangle:**
+- Centroid: $$(\frac{b}{2}, \frac{h}{2})$$  
+- Base length = $$b$$  
+- Height = $$h$$  
+
+#### **2. Triangle:**
+- Centroid: $$(\frac{b}{3}, \frac{h}{3})$$ from the base.  
+
+#### **3. Circle:**
+- Centroid: $$(0, 0)$$ at the center.  
+
+#### **4. Semi-Circle:**
+- Centroid: $$(0, \frac{4r}{3\pi})$$  
+
+---
+
+### **Moment of Inertia:**
+### **Definition:**
+The **moment of inertia (MOI)** of a plane area is a measure of its resistance to rotation about an axis. It depends on the distribution of the area relative to the axis of rotation.
+
+---
+
+### **Mathematical Expression:**
+$$
+I_x = \int_A y^2 \,dA
+$$
+
+$$
+I_y = \int_A x^2 \,dA
+$$
+
+Where:  
+- $$I_x, I_y$$ = Moments of inertia about the x-axis and y-axis  
+- $$dA$$ = Elemental area  
+- $$x, y$$ = Distance of $$dA$$ from the respective axis  
+
+---
+
+### **Parallel Axis Theorem:**
+If the moment of inertia of an area about its own centroidal axis is known, the moment of inertia about any parallel axis can be calculated using:
+
+$$
+I = I_{centroidal} + A d^2
+$$
+
+Where:  
+- $$I$$ = Moment of inertia about a parallel axis  
+- $$I_{centroidal}$$ = Moment of inertia about the centroid  
+- $$A$$ = Area of the shape  
+- $$d$$ = Distance between the centroidal axis and the parallel axis  
+
+---
+
+### **Perpendicular Axis Theorem:**
+The sum of the moments of inertia about two perpendicular axes in the plane is equal to the moment of inertia about the axis perpendicular to the plane.
+
+$$
+I_z = I_x + I_y
+$$
+
+---
+
+### **Moment of Inertia for Standard Shapes:**
+
+#### **1. Rectangle:**
+- About centroidal x-axis:  
+  $$
+  I_x = \frac{bh^3}{12}
+  $$  
+- About centroidal y-axis:  
+  $$
+  I_y = \frac{hb^3}{12}
+  $$  
+
+#### **2. Triangle:**
+- About centroidal x-axis:  
+  $$
+  I_x = \frac{bh^3}{36}
+  $$  
+
+#### **3. Circle:**
+- About centroidal x or y-axis:  
+  $$
+  I_x = I_y = \frac{\pi r^4}{4}
+  $$  
+
+---
+
+## Perpendicular Axis and Parallel Axis Theorems
+
+### **Perpendicular Axis Theorem:**
+
+### **Definition:**
+The **Perpendicular Axis Theorem** states that for a plane area, the moment of inertia about an axis perpendicular to its plane (denoted as $$I_z$$) is equal to the sum of the moments of inertia about two mutually perpendicular axes lying in the plane of the area.
+
+### **Mathematical Formula:**
+$$
+I_z = I_x + I_y
+$$
+
+Where:  
+- $$I_z$$ = Moment of inertia about the **z-axis** (perpendicular to the plane).  
+- $$I_x$$ = Moment of inertia about the **x-axis** (horizontal axis in the plane).  
+- $$I_y$$ = Moment of inertia about the **y-axis** (vertical axis in the plane).  
+
+### **Conditions:**
+- The theorem is applicable only to **plane areas**.  
+- The **z-axis** must be perpendicular to the plane and pass through the point of intersection of the **x** and **y** axes.  
+
+### **Proof (for a Circular Disc):**
+For a circular disc with radius $$r$$:  
+- Moment of inertia about the x-axis: $$I_x = \frac{\pi r^4}{4}$$  
+- Moment of inertia about the y-axis: $$I_y = \frac{\pi r^4}{4}$$  
+
+According to the perpendicular axis theorem:  
+$$
+I_z = I_x + I_y = \frac{\pi r^4}{4} + \frac{\pi r^4}{4} = \frac{\pi r^4}{2}
+$$
+
+---
+
+### **Applications of Perpendicular Axis Theorem:**
+- Used in **circular discs** and **symmetrical plane figures**.  
+- Helps calculate **polar moment of inertia** for rotational problems.  
+- Used in **mechanical and structural designs** involving symmetrical components.
+
+---
+
+### **Parallel Axis Theorem:**
+
+### **Definition:**
+The **Parallel Axis Theorem** states that the moment of inertia of a body about any axis parallel to the centroidal axis is equal to the moment of inertia about the centroidal axis plus the product of the area and the square of the distance between the two axes.
+
+### **Mathematical Formula:**
+$$
+I = I_{centroidal} + A d^2
+$$
+
+Where:  
+- $$I$$ = Moment of inertia about the new axis.  
+- $$I_{centroidal}$$ = Moment of inertia about the centroidal axis.  
+- $$A$$ = Area of the shape.  
+- $$d$$ = Perpendicular distance between the two axes.  
+
+### **Conditions:**
+- The axis should be parallel to the centroidal axis.  
+- The area of the plane should be finite and symmetrical.  
+
+### **Proof (for a Rectangular Section):**
+For a rectangle of width $$b$$ and height $$h$$ about the **centroidal x-axis**:  
+$$
+I_{centroidal} = \frac{bh^3}{12}
+$$
+
+For an axis parallel to the centroidal axis at a distance $$d$$:  
+$$
+I = \frac{bh^3}{12} + A d^2
+$$
+
+Where $$A = b \times h$$.  
+
+---
+
+### **Applications of Parallel Axis Theorem:**
+- Calculating moments of inertia for **composite bodies**.  
+- Used in **beams** and **columns** in structural engineering.  
+- Essential in **rotational dynamics** problems.  
+
