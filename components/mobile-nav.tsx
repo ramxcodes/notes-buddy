@@ -25,12 +25,13 @@ export function MobileNav() {
         <MobileLink
           onOpenChange={setOpen}
           href="/"
-          className="flex items-center"
+          className="flex items-center justify-center"
         >
-          <Icons.logo className="mr-2 h-4 w-4" />
-          <span className="font-bold">{siteConfig.name}</span>
+          <img src="/logo.png" alt="notes buddy logo" className="size-6" />
+          <span className="font-bold font-wotfard">{siteConfig.name}</span>
         </MobileLink>
-        <div className="flex flex-col gap-3 mt-3">
+        <div className="flex flex-col gap-3 mt-3 font-wotfard">
+          <hr />
           <button
             className="flex justify-between items-center text-left"
             onClick={() => setNotesOpen(!notesOpen)}
@@ -57,15 +58,12 @@ export function MobileNav() {
           <MobileLink onOpenChange={setOpen} href="/contributors">
             Top Contributors
           </MobileLink>
-          <Link target="_blank" rel="noreferrer" href={siteConfig.links.github}>
-            GitHub
-          </Link>
           <Link
             target="_blank"
             rel="noreferrer"
-            href={siteConfig.links.twitter}
+            href="https://chat.whatsapp.com/EcretA1N7eCFQeHecm1uWO"
           >
-            Twitter
+            Join Whatsapp community
           </Link>
         </div>
       </SheetContent>
