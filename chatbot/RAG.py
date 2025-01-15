@@ -3,7 +3,7 @@ import torch  # Import torch to check CUDA availability
 from haystack.document_stores import InMemoryDocumentStore
 from haystack.nodes import BM25Retriever, FARMReader
 from haystack.pipelines import SearchSummarizationPipeline
-from transformers import BertTokenizer, BertForQuestionAnswering
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
 # Initialize InMemory document store (no Elasticsearch required)
 document_store = InMemoryDocumentStore(use_bm25=True)
@@ -26,16 +26,16 @@ def load_and_index_documents(folder_path):
 # Initialize the retriever (BM25Retriever in this case)
 retriever = BM25Retriever(document_store=document_store)
 
-model_name = "bert-large-uncased-whole-word-masking-finetuned-squad"  # Pre-trained BERT model fine-tuned for QA
-model = BertForQuestionAnswering.from_pretrained(model_name)  # Load the model
-tokenizer = BertTokenizer.from_pretrained(model_name)  # Load the tokenizer
+# Load model directly
+tokenizer = AutoTokenizer.from_pretrained("google/flan-t5-large")
+model = AutoModelForSeq2SeqLM.from_pretrained("google/flan-t5-large")
 
 # Move model to GPU if available
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = model.to(device)  # Move model to GPU (if available)
 
 # Initialize FARMReader with the model name
-reader = FARMReader(model_name_or_path=model_name) 
+reader = FARMReader(model_name_or_path=model) 
 
 # Define the pipeline for extractive question answering
 pipeline = SearchSummarizationPipeline(reader, retriever)
