@@ -2,9 +2,8 @@ import os
 import torch  # Import torch to check CUDA availability
 from haystack.document_stores import InMemoryDocumentStore
 from haystack.nodes import BM25Retriever, FARMReader
-from haystack.pipelines import ExtractiveQAPipeline
+from haystack.pipelines import SearchSummarizationPipeline
 from transformers import BertTokenizer, BertForQuestionAnswering
-# from transformers import AutoTokenizer, AutoModelForCausalLM
 
 # Initialize InMemory document store (no Elasticsearch required)
 document_store = InMemoryDocumentStore(use_bm25=True)
@@ -27,10 +26,6 @@ def load_and_index_documents(folder_path):
 # Initialize the retriever (BM25Retriever in this case)
 retriever = BM25Retriever(document_store=document_store)
 
-# # Load the BERT model for question answering
-# model_name = "mistralai/Mistral-7B-Instruct-v0.3"  # Pre-trained BERT model fine-tuned for QA
-# tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-Instruct-v0.3")
-# model = AutoModelForCausalLM.from_pretrained("mistralai/Mistral-7B-Instruct-v0.3")
 model_name = "bert-large-uncased-whole-word-masking-finetuned-squad"  # Pre-trained BERT model fine-tuned for QA
 model = BertForQuestionAnswering.from_pretrained(model_name)  # Load the model
 tokenizer = BertTokenizer.from_pretrained(model_name)  # Load the tokenizer
@@ -43,7 +38,7 @@ model = model.to(device)  # Move model to GPU (if available)
 reader = FARMReader(model_name_or_path=model_name) 
 
 # Define the pipeline for extractive question answering
-pipeline = ExtractiveQAPipeline(reader, retriever)
+pipeline = SearchSummarizationPipeline(reader, retriever)
 
 # Function to run the RAG pipeline and return the answer as a string
 def run_rag_pipeline(query):
@@ -55,7 +50,7 @@ def run_rag_pipeline(query):
     
     # Extract the best answer from the retrieved documents
     if result["answers"]:
-        answer = result["answers"][0].answer
+        answer = f'{result["answers"][0].answer} {(result["answers"][1].answer)}'
     else:
         answer = "No answer found."
     
@@ -70,13 +65,13 @@ class Conversation:
 
     def add_exchange_q(self, user1_input):
         # Format the conversation as "User1: input" and "User2: output"
-        exchange = f'Query: "\n{user1_input}"'
+        exchange = f'\nQuery: "{user1_input}"'
         # Append the exchange to the conversation history
         self.conversation_history.append(exchange)
     
     def add_exchange_o(self, user2_input):
         # Format the conversation as "User1: input" and "User2: output"
-        exchange = f'Output: "\n{user2_input}"'
+        exchange = f'\nOutput: "{user2_input}"'
         # Append the exchange to the conversation history
         self.conversation_history.append(exchange)
 
