@@ -1,0 +1,92 @@
+---
+title: "Unit 1: Engineering Mathematics 2"
+description: Introduction of Laplace Transform, Laplace Transform of elementary functions, properties of Laplace   Transform,   Inverse   Laplace   transform   and   its   properties,    Convolution theorem, Applications of Laplace Transform to solve the Ordinary Differential Equation, Laplace transform of Unit step function and Impulse function.
+date: 2025-01-12
+tags: ["Engineering Mathematics 2", "2nd Semester", "1st Year", "B Tech"]
+published: true
+metadata:
+  university: "Medicaps University"
+  degree: "B Tech"
+  semester: "2nd Semester"
+  subject: "Engineering Mathematics 2"
+---
+
+---
+## Introduction to Laplace Transform
+
+### What is Laplace Transform?
+The **Laplace Transform** is an integral transform used to convert a given function of time (typically a signal or system) into a function of a complex variable (usually denoted as $$ s $$). It is widely used in engineering and mathematics to simplify the analysis of linear time-invariant systems.
+
+The Laplace Transform $$ \mathcal{L} $$ of a function $$ f(t) $$, denoted by $$ \mathcal{L}(f(t)) $$, is defined as:
+
+$$ 
+\mathcal{L}(f(t)) = F(s) = \int_0^\infty e^{-st} f(t) \, dt 
+$$
+
+Where:
+- $$ s $$ is a complex variable ($$ s = \sigma + j\omega $$)
+- $$ t $$ is the time variable (typically $$ t \geq 0 $$)
+- $$ f(t) $$ is the given function in the time domain
+- $$ F(s) $$ is the function in the complex frequency domain
+
+### Why is Laplace Transform Used?
+- **Simplification of Calculations:** It simplifies the handling of differential equations by transforming them into algebraic equations.
+- **Control Systems:** It is particularly useful in the analysis of electrical circuits, mechanical systems, and control systems.
+- **System Analysis:** Helps in solving linear time-invariant (LTI) systems, and it’s fundamental in engineering for stability and frequency response analysis.
+
+### Basic Properties of Laplace Transform
+1. **Linearity Property:**
+   - If $$ \mathcal{L}(f(t)) = F(s) $$ and $$ \mathcal{L}(g(t)) = G(s) $$, then:
+   $$ 
+   \mathcal{L}(af(t) + bg(t)) = aF(s) + bG(s) 
+   $$
+
+2. **First Shift Theorem (Time Shifting):**
+   - If $$ \mathcal{L}(f(t)) = F(s) $$, then:
+   $$ 
+   \mathcal{L}(e^{at} f(t)) = F(s - a) 
+   $$
+
+3. **Derivative Property:**
+   - If $$ \mathcal{L}(f(t)) = F(s) $$, then:
+   $$ 
+   \mathcal{L}\left( \frac{d^n}{dt^n} f(t) \right) = s^n F(s) - s^{n-1} f(0) - \dots - f^{(n-1)}(0) 
+   $$
+
+4. **Integration Property:**
+   - If $$ \mathcal{L}(f(t)) = F(s) $$, then:
+   $$ 
+   \mathcal{L}\left( \int_0^t f(\tau) d\tau \right) = \frac{1}{s} F(s) 
+   $$
+
+### Common Laplace Transforms
+Here are some common Laplace Transforms for elementary functions:
+
+- **Constant Function:**
+   $$ 
+   \mathcal{L}(1) = \frac{1}{s} 
+   $$
+
+- **Exponential Function:**
+   $$ 
+   \mathcal{L}(e^{at}) = \frac{1}{s - a} 
+   $$
+
+- **Sine Function:**
+   $$ 
+   \mathcal{L}(\sin(at)) = \frac{a}{s^2 + a^2} 
+   $$
+
+- **Cosine Function:**
+   $$ 
+   \mathcal{L}(\cos(at)) = \frac{s}{s^2 + a^2} 
+   $$
+
+- **Power Function:**
+   $$ 
+   \mathcal{L}(t^n) = \frac{n!}{s^{n+1}}
+   $$
+
+💡 **TIP:** It's often useful to have a table of Laplace Transforms at hand when working on problems, as these are fundamental in solving many engineering problems.
+
+---
