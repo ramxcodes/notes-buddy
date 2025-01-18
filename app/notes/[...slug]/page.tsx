@@ -73,7 +73,7 @@ async function validateAccess(
 
   if (!hasSemesterAccess) {
     return {
-      errorMessage: `Access denied. You do not have access to the semester "${requiredSemester}".`,
+      errorMessage: `Access denied. You do not have access to the "${requiredSemester}".`,
       userTier,
       hasSemesterAccess,
     };
