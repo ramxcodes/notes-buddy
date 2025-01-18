@@ -37,7 +37,7 @@ The Fourier Series expresses the periodic function as a sum of sinusoidal compon
 
 To find the Fourier Series representation of a function, we first need to compute the Fourier coefficients. For a periodic function $$ f(t) $$ with period $$ T $$, the Fourier coefficients are computed as follows:
 
-#### 1. **DC (Average) Term \( a_0 \):**
+#### 1. **DC (Average) Term $$ a_0 $$:**
 
 The average or constant term $$ a_0 $$ is given by:
 
@@ -45,7 +45,7 @@ $$
 a_0 = \frac{2}{T} \int_0^T f(t) \, dt
 $$
 
-#### 2. **Cosine Coefficients \( a_n \):**
+#### 2. **Cosine Coefficients $$ a_n $$:**
 
 The Fourier coefficients for the cosine terms $$ a_n $$ are:
 
@@ -53,7 +53,7 @@ $$
 a_n = \frac{2}{T} \int_0^T f(t) \cos\left( \frac{2 \pi n t}{T} \right) \, dt
 $$
 
-#### 3. **Sine Coefficients \( b_n \):**
+#### 3. **Sine Coefficients $$ b_n $$:**
 
 The Fourier coefficients for the sine terms $$ b_n $$ are:
 
@@ -173,7 +173,7 @@ This function has a discontinuity at $$ t = \frac{T}{2} $$.
 
 ### Step 1: Fourier Coefficients
 
-1. **Compute the average term \( a_0 \):**
+1. **Compute the average term $$ a_0 $$:**
 
 $$
 a_0 = \frac{2}{T} \int_0^T f(t) \, dt = \frac{2}{T} \left( \int_0^{T/2} 1 \, dt + \int_{T/2}^T (-1) \, dt \right)
@@ -183,7 +183,7 @@ $$
 a_0 = \frac{2}{T} \left( \frac{T}{2} - \frac{T}{2} \right) = 0
 $$
 
-2. **Compute the cosine coefficients \( a_n \):**
+2. **Compute the cosine coefficients $$ a_n $$:**
 
 $$
 a_n = \frac{2}{T} \int_0^T f(t) \cos\left( \frac{2 \pi n t}{T} \right) \, dt
@@ -195,7 +195,7 @@ $$
 a_n = \frac{2}{T} \left( \int_0^{T/2} \cos\left( \frac{2 \pi n t}{T} \right) \, dt - \int_{T/2}^T \cos\left( \frac{2 \pi n t}{T} \right) \, dt \right)
 $$
 
-3. **Compute the sine coefficients \( b_n \):**
+3. **Compute the sine coefficients $$ b_n $$:**
 
 $$
 b_n = \frac{2}{T} \int_0^T f(t) \sin\left( \frac{2 \pi n t}{T} \right) \, dt
@@ -409,19 +409,19 @@ These series are derived under the assumption that the function is **odd** or **
 The **Half-Range Sine Series** is used when the function is defined over a **half-period** and is assumed to be **odd** (i.e., the function is symmetric about the origin and extends as an odd function beyond the given range).
 
 #### Assumptions:
-- The function \( f(t) \) is defined on the interval \( 0 \leq t \leq L \).
-- We assume that \( f(t) \) is **odd** about \( t = 0 \), i.e., \( f(t) = -f(-t) \).
-- The function is extended to the interval \( -L \leq t \leq L \) as an **odd function**.
+- The function $$ f(t) $$ is defined on the interval $$ 0 \leq t \leq L $$.
+- We assume that $$ f(t) $$ is **odd** about $$ t = 0 $$, i.e., $$ f(t) = -f(-t) $$.
+- The function is extended to the interval $$ -L \leq t \leq L $$ as an **odd function**.
 
 #### Fourier Sine Series:
 
-For a function \( f(t) \) defined on \( [0, L] \), the **Half-Range Sine Fourier Series** is given by:
+For a function $$ f(t) $$ defined on $$ [0, L] $$, the **Half-Range Sine Fourier Series** is given by:
 
 $$
 f(t) = \sum_{n=1}^{\infty} b_n \sin\left( \frac{n \pi t}{L} \right)
 $$
 
-Where the Fourier sine coefficients \( b_n \) are calculated by:
+Where the Fourier sine coefficients $$ b_n $$ are calculated by:
 
 $$
 b_n = \frac{2}{L} \int_0^L f(t) \sin\left( \frac{n \pi t}{L} \right) \, dt
@@ -430,7 +430,7 @@ $$
 #### Key Points for Half-Range Sine Series:
 - The function is extended as an **odd** function for the negative part of the interval.
 - The Fourier Series contains **only sine terms**.
-- The function is defined only on the interval \( 0 \leq t \leq L \).
+- The function is defined only on the interval $$ 0 \leq t \leq L $$.
 
 ---
 
@@ -439,19 +439,19 @@ $$
 The **Half-Range Cosine Series** is used when the function is defined over a **half-period** and is assumed to be **even** (i.e., the function is symmetric about the vertical axis and extends as an even function beyond the given range).
 
 #### Assumptions:
-- The function \( f(t) \) is defined on the interval \( 0 \leq t \leq L \).
-- We assume that \( f(t) \) is **even** about \( t = 0 \), i.e., \( f(t) = f(-t) \).
-- The function is extended to the interval \( -L \leq t \leq L \) as an **even function**.
+- The function $$ f(t) $$ is defined on the interval $$ 0 \leq t \leq L $$.
+- We assume that $$ f(t) $$ is **even** about $$ t = 0 $$, i.e., $$ f(t) = f(-t) $$.
+- The function is extended to the interval $$ -L \leq t \leq L $$ as an **even function**.
 
 #### Fourier Cosine Series:
 
-For a function \( f(t) \) defined on \( [0, L] \), the **Half-Range Cosine Fourier Series** is given by:
+For a function $$ f(t) $$ defined on $$ [0, L] $$, the **Half-Range Cosine Fourier Series** is given by:
 
 $$
 f(t) = a_0 + \sum_{n=1}^{\infty} a_n \cos\left( \frac{n \pi t}{L} \right)
 $$
 
-Where the Fourier cosine coefficients \( a_n \) are calculated by:
+Where the Fourier cosine coefficients $$ a_n $$ are calculated by:
 
 $$
 a_0 = \frac{2}{L} \int_0^L f(t) \, dt
@@ -464,7 +464,7 @@ $$
 #### Key Points for Half-Range Cosine Series:
 - The function is extended as an **even** function for the negative part of the interval.
 - The Fourier Series contains **only cosine terms** (and possibly the constant term).
-- The function is defined only on the interval \( 0 \leq t \leq L \).
+- The function is defined only on the interval $$ 0 \leq t \leq L $$.
 
 ---
 
@@ -479,7 +479,7 @@ The **Half-Range Fourier Series** is commonly used when dealing with:
 
 ### Example: Half-Range Sine Series
 
-Let’s consider a simple example where the function is defined on the interval \( [0, \pi] \) and extended as an odd function:
+Let’s consider a simple example where the function is defined on the interval $$ [0, \pi] $$ and extended as an odd function:
 
 $$
 f(t) =
@@ -493,7 +493,7 @@ We are asked to find the **Half-Range Sine Series** for this function.
 
 #### Step 1: Fourier Sine Coefficients
 
-Since the function is odd, it is naturally extended as an odd function. Now, we compute the Fourier sine coefficients \( b_n \):
+Since the function is odd, it is naturally extended as an odd function. Now, we compute the Fourier sine coefficients $$ b_n $$:
 
 $$
 b_n = \frac{2}{\pi} \int_0^\pi t \sin\left( n t \right) \, dt
@@ -509,7 +509,7 @@ $$
 f(t) = \sum_{n=1}^{\infty} b_n \sin(n t)
 $$
 
-Where \( b_n \) are the computed coefficients.
+Where $$ b_n $$ are the computed coefficients.
 
 ---
 
@@ -525,19 +525,19 @@ The **Fourier Transform** is a powerful mathematical tool used to express a func
 
 ### Fourier Transform Definition
 
-The Fourier Transform of a function \( f(t) \), denoted as \( F(\omega) \), is defined by the integral:
+The Fourier Transform of a function $$ f(t) $$, denoted as $$ F(\omega) $$, is defined by the integral:
 
 $$
 F(\omega) = \int_{-\infty}^{\infty} f(t) e^{-i \omega t} \, dt
 $$
 
 Where:
-- \( \omega \) is the angular frequency (often \( \omega = 2\pi f \), where \( f \) is the frequency in Hz).
-- \( f(t) \) is the original function (in the time domain).
-- \( F(\omega) \) is the **Fourier transform** of \( f(t) \) (in the frequency domain).
-- The integral runs over the entire time range, from \( -\infty \) to \( +\infty \).
+- $$ \omega $$ is the angular frequency (often $$ \omega = 2\pi f $$, where $$ f $$ is the frequency in Hz).
+- $$ f(t) $$ is the original function (in the time domain).
+- $$ F(\omega) $$ is the **Fourier transform** of $$ f(t) $$ (in the frequency domain).
+- The integral runs over the entire time range, from $$ -\infty $$ to $$ +\infty $$.
 
-This transform decomposes \( f(t) \) into its **frequency components** by expressing it in terms of complex exponentials (which are combinations of sine and cosine functions).
+This transform decomposes $$ f(t) $$ into its **frequency components** by expressing it in terms of complex exponentials (which are combinations of sine and cosine functions).
 
 ### Inverse Fourier Transform
 
@@ -548,9 +548,9 @@ f(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} F(\omega) e^{i \omega t} \, d\omeg
 $$
 
 Where:
-- \( F(\omega) \) is the Fourier transform of the function \( f(t) \).
-- \( f(t) \) is the original function in the time domain.
-- The factor \( \frac{1}{2\pi} \) is included to normalize the inverse transform.
+- $$ F(\omega) $$ is the Fourier transform of the function $$ f(t) $$.
+- $$ f(t) $$ is the original function in the time domain.
+- The factor $$ \frac{1}{2\pi} $$ is included to normalize the inverse transform.
 
 ### Relationship Between Fourier Series and Fourier Transform
 
@@ -566,14 +566,14 @@ The **Fourier Series** is used to represent periodic functions as a sum of sinus
 The Fourier Transform has several important properties that make it useful in various applications:
 
 1. **Linearity**:
-   - If \( f_1(t) \) and \( f_2(t) \) are functions, and \( a \) and \( b \) are constants, then:
+   - If $$ f_1(t) $$ and $$ f_2(t) $$ are functions, and $$ a $$ and $$ b $$ are constants, then:
    
    $$
    \mathcal{F}[a f_1(t) + b f_2(t)] = a F_1(\omega) + b F_2(\omega)
    $$
 
 2. **Time Shift**:
-   - If the function \( f(t) \) is shifted by \( t_0 \), then its Fourier transform is multiplied by a complex exponential:
+   - If the function $$ f(t) $$ is shifted by $$ t_0 $$, then its Fourier transform is multiplied by a complex exponential:
    
    $$
    \mathcal{F}[f(t - t_0)] = F(\omega) e^{-i \omega t_0}
@@ -594,7 +594,7 @@ The Fourier Transform has several important properties that make it useful in va
    $$
 
 5. **Duality**:
-   - There is a symmetry between the time and frequency domains. The Fourier transform of \( f(t) \) gives \( F(\omega) \), and the Fourier transform of \( F(\omega) \) gives \( f(-t) \).
+   - There is a symmetry between the time and frequency domains. The Fourier transform of $$ f(t) $$ gives $$ F(\omega) $$, and the Fourier transform of $$ F(\omega) $$ gives $$ f(-t) $$.
    
    $$
    \mathcal{F}[f(t)] = F(\omega) \quad \text{implies} \quad \mathcal{F}[F(\omega)] = 2\pi f(-t)
@@ -614,7 +614,7 @@ Here are the Fourier transforms of some common functions:
 
 1. **Impulse Function (Dirac Delta Function)**:
    
-   The Fourier transform of the Dirac delta function \( \delta(t) \) is a constant:
+   The Fourier transform of the Dirac delta function $$ \delta(t) $$ is a constant:
 
    $$
    \mathcal{F}[\delta(t)] = 1
@@ -622,7 +622,7 @@ Here are the Fourier transforms of some common functions:
 
 2. **Step Function**:
 
-   The Fourier transform of the Heaviside step function \( u(t) \) is:
+   The Fourier transform of the Heaviside step function $$ u(t) $$ is:
 
    $$
    \mathcal{F}[u(t)] = \frac{1}{i \omega} + \pi \delta(\omega)
@@ -630,7 +630,7 @@ Here are the Fourier transforms of some common functions:
 
 3. **Exponential Function**:
 
-   The Fourier transform of \( e^{-a t} \) (where \( a > 0 \)) is:
+   The Fourier transform of $$ e^{-a t} $$ (where $$ a > 0 $$) is:
 
    $$
    \mathcal{F}[e^{-a t}] = \frac{1}{a + i \omega}
@@ -652,7 +652,7 @@ Here are the Fourier transforms of some common functions:
 
 ### Example: Fourier Transform of a Gaussian Function
 
-Consider the Gaussian function \( f(t) = e^{-a t^2} \) for \( a > 0 \).
+Consider the Gaussian function $$ f(t) = e^{-a t^2} $$ for $$ a > 0 $$.
 
 To compute its Fourier transform:
 
@@ -677,7 +677,7 @@ This result shows that the Fourier transform of a Gaussian function is also a Ga
 ---
 ## Sine and Cosine Transforms
 
-The **Sine Transform** and **Cosine Transform** are integral transforms that, like the Fourier Transform, decompose a function into sinusoidal components. However, they are specialized for functions defined over a half-domain, typically \( [0, \infty) \).
+The **Sine Transform** and **Cosine Transform** are integral transforms that, like the Fourier Transform, decompose a function into sinusoidal components. However, they are specialized for functions defined over a half-domain, typically $$ [0, \infty) $$.
 
 ### 1. **Sine Transform**
 
@@ -685,34 +685,34 @@ The **Sine Transform** is used for functions that are **odd** or for problems wh
 
 ### **Forward Sine Transform:**
 
-Given a function \( f(t) \), the **Sine Transform** is defined by the integral:
+Given a function $$ f(t) $$, the **Sine Transform** is defined by the integral:
 
 $$
 S[f(t)] = \mathcal{S}[f(t)] = \int_0^\infty f(t) \sin(k t) \, dt
 $$
 
 Where:
-- \( k \) is the transform variable (which can also be considered as the frequency).
-- The integral runs from \( 0 \) to \( \infty \), which is typical for functions defined only on this half-domain.
+- $$ k $$ is the transform variable (which can also be considered as the frequency).
+- The integral runs from $$ 0 $$ to $$ \infty $$, which is typical for functions defined only on this half-domain.
   
 ### **Inverse Sine Transform:**
 
-The inverse sine transform is used to recover the original function \( f(t) \) from its sine transform \( F(k) \):
+The inverse sine transform is used to recover the original function $$ f(t) $$ from its sine transform $$ F(k) $$:
 
 $$
 f(t) = \mathcal{S}^{-1}[F(k)] = \frac{2}{\pi} \int_0^\infty F(k) \sin(k t) \, dk
 $$
 
 Where:
-- \( F(k) \) is the Fourier sine transform of \( f(t) \).
-- The factor \( \frac{2}{\pi} \) normalizes the inverse transform.
+- $$ F(k) $$ is the Fourier sine transform of $$ f(t) $$.
+- The factor $$ \frac{2}{\pi} $$ normalizes the inverse transform.
 
 #### Key Features:
 - The sine transform is particularly useful for solving boundary value problems where the function is defined on a semi-infinite domain, such as heat conduction in a rod with one end held at a fixed temperature and the other end insulated.
 
 #### Example: Sine Transform of a Function
 
-Consider the function \( f(t) = e^{-t} \), for \( t \geq 0 \).
+Consider the function $$ f(t) = e^{-t} $$, for $$ t \geq 0 $$.
 
 The forward sine transform is:
 
@@ -726,7 +726,7 @@ $$
 F(k) = \frac{k}{k^2 + 1}
 $$
 
-Thus, the sine transform of \( f(t) = e^{-t} \) is \( F(k) = \frac{k}{k^2 + 1} \).
+Thus, the sine transform of $$ f(t) = e^{-t} $$ is $$ F(k) = \frac{k}{k^2 + 1} $$.
 
 ---
 ### 2. **Cosine Transform**
@@ -735,34 +735,34 @@ The **Cosine Transform** is used for functions that are **even** or for problems
 
 ### **Forward Cosine Transform:**
 
-Given a function \( f(t) \), the **Cosine Transform** is:
+Given a function $$ f(t) $$, the **Cosine Transform** is:
 
 $$
 C[f(t)] = \mathcal{C}[f(t)] = \int_0^\infty f(t) \cos(k t) \, dt
 $$
 
 Where:
-- \( k \) is the frequency or transform variable.
-- The integral is evaluated over the interval \( 0 \) to \( \infty \).
+- $$ k $$ is the frequency or transform variable.
+- The integral is evaluated over the interval $$ 0 $$ to $$ \infty $$.
 
 ### **Inverse Cosine Transform:**
 
-The inverse cosine transform is used to recover the original function \( f(t) \) from its cosine transform \( G(k) \):
+The inverse cosine transform is used to recover the original function $$ f(t) $$ from its cosine transform $$ G(k) $$:
 
 $$
 f(t) = \mathcal{C}^{-1}[G(k)] = \frac{2}{\pi} \int_0^\infty G(k) \cos(k t) \, dk
 $$
 
 Where:
-- \( G(k) \) is the Fourier cosine transform of \( f(t) \).
-- The factor \( \frac{2}{\pi} \) is used to normalize the inverse transform.
+- $$ G(k) $$ is the Fourier cosine transform of $$ f(t) $$.
+- The factor $$ \frac{2}{\pi} $$ is used to normalize the inverse transform.
 
 #### Key Features:
 - The cosine transform is particularly useful when solving boundary value problems for even functions or when the function is defined on a half-domain and has symmetry about the origin.
 
 #### Example: Cosine Transform of a Function
 
-Consider the function \( f(t) = e^{-t} \), for \( t \geq 0 \).
+Consider the function $$ f(t) = e^{-t} $$, for $$ t \geq 0 $$.
 
 The forward cosine transform is:
 
@@ -776,15 +776,15 @@ $$
 G(k) = \frac{1}{k^2 + 1}
 $$
 
-Thus, the cosine transform of \( f(t) = e^{-t} \) is \( G(k) = \frac{1}{k^2 + 1} \).
+Thus, the cosine transform of $$ f(t) = e^{-t} $$ is $$ G(k) = \frac{1}{k^2 + 1} $$.
 
 ---
 ### Summary of Sine and Cosine Transforms:
 
 | **Transform**                | **Forward Formula**                                              | **Inverse Formula**                                             | **Use Case**                                                       |
 |------------------------------|------------------------------------------------------------------|-----------------------------------------------------------------|--------------------------------------------------------------------|
-| **Sine Transform**            | \( S[f(t)] = \int_0^\infty f(t) \sin(k t) \, dt \)             | \( f(t) = \frac{2}{\pi} \int_0^\infty F(k) \sin(k t) \, dk \) | Problems with **odd** symmetry or boundary value problems.         |
-| **Cosine Transform**          | \( C[f(t)] = \int_0^\infty f(t) \cos(k t) \, dt \)             | \( f(t) = \frac{2}{\pi} \int_0^\infty G(k) \cos(k t) \, dk \) | Problems with **even** symmetry or functions defined on \( [0, \infty) \). |
+| **Sine Transform**            | $$ S[f(t)] = \int_0^\infty f(t) \sin(k t) \, dt $$             | $$ f(t) = \frac{2}{\pi} \int_0^\infty F(k) \sin(k t) \, dk $$ | Problems with **odd** symmetry or boundary value problems.         |
+| **Cosine Transform**          | $$ C[f(t)] = \int_0^\infty f(t) \cos(k t) \, dt $$             | $$ f(t) = \frac{2}{\pi} \int_0^\infty G(k) \cos(k t) \, dk $$ | Problems with **even** symmetry or functions defined on $$ [0, \infty) $$. |
 
 ---
 
