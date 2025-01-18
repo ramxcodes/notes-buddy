@@ -13,7 +13,7 @@ export default function NotLanding() {
         className="opacity-50 hover:opacity-100 transition-opacity duration-300 ease-in-out hidden lg:block"
         href="/shipping-and-delievery"
       >
-        Terms and conditions
+        Shipping and Delivery
       </a>
       <span className="opacity-40 hidden lg:block">|</span>
       <a
