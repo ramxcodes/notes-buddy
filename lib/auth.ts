@@ -18,13 +18,12 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        // Fetch user data from the database
         const db = await clientPromise;
         const usersCollection = db.db().collection("users");
         const dbUser = await usersCollection.findOne({ email: token.email });
 
         token.id = dbUser?._id;
-        token.planTier = dbUser?.planTier || "Free"; // Default to "Free"
+        token.planTier = dbUser?.planTier || "Free";
         token.university = dbUser?.university;
         token.degree = dbUser?.degree;
       }
@@ -44,5 +43,4 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
-  debug: process.env.NODE_ENV === "development",
 };

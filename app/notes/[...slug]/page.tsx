@@ -29,24 +29,35 @@ async function getPostFromParams(params: PostPageProps["params"]) {
 async function validateAccess(
   requiredTier: string,
   requiredSemester: string
-): Promise<{ errorMessage: string | null; userTier: string; hasSemesterAccess: boolean }> {
+): Promise<{
+  errorMessage: string | null;
+  userTier: string;
+  hasSemesterAccess: boolean;
+}> {
+  if (requiredTier === "Free") {
+    return {
+      errorMessage: null,
+      userTier: "Free",
+      hasSemesterAccess: true,
+    };
+  }
+
   const session = await getServerSession();
 
   if (!session) {
     return {
       errorMessage: "You must log in to access this content.",
       userTier: "None",
-      hasSemesterAccess: false
+      hasSemesterAccess: false,
     };
   }
 
-  // Fetch user plan from the database for accuracy
   const db = await clientPromise;
   const usersCollection = db.db().collection("users");
   const user = await usersCollection.findOne({ email: session.user?.email });
 
   const userTier = user?.planTier || "Free";
-  const userSemesters = user?.semesters || []; // Example: ["1st Semester", "2nd Semester"]
+  const userSemesters = user?.semesters || [];
 
   const hasTierAccess = hasAccess(userTier, requiredTier);
   const hasSemesterAccess = userSemesters.includes(requiredSemester);
@@ -55,7 +66,7 @@ async function validateAccess(
     return {
       errorMessage: "Access denied. Upgrade your subscription.",
       userTier,
-      hasSemesterAccess
+      hasSemesterAccess,
     };
   }
 
@@ -63,7 +74,7 @@ async function validateAccess(
     return {
       errorMessage: `Access denied. You do not have access to the semester "${requiredSemester}".`,
       userTier,
-      hasSemesterAccess
+      hasSemesterAccess,
     };
   }
 
