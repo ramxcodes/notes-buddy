@@ -1,0 +1,1621 @@
+---
+title: "Unit 2: Engineering Mathematics 1"
+description: Introduction to limit continuity, differentiability, Rolle’s theorem, Mean value theorem, Taylors and Maclaurin’s series expansions. Functions of Several variables, Partial differentiation, Euler’s Theorem, Total Derivative, Maxima and Minima of function of two variables.
+date: 2025-01-08
+tags: ["Engineering Mathematics 1", "1st Semester", "1st Year", "B Tech"]
+published: true
+metadata:
+  university: "Medicaps University"
+  degree: "B Tech"
+  semester: "1st Semester"
+  subject: "Engineering Mathematics 1"
+---
+
+---
+## **Introduction to Limit and Continuity**
+
+The concepts of **limit** and **continuity** form the foundation of **calculus**. They help us understand the behavior of functions as the input approaches a certain value. Limits allow us to define the concept of **derivatives** and **integrals**, while continuity ensures that a function behaves smoothly without sudden jumps or breaks.
+
+---
+
+## **1. Limit of a Function**
+
+### **Definition of Limit**
+The **limit** of a function $$ f(x) $$ at a point $$ a $$ is the value that $$ f(x) $$ approaches as $$ x $$ gets closer to $$ a $$. It is denoted as:
+
+$$
+\lim_{{x \to a}} f(x) = L
+$$
+
+Where:
+- $$ L $$ is the value the function approaches as $$ x $$ approaches $$ a $$.
+- The value of $$ f(a) $$ may or may not be equal to $$ L $$, but the function must get arbitrarily close to $$ L $$ as $$ x $$ approaches $$ a $$.
+
+### **Graphical Interpretation**
+In graphical terms, the limit describes the behavior of the curve of the function near the point $$ x = a $$. If the function approaches a particular value as $$ x $$ approaches $$ a $$, then the limit exists.
+
+### **One-Sided Limits**
+There are also **one-sided limits** where we approach the point $$ a $$ from one side only:
+
+- **Left-hand limit**: 
+  $$
+  \lim_{{x \to a^-}} f(x)
+  $$
+  This is the value that $$ f(x) $$ approaches as $$ x $$ approaches $$ a $$ from the left (i.e., $$ x \to a $$ with $$ x < a $$).
+  
+- **Right-hand limit**: 
+  $$
+  \lim_{{x \to a^+}} f(x)
+  $$
+  This is the value that $$ f(x) $$ approaches as $$ x $$ approaches $$ a $$ from the right (i.e., $$ x \to a $$ with $$ x > a $$).
+
+For the two-sided limit to exist, the left-hand limit and the right-hand limit must be equal.
+
+### **Example**
+
+Let's consider the function:
+
+$$
+f(x) = \frac{1}{x}
+$$
+
+As $$ x $$ approaches 0, the limit does not exist because:
+
+- As $$ x \to 0^+ $$, $$ f(x) \to +\infty $$.
+- As $$ x \to 0^- $$, $$ f(x) \to -\infty $$.
+
+Since the two one-sided limits are not equal, we say that the limit does not exist at $$ x = 0 $$.
+
+---
+
+## **2. Continuity of a Function**
+
+### **Definition of Continuity**
+A function $$ f(x) $$ is said to be **continuous** at a point $$ x = a $$ if the following three conditions are met:
+
+1. The function is defined at $$ x = a $$: $$ f(a) $$ exists.
+2. The limit of the function exists as $$ x \to a $$: 
+   $$
+   \lim_{{x \to a}} f(x) \text{ exists}.
+   $$
+3. The value of the function at $$ a $$ equals the limit of the function as $$ x \to a $$:
+   $$
+   f(a) = \lim_{{x \to a}} f(x).
+   $$
+
+In simpler terms, a function is continuous at a point if there is no break, jump, or hole in the graph at that point.
+
+### **Graphical Interpretation**
+If a function is continuous at $$ x = a $$, the graph of the function will be a smooth curve with no interruptions or jumps at $$ x = a $$.
+
+### **Types of Discontinuity**
+
+- **Removable Discontinuity**: If the limit exists but is not equal to the value of the function at the point (i.e., the function has a "hole" at that point), the discontinuity is called removable.
+  
+- **Jump Discontinuity**: If the left-hand and right-hand limits are not equal, the function has a jump discontinuity.
+
+- **Infinite Discontinuity**: If the function approaches infinity (positive or negative) at a certain point, the function has an infinite discontinuity.
+
+### **Example of Continuity**
+
+Consider the function:
+
+$$
+f(x) = \begin{cases}
+x^2, & \text{if } x \leq 2 \\
+3x - 2, & \text{if } x > 2
+\end{cases}
+$$
+
+We want to check if the function is continuous at $$ x = 2 $$.
+
+- First, check if the function is defined at $$ x = 2 $$: $$ f(2) = 2^2 = 4 $$.
+- Next, check the limit as $$ x \to 2 $$. For both the left-hand limit and the right-hand limit, we get:
+  $$
+  \lim_{{x \to 2^-}} f(x) = 2^2 = 4 \quad \text{and} \quad \lim_{{x \to 2^+}} f(x) = 3(2) - 2 = 4
+  $$
+- Since both the left-hand and right-hand limits are equal to $$ f(2) $$, the function is continuous at $$ x = 2 $$.
+
+---
+
+## **3. Types of Limits**
+
+### **Finite Limits**
+These are the limits where the function approaches a finite value as $$ x $$ approaches $$ a $$.
+
+### **Infinite Limits**
+An infinite limit occurs when the function grows without bound as $$ x $$ approaches a particular value. For example:
+
+$$
+\lim_{{x \to 0}} \frac{1}{x} = \infty
+$$
+
+This indicates that the function increases indefinitely as $$ x $$ gets closer to 0.
+
+### **Limits at Infinity**
+When $$ x \to \infty $$ or $$ x \to -\infty $$, the limit describes the behavior of the function as $$ x $$ becomes very large or very small. For example:
+
+$$
+\lim_{{x \to \infty}} \frac{1}{x} = 0
+$$
+
+---
+
+## **Summary**
+
+- **Limit**: The value a function approaches as $$ x $$ approaches a specific point. A limit may or may not exist at a given point.
+- **Continuity**: A function is continuous at a point if the function is defined at that point, the limit exists, and the function’s value equals the limit at that point.
+- **Types of Discontinuity**:
+  - **Removable Discontinuity**: The function has a hole at the point.
+  - **Jump Discontinuity**: The function has a sudden jump.
+  - **Infinite Discontinuity**: The function approaches infinity at the point.
+- **Graphical Interpretation**: A function is continuous if its graph has no breaks or jumps at the point of interest.
+
+💡 **TIP**: Continuity ensures that you can draw the graph of the function without lifting your pen. A limit tells you the behavior of the function as it approaches a specific point.
+
+---
+## **Differentiability**
+
+Differentiability is a fundamental concept in calculus that describes the ability of a function to have a **derivative** at a given point. A function is said to be **differentiable** at a point if it has a well-defined tangent (i.e., a slope) at that point. Differentiability is closely related to continuity, but while every differentiable function is continuous, not all continuous functions are differentiable.
+
+### **Definition of Differentiability**
+
+A function $$ f(x) $$ is said to be **differentiable** at a point $$ x = a $$ if the derivative of $$ f(x) $$ exists at $$ x = a $$. The derivative is defined as the limit:
+
+$$
+f'(a) = \lim_{{h \to 0}} \frac{f(a + h) - f(a)}{h}
+$$
+
+This limit is known as the **difference quotient**. If this limit exists and is finite, the function is differentiable at $$ x = a $$.
+
+- $$ f'(a) $$ represents the slope of the tangent line to the graph of $$ f(x) $$ at $$ x = a $$.
+- If this limit does not exist, the function is **not differentiable** at that point.
+
+### **Geometric Interpretation**
+Differentiability at a point means that the graph of the function has a **tangent line** at that point, and the function does not have any sharp corners, cusps, or vertical tangents.
+
+---
+
+## **Conditions for Differentiability**
+
+For a function to be differentiable at a point, it must satisfy the following conditions:
+
+1. **Continuity at the point**: The function must be continuous at the point where we want to check differentiability. If a function is not continuous at a point, it cannot be differentiable at that point.
+   
+2. **Existence of the derivative**: The derivative must exist at the point, meaning the difference quotient must give a finite value.
+
+### **Difference between Continuity and Differentiability**
+
+- **Continuity**: A function is continuous at a point if there is no break or gap in its graph at that point.
+- **Differentiability**: A function is differentiable at a point if its graph has a well-defined slope (tangent) at that point.
+
+For a function to be differentiable at a point, it must first be continuous at that point. However, continuity does not guarantee differentiability.
+
+---
+
+## **Examples of Differentiable and Non-Differentiable Functions**
+
+### **Example 1: Differentiable Function**
+
+Consider the function $$ f(x) = x^2 $$.
+
+- To check the differentiability at $$ x = a $$, we compute the derivative using the difference quotient:
+
+$$
+f'(a) = \lim_{{h \to 0}} \frac{f(a + h) - f(a)}{h}
+$$
+
+Substitute $$ f(x) = x^2 $$:
+
+$$
+f'(a) = \lim_{{h \to 0}} \frac{(a + h)^2 - a^2}{h}
+$$
+
+Expand $$ (a + h)^2 $$:
+
+$$
+f'(a) = \lim_{{h \to 0}} \frac{a^2 + 2ah + h^2 - a^2}{h}
+$$
+
+Simplify:
+
+$$
+f'(a) = \lim_{{h \to 0}} \frac{2ah + h^2}{h} = \lim_{{h \to 0}} (2a + h)
+$$
+
+As $$ h \to 0 $$, we get:
+
+$$
+f'(a) = 2a
+$$
+
+Thus, the function $$ f(x) = x^2 $$ is differentiable for all $$ x $$, and its derivative is $$ f'(x) = 2x $$.
+
+### **Example 2: Non-Differentiable Function**
+
+Consider the function $$ f(x) = |x| $$, which is the absolute value function.
+
+- The function is continuous at $$ x = 0 $$, but we need to check if it is differentiable at $$ x = 0 $$.
+- For the derivative to exist at $$ x = 0 $$, the left-hand and right-hand limits of the difference quotient must be equal.
+
+#### Left-hand limit:
+For $$ x < 0 $$, $$ f(x) = -x $$, so the difference quotient is:
+
+$$
+\lim_{{h \to 0^-}} \frac{f(0 + h) - f(0)}{h} = \lim_{{h \to 0^-}} \frac{-h - 0}{h} = -1
+$$
+
+#### Right-hand limit:
+For $$ x > 0 $$, $$ f(x) = x $$, so the difference quotient is:
+
+$$
+\lim_{{h \to 0^+}} \frac{f(0 + h) - f(0)}{h} = \lim_{{h \to 0^+}} \frac{h - 0}{h} = 1
+$$
+
+Since the left-hand and right-hand limits are not equal, the derivative does not exist at $$ x = 0 $$. Therefore, the function $$ f(x) = |x| $$ is **not differentiable** at $$ x = 0 $$.
+
+---
+
+## **Differentiability and Smoothness**
+
+For a function to be **smooth**, it must be differentiable at every point in its domain. This implies that the function has a continuous and well-defined tangent (or slope) at every point. Functions that are not differentiable at certain points (such as having a cusp or corner) are not smooth.
+
+### **Sharp Corners and Cusps**
+A function that has a sharp corner or cusp at a point is not differentiable at that point because the slope of the tangent line is not well-defined.
+
+### **Vertical Tangents**
+If a function has a **vertical tangent** at a point (i.e., the slope tends to infinity), it is not differentiable at that point because the derivative does not exist.
+
+---
+
+## **Differentiability Rules**
+
+There are several rules that can help in differentiating functions:
+
+1. **Sum Rule**: If $$ f(x) $$ and $$ g(x) $$ are differentiable, then $$ f(x) + g(x) $$ is differentiable, and:
+   $$
+   (f + g)'(x) = f'(x) + g'(x)
+   $$
+   
+2. **Product Rule**: If $$ f(x) $$ and $$ g(x) $$ are differentiable, then $$ f(x) \cdot g(x) $$ is differentiable, and:
+   $$
+   (f \cdot g)'(x) = f'(x) \cdot g(x) + f(x) \cdot g'(x)
+   $$
+
+3. **Quotient Rule**: If $$ f(x) $$ and $$ g(x) $$ are differentiable and $$ g(x) \neq 0 $$, then $$ \frac{f(x)}{g(x)} $$ is differentiable, and:
+   $$
+   \left(\frac{f}{g}\right)'(x) = \frac{f'(x) \cdot g(x) - f(x) \cdot g'(x)}{[g(x)]^2}
+   $$
+
+4. **Chain Rule**: If $$ f(x) $$ and $$ g(x) $$ are differentiable, then $$ f(g(x)) $$ is differentiable, and:
+   $$
+   \frac{d}{dx} [f(g(x))] = f'(g(x)) \cdot g'(x)
+   $$
+
+---
+
+## **Summary**
+
+- **Differentiability**: A function is differentiable at a point if the derivative exists at that point, meaning the function has a well-defined tangent (slope).
+- A function must be **continuous** at a point to be differentiable there.
+- Functions with **sharp corners**, **cusps**, or **vertical tangents** are not differentiable at those points.
+- Differentiable functions are smooth, meaning there are no abrupt changes in the slope.
+
+💡 **TIP**: To check for differentiability, always check continuity first. If a function is not continuous, it cannot be differentiable at that point.
+
+---
+## **Rolle’s Theorem**
+
+**Rolle's Theorem** is a fundamental result in calculus that gives us a specific condition for a function to have a **horizontal tangent** at some point in its domain. It is a special case of the **Mean Value Theorem (MVT)**, which is one of the most powerful results in differential calculus.
+
+### **Statement of Rolle's Theorem**
+
+Rolle’s Theorem states that:
+
+**If a function $$ f(x) $$ satisfies the following three conditions:**
+
+1. **Continuity on the closed interval** $$ [a, b] $$:
+   - The function $$ f(x) $$ must be continuous on the entire interval $$ [a, b] $$.
+   
+2. **Differentiability on the open interval** $$ (a, b) $$:
+   - The function $$ f(x) $$ must be differentiable (i.e., it must have a derivative) at every point in the open interval $$ (a, b) $$.
+   
+3. **Equality at the endpoints**:
+   - The function must satisfy $$ f(a) = f(b) $$, meaning the function must have the same value at the endpoints of the interval.
+
+Then, **there exists at least one point $$ c $$ in the open interval $$ (a, b) $$ such that:**
+
+$$
+f'(c) = 0
+$$
+
+In other words, there is at least one point $$ c $$ where the tangent to the graph of the function is horizontal, i.e., the derivative is zero at that point.
+
+### **Geometric Interpretation**
+
+Graphically, Rolle’s Theorem guarantees that if a function starts and ends at the same value on a closed interval, and is continuous and differentiable, there must be at least one point between the two where the slope of the tangent line (derivative) is zero — a horizontal tangent. This can be visualized as the curve of the function having a "peak" or "valley" at some point between $$ a $$ and $$ b $$, or simply being flat at a point.
+
+### **Conditions for Applying Rolle’s Theorem**
+- The function must be **continuous** on the closed interval.
+- The function must be **differentiable** on the open interval.
+- The function must have the **same value** at the endpoints of the interval, i.e., $$ f(a) = f(b) $$.
+
+If any of these conditions are not met, Rolle's Theorem does not apply.
+
+---
+
+## **Example**
+
+### **Example 1: Verifying Rolle’s Theorem**
+
+Consider the function:
+
+$$
+f(x) = x^2 - 4x + 3
+$$
+
+Let’s verify whether Rolle’s Theorem applies to this function on the interval $$ [1, 3] $$.
+
+1. **Continuity on $$ [1, 3] $$**: 
+   - The function $$ f(x) = x^2 - 4x + 3 $$ is a polynomial, and polynomials are continuous everywhere. Hence, it is continuous on the closed interval $$ [1, 3] $$.
+
+2. **Differentiability on $$ (1, 3) $$**: 
+   - Since $$ f(x) $$ is a polynomial, it is differentiable at all points in its domain, including the open interval $$ (1, 3) $$.
+
+3. **Equality at the endpoints**:
+   - We check if $$ f(1) = f(3) $$:
+     $$
+     f(1) = 1^2 - 4(1) + 3 = 1 - 4 + 3 = 0
+     $$
+     $$
+     f(3) = 3^2 - 4(3) + 3 = 9 - 12 + 3 = 0
+     $$
+   - Since $$ f(1) = f(3) = 0 $$, the condition is satisfied.
+
+Since all conditions of Rolle’s Theorem are satisfied, we can conclude that there exists at least one point $$ c $$ in $$ (1, 3) $$ such that:
+
+$$
+f'(c) = 0
+$$
+
+#### **Finding $$ c $$**
+
+Now, let’s find $$ c $$ where $$ f'(c) = 0 $$.
+
+1. Find the derivative $$ f'(x) $$:
+   $$
+   f'(x) = \frac{d}{dx}(x^2 - 4x + 3) = 2x - 4
+   $$
+
+2. Set the derivative equal to zero to find $$ c $$:
+   $$
+   2x - 4 = 0
+   $$
+   $$
+   x = 2
+   $$
+
+Thus, $$ c = 2 $$ is the point in $$ (1, 3) $$ where the derivative $$ f'(x) = 0 $$, i.e., the tangent line is horizontal at $$ x = 2 $$.
+
+---
+
+## **Example 2: Non-Application of Rolle’s Theorem**
+
+Consider the function:
+
+$$
+f(x) = x^3 - 3x + 1
+$$
+
+Let’s check if Rolle’s Theorem applies on the interval $$ [0, 2] $$.
+
+1. **Continuity on $$ [0, 2] $$**: 
+   - The function $$ f(x) = x^3 - 3x + 1 $$ is a polynomial, so it is continuous on $$ [0, 2] $$.
+
+2. **Differentiability on $$ (0, 2) $$**: 
+   - Since $$ f(x) $$ is a polynomial, it is differentiable on $$ (0, 2) $$.
+
+3. **Equality at the endpoints**:
+   - Check if $$ f(0) = f(2) $$:
+     $$
+     f(0) = 0^3 - 3(0) + 1 = 1
+     $$
+     $$
+     f(2) = 2^3 - 3(2) + 1 = 8 - 6 + 1 = 3
+     $$
+   - Since $$ f(0) = 1 $$ and $$ f(2) = 3 $$, the condition $$ f(a) = f(b) $$ is **not satisfied**.
+
+Since the third condition is not satisfied, **Rolle's Theorem does not apply** to this function on the interval $$ [0, 2] $$.
+
+---
+
+## **Summary of Rolle’s Theorem**
+
+- **Conditions**:
+  1. $$ f(x) $$ must be continuous on $$ [a, b] $$.
+  2. $$ f(x) $$ must be differentiable on $$ (a, b) $$.
+  3. $$ f(a) = f(b) $$.
+
+- **Conclusion**:
+  If all conditions are met, then there exists at least one point $$ c $$ in $$ (a, b) $$ such that:
+  $$
+  f'(c) = 0
+  $$
+  This means there is at least one point where the tangent line is horizontal.
+
+---
+
+💡 **TIP**: Rolle’s Theorem is particularly useful in proving the existence of stationary points (where the slope is zero) in a given interval.
+
+---
+## **Mean Value Theorem (MVT)**
+
+The **Mean Value Theorem** is a fundamental result in calculus that provides a relationship between the values of a function at the endpoints of an interval and its behavior within that interval. It essentially states that for any smooth curve, there is at least one point where the tangent to the curve is parallel to the secant line joining the endpoints.
+
+### **Statement of the Mean Value Theorem**
+
+Let $$ f(x) $$ be a function that satisfies the following conditions:
+
+1. **Continuity** on the closed interval $$ [a, b] $$:
+   - The function $$ f(x) $$ must be continuous on the entire interval $$ [a, b] $$.
+
+2. **Differentiability** on the open interval $$ (a, b) $$:
+   - The function $$ f(x) $$ must be differentiable at every point in the open interval $$ (a, b) $$.
+
+Then, according to the **Mean Value Theorem**, there exists at least one point $$ c $$ in the open interval $$ (a, b) $$ such that:
+
+$$
+f'(c) = \frac{f(b) - f(a)}{b - a}
+$$
+
+This means that there is at least one point $$ c $$ in $$ (a, b) $$ where the instantaneous rate of change of the function (i.e., the slope of the tangent) is equal to the average rate of change of the function over the interval $$ [a, b] $$.
+
+### **Geometric Interpretation**
+
+Geometrically, the **Mean Value Theorem** states that there is at least one point on the curve $$ f(x) $$ where the slope of the tangent is equal to the slope of the secant line connecting the endpoints $$ (a, f(a)) $$ and $$ (b, f(b)) $$. In other words, there is a point $$ c $$ where the instantaneous slope is the same as the average slope over the interval.
+
+- The **secant line** is the straight line connecting the points $$ (a, f(a)) $$ and $$ (b, f(b)) $$.
+- The **tangent line** is the line that touches the curve at a single point without crossing it.
+
+---
+
+## **Conditions for Applying the Mean Value Theorem**
+
+The Mean Value Theorem can be applied only if the function satisfies the following two conditions:
+
+1. The function must be **continuous** on the closed interval $$ [a, b] $$.
+2. The function must be **differentiable** on the open interval $$ (a, b) $$.
+
+If either of these conditions is violated (e.g., if the function is not continuous or not differentiable on the interval), the Mean Value Theorem does not apply.
+
+---
+
+## **Example 1: Applying the Mean Value Theorem**
+
+Consider the function:
+
+$$
+f(x) = x^2
+$$
+
+We will apply the Mean Value Theorem to this function on the interval $$ [1, 3] $$.
+
+1. **Continuity on $$ [1, 3] $$**: 
+   - $$ f(x) = x^2 $$ is a polynomial, and polynomials are continuous everywhere. Hence, $$ f(x) $$ is continuous on $$ [1, 3] $$.
+
+2. **Differentiability on $$ (1, 3) $$**: 
+   - Since $$ f(x) = x^2 $$ is a polynomial, it is differentiable at all points, including the open interval $$ (1, 3) $$.
+
+Thus, the conditions of the Mean Value Theorem are satisfied.
+
+Now, according to the theorem, there exists at least one point $$ c $$ in $$ (1, 3) $$ such that:
+
+$$
+f'(c) = \frac{f(3) - f(1)}{3 - 1}
+$$
+
+First, we compute $$ f(3) $$ and $$ f(1) $$:
+
+$$
+f(3) = 3^2 = 9, \quad f(1) = 1^2 = 1
+$$
+
+Now, calculate the average rate of change over the interval:
+
+$$
+\frac{f(3) - f(1)}{3 - 1} = \frac{9 - 1}{3 - 1} = \frac{8}{2} = 4
+$$
+
+Next, find the derivative of $$ f(x) = x^2 $$:
+
+$$
+f'(x) = 2x
+$$
+
+Now, set the derivative equal to the average rate of change:
+
+$$
+2c = 4
+$$
+
+Solving for $$ c $$:
+
+$$
+c = 2
+$$
+
+Thus, according to the Mean Value Theorem, there is at least one point $$ c = 2 $$ in the interval $$ (1, 3) $$ where the instantaneous slope (derivative) is equal to the average slope over the interval, which is 4.
+
+---
+
+## **Example 2: Verifying the Mean Value Theorem**
+
+Consider the function:
+
+$$
+f(x) = \ln(x)
+$$
+
+We will apply the Mean Value Theorem on the interval $$ [1, 2] $$.
+
+1. **Continuity on $$ [1, 2] $$**: 
+   - The natural logarithm function $$ \ln(x) $$ is continuous on $$ [1, 2] $$ because the logarithmic function is continuous for $$ x > 0 $$.
+
+2. **Differentiability on $$ (1, 2) $$**: 
+   - The function $$ f(x) = \ln(x) $$ is differentiable for $$ x > 0 $$, and therefore differentiable on $$ (1, 2) $$.
+
+The conditions of the Mean Value Theorem are satisfied.
+
+Now, we use the theorem:
+
+$$
+f'(c) = \frac{f(2) - f(1)}{2 - 1}
+$$
+
+First, compute $$ f(2) $$ and $$ f(1) $$:
+
+$$
+f(2) = \ln(2), \quad f(1) = \ln(1) = 0
+$$
+
+Now, calculate the average rate of change over the interval:
+
+$$
+\frac{f(2) - f(1)}{2 - 1} = \frac{\ln(2) - 0}{2 - 1} = \ln(2)
+$$
+
+Next, find the derivative of $$ f(x) = \ln(x) $$:
+
+$$
+f'(x) = \frac{1}{x}
+$$
+
+Now, set the derivative equal to the average rate of change:
+
+$$
+\frac{1}{c} = \ln(2)
+$$
+
+Solving for $$ c $$:
+
+$$
+c = \frac{1}{\ln(2)}
+$$
+
+Thus, there exists a point $$ c = \frac{1}{\ln(2)} $$ in the interval $$ (1, 2) $$ where the instantaneous slope (derivative) is equal to the average slope over the interval.
+
+---
+
+## **Geometric Meaning of MVT**
+
+The **Mean Value Theorem** guarantees that there is at least one point $$ c $$ where the **tangent line** to the curve is parallel to the **secant line** joining the endpoints of the interval. In other words, the slope of the tangent at $$ c $$ is equal to the slope of the secant line joining $$ (a, f(a)) $$ and $$ (b, f(b)) $$.
+
+---
+
+## **Summary of the Mean Value Theorem**
+
+- **Conditions for the MVT**:
+  1. $$ f(x) $$ must be **continuous** on $$ [a, b] $$.
+  2. $$ f(x) $$ must be **differentiable** on $$ (a, b) $$.
+  
+- **Conclusion**: 
+  There exists at least one point $$ c $$ in $$ (a, b) $$ such that:
+  $$
+  f'(c) = \frac{f(b) - f(a)}{b - a}
+  $$
+  This means the instantaneous rate of change at $$ c $$ equals the average rate of change over the interval $$ [a, b] $$.
+
+💡 **TIP**: The Mean Value Theorem is a powerful tool for proving results about the behavior of functions. It can also be used to derive other important results in calculus, such as **Rolle's Theorem** and **Cauchy’s Mean Value Theorem**.
+
+---
+## **Taylor's Series Expansion**
+
+A **Taylor series** is an infinite series of mathematical terms that together approximate a function. It is based on the idea of approximating a function by polynomials, where the function is expressed in terms of its derivatives evaluated at a specific point.
+
+### **Statement of Taylor's Theorem**
+
+If a function $$ f(x) $$ is **infinitely differentiable** at a point $$ a $$, then the **Taylor series** of $$ f(x) $$ around the point $$ a $$ is given by:
+
+$$
+f(x) = f(a) + f'(a)(x - a) + \frac{f''(a)}{2!}(x - a)^2 + \frac{f^{(3)}(a)}{3!}(x - a)^3 + \dots
+$$
+
+In general, the **Taylor series** of $$ f(x) $$ about the point $$ a $$ is:
+
+$$
+f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x - a)^n
+$$
+
+Where:
+- $$ f^{(n)}(a) $$ is the $$ n $$-th derivative of $$ f(x) $$ evaluated at $$ x = a $$,
+- $$ n! $$ is the factorial of $$ n $$,
+- The series goes on indefinitely (as long as the function is differentiable to all orders at $$ a $$).
+
+The Taylor series provides an approximation of $$ f(x) $$ near $$ a $$.
+
+### **General Form of Taylor's Series**
+
+The general form of Taylor's series expansion is:
+
+$$
+f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x - a)^n
+$$
+
+Where the term $$ \frac{f^{(n)}(a)}{n!}(x - a)^n $$ represents the contribution of the $$ n $$-th derivative of $$ f(x) $$ evaluated at $$ x = a $$.
+
+### **Radius of Convergence**
+
+The Taylor series expansion converges to the function $$ f(x) $$ if the radius of convergence is sufficient, which means the series accurately approximates $$ f(x) $$ within a certain interval around $$ a $$. The radius of convergence can be determined using tests such as the **Ratio Test**.
+
+---
+
+## **Maclaurin's Series Expansion**
+
+The **Maclaurin series** is a special case of the Taylor series, where the expansion is centered at $$ a = 0 $$. In other words, it is the Taylor series expansion of $$ f(x) $$ around $$ x = 0 $$.
+
+### **Maclaurin Series of a Function**
+
+For a function $$ f(x) $$ that is infinitely differentiable at $$ x = 0 $$, the **Maclaurin series** is given by:
+
+$$
+f(x) = f(0) + f'(0)x + \frac{f''(0)}{2!}x^2 + \frac{f^{(3)}(0)}{3!}x^3 + \dots
+$$
+
+This can be written as:
+
+$$
+f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(0)}{n!}x^n
+$$
+
+Where:
+- $$ f^{(n)}(0) $$ is the $$ n $$-th derivative of $$ f(x) $$ evaluated at $$ x = 0 $$,
+- The series is a sum of terms involving $$ x^n $$, starting from $$ n = 0 $$.
+
+### **Maclaurin Series for Common Functions**
+
+Here are a few common functions and their **Maclaurin series** expansions:
+
+1. **Exponential Function $$ e^x $$:**
+
+   The Maclaurin series for $$ e^x $$ is:
+
+   $$
+   e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \dots
+   $$
+
+   This is the series for the exponential function, and it converges for all real values of $$ x $$.
+
+2. **Sine Function $$ \sin(x) $$:**
+
+   The Maclaurin series for $$ \sin(x) $$ is:
+
+   $$
+   \sin(x) = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \dots
+   $$
+
+   This series converges for all real values of $$ x $$.
+
+3. **Cosine Function $$ \cos(x) $$:**
+
+   The Maclaurin series for $$ \cos(x) $$ is:
+
+   $$
+   \cos(x) = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \dots
+   $$
+
+   This series also converges for all real values of $$ x $$.
+
+4. **Natural Logarithm $$ \ln(1 + x) $$ (for $$ |x| < 1 $$):**
+
+   The Maclaurin series for $$ \ln(1 + x) $$ is:
+
+   $$
+   \ln(1 + x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^4}{4} + \dots \quad \text{for} \quad |x| < 1
+   $$
+
+---
+
+## **Examples of Taylor's and Maclaurin Series Expansions**
+
+### **Example 1: Taylor Series for $$ f(x) = \sin(x) $$ about $$ a = 0 $$**
+
+The function $$ f(x) = \sin(x) $$ is infinitely differentiable. Let's find its **Maclaurin series** (a special case of Taylor series with $$ a = 0 $$).
+
+1. First, calculate the derivatives of $$ \sin(x) $$ at $$ x = 0 $$:
+   $$
+   f(x) = \sin(x), \quad f'(x) = \cos(x), \quad f''(x) = -\sin(x), \quad f^{(3)}(x) = -\cos(x), \quad f^{(4)}(x) = \sin(x), \quad \dots
+   $$
+   
+   Now, evaluate the derivatives at $$ x = 0 $$:
+   $$
+   f(0) = \sin(0) = 0, \quad f'(0) = \cos(0) = 1, \quad f''(0) = -\sin(0) = 0, \quad f^{(3)}(0) = -\cos(0) = -1, \quad \dots
+   $$
+
+2. Now substitute these into the **Maclaurin series** formula:
+   $$
+   \sin(x) = 0 + 1 \cdot x + 0 \cdot \frac{x^2}{2!} - 1 \cdot \frac{x^3}{3!} + 0 \cdot \frac{x^4}{4!} + \dots
+   $$
+   
+   The Maclaurin series for $$ \sin(x) $$ becomes:
+   $$
+   \sin(x) = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \dots
+   $$
+
+---
+
+### **Example 2: Taylor Series for $$ f(x) = e^x $$ about $$ a = 1 $$**
+
+Now, let's find the **Taylor series** for $$ e^x $$ around $$ a = 1 $$.
+
+1. First, recall that the derivatives of $$ e^x $$ are all $$ e^x $$, so:
+   $$
+   f(x) = e^x, \quad f'(x) = e^x, \quad f''(x) = e^x, \quad \dots
+   $$
+
+2. Evaluate the derivatives at $$ x = 1 $$:
+   $$
+   f(1) = e^1 = e, \quad f'(1) = e^1 = e, \quad f''(1) = e^1 = e, \quad \dots
+   $$
+
+3. Now, use the Taylor series formula:
+   $$
+   e^x = e + e(x - 1) + \frac{e(x - 1)^2}{2!} + \frac{e(x - 1)^3}{3!} + \dots
+   $$
+
+Thus, the **Taylor series for $$ e^x $$ around $$ x = 1 $$** is:
+
+$$
+e^x = e \left( 1 + (x - 1) + \frac{(x - 1)^2}{2!} + \frac{(x - 1)^3}{3!} + \dots \right)
+$$
+
+---
+
+## **Summary**
+
+- **Taylor Series** is an infinite series that represents a function as a sum of its derivatives at a specific point $$ a $$, and is written as:
+  $$
+  f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x - a)^n
+  $$
+
+- **Maclaurin Series** is a special case of the Taylor series where the expansion is centered at $$ x = 0 $$, and is written as:
+  $$
+  f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(0)}{n!}x^n
+  $$
+
+- **Convergence**: The series converges to the function within a certain radius of convergence around the expansion point.
+
+---
+
+💡 **TIP**: Taylor and Maclaurin series are extremely useful for approximating functions when exact values are difficult to compute. They are also key in solving differential equations, analyzing limits, and in numerical methods.
+
+---
+## **Functions of Several Variables**
+
+A **function of several variables** is a function that depends on more than one input variable. Instead of having just a single independent variable (like in functions of one variable), a function of several variables takes multiple independent variables as inputs and produces a single output.
+
+### **Definition**
+
+A function of several variables can be written as:
+
+$$
+f(x_1, x_2, \dots, x_n)
+$$
+
+Where:
+- $$ f $$ is the function,
+- $$ x_1, x_2, \dots, x_n $$ are the independent variables (also known as **arguments** or **inputs**),
+- The output $$ f(x_1, x_2, \dots, x_n) $$ is typically a real number.
+
+In other words, a function of $$ n $$ variables maps a point in $$ n $$-dimensional space to a real number.
+
+---
+
+## **Examples of Functions of Several Variables**
+
+1. **Function of Two Variables:**
+   - $$ f(x, y) = x^2 + y^2 $$
+     - This is a function of two variables, $$ x $$ and $$ y $$, which gives the sum of their squares.
+   
+2. **Function of Three Variables:**
+   - $$ f(x, y, z) = x^2 + y^2 + z^2 $$
+     - This represents the sum of the squares of three variables $$ x $$, $$ y $$, and $$ z $$.
+
+3. **Real-World Example:**
+   - A **temperature function** that depends on both the location and the time: $$ T(x, y, t) $$, where $$ x $$ and $$ y $$ are spatial coordinates and $$ t $$ is time. The temperature at a given location at a given time can be modeled as $$ T(x, y, t) $$.
+
+---
+
+## **Partial Derivatives**
+
+For functions of several variables, we can calculate the **partial derivatives**. A partial derivative represents the rate of change of the function with respect to one variable, while keeping the other variables constant.
+
+### **Notation for Partial Derivatives**
+
+The partial derivative of a function $$ f(x_1, x_2, \dots, x_n) $$ with respect to the variable $$ x_i $$ is denoted as:
+
+$$
+\frac{\partial f}{\partial x_i}
+$$
+
+This represents the derivative of $$ f $$ with respect to $$ x_i $$, treating all other variables as constants.
+
+### **Example:**
+
+Consider the function $$ f(x, y) = x^2 + y^2 $$.
+
+- The partial derivative of $$ f(x, y) $$ with respect to $$ x $$ is:
+
+$$
+\frac{\partial f}{\partial x} = 2x
+$$
+
+- The partial derivative of $$ f(x, y) $$ with respect to $$ y $$ is:
+
+$$
+\frac{\partial f}{\partial y} = 2y
+$$
+
+These partial derivatives tell us how $$ f(x, y) $$ changes as we vary $$ x $$ and $$ y $$, independently.
+
+---
+
+## **Gradient of a Function**
+
+The **gradient** of a function $$ f(x_1, x_2, \dots, x_n) $$ is a vector that points in the direction of the greatest rate of increase of the function. The gradient is composed of all the partial derivatives of the function.
+
+### **Gradient Notation:**
+
+The gradient of a function $$ f(x_1, x_2, \dots, x_n) $$ is denoted as $$ \nabla f $$ or $$ \text{grad}(f) $$ and is given by:
+
+$$
+\nabla f(x_1, x_2, \dots, x_n) = \left( \frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2}, \dots, \frac{\partial f}{\partial x_n} \right)
+$$
+
+### **Example:**
+
+Consider $$ f(x, y, z) = x^2 + y^2 + z^2 $$.
+
+- The partial derivatives are:
+  - $$ \frac{\partial f}{\partial x} = 2x $$
+  - $$ \frac{\partial f}{\partial y} = 2y $$
+  - $$ \frac{\partial f}{\partial z} = 2z $$
+
+Thus, the gradient of $$ f(x, y, z) $$ is:
+
+$$
+\nabla f(x, y, z) = (2x, 2y, 2z)
+$$
+
+This gradient points in the direction of greatest increase of the function $$ f(x, y, z) $$ and has a magnitude that indicates the rate of change in that direction.
+
+---
+
+## **Directional Derivative**
+
+The **directional derivative** of a function $$ f(x_1, x_2, \dots, x_n) $$ in the direction of a vector $$ \mathbf{v} = (v_1, v_2, \dots, v_n) $$ gives the rate of change of $$ f $$ in that direction. It is computed as the dot product of the gradient of $$ f $$ and the unit vector in the direction of $$ \mathbf{v} $$.
+
+### **Formula for the Directional Derivative:**
+
+The directional derivative of $$ f $$ at the point $$ \mathbf{p} = (x_1, x_2, \dots, x_n) $$ in the direction of the vector $$ \mathbf{v} $$ is given by:
+
+$$
+D_{\mathbf{v}} f(\mathbf{p}) = \nabla f(\mathbf{p}) \cdot \hat{\mathbf{v}}
+$$
+
+Where $$ \hat{\mathbf{v}} $$ is the unit vector in the direction of $$ \mathbf{v} $$, and the dot product $$ \cdot $$ represents the scalar product of two vectors.
+
+### **Example:**
+
+If $$ f(x, y) = x^2 + y^2 $$, and we want the directional derivative at the point $$ (1, 2) $$ in the direction of $$ \mathbf{v} = (3, 4) $$:
+
+1. Compute the gradient of $$ f(x, y) $$:
+
+$$
+\nabla f(x, y) = (2x, 2y)
+$$
+
+At $$ (1, 2) $$, this is:
+
+$$
+\nabla f(1, 2) = (2 \cdot 1, 2 \cdot 2) = (2, 4)
+$$
+
+2. Find the unit vector in the direction of $$ \mathbf{v} = (3, 4) $$:
+
+The magnitude of $$ \mathbf{v} $$ is:
+
+$$
+|\mathbf{v}| = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5
+$$
+
+Thus, the unit vector is:
+
+$$
+\hat{\mathbf{v}} = \frac{1}{5}(3, 4) = (0.6, 0.8)
+$$
+
+3. Compute the directional derivative:
+
+$$
+D_{\mathbf{v}} f(1, 2) = \nabla f(1, 2) \cdot \hat{\mathbf{v}} = (2, 4) \cdot (0.6, 0.8) = 2 \cdot 0.6 + 4 \cdot 0.8 = 1.2 + 3.2 = 4.4
+$$
+
+Thus, the rate of change of $$ f $$ at $$ (1, 2) $$ in the direction of $$ \mathbf{v} = (3, 4) $$ is 4.4.
+
+---
+
+## **Level Curves and Surfaces**
+
+- **Level Curves** (or **Contour Curves**) are curves where the function takes constant values. For a function of two variables $$ f(x, y) $$, a level curve is the set of points $$ (x, y) $$ where $$ f(x, y) = c $$, for some constant $$ c $$.
+  
+- **Level Surfaces** are analogous to level curves, but in three dimensions. For a function of three variables $$ f(x, y, z) $$, a level surface is the set of points $$ (x, y, z) $$ where $$ f(x, y, z) = c $$, for some constant $$ c $$.
+
+### **Example:**
+
+For $$ f(x, y) = x^2 + y^2 $$, the level curves are circles with radius $$ \sqrt{c} $$, where $$ c $$ is the constant value of $$ f(x, y) $$. For example, the level curve for $$ c = 4 $$ is the circle $$ x^2 + y^2 = 4 $$, which has a radius of 2.
+
+---
+
+## **Summary**
+
+- A **function of several variables** depends on multiple inputs. For example, $$ f(x, y, z) = x^2 + y^2 + z^2 $$.
+- **Partial derivatives** give the rate of change with respect to one variable, while keeping others constant.
+- The **gradient** is a vector that points in the direction of greatest increase of the function.
+- The **directional derivative** measures the rate of change of the function in any given direction.
+- **Level curves** and **level surfaces** represent points where the function takes a constant value.
+
+---
+
+💡 **TIP**: Understanding the geometric interpretation of partial derivatives and gradients is essential in visualising how functions behave in higher dimensions.
+
+---
+## **Partial Differentiation**
+
+**Partial differentiation** is a method of differentiation used when dealing with functions of more than one variable. It allows us to find the rate of change of a function with respect to one variable while holding the other variables constant.
+
+### **Definition**
+
+For a function $$ f(x_1, x_2, \dots, x_n) $$, the **partial derivative** of $$ f $$ with respect to one of its variables, say $$ x_i $$, is the derivative of $$ f $$ with respect to $$ x_i $$ while treating all other variables as constants.
+
+### **Notation for Partial Derivatives**
+
+- The partial derivative of $$ f(x_1, x_2, \dots, x_n) $$ with respect to $$ x_i $$ is written as:
+
+$$
+\frac{\partial f}{\partial x_i}
+$$
+
+Alternatively, we can also use the following notations:
+
+- $$ f_{x_i} $$
+- $$ \frac{\partial}{\partial x_i} f(x_1, x_2, \dots, x_n) $$
+
+### **How to Compute Partial Derivatives**
+
+To compute a partial derivative, follow these steps:
+1. **Choose the variable** with respect to which you are differentiating.
+2. **Treat all other variables as constants** and differentiate the function with respect to the chosen variable, as you would in a normal derivative.
+
+---
+
+## **Example 1: Partial Derivative of a Function of Two Variables**
+
+Consider the function:
+
+$$
+f(x, y) = x^2y + 3xy^2
+$$
+
+### **Partial Derivative with Respect to $$ x $$:**
+
+To compute $$ \frac{\partial f}{\partial x} $$, treat $$ y $$ as a constant.
+
+$$
+\frac{\partial}{\partial x}(x^2y + 3xy^2) = 2xy + 3y^2
+$$
+
+So, $$ \frac{\partial f}{\partial x} = 2xy + 3y^2 $$.
+
+### **Partial Derivative with Respect to $$ y $$:**
+
+Now, to compute $$ \frac{\partial f}{\partial y} $$, treat $$ x $$ as a constant.
+
+$$
+\frac{\partial}{\partial y}(x^2y + 3xy^2) = x^2 + 6xy
+$$
+
+So, $$ \frac{\partial f}{\partial y} = x^2 + 6xy $$.
+
+---
+
+## **Example 2: Partial Derivative of a Function of Three Variables**
+
+Consider the function:
+
+$$
+f(x, y, z) = x^2y + yz^3 + \sin(xz)
+$$
+
+### **Partial Derivative with Respect to $$ x $$:**
+
+Treat $$ y $$ and $$ z $$ as constants:
+
+$$
+\frac{\partial}{\partial x}(x^2y + yz^3 + \sin(xz)) = 2xy + z\cos(xz)
+$$
+
+So, $$ \frac{\partial f}{\partial x} = 2xy + z\cos(xz) $$.
+
+### **Partial Derivative with Respect to $$ y $$:**
+
+Treat $$ x $$ and $$ z $$ as constants:
+
+$$
+\frac{\partial}{\partial y}(x^2y + yz^3 + \sin(xz)) = x^2 + z^3
+$$
+
+So, $$ \frac{\partial f}{\partial y} = x^2 + z^3 $$.
+
+### **Partial Derivative with Respect to $$ z $$:**
+
+Treat $$ x $$ and $$ y $$ as constants:
+
+$$
+\frac{\partial}{\partial z}(x^2y + yz^3 + \sin(xz)) = 3yz^2 + x\cos(xz)
+$$
+
+So, $$ \frac{\partial f}{\partial z} = 3yz^2 + x\cos(xz) $$.
+
+---
+
+## **Higher-Order Partial Derivatives**
+
+In addition to first-order partial derivatives, we can also compute **higher-order partial derivatives**, which involve taking partial derivatives multiple times with respect to one or more variables.
+
+### **Notation for Higher-Order Partial Derivatives:**
+
+For example, the second-order partial derivative of $$ f $$ with respect to $$ x $$ and $$ y $$ is written as:
+
+$$
+\frac{\partial^2 f}{\partial x \partial y}
+$$
+
+This means we first take the partial derivative of $$ f $$ with respect to $$ y $$, and then differentiate the result with respect to $$ x $$.
+
+### **Example:**
+
+Consider the function:
+
+$$
+f(x, y) = x^2y + 3xy^2
+$$
+
+We already know that:
+
+$$
+\frac{\partial f}{\partial x} = 2xy + 3y^2
+$$
+
+Now, to find $$ \frac{\partial^2 f}{\partial x \partial y} $$, differentiate $$ \frac{\partial f}{\partial x} $$ with respect to $$ y $$:
+
+$$
+\frac{\partial}{\partial y}(2xy + 3y^2) = 2x + 6y
+$$
+
+So, $$ \frac{\partial^2 f}{\partial x \partial y} = 2x + 6y $$.
+
+We can also compute the mixed partial derivative $$ \frac{\partial^2 f}{\partial y \partial x} $$. By symmetry of mixed partial derivatives (if the function is sufficiently smooth), we get:
+
+$$
+\frac{\partial^2 f}{\partial y \partial x} = \frac{\partial^2 f}{\partial x \partial y} = 2x + 6y
+$$
+
+---
+
+## **Clairaut's Theorem (Equality of Mixed Partial Derivatives)**
+
+Clairaut's Theorem states that if the mixed partial derivatives of a function are continuous (i.e., the function is sufficiently smooth), then the order of differentiation does not matter. That is:
+
+$$
+\frac{\partial^2 f}{\partial x \partial y} = \frac{\partial^2 f}{\partial y \partial x}
+$$
+
+### **Conditions for Equality:**
+- The function must have continuous second-order partial derivatives.
+- If these conditions are satisfied, the mixed partial derivatives can be taken in any order.
+
+---
+
+## **Applications of Partial Derivatives**
+
+Partial derivatives have many applications in various fields, such as:
+
+1. **Optimization**: Finding local minima or maxima of functions in multiple variables. This is commonly used in economics, engineering, and physics.
+2. **Physical Phenomena**: Describing how quantities like temperature, pressure, and concentration change with respect to different spatial variables in fluid dynamics, thermodynamics, and other fields.
+3. **Machine Learning**: In training machine learning models, partial derivatives (specifically gradients) are used to minimize the loss function during optimization algorithms like gradient descent.
+
+---
+
+## **Summary**
+
+- **Partial derivatives** allow us to compute the rate of change of a function with respect to one variable, while treating other variables as constants.
+- The notation for partial derivatives is $$ \frac{\partial f}{\partial x_i} $$, where $$ x_i $$ is the variable of interest.
+- **Higher-order partial derivatives** involve taking partial derivatives multiple times with respect to different variables.
+- **Clairaut's Theorem** assures that if the mixed partial derivatives of a function are continuous, their order of differentiation can be swapped.
+
+---
+
+💡 **TIP**: To get a good grasp on partial differentiation, it helps to practice with functions of more than one variable and compute partial derivatives in various orders.
+
+---
+## **Euler's Theorem**
+
+Euler's Theorem is a fundamental result in the field of differential equations, and it has important applications in various branches of mathematics, including the theory of homogeneous functions. It connects the derivatives of a function to the function itself and its variables.
+
+Euler's Theorem states that for a **homogeneous function** of degree $$ n $$, the function satisfies a particular relation involving partial derivatives.
+
+### **Definition of Homogeneous Function**
+
+A function $$ f(x_1, x_2, \dots, x_n) $$ is called **homogeneous of degree $$ n $$** if, for any constant $$ t $$, the following condition holds:
+
+$$
+f(t x_1, t x_2, \dots, t x_n) = t^n f(x_1, x_2, \dots, x_n)
+$$
+
+In other words, scaling all the input variables $$ x_1, x_2, \dots, x_n $$ by a factor of $$ t $$ scales the function itself by a factor of $$ t^n $$, where $$ n $$ is the degree of homogeneity.
+
+---
+
+## **Euler's Theorem for Homogeneous Functions**
+
+Euler's Theorem states that if a function $$ f(x_1, x_2, \dots, x_n) $$ is homogeneous of degree $$ n $$, then the following relation holds:
+
+$$
+x_1 \frac{\partial f}{\partial x_1} + x_2 \frac{\partial f}{\partial x_2} + \dots + x_n \frac{\partial f}{\partial x_n} = n f(x_1, x_2, \dots, x_n)
+$$
+
+### **Interpretation**
+
+The theorem essentially expresses that the weighted sum of the partial derivatives of a homogeneous function, where the weights are the respective variables, is equal to the product of the degree of homogeneity and the function itself.
+
+### **Example 1: Euler’s Theorem in Action**
+
+Consider the homogeneous function:
+
+$$
+f(x, y) = x^2 + y^2
+$$
+
+This function is homogeneous of degree 2, because scaling both $$ x $$ and $$ y $$ by a factor of $$ t $$ results in:
+
+$$
+f(t x, t y) = (t x)^2 + (t y)^2 = t^2 (x^2 + y^2) = t^2 f(x, y)
+$$
+
+Now, applying Euler's Theorem:
+
+$$
+x \frac{\partial f}{\partial x} + y \frac{\partial f}{\partial y}
+$$
+
+First, calculate the partial derivatives of $$ f(x, y) = x^2 + y^2 $$:
+
+$$
+\frac{\partial f}{\partial x} = 2x, \quad \frac{\partial f}{\partial y} = 2y
+$$
+
+Now, substitute these into the Euler's relation:
+
+$$
+x \cdot 2x + y \cdot 2y = 2x^2 + 2y^2 = 2(x^2 + y^2) = 2 f(x, y)
+$$
+
+This confirms that Euler’s theorem holds for this function with degree $$ n = 2 $$.
+
+---
+
+## **Example 2: Euler's Theorem for a Function of Three Variables**
+
+Consider the homogeneous function:
+
+$$
+f(x, y, z) = x^3 + y^3 + z^3
+$$
+
+This function is homogeneous of degree 3 because:
+
+$$
+f(t x, t y, t z) = (t x)^3 + (t y)^3 + (t z)^3 = t^3 (x^3 + y^3 + z^3) = t^3 f(x, y, z)
+$$
+
+Now, applying Euler’s Theorem:
+
+$$
+x \frac{\partial f}{\partial x} + y \frac{\partial f}{\partial y} + z \frac{\partial f}{\partial z}
+$$
+
+First, calculate the partial derivatives of $$ f(x, y, z) = x^3 + y^3 + z^3 $$:
+
+$$
+\frac{\partial f}{\partial x} = 3x^2, \quad \frac{\partial f}{\partial y} = 3y^2, \quad \frac{\partial f}{\partial z} = 3z^2
+$$
+
+Substitute these into Euler's relation:
+
+$$
+x \cdot 3x^2 + y \cdot 3y^2 + z \cdot 3z^2 = 3x^3 + 3y^3 + 3z^3 = 3(x^3 + y^3 + z^3) = 3 f(x, y, z)
+$$
+
+This confirms that Euler's Theorem holds for this function with degree $$ n = 3 $$.
+
+---
+
+## **General Case of Euler’s Theorem**
+
+Euler’s Theorem is generally applicable to functions that are **homogeneous** of degree $$ n $$, and it provides a powerful relationship that links the function, its partial derivatives, and the degree of homogeneity. For any homogeneous function $$ f(x_1, x_2, \dots, x_n) $$ of degree $$ n $$, the following equation holds:
+
+$$
+\sum_{i=1}^{n} x_i \frac{\partial f}{\partial x_i} = n f(x_1, x_2, \dots, x_n)
+$$
+
+---
+
+## **Applications of Euler’s Theorem**
+
+Euler's Theorem has several practical applications:
+
+1. **Homogeneous Functions in Economics**:
+   - In economics, Euler’s Theorem is used in the context of **production functions**. For instance, if the output of a production process is homogeneous, Euler's Theorem can be used to derive relationships between input factors and output.
+   
+2. **In Thermodynamics**:
+   - Homogeneous functions often appear in thermodynamic potentials, and Euler’s Theorem helps to establish important relations between thermodynamic variables such as pressure, volume, temperature, etc.
+
+3. **Fluid Dynamics and Engineering**:
+   - The theorem is also used in fluid mechanics and engineering to relate different properties of fluids that follow homogeneous laws, such as the relation between velocity, pressure, and density in fluid flow.
+
+---
+
+## **Summary**
+
+- **Euler's Theorem** applies to **homogeneous functions**, which satisfy $$ f(t x_1, t x_2, \dots, t x_n) = t^n f(x_1, x_2, \dots, x_n) $$, where $$ t $$ is a scalar and $$ n $$ is the degree of homogeneity.
+- The theorem provides the relation: 
+
+$$
+x_1 \frac{\partial f}{\partial x_1} + x_2 \frac{\partial f}{\partial x_2} + \dots + x_n \frac{\partial f}{\partial x_n} = n f(x_1, x_2, \dots, x_n)
+$$
+
+- This relationship is useful in various fields like economics, physics, and engineering, especially in dealing with homogeneous systems or functions.
+
+---
+
+💡 **TIP**: Euler's Theorem is particularly useful in simplifying complex problems involving homogeneous functions and can provide insights into the underlying structure of many physical and economic systems.
+
+---
+## **Total Derivative**
+
+The **total derivative** refers to the derivative of a function with respect to one variable, but accounting for the fact that the independent variables might also depend on other variables. It is often used when dealing with functions of multiple variables, and we are interested in how a function changes when all of its independent variables change.
+
+### **Definition of Total Derivative**
+
+Consider a function $$ f(x_1, x_2, \dots, x_n) $$, where each $$ x_i $$ is itself a function of some other independent variables, say $$ t $$. The **total derivative** of $$ f $$ with respect to $$ t $$ gives us the rate of change of $$ f $$ as all its variables change with respect to $$ t $$.
+
+If $$ x_1, x_2, \dots, x_n $$ are all functions of $$ t $$, then the total derivative of $$ f(x_1, x_2, \dots, x_n) $$ with respect to $$ t $$ is:
+
+$$
+\frac{d}{dt} f(x_1(t), x_2(t), \dots, x_n(t)) = \sum_{i=1}^{n} \frac{\partial f}{\partial x_i} \cdot \frac{dx_i}{dt}
+$$
+
+In this expression:
+- $$ \frac{\partial f}{\partial x_i} $$ is the **partial derivative** of $$ f $$ with respect to $$ x_i $$.
+- $$ \frac{dx_i}{dt} $$ is the **rate of change** of $$ x_i $$ with respect to $$ t $$.
+- The summation runs over all the independent variables $$ x_1, x_2, \dots, x_n $$.
+
+### **Explanation**
+
+The total derivative takes into account the fact that as $$ t $$ changes, all the independent variables $$ x_1, x_2, \dots, x_n $$ also change, and these changes affect the value of $$ f $$. The total derivative combines the individual effects of these changes, weighted by how $$ f $$ depends on each variable.
+
+---
+
+## **Example 1: Total Derivative of a Function of Two Variables**
+
+Consider the function:
+
+$$
+f(x, y) = x^2 + y^2
+$$
+
+Let $$ x = x(t) $$ and $$ y = y(t) $$, where both $$ x $$ and $$ y $$ are functions of $$ t $$. The total derivative of $$ f $$ with respect to $$ t $$ is:
+
+$$
+\frac{d}{dt} f(x(t), y(t)) = \frac{\partial f}{\partial x} \cdot \frac{dx}{dt} + \frac{\partial f}{\partial y} \cdot \frac{dy}{dt}
+$$
+
+First, compute the partial derivatives of $$ f(x, y) = x^2 + y^2 $$:
+
+$$
+\frac{\partial f}{\partial x} = 2x, \quad \frac{\partial f}{\partial y} = 2y
+$$
+
+Substitute these into the total derivative formula:
+
+$$
+\frac{d}{dt} f(x(t), y(t)) = 2x \cdot \frac{dx}{dt} + 2y \cdot \frac{dy}{dt}
+$$
+
+This gives us the rate of change of $$ f $$ with respect to $$ t $$, accounting for how both $$ x $$ and $$ y $$ change with respect to $$ t $$.
+
+---
+
+## **Example 2: Total Derivative of a Function of Three Variables**
+
+Consider the function:
+
+$$
+f(x, y, z) = x^2y + yz^3
+$$
+
+Let $$ x = x(t), y = y(t), z = z(t) $$, where all variables are functions of $$ t $$. The total derivative of $$ f $$ with respect to $$ t $$ is:
+
+$$
+\frac{d}{dt} f(x(t), y(t), z(t)) = \frac{\partial f}{\partial x} \cdot \frac{dx}{dt} + \frac{\partial f}{\partial y} \cdot \frac{dy}{dt} + \frac{\partial f}{\partial z} \cdot \frac{dz}{dt}
+$$
+
+First, compute the partial derivatives of $$ f(x, y, z) = x^2y + yz^3 $$:
+
+$$
+\frac{\partial f}{\partial x} = 2xy, \quad \frac{\partial f}{\partial y} = x^2 + z^3, \quad \frac{\partial f}{\partial z} = 3yz^2
+$$
+
+Substitute these into the total derivative formula:
+
+$$
+\frac{d}{dt} f(x(t), y(t), z(t)) = 2xy \cdot \frac{dx}{dt} + (x^2 + z^3) \cdot \frac{dy}{dt} + 3yz^2 \cdot \frac{dz}{dt}
+$$
+
+This expression represents how $$ f $$ changes with respect to $$ t $$, taking into account the changes in $$ x $$, $$ y $$, and $$ z $$ over time.
+
+---
+
+## **Applications of Total Derivative**
+
+The total derivative is widely used in several areas:
+
+1. **Physics**:
+   - In **kinematics**, when an object's position depends on multiple variables (such as time and other spatial coordinates), the total derivative helps to compute the velocity and acceleration.
+   
+2. **Economics**:
+   - When a function (like cost, utility, or profit) depends on several economic variables (like price, quantity, and time), the total derivative helps calculate how the function changes when all these variables are changing simultaneously.
+
+3. **Engineering**:
+   - In **control systems** and **mechanical systems**, where multiple factors (e.g., temperature, pressure, and volume) affect the output, the total derivative is used to understand the system's behaviour.
+
+---
+
+## **Summary**
+
+- The **total derivative** is the derivative of a function with respect to one variable, considering how all independent variables of the function change with respect to that variable.
+- The total derivative for a function $$ f(x_1, x_2, \dots, x_n) $$, where each $$ x_i $$ is a function of $$ t $$, is:
+
+$$
+\frac{d}{dt} f(x_1(t), x_2(t), \dots, x_n(t)) = \sum_{i=1}^{n} \frac{\partial f}{\partial x_i} \cdot \frac{dx_i}{dt}
+$$
+
+- The total derivative is especially useful when dealing with multi-variable functions in applied fields like physics, engineering, and economics.
+
+---
+
+💡 **TIP**: To calculate the total derivative, remember to use the chain rule for each variable that depends on the independent variable, and sum the contributions from all variables.
+
+---
+## **Maxima and Minima of a Function of Two Variables**
+
+In calculus, we are often interested in finding the **maximum** or **minimum** values of a function. When the function depends on two variables, the process becomes slightly more involved because we need to analyze how the function behaves in two-dimensional space.
+
+### **Definition**
+
+- A **maximum** (local or global) is a point where the function takes a higher value compared to its immediate surroundings.
+- A **minimum** (local or global) is a point where the function takes a lower value compared to its immediate surroundings.
+
+### **Critical Points**
+
+To find the maxima and minima of a function of two variables $$ f(x, y) $$, we first need to find the **critical points**. These are the points where the first partial derivatives of the function with respect to both variables are equal to zero.
+
+The steps are as follows:
+
+1. **Find the first-order partial derivatives** of $$ f(x, y) $$ with respect to $$ x $$ and $$ y $$.
+   
+   $$
+   \frac{\partial f}{\partial x}, \quad \frac{\partial f}{\partial y}
+   $$
+
+2. **Set both partial derivatives to zero** and solve for $$ x $$ and $$ y $$ to find the critical points.
+
+   $$
+   \frac{\partial f}{\partial x} = 0 \quad \text{and} \quad \frac{\partial f}{\partial y} = 0
+   $$
+
+3. Solve the system of equations to get the critical points $$ (x_0, y_0) $$.
+
+---
+
+## **Second-Order Partial Derivatives and the Test for Maxima and Minima**
+
+Once we have the critical points, we use the **second derivative test** to determine whether each critical point is a **local maximum**, **local minimum**, or a **saddle point** (neither a maximum nor a minimum).
+
+### **Second Derivative Test**
+
+We calculate the following second-order partial derivatives:
+
+- $$ f_{xx} = \frac{\partial^2 f}{\partial x^2} $$
+- $$ f_{yy} = \frac{\partial^2 f}{\partial y^2} $$
+- $$ f_{xy} = \frac{\partial^2 f}{\partial x \partial y} $$ (mixed partial derivative)
+
+The discriminant $$ D $$ is defined as:
+
+$$
+D = f_{xx} \cdot f_{yy} - (f_{xy})^2
+$$
+
+Now, based on the value of $$ D $$ and the signs of $$ f_{xx} $$ and $$ f_{yy} $$, we determine the nature of the critical point:
+
+1. **If $$ D > 0 $$ and $$ f_{xx} > 0 $$**, the critical point is a **local minimum**.
+2. **If $$ D > 0 $$ and $$ f_{xx} < 0 $$**, the critical point is a **local maximum**.
+3. **If $$ D < 0 $$**, the critical point is a **saddle point** (neither a maximum nor a minimum).
+4. **If $$ D = 0 $$**, the test is inconclusive, and further investigation is needed.
+
+---
+
+## **Example 1: Find the Maxima and Minima of a Function of Two Variables**
+
+Consider the function:
+
+$$
+f(x, y) = x^2 + y^2
+$$
+
+### **Step 1: Find the first-order partial derivatives**
+
+$$
+\frac{\partial f}{\partial x} = 2x, \quad \frac{\partial f}{\partial y} = 2y
+$$
+
+### **Step 2: Set both partial derivatives equal to zero**
+
+$$
+2x = 0 \quad \text{and} \quad 2y = 0
+$$
+
+Solving these equations, we get:
+
+$$
+x = 0, \quad y = 0
+$$
+
+So, the critical point is $$ (0, 0) $$.
+
+### **Step 3: Compute the second-order partial derivatives**
+
+$$
+f_{xx} = \frac{\partial^2 f}{\partial x^2} = 2, \quad f_{yy} = \frac{\partial^2 f}{\partial y^2} = 2, \quad f_{xy} = \frac{\partial^2 f}{\partial x \partial y} = 0
+$$
+
+### **Step 4: Compute the discriminant $$ D $$**
+
+$$
+D = f_{xx} \cdot f_{yy} - (f_{xy})^2 = 2 \cdot 2 - 0^2 = 4
+$$
+
+### **Step 5: Apply the second derivative test**
+
+Since $$ D = 4 > 0 $$ and $$ f_{xx} = 2 > 0 $$, the critical point $$ (0, 0) $$ is a **local minimum**.
+
+Thus, the function $$ f(x, y) = x^2 + y^2 $$ has a **local minimum at $$ (0, 0) $$**.
+
+---
+
+## **Example 2: Another Function of Two Variables**
+
+Consider the function:
+
+$$
+f(x, y) = x^3 - 3xy^2
+$$
+
+### **Step 1: Find the first-order partial derivatives**
+
+$$
+\frac{\partial f}{\partial x} = 3x^2 - 3y^2, \quad \frac{\partial f}{\partial y} = -6xy
+$$
+
+### **Step 2: Set both partial derivatives equal to zero**
+
+$$
+3x^2 - 3y^2 = 0 \quad \text{and} \quad -6xy = 0
+$$
+
+From $$ -6xy = 0 $$, we get $$ x = 0 $$ or $$ y = 0 $$.
+
+#### Case 1: $$ x = 0 $$
+
+Substitute $$ x = 0 $$ into the first equation:
+
+$$
+0 - 3y^2 = 0 \quad \Rightarrow \quad y = 0
+$$
+
+Thus, $$ (0, 0) $$ is a critical point.
+
+#### Case 2: $$ y = 0 $$
+
+Substitute $$ y = 0 $$ into the first equation:
+
+$$
+3x^2 = 0 \quad \Rightarrow \quad x = 0
+$$
+
+Thus, $$ (0, 0) $$ is a critical point.
+
+### **Step 3: Compute the second-order partial derivatives**
+
+$$
+f_{xx} = 6x, \quad f_{yy} = -6x, \quad f_{xy} = -6y
+$$
+
+At the critical point $$ (0, 0) $$, we have:
+
+$$
+f_{xx}(0, 0) = 0, \quad f_{yy}(0, 0) = 0, \quad f_{xy}(0, 0) = 0
+$$
+
+### **Step 4: Compute the discriminant $$ D $$**
+
+$$
+D = f_{xx} \cdot f_{yy} - (f_{xy})^2 = 0 \cdot 0 - 0^2 = 0
+$$
+
+### **Step 5: Apply the second derivative test**
+
+Since $$ D = 0 $$, the test is **inconclusive**. We need further investigation or a different method to determine the nature of the critical point.
+
+In this case, the critical point $$ (0, 0) $$ is a **saddle point** (neither a maximum nor a minimum) because the function exhibits behavior similar to a saddle, with regions where the function is increasing and decreasing in different directions.
+
+---
+
+## **Summary**
+
+- To find the **maxima** and **minima** of a function of two variables:
+  1. Compute the first-order partial derivatives and find the critical points by setting them equal to zero.
+  2. Compute the second-order partial derivatives and the discriminant $$ D $$.
+  3. Use the second derivative test to classify the critical points as local maxima, local minima, or saddle points.
+  
+- **Second Derivative Test**:
+  - $$ D > 0 $$ and $$ f_{xx} > 0 $$ indicates a **local minimum**.
+  - $$ D > 0 $$ and $$ f_{xx} < 0 $$ indicates a **local maximum**.
+  - $$ D < 0 $$ indicates a **saddle point**.
+  - $$ D = 0 $$ is **inconclusive**.
+
+---
+
+💡 **TIP**: If $$ D = 0 $$, you may need to examine the function further, potentially using other methods such as inspecting the nature of the function near the critical point or applying higher-order derivatives.
+
+---

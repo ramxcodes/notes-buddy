@@ -1,0 +1,668 @@
+---
+title: "Unit 1: Engineering Mathematics 1"
+description: Rank and Nullity of a Matrix by reducing it into Echelon and Normal Forms, Solution of Simultaneous equations by elementary transformation methods, Consistency and Inconsistency of Equations, Eigen Values and Eigen Vectors.
+date: 2025-01-08
+tags: ["Engineering Mathematics 1", "1st Semester", "1st Year", "B Tech"]
+published: true
+metadata:
+  university: "Medicaps University"
+  degree: "B Tech"
+  semester: "1st Semester"
+  subject: "Engineering Mathematics 1"
+---
+
+---
+## **Rank of a Matrix**
+
+The **rank** of a matrix is defined as the maximum number of linearly independent rows or columns in the matrix. It provides important insights into the matrix, such as its dimensionality and the solutions to associated systems of equations.
+
+### **Echelon Form**
+To find the rank of a matrix, one method is to reduce the matrix to its **Row Echelon Form (REF)** or **Reduced Row Echelon Form (RREF)**. This allows us to easily identify the number of non-zero rows, which directly corresponds to the rank of the matrix.
+
+#### **Steps to Reduce a Matrix to Row Echelon Form (REF):**
+1. **Begin with the leftmost non-zero column**: This is called the pivot column.
+2. **Make the leading entry of this column (pivot) equal to 1** by dividing the row by the value of the pivot element.
+3. **Eliminate entries below the pivot**: Subtract multiples of the pivot row from the rows below to make all elements below the pivot equal to zero.
+4. **Move to the next column** and repeat the process for the next row, ensuring that the pivot entries remain in the diagonal.
+
+#### **Example**:
+Let’s consider the matrix:
+
+$$
+A = \begin{pmatrix}
+1 & 2 & 3 \\
+2 & 3 & 4 \\
+3 & 4 & 5
+\end{pmatrix}
+$$
+
+We perform row operations to reduce it to REF.
+
+1. The first pivot is $$ 1 $$ in the first row and first column. The matrix remains unchanged initially.
+
+$$
+\begin{pmatrix}
+1 & 2 & 3 \\
+2 & 3 & 4 \\
+3 & 4 & 5
+\end{pmatrix}
+$$
+
+2. Subtract $$ 2 \times $$ Row 1 from Row 2, and subtract $$ 3 \times $$ Row 1 from Row 3.
+
+$$
+\begin{pmatrix}
+1 & 2 & 3 \\
+0 & -1 & -2 \\
+0 & -2 & -4
+\end{pmatrix}
+$$
+
+3. Make the pivot in the second row $$ -1 $$ equal to $$ 1 $$ by multiplying Row 2 by $$ -1 $$.
+
+$$
+\begin{pmatrix}
+1 & 2 & 3 \\
+0 & 1 & 2 \\
+0 & -2 & -4
+\end{pmatrix}
+$$
+
+4. Add $$ 2 \times $$ Row 2 to Row 3 to eliminate the value below the pivot.
+
+$$
+\begin{pmatrix}
+1 & 2 & 3 \\
+0 & 1 & 2 \\
+0 & 0 & 0
+\end{pmatrix}
+$$
+
+Now, the matrix is in **Row Echelon Form (REF)**.
+
+### **Rank of the Matrix**:
+The rank is the number of non-zero rows in the REF. Here, there are two non-zero rows, so the **rank of the matrix is 2**.
+
+---
+
+## **Nullity of a Matrix**
+
+The **nullity** of a matrix is the dimension of the **null space** (the solution space of the homogeneous equation $$ A\mathbf{x} = 0 $$) and is related to the rank of the matrix by the **Rank-Nullity Theorem**.
+
+### **Rank-Nullity Theorem**:
+For an $$ m \times n $$ matrix $$ A $$:
+
+$$ \text{Rank}(A) + \text{Nullity}(A) = n $$
+
+where $$ n $$ is the number of columns in the matrix.
+
+#### **Example**:
+From the previous example, the matrix $$ A $$ has 3 columns and its rank is 2. Using the Rank-Nullity Theorem:
+
+$$ \text{Nullity}(A) = 3 - 2 = 1 $$
+
+Thus, the **nullity** of the matrix is 1.
+
+---
+
+## **Reduced Row Echelon Form (RREF)**
+
+In the **Reduced Row Echelon Form (RREF)**, the matrix satisfies the following additional conditions:
+1. The leading entry in each non-zero row is 1.
+2. The column containing the leading 1 of a row has zeros in all other positions.
+3. Any row containing only zeros is at the bottom.
+
+#### **Steps to Reduce to RREF**:
+1. Start by reducing the matrix to REF.
+2. Use back substitution to make the leading entries (pivots) in each row equal to 1 and eliminate all other entries in the pivot column.
+
+### **Example**:
+Let’s take the matrix from earlier:
+
+$$
+A = \begin{pmatrix}
+1 & 2 & 3 \\
+2 & 3 & 4 \\
+3 & 4 & 5
+\end{pmatrix}
+$$
+
+We have already reduced it to REF:
+
+$$
+\begin{pmatrix}
+1 & 2 & 3 \\
+0 & 1 & 2 \\
+0 & 0 & 0
+\end{pmatrix}
+$$
+
+To convert this into **RREF**, we perform the following steps:
+
+1. Subtract $$ 2 \times $$ Row 2 from Row 1 to eliminate the 2 above the pivot in the first column.
+
+$$
+\begin{pmatrix}
+1 & 0 & -1 \\
+0 & 1 & 2 \\
+0 & 0 & 0
+\end{pmatrix}
+$$
+
+Now, the matrix is in **Reduced Row Echelon Form (RREF)**.
+
+---
+
+## **Summary**
+
+- **Rank of a Matrix**: The number of non-zero rows in the Row Echelon Form (REF).
+- **Nullity of a Matrix**: The dimension of the null space, calculated using the Rank-Nullity Theorem.
+- **Row Echelon Form (REF)**: A matrix form where all elements below the pivot are zero.
+- **Reduced Row Echelon Form (RREF)**: A stricter form where the pivots are 1, and each pivot column has zeros in all other positions.
+
+💡 **TIP:** Always ensure that the matrix is reduced to RREF to clearly identify the rank and nullity. This makes solving linear systems much easier.
+
+---
+## **Simultaneous Equations**
+
+A system of simultaneous equations consists of two or more equations involving the same set of variables. The goal is to find the values of the variables that satisfy all the equations at once.
+
+The system of equations can be represented in matrix form as:
+
+$$
+A \mathbf{x} = \mathbf{b}
+$$
+
+Where:
+- $$ A $$ is the coefficient matrix,
+- $$ \mathbf{x} $$ is the column vector of variables,
+- $$ \mathbf{b} $$ is the column vector of constants.
+
+### **Elementary Transformation Method**
+
+The **elementary transformation method** is used to solve a system of simultaneous equations by transforming the augmented matrix of the system into a simpler form, such as the Row Echelon Form (REF) or Reduced Row Echelon Form (RREF), using elementary row operations.
+
+#### **Elementary Row Operations**:
+There are three basic types of elementary row operations that can be applied to the augmented matrix:
+
+1. **Row swapping (R1 ↔ R2)**: Swap two rows.
+2. **Row multiplication (R1 → kR1)**: Multiply a row by a non-zero scalar $$ k $$.
+3. **Row addition (R1 → R1 + kR2)**: Add a multiple of one row to another.
+
+These operations are used to simplify the system of equations to find the values of the variables.
+
+---
+
+## **Steps to Solve Simultaneous Equations Using Elementary Transformation**
+
+### **Step 1: Write the Augmented Matrix**
+Convert the system of simultaneous equations into an augmented matrix.
+
+### **Step 2: Apply Elementary Row Operations**
+Perform elementary row operations to transform the augmented matrix into Row Echelon Form (REF) or Reduced Row Echelon Form (RREF).
+
+### **Step 3: Back Substitution**
+Once the matrix is in Row Echelon Form, use back substitution to find the values of the unknown variables.
+
+---
+
+## **Example**
+
+Let's solve the following system of equations:
+
+$$
+\begin{aligned}
+x + y + z &= 6 \\
+2x + 2y + 3z &= 14 \\
+3x + 3y + 4z &= 20
+\end{aligned}
+$$
+
+### **Step 1: Write the Augmented Matrix**
+
+The augmented matrix corresponding to the system is:
+
+$$
+\begin{pmatrix}
+1 & 1 & 1 & | & 6 \\
+2 & 2 & 3 & | & 14 \\
+3 & 3 & 4 & | & 20
+\end{pmatrix}
+$$
+
+### **Step 2: Apply Elementary Row Operations**
+
+#### Operation 1: Eliminate the $$ x $$-terms in the second and third rows.
+
+- Subtract $$ 2 \times $$ Row 1 from Row 2:
+  
+$$
+R2 \to R2 - 2R1: \quad \begin{pmatrix} 2 & 2 & 3 & | & 14 \end{pmatrix} - 2 \times \begin{pmatrix} 1 & 1 & 1 & | & 6 \end{pmatrix} = \begin{pmatrix} 0 & 0 & 1 & | & 2 \end{pmatrix}
+$$
+
+- Subtract $$ 3 \times $$ Row 1 from Row 3:
+
+$$
+R3 \to R3 - 3R1: \quad \begin{pmatrix} 3 & 3 & 4 & | & 20 \end{pmatrix} - 3 \times \begin{pmatrix} 1 & 1 & 1 & | & 6 \end{pmatrix} = \begin{pmatrix} 0 & 0 & 1 & | & 2 \end{pmatrix}
+$$
+
+Now, the matrix becomes:
+
+$$
+\begin{pmatrix}
+1 & 1 & 1 & | & 6 \\
+0 & 0 & 1 & | & 2 \\
+0 & 0 & 1 & | & 2
+\end{pmatrix}
+$$
+
+#### Operation 2: Eliminate the $$ z $$-terms in the first row.
+
+- Subtract Row 2 from Row 1:
+
+$$
+R1 \to R1 - R2: \quad \begin{pmatrix} 1 & 1 & 1 & | & 6 \end{pmatrix} - \begin{pmatrix} 0 & 0 & 1 & | & 2 \end{pmatrix} = \begin{pmatrix} 1 & 1 & 0 & | & 4 \end{pmatrix}
+$$
+
+Now, the matrix becomes:
+
+$$
+\begin{pmatrix}
+1 & 1 & 0 & | & 4 \\
+0 & 0 & 1 & | & 2 \\
+0 & 0 & 1 & | & 2
+\end{pmatrix}
+$$
+
+### **Step 3: Back Substitution**
+
+Now that the matrix is in **Row Echelon Form (REF)**, we can solve for the variables:
+
+From Row 2: $$ z = 2 $$
+
+Substitute $$ z = 2 $$ into Row 1: 
+
+$$ x + y = 4 $$
+
+From Row 3: $$ z = 2 $$ (already known).
+
+Now, solve for $$ x $$ and $$ y $$.
+
+- $$ x + y = 4 $$
+- $$ x = 4 - y $$
+
+Thus, the solution is:
+- $$ x = 4 - y $$
+- $$ y = y $$ (can take any value, so this is a **dependent system**)
+
+Hence, the system has infinitely many solutions, depending on the value of $$ y $$.
+
+---
+
+## **Summary**
+
+- **Elementary Row Operations**: These are used to transform the augmented matrix of the system into Row Echelon Form (REF) or Reduced Row Echelon Form (RREF).
+- **Back Substitution**: After reducing the matrix to REF, use back substitution to solve for the variables.
+- **Dependent System**: In this example, the system has infinitely many solutions depending on the value of $$ y $$.
+
+💡 **TIP:** Always ensure the matrix is in REF before proceeding to back substitution to simplify the process of finding solutions.
+
+---
+## **Consistency of Equations**
+
+A system of equations is said to be **consistent** if there exists at least one solution that satisfies all the equations in the system. In other words, a consistent system has at least one point of intersection in its graphical representation, and hence a solution exists.
+
+### **Types of Consistent Systems**
+1. **Unique Solution**: If the system has exactly one solution, it is consistent and independent.
+2. **Infinite Solutions**: If the system has infinitely many solutions (typically when there is redundancy in the equations), it is still consistent, but dependent.
+
+#### **Example of a Consistent System with a Unique Solution**:
+
+Consider the system of equations:
+
+$$
+\begin{aligned}
+x + y &= 4 \\
+2x + 3y &= 8
+\end{aligned}
+$$
+
+The augmented matrix for this system is:
+
+$$
+\begin{pmatrix}
+1 & 1 & | & 4 \\
+2 & 3 & | & 8
+\end{pmatrix}
+$$
+
+By performing elementary row operations:
+
+- Subtract $$ 2 \times $$ Row 1 from Row 2:
+
+$$
+R2 \to R2 - 2R1: \quad \begin{pmatrix} 2 & 3 & | & 8 \end{pmatrix} - 2 \times \begin{pmatrix} 1 & 1 & | & 4 \end{pmatrix} = \begin{pmatrix} 0 & 1 & | & 0 \end{pmatrix}
+$$
+
+This gives the matrix:
+
+$$
+\begin{pmatrix}
+1 & 1 & | & 4 \\
+0 & 1 & | & 0
+\end{pmatrix}
+$$
+
+Now, back-substitute:
+
+- From Row 2: $$ y = 0 $$.
+- From Row 1: $$ x + 0 = 4 $$, so $$ x = 4 $$.
+
+Thus, the system has a unique solution $$ (x, y) = (4, 0) $$, and it is **consistent**.
+
+---
+
+## **Inconsistency of Equations**
+
+A system of equations is said to be **inconsistent** if there is **no solution** that satisfies all the equations simultaneously. Graphically, this means that the lines or planes representing the equations do not intersect at any point.
+
+### **Characteristics of Inconsistent Systems**
+1. **Contradictory Equations**: The system contains equations that contradict each other, resulting in no solution.
+2. **Parallel Lines**: In the case of two variables, the equations represent parallel lines that never meet.
+3. **Parallel Planes**: In three-dimensional space, the equations represent parallel planes that do not intersect.
+
+#### **Example of an Inconsistent System**:
+
+Consider the following system of equations:
+
+$$
+\begin{aligned}
+x + y &= 4 \\
+x + y &= 6
+\end{aligned}
+$$
+
+The augmented matrix for this system is:
+
+$$
+\begin{pmatrix}
+1 & 1 & | & 4 \\
+1 & 1 & | & 6
+\end{pmatrix}
+$$
+
+By performing elementary row operations:
+
+- Subtract Row 1 from Row 2:
+
+$$
+R2 \to R2 - R1: \quad \begin{pmatrix} 1 & 1 & | & 6 \end{pmatrix} - \begin{pmatrix} 1 & 1 & | & 4 \end{pmatrix} = \begin{pmatrix} 0 & 0 & | & 2 \end{pmatrix}
+$$
+
+Now, the matrix becomes:
+
+$$
+\begin{pmatrix}
+1 & 1 & | & 4 \\
+0 & 0 & | & 2
+\end{pmatrix}
+$$
+
+The second row represents the equation:
+
+$$ 0x + 0y = 2 $$
+
+This is a contradiction because $$ 0 = 2 $$ is impossible. Therefore, the system is **inconsistent** and has no solution.
+
+---
+
+## **Conditions for Consistency and Inconsistency**
+
+1. **Consistent System**:
+   - The system has at least one solution.
+   - The rank of the augmented matrix is equal to the rank of the coefficient matrix.
+   
+2. **Inconsistent System**:
+   - The system has no solution.
+   - The rank of the augmented matrix is greater than the rank of the coefficient matrix.
+
+### **Rank-Nullity Theorem for Consistency**:
+For a system of linear equations represented as $$ A \mathbf{x} = \mathbf{b} $$, the system is consistent if:
+
+$$ \text{Rank}(A) = \text{Rank}(A|b) $$
+
+where $$ A|b $$ is the augmented matrix formed by appending the column vector $$ \mathbf{b} $$ to the coefficient matrix $$ A $$. If the rank of the augmented matrix is greater than the rank of the coefficient matrix, the system is inconsistent.
+
+---
+
+## **Summary**
+
+- **Consistent System**: Has at least one solution. It can have a unique solution or infinitely many solutions.
+  - Example: $$ x + y = 4 $$ and $$ 2x + 3y = 8 $$.
+- **Inconsistent System**: Has no solution because the equations contradict each other.
+  - Example: $$ x + y = 4 $$ and $$ x + y = 6 $$.
+- **Rank Condition for Consistency**: A system is consistent if $$ \text{Rank}(A) = \text{Rank}(A|b) $$.
+
+💡 **TIP**: If you encounter a system of equations where the augmented matrix has a row with all zeros except in the last column, the system is inconsistent (no solution).
+
+---
+## **Eigenvalues and Eigenvectors**
+
+In linear algebra, **eigenvalues** and **eigenvectors** are fundamental concepts associated with square matrices. They are used in various fields like physics, computer science, and engineering, especially in solving systems of differential equations, analyzing stability, and performing dimensionality reduction.
+
+### **Definition**
+
+For a given square matrix $$ A $$, an **eigenvalue** $$ \lambda $$ and the corresponding **eigenvector** $$ \mathbf{v} $$ are defined as follows:
+
+$$
+A \mathbf{v} = \lambda \mathbf{v}
+$$
+
+Where:
+- $$ A $$ is an $$ n \times n $$ matrix.
+- $$ \mathbf{v} $$ is a non-zero vector (the eigenvector).
+- $$ \lambda $$ is a scalar (the eigenvalue).
+
+In simple terms, applying the matrix $$ A $$ to the vector $$ \mathbf{v} $$ results in a scalar multiple of $$ \mathbf{v} $$, where the scalar is the eigenvalue $$ \lambda $$.
+
+### **Steps to Find Eigenvalues and Eigenvectors**
+
+#### **Step 1: Find the Eigenvalues**
+To find the eigenvalues of a matrix $$ A $$, we solve the **characteristic equation**:
+
+$$
+\text{det}(A - \lambda I) = 0
+$$
+
+Where:
+- $$ \text{det} $$ is the determinant of a matrix.
+- $$ I $$ is the identity matrix of the same size as $$ A $$.
+- $$ \lambda $$ is the eigenvalue.
+
+The determinant equation will give a polynomial in $$ \lambda $$, known as the **characteristic polynomial**. The roots of this polynomial are the eigenvalues of $$ A $$.
+
+#### **Step 2: Find the Eigenvectors**
+Once the eigenvalues $$ \lambda $$ are found, substitute each eigenvalue into the equation:
+
+$$
+(A - \lambda I) \mathbf{v} = 0
+$$
+
+Solve this system of linear equations to find the eigenvector $$ \mathbf{v} $$ corresponding to each eigenvalue.
+
+---
+
+## **Example**
+
+Let’s consider the matrix:
+
+$$
+A = \begin{pmatrix}
+4 & 1 \\
+2 & 3
+\end{pmatrix}
+$$
+
+### **Step 1: Find the Eigenvalues**
+
+First, compute the characteristic equation:
+
+$$
+\text{det}(A - \lambda I) = 0
+$$
+
+The matrix $$ A - \lambda I $$ is:
+
+$$
+A - \lambda I = \begin{pmatrix}
+4 - \lambda & 1 \\
+2 & 3 - \lambda
+\end{pmatrix}
+$$
+
+Now, compute the determinant:
+
+$$
+\text{det}(A - \lambda I) = (4 - \lambda)(3 - \lambda) - (1)(2)
+$$
+
+Expanding this:
+
+$$
+\text{det}(A - \lambda I) = (4 - \lambda)(3 - \lambda) - 2 = 12 - 7\lambda + \lambda^2 - 2
+$$
+
+Simplify:
+
+$$
+\lambda^2 - 7\lambda + 10 = 0
+$$
+
+Solve the quadratic equation:
+
+$$
+\lambda = \frac{-(-7) \pm \sqrt{(-7)^2 - 4(1)(10)}}{2(1)} = \frac{7 \pm \sqrt{49 - 40}}{2} = \frac{7 \pm \sqrt{9}}{2}
+$$
+
+$$
+\lambda = \frac{7 \pm 3}{2}
+$$
+
+Thus, the eigenvalues are:
+
+$$
+\lambda_1 = 5, \quad \lambda_2 = 2
+$$
+
+### **Step 2: Find the Eigenvectors**
+
+#### **Eigenvector for $$ \lambda_1 = 5 $$**
+
+Substitute $$ \lambda_1 = 5 $$ into the equation $$ (A - \lambda I) \mathbf{v} = 0 $$:
+
+$$
+(A - 5I) \mathbf{v} = 0
+$$
+
+The matrix $$ A - 5I $$ is:
+
+$$
+A - 5I = \begin{pmatrix}
+4 - 5 & 1 \\
+2 & 3 - 5
+\end{pmatrix} = \begin{pmatrix}
+-1 & 1 \\
+2 & -2
+\end{pmatrix}
+$$
+
+Now, solve the system of equations:
+
+$$
+\begin{pmatrix}
+-1 & 1 \\
+2 & -2
+\end{pmatrix} \begin{pmatrix}
+v_1 \\
+v_2
+\end{pmatrix} = \begin{pmatrix}
+0 \\
+0
+\end{pmatrix}
+$$
+
+This simplifies to:
+
+$$
+- v_1 + v_2 = 0
+$$
+
+Thus, $$ v_1 = v_2 $$.
+
+So, the eigenvector corresponding to $$ \lambda_1 = 5 $$ is:
+
+$$
+\mathbf{v}_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}
+$$
+
+#### **Eigenvector for $$ \lambda_2 = 2 $$**
+
+Substitute $$ \lambda_2 = 2 $$ into the equation $$ (A - 2I) \mathbf{v} = 0 $$:
+
+$$
+(A - 2I) \mathbf{v} = 0
+$$
+
+The matrix $$ A - 2I $$ is:
+
+$$
+A - 2I = \begin{pmatrix}
+4 - 2 & 1 \\
+2 & 3 - 2
+\end{pmatrix} = \begin{pmatrix}
+2 & 1 \\
+2 & 1
+\end{pmatrix}
+$$
+
+Now, solve the system of equations:
+
+$$
+\begin{pmatrix}
+2 & 1 \\
+2 & 1
+\end{pmatrix} \begin{pmatrix}
+v_1 \\
+v_2
+\end{pmatrix} = \begin{pmatrix}
+0 \\
+0
+\end{pmatrix}
+$$
+
+This simplifies to:
+
+$$
+2v_1 + v_2 = 0
+$$
+
+Thus, $$ v_2 = -2v_1 $$.
+
+So, the eigenvector corresponding to $$ \lambda_2 = 2 $$ is:
+
+$$
+\mathbf{v}_2 = \begin{pmatrix} 1 \\ -2 \end{pmatrix}
+$$
+
+---
+
+## **Summary**
+
+- **Eigenvalue**: A scalar $$ \lambda $$ such that $$ A \mathbf{v} = \lambda \mathbf{v} $$.
+- **Eigenvector**: A non-zero vector $$ \mathbf{v} $$ that satisfies $$ A \mathbf{v} = \lambda \mathbf{v} $$.
+- **Finding Eigenvalues**: Solve the characteristic equation $$ \text{det}(A - \lambda I) = 0 $$.
+- **Finding Eigenvectors**: Solve the system $$ (A - \lambda I) \mathbf{v} = 0 $$ for each eigenvalue.
+
+💡 **TIP**: Eigenvalues can be real or complex, and there can be multiple eigenvectors for each eigenvalue, forming a subspace.
+
+---

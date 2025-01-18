@@ -1,0 +1,1075 @@
+---
+title: "Unit 5: Engineering Mathematics 1"
+description: Basics of Complex number, Functions of complex variable Analytic functions, Harmonic Conjugate functions, Cauchy-Riemann Equations, Complex Line Integral, Cauchy’s Theorem, Cauchy’s Integral Formula.
+date: 2025-01-08
+tags: ["Engineering Mathematics 1", "1st Semester", "1st Year", "B Tech"]
+published: true
+metadata:
+  university: "Medicaps University"
+  degree: "B Tech"
+  semester: "1st Semester"
+  subject: "Engineering Mathematics 1"
+---
+
+---
+## **Basics of Complex Numbers**
+
+A **complex number** is a number that can be expressed in the form:
+
+$$
+z = a + bi
+$$
+
+Where:
+- $$ a $$ and $$ b $$ are real numbers,
+- $$ i $$ is the **imaginary unit** defined by $$ i^2 = -1 $$.
+
+### **1. Components of a Complex Number**
+
+In the expression $$ z = a + bi $$:
+- **Real Part**: $$ a $$ is the real part of the complex number, denoted as $$ \text{Re}(z) $$.
+- **Imaginary Part**: $$ b $$ is the imaginary part, denoted as $$ \text{Im}(z) $$.
+
+So, for $$ z = 3 + 4i $$:
+- The real part is $$ \text{Re}(z) = 3 $$,
+- The imaginary part is $$ \text{Im}(z) = 4 $$.
+
+---
+
+### **2. Geometric Interpretation of Complex Numbers**
+
+Complex numbers can be represented geometrically on the **complex plane**, also called the **Argand plane**. The **horizontal axis** represents the real part, and the **vertical axis** represents the imaginary part.
+
+For example:
+- The complex number $$ z = 3 + 4i $$ can be plotted as a point at $$ (3, 4) $$ on the complex plane.
+
+#### **Modulus (Magnitude) of a Complex Number**
+The **modulus** (or magnitude) of a complex number $$ z = a + bi $$ is the distance of the point from the origin (0, 0) in the complex plane. It is denoted as $$ |z| $$ and is given by:
+
+$$
+|z| = \sqrt{a^2 + b^2}
+$$
+
+For example, for $$ z = 3 + 4i $$:
+
+$$
+|z| = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5
+$$
+
+---
+
+### **3. Conjugate of a Complex Number**
+
+The **conjugate** of a complex number $$ z = a + bi $$ is:
+
+$$
+\overline{z} = a - bi
+$$
+
+- The conjugate of $$ 3 + 4i $$ is $$ 3 - 4i $$.
+
+The conjugate is useful in many operations, such as rationalizing denominators or finding the modulus of a complex number.
+
+---
+
+### **4. Operations on Complex Numbers**
+
+#### **Addition of Complex Numbers**
+
+To add two complex numbers, add their real parts and their imaginary parts separately:
+
+$$
+(a + bi) + (c + di) = (a + c) + (b + d)i
+$$
+
+For example:
+
+$$
+(3 + 4i) + (1 + 2i) = (3 + 1) + (4 + 2)i = 4 + 6i
+$$
+
+#### **Subtraction of Complex Numbers**
+
+To subtract two complex numbers, subtract their real parts and their imaginary parts separately:
+
+$$
+(a + bi) - (c + di) = (a - c) + (b - d)i
+$$
+
+For example:
+
+$$
+(3 + 4i) - (1 + 2i) = (3 - 1) + (4 - 2)i = 2 + 2i
+$$
+
+#### **Multiplication of Complex Numbers**
+
+To multiply two complex numbers, use the distributive property (also known as the FOIL method):
+
+$$
+(a + bi)(c + di) = ac + adi + bci + bdi^2
+$$
+
+Since $$ i^2 = -1 $$, this simplifies to:
+
+$$
+(a + bi)(c + di) = (ac - bd) + (ad + bc)i
+$$
+
+For example:
+
+$$
+(3 + 4i)(1 + 2i) = (3 \times 1 - 4 \times 2) + (3 \times 2 + 4 \times 1)i = (3 - 8) + (6 + 4)i = -5 + 10i
+$$
+
+#### **Division of Complex Numbers**
+
+To divide two complex numbers, multiply both the numerator and the denominator by the conjugate of the denominator. If we want to divide $$ z_1 = a + bi $$ by $$ z_2 = c + di $$, we multiply by $$ \overline{z_2} $$ (the conjugate of $$ z_2 $$):
+
+$$
+\frac{a + bi}{c + di} \times \frac{c - di}{c - di} = \frac{(a + bi)(c - di)}{(c + di)(c - di)}
+$$
+
+The denominator simplifies as:
+
+$$
+(c + di)(c - di) = c^2 + d^2
+$$
+
+The numerator simplifies using the distributive property, and the final result will be in the form $$ \frac{A}{c^2 + d^2} + \frac{B}{c^2 + d^2}i $$.
+
+---
+
+### **5. Polar Form of Complex Numbers**
+
+A complex number $$ z = a + bi $$ can also be represented in **polar form** using **modulus** and **argument** (angle). The polar form is given by:
+
+$$
+z = r (\cos \theta + i \sin \theta)
+$$
+
+Where:
+- $$ r = |z| = \sqrt{a^2 + b^2} $$ is the modulus,
+- $$ \theta = \arg(z) $$ is the argument (angle), which is the angle formed by the line connecting the point $$ (a, b) $$ to the origin, and the positive real axis.
+
+Using **Euler's formula**, the polar form can also be written as:
+
+$$
+z = r e^{i \theta}
+$$
+
+#### **Example**:
+
+For $$ z = 3 + 4i $$, we have:
+- $$ r = |z| = 5 $$,
+- $$ \theta = \arg(z) = \tan^{-1}\left(\frac{4}{3}\right) $$.
+
+The polar form is:
+
+$$
+z = 5 \left( \cos \theta + i \sin \theta \right)
+$$
+
+Or using Euler’s formula:
+
+$$
+z = 5 e^{i \theta}
+$$
+
+---
+
+### **6. De Moivre's Theorem**
+
+De Moivre's Theorem is used to raise complex numbers in polar form to integer powers. It states that for any integer $$ n $$:
+
+$$
+\left( r e^{i \theta} \right)^n = r^n e^{in\theta}
+$$
+
+This is useful in simplifying powers of complex numbers, especially when the complex number is in polar form.
+
+---
+
+### **7. Roots of Complex Numbers**
+
+To find the **n-th roots** of a complex number $$ z = r e^{i \theta} $$, we use the formula:
+
+$$
+z_k = \sqrt[n]{r} \left( \cos \left(\frac{\theta + 2k\pi}{n}\right) + i \sin \left(\frac{\theta + 2k\pi}{n}\right) \right)
+$$
+
+Where $$ k = 0, 1, 2, \dots, n-1 $$.
+
+This gives all the possible roots of the complex number.
+
+---
+
+### **8. Summary**
+
+- A **complex number** is expressed as $$ z = a + bi $$, where $$ a $$ is the real part and $$ b $$ is the imaginary part.
+- The **modulus** of a complex number is the distance from the origin in the complex plane.
+- **Operations** on complex numbers (addition, subtraction, multiplication, division) are carried out using standard algebraic rules and properties like the conjugate.
+- **Polar form** expresses complex numbers as $$ r e^{i \theta} $$, using modulus and argument.
+- **De Moivre's Theorem** helps in finding powers of complex numbers, and the **n-th roots** can also be calculated using the polar form.
+
+---
+
+💡 **TIP**: Complex numbers provide a powerful framework for solving equations that have no real solutions, such as square roots of negative numbers, and are widely used in fields such as electrical engineering and quantum physics.
+
+---
+## **Functions of Complex Variables**
+
+A **complex function** is a function that takes a complex number as input and returns a complex number as output. If $$ z $$ is a complex variable, a complex function $$ f(z) $$ is defined as:
+
+$$
+f(z) = f(a + bi) = u(x, y) + iv(x, y)
+$$
+
+Where:
+- $$ z = x + iy $$ is a complex number, with $$ x $$ and $$ y $$ being real numbers (the real and imaginary parts of $$ z $$),
+- $$ f(z) $$ is a complex function, and $$ u(x, y) $$ and $$ v(x, y) $$ are real-valuations of the real and imaginary parts of $$ f(z) $$, respectively.
+
+For example, for $$ f(z) = z^2 $$, we can express this as:
+
+$$
+f(z) = (x + iy)^2 = x^2 - y^2 + 2ixy
+$$
+
+Thus, the real part $$ u(x, y) = x^2 - y^2 $$ and the imaginary part $$ v(x, y) = 2xy $$.
+
+---
+
+## **Analytic Functions (Holomorphic Functions)**
+
+### **Definition of an Analytic Function**
+
+A function $$ f(z) $$ is said to be **analytic** (or **holomorphic**) at a point $$ z_0 $$ if it is differentiable at every point in some neighborhood of $$ z_0 $$. This means the function has a derivative at every point in the domain around $$ z_0 $$, and it satisfies the **Cauchy-Riemann equations**.
+
+Analytic functions have important properties:
+- They are smooth and continuous.
+- They can be represented by a **power series** (like Taylor series) in a neighborhood around any point within their domain.
+- They have many applications in physics and engineering, such as in fluid dynamics, electromagnetism, and control theory.
+
+---
+
+### **Cauchy-Riemann Equations**
+
+For a complex function $$ f(z) = u(x, y) + iv(x, y) $$, where $$ u(x, y) $$ and $$ v(x, y) $$ are real functions of $$ x $$ and $$ y $$, the function $$ f(z) $$ is analytic if the following **Cauchy-Riemann equations** are satisfied:
+
+$$
+\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y} \quad \text{and} \quad \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}
+$$
+
+These equations ensure that $$ f(z) $$ behaves in a way that allows it to be differentiated with respect to $$ z $$, leading to smooth behavior in its domain.
+
+#### **Example: Verifying if $$ f(z) = z^2 $$ is analytic**
+
+Given the function $$ f(z) = z^2 = (x + iy)^2 $$, we can express it as:
+
+$$
+f(z) = x^2 - y^2 + 2ixy
+$$
+
+Here, $$ u(x, y) = x^2 - y^2 $$ and $$ v(x, y) = 2xy $$.
+
+Now, calculate the partial derivatives:
+
+$$
+\frac{\partial u}{\partial x} = 2x, \quad \frac{\partial u}{\partial y} = -2y
+$$
+
+$$
+\frac{\partial v}{\partial x} = 2y, \quad \frac{\partial v}{\partial y} = 2x
+$$
+
+We see that:
+
+$$
+\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y} = 2x \quad \text{and} \quad \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x} = -2y
+$$
+
+Thus, $$ f(z) = z^2 $$ satisfies the Cauchy-Riemann equations, and therefore, **$$ f(z) = z^2 $$ is analytic**.
+
+---
+
+### **Analyticity in a Domain**
+
+A function is said to be **analytic in a domain** if it is analytic at every point in that domain. A key property of analytic functions is that they are **locally representable by a power series** (a Taylor series expansion):
+
+$$
+f(z) = \sum_{n=0}^{\infty} a_n (z - z_0)^n
+$$
+
+where $$ a_n $$ are the coefficients of the series, and $$ z_0 $$ is a point in the domain. This series converges to the function in a neighborhood around $$ z_0 $$.
+
+---
+
+### **Examples of Analytic Functions**
+
+#### **1. Polynomial Functions**
+
+Any polynomial function of the form:
+
+$$
+f(z) = a_n z^n + a_{n-1} z^{n-1} + \dots + a_1 z + a_0
+$$
+
+is analytic everywhere in the complex plane. This is because polynomials are smooth functions that can be differentiated anywhere, and they satisfy the Cauchy-Riemann equations.
+
+#### **2. Exponential Function**
+
+The exponential function $$ f(z) = e^z $$ is analytic everywhere in the complex plane. Its real and imaginary parts are given by:
+
+$$
+f(z) = e^z = e^x (\cos y + i \sin y)
+$$
+
+Here, $$ u(x, y) = e^x \cos y $$ and $$ v(x, y) = e^x \sin y $$.
+
+- The partial derivatives satisfy the Cauchy-Riemann equations, and so $$ e^z $$ is analytic.
+
+#### **3. Trigonometric Functions**
+
+The trigonometric functions $$ \sin z $$ and $$ \cos z $$ are also analytic everywhere in the complex plane. For example, for $$ \sin z $$, we have:
+
+$$
+\sin z = \sin(x + iy) = \sin x \cosh y + i \cos x \sinh y
+$$
+
+Here, $$ u(x, y) = \sin x \cosh y $$ and $$ v(x, y) = \cos x \sinh y $$, and the Cauchy-Riemann equations hold.
+
+---
+
+### **Properties of Analytic Functions**
+
+1. **Differentiability**: If a function is analytic, it is differentiable in the entire domain where it is defined, and its derivative is also analytic.
+2. **Uniqueness**: The solution to any **initial value problem** involving an analytic function is unique in its domain.
+3. **Holomorphic Functions**: The terms **analytic** and **holomorphic** are often used interchangeably. A function that is analytic at all points in a domain is said to be **holomorphic** in that domain.
+4. **Cauchy Integral Theorem**: If a function is analytic inside and on a simple closed contour $$ C $$, then the integral of the function around the contour is zero:
+
+$$
+\oint_C f(z) \, dz = 0
+$$
+
+5. **Cauchy Integral Formula**: If $$ f(z) $$ is analytic inside and on a simple closed contour $$ C $$, and $$ z_0 $$ is a point inside $$ C $$, then:
+
+$$
+f(z_0) = \frac{1}{2\pi i} \oint_C \frac{f(z)}{z - z_0} \, dz
+$$
+
+This formula is fundamental in complex analysis and helps in evaluating integrals and finding function values.
+
+---
+
+### **Summary**
+
+- A **complex function** maps a complex number to another complex number, and it is expressed as $$ f(z) = u(x, y) + iv(x, y) $$, where $$ u $$ and $$ v $$ are real-valued functions.
+- A function is **analytic** if it is differentiable in a neighborhood of a point and satisfies the **Cauchy-Riemann equations**.
+- **Analytic functions** have many powerful properties, such as the ability to be expressed by a power series and being differentiable everywhere in their domain.
+- Examples of analytic functions include polynomials, exponential functions, and trigonometric functions.
+  
+---
+
+💡 **TIP**: If you encounter a complex function, verifying the Cauchy-Riemann equations is a good way to check if the function is analytic in a region.
+
+---
+## **Harmonic Conjugate Functions**
+
+### **1. Definition of Harmonic Functions**
+
+A **harmonic function** is a real-valued function $$ u(x, y) $$ that satisfies **Laplace's equation**:
+
+$$
+\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0
+$$
+
+Harmonic functions are significant in many fields such as physics, particularly in the study of potential fields (e.g., gravitational and electrostatic potentials), fluid dynamics, and heat conduction.
+
+### **2. Harmonic Conjugates**
+
+Given a harmonic function $$ u(x, y) $$ that satisfies Laplace's equation, a **harmonic conjugate** $$ v(x, y) $$ is another harmonic function such that the pair $$ u(x, y) $$ and $$ v(x, y) $$ form the real and imaginary parts, respectively, of an **analytic function** $$ f(z) = u(x, y) + iv(x, y) $$, where $$ z = x + iy $$ is a complex variable.
+
+In other words, $$ u(x, y) $$ and $$ v(x, y) $$ are related by the **Cauchy-Riemann equations**, which are necessary conditions for $$ f(z) = u(x, y) + iv(x, y) $$ to be analytic.
+
+The Cauchy-Riemann equations are:
+
+$$
+\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y} \quad \text{and} \quad \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}
+$$
+
+If $$ u(x, y) $$ is harmonic (i.e., it satisfies Laplace’s equation), then there exists a harmonic conjugate function $$ v(x, y) $$ such that the pair $$ (u, v) $$ satisfies these equations and defines an analytic function.
+
+---
+
+### **3. Existence of Harmonic Conjugates**
+
+If $$ u(x, y) $$ is harmonic in a region $$ D $$ and has continuous first partial derivatives, then there exists a harmonic conjugate function $$ v(x, y) $$ in the same region. Furthermore, the pair $$ (u, v) $$ satisfies the Cauchy-Riemann equations, ensuring that $$ f(z) = u(x, y) + iv(x, y) $$ is analytic.
+
+To find the harmonic conjugate $$ v(x, y) $$, you can solve the Cauchy-Riemann equations. The harmonic conjugate function $$ v(x, y) $$ is not unique in general; it can differ by an arbitrary constant.
+
+---
+
+### **4. Finding Harmonic Conjugates**
+
+Let's go through a step-by-step process to find the harmonic conjugate of a given harmonic function $$ u(x, y) $$.
+
+#### **Step 1: Check if $$ u(x, y) $$ is Harmonic**
+
+First, ensure that $$ u(x, y) $$ satisfies Laplace's equation:
+
+$$
+\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0
+$$
+
+If this holds, then $$ u(x, y) $$ is harmonic.
+
+#### **Step 2: Use the Cauchy-Riemann Equations**
+
+Use the Cauchy-Riemann equations to relate $$ u(x, y) $$ and $$ v(x, y) $$:
+
+$$
+\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y} \quad \text{and} \quad \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}
+$$
+
+These equations provide a system of partial differential equations to solve for $$ v(x, y) $$.
+
+#### **Step 3: Integrate to Find $$ v(x, y) $$**
+
+By integrating the Cauchy-Riemann equations, you can find $$ v(x, y) $$. The integration might involve a constant of integration, which can be determined using boundary conditions or additional information.
+
+---
+
+### **5. Example: Finding the Harmonic Conjugate**
+
+Let's consider an example to find the harmonic conjugate of a given function.
+
+#### **Example:**
+
+Let $$ u(x, y) = x^2 - y^2 $$.
+
+1. **Step 1: Check if $$ u(x, y) $$ is Harmonic**
+
+We need to check if $$ u(x, y) = x^2 - y^2 $$ satisfies Laplace's equation. Compute the second partial derivatives:
+
+$$
+\frac{\partial^2 u}{\partial x^2} = 2 \quad \text{and} \quad \frac{\partial^2 u}{\partial y^2} = -2
+$$
+
+$$
+\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 2 - 2 = 0
+$$
+
+Thus, $$ u(x, y) = x^2 - y^2 $$ is harmonic.
+
+2. **Step 2: Use the Cauchy-Riemann Equations**
+
+We know that:
+
+$$
+\frac{\partial u}{\partial x} = 2x \quad \text{and} \quad \frac{\partial u}{\partial y} = -2y
+$$
+
+From the Cauchy-Riemann equations, we get:
+
+$$
+\frac{\partial v}{\partial y} = 2x \quad \text{and} \quad \frac{\partial v}{\partial x} = 2y
+$$
+
+3. **Step 3: Integrate to Find $$ v(x, y) $$**
+
+- Integrating $$ \frac{\partial v}{\partial y} = 2x $$ with respect to $$ y $$, we get:
+
+$$
+v(x, y) = 2xy + g(x)
+$$
+
+Where $$ g(x) $$ is an arbitrary function of $$ x $$ (since the derivative with respect to $$ y $$ does not affect $$ x $$).
+
+- Now, differentiate $$ v(x, y) = 2xy + g(x) $$ with respect to $$ x $$:
+
+$$
+\frac{\partial v}{\partial x} = 2y + g'(x)
+$$
+
+From the Cauchy-Riemann equation, $$ \frac{\partial v}{\partial x} = 2y $$. Thus:
+
+$$
+2y + g'(x) = 2y \quad \Rightarrow \quad g'(x) = 0
+$$
+
+Therefore, $$ g(x) $$ is a constant. Let's call it $$ C $$.
+
+Thus, the harmonic conjugate is:
+
+$$
+v(x, y) = 2xy + C
+$$
+
+---
+
+### **6. Conclusion**
+
+- Given a harmonic function $$ u(x, y) $$, its **harmonic conjugate** $$ v(x, y) $$ can be found by solving the **Cauchy-Riemann equations**.
+- The pair $$ (u(x, y), v(x, y)) $$ forms the real and imaginary parts, respectively, of an **analytic function** $$ f(z) = u(x, y) + iv(x, y) $$.
+- The harmonic conjugate is unique up to a constant, and the pair $$ (u, v) $$ is related to an analytic function that is differentiable in the region of interest.
+
+---
+
+💡 **TIP**: Harmonic conjugates are often used in fluid dynamics and electrostatics, where potential functions are harmonic, and their conjugates correspond to streamlines or equipotential surfaces.
+
+---
+## **Cauchy-Riemann Equations**
+
+### **1. Introduction to Complex Functions**
+
+Given a **complex function** $$ f(z) $$, where $$ z = x + iy $$ is a complex variable, we can express the function $$ f(z) $$ as:
+
+$$
+f(z) = u(x, y) + iv(x, y)
+$$
+
+where:
+- $$ z = x + iy $$ (with $$ x $$ and $$ y $$ being real numbers, representing the real and imaginary parts of $$ z $$),
+- $$ u(x, y) $$ is the real part of the complex function, and
+- $$ v(x, y) $$ is the imaginary part of the complex function.
+
+For the function $$ f(z) = u(x, y) + iv(x, y) $$ to be **analytic** (i.e., differentiable at every point in a region), it must satisfy the **Cauchy-Riemann equations**.
+
+---
+
+### **2. Cauchy-Riemann Equations**
+
+The **Cauchy-Riemann equations** are a system of two partial differential equations that must be satisfied by the real and imaginary parts $$ u(x, y) $$ and $$ v(x, y) $$ of an analytic function $$ f(z) $$.
+
+The equations are:
+
+$$
+\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y} \quad \text{(Equation 1)}
+$$
+
+and
+
+$$
+\frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x} \quad \text{(Equation 2)}
+$$
+
+These equations ensure that the function $$ f(z) = u(x, y) + iv(x, y) $$ behaves in a way that makes it differentiable as a complex function.
+
+### **3. Conditions for Analyticity**
+
+For a function $$ f(z) = u(x, y) + iv(x, y) $$ to be **analytic** (holomorphic) in a region, the following conditions must hold:
+1. The **Cauchy-Riemann equations** must be satisfied in that region.
+2. The partial derivatives of $$ u(x, y) $$ and $$ v(x, y) $$ must be continuous in that region.
+
+If these conditions are satisfied, then the function is differentiable at every point in the region, and it is said to be **holomorphic** or **analytic**.
+
+---
+
+### **4. Geometrical Interpretation**
+
+The Cauchy-Riemann equations provide a way to relate the behavior of the real and imaginary parts of a complex function. These equations essentially ensure that the function's graph can be viewed as a smooth mapping between the complex plane and the real plane, respecting the structure of both.
+
+### **5. Derivative of an Analytic Function**
+
+If a complex function $$ f(z) = u(x, y) + iv(x, y) $$ is analytic, the derivative of the function $$ f'(z) $$ is given by:
+
+$$
+f'(z) = \frac{\partial u}{\partial x} + i\frac{\partial v}{\partial x}
+$$
+
+The Cauchy-Riemann equations ensure that this derivative exists and is well-defined.
+
+---
+
+### **6. Example: Verifying the Cauchy-Riemann Equations**
+
+Let's consider the complex function $$ f(z) = z^2 $$, where $$ z = x + iy $$.
+
+We have:
+
+$$
+f(z) = z^2 = (x + iy)^2 = x^2 - y^2 + 2ixy
+$$
+
+Thus, the real and imaginary parts are:
+- $$ u(x, y) = x^2 - y^2 $$
+- $$ v(x, y) = 2xy $$
+
+Now, let's check if the Cauchy-Riemann equations are satisfied:
+
+1. **First equation:**
+   $$
+   \frac{\partial u}{\partial x} = \frac{\partial}{\partial x}(x^2 - y^2) = 2x
+   $$
+   $$
+   \frac{\partial v}{\partial y} = \frac{\partial}{\partial y}(2xy) = 2x
+   $$
+   So, the first Cauchy-Riemann equation is satisfied: 
+   $$
+   \frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}
+   $$
+
+2. **Second equation:**
+   $$
+   \frac{\partial u}{\partial y} = \frac{\partial}{\partial y}(x^2 - y^2) = -2y
+   $$
+   $$
+   \frac{\partial v}{\partial x} = \frac{\partial}{\partial x}(2xy) = 2y
+   $$
+   So, the second Cauchy-Riemann equation is satisfied:
+   $$
+   \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}
+   $$
+
+Since both equations are satisfied, $$ f(z) = z^2 $$ is analytic.
+
+---
+
+### **7. Example: Non-analytic Function**
+
+Now, let's consider a function that is **not analytic**. For instance, take $$ f(z) = \overline{z} $$, where $$ \overline{z} = x - iy $$ (the complex conjugate of $$ z $$).
+
+Here, the real and imaginary parts are:
+- $$ u(x, y) = x $$
+- $$ v(x, y) = -y $$
+
+Let's check the Cauchy-Riemann equations:
+
+1. **First equation:**
+   $$
+   \frac{\partial u}{\partial x} = \frac{\partial}{\partial x}(x) = 1
+   $$
+   $$
+   \frac{\partial v}{\partial y} = \frac{\partial}{\partial y}(-y) = -1
+   $$
+   So, the first Cauchy-Riemann equation is **not satisfied**.
+
+Since the first equation is not satisfied, $$ f(z) = \overline{z} $$ is **not analytic**.
+
+---
+
+### **8. Summary**
+
+- The **Cauchy-Riemann equations** are a pair of partial differential equations that must be satisfied for a function $$ f(z) = u(x, y) + iv(x, y) $$ to be **analytic** in a region.
+- The equations are:
+  $$
+  \frac{\partial u}{\partial x} = \frac{\partial v}{\partial y} \quad \text{and} \quad \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}
+  $$
+- If these equations are satisfied, and if the partial derivatives of $$ u $$ and $$ v $$ are continuous, then $$ f(z) $$ is analytic (holomorphic) in that region.
+- The **derivative** of an analytic function can be expressed using the Cauchy-Riemann equations, ensuring that the derivative exists and is well-defined.
+- The **geometrical interpretation** of the Cauchy-Riemann equations ensures that the function maps the complex plane smoothly to the real plane.
+
+---
+
+💡 **TIP**: The Cauchy-Riemann equations provide a necessary condition for analyticity. However, they are not sufficient for ensuring a function is analytic unless the partial derivatives are continuous. Always check both the equations and the continuity of the derivatives when working with complex functions.
+
+---
+## **Complex Line Integral**
+
+### **1. Introduction to Line Integrals**
+
+In complex analysis, a **line integral** (or **contour integral**) is an integral where the function is integrated along a path or curve in the complex plane.
+
+Let $$ \gamma $$ be a smooth curve or path in the complex plane, parametrised by $$ z(t) $$, where $$ t $$ runs from $$ a $$ to $$ b $$, i.e., $$ \gamma : z(t), t \in [a, b] $$.
+
+The complex line integral of a function $$ f(z) $$ along the curve $$ \gamma $$ is defined as:
+
+$$
+\int_\gamma f(z) \, dz
+$$
+
+where $$ f(z) $$ is a complex-valued function and $$ dz $$ represents an infinitesimal change in the complex variable $$ z $$.
+
+---
+
+### **2. Parametric Representation**
+
+Let $$ \gamma $$ be the curve from $$ z_1 $$ to $$ z_2 $$, and let $$ z(t) $$ be the parametrisation of the curve, where $$ t $$ ranges from $$ t = a $$ to $$ t = b $$. The line integral is then written as:
+
+$$
+\int_\gamma f(z) \, dz = \int_a^b f(z(t)) \frac{dz}{dt} \, dt
+$$
+
+Here:
+- $$ f(z(t)) $$ is the function $$ f $$ evaluated along the curve.
+- $$ \frac{dz}{dt} $$ is the derivative of $$ z(t) $$, representing the change in $$ z $$ as $$ t $$ changes.
+
+---
+
+### **3. Real and Imaginary Components**
+
+If $$ f(z) = u(x, y) + iv(x, y) $$, where $$ u(x, y) $$ and $$ v(x, y) $$ are the real and imaginary parts of $$ f(z) $$, then the complex line integral can be expressed in terms of the real and imaginary parts as:
+
+$$
+\int_\gamma f(z) \, dz = \int_\gamma [u(x, y) + iv(x, y)] \, dz
+$$
+
+This can be split into:
+
+$$
+\int_\gamma u(x, y) \, dz + i \int_\gamma v(x, y) \, dz
+$$
+
+Each of these integrals is now a real line integral, but over the path $$ \gamma $$.
+
+---
+
+### **4. Evaluation of Complex Line Integral**
+
+To compute the complex line integral, follow these steps:
+
+1. **Parametrize the Curve**: Choose an appropriate parametrisation $$ z(t) $$ for the curve $$ \gamma $$ with $$ t \in [a, b] $$.
+2. **Substitute into the Integral**: Express the integrand $$ f(z) $$ and $$ dz $$ in terms of $$ t $$ using the parametrisation.
+3. **Perform the Integration**: Integrate with respect to $$ t $$ over the interval $$ [a, b] $$.
+
+---
+
+### **5. Example of a Complex Line Integral**
+
+Consider the function $$ f(z) = z $$ and the curve $$ \gamma $$ being a straight line from $$ z_1 = 0 $$ to $$ z_2 = 1 + i $$.
+
+1. **Step 1: Parametrize the Curve**:
+   We can parametrise the line segment from $$ z_1 $$ to $$ z_2 $$ as:
+
+   $$
+   z(t) = t(1 + i), \quad t \in [0, 1]
+   $$
+
+   So, $$ z(0) = 0 $$ and $$ z(1) = 1 + i $$.
+
+2. **Step 2: Compute $$ \frac{dz}{dt} $$**:
+   The derivative of $$ z(t) $$ with respect to $$ t $$ is:
+
+   $$
+   \frac{dz}{dt} = 1 + i
+   $$
+
+3. **Step 3: Substitute into the Integral**:
+   The integral becomes:
+
+   $$
+   \int_\gamma z \, dz = \int_0^1 t(1 + i) \cdot (1 + i) \, dt
+   $$
+
+4. **Step 4: Simplify the Expression**:
+   First, simplify $$ (1 + i)(1 + i) $$:
+
+   $$
+   (1 + i)(1 + i) = 1 + 2i - 1 = 2i
+   $$
+
+   Thus, the integral becomes:
+
+   $$
+   \int_0^1 t \cdot 2i \, dt
+   $$
+
+5. **Step 5: Perform the Integration**:
+   Now, integrate with respect to $$ t $$:
+
+   $$
+   \int_0^1 t \cdot 2i \, dt = 2i \left[ \frac{t^2}{2} \right]_0^1 = 2i \cdot \frac{1}{2} = i
+   $$
+
+Therefore, the value of the line integral is $$ i $$.
+
+---
+
+### **6. Types of Complex Line Integrals**
+
+Complex line integrals can be classified into different types based on the nature of the function and the path:
+
+1. **Independent of Path**: If $$ f(z) $$ is analytic in a region and $$ \gamma $$ is a closed curve, then by **Cauchy's Integral Theorem**, the integral of $$ f(z) $$ around $$ \gamma $$ is zero.
+   
+   $$
+   \int_\gamma f(z) \, dz = 0 \quad \text{(if $$ f(z) $$ is analytic inside and on $$ \gamma $$)}
+   $$
+
+2. **Cauchy's Integral Formula**: If $$ f(z) $$ is analytic inside and on a closed contour $$ \gamma $$, then for any point $$ z_0 $$ inside $$ \gamma $$:
+
+   $$
+   f(z_0) = \frac{1}{2\pi i} \int_\gamma \frac{f(z)}{z - z_0} \, dz
+   $$
+
+3. **Residue Theorem**: If $$ f(z) $$ has isolated singularities inside a closed curve $$ \gamma $$, the complex line integral is related to the residues of $$ f(z) $$ at those singularities:
+
+   $$
+   \int_\gamma f(z) \, dz = 2\pi i \sum \text{Residues of } f(z) \text{ inside } \gamma
+   $$
+
+---
+
+### **7. Applications of Complex Line Integrals**
+
+Complex line integrals are widely used in various fields, including:
+
+- **Fluid Dynamics**: For analysing flow and circulation.
+- **Electrostatics**: In computing potentials and electric fields.
+- **Control Theory**: For evaluating system responses.
+- **Signal Processing**: In Fourier transforms and analysis.
+
+---
+
+### **8. Summary**
+
+- A **complex line integral** is an integral of a complex-valued function $$ f(z) $$ along a curve $$ \gamma $$ in the complex plane.
+- The integral can be written as $$ \int_\gamma f(z) \, dz $$ and is computed using a parametrisation of the curve.
+- The line integral depends on the path, and special results like **Cauchy's Integral Theorem** and **Cauchy's Integral Formula** can be applied for analytic functions.
+- Complex line integrals have important applications in various scientific and engineering fields.
+
+---
+
+💡 **TIP**: When working with complex line integrals, check if the function $$ f(z) $$ is analytic inside the contour. If so, you can often apply **Cauchy’s Theorem** or **Residue Theorem** to simplify the integral significantly.
+
+---
+## **Cauchy’s Theorem**
+
+### **1. Introduction to Cauchy’s Theorem**
+
+**Cauchy's Theorem** is one of the cornerstone results in **complex analysis**. It states that if a complex function $$ f(z) $$ is **analytic** (holomorphic) in a region, and $$ \gamma $$ is a **closed contour** (a path that starts and ends at the same point) inside this region, then the integral of $$ f(z) $$ along this contour is zero.
+
+Mathematically, Cauchy's Theorem is stated as:
+
+$$
+\int_\gamma f(z) \, dz = 0
+$$
+
+where:
+- $$ f(z) $$ is analytic in the region containing $$ \gamma $$,
+- $$ \gamma $$ is a closed contour (path) in the region.
+
+This theorem is a powerful tool because it helps simplify complex integrals by guaranteeing that, under certain conditions, the integral of an analytic function over a closed curve is always zero.
+
+---
+
+### **2. Conditions for Cauchy’s Theorem**
+
+For Cauchy’s Theorem to apply, the following conditions must hold:
+1. The function $$ f(z) $$ must be **analytic** in and on the contour $$ \gamma $$. This means that $$ f(z) $$ should be differentiable at every point in the region enclosed by the contour and on the contour itself.
+2. The contour $$ \gamma $$ must be **closed**, meaning the starting and ending points are the same.
+3. The region containing $$ \gamma $$ should not have any singularities (points where $$ f(z) $$ is not analytic). 
+
+In simpler terms, Cauchy’s Theorem holds when:
+- The function is smooth (no poles or discontinuities) within and on the path.
+- The path is closed.
+
+---
+
+### **3. Implications of Cauchy’s Theorem**
+
+Cauchy’s Theorem has several important consequences and corollaries in complex analysis:
+
+#### **(a) Analyticity and Independence of Path**
+
+Since the line integral of $$ f(z) $$ around any closed path $$ \gamma $$ in a region where $$ f(z) $$ is analytic is zero, it implies that the integral of an analytic function is **independent of the path**. In other words, if two paths connect the same initial and final points, the integral of $$ f(z) $$ along both paths will yield the same result.
+
+This property is often referred to as **path independence**.
+
+#### **(b) Cauchy’s Integral Formula**
+
+A very important corollary of Cauchy’s Theorem is **Cauchy’s Integral Formula**, which allows us to compute values of analytic functions at certain points using contour integrals. It is given by:
+
+$$
+f(z_0) = \frac{1}{2\pi i} \int_\gamma \frac{f(z)}{z - z_0} \, dz
+$$
+
+where $$ \gamma $$ is a closed curve surrounding the point $$ z_0 $$, and $$ f(z) $$ is analytic inside and on the contour $$ \gamma $$.
+
+This formula is crucial for evaluating complex integrals and deriving series expansions like **Taylor series**.
+
+---
+
+### **4. Example of Cauchy’s Theorem**
+
+Let's consider a simple example where we apply Cauchy’s Theorem.
+
+#### **Example 1: Simple Analytic Function**
+
+Let $$ f(z) = z^2 $$, which is analytic everywhere in the complex plane. Let’s evaluate the integral of $$ f(z) $$ over a closed contour $$ \gamma $$, which is a circle of radius 1 centered at the origin.
+
+Since $$ f(z) = z^2 $$ is analytic everywhere, by **Cauchy’s Theorem**, the integral of $$ f(z) $$ over any closed contour, including this circle, must be zero:
+
+$$
+\int_\gamma z^2 \, dz = 0
+$$
+
+Thus, the integral of an analytic function over any closed curve is zero.
+
+#### **Example 2: Analytic Function with Singularities Outside the Path**
+
+Now, let’s consider $$ f(z) = \frac{1}{z} $$. We will integrate this function over a closed contour $$ \gamma $$ that is a circle centered at the origin, but with radius greater than zero.
+
+In this case, the function $$ \frac{1}{z} $$ has a singularity at $$ z = 0 $$. However, since the function is analytic everywhere except at $$ z = 0 $$, we cannot directly apply Cauchy’s Theorem if the contour $$ \gamma $$ encloses the singularity at $$ z = 0 $$. Instead, we would need to apply other methods like the **Residue Theorem** for evaluating the integral.
+
+---
+
+### **5. Cauchy’s Theorem and Contour Deformation**
+
+One of the remarkable results of Cauchy’s Theorem is that if $$ f(z) $$ is analytic inside and on a contour $$ \gamma $$, then the value of the contour integral does not change if we deform the path $$ \gamma $$, as long as the deformation does not cross any singularities. This is known as **deformation of contour**.
+
+---
+
+### **6. Applications of Cauchy’s Theorem**
+
+Cauchy’s Theorem has many applications in **complex analysis** and related fields:
+
+1. **Simplifying Integrals**: It helps simplify integrals of analytic functions over closed contours, as they are often zero.
+2. **Residue Theorem**: Cauchy’s Theorem is used as a basis for proving the **Residue Theorem**, which is crucial for evaluating integrals around singularities.
+3. **Evaluating Integrals**: It is useful in calculating integrals in **real analysis** by transforming them into contour integrals in the complex plane.
+4. **Finding Taylor and Laurent Series**: It forms the foundation for deriving **Taylor series** and **Laurent series** of analytic functions.
+
+---
+
+### **7. Summary**
+
+- **Cauchy’s Theorem** states that if a function $$ f(z) $$ is analytic inside and on a closed contour $$ \gamma $$, then the contour integral of $$ f(z) $$ around $$ \gamma $$ is zero:
+  
+  $$
+  \int_\gamma f(z) \, dz = 0
+  $$
+
+- The function must be analytic (differentiable in the complex sense) within and on the contour.
+- Cauchy’s Theorem implies path independence and is used as the foundation for many other results in complex analysis, such as **Cauchy’s Integral Formula** and the **Residue Theorem**.
+
+---
+
+💡 **TIP**: If you encounter a complex integral around a closed path and the function is analytic in the region enclosed by the path, remember that the integral will be zero by Cauchy’s Theorem. This can greatly simplify your calculations!
+
+---
+## **Cauchy’s Integral Formula**
+
+### **1. Introduction to Cauchy’s Integral Formula**
+
+Cauchy’s Integral Formula provides a way to evaluate the values of an analytic function at a point using contour integrals. It expresses the value of a function at any point inside a closed contour in terms of a contour integral of the function over the boundary of the contour.
+
+Mathematically, Cauchy’s Integral Formula is given by:
+
+$$
+f(z_0) = \frac{1}{2\pi i} \int_\gamma \frac{f(z)}{z - z_0} \, dz
+$$
+
+where:
+- $$ f(z) $$ is a function that is analytic (holomorphic) inside and on a closed contour $$ \gamma $$.
+- $$ z_0 $$ is a point inside the contour $$ \gamma $$.
+- The contour $$ \gamma $$ is a positively oriented closed curve around $$ z_0 $$.
+- The integral $$ \int_\gamma $$ represents the contour integral along $$ \gamma $$.
+
+### **2. Explanation of the Formula**
+
+- The formula tells us that the value of $$ f(z) $$ at a point $$ z_0 $$ inside the contour $$ \gamma $$ can be obtained by computing the contour integral of $$ \frac{f(z)}{z - z_0} $$ along $$ \gamma $$.
+- The integrand $$ \frac{f(z)}{z - z_0} $$ has a singularity at $$ z = z_0 $$, but since $$ f(z) $$ is analytic within and on the contour, the integral is well-defined and finite.
+
+---
+
+### **3. Derivation of Cauchy’s Integral Formula**
+
+The formula can be derived using the idea that if a function is analytic inside and on a closed curve, it can be approximated by a power series (a **Taylor series**) around any point inside the region.
+
+1. **Analytic Function Representation**:
+   Since $$ f(z) $$ is analytic inside and on the contour $$ \gamma $$, we can express $$ f(z) $$ as a Taylor series expansion about $$ z_0 $$:
+
+   $$
+   f(z) = \sum_{n=0}^{\infty} a_n (z - z_0)^n
+   $$
+
+   where $$ a_n $$ are the coefficients of the series, and the series converges for $$ z $$ within the region enclosed by $$ \gamma $$.
+
+2. **Substitute into the Contour Integral**:
+   Substituting this series into the contour integral, we have:
+
+   $$
+   \int_\gamma \frac{f(z)}{z - z_0} \, dz = \int_\gamma \frac{\sum_{n=0}^{\infty} a_n (z - z_0)^n}{z - z_0} \, dz
+   $$
+
+   This simplifies to:
+
+   $$
+   \int_\gamma \sum_{n=0}^{\infty} a_n (z - z_0)^{n-1} \, dz
+   $$
+
+3. **Applying the Cauchy Integral Theorem**:
+   By the **Cauchy Integral Theorem**, we know that for any integer $$ n \geq 1 $$, the contour integral of $$ (z - z_0)^{n-1} $$ around a closed contour is zero. The only non-zero term is when $$ n = 1 $$, which gives the following:
+
+   $$
+   \int_\gamma \frac{f(z)}{z - z_0} \, dz = 2\pi i \cdot a_0
+   $$
+
+4. **Conclusion**:
+   From the Taylor series, we know that $$ a_0 $$ is the value of $$ f(z_0) $$, so we conclude that:
+
+   $$
+   f(z_0) = \frac{1}{2\pi i} \int_\gamma \frac{f(z)}{z - z_0} \, dz
+   $$
+
+Thus, we arrive at the statement of **Cauchy’s Integral Formula**.
+
+---
+
+### **4. Applications of Cauchy’s Integral Formula**
+
+Cauchy’s Integral Formula is incredibly useful in many areas of complex analysis. Some key applications include:
+
+#### **(a) Evaluating Functions at a Point**
+
+Cauchy’s Integral Formula can be used to evaluate an analytic function at a point $$ z_0 $$ by using an appropriate contour integral around that point. This is particularly helpful when the function is difficult to evaluate directly.
+
+#### **(b) Derivatives of Analytic Functions**
+
+Cauchy’s Integral Formula can also be used to compute derivatives of analytic functions. For the $$ n $$-th derivative of $$ f(z) $$ at a point $$ z_0 $$, the formula becomes:
+
+$$
+f^{(n)}(z_0) = \frac{n!}{2\pi i} \int_\gamma \frac{f(z)}{(z - z_0)^{n+1}} \, dz
+$$
+
+This allows us to compute higher derivatives of analytic functions directly from contour integrals.
+
+#### **(c) Integral Representation of Functions**
+
+The formula provides an integral representation of analytic functions. This can be useful in various fields such as physics and engineering, where integral representations of functions are needed.
+
+---
+
+### **5. Example of Cauchy’s Integral Formula**
+
+Let’s apply **Cauchy’s Integral Formula** in a simple example.
+
+#### **Example: Evaluating $$ f(z) $$ at $$ z_0 $$**
+
+Let $$ f(z) = e^z $$, and we want to evaluate $$ f(z) $$ at $$ z_0 = 1 $$ using a circular contour around $$ z_0 $$.
+
+1. The contour $$ \gamma $$ is a circle centered at $$ z_0 = 1 $$ with radius $$ r $$.
+2. The function $$ f(z) = e^z $$ is analytic everywhere, so we can use Cauchy’s Integral Formula.
+   
+By Cauchy’s Integral Formula, we have:
+
+$$
+f(1) = \frac{1}{2\pi i} \int_\gamma \frac{e^z}{z - 1} \, dz
+$$
+
+Now, we can choose a suitable contour $$ \gamma $$ and compute the integral. But since $$ f(z) = e^z $$ is entire (analytic everywhere), we can conclude directly from the formula that:
+
+$$
+f(1) = e^1 = e
+$$
+
+Thus, using Cauchy’s Integral Formula, we obtain $$ f(1) = e $$.
+
+---
+
+### **6. Summary**
+
+- **Cauchy’s Integral Formula** provides a method to evaluate an analytic function at a point $$ z_0 $$ inside a closed contour $$ \gamma $$ in terms of a contour integral:
+
+  $$
+  f(z_0) = \frac{1}{2\pi i} \int_\gamma \frac{f(z)}{z - z_0} \, dz
+  $$
+
+- It is valid for functions that are analytic inside and on the contour $$ \gamma $$.
+- The formula can be extended to compute **higher derivatives** of analytic functions.
+- Cauchy’s Integral Formula is used in **complex analysis**, **contour integration**, and has applications in **physics** and **engineering**.
+
+---
+
+💡 **TIP**: Cauchy’s Integral Formula simplifies the task of evaluating functions at specific points, particularly when the function is difficult to compute directly. It also provides a direct method to find the derivatives of analytic functions.
+
+---
