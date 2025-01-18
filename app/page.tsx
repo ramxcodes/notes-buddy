@@ -4,6 +4,7 @@ import FeatureSection from "@/components/Home/FeatureSection";
 import FooterSection from "@/components/Home/FooterSection";
 import HeroSection from "@/components/Home/HeroSection";
 import NotesSection from "@/components/Home/NotesSection";
+import NotLanding from "@/components/Home/NotLanding";
 import PostSection from "@/components/Home/PostSection";
 import TestimonialSection from "@/components/Home/TestimonialSection";
 import MarqueeSlant from "@/components/MarqueeSlant";
@@ -21,6 +22,7 @@ export default function Home() {
         <NotesSection />
         <TestimonialSection />
         <FooterSection />
+        <NotLanding />
       </div>
     </>
   );

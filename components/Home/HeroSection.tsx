@@ -76,8 +76,8 @@ export default function HeroSection() {
           </div>
           <div className="w-1/2 flex flex-col md:flex-row items-center justify-center py-4">
             <Tooltip />
-            <span className="text-center pl-4 py-4 text-xs text-gray-500 dark:text-gray-400">
-              Rated by 1000+ students from 100+ colleges in India
+            <span className="pl-4 py-4 text-xs text-gray-500 dark:text-gray-400 ml-4 text-left">
+              Rated by hundreds of students. Loved by many.
             </span>
           </div>
         </div>
