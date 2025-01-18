@@ -7,14 +7,19 @@ export default function page() {
 
       <section className="space-y-4">
         <h3 className="text-lg font-medium">Contact Us</h3>
-        <p>We&apos;re here to help! If you have any questions about our services or need assistance, please don&apos;t hesitate to reach out. Contact us now to get quick and friendly support from our team. We&apos;re committed to providing you with the best experience possible.</p>
+        <p>
+          We&apos;re here to help! If you have any questions about our services
+          or need assistance, please don&apos;t hesitate to reach out. Contact
+          us now to get quick and friendly support from our team. We&apos;re
+          committed to providing you with the best experience possible.
+        </p>
         <address className="pl-4">
           <p>Notes Buddy</p>
           <p>+91 6263219134</p>
-          <p>Email: notesbuddy@gmail.com</p>
+          <p>Email: notesbuddymu@gmail.com</p>
           <p>Scheme 39, Vijay Nagar, Indore</p>
         </address>
       </section>
     </div>
-  )
+  );
 }

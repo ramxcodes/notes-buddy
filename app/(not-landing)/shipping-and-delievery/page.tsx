@@ -86,7 +86,7 @@ export default function page() {
           <p>Notes Buddy</p>
           <p>39, Ram Nivas Vijay Nagar Main Road, Indore 452010</p>
           <p>+91 6263219134</p>
-          <p>Email: notesbuddy@gmail.com</p>
+          <p>Email: notesbuddymu@gmail.com</p>
         </address>
       </section>
     </div>
