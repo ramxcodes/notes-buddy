@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 interface IRazorpayConfig {
   key_id: string;
@@ -21,6 +21,7 @@ interface IRazorpayConfig {
 }
 
 export default function BuyPremiumPage() {
+  const { data: session, status } = useSession();
   const [tier, setTier] = useState("Tier 1");
   const [university, setUniversity] = useState("");
   const [degree, setDegree] = useState("");
@@ -32,14 +33,12 @@ export default function BuyPremiumPage() {
   const years = ["1st Year", "2nd Year", "3rd Year", "4th Year"];
 
   useEffect(() => {
-    async function fetchSession() {
-      const session = await getSession();
-      if (session?.user) {
-        setUser(session.user);
-      }
+    if (status === "authenticated" && session?.user) {
+      setUser(session.user);
+    } else if (status === "unauthenticated") {
+      setUser(null);
     }
-    fetchSession();
-  }, []);
+  }, [session, status]);
 
   const handleCheckout = async () => {
     if (!user) {
@@ -47,7 +46,6 @@ export default function BuyPremiumPage() {
       window.location.href = "/sign-in";
       return;
     }
-
 
     const response = await fetch("/api/razorpay/create-order", {
       method: "POST",
@@ -58,7 +56,6 @@ export default function BuyPremiumPage() {
     });
 
     const order = await response.json();
-
 
     if (!order.id) {
       alert("Failed to create Razorpay order");
@@ -73,7 +70,6 @@ export default function BuyPremiumPage() {
       description: `Subscription for ${tier} (${year})`,
       order_id: order.id,
       handler: async (response: any) => {
-
         const verification = await fetch("/api/razorpay/verify-payment", {
           method: "POST",
           headers: {
@@ -121,19 +117,21 @@ export default function BuyPremiumPage() {
       document.body.appendChild(script);
     }
   };
-  
+
   return (
     <div className="p-8 max-w-md mx-auto rounded-xl shadow-md space-y-4">
       <h1 className="text-2xl font-bold text-center">Buy Premium</h1>
-      {user ? (
-        <p className="text-center ">Hello, {user.name}</p>
+      {status === "loading" ? (
+        <p className="text-center text-blue-500">Loading session...</p>
+      ) : user ? (
+        <p className="text-center ">Hello, {session?.user.name}</p>
       ) : (
         <p className="text-center text-red-500">Please log in to continue.</p>
       )}
       <div className="space-y-2">
         <label className="block text-sm font-medium ">University</label>
         <select
-          className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
           value={university}
           onChange={(e) => setUniversity(e.target.value)}
         >
@@ -148,7 +146,7 @@ export default function BuyPremiumPage() {
       <div className="space-y-2">
         <label className="block text-sm font-medium">Degree</label>
         <select
-          className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
           value={degree}
           onChange={(e) => setDegree(e.target.value)}
         >
@@ -163,7 +161,7 @@ export default function BuyPremiumPage() {
       <div className="space-y-2">
         <label className="block text-sm font-medium">Year</label>
         <select
-          className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
           value={year}
           onChange={(e) => setYear(e.target.value)}
         >
@@ -178,7 +176,7 @@ export default function BuyPremiumPage() {
       <div className="space-y-2">
         <label className="block text-sm font-medium">Plan Tier</label>
         <select
-          className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
           value={tier}
           onChange={(e) => setTier(e.target.value)}
         >
@@ -188,7 +186,7 @@ export default function BuyPremiumPage() {
         </select>
       </div>
       <button
-        className="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        className="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md"
         onClick={handleCheckout}
       >
         Proceed to Pay
