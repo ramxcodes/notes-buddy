@@ -1,9 +1,0 @@
-Query: "
-ohm's law"Query: "
-ohm's law"Output: "
-an AC power supply system where three alternating currents (or voltages) are generated simultaneously with a phase difference of 120 degrees between each phase"Query: "
-history of science"Output: "
-Universal Application of Science"
-
-Query: "v = ir"
-Output: "Very High Resolution Radiometer precipitation with elevated levels of acids"
