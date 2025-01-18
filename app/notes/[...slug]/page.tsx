@@ -9,6 +9,7 @@ import UpgradePrompt from "@/components/UpgradePrompt";
 import { hasAccess } from "@/lib/access";
 import clientPromise from "@/lib/db";
 import { getServerSession } from "next-auth";
+import { Card } from "@/components/ui/card";
 
 interface PostPageProps {
   params: {
@@ -162,9 +163,9 @@ export default async function PostPage({ params }: PostPageProps) {
 
   if (errorMessage) {
     return (
-      <div className="container mx-auto mt-20 text-center">
+      <div className="container mx-auto mt-20 text-center flex flex-col items-center justify-center h-screen">
         <UpgradePrompt message={errorMessage} />
-        <div className="mt-4">
+        <Card className="mt-4 p-4 font-wotfard text-left">
           <p>
             <strong>Your Current Plan:</strong> {userTier}
           </p>
@@ -177,7 +178,7 @@ export default async function PostPage({ params }: PostPageProps) {
               {requiredSemester}.
             </p>
           )}
-        </div>
+        </Card>
       </div>
     );
   }
