@@ -1,6 +1,6 @@
 ---
 title: "Unit 4 : NO SQL"
-description: Introduction to Column Family Database, Features, Architectures, Differences and Similarities to Key Value and Document Database, Consistency, Transactions, Scaling, Use Cases. Introduction to Graph Databases, Advantages, Features, Consistency, Transactions, Availability, Scaling, Graph & Network Modelling, Properties of Graphs and Noes, Types of Graph, Undirected and directed Graph, Flow Network, Bipartite Graph, Multigraph, Weighted Graph.
+description: Introduction to Column Family Database, Features, Architectures, Differences and Similarities to Key Value and Document Database, Consistency, Transactions, Scaling, Use Cases. Introduction to Graph Databases, Advantages, Features, Consistency, Transactions, Availability, Scaling, Graph & Network Modelling, Properties of Graphs and Nodes, Types of Graph, Undirected and directed Graph, Flow Network, Bipartite Graph, Multigraph, Weighted Graph.
 date: 2025-01-01
 tags: ["NO SQL", "5th Semester", "3rd Year", "medicaps university"]
 published: true
@@ -10,5 +10,1603 @@ metadata:
   semester: "5th Semester"
   subject: "NO SQL"
 ---
+
+---
+## Introduction to Column Family Database
+
+A **Column Family Database (CFDB)** is a type of NoSQL database that organizes data into **column families**, rather than traditional rows and columns like in relational databases. This model is often used in systems that require high scalability and flexibility in storing large amounts of data.
+
+### What is a Column Family?
+
+A **column family** is a collection of rows, but unlike traditional relational databases, the rows in a column family database do not necessarily have the same columns. Each row can store different data in different columns, and this is ideal for managing sparse data, where not all records share the same attributes.
+
+💡 **TIP:** Column family databases are especially useful for applications where data grows quickly and requires frequent updates, such as real-time analytics or recommendation engines.
+
+### Characteristics of Column Family Database
+
+- **Rows and Columns:** Data is organized in rows, but each row can have a different set of columns.
+- **Column Groups:** Columns are grouped into families, and each column family contains a set of related columns.
+- **No Fixed Schema:** The structure of each row can vary, allowing flexible data storage.
+- **Efficient Writes and Reads:** Optimized for fast writes and efficient querying on large data sets.
+
+### Examples of Column Family Databases
+
+Some popular column family databases include:
+- **Apache Cassandra:** A highly scalable, distributed NoSQL database.
+- **HBase:** An open-source, distributed, column-oriented store that runs on top of HDFS (Hadoop Distributed File System).
+  
+### Advantages of Column Family Databases
+
+- **Scalability:** They scale horizontally, meaning they can handle large amounts of data by distributing it across multiple servers.
+- **Flexibility:** Schema-less design allows storing heterogeneous data in a single table.
+- **High Performance:** Optimized for fast read and write operations.
+  
+📝 **NOTE:** Column family databases work best in scenarios that require high availability, fault tolerance, and scalability, particularly in large-scale applications.
+
+### Disadvantages of Column Family Databases
+
+- **Complexity:** The lack of a fixed schema can lead to complicated data management.
+- **Consistency Issues:** Some column family databases, like Cassandra, use eventual consistency, which can be problematic in certain applications that need strong consistency.
+- **Query Limitations:** These databases may not support complex queries or joins as efficiently as relational databases.
+
+---
+## Features and Architectures of Column Family Databases
+
+Column Family Databases are designed to provide scalability, high availability, and flexibility. Let's explore their main features and architecture in more detail.
+
+### Key Features of Column Family Databases
+
+- **Column-Oriented Storage:** 
+   - Data is stored in columns instead of rows, which optimizes query performance for read-heavy workloads. 
+   - It allows better compression and storage efficiency when dealing with sparse data.
+  
+- **Schema Flexibility:**
+   - Unlike relational databases, column family databases do not require a fixed schema. Rows can have different columns and even the same row can store different types of data.
+   - This flexibility is ideal for applications with dynamic or evolving data structures.
+
+- **Scalability:**
+   - These databases are designed to scale horizontally across multiple servers. 
+   - This is crucial for handling large amounts of data and high traffic, as data is distributed across nodes in a cluster.
+
+- **Distributed Architecture:**
+   - Column family databases support distributed architectures, where data is replicated across multiple nodes.
+   - This ensures fault tolerance and high availability, even in the case of hardware failures.
+
+- **Efficient Write Operations:**
+   - Write operations are optimized in column family databases, often using **Write-Ahead Logs (WAL)** for durability.
+   - Data is written in-memory and later flushed to disk, improving write performance.
+
+- **Eventual Consistency:**
+   - Most column family databases, like Cassandra, provide eventual consistency, meaning that data will eventually become consistent across all nodes.
+   - This model allows for better availability and partition tolerance, following the **CAP theorem**.
+
+💡 **TIP:** The **CAP theorem** states that a distributed database can provide only two of the three guarantees: Consistency, Availability, and Partition tolerance. Column family databases prioritize availability and partition tolerance, with eventual consistency.
+
+---
+
+### Architecture of Column Family Databases
+
+The architecture of column family databases typically follows a **distributed, masterless design**. Below are the main components of this architecture:
+
+1. **Nodes:**
+   - Each node in the system stores a subset of the data. A node can be a physical or virtual machine.
+   - Each node is responsible for a specific range of data and is responsible for serving read and write requests for that data.
+
+2. **Data Distribution:**
+   - Data is partitioned across multiple nodes using a **consistent hashing** algorithm. This ensures that data is evenly distributed, even as nodes are added or removed.
+   - Each piece of data is assigned to a particular node, and the system can efficiently locate and retrieve the data.
+
+3. **Replication:**
+   - To ensure high availability and fault tolerance, data is **replicated** across multiple nodes.
+   - The number of replicas is configurable (e.g., 3 replicas), and the data will still be accessible if one or more nodes fail.
+
+4. **Client-Server Communication:**
+   - Clients interact with column family databases using a **client-driver** interface, which abstracts the complexity of connecting to distributed nodes.
+   - The client sends requests to one or more nodes in the cluster, and the nodes work together to process the query.
+
+5. **Coordinator Nodes:**
+   - In some architectures, one or more nodes act as **coordinators** to manage client requests. These coordinator nodes direct the request to the appropriate replica nodes.
+
+---
+
+### Example of Column Family Database Architecture (Apache Cassandra)
+
+Apache Cassandra, a popular column family database, follows a **peer-to-peer** architecture with no single point of failure. Here are the key architectural features:
+
+- **Ring Architecture:** The nodes are arranged in a logical ring, and data is partitioned using a **hashing mechanism**.
+- **Consistent Hashing:** Data is distributed across nodes based on a hash of the row key, ensuring that each node in the cluster has an equal share of data.
+- **Replication Factor:** A configurable parameter that determines how many copies of each piece of data will be stored across the cluster.
+
+---
+
+💡 **TIP:** The ability to add new nodes to a column family database without major downtime is one of the key advantages of using such databases for large-scale systems.
+
+---
+## Differences and Similarities to Key-Value and Document Databases
+
+Column Family Databases, Key-Value Databases, and Document Databases are all types of NoSQL databases, but they differ in how they store and manage data. Let’s explore their differences and similarities.
+
+### Similarities Between Column Family, Key-Value, and Document Databases
+
+- **NoSQL Nature:**
+   - All three types of databases belong to the **NoSQL** category, meaning they are designed for high scalability, flexibility, and non-relational data storage.
+
+- **Horizontal Scalability:**
+   - These databases are designed to scale horizontally, meaning they can efficiently distribute data across multiple servers to handle large datasets and high traffic loads.
+
+- **Schema Flexibility:**
+   - Column family, key-value, and document databases do not require a fixed schema. They allow storing unstructured or semi-structured data, making them ideal for applications with dynamic data models.
+
+- **Distributed Architecture:**
+   - Most implementations of these databases support a distributed architecture, where data is stored and managed across multiple nodes in a cluster. This ensures high availability and fault tolerance.
+
+---
+
+### Key Differences Between Column Family, Key-Value, and Document Databases
+
+| **Feature**                     | **Column Family Database**                              | **Key-Value Database**                                  | **Document Database**                                  |
+|----------------------------------|---------------------------------------------------------|---------------------------------------------------------|--------------------------------------------------------|
+| **Data Structure**               | Data is stored in **rows** and **column families**.     | Data is stored as **key-value pairs**.                  | Data is stored as **documents**, usually in JSON, BSON, or XML format. |
+| **Schema**                       | Flexible schema; each row can have different columns.   | No schema; each key can map to any data type (value).    | Flexible schema; documents can have different structures. |
+| **Querying**                      | Supports querying across rows and columns (limited).    | Queries are based on the key; values are typically not queried. | Supports complex queries on documents using fields and indexes. |
+| **Use Cases**                     | Best for applications requiring high performance on large datasets (e.g., time-series data, analytics). | Ideal for caching, sessions, and fast lookups by key.    | Best suited for content management, e-commerce, and applications with nested or hierarchical data. |
+| **Data Retrieval**               | Can perform range queries on column values.             | Data retrieval is fast by key but limited by lack of structure. | Documents can be retrieved by their unique identifiers or based on specific attributes. |
+| **Consistency Model**            | Often uses **eventual consistency** (e.g., Cassandra).  | Generally uses **eventual consistency**.                | Supports **eventual consistency** or **strong consistency** (depending on the system). |
+
+---
+
+### Example Use Cases
+
+- **Column Family Database (e.g., Apache Cassandra):**
+   - Large-scale applications where performance and scalability are essential, such as **real-time analytics** or **sensor data storage**.
+
+- **Key-Value Database (e.g., Redis, DynamoDB):**
+   - Applications requiring fast data retrieval, such as **caching** and **session management**.
+
+- **Document Database (e.g., MongoDB, CouchDB):**
+   - Ideal for applications requiring flexible data models, such as **content management systems** or **e-commerce** platforms where products may have varied attributes.
+
+---
+
+### Summary of Key Differences
+
+- **Column Family Databases**: Store data in rows and column families, ideal for applications with large amounts of data and frequent updates. They support some query capabilities across columns.
+  
+- **Key-Value Databases**: Store data as key-value pairs, with fast data retrieval by key. They are simpler and are mostly used for caching or managing session data.
+
+- **Document Databases**: Store data as documents (usually in JSON or BSON), making them suitable for applications that need to handle semi-structured or hierarchical data with flexible schemas.
+
+---
+
+💡 **TIP:** When choosing between these database types, consider your application's data model, query needs, and scalability requirements. Column family databases are great for large datasets, key-value stores are perfect for fast lookups, and document databases are suited for flexible data with complex structures.
+
+---
+## Consistency, Transactions, Scaling, and Use Cases in Column Family Databases
+
+In this section, we’ll explore how Column Family Databases handle **consistency**, **transactions**, **scaling**, and their various **use cases**.
+
+---
+
+### Consistency in Column Family Databases
+
+Column Family Databases like Apache Cassandra and HBase often provide **eventual consistency**, which means that data will eventually become consistent across all nodes in the system, but there may be a temporary inconsistency during updates.
+
+#### Types of Consistency Models
+
+- **Eventual Consistency:**  
+   - In this model, all updates to the database will propagate to all nodes eventually, but not immediately. This ensures high availability and fault tolerance but may cause temporary inconsistencies.
+   - **Example:** In Cassandra, writes can succeed even if some nodes are temporarily unavailable, but there is no guarantee that all replicas will have the same data immediately.
+
+- **Strong Consistency:**  
+   - Some systems offer the option to achieve stronger consistency (e.g., using **quorum-based** reads and writes), ensuring that all nodes involved in a read or write operation agree on the data state.
+   - **Example:** Cassandra allows for tunable consistency levels, where you can choose between **ONE**, **QUORUM**, or **ALL** consistency levels for operations.
+
+💡 **TIP:** The choice between eventual consistency and strong consistency depends on the application’s needs. If availability and speed are more important, eventual consistency is preferred. For critical systems where data accuracy is crucial, strong consistency might be necessary.
+
+---
+
+### Transactions in Column Family Databases
+
+Column Family Databases are generally not designed to support **ACID** (Atomicity, Consistency, Isolation, Durability) transactions like relational databases. However, they provide features to ensure data integrity and manage distributed transactions.
+
+#### Transactional Support
+
+- **Lightweight Transactions (LWT):**
+   - Some systems like Apache Cassandra offer **Lightweight Transactions**, which provide **linearizable** consistency for certain operations like **compare-and-set**. This is useful for certain use cases but is not as robust as full ACID transactions.
+
+- **Batch Operations:**
+   - Batch operations allow you to group multiple operations together (e.g., writing data to several rows) and execute them atomically within a single request. However, this atomicity is limited to a single node or partition.
+
+📝 **NOTE:** If your application requires full ACID compliance, a Column Family Database might not be the best choice. You might want to consider other types of databases or implement additional mechanisms to ensure transaction reliability.
+
+---
+
+### Scaling in Column Family Databases
+
+Column Family Databases are designed to scale **horizontally**, meaning that as the amount of data grows, you can add more nodes to the system to handle the increased load.
+
+#### Horizontal Scaling
+
+- **Data Partitioning (Sharding):**  
+   - Data is divided into **partitions** (or **shards**), and each partition is assigned to different nodes in the cluster. This ensures that the workload is evenly distributed, and performance remains high as the system grows.
+
+- **Replication:**  
+   - Data is replicated across multiple nodes to ensure high availability. The replication factor (i.e., the number of copies of data) can be configured based on the requirements for fault tolerance.
+
+- **Load Balancing:**  
+   - When a new node is added to the system, data is rebalanced across the nodes to ensure that each node holds an equal portion of the data.
+
+💡 **TIP:** To maintain high availability and fault tolerance, you should configure an appropriate replication factor and partitioning strategy based on your application’s needs.
+
+---
+
+### Use Cases of Column Family Databases
+
+Column Family Databases are ideal for certain use cases that require large-scale, distributed, and flexible data storage. Some common use cases include:
+
+#### 1. **Real-time Analytics:**
+   - Column Family Databases are optimized for fast read and write operations, making them well-suited for real-time analytics platforms.
+   - **Example:** Storing time-series data for monitoring applications, where frequent updates and low-latency access to data are required.
+
+#### 2. **Event Logging and Monitoring:**
+   - These databases can handle massive amounts of data generated from logging and monitoring systems. They support high write throughput and allow you to query data by different attributes (e.g., timestamps, event types).
+   - **Example:** Log data for a large-scale distributed system, where each log entry is stored in a row and can be queried based on a timestamp or event type.
+
+#### 3. **Recommendation Systems:**
+   - Column Family Databases are used to store user profiles, product data, and user interactions, which are crucial for recommendation engines.
+   - **Example:** A product recommendation engine that stores customer browsing history, purchases, and preferences in a column family format for quick retrieval.
+
+#### 4. **Time-Series Data Storage:**
+   - These databases are ideal for applications that need to store large volumes of time-series data, such as IoT (Internet of Things) sensor data, financial market data, or telemetry.
+   - **Example:** A smart home system that stores temperature, humidity, and other sensor data over time.
+
+#### 5. **Social Media Platforms:**
+   - For social media applications with massive amounts of data generated by user interactions, Column Family Databases offer the scalability needed to store user profiles, posts, comments, and likes.
+   - **Example:** Storing social media data for users, where each user's activity is stored in a row, and their interactions (likes, comments) are stored in associated columns.
+
+---
+
+### Summary
+
+- **Consistency:** Column Family Databases typically provide eventual consistency but also allow tunable consistency levels for applications that need stronger consistency.
+- **Transactions:** These databases offer limited transactional support, with lightweight transactions and batch operations being the primary methods of ensuring data integrity.
+- **Scaling:** They are designed to scale horizontally with efficient partitioning and replication, making them ideal for applications with growing datasets.
+- **Use Cases:** Column Family Databases are well-suited for real-time analytics, time-series data, recommendation engines, and other large-scale, high-throughput applications.
+
+💡 **TIP:** When designing a system that uses a Column Family Database, always consider the scalability, consistency needs, and transaction requirements to choose the right configuration for your use case.
+
+---
+## Introduction to Graph Databases
+
+A **Graph Database** is a type of NoSQL database that uses graph structures for semantic queries, with nodes, edges, and properties to represent and store data. Unlike relational databases, which use tables, graph databases represent relationships between data directly, making them particularly useful for applications that involve complex relationships and interconnected data.
+
+### What is a Graph?
+
+In the context of graph databases:
+- **Nodes**: Represent entities (e.g., users, products, locations, etc.).
+- **Edges**: Represent relationships between entities (e.g., "likes", "purchased", "connected to", etc.).
+- **Properties**: Provide additional information about nodes and edges (e.g., a user’s name, an edge’s weight, or the date of a connection).
+
+💡 **TIP:** The power of a graph database lies in its ability to directly represent relationships and traverse them efficiently, which makes it ideal for applications like social networks, fraud detection, and recommendation engines.
+
+---
+
+### Key Characteristics of Graph Databases
+
+- **Efficient Relationship Representation:** 
+   - Relationships between data are stored as first-class citizens and can be traversed quickly, unlike relational databases where relationships are represented through foreign keys.
+   - This makes graph databases especially efficient for queries that involve many-to-many relationships.
+
+- **Schema-less or Flexible Schema:** 
+   - Graph databases often do not require a fixed schema. The structure can be flexible, allowing for dynamic and complex data models.
+  
+- **ACID Properties:**
+   - Many graph databases provide **ACID** (Atomicity, Consistency, Isolation, Durability) properties for transactions, ensuring reliability and consistency, even in distributed systems.
+
+- **Traversal-Oriented Queries:**
+   - Graph databases excel in handling queries that involve multiple hops or traversals, such as finding the shortest path between two nodes or retrieving all connections of a certain type.
+
+---
+
+### Benefits of Graph Databases
+
+- **Complex Relationship Handling:** 
+   - Graph databases are particularly suited for applications where relationships between entities are important, such as social media, recommendation engines, or network analysis.
+  
+- **Fast Query Performance for Relational Data:**
+   - Queries that involve complex joins in relational databases (e.g., finding mutual friends in a social network) are much faster in a graph database due to direct relationship mapping.
+
+- **Flexibility in Data Modeling:**
+   - With graph databases, you can easily represent complex, evolving relationships between entities without restructuring your data schema.
+
+- **Real-Time Insights:**
+   - Graph databases support real-time insights by providing efficient traversal mechanisms, which are ideal for time-sensitive applications like fraud detection, real-time recommendations, and pathfinding.
+
+---
+
+### Popular Graph Databases
+
+Some widely used graph databases include:
+- **Neo4j**: One of the most popular and widely used graph databases, designed for high-performance and high-availability graph processing.
+- **ArangoDB**: A multi-model database that includes graph functionality along with document and key-value store capabilities.
+- **Amazon Neptune**: A fully managed graph database service provided by Amazon Web Services (AWS).
+- **OrientDB**: A multi-model database that also supports graph databases, along with document and object models.
+
+---
+
+### Use Cases of Graph Databases
+
+1. **Social Networks:**
+   - Graph databases are ideal for representing and analyzing social networks, where users are connected through various relationships like friendships, followers, or shared interests.
+   - **Example:** A social media platform where you need to find mutual friends or suggest connections based on shared interests or activities.
+
+2. **Recommendation Engines:**
+   - By representing users, products, and interactions as nodes and edges, graph databases enable the creation of personalized recommendation systems.
+   - **Example:** An e-commerce platform recommending products based on a user’s previous purchases or the purchasing patterns of similar users.
+
+3. **Fraud Detection:**
+   - Graph databases can help detect fraud by analyzing relationships between entities (such as users, transactions, and devices). Suspicious patterns can be quickly identified by traversing the graph.
+   - **Example:** Detecting financial fraud by analyzing transaction networks for unusual patterns or connections between accounts.
+
+4. **Network and IT Operations:**
+   - Representing devices, connections, and network topology in a graph helps in monitoring and managing IT infrastructure.
+   - **Example:** A network monitoring system that detects bottlenecks or failure points by traversing the graph of connected devices and nodes.
+
+5. **Knowledge Graphs:**
+   - Graph databases are well-suited for building **knowledge graphs**, which represent relationships between concepts, entities, and facts. This is used in applications like search engines and AI systems.
+   - **Example:** A search engine that understands the relationships between entities (such as people, organizations, and locations) and provides more relevant search results.
+
+---
+
+### Conclusion
+
+Graph databases are a powerful tool for applications that involve complex relationships between entities. Their ability to store and query relationships as first-class citizens, along with their flexible schema and fast query performance, make them ideal for use cases like social networks, recommendation engines, fraud detection, and network analysis.
+
+💡 **TIP:** If your application requires handling and querying intricate relationships or traversing complex networks of data, a graph database may offer significant performance improvements over traditional relational databases.
+
+---
+## Advantages and Features of Graph Databases
+
+Graph databases offer unique advantages due to their inherent structure and approach to storing and querying data. Let's explore their key advantages and features in more detail.
+
+---
+
+### Advantages of Graph Databases
+
+1. **Efficient Relationship Handling:**
+   - Graph databases are built to handle complex relationships directly, making them ideal for applications that require rich interconnections between entities.
+   - Unlike relational databases, where complex relationships require costly joins, graph databases store relationships as first-class citizens, making relationship queries much faster and more intuitive.
+
+2. **High Performance on Complex Queries:**
+   - Graph databases excel in queries that involve multiple relationships, such as finding the shortest path between two nodes or detecting patterns in a network.
+   - **Example:** In a social network, graph databases can efficiently find mutual friends or suggest new connections based on shared interests, even in large networks.
+
+3. **Flexible Schema:**
+   - Graph databases are schema-less or offer flexible schema designs, allowing them to easily accommodate changes in the data model without major restructuring.
+   - This flexibility makes them suitable for evolving applications where the structure of data is likely to change over time.
+
+4. **Real-Time Analytics:**
+   - Due to their efficient traversal of relationships, graph databases provide real-time analytics and insights. They are ideal for use cases like fraud detection, recommendation systems, and network analysis.
+   - **Example:** Detecting fraudulent transactions by analyzing the connections between accounts, devices, and transaction histories in real-time.
+
+5. **Natural Representation of Data:**
+   - Graphs naturally represent connected data, such as social networks, hierarchies, and workflows. This intuitive structure aligns with how people think about relationships, making it easier to model complex data.
+   - **Example:** Representing an organizational hierarchy or a supply chain network in a graph structure.
+
+6. **Scalability:**
+   - Many graph databases are designed to scale horizontally, allowing them to handle large volumes of data and complex queries while maintaining performance.
+   - As the data grows, the graph's structure can be distributed across multiple servers, enabling efficient scaling and handling of big data.
+
+---
+
+### Key Features of Graph Databases
+
+1. **Nodes and Edges:**
+   - The core structure of a graph database consists of **nodes** (entities) and **edges** (relationships). Each node can have properties, and edges can represent the relationships between nodes, which may also have properties.
+   - **Example:** In a social network, users are represented as nodes, and their friendships are represented as edges between the nodes.
+
+2. **Properties:**
+   - Both nodes and edges can have properties that describe additional information. These properties allow for rich, flexible data models.
+   - **Example:** A user node may have properties such as name, age, and location, while an edge (relationship) between two users may have properties like the date they became friends.
+
+3. **Traversal Queries:**
+   - Graph databases support **traversal queries**, which allow for efficient navigation between nodes and relationships. Traversals are key to extracting meaningful insights from the graph structure.
+   - **Example:** A traversal query can identify the shortest path between two users in a social network or find the most influential node (user) in a graph.
+
+4. **Graph Algorithms:**
+   - Graph databases often include built-in support for powerful graph algorithms, such as **PageRank** (used in search engines), **centrality** (to find the most important nodes), **community detection**, and **shortest path** algorithms.
+   - These algorithms are useful for network analysis, recommendation engines, and fraud detection.
+
+5. **ACID Compliance:**
+   - Many graph databases provide **ACID** (Atomicity, Consistency, Isolation, Durability) properties for transactions, ensuring that data integrity is maintained even in distributed systems.
+   - This is crucial for applications where reliable and consistent transactions are necessary, such as financial systems or supply chain management.
+
+6. **Support for Multiple Data Models:**
+   - While graph databases are primarily designed to work with graph data, some systems support **multi-model** functionality, meaning they can also handle other types of data such as documents or key-value pairs.
+   - **Example:** ArangoDB supports graph, document, and key-value models, allowing for flexibility in how data is represented and queried.
+
+7. **Built-In Indexing:**
+   - To support fast queries, graph databases often have built-in indexing mechanisms that allow for efficient lookups and traversals based on node and edge properties.
+   - This ensures that graph operations can scale efficiently even as the graph grows in size.
+
+---
+
+### Use Cases Leveraging the Advantages and Features of Graph Databases
+
+- **Social Networks:** 
+   - Graph databases are ideal for representing and analyzing relationships between users, making them perfect for social networking applications.
+   - **Example:** Facebook uses a graph model to represent users and their interactions (likes, comments, posts, etc.) to generate friend suggestions and personalized content.
+
+- **Recommendation Engines:**
+   - By leveraging nodes (users, products) and edges (user actions, preferences), graph databases power recommendation systems, offering personalized suggestions based on relationships and behaviours.
+   - **Example:** Netflix uses a graph database to recommend movies or shows based on the viewer’s preferences and viewing history.
+
+- **Fraud Detection:**
+   - Graph databases can efficiently detect fraud by analyzing transactional data and identifying suspicious patterns or relationships between entities like users, accounts, and transactions.
+   - **Example:** Credit card companies use graph algorithms to detect unusual patterns in transaction histories, such as transactions across different regions or users with multiple linked accounts.
+
+- **Network and IT Operations:**
+   - Graph databases are useful for monitoring and analyzing networks, where entities like devices, servers, and applications can be connected by relationships.
+   - **Example:** Cisco uses graph databases for network monitoring, helping to detect network faults, bottlenecks, and security breaches.
+
+- **Knowledge Graphs:**
+   - In the field of artificial intelligence, graph databases are used to build knowledge graphs, representing relationships between various concepts, entities, and facts.
+   - **Example:** Google uses a knowledge graph to understand the relationships between entities (e.g., people, places, things) to provide more accurate and relevant search results.
+
+---
+
+### Conclusion
+
+Graph databases offer significant advantages in handling complex, interconnected data. Their ability to efficiently model relationships, support real-time queries, and provide powerful graph algorithms makes them ideal for applications like social networks, recommendation engines, fraud detection, and network analysis.
+
+💡 **TIP:** If your application involves managing and querying complex relationships or networks of interconnected data, a graph database could provide the performance and flexibility required to meet your needs.
+
+---
+## Consistency and Transactions in Graph Databases
+
+Graph databases, like any other database type, need to address **consistency** and **transactions** to ensure data integrity and reliability. However, due to their distributed nature and focus on scalability, the way they handle consistency and transactions can differ significantly from traditional relational databases.
+
+---
+
+### Consistency in Graph Databases
+
+Graph databases typically adopt one of two consistency models:
+
+1. **Eventual Consistency**:
+   - Many graph databases, particularly distributed ones, follow the **eventual consistency** model, which ensures that updates to data will propagate to all nodes in the system eventually, but there may be temporary inconsistencies during this process.
+   - **Example:** In systems like **Neo4j** or **ArangoDB**, if a node is updated on one machine, it will take time to propagate across the cluster. In the meantime, other nodes may see outdated data.
+   - 💡 **TIP:** Eventual consistency is useful for highly available systems where uptime is critical, and minor temporary inconsistencies can be tolerated.
+
+2. **Strong Consistency**:
+   - Some graph databases offer **strong consistency**, where all replicas are kept in sync before any write operation is considered complete. This is particularly important in systems that require accurate data at all times, such as financial or healthcare applications.
+   - **Example:** **Neo4j** can provide strong consistency for single-node setups or when configured for a cluster with synchronous replication.
+   - **Tunable Consistency**: Some graph databases, such as **Amazon Neptune**, allow you to choose the level of consistency (from eventual to strong consistency) based on the needs of the application.
+
+#### **CAP Theorem in Graph Databases**
+
+The **CAP Theorem** states that a distributed system can provide only two of the following three guarantees: **Consistency**, **Availability**, and **Partition Tolerance**. For graph databases, this means:
+
+- **Consistency**: All nodes reflect the same data at any given point.
+- **Availability**: The system remains operational even if some nodes fail.
+- **Partition Tolerance**: The system can function even when network partitions occur between nodes.
+
+In practice, graph databases often prioritize **availability** and **partition tolerance**, sacrificing strict consistency for better performance and fault tolerance.
+
+---
+
+### Transactions in Graph Databases
+
+Transactions are critical in ensuring that operations are executed atomically and that data remains consistent even in the face of system failures. Graph databases typically support **ACID transactions**, but the level of transaction support can vary depending on the specific graph database implementation.
+
+#### **ACID Properties in Graph Databases**
+
+1. **Atomicity**:
+   - **Atomicity** ensures that a series of operations within a transaction are treated as a single unit. If any part of the transaction fails, the entire transaction is rolled back.
+   - **Example:** If you're updating multiple nodes and relationships in a graph, either all changes are committed, or none are.
+
+2. **Consistency**:
+   - **Consistency** ensures that the database starts and ends in a valid state, adhering to predefined rules, constraints, and the integrity of data.
+   - **Example:** If a relationship is established between two nodes, the data must maintain its integrity throughout the transaction process, without violating any constraints.
+
+3. **Isolation**:
+   - **Isolation** ensures that transactions are executed independently, without interference from other concurrent transactions.
+   - **Example:** In a scenario where two transactions are modifying nodes in the same graph, the operations should not conflict, and each transaction should see a consistent snapshot of the data.
+
+4. **Durability**:
+   - **Durability** ensures that once a transaction has been committed, it cannot be undone, even in the event of a system crash or failure.
+   - **Example:** After committing a transaction, the changes to nodes and relationships will be permanently saved to disk, ensuring data is not lost.
+
+#### **Lightweight Transactions (LWT)**
+
+- **Lightweight Transactions (LWT)** are available in some graph databases (like **Neo4j** and **ArangoDB**) to provide a more limited but useful form of transactional support. These transactions ensure that certain operations, such as **compare-and-set**, are executed with linearizability—meaning the transaction will either succeed or fail with no intermediate states.
+  
+  - **Example:** In **Neo4j**, LWT is used to ensure that no other transactions can modify a node between the time it is read and written to.
+
+#### **Multi-Node Transactions**
+
+- In distributed graph databases, supporting transactions across multiple nodes can be more complex due to the inherent challenges of maintaining consistency across a distributed system.
+  
+- **Example:** In **Amazon Neptune**, transactions can span multiple nodes in a cluster, but the system may either provide **eventual consistency** or use **quorum-based** approaches to ensure consistency during multi-node transactions.
+
+---
+
+### Handling Distributed Transactions
+
+In distributed graph databases, managing transactions across multiple nodes involves more complexity due to network partitions and the potential for conflicts between nodes. To manage this, graph databases use several strategies:
+
+1. **Distributed Locking**:
+   - Some graph databases implement **distributed locking** mechanisms to prevent two transactions from modifying the same data concurrently.
+   - **Example:** In **Neo4j** or **ArangoDB**, locks can be placed on specific parts of the graph to ensure that transactions do not interfere with each other.
+
+2. **Eventual Consistency with Conflict Resolution**:
+   - For highly distributed graph databases, **eventual consistency** often involves conflict resolution strategies. In case of conflicting writes, the system must decide which update to propagate across the cluster.
+   - **Example:** **Cassandra** (although not a graph database, but often used alongside) uses **conflict resolution strategies** such as last-write-wins or custom user-defined resolution.
+
+3. **Tunable Consistency**:
+   - Some graph databases, such as **Amazon Neptune** and **ArangoDB**, allow developers to tune the consistency level for different types of transactions. This helps balance the need for consistency with the requirement for speed and availability.
+   - **Example:** You can configure Amazon Neptune to use **strong consistency** for critical transactions while allowing **eventual consistency** for less critical operations.
+
+---
+
+### Summary
+
+- **Consistency Models**: Graph databases typically offer **eventual consistency** but also allow for **strong consistency** and **tunable consistency** based on the application’s requirements. The trade-offs often involve availability and partition tolerance (CAP theorem).
+- **Transactions**: Graph databases support **ACID** transactions in many cases, with some offering **Lightweight Transactions (LWT)** for specific operations. In distributed setups, multi-node transactions require careful handling to ensure consistency and durability.
+- **Distributed Transactions**: Some graph databases implement strategies like **distributed locking** and **conflict resolution** to ensure consistent and reliable operations across multiple nodes.
+
+💡 **TIP:** When designing a graph-based system, consider your consistency and transaction requirements based on the nature of your application. For example, a real-time recommendation system may be able to tolerate eventual consistency, while a financial application will require strong consistency and ACID transactions.
+
+---
+## Availability and Scaling in Graph Databases
+
+Graph databases, like any distributed system, must address **availability** and **scaling** to meet the demands of modern, high-performance applications. These databases are designed to handle large volumes of interconnected data, and their ability to scale and remain available is crucial for providing reliable and responsive services.
+
+---
+
+### Availability in Graph Databases
+
+**Availability** refers to the ability of a database to remain operational and accessible even in the event of failures or network issues. In distributed systems, availability is often balanced with **consistency** and **partition tolerance** based on the **CAP Theorem** (Consistency, Availability, and Partition Tolerance).
+
+1. **High Availability (HA):**
+   - Many graph databases are designed for **high availability**, meaning they remain operational even when parts of the system fail. This is typically achieved by replicating data across multiple nodes or servers to ensure redundancy.
+   - **Example:** **Neo4j** and **Amazon Neptune** ensure that even if one or more nodes fail, the database can still serve requests from other nodes that hold copies of the data.
+
+2. **Fault Tolerance:**
+   - Fault tolerance ensures that the system can handle failures, such as node crashes or network partitioning, without losing data or significantly affecting performance.
+   - Graph databases often implement **replication** and **failover mechanisms** to handle such failures, allowing the system to continue functioning even during unexpected events.
+   - **Example:** In **Neo4j**, replication across multiple nodes ensures that data remains available even if a node becomes unavailable.
+
+3. **Eventual Availability:**
+   - In distributed graph databases, **eventual availability** allows the system to remain operational even if data consistency is temporarily out of sync. This trade-off ensures that the database is highly available but may result in slight delays in propagating updates across all nodes.
+   - **Example:** **Amazon Neptune** uses eventual consistency for multi-region replication, ensuring availability across regions even if some nodes are temporarily inconsistent.
+
+---
+
+### Scaling in Graph Databases
+
+Scaling refers to the ability of a graph database to handle increasing amounts of data, queries, and traffic as an application grows. Graph databases scale both **vertically** and **horizontally**, though horizontal scaling can be more complex due to the interconnected nature of graph data.
+
+#### **1. Vertical Scaling (Scaling Up)**
+
+- **Vertical scaling** involves increasing the resources (CPU, RAM, storage) of a single server to handle more data and queries. While simpler to implement, vertical scaling is limited by the maximum resources available on a single machine.
+- **Example:** For smaller or less complex graph datasets, a single, powerful server may be sufficient. **Neo4j** can run on a single node for simpler setups with relatively lower data volumes.
+
+- 💡 **TIP:** Vertical scaling is typically suited for smaller applications or when starting with a smaller dataset that can fit into a single machine's memory.
+
+#### **2. Horizontal Scaling (Scaling Out)**
+
+- **Horizontal scaling** (also known as **scaling out**) involves adding more nodes to a system to distribute the workload. This is crucial for large-scale graph databases, where data cannot fit on a single machine, or the query load exceeds the capacity of a single node.
+- In horizontal scaling, the database is distributed across multiple machines, and data is partitioned across those nodes, enabling the system to handle more requests and store more data.
+
+- **Sharding** is one of the most common techniques used for horizontal scaling. Sharding involves dividing the graph into smaller parts (called shards), each stored on a separate server. These shards can be distributed and queried independently.
+
+- **Example:** **ArangoDB** supports horizontal scaling by distributing graph data across multiple nodes, enabling it to handle vast amounts of interconnected data efficiently.
+
+#### **Challenges in Horizontal Scaling for Graph Databases**
+
+- **Data Distribution and Partitioning**: Since graph databases store data with complex relationships, partitioning (or sharding) the graph across multiple nodes can be challenging. If data that is heavily interconnected is distributed across different nodes, traversing relationships can become inefficient and slow.
+- **Graph Traversals and Joins**: Graph queries often involve traversals between nodes that may be located on different machines. This can introduce significant overhead when data is partitioned, as the system must communicate between nodes to complete queries.
+- **Example:** In a distributed **Neo4j** setup, graph traversals across multiple shards might incur network latency, as nodes on separate machines need to exchange information.
+
+#### **3. Distributed Graph Databases**
+
+- Some graph databases are specifically designed to scale horizontally in a distributed environment by using specialized architectures. These systems are able to partition graph data effectively and provide robust mechanisms for executing graph queries across multiple nodes.
+
+- **Example:** **Amazon Neptune** offers a fully managed, horizontally scalable graph database that supports both **Property Graph** and **RDF** graph models. It automatically scales up and down in response to changing workloads and maintains availability in a distributed setting.
+
+- **Example:** **TigerGraph** is another distributed graph database designed for horizontal scaling. It uses a **shared-nothing architecture**, where each node is independent, and it supports parallel processing for graph queries, making it highly scalable for large-scale applications.
+
+---
+
+### Techniques for Scaling Graph Databases
+
+1. **Sharding and Partitioning:**
+   - Sharding splits a graph into smaller, more manageable pieces. These shards are distributed across multiple machines or clusters to improve scalability and performance.
+   - **Example:** **ArangoDB** allows users to partition graph data by defining custom shard keys, ensuring even distribution of data across nodes.
+
+2. **Replication:**
+   - Replication involves creating copies of data across multiple nodes to ensure availability and improve read performance. In the case of graph databases, replication can ensure that data is always available even if one node fails.
+   - **Example:** **Neo4j** offers replication and failover mechanisms to provide high availability in a clustered environment.
+
+3. **Load Balancing:**
+   - Load balancing distributes incoming traffic across multiple nodes to ensure that no single server becomes overwhelmed with queries. This is crucial for maintaining high availability and responsiveness in distributed systems.
+   - **Example:** **Amazon Neptune** can automatically distribute read queries across multiple replicas, ensuring balanced load and faster response times.
+
+4. **Query Optimization and Caching:**
+   - Efficient query optimization and caching mechanisms are essential for improving the performance of graph queries in large-scale systems. By caching frequent queries and optimizing traversal paths, graph databases can reduce the overhead of complex queries.
+   - **Example:** **Neo4j** supports query caching, which helps accelerate the performance of frequently executed graph queries.
+
+---
+
+### Summary
+
+- **Availability** in graph databases ensures that the system remains operational even during failures, often through data replication, fault tolerance, and high availability mechanisms.
+- **Scaling** involves both vertical and horizontal approaches, with horizontal scaling (sharding) being more common for large-scale graph databases.
+- **Horizontal scaling** is challenging due to the interconnected nature of graph data, which can lead to inefficiencies in traversing distributed data. However, techniques like sharding, replication, and query optimization can help mitigate these challenges.
+- **Distributed graph databases** are designed to scale horizontally, providing robust solutions for handling large, interconnected datasets while maintaining availability and performance.
+
+💡 **TIP:** When choosing a graph database for a large-scale application, consider the trade-offs between scaling and query performance. For applications with complex relationships and large datasets, a distributed graph database with efficient sharding and replication mechanisms will be crucial.
+
+---
+## Graph & Network Modelling
+
+Graph and network modelling involves using graph structures to represent complex systems of interconnected entities and their relationships. It is widely used in areas such as social networks, communication systems, transportation networks, and biological networks. In the context of graph databases, modelling refers to how data is represented as nodes and relationships and how queries and analyses can be performed on these structures.
+
+---
+
+### Graph Modelling
+
+Graph modelling refers to the process of representing data in the form of a **graph**, where data entities (objects, people, locations, etc.) are represented as **nodes** and the relationships between them are represented as **edges**.
+
+1. **Nodes (Vertices):**
+   - **Nodes** represent entities or objects within the graph. They can be anything you need to model, such as people, products, locations, or events.
+   - **Example:** In a social network, each **node** represents a user.
+  
+2. **Edges (Relationships):**
+   - **Edges** represent the relationships or connections between nodes. Edges can be directed or undirected and often have properties that describe the nature of the relationship.
+   - **Example:** In a social network, an edge between two user nodes might represent a "friendship," with properties like "since" or "friendship_strength."
+
+3. **Properties:**
+   - Both **nodes** and **edges** can have **properties** (key-value pairs) that provide additional information.
+   - **Example:** A user node might have properties like `name`, `age`, and `location`. A "friendship" edge could have properties like `since` (date the friendship started) and `closeness` (a rating of how strong the relationship is).
+
+4. **Labels (Optional):**
+   - Some graph databases allow nodes to be labelled, making it easier to categorize them into different types.
+   - **Example:** In **Neo4j**, a node might be labelled `Person`, while an edge could be labelled `KNOWS`.
+
+---
+
+### Network Modelling
+
+Network modelling is the application of graph modelling to real-world networks. It focuses on analysing the structure, dynamics, and behaviours within a network, considering how entities (nodes) interact with each other through connections (edges).
+
+1. **Types of Networks:**
+   - **Social Networks:** Represent the relationships between individuals or groups (e.g., Facebook, LinkedIn).
+   - **Communication Networks:** Represent communication between devices, nodes, or servers (e.g., computer networks, telephone systems).
+   - **Transportation Networks:** Represent paths between locations such as cities or roads (e.g., road networks, airline routes).
+   - **Biological Networks:** Represent relationships between biological entities such as genes, proteins, and cells (e.g., protein interaction networks, metabolic networks).
+
+2. **Network Properties:**
+   - **Centrality:** Measures the importance or influence of a node in a network. Common centrality metrics include **degree centrality**, **closeness centrality**, and **betweenness centrality**.
+   - **Clusters/Communities:** Identifying groups of nodes that are densely connected within the network but loosely connected to other groups.
+   - **Connectivity:** Describes how connected or isolated a network is, including the measurement of **connected components**.
+   - **Paths:** The concept of paths or routes through a network is central in applications like shortest-path algorithms.
+   - **Example:** In a transportation network, the shortest path between two cities can be found using algorithms like **Dijkstra’s Algorithm**.
+
+---
+
+### Modelling Relationships and Queries
+
+1. **One-to-One Relationships:**
+   - A one-to-one relationship occurs when a single entity is related to another single entity. 
+   - **Example:** In a **person-to-passport** relationship, a person may only have one passport and vice versa.
+
+2. **One-to-Many Relationships:**
+   - A one-to-many relationship occurs when one entity is connected to multiple entities.
+   - **Example:** In a **customer-to-orders** relationship, one customer can place many orders, but each order is placed by only one customer.
+
+3. **Many-to-Many Relationships:**
+   - A many-to-many relationship occurs when multiple entities are related to multiple other entities.
+   - **Example:** In a **student-to-course** relationship, students can enrol in many courses, and each course can have many students enrolled.
+
+4. **Modeling Relationships in Queries:**
+   - Graph databases are particularly efficient for querying relationships. They allow for the traversal of nodes and edges to answer questions such as "Who are the closest friends of a particular user?" or "What is the shortest path between two locations?"
+   - **Example:** In **Neo4j**, a query might look like this:
+     ```cypher
+     MATCH (a:Person)-[:FRIEND_WITH]->(b:Person)
+     WHERE a.name = 'Alice'
+     RETURN b.name
+     ```
+
+---
+
+### Network Analysis with Graph Databases
+
+Graph and network modelling is commonly used to conduct **network analysis**. Various algorithms can be applied to graph data to analyse the structure and behaviour of a network. These include:
+
+1. **Shortest Path Algorithms:**
+   - Algorithms like **Dijkstra's Algorithm** or **A* Algorithm** are used to find the shortest path between two nodes in a graph. This is commonly used in applications like navigation systems or logistical planning.
+   - **Example:** In a road network, the shortest driving route between two cities can be computed using Dijkstra’s algorithm.
+
+2. **Community Detection:**
+   - Community detection algorithms, such as **Louvain** or **Girvan-Newman**, identify clusters or communities within a network where nodes are more densely connected to each other than to nodes outside the cluster.
+   - **Example:** In a social network, community detection can identify groups of people with shared interests or similar activities.
+
+3. **Centrality Metrics:**
+   - **Degree Centrality:** Measures how many direct connections a node has.
+   - **Closeness Centrality:** Measures how quickly a node can access other nodes in the network.
+   - **Betweenness Centrality:** Measures the extent to which a node lies on the paths between other nodes.
+   - **Example:** In a social network, a user with high **degree centrality** is highly connected to others, while a user with high **betweenness centrality** may act as an intermediary between different groups.
+
+4. **PageRank Algorithm:**
+   - **PageRank** is an algorithm used by Google to rank web pages in their search results. It is based on the idea that pages with more incoming links from other pages are more likely to be important.
+   - **Example:** When analyzing websites as nodes, PageRank can help identify the most important pages based on their link structure.
+
+---
+
+### Practical Applications of Graph and Network Modelling
+
+1. **Social Networks:**
+   - Social networks are a prime example of graph modelling. By modelling users as nodes and friendships or interactions as edges, graph databases enable efficient querying of relationships, friends, followers, and content.
+   - **Example:** Facebook uses graph databases to model the connections between users and their interactions with content (likes, comments, etc.).
+
+2. **Recommendation Systems:**
+   - In recommendation systems, users and items (e.g., movies, products) are modelled as nodes. Relationships between users and items (e.g., purchases, ratings) are represented as edges, enabling efficient recommendations based on user preferences and behaviours.
+   - **Example:** **Netflix** uses graph models to recommend movies based on a user's viewing history and similar users' preferences.
+
+3. **Fraud Detection:**
+   - In fraud detection, graph modelling can be used to identify suspicious patterns or relationships between entities such as accounts, transactions, and devices. By detecting unusual network activity or connections, graph databases can help uncover fraudulent behaviour.
+   - **Example:** **PayPal** uses graph databases to model user transactions and relationships, detecting fraud by identifying abnormal patterns of activity.
+
+4. **Telecommunications and Networking:**
+   - Graphs are often used to model telecommunications networks, representing devices as nodes and the communication links between them as edges. Network monitoring tools can use graph algorithms to optimize performance, detect failures, and predict future traffic patterns.
+   - **Example:** **Cisco** uses graph models to optimize routing paths in their communication networks.
+
+---
+
+### Summary
+
+- **Graph Modelling** represents entities as nodes and their relationships as edges, with nodes and edges potentially carrying properties. It is ideal for representing complex, interconnected data.
+- **Network Modelling** applies graph modelling to real-world networks, including social, transportation, communication, and biological networks.
+- **Network Analysis** includes powerful algorithms like shortest path, centrality measures, community detection, and PageRank to derive insights from network structures.
+- **Practical Applications** of graph and network modelling include social networks, recommendation systems, fraud detection, and network management.
+
+💡 **TIP:** If your application involves complex relationships or interconnected data, graph modelling can offer significant advantages over traditional relational models. Graph databases provide efficient ways to query and analyse these complex structures.
+
+---
+## Graph & Network Modelling
+
+Graph and network modelling involves using graph structures to represent complex systems of interconnected entities and their relationships. It is widely used in areas such as social networks, communication systems, transportation networks, and biological networks. In the context of graph databases, modelling refers to how data is represented as nodes and relationships and how queries and analyses can be performed on these structures.
+
+---
+
+### Graph Modelling
+
+Graph modelling refers to the process of representing data in the form of a **graph**, where data entities (objects, people, locations, etc.) are represented as **nodes** and the relationships between them are represented as **edges**.
+
+1. **Nodes (Vertices):**
+   - **Nodes** represent entities or objects within the graph. They can be anything you need to model, such as people, products, locations, or events.
+   - **Example:** In a social network, each **node** represents a user.
+  
+2. **Edges (Relationships):**
+   - **Edges** represent the relationships or connections between nodes. Edges can be directed or undirected and often have properties that describe the nature of the relationship.
+   - **Example:** In a social network, an edge between two user nodes might represent a "friendship," with properties like "since" or "friendship_strength."
+
+3. **Properties:**
+   - Both **nodes** and **edges** can have **properties** (key-value pairs) that provide additional information.
+   - **Example:** A user node might have properties like `name`, `age`, and `location`. A "friendship" edge could have properties like `since` (date the friendship started) and `closeness` (a rating of how strong the relationship is).
+
+4. **Labels (Optional):**
+   - Some graph databases allow nodes to be labelled, making it easier to categorize them into different types.
+   - **Example:** In **Neo4j**, a node might be labelled `Person`, while an edge could be labelled `KNOWS`.
+
+---
+
+### Network Modelling
+
+Network modelling is the application of graph modelling to real-world networks. It focuses on analysing the structure, dynamics, and behaviours within a network, considering how entities (nodes) interact with each other through connections (edges).
+
+1. **Types of Networks:**
+   - **Social Networks:** Represent the relationships between individuals or groups (e.g., Facebook, LinkedIn).
+   - **Communication Networks:** Represent communication between devices, nodes, or servers (e.g., computer networks, telephone systems).
+   - **Transportation Networks:** Represent paths between locations such as cities or roads (e.g., road networks, airline routes).
+   - **Biological Networks:** Represent relationships between biological entities such as genes, proteins, and cells (e.g., protein interaction networks, metabolic networks).
+
+2. **Network Properties:**
+   - **Centrality:** Measures the importance or influence of a node in a network. Common centrality metrics include **degree centrality**, **closeness centrality**, and **betweenness centrality**.
+   - **Clusters/Communities:** Identifying groups of nodes that are densely connected within the network but loosely connected to other groups.
+   - **Connectivity:** Describes how connected or isolated a network is, including the measurement of **connected components**.
+   - **Paths:** The concept of paths or routes through a network is central in applications like shortest-path algorithms.
+   - **Example:** In a transportation network, the shortest path between two cities can be found using algorithms like **Dijkstra’s Algorithm**.
+
+---
+
+### Modelling Relationships and Queries
+
+1. **One-to-One Relationships:**
+   - A one-to-one relationship occurs when a single entity is related to another single entity. 
+   - **Example:** In a **person-to-passport** relationship, a person may only have one passport and vice versa.
+
+2. **One-to-Many Relationships:**
+   - A one-to-many relationship occurs when one entity is connected to multiple entities.
+   - **Example:** In a **customer-to-orders** relationship, one customer can place many orders, but each order is placed by only one customer.
+
+3. **Many-to-Many Relationships:**
+   - A many-to-many relationship occurs when multiple entities are related to multiple other entities.
+   - **Example:** In a **student-to-course** relationship, students can enrol in many courses, and each course can have many students enrolled.
+
+4. **Modeling Relationships in Queries:**
+   - Graph databases are particularly efficient for querying relationships. They allow for the traversal of nodes and edges to answer questions such as "Who are the closest friends of a particular user?" or "What is the shortest path between two locations?"
+   - **Example:** In **Neo4j**, a query might look like this:
+     ```cypher
+     MATCH (a:Person)-[:FRIEND_WITH]->(b:Person)
+     WHERE a.name = 'Alice'
+     RETURN b.name
+     ```
+
+---
+
+### Network Analysis with Graph Databases
+
+Graph and network modelling is commonly used to conduct **network analysis**. Various algorithms can be applied to graph data to analyse the structure and behaviour of a network. These include:
+
+1. **Shortest Path Algorithms:**
+   - Algorithms like **Dijkstra's Algorithm** or **A* Algorithm** are used to find the shortest path between two nodes in a graph. This is commonly used in applications like navigation systems or logistical planning.
+   - **Example:** In a road network, the shortest driving route between two cities can be computed using Dijkstra’s algorithm.
+
+2. **Community Detection:**
+   - Community detection algorithms, such as **Louvain** or **Girvan-Newman**, identify clusters or communities within a network where nodes are more densely connected to each other than to nodes outside the cluster.
+   - **Example:** In a social network, community detection can identify groups of people with shared interests or similar activities.
+
+3. **Centrality Metrics:**
+   - **Degree Centrality:** Measures how many direct connections a node has.
+   - **Closeness Centrality:** Measures how quickly a node can access other nodes in the network.
+   - **Betweenness Centrality:** Measures the extent to which a node lies on the paths between other nodes.
+   - **Example:** In a social network, a user with high **degree centrality** is highly connected to others, while a user with high **betweenness centrality** may act as an intermediary between different groups.
+
+4. **PageRank Algorithm:**
+   - **PageRank** is an algorithm used by Google to rank web pages in their search results. It is based on the idea that pages with more incoming links from other pages are more likely to be important.
+   - **Example:** When analyzing websites as nodes, PageRank can help identify the most important pages based on their link structure.
+
+---
+
+### Practical Applications of Graph and Network Modelling
+
+1. **Social Networks:**
+   - Social networks are a prime example of graph modelling. By modelling users as nodes and friendships or interactions as edges, graph databases enable efficient querying of relationships, friends, followers, and content.
+   - **Example:** Facebook uses graph databases to model the connections between users and their interactions with content (likes, comments, etc.).
+
+2. **Recommendation Systems:**
+   - In recommendation systems, users and items (e.g., movies, products) are modelled as nodes. Relationships between users and items (e.g., purchases, ratings) are represented as edges, enabling efficient recommendations based on user preferences and behaviours.
+   - **Example:** **Netflix** uses graph models to recommend movies based on a user's viewing history and similar users' preferences.
+
+3. **Fraud Detection:**
+   - In fraud detection, graph modelling can be used to identify suspicious patterns or relationships between entities such as accounts, transactions, and devices. By detecting unusual network activity or connections, graph databases can help uncover fraudulent behaviour.
+   - **Example:** **PayPal** uses graph databases to model user transactions and relationships, detecting fraud by identifying abnormal patterns of activity.
+
+4. **Telecommunications and Networking:**
+   - Graphs are often used to model telecommunications networks, representing devices as nodes and the communication links between them as edges. Network monitoring tools can use graph algorithms to optimize performance, detect failures, and predict future traffic patterns.
+   - **Example:** **Cisco** uses graph models to optimize routing paths in their communication networks.
+
+---
+
+### Summary
+
+- **Graph Modelling** represents entities as nodes and their relationships as edges, with nodes and edges potentially carrying properties. It is ideal for representing complex, interconnected data.
+- **Network Modelling** applies graph modelling to real-world networks, including social, transportation, communication, and biological networks.
+- **Network Analysis** includes powerful algorithms like shortest path, centrality measures, community detection, and PageRank to derive insights from network structures.
+- **Practical Applications** of graph and network modelling include social networks, recommendation systems, fraud detection, and network management.
+
+💡 **TIP:** If your application involves complex relationships or interconnected data, graph modelling can offer significant advantages over traditional relational models. Graph databases provide efficient ways to query and analyse these complex structures.
+
+---
+## Properties of Graphs and Nodes
+
+In graph databases, graphs and nodes have various properties that describe their structure, behaviour, and the relationships between entities. These properties are key to understanding how data is represented, queried, and manipulated in graph-based systems.
+
+---
+
+### Properties of Graphs
+
+A **graph** consists of nodes (vertices) and edges (relationships), but it also has global properties that define its structure and characteristics. The properties of a graph influence how it is traversed, queried, and analysed.
+
+1. **Directed vs. Undirected Graphs:**
+   - **Directed Graph (Digraph):** In a directed graph, edges have a direction, meaning they go from one node to another. The relationship has a starting point (source) and an ending point (target).
+   - **Undirected Graph:** In an undirected graph, edges have no direction, meaning the relationship between nodes is bidirectional.
+   - **Example:** In a **social network**, if Alice follows Bob, it could be represented as a directed edge `Alice -> Bob`. If the relationship is mutual (e.g., they are friends), it would be represented as an undirected edge.
+
+2. **Weighted vs. Unweighted Graphs:**
+   - **Weighted Graph:** A weighted graph assigns a weight (or value) to each edge, representing the strength or cost of the relationship between nodes. Weights are useful in scenarios like shortest path algorithms or resource optimisation.
+   - **Unweighted Graph:** An unweighted graph does not assign weights to edges. All edges are considered equal.
+   - **Example:** In a **transportation network**, the weight could represent the distance or travel time between cities. In a social network, the weight could represent the strength of the relationship (e.g., how frequently two users interact).
+
+3. **Cyclic vs. Acyclic Graphs:**
+   - **Cyclic Graph:** A graph that contains at least one cycle, meaning a path exists from a node back to itself through a series of edges.
+   - **Acyclic Graph:** A graph that does not contain any cycles. A special type of acyclic graph is the **Directed Acyclic Graph (DAG)**, where edges have direction but no cycles are allowed.
+   - **Example:** In a **task dependency graph**, tasks may depend on each other. A DAG ensures that no task depends on itself indirectly, preventing circular dependencies.
+
+4. **Connected vs. Disconnected Graphs:**
+   - **Connected Graph:** A graph where there is a path between any pair of nodes. In other words, all nodes are reachable from any other node.
+   - **Disconnected Graph:** A graph where at least one pair of nodes is not connected by any path.
+   - **Example:** In a **communication network**, a connected graph means all devices can communicate with each other, while a disconnected graph indicates that some devices are isolated.
+
+5. **Planar Graph:**
+   - A **planar graph** can be drawn on a flat plane without any of its edges crossing each other. If the graph cannot be drawn without edge crossings, it is considered non-planar.
+   - **Example:** **Transportation networks** (like metro systems) often aim to be planar to avoid crossing tracks unnecessarily.
+
+---
+
+### Properties of Nodes
+
+Nodes represent entities in a graph, and each node can have several properties that describe the characteristics of the entity it represents. These properties are key to identifying, querying, and manipulating data in graph-based systems.
+
+1. **Node Labels:**
+   - Nodes can be assigned labels to group them into categories. Labels are helpful in categorising nodes and improving query efficiency.
+   - **Example:** In **Neo4j**, you might label a node `:Person` to signify that the node represents a person, or `:Movie` for a movie node.
+
+2. **Node Properties:**
+   - Nodes can have properties, which are key-value pairs that describe attributes of the entity represented by the node.
+   - **Example:** A `Person` node might have properties like `name: "Alice"`, `age: 30`, `location: "New York"`, while a `Movie` node might have properties like `title: "Inception"`, `release_year: 2010`.
+
+3. **Node Degree:**
+   - The **degree** of a node refers to the number of edges (relationships) connected to it. The degree can be used to identify central nodes in the graph, which may have more influence or connections.
+   - **Example:** In a **social network**, a person with a high degree (many friends or followers) might be considered a central figure in the network.
+
+4. **Node Type/Category:**
+   - Nodes can be classified into different types or categories, often based on the business logic or domain in which the graph is applied.
+   - **Example:** In a **customer-transaction graph**, nodes might represent different types of entities, such as `Customer`, `Product`, and `Transaction`.
+
+5. **Node Identifiers (Unique IDs):**
+   - Each node in a graph is typically assigned a unique identifier that distinguishes it from other nodes. This unique ID can be used for efficient access and querying.
+   - **Example:** In a **product catalog** graph, each `Product` node could have a unique `product_id` to distinguish it from other products.
+
+6. **Temporal Properties:**
+   - Some nodes may have properties related to time or temporal changes. These could represent when a node was created, last modified, or when a certain event occurred.
+   - **Example:** In an **event tracking** system, a node might have a property like `created_at: "2025-01-15"` to indicate when the event was logged.
+
+7. **Node Clustering:**
+   - Nodes that share certain properties or have similar relationships may be grouped into clusters or communities. This can help to understand patterns in the data, such as user communities in a social network or tightly connected regions in a transportation network.
+   - **Example:** In a **social network**, users with similar interests or behaviours may be clustered together based on their interactions or shared attributes.
+
+8. **Node Connectivity:**
+   - Nodes may be characterised by how well they are connected to other nodes in the graph. For example, nodes with many incoming and outgoing edges are often considered more influential or important in the graph.
+   - **Example:** In a **telecommunication network**, a node with high connectivity may represent a central hub or node through which many devices pass data.
+
+---
+
+### Summary
+
+- **Graph Properties** include characteristics such as directed vs. undirected edges, weighted vs. unweighted edges, cyclic vs. acyclic graphs, connected vs. disconnected graphs, and planar graphs. These properties define the structure and types of relationships within a graph.
+- **Node Properties** include labels (categories), properties (attributes), degree (number of connections), unique identifiers, and temporal properties. These properties help define the nature of the nodes and their role within the graph.
+- By understanding the properties of both graphs and nodes, we can design efficient graph databases, conduct powerful analyses, and make the most of the relationships within the data.
+
+💡 **TIP:** When designing a graph schema, consider the types of relationships between nodes and how properties can be used to optimise querying and data representation.
+
+---
+## Types of Graphs
+
+In graph theory, there are several types of graphs, each with its own characteristics and use cases. These types are distinguished by their structure, directionality, and the properties of their edges and nodes. Understanding these graph types is essential for selecting the appropriate model for a given application in graph databases.
+
+---
+
+### 1. **Undirected Graph**
+
+An **undirected graph** is a type of graph where the edges have no direction. The relationship between the nodes is bidirectional, meaning that if there is an edge between node A and node B, you can traverse the edge in both directions (from A to B and from B to A).
+
+- **Example:** In a **social network**, an undirected graph can represent mutual friendships, where both users are connected to each other without any directionality.
+
+**Key Properties:**
+- No direction associated with edges.
+- Relationships are bidirectional.
+  
+📝 **NOTE:** Undirected graphs are ideal for modelling symmetric relationships, where direction does not matter.
+
+---
+
+### 2. **Directed Graph (Digraph)**
+
+A **directed graph** (or **digraph**) is a graph in which the edges have a direction, represented by arrows. Each edge connects one node (the **source**) to another node (the **target**), meaning the relationship is asymmetric.
+
+- **Example:** In a **Twitter** network, a directed edge from one user (node A) to another (node B) might represent that user A follows user B, but user B may not necessarily follow user A in return.
+
+**Key Properties:**
+- Edges have direction.
+- Relationships are asymmetric.
+
+💡 **TIP:** Directed graphs are useful for applications where the direction of the relationship matters, such as in hierarchical structures or flow networks.
+
+---
+
+### 3. **Weighted Graph**
+
+A **weighted graph** is a graph in which each edge has a weight or cost associated with it. The weight typically represents the strength, cost, or distance of the relationship between nodes. Weighted graphs are commonly used in applications like route planning, network optimization, and recommendation systems.
+
+- **Example:** In a **transportation network**, the weight of an edge between two cities might represent the distance or time required to travel between them.
+
+**Key Properties:**
+- Edges carry weights (numerical values).
+- Weights can represent cost, distance, or other metrics.
+
+⚠️ **CAUTION:** Weighted graphs can add complexity to algorithms (like shortest path or minimum spanning tree) because the weights need to be considered during calculations.
+
+---
+
+### 4. **Unweighted Graph**
+
+An **unweighted graph** is a graph where the edges do not have weights. All edges are considered equal in terms of their connection between nodes. Unweighted graphs are typically used for simple relationships or where the weight does not play a significant role in the application.
+
+- **Example:** In a **social network**, an unweighted graph could represent the existence of a friendship relationship between two users without considering the strength or frequency of the relationship.
+
+**Key Properties:**
+- No weights on edges.
+- All edges are treated as equal.
+
+💡 **TIP:** Unweighted graphs are easier to handle in simple graph traversal algorithms, as there are no numerical values to consider.
+
+---
+
+### 5. **Cyclic Graph**
+
+A **cyclic graph** is a graph that contains at least one cycle, which is a path from a node back to itself, passing through other nodes. In a cyclic graph, you can start at a node, traverse the edges, and eventually return to the same node.
+
+- **Example:** A **task dependency graph** with cycles could represent tasks that depend on each other in a circular manner, which is undesirable in many scenarios, such as project management.
+
+**Key Properties:**
+- Contains at least one cycle.
+- Cycles allow traversal back to the starting node.
+
+⚠️ **CAUTION:** Cyclic graphs can lead to issues like infinite loops in algorithms if not handled properly.
+
+---
+
+### 6. **Acyclic Graph**
+
+An **acyclic graph** is a graph that contains no cycles, meaning there is no path from a node back to itself. A special case of acyclic graphs is the **Directed Acyclic Graph (DAG)**, where edges are directed and no cycles are allowed.
+
+- **Example:** A **workflow or task scheduling system** often uses a Directed Acyclic Graph (DAG) to represent tasks that depend on other tasks, ensuring that there are no circular dependencies.
+
+**Key Properties:**
+- No cycles.
+- Can be directed (DAG) or undirected.
+
+💡 **TIP:** Acyclic graphs are commonly used in workflows, task scheduling, and dependency resolution, as they ensure that no task is dependent on itself.
+
+---
+
+### 7. **Complete Graph**
+
+A **complete graph** is a graph in which every pair of distinct nodes is connected by a unique edge. In a complete graph, there is an edge between every pair of nodes.
+
+- **Example:** In a **network of computers**, a complete graph would represent a situation where every computer is directly connected to every other computer in the network.
+
+**Key Properties:**
+- Every pair of nodes is connected.
+- The number of edges grows quickly as the number of nodes increases.
+
+💡 **TIP:** Complete graphs are useful in scenarios where every node needs to have direct communication or connection with every other node.
+
+---
+
+### 8. **Bipartite Graph**
+
+A **bipartite graph** is a graph where the set of nodes can be divided into two disjoint sets, and every edge connects a node in one set to a node in the other set. There are no edges between nodes within the same set.
+
+- **Example:** In a **job matching system**, one set of nodes might represent **candidates** and the other set represents **job postings**, with edges representing the candidates applying for jobs.
+
+**Key Properties:**
+- Nodes are divided into two disjoint sets.
+- Edges only exist between nodes of different sets.
+
+💡 **TIP:** Bipartite graphs are particularly useful for representing relationships between two distinct types of entities, such as users and items, or actors and movies.
+
+---
+
+### 9. **Tree**
+
+A **tree** is a special type of acyclic graph where there is one and only one path between any two nodes. It is a hierarchical structure with a root node and child nodes, and no cycles.
+
+- **Example:** A **file system** is often represented as a tree, where the root is the root directory, and each subsequent level represents subdirectories and files.
+
+**Key Properties:**
+- Acyclic and connected.
+- One path between any two nodes.
+- Has a root node and hierarchical structure.
+
+💡 **TIP:** Trees are ideal for representing hierarchical data such as organizational structures, family trees, or directory structures.
+
+---
+
+### 10. **Forest**
+
+A **forest** is a disjoint set of trees. It is essentially a collection of one or more trees, where each tree is a connected acyclic graph, but there are no edges between the trees in the forest.
+
+- **Example:** A **set of independent hierarchies** in an organization could be represented as a forest, where each department has its own tree-like structure.
+
+**Key Properties:**
+- A collection of trees (multiple disconnected components).
+- Acyclic and connected within each tree.
+
+---
+
+### Summary
+
+- **Undirected Graphs**: Relationships are bidirectional, no edge direction.
+- **Directed Graphs**: Edges have direction, representing asymmetric relationships.
+- **Weighted Graphs**: Edges have weights representing costs, distances, or strengths.
+- **Unweighted Graphs**: Edges have no weights, all are considered equal.
+- **Cyclic Graphs**: Contain cycles, allowing traversal back to the starting node.
+- **Acyclic Graphs**: Contain no cycles, no circular dependencies.
+- **Complete Graphs**: Every pair of nodes is connected.
+- **Bipartite Graphs**: Nodes are divided into two disjoint sets, edges connect nodes from different sets.
+- **Trees**: Acyclic graphs with a hierarchical structure, one path between nodes.
+- **Forests**: A collection of disjoint trees.
+
+💡 **TIP:** The choice of graph type depends on the specific requirements of your application. For example, if you need to model hierarchical relationships, a **tree** is ideal, while a **bipartite graph** works well for matching problems.
+
+---
+## Undirected and Directed Graph
+
+Graphs are fundamental data structures used in various applications to represent relationships between entities. Understanding the difference between **Undirected** and **Directed Graphs** is crucial for choosing the appropriate model based on the problem domain.
+
+---
+
+### 1. **Undirected Graph**
+
+An **undirected graph** is a graph where the edges have **no direction**. In other words, the relationship between two nodes is bidirectional, meaning you can traverse the edge in both directions.
+
+#### Key Characteristics:
+- **Bidirectional relationships**: If node A is connected to node B, you can traverse the edge from A to B or from B to A.
+- **No direction on edges**: There are no arrows indicating the flow of the relationship between nodes.
+- **Symmetric relationships**: Both nodes are connected equally, without any hierarchy or direction.
+
+#### Example:
+In a **social network**, if user A and user B are friends, you can traverse the relationship both ways, meaning user A is friends with user B, and user B is friends with user A.
+
+```plaintext
+A --- B
+```
+
+#### Applications:
+- **Friendship networks** (where relationships are mutual).
+- **Collaborations** or **co-authorship networks**.
+- **Undirected graphs** are often used to represent symmetric relationships where the direction does not matter.
+
+#### Advantages:
+- Simple to model and visualise.
+- Easier to understand in applications with symmetric relationships.
+
+📝 **NOTE:** **Undirected graphs** are most effective when the relationship between nodes does not have a specific direction or order.
+
+---
+
+### 2. **Directed Graph (Digraph)**
+
+A **directed graph** (or **digraph**) is a graph where each edge has a **direction**, typically represented with arrows. This means that each edge connects one node (the **source**) to another node (the **target**), and you can only traverse the edge in the direction indicated.
+
+#### Key Characteristics:
+- **Unidirectional relationships**: If node A is connected to node B, the edge goes from A to B, but not necessarily from B to A.
+- **Edges with direction**: Directed edges are represented by arrows, showing the direction of the relationship.
+- **Asymmetric relationships**: The relationship is not necessarily mutual or reciprocal.
+
+#### Example:
+In a **Twitter network**, if user A follows user B, you can represent this as a directed edge from A to B. However, the reverse may not be true: user B may not necessarily follow user A.
+
+```plaintext
+A ---> B
+```
+
+#### Applications:
+- **Web pages** (where links go from one page to another).
+- **Traffic networks** (where roads have one-way directions).
+- **Hierarchical structures** (such as organisational charts or directory trees).
+
+#### Advantages:
+- Useful for representing **asymmetric** or **one-way relationships**.
+- Allows modelling of **flow** or **directional dependencies**, such as task scheduling or decision-making processes.
+
+💡 **TIP:** **Directed graphs** are ideal when the relationship between nodes has a clear direction or when you need to represent flow or cause-effect scenarios.
+
+---
+
+### Key Differences Between Undirected and Directed Graphs
+
+| Feature               | Undirected Graph                           | Directed Graph                             |
+|-----------------------|--------------------------------------------|--------------------------------------------|
+| **Edge Direction**     | No direction; edges are bidirectional.     | Edges have direction (from source to target). |
+| **Relationship Type**  | Symmetric; the relationship is mutual.     | Asymmetric; the relationship is one-way.    |
+| **Representation**     | Edges are represented by simple lines.     | Edges are represented by arrows (directional). |
+| **Traversal**          | Can traverse in both directions.           | Can only traverse in the direction of the edge. |
+| **Example**            | Friendship networks, co-authorships.       | Twitter followers, task dependencies.      |
+| **Applications**       | Symmetric relationships.                   | Asymmetric relationships, flow, or hierarchies. |
+
+---
+
+### When to Use Undirected vs Directed Graphs
+
+- **Undirected Graphs** are best when the relationships are bidirectional and equal, such as in **friendship** networks, **collaborations**, or **social connections**.
+  
+- **Directed Graphs** are essential when the relationship has direction or flow, such as in **webpage links**, **traffic systems**, or **task dependencies**.
+
+💡 **TIP:** For applications involving navigation, task scheduling, or cause-effect modelling, **directed graphs** are typically the best choice. For simpler, symmetric relationships, **undirected graphs** provide a clear and intuitive representation.
+
+---
+## Flow Network
+
+A **Flow Network** is a directed graph in which each edge has a **capacity** and each edge receives a **flow**. The network is used to model systems where resources (such as goods, energy, or data) are transferred through various points, subject to specific constraints.
+
+### Key Characteristics of Flow Networks:
+- **Directed Graph**: The network is made up of directed edges (arrows), where each edge has a specific direction.
+- **Source and Sink**: The network has two special vertices—**source** and **sink**:
+  - **Source (S)**: The starting point where the flow originates.
+  - **Sink (T)**: The endpoint where the flow is collected or consumed.
+- **Capacity**: Each edge has a capacity that represents the maximum amount of flow that can pass through the edge.
+- **Flow**: The amount of material, energy, or data passing through an edge in a given direction. Flow must always be less than or equal to the capacity of the edge.
+
+### Components of a Flow Network:
+- **Nodes (Vertices)**: Represent the points in the network where flow can originate, pass through, or be consumed.
+- **Edges**: Represent the paths along which flow is transferred between nodes.
+- **Capacity**: A non-negative integer or real number associated with each edge, which indicates the maximum flow that edge can carry.
+- **Flow**: The actual amount of flow sent from one node to another, subject to the constraints of the edge's capacity.
+
+---
+
+### Example of a Flow Network:
+Consider a flow network representing a **transportation system**, where:
+- **Source (S)** represents the start point of a supply chain.
+- **Sink (T)** represents the destination or endpoint.
+- The edges represent roads or pipelines, and the capacity on each edge represents the maximum amount of goods that can be transported.
+
+```
+S → A → T
+↑   ↓
+B → C
+```
+
+Here:
+- The capacity on the edge from S to A is 10 units.
+- The capacity on the edge from A to T is 15 units.
+- The capacity on the edge from S to B is 5 units, and so on.
+
+The flow must obey the rule that the flow on an edge cannot exceed its capacity.
+
+---
+
+### Flow Conservation:
+- The **flow conservation rule** states that, for any node (except for the source and sink), the amount of flow entering the node must be equal to the amount of flow leaving the node.
+- This ensures that there are no accumulations of flow at intermediate nodes.
+
+---
+
+### Maximum Flow Problem:
+The **Maximum Flow Problem** involves determining the greatest possible flow from the source to the sink while respecting the capacity constraints of the network. The goal is to maximize the flow through the network, typically using algorithms like the **Ford-Fulkerson algorithm** or **Edmonds-Karp algorithm**.
+
+#### Example Problem:
+In a given flow network, if the source has a flow of 10 units, and the sink can receive only 8 units, the goal is to adjust the flow along different paths so that the maximum amount of flow can reach the sink.
+
+---
+
+### Applications of Flow Networks:
+Flow networks are widely used in various fields, including:
+- **Transportation**: Modelling the flow of goods through a network of roads, railways, or pipelines.
+- **Computer Networks**: Optimizing data transfer through a network of routers and switches.
+- **Supply Chains**: Determining the optimal flow of goods or resources in a supply chain system.
+- **Electrical Networks**: Flow of electricity through a system of conductors and transformers.
+
+### Key Concepts in Flow Networks:
+1. **Capacity**: Maximum limit of flow that can traverse an edge.
+2. **Flow**: The actual flow along an edge.
+3. **Residual Network**: A modified version of the original flow network that represents the remaining capacity of each edge after accounting for the current flow.
+
+💡 **TIP**: When working with flow networks, ensure to model both forward and reverse directions of flow to account for changes during flow adjustments.
+
+---
+## Bipartite Graph
+
+A **Bipartite Graph** is a type of graph where the set of nodes (vertices) can be divided into two disjoint sets, such that **every edge** connects a node in one set to a node in the other set. There are **no edges** between nodes within the same set.
+
+### Key Characteristics:
+- **Two Disjoint Sets**: The vertices are divided into two groups, say **Set X** and **Set Y**. Every edge in the graph connects a node from **Set X** to a node from **Set Y**.
+- **No Edges Within a Set**: There are no edges between nodes in the same set. All edges always cross between the two sets.
+- **Matching**: Bipartite graphs are often used to represent **matching problems**, where nodes from one set are matched with nodes from the other set, such as in job assignments or resource allocation.
+
+---
+
+### Example of a Bipartite Graph:
+
+Consider a **job matching system**, where:
+- **Set X** represents **candidates**.
+- **Set Y** represents **job postings**.
+- An edge between a candidate and a job posting represents that the candidate has applied for the job.
+
+```
+Candidates:      A     B     C
+                 |     |     |
+Job Postings:  Job1  Job2  Job3
+```
+
+Here:
+- Candidate **A** applies for **Job1**.
+- Candidate **B** applies for **Job2**.
+- Candidate **C** applies for **Job3**.
+
+In this example, the graph is bipartite because there are no edges between the **candidates** themselves, and no edges between the **job postings** themselves. All edges exist between the two sets.
+
+---
+
+### Bipartite Graph Properties:
+1. **Complete Bipartite Graph**: A complete bipartite graph is a graph where every node in Set X is connected to every node in Set Y. If Set X has \(m\) nodes and Set Y has \(n\) nodes, the total number of edges in a complete bipartite graph will be \(m \times n\).
+   
+   Example: In a complete bipartite graph with 3 candidates and 2 job postings, every candidate will apply to both job postings:
+   
+   ```
+   Candidates:    A     B     C
+                 |     |     |
+   Job Postings:  Job1  Job2
+   ```
+   Here, the edges are:
+   - **A → Job1, A → Job2**
+   - **B → Job1, B → Job2**
+   - **C → Job1, C → Job2**
+
+2. **Bipartite Matching**: A matching in a bipartite graph refers to a set of edges such that no two edges share a common node. In a job matching example, this would represent unique job assignments where no candidate is assigned to more than one job, and each job has at most one candidate.
+
+3. **Perfect Matching**: A **perfect matching** occurs if every node in **Set X** is connected to exactly one node in **Set Y**, and vice versa. If each candidate has exactly one job, and each job has exactly one candidate, it is a perfect matching.
+
+---
+
+### Applications of Bipartite Graphs:
+Bipartite graphs are used in a variety of real-world scenarios, such as:
+- **Job Matching**: Assigning candidates to jobs based on applications.
+- **Recommendation Systems**: Connecting users with products they may like based on past behaviours.
+- **Network Flow**: In the context of flow networks, bipartite graphs are used to model flow between two distinct sets of entities.
+- **Social Networks**: Modelling relationships between users and items (e.g., a user liking a particular movie or product).
+- **Collaborative Filtering**: Recommending items to users based on shared interests, like in movie recommendation systems.
+
+---
+
+### Applications in Graph Theory:
+- **Graph Coloring**: Bipartite graphs are **2-colorable**, meaning they can be coloured using two colours, with nodes of the same set sharing the same colour.
+  
+  - **Set X** can be coloured with one colour (say, blue).
+  - **Set Y** can be coloured with another colour (say, red).
+
+- **Matching Algorithms**: Algorithms like the **Hungarian algorithm** or **Ford-Fulkerson algorithm** are often used to find optimal matchings in bipartite graphs.
+
+---
+
+### Example Use Case: **Collaborative Filtering in Recommender Systems**
+
+In **recommender systems**, a bipartite graph can model the relationship between **users** and **items** (e.g., movies, books, products). The users (Set X) are connected to items (Set Y) based on their preferences (e.g., ratings or likes).
+
+- **Users (Set X)**: User 1, User 2, User 3.
+- **Items (Set Y)**: Movie A, Movie B, Movie C.
+
+Example:
+```
+Users:          U1        U2        U3
+                 |         |         |
+Items:        A, B, C   A, B, C   A, B, C
+```
+
+In this case, edges indicate that a user has liked or interacted with an item. A recommendation system can use such a bipartite graph to suggest items to users based on the preferences of other similar users.
+
+---
+
+### Key Points:
+- **Bipartite Graph**: Two sets of nodes, with edges only between nodes from different sets.
+- **Matching**: Representation of relationships, such as job assignments or collaborations.
+- **Perfect Matching**: When every node in Set X is matched to exactly one node in Set Y.
+- **Applications**: Used in job matching, recommendation systems, social networks, and network flow problems.
+
+---
+
+💡 **TIP**: Bipartite graphs are an essential tool for solving many real-world matching problems, especially where two distinct groups need to be connected with minimal overlap or conflicts.
+
+---
+## Multigraph
+
+A **Multigraph** is a type of graph in which multiple edges are allowed between any two nodes. These multiple edges are often called **parallel edges**. Unlike simple graphs, where only one edge can exist between any two nodes, a multigraph can have more than one edge connecting two nodes.
+
+### Key Characteristics of Multigraphs:
+- **Multiple Edges**: Multiple edges can exist between the same pair of nodes, each with potentially different weights or properties.
+- **Self-loops**: In a multigraph, **self-loops** (edges that connect a node to itself) are allowed.
+- **No restrictions on edge counts**: Unlike simple graphs, where only one edge is allowed between two nodes, multigraphs have no such restrictions.
+- **Directed or Undirected**: A multigraph can be either directed (where edges have a direction) or undirected (where edges do not have direction).
+
+---
+
+### Example of a Multigraph:
+Consider a **transportation network** where:
+- **Nodes** represent **cities**.
+- **Edges** represent **routes between cities**, where there can be multiple routes between the same pair of cities.
+
+Example:
+
+```
+Cities:     A    B    C
+            |    |    |
+Routes:     A → B → C
+            ↑   ↓  
+            B ← A
+```
+
+In this example, there are multiple routes (edges) between **City A and City B** (one route goes from A to B, another goes from B to A).
+
+---
+
+### Multigraph Properties:
+1. **Multiple Edges**: Multigraphs allow more than one edge between any two vertices. This makes them useful for representing situations where multiple connections between the same entities exist.
+   
+   Example: In a transportation network, multiple flights may exist between the same two cities. In a multigraph, each flight can be represented as a separate edge.
+
+2. **Self-Loops**: Self-loops are edges that connect a vertex to itself. These are allowed in a multigraph, making it suitable for representing situations where an entity has a relationship with itself.
+   
+   Example: A person may have a self-relationship (e.g., "self-reflection" or "self-analysis"), which can be represented using a self-loop in a multigraph.
+
+3. **Directed vs Undirected Multigraphs**: 
+   - **Directed Multigraph**: Each edge has a direction (from one vertex to another), and multiple directed edges can exist between two vertices.
+   - **Undirected Multigraph**: Edges are undirected, and multiple edges can still exist between two vertices.
+
+4. **Edge Weights**: In many cases, the edges of a multigraph may have weights (such as distances or costs), and each edge between the same two nodes may have a different weight.
+
+---
+
+### Applications of Multigraphs:
+1. **Transportation Networks**: Representing multiple routes or connections between the same cities or locations. For instance, in air travel, there might be multiple flights (edges) between two cities (nodes).
+2. **Telecommunications**: Representing multiple communication lines between two locations or users.
+3. **Social Networks**: Representing various types of relationships (e.g., friendship, co-worker, family) between two individuals.
+4. **Electrical Networks**: Representing multiple connections between components, such as multiple power lines between substations.
+
+---
+
+### Key Differences Between Multigraph and Simple Graph:
+
+| Feature                | Simple Graph                            | Multigraph                              |
+|------------------------|-----------------------------------------|-----------------------------------------|
+| **Multiple Edges**      | No multiple edges between two nodes.   | Multiple edges between two nodes allowed. |
+| **Self-Loops**          | No self-loops.                          | Self-loops are allowed.                 |
+| **Edge Count**          | One edge between two nodes.             | Multiple edges between the same nodes.  |
+| **Edge Direction**      | Can be directed or undirected.          | Can be directed or undirected.          |
+
+---
+
+### Applications of Multigraphs in Real Life:
+1. **Airline Systems**: A multigraph can represent a network of airports with multiple flights (edges) between the same airports.
+   
+   Example: There might be different flights with different prices or schedules between two cities.
+   
+2. **Communication Networks**: A multigraph can model multiple communication channels (e.g., fibre-optic cables, wireless links) between two locations.
+   
+3. **Social Networks**: A multigraph can represent the multiple types of relationships (e.g., family, friends, work colleagues) between two people in a social network.
+
+---
+
+### Example Use Case: **City Transportation Network**
+
+Consider a **city transportation network**:
+- **Nodes** represent **bus stops**.
+- **Edges** represent **bus routes**.
+  
+In a simple graph, there can be only one route between any two bus stops. However, in a multigraph, multiple bus routes can exist between two bus stops, each with different routes, schedules, or capacities.
+
+### Example:
+- **Nodes**: Bus stops A, B, C.
+- **Edges**: 
+  - Route 1: A → B
+  - Route 2: A → B
+  - Route 3: B → C
+
+---
+
+### Conclusion:
+- **Multigraphs** are a powerful tool for modelling scenarios where multiple connections or relationships exist between the same entities.
+- They are particularly useful in transportation, telecommunications, social network analysis, and many other areas where multiple interactions between nodes are important.
+
+💡 **TIP**: While multigraphs are more flexible and expressive than simple graphs, they require additional computational resources to handle the multiple edges and self-loops effectively.
+
+---
+## Weighted Graph
+
+A **Weighted Graph** is a type of graph in which each edge is assigned a weight or cost. These weights typically represent some kind of metric or value, such as distance, time, cost, or capacity, depending on the application. Weighted graphs are useful when the relationships between nodes have different magnitudes or strengths.
+
+### Key Characteristics of Weighted Graphs:
+- **Edges have Weights**: Each edge in the graph has a numerical value (weight) associated with it.
+- **Weighted Edges**: The weight of an edge could represent various things such as:
+  - **Distance**: In a map or network, the edge weight could represent the physical distance between two locations.
+  - **Cost**: In economic networks, the edge weight could represent the cost to transfer goods or services between two entities.
+  - **Time**: In transportation systems, the edge weight could represent the travel time between two locations.
+  - **Capacity**: In flow networks, the edge weight may represent the capacity or bandwidth of a communication channel.
+  
+- **Directed or Undirected**: Weighted graphs can be either directed or undirected. In a directed weighted graph, edges have a direction (from one node to another), while in an undirected graph, the relationship is bidirectional.
+
+---
+
+### Example of a Weighted Graph:
+Consider a simple road network where cities are represented by nodes, and the roads connecting the cities are represented by edges with weights denoting the **distance** between cities.
+
+```
+Cities:        A         B         C
+              / \       / \       / \
+         5   /   \ 10  /   \   2 /   \ 3
+            /     \   /     \   /     \
+           D ----- E -------- F ------- G
+               4            1        6
+```
+
+In this example:
+- There is an edge between City **A** and City **D** with a weight of 5, indicating that the distance between A and D is 5 units.
+- There is an edge between City **B** and City **E** with a weight of 10, and so on.
+
+### Types of Weighted Graphs:
+1. **Directed Weighted Graph (Digraph)**: The edges have a direction, and each directed edge has a weight.
+   - Example: A one-way road between two cities with a certain travel time or cost.
+
+2. **Undirected Weighted Graph**: The edges do not have direction, but each edge has a weight. The relationship between the two nodes connected by an edge is mutual.
+   - Example: A railway track where the cost to travel in either direction is the same.
+
+---
+
+### Applications of Weighted Graphs:
+1. **Shortest Path Problems**: Weighted graphs are commonly used to find the **shortest path** between two nodes in a graph. Common algorithms include:
+   - **Dijkstra's Algorithm**: For finding the shortest path from a source node to all other nodes in a weighted graph.
+   - **Bellman-Ford Algorithm**: For finding the shortest path, even when edge weights can be negative.
+
+2. **Network Flow Problems**: Weighted graphs are used to model networks with **flow capacities**, where the weight on each edge represents the maximum flow that can occur between two nodes.
+
+3. **Route Optimization**: Weighted graphs are used in navigation systems (e.g., Google Maps) to find the **shortest or fastest route** between locations based on distance or travel time.
+
+4. **Telecommunications**: In network design, weighted graphs model connections with various bandwidths or latency times between routers or switches.
+
+5. **Scheduling Problems**: Weighted graphs are used in project scheduling and planning to minimize costs or completion time.
+
+---
+
+### Properties of Weighted Graphs:
+- **Edge Weights**: The weight represents a property of the edge. In many cases, it reflects a measurable quantity such as distance, time, or cost.
+- **Path Weight**: The total weight of a path in a weighted graph is the sum of the weights of the edges in the path.
+  
+    For example, in the road network example above, the weight of the path from **A → D → E** would be:
+    $$ 5 (A → D) + 4 (D → E) = 9 $$
+
+- **Cycle Weights**: The weight of a cycle is the sum of the weights of all the edges in the cycle. In some problems, you may want to find the cycle with the minimum or maximum weight.
+
+---
+
+### Example Use Case: **Finding the Shortest Path**
+
+Imagine a delivery company that needs to find the shortest path for a vehicle to deliver packages between multiple cities. The cities form nodes, and the roads between them form weighted edges, with weights representing travel distances or costs. Using algorithms like **Dijkstra’s Algorithm**, the company can find the most efficient route to minimize fuel costs or delivery time.
+
+---
+
+### Algorithms for Working with Weighted Graphs:
+
+1. **Dijkstra's Algorithm** (for shortest path in non-negative weighted graphs):
+   - Finds the shortest path from a source node to all other nodes in a weighted graph.
+   - Works by continuously selecting the closest unvisited node and updating its neighbors.
+   
+   Example: In a map of cities, it calculates the shortest path between two cities by considering all possible routes and their corresponding distances.
+
+2. **Bellman-Ford Algorithm** (for shortest path with possible negative weights):
+   - It can handle negative weight edges, unlike Dijkstra’s algorithm.
+   - It works by relaxing all edges and repeating this process multiple times.
+
+3. **Prim's Algorithm** (for minimum spanning tree):
+   - Finds the minimum spanning tree (MST) in a weighted undirected graph.
+   - It connects all nodes with the minimum possible total edge weight.
+
+4. **Kruskal's Algorithm** (for minimum spanning tree):
+   - Another algorithm for finding an MST, which works by sorting all edges by weight and adding them one by one, provided they don't form a cycle.
+
+---
+
+### Key Points:
+- **Weighted Graph**: A graph where each edge has an associated numerical weight, representing a measurable property like distance, time, or cost.
+- **Applications**: Widely used in transportation networks, telecommunications, routing problems, and network flow problems.
+- **Shortest Path**: Commonly solved using algorithms like Dijkstra’s or Bellman-Ford.
+- **Minimum Spanning Tree**: Solved using Prim’s or Kruskal’s algorithms.
+
+---
+
+💡 **TIP**: In weighted graphs, the weight plays a crucial role in determining the solution to optimization problems like finding the shortest path, minimum spanning tree, or optimal flow.
 
 ---
