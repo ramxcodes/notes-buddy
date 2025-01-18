@@ -28,7 +28,7 @@
     "dotenv": "^16.4.7",
     "framer-motion": "^11.15.0",
     "github-slugger": "^2.0.0",
-    "katex": "^0.16.18",
+    "katex": "^0.16.21",
     "lenis": "^1.1.18",
     "lucide-react": "^0.344.0",
     "mini-svg-data-uri": "^1.4.4",

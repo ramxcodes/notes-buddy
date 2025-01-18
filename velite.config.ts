@@ -58,6 +58,12 @@ export default defineConfig({
   collections: { posts },
   mdx: {
     rehypePlugins: [
+      [
+        rehypeKatex,
+        {
+          output: "MathML",
+        },
+      ],
       rehypeSlug,
       [rehypePrettyCode, { theme: "github-dark" }],
       [
@@ -70,13 +76,12 @@ export default defineConfig({
           },
         },
       ],
-      rehypeKatex,
     ],
     remarkPlugins: [
-      remarkGfm,
-      remarkSmartypants,
-      [remarkToc, { heading: "Table of Contents" }],
       remarkMath,
+      remarkGfm,
+      // remarkSmartypants,
+      [remarkToc, { heading: "Table of Contents" }],
     ],
   },
 });
