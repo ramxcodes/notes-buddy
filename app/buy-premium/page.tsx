@@ -29,7 +29,7 @@ export default function BuyPremiumPage() {
   const [user, setUser] = useState<any>(null);
 
   const universities = ["Medicaps University", "Delhi University"];
-  const degrees = ["B.Tech", "M.Tech"];
+  const degrees = ["B Tech", "M.Tech"];
   const years = ["1st Year", "2nd Year", "3rd Year", "4th Year"];
 
   useEffect(() => {

@@ -37,6 +37,9 @@ const posts = defineCollection({
           degree: s.string().optional(),
           semester: s.string().optional(),
           subject: s.string().optional(),
+          premium: s.boolean().default(false),
+          contentType: s.string().optional(),
+          planTier: s.string().optional(),
         })
         .optional(),
     })
