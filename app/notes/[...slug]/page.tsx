@@ -5,6 +5,11 @@ import { siteConfig } from "@/config/site";
 import ScrollProgress from "@/components/notes-ui/ScrollProcess";
 import DynamicArticle from "@/components/notes-ui/DynamicArticle";
 import { Button } from "@/components/ui/button";
+import UpgradePrompt from "@/components/UpgradePrompt";
+import { hasAccess } from "@/lib/access";
+import clientPromise from "@/lib/db";
+import { getServerSession } from "next-auth";
+import { Card } from "@/components/ui/card";
 
 interface PostPageProps {
   params: {
@@ -20,6 +25,61 @@ async function getPostFromParams(params: PostPageProps["params"]) {
     posts.find((post) => post.slugAsParams === `${slug}/index`);
 
   return post;
+}
+
+async function validateAccess(
+  requiredTier: string,
+  requiredSemester: string
+): Promise<{
+  errorMessage: string | null;
+  userTier: string;
+  hasSemesterAccess: boolean;
+}> {
+  if (requiredTier === "Free") {
+    return {
+      errorMessage: null,
+      userTier: "Free",
+      hasSemesterAccess: true,
+    };
+  }
+
+  const session = await getServerSession();
+
+  if (!session) {
+    return {
+      errorMessage: "You must log in to access this content.",
+      userTier: "None",
+      hasSemesterAccess: false,
+    };
+  }
+
+  const db = await clientPromise;
+  const usersCollection = db.db().collection("users");
+  const user = await usersCollection.findOne({ email: session.user?.email });
+
+  const userTier = user?.planTier || "Free";
+  const userSemesters = user?.semesters || [];
+
+  const hasTierAccess = hasAccess(userTier, requiredTier);
+  const hasSemesterAccess = userSemesters.includes(requiredSemester);
+
+  if (!hasTierAccess) {
+    return {
+      errorMessage: "Access denied. Upgrade your subscription.",
+      userTier,
+      hasSemesterAccess,
+    };
+  }
+
+  if (!hasSemesterAccess) {
+    return {
+      errorMessage: `Access denied. You do not have access to the "${requiredSemester}".`,
+      userTier,
+      hasSemesterAccess,
+    };
+  }
+
+  return { errorMessage: null, userTier, hasSemesterAccess };
 }
 
 export async function generateMetadata({
@@ -74,35 +134,58 @@ export default async function PostPage({ params }: PostPageProps) {
 
   if (!post || (!post.published && !post.excludeFromMain)) {
     return (
-      <>
-        <div className="flex flex-col items-center justify-center h-screen">
-          <h1 className="text-[2.3rem] lg:text-[4.5rem] md:text-[4rem] leading-[1] font-bold dark:bg-gradient-to-b dark:from-[rgba(244,244,255,1)] dark:to-[rgba(181,180,207,1)] dark:text-transparent dark:bg-clip-text py-2 text-center">
-            Notes not found
-          </h1>
-          <p className="text-xl text-center text-muted-foreground">
-            Your exams last moment notes are here!
-          </p>
-          <div className="flex flex-row items-center justify-center space-x-4">
-            <Button variant={"outline"} className="mt-4">
-              <a href="/">Home</a>
-            </Button>
-            <Button variant={"secondary"} className="mt-4">
-              <a href="/notes">Go to Notes</a>
-            </Button>
-          </div>
+      <div className="flex flex-col items-center justify-center h-screen">
+        <h1 className="text-[2.3rem] lg:text-[4.5rem] md:text-[4rem] leading-[1] font-bold dark:bg-gradient-to-b dark:from-[rgba(244,244,255,1)] dark:to-[rgba(181,180,207,1)] dark:text-transparent dark:bg-clip-text py-2 text-center">
+          Notes not found
+        </h1>
+        <p className="text-xl text-center text-muted-foreground">
+          Your exams last moment notes are here!
+        </p>
+        <div className="flex flex-row items-center justify-center space-x-4">
+          <Button variant={"outline"} className="mt-4">
+            <a href="/">Home</a>
+          </Button>
+          <Button variant={"secondary"} className="mt-4">
+            <a href="/notes">Go to Notes</a>
+          </Button>
         </div>
-      </>
+      </div>
+    );
+  }
+
+  const requiredTier = post.metadata?.planTier || "Free";
+  const requiredSemester = post.metadata?.semester || "Unknown";
+
+  const { errorMessage, userTier, hasSemesterAccess } = await validateAccess(
+    requiredTier,
+    requiredSemester
+  );
+
+  if (errorMessage) {
+    return (
+      <div className="container mx-auto mt-20 text-center flex flex-col items-center justify-center h-screen">
+        <UpgradePrompt message={errorMessage} />
+        <Card className="mt-4 p-4 font-wotfard text-left">
+          <p>
+            <strong>Your Current Plan:</strong> {userTier}
+          </p>
+          <p>
+            <strong>Required Plan:</strong> {requiredTier}
+          </p>
+          {!hasSemesterAccess && (
+            <p>
+              <strong>Semester Access:</strong> You do not have access to{" "}
+              {requiredSemester}.
+            </p>
+          )}
+        </Card>
+      </div>
     );
   }
 
   const slug = post.slug.replace(/^notes\//, "");
   const unitMatch = slug.match(/unit-(\d+)/i);
   const currentUnit = unitMatch ? parseInt(unitMatch[1], 10) : 1;
-
-  const { metadata } = post;
-  const hierarchicalDetails = metadata
-    ? `${metadata.university} > ${metadata.degree} > ${metadata.semester} > ${metadata.subject}`
-    : null;
 
   return (
     <>

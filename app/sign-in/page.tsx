@@ -2,37 +2,70 @@
 
 import BlurFade from "@/components/ui/blur-fade";
 import { Button } from "@/components/ui/button";
-import { signIn } from "next-auth/react";
-import { FcGoogle } from "react-icons/fc";
+import { Card } from "@/components/ui/card";
+import { signIn, signOut, useSession } from "next-auth/react";
 
-export default function Login() {
-  return (
-    <div className="pt-10 pb-10 lg:pt-52 lg:pb-20 mb-5 md:mb-20">
-      <BlurFade delay={0.1} inView>
-        <div className="w-11/12 sm:w-fit p-4 text-center sm:p-6 md:p-12 rounded-lg border border-neutral-800  mx-auto flex flex-col gap-12">
-          <div>
-            <p className="text-[2rem]  md:text-[2.5rem] leading-[1] font-bold ">
-              Welcome Back !
-            </p>
+export default function SignInPage() {
+  const { data: session, status } = useSession();
 
-            <p className="text-sm text-gray-400 text-center mt-2">
-              Start your great journey with Notes-Buddy
+  if (status === "loading") {
+    return (
+      <div className="flex flex-col items-center justify-center h-screen">
+        <h1 className="text-xl font-bold">Loading...</h1>
+      </div>
+    );
+  }
+
+  if (session) {
+    const { user } = session;
+    return (
+      <div className="flex flex-col items-center justify-center h-screen space-y-6">
+        <Card className="px-24 py-20 space-y-4 flex flex-col items-center justify-center font-wotfard">
+          <img
+            src={user.image || "/default-profile.png"}
+            alt={`${user.name}'s profile`}
+            className="w-24 h-24 rounded-full"
+          />
+          <h1 className="text-[2rem] lg:text-[3.5rem] md:text-[3rem] font-bold dark:bg-gradient-to-b dark:from-[rgba(244,244,255,1)] dark:to-[rgba(181,180,207,1)] dark:text-transparent dark:bg-clip-text py-2 text-center">
+            Welcome, {user.name}!
+          </h1>
+          <div className="text-left space-y-2 flex flex-col items-start justify-center">
+            <p className="text-lg font-medium">
+              University:{" "}
+              {user.university || "Hogwarts School of Witchcraft (NaN) "}
             </p>
+            <p className="text-lg font-medium">
+              Purchased Plan: {user.planTier || "Free"}
+            </p>
+            <p className="text-lg font-medium">Email: {user.email}</p>
           </div>
-
           <Button
-            className="flex gap-2 items-center"
-            onClick={() =>
-              signIn("google", {
-                redirect: true,
-                redirectTo: "/notes",
-              })
-            }
+            variant={"outline"}
+            onClick={() => signOut()}
+            className="px-4 py-2 "
           >
-            <FcGoogle className="size-6" />
-            <p className="text-gray-800 font-bold">Continue With Google</p>
+            Sign Out
           </Button>
-        </div>
+        </Card>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex flex-col items-center justify-center h-screen space-y-6">
+      <BlurFade delay={0.25} inView>
+        <Card className="px-24 py-20 space-y-4 flex flex-col items-center justify-center">
+          <h1 className="text-[2.3rem] lg:text-[4.5rem] md:text-[4rem] font-bold dark:bg-gradient-to-b dark:from-[rgba(244,244,255,1)] dark:to-[rgba(181,180,207,1)] dark:text-transparent dark:bg-clip-text py-2 text-center">
+            Sign In
+          </h1>
+          <p className="font-wotfard py-2">
+            Please sign in / Sign Up to continue.
+          </p>
+          <Button onClick={() => signIn("google")} className="px-4 py-2 ">
+            <img src="/google.svg" alt="" className="size-8" /> Sign in with
+            Google
+          </Button>
+        </Card>
       </BlurFade>
     </div>
   );
