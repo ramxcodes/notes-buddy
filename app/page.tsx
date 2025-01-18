@@ -6,6 +6,7 @@ import HeroSection from "@/components/Home/HeroSection";
 import NotesSection from "@/components/Home/NotesSection";
 import NotLanding from "@/components/Home/NotLanding";
 import PostSection from "@/components/Home/PostSection";
+import PremiumSection from "@/components/Home/PremiumSection";
 import TestimonialSection from "@/components/Home/TestimonialSection";
 import MarqueeSlant from "@/components/MarqueeSlant";
 
@@ -20,6 +21,7 @@ export default function Home() {
         <PostSection />
         <MarqueeSlant />
         <NotesSection />
+        <PremiumSection />
         <TestimonialSection />
         <FooterSection />
         <NotLanding />
