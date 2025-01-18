@@ -8,6 +8,7 @@ import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/navigation";
 import { Icons } from "./icons";
 import { siteConfig } from "@/config/site";
+import { UserProfile } from "./UserProfile";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
@@ -65,6 +66,10 @@ export function MobileNav() {
           >
             Join Whatsapp community
           </Link>
+        </div>
+        <div className="mt-10">
+          <hr className="mb-10" />
+          <UserProfile />
         </div>
       </SheetContent>
     </Sheet>
