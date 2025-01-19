@@ -36,6 +36,15 @@ async function validateAccess(
   userSemesters: string[];
   hasSemesterAccess: boolean;
 }> {
+  if (requiredTier === "Free") {
+    return {
+      errorMessage: null,
+      userTier: "Free",
+      userSemesters: [],
+      hasSemesterAccess: true,
+    };
+  }
+
   const session = await getServerSession();
 
   if (!session) {
