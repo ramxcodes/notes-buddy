@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import { slideInFromLeft, slideInFromRight, slideInFromTop } from "@/utils/motion";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -26,7 +25,7 @@ export default function AboutSection() {
 
             <div className="h-[40rem] w-full dark:bg flex flex-col items-center justify-center overflow-hidden rounded-md">
                 <BlurFade delay={0.5} inView>
-                <h1 className="md:text-7xl text-3xl lg:text-9xl font-bold text-center relative z-20 bg-gradient-to-r from-gray-900 via-gray-800 via-gray-700 via-gray-800 to-gray-900 dark:from-purple-500 dark:to-cyan-200 text-transparent bg-clip-text">
+                <h1 className="md:text-7xl text-3xl lg:text-9xl font-bold text-center relative z-20 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-purple-500 dark:to-cyan-200 text-transparent bg-clip-text">
   About Us
 </h1>
                     <h2 className="md:text-2xl text-xl lg:text-3xl text-center text-gray-800 dark:text-white mx-8 md:mx-20 lg:mx-40 mt-4 mb-4 pt-14 ">
@@ -56,7 +55,7 @@ export default function AboutSection() {
                         animate={controls}
                         className=" md:text-lg text-xl lg:text-2xl text-gray-700 text-left dark:text-white px-10 mt-4 mb-4 pt-14 leading-relaxed"
                     >
-                        We take the headache out of learning by turning boring 💤, complicated notes into fun 🎉, simplified AI-driven notes 📓. Whether you're cramming for exams or just trying to make sense of your textbooks📚, NotesBuddy has got your back🤚🏻. Think of us as the superhero cape 🦸🏻 you wear to conquer academics—without the stress, but with a lot of style! 🎓💡
+                        We take the headache out of learning by turning boring 💤, complicated notes into fun 🎉, simplified AI-driven notes 📓. Whether you&apos;re cramming for exams or just trying to make sense of your textbooks📚, NotesBuddy has got your back🤚🏻. Think of us as the superhero cape 🦸🏻 you wear to conquer academics—without the stress, but with a lot of style! 🎓💡
                     </motion.p>
 
                     {/* <motion.a
