@@ -1,0 +1,659 @@
+---
+title: "Unit 1: Engineering Mathematics 2"
+description: Introduction of Laplace Transform, Laplace Transform of elementary functions, properties of Laplace   Transform,   Inverse   Laplace   transform   and   its   properties,    Convolution theorem, Applications of Laplace Transform to solve the Ordinary Differential Equation, Laplace transform of Unit step function and Impulse function.
+date: 2025-01-12
+tags: ["Engineering Mathematics 2", "2nd Semester", "1st Year", "B Tech"]
+published: true
+metadata:
+  university: "Medicaps University"
+  degree: "B Tech"
+  semester: "2nd Semester"
+  subject: "Engineering Mathematics 2"
+---
+
+---
+## Introduction to Laplace Transform
+
+### What is Laplace Transform?
+The **Laplace Transform** is an integral transform used to convert a given function of time (typically a signal or system) into a function of a complex variable (usually denoted as $$ s $$). It is widely used in engineering and mathematics to simplify the analysis of linear time-invariant systems.
+
+The Laplace Transform $$ \mathcal{L} $$ of a function $$ f(t) $$, denoted by $$ \mathcal{L}(f(t)) $$, is defined as:
+
+$$ 
+\mathcal{L}(f(t)) = F(s) = \int_0^\infty e^{-st} f(t) \, dt 
+$$
+
+Where:
+- $$ s $$ is a complex variable ($$ s = \sigma + j\omega $$)
+- $$ t $$ is the time variable (typically $$ t \geq 0 $$)
+- $$ f(t) $$ is the given function in the time domain
+- $$ F(s) $$ is the function in the complex frequency domain
+
+### Why is Laplace Transform Used?
+- **Simplification of Calculations:** It simplifies the handling of differential equations by transforming them into algebraic equations.
+- **Control Systems:** It is particularly useful in the analysis of electrical circuits, mechanical systems, and control systems.
+- **System Analysis:** Helps in solving linear time-invariant (LTI) systems, and it’s fundamental in engineering for stability and frequency response analysis.
+
+### Basic Properties of Laplace Transform
+1. **Linearity Property:**
+   - If $$ \mathcal{L}(f(t)) = F(s) $$ and $$ \mathcal{L}(g(t)) = G(s) $$, then:
+   $$ 
+   \mathcal{L}(af(t) + bg(t)) = aF(s) + bG(s) 
+   $$
+
+2. **First Shift Theorem (Time Shifting):**
+   - If $$ \mathcal{L}(f(t)) = F(s) $$, then:
+   $$ 
+   \mathcal{L}(e^{at} f(t)) = F(s - a) 
+   $$
+
+3. **Derivative Property:**
+   - If $$ \mathcal{L}(f(t)) = F(s) $$, then:
+   $$ 
+   \mathcal{L}\left( \frac{d^n}{dt^n} f(t) \right) = s^n F(s) - s^{n-1} f(0) - \dots - f^{(n-1)}(0) 
+   $$
+
+4. **Integration Property:**
+   - If $$ \mathcal{L}(f(t)) = F(s) $$, then:
+   $$ 
+   \mathcal{L}\left( \int_0^t f(\tau) d\tau \right) = \frac{1}{s} F(s) 
+   $$
+
+### Common Laplace Transforms
+Here are some common Laplace Transforms for elementary functions:
+
+- **Constant Function:**
+   $$ 
+   \mathcal{L}(1) = \frac{1}{s} 
+   $$
+
+- **Exponential Function:**
+   $$ 
+   \mathcal{L}(e^{at}) = \frac{1}{s - a} 
+   $$
+
+- **Sine Function:**
+   $$ 
+   \mathcal{L}(\sin(at)) = \frac{a}{s^2 + a^2} 
+   $$
+
+- **Cosine Function:**
+   $$ 
+   \mathcal{L}(\cos(at)) = \frac{s}{s^2 + a^2} 
+   $$
+
+- **Power Function:**
+   $$ 
+   \mathcal{L}(t^n) = \frac{n!}{s^{n+1}}
+   $$
+
+💡 **TIP:** It's often useful to have a table of Laplace Transforms at hand when working on problems, as these are fundamental in solving many engineering problems.
+
+---
+## Laplace Transform of Elementary Functions
+
+### Introduction
+The Laplace Transform is a powerful integral transform used to convert functions of time (usually denoted as $$ t $$) into functions of complex frequency $$ s $$, especially useful for solving linear differential equations and analyzing dynamic systems.
+
+### Basic Formula
+The general formula for the Laplace Transform of a function $$ f(t) $$ is given by:
+
+$$
+\mathcal{L}\{f(t)\} = F(s) = \int_{0}^{\infty} e^{-st} f(t) \, dt
+$$
+
+Where:
+- $$ \mathcal{L} $$ represents the Laplace Transform operator
+- $$ f(t) $$ is the function to be transformed
+- $$ F(s) $$ is the Laplace Transform of $$ f(t) $$
+- $$ s $$ is a complex number (with real and imaginary components)
+
+### Laplace Transforms of Elementary Functions
+
+#### 1. **Laplace Transform of a Constant Function**
+For a constant function $$ f(t) = 1 $$, the Laplace Transform is:
+
+$$
+\mathcal{L}\{1\} = \frac{1}{s}
+$$
+
+#### 2. **Laplace Transform of $$ t^n $$**
+For $$ f(t) = t^n $$, where $$ n $$ is a positive integer:
+
+$$
+\mathcal{L}\{t^n\} = \frac{n!}{s^{n+1}}
+$$
+
+Example: For $$ f(t) = t^2 $$:
+
+$$
+\mathcal{L}\{t^2\} = \frac{2!}{s^{2+1}} = \frac{2}{s^3}
+$$
+
+#### 3. **Laplace Transform of Exponential Functions**
+For an exponential function $$ f(t) = e^{at} $$, where $$ a $$ is a constant:
+
+$$
+\mathcal{L}\{e^{at}\} = \frac{1}{s-a}
+$$
+
+#### 4. **Laplace Transform of Sine and Cosine Functions**
+For the sine and cosine functions, the Laplace Transforms are:
+
+- $$ \mathcal{L}\{\sin(at)\} = \frac{a}{s^2 + a^2} $$
+- $$ \mathcal{L}\{\cos(at)\} = \frac{s}{s^2 + a^2} $$
+
+#### 5. **Laplace Transform of a Unit Step Function**
+The unit step function $$ u(t - a) $$ is defined as:
+
+$$
+u(t - a) =
+\begin{cases}
+0, & \text{for } t < a \\
+1, & \text{for } t \geq a
+\end{cases}
+$$
+
+The Laplace Transform of $$ u(t - a) $$ is:
+
+$$
+\mathcal{L}\{u(t - a)\} = \frac{e^{-as}}{s}
+$$
+
+---
+
+### 💡 **TIP:** 
+- Remember that the Laplace Transform is commonly used in engineering, physics, and control theory for solving differential equations and understanding system behavior in the frequency domain.
+
+---
+## Properties of Laplace Transform
+
+The Laplace Transform has several useful properties that make it a powerful tool for solving differential equations and analyzing systems. Below are some of the key properties:
+
+### 1. **Linearity Property**
+The Laplace Transform is linear, which means that for any two functions $$ f(t) $$ and $$ g(t) $$, and constants $$ a $$ and $$ b $$, the Laplace Transform satisfies:
+
+$$
+\mathcal{L}\{a f(t) + b g(t)\} = a \mathcal{L}\{f(t)\} + b \mathcal{L}\{g(t)\}
+$$
+
+### 2. **Time Shifting Property**
+If the function $$ f(t) $$ has a Laplace Transform of $$ F(s) $$, then the time-shifting property states:
+
+$$
+\mathcal{L}\{f(t - a) u(t - a)\} = e^{-as} F(s)
+$$
+
+Where $$ u(t - a) $$ is the unit step function.
+
+### 3. **Frequency Shifting Property**
+If $$ f(t) $$ has a Laplace Transform of $$ F(s) $$, then the frequency-shifting property is given by:
+
+$$
+\mathcal{L}\{e^{at} f(t)\} = F(s - a)
+$$
+
+### 4. **Scaling Property**
+If $$ f(t) $$ has a Laplace Transform of $$ F(s) $$, then the scaling property is given by:
+
+$$
+\mathcal{L}\{f(at)\} = \frac{1}{|a|} F\left(\frac{s}{a}\right)
+$$
+
+Where $$ a $$ is a constant.
+
+### 5. **Differentiation in Time Domain**
+If the function $$ f(t) $$ has a Laplace Transform of $$ F(s) $$, then the Laplace Transform of its first derivative is:
+
+$$
+\mathcal{L}\left\{\frac{d}{dt} f(t)\right\} = s F(s) - f(0)
+$$
+
+For the second derivative:
+
+$$
+\mathcal{L}\left\{\frac{d^2}{dt^2} f(t)\right\} = s^2 F(s) - s f(0) - f'(0)
+$$
+
+### 6. **Integration in Time Domain**
+If $$ f(t) $$ has a Laplace Transform of $$ F(s) $$, then the Laplace Transform of its integral is:
+
+$$
+\mathcal{L}\left\{\int_0^t f(\tau) \, d\tau\right\} = \frac{1}{s} F(s)
+$$
+
+### 7. **Initial and Final Value Theorems**
+- **Initial Value Theorem:**
+
+$$
+\lim_{t \to 0^+} f(t) = \lim_{s \to \infty} s F(s)
+$$
+
+- **Final Value Theorem:**
+
+$$
+\lim_{t \to \infty} f(t) = \lim_{s \to 0} s F(s)
+$$
+
+### 8. **Convolution Theorem**
+The Laplace Transform of the convolution of two functions $$ f(t) $$ and $$ g(t) $$ is the product of their individual Laplace Transforms:
+
+$$
+\mathcal{L}\{f(t) * g(t)\} = F(s) G(s)
+$$
+
+Where $$ * $$ denotes the convolution operation.
+
+---
+
+### 💡 **TIP:** 
+- The properties of the Laplace Transform allow for simplifying complex problems, particularly in the context of solving differential equations and analysing system responses in engineering and physics.
+
+---
+## Inverse Laplace Transform and Its Properties
+
+The **Inverse Laplace Transform** is used to convert a function from the frequency domain (in terms of $$ s $$) back to the time domain (in terms of $$ t $$). It is the reverse process of the Laplace Transform.
+
+### Inverse Laplace Transform Formula
+The formula for the inverse Laplace Transform is:
+
+$$
+f(t) = \mathcal{L}^{-1}\{F(s)\} = \frac{1}{2\pi j} \int_{\gamma - j\infty}^{\gamma + j\infty} e^{st} F(s) \, ds
+$$
+
+Where:
+- $$ F(s) $$ is the Laplace Transform of $$ f(t) $$.
+- $$ \mathcal{L}^{-1} $$ represents the inverse Laplace Transform operator.
+- The integral is performed along a vertical line in the complex plane.
+
+In practice, the inverse Laplace Transform is typically computed using **partial fraction decomposition**, **lookup tables**, or **residue calculus**.
+
+---
+
+## Properties of the Inverse Laplace Transform
+
+Just like the Laplace Transform, the Inverse Laplace Transform also has several useful properties:
+
+### 1. **Linearity Property**
+The inverse Laplace Transform is linear, meaning:
+
+$$
+\mathcal{L}^{-1}\{a F(s) + b G(s)\} = a \mathcal{L}^{-1}\{F(s)\} + b \mathcal{L}^{-1}\{G(s)\}
+$$
+
+Where $$ a $$ and $$ b $$ are constants, and $$ F(s) $$ and $$ G(s) $$ are Laplace Transforms of some functions.
+
+### 2. **Time Shifting Property**
+If $$ F(s) $$ is the Laplace Transform of $$ f(t) $$, then for a time shift by $$ a $$ units, the Inverse Laplace Transform is:
+
+$$
+\mathcal{L}^{-1}\{e^{-as} F(s)\} = f(t - a) u(t - a)
+$$
+
+Where $$ u(t - a) $$ is the unit step function.
+
+### 3. **Frequency Shifting Property**
+If $$ F(s) $$ is the Laplace Transform of $$ f(t) $$, then the frequency shifting property states:
+
+$$
+\mathcal{L}^{-1}\{F(s - a)\} = e^{at} f(t)
+$$
+
+### 4. **Scaling Property**
+If $$ F(s) $$ is the Laplace Transform of $$ f(t) $$, then the scaling property is:
+
+$$
+\mathcal{L}^{-1}\{F(as)\} = \frac{1}{|a|} f\left(\frac{t}{a}\right)
+$$
+
+Where $$ a $$ is a constant.
+
+### 5. **Differentiation in the s-Domain**
+If the Laplace Transform of $$ f(t) $$ is $$ F(s) $$, then the inverse Laplace Transform of the derivative of $$ F(s) $$ with respect to $$ s $$ is:
+
+$$
+\mathcal{L}^{-1}\left\{s F(s)\right\} = \frac{d}{dt} f(t)
+$$
+
+For higher-order derivatives:
+
+$$
+\mathcal{L}^{-1}\left\{s^n F(s)\right\} = \frac{d^n}{dt^n} f(t)
+$$
+
+### 6. **Initial and Final Value Theorems**
+The inverse Laplace transform can also be linked to the initial and final values of the time-domain function:
+
+- **Initial Value Theorem**:
+
+$$
+f(0) = \lim_{s \to \infty} s F(s)
+$$
+
+- **Final Value Theorem**:
+
+$$
+f(\infty) = \lim_{s \to 0} s F(s)
+$$
+
+Note: These theorems are applicable only if the limits exist.
+
+### 7. **Convolution Theorem (Inverse)**
+If the Laplace Transforms of two functions $$ f(t) $$ and $$ g(t) $$ are $$ F(s) $$ and $$ G(s) $$ respectively, then the inverse Laplace Transform of their product is the convolution of the functions in the time domain:
+
+$$
+\mathcal{L}^{-1}\{F(s) G(s)\} = (f * g)(t) = \int_0^t f(\tau) g(t - \tau) \, d\tau
+$$
+
+---
+
+### 💡 **TIP:** 
+- The inverse Laplace Transform is an essential tool in systems engineering, control theory, and differential equations, allowing you to move between the frequency and time domains.
+
+---
+## Convolution Theorem
+
+The **Convolution Theorem** is a fundamental result in the Laplace Transform, providing a relationship between the Laplace Transform of the convolution of two functions and the product of their individual Laplace Transforms.
+
+### Statement of the Convolution Theorem
+If two functions $$ f(t) $$ and $$ g(t) $$ have Laplace Transforms of $$ F(s) $$ and $$ G(s) $$ respectively, then the Laplace Transform of the convolution of $$ f(t) $$ and $$ g(t) $$ is the product of their Laplace Transforms:
+
+$$
+\mathcal{L}\{(f*g)(t)\} = F(s) G(s)
+$$
+
+Where $$ (f*g)(t) $$ represents the **convolution** of $$ f(t) $$ and $$ g(t) $$, defined as:
+
+$$
+(f * g)(t) = \int_0^t f(\tau) g(t - \tau) \, d\tau
+$$
+
+### Inverse Convolution Theorem
+Conversely, the inverse Laplace Transform of the product of two Laplace Transforms gives the convolution of the corresponding functions in the time domain:
+
+$$
+\mathcal{L}^{-1}\{F(s) G(s)\} = (f * g)(t) = \int_0^t f(\tau) g(t - \tau) \, d\tau
+$$
+
+Thus, the convolution theorem allows us to calculate the inverse Laplace Transform of the product of two functions by convolving the corresponding time-domain functions.
+
+---
+
+### **Example:**
+
+Let's consider two functions $$ f(t) $$ and $$ g(t) $$ whose Laplace Transforms are known. Suppose:
+
+- $$ \mathcal{L}\{f(t)\} = F(s) $$
+- $$ \mathcal{L}\{g(t)\} = G(s) $$
+
+Then, the Laplace Transform of their convolution will be:
+
+$$
+\mathcal{L}\{(f * g)(t)\} = F(s) G(s)
+$$
+
+Now, applying the inverse Laplace Transform:
+
+$$
+\mathcal{L}^{-1}\{F(s) G(s)\} = (f * g)(t)
+$$
+
+Where:
+
+$$
+(f * g)(t) = \int_0^t f(\tau) g(t - \tau) \, d\tau
+$$
+
+This means that to find the inverse Laplace Transform of the product $$ F(s)G(s) $$, you calculate the convolution of $$ f(t) $$ and $$ g(t) $$ in the time domain.
+
+---
+
+### 💡 **TIP:**
+- The convolution theorem is especially useful when dealing with linear time-invariant systems (LTI systems) in control theory and signal processing, as it allows you to compute the output of a system when the input and impulse response are known.
+
+---
+## Applications of Laplace Transform to Solve Ordinary Differential Equations (ODEs)
+
+### Step-by-Step Process:
+1. **Take the Laplace Transform** of both sides of the given differential equation.
+2. **Solve for the transformed function** (in terms of the Laplace variable $$ s $$).
+3. **Find the inverse Laplace Transform** of the resulting expression to obtain the solution in the time domain.
+
+### General Procedure
+Given an ODE of the form:
+
+$$
+F \left( \frac{d^n}{dt^n} y(t) \right) = G(t)
+$$
+
+We follow these steps:
+1. **Take the Laplace Transform** of both sides.
+2. **Solve for the Laplace Transform** of $$ y(t) $$.
+3. **Inverse Laplace Transform** to find $$ y(t) $$.
+
+---
+
+### Example 1: First-Order Differential Equation
+
+Consider the first-order differential equation:
+
+$$
+\frac{dy(t)}{dt} + 3y(t) = 6
+$$
+
+**Step 1: Take the Laplace Transform of both sides**
+
+- The Laplace Transform of $$ \frac{dy(t)}{dt} $$ is:
+
+$$
+\mathcal{L}\left\{ \frac{dy(t)}{dt} \right\} = sY(s) - y(0)
+$$
+
+- The Laplace Transform of $$ 3y(t) $$ is:
+
+$$
+\mathcal{L}\left\{ 3y(t) \right\} = 3Y(s)
+$$
+
+- The Laplace Transform of the constant $$ 6 $$ is:
+
+$$
+\mathcal{L}\{6\} = \frac{6}{s}
+$$
+
+Now, applying the Laplace Transform to the differential equation:
+
+$$
+sY(s) - y(0) + 3Y(s) = \frac{6}{s}
+$$
+
+**Step 2: Solve for $$ Y(s) $$**
+
+Rearrange the equation:
+
+$$
+Y(s) \left( s + 3 \right) = \frac{6}{s} + y(0)
+$$
+
+Solve for $$ Y(s) $$:
+
+$$
+Y(s) = \frac{6}{s(s + 3)} + \frac{y(0)}{s + 3}
+$$
+
+**Step 3: Find the inverse Laplace Transform**
+
+Now, take the inverse Laplace Transform of each term separately:
+
+- The inverse Laplace Transform of $$ \frac{6}{s(s + 3)} $$ can be done by partial fraction decomposition:
+
+$$
+\frac{6}{s(s + 3)} = \frac{A}{s} + \frac{B}{s + 3}
+$$
+
+Solving for $$ A $$ and $$ B $$ gives:
+
+$$
+A = 2, \quad B = -2
+$$
+
+Thus:
+
+$$
+\mathcal{L}^{-1} \left\{ \frac{6}{s(s + 3)} \right\} = 2 - 2e^{-3t}
+$$
+
+- The inverse Laplace Transform of $$ \frac{y(0)}{s + 3} $$ is:
+
+$$
+\mathcal{L}^{-1}\left\{ \frac{y(0)}{s + 3} \right\} = y(0) e^{-3t}
+$$
+
+Therefore, the solution is:
+
+$$
+y(t) = 2 - 2e^{-3t} + y(0) e^{-3t}
+$$
+
+---
+
+### Example 2: Second-Order Differential Equation
+
+Consider the second-order linear differential equation:
+
+$$
+\frac{d^2y(t)}{dt^2} + 4 \frac{dy(t)}{dt} + 5y(t) = 0
+$$
+
+**Step 1: Take the Laplace Transform of both sides**
+
+- The Laplace Transform of $$ \frac{d^2y(t)}{dt^2} $$ is:
+
+$$
+\mathcal{L}\left\{ \frac{d^2y(t)}{dt^2} \right\} = s^2 Y(s) - sy(0) - y'(0)
+$$
+
+- The Laplace Transform of $$ \frac{dy(t)}{dt} $$ is:
+
+$$
+\mathcal{L}\left\{ \frac{dy(t)}{dt} \right\} = sY(s) - y(0)
+$$
+
+Now, applying the Laplace Transform to the equation:
+
+$$
+s^2 Y(s) - sy(0) - y'(0) + 4(sY(s) - y(0)) + 5Y(s) = 0
+$$
+
+**Step 2: Solve for $$ Y(s) $$**
+
+Rearrange the equation:
+
+$$
+Y(s)(s^2 + 4s + 5) = sy(0) + y'(0) + 4y(0)
+$$
+
+Solve for $$ Y(s) $$:
+
+$$
+Y(s) = \frac{sy(0) + y'(0) + 4y(0)}{s^2 + 4s + 5}
+$$
+
+**Step 3: Find the inverse Laplace Transform**
+
+To take the inverse Laplace Transform, factor the denominator:
+
+$$
+s^2 + 4s + 5 = (s + 2)^2 + 1
+$$
+
+Thus:
+
+$$
+Y(s) = \frac{A(s + 2) + B}{(s + 2)^2 + 1}
+$$
+
+Where $$ A $$ and $$ B $$ are constants that depend on the initial conditions.
+
+The inverse Laplace Transform of this expression will involve terms like $$ e^{-2t} \cos(t) $$ and $$ e^{-2t} \sin(t) $$, depending on the values of $$ y(0) $$ and $$ y'(0) $$.
+
+---
+
+### 💡 **TIP:**
+- The Laplace Transform is especially useful when solving linear differential equations with constant coefficients because it converts the equation from the time domain (which involves derivatives) to the frequency domain (which involves algebraic equations).
+
+---
+## Laplace Transform of Unit Step Function
+
+### Definition of the Unit Step Function:
+The **Unit Step Function**, denoted as $$ u(t) $$, is defined as:
+
+$$
+u(t) =
+\begin{cases}
+0, & t < 0 \\
+1, & t \geq 0
+\end{cases}
+$$
+
+This function "activates" at $$ t = 0 $$, switching from 0 to 1.
+
+### Laplace Transform of the Unit Step Function:
+The Laplace Transform of the Unit Step Function $$ u(t) $$ is:
+
+$$
+\mathcal{L}\{u(t)\} = \frac{1}{s}
+$$
+
+This result applies for $$ t \geq 0 $$, as the function is 1 after $$ t = 0 $$ and 0 before. The Laplace Transform of the unit step function is straightforward because it essentially represents a constant function starting at $$ t = 0 $$.
+
+### Time-Shifted Unit Step Function:
+If the step function is shifted by $$ a $$ units, i.e., $$ u(t - a) $$, the Laplace Transform becomes:
+
+$$
+\mathcal{L}\{u(t - a)\} = \frac{e^{-as}}{s}
+$$
+
+This means that the Laplace Transform of the unit step function, shifted to start at $$ t = a $$, is $$ \frac{e^{-as}}{s} $$.
+
+---
+
+## Laplace Transform of Impulse Function (Dirac Delta Function)
+
+### Definition of the Impulse Function:
+The **Impulse Function**, also known as the **Dirac Delta Function**, denoted as $$ \delta(t) $$, is defined as:
+
+$$
+\delta(t) =
+\begin{cases}
+\infty, & t = 0 \\
+0, & t \neq 0
+\end{cases}
+$$
+
+The Dirac Delta Function is not a traditional function but rather a **generalised function** (or distribution) that is used to represent an "impulse" at $$ t = 0 $$ with an area of 1.
+
+### Laplace Transform of the Impulse Function:
+The Laplace Transform of the Impulse Function $$ \delta(t) $$ is:
+
+$$
+\mathcal{L}\{\delta(t)\} = 1
+$$
+
+This is because the Dirac Delta function "picks out" the value of the function it is multiplied with at the instant of the impulse (i.e., at $$ t = 0 $$). In this case, the Laplace Transform of $$ \delta(t) $$ is simply 1.
+
+### Time-Shifted Impulse Function:
+If the impulse function is shifted by $$ a $$ units, i.e., $$ \delta(t - a) $$, the Laplace Transform becomes:
+
+$$
+\mathcal{L}\{\delta(t - a)\} = e^{-as}
+$$
+
+This means that the Laplace Transform of the impulse function, shifted to occur at $$ t = a $$, is $$ e^{-as} $$.
+
+---
+
+### 💡 **TIP:**
+- The **unit step function** is useful in modelling systems that start at a certain time (e.g., when a switch is turned on), and the **impulse function** is used to represent sudden impulses or forces in a system (like a shock or a spike at $$t = 0$$).
+
+---

@@ -178,15 +178,15 @@ function BlogContent() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                {semesters.map((sem) => (
+                {semesters.sort().map((sem) => (
                   <DropdownMenuItem
-                    key={sem}
-                    onClick={() => {
-                      setSelectedSemester(sem!);
-                      setSelectedSubject("");
-                    }}
+                  key={sem}
+                  onClick={() => {
+                    setSelectedSemester(sem!);
+                    setSelectedSubject("");
+                  }}
                   >
-                    {sem}
+                  {sem}
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>

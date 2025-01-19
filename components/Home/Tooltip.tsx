@@ -4,24 +4,24 @@ export default function Tooltip() {
   const people = [
     {
       id: 1,
-      name: "John Doe",
-      designation: "Software Engineer",
+      name: "Swati Mehta",
+      designation: "Student @MU",
       image:
-        "/person.jpg",
+        "/avatar/3.jpg",
     },
     {
       id: 2,
-      name: "Robert Johnson",
-      designation: "Product Manager",
+      name: "Dolly",
+      designation: "Student AI/ML",
       image:
-        "/person.jpg",
+        "/avatar/2.jpg",
     },
     {
       id: 3,
-      name: "Jane Smith",
-      designation: "Data Scientist",
+      name: "Ishan",
+      designation: "Student @Medicaps University",
       image:
-        "/person.jpg",
+        "/avatar/5.jpg",
     },
   ];
 
