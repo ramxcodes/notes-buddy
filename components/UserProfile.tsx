@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 "use client";
 
 import Link from "next/link";
@@ -14,8 +16,12 @@ export function UserProfile() {
   if (!session) {
     return (
       <Link href="/sign-in">
-        <Button variant={"outline"} className="text-sm font-medium flex flex-row items-center space-x-2">
-         <img src="/google.svg" alt="" className="size-6" /> <span>Log In</span> 
+        <Button
+          variant={"outline"}
+          className="text-sm font-medium flex flex-row items-center space-x-2"
+        >
+          <img src="/google.svg" alt="" className="size-6" />{" "}
+          <span>Sign In</span>
         </Button>
       </Link>
     );

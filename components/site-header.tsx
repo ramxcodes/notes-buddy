@@ -47,8 +47,7 @@ export function SiteHeader() {
               <ModeToggle />
             </div>
             <div className="hidden md:flex">
-
-            <UserProfile />
+              <UserProfile />
             </div>
             <MobileNav />
           </nav>

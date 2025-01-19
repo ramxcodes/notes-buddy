@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 export function SiteFooter() {
   return (
     <footer>

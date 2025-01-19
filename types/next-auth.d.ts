@@ -1,6 +1,6 @@
-import NextAuth, { DefaultSession, DefaultUser } from 'next-auth';
+import NextAuth, { DefaultSession, DefaultUser } from "next-auth";
 
-declare module 'next-auth' {
+declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
       id: string;
@@ -8,7 +8,10 @@ declare module 'next-auth' {
       planTier?: string;
       university?: string;
       degree?: string;
-    } & DefaultSession['user'];
+      subscriptionEndDate?: string;
+      subscriptionStartDate?: string;
+      semesters?: string[];
+    } & DefaultSession["user"];
   }
 
   interface User extends DefaultUser {
@@ -17,5 +20,8 @@ declare module 'next-auth' {
     planTier?: string;
     university?: string;
     degree?: string;
+    subscriptionEndDate?: string;
+    subscriptionStartDate?: string;
+    semesters?: string[];
   }
 }
