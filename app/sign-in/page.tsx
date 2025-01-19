@@ -59,7 +59,8 @@ export default function SignInPage() {
           </h1>
           <div className="text-left space-y-2 flex flex-col items-start justify-center">
             <p className="text-lg font-medium">
-              University: {user.university || "Unknown"}
+              University:{" "}
+              {user.university || "Hogwarts School Of Witchcraft (NaN)"}
             </p>
             <p className="text-lg font-medium">Email: {user.email}</p>
             {!isFreeUser && (
@@ -100,10 +101,18 @@ export default function SignInPage() {
               </>
             )}
             {isFreeUser && (
-              <p className="text-lg font-medium text-muted-foreground">
-                You are currently on a Free plan. <br /> Upgrade to enjoy
-                exclusive benefits!
-              </p>
+              <div className="flex items-center justify-center space-x-4 py-4">
+                <p className="text-lg font-medium text-muted-foreground">
+                  You are currently on a Free plan. <br /> Upgrade to enjoy
+                  exclusive benefits!
+                </p>
+                <button
+                  className="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 dark:after:bg-white 
+      after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100"
+                >
+                 <a href="/buy-premium">Purchase Premium</a> 
+                </button>
+              </div>
             )}
           </div>
           <div className="flex flex-col space-x-0 space-y-4 md:space-y-0 md:flex md:flex-row md:space-x-4">

@@ -29,6 +29,7 @@ export const authOptions: NextAuthOptions = {
         token.subscriptionEndDate = dbUser?.subscriptionEndDate?.toISOString();
         token.subscriptionStartDate = dbUser?.subscriptionStartDate?.toISOString();
         token.semesters = dbUser?.semesters || [];
+        token.phoneNumber = dbUser?.phoneNumber || null;
       }
 
       return token;
@@ -45,6 +46,7 @@ export const authOptions: NextAuthOptions = {
         subscriptionEndDate: token.subscriptionEndDate as string | undefined,
         subscriptionStartDate: token.subscriptionStartDate as string | undefined,
         semesters: token.semesters as string[],
+        phoneNumber: typeof token.phoneNumber === 'string' ? token.phoneNumber : undefined,
       };
       return session;
     },

@@ -11,6 +11,7 @@ declare module "next-auth" {
       subscriptionEndDate?: string;
       subscriptionStartDate?: string;
       semesters?: string[];
+      phoneNumber?: string;
     } & DefaultSession["user"];
   }
 
@@ -23,5 +24,6 @@ declare module "next-auth" {
     subscriptionEndDate?: string;
     subscriptionStartDate?: string;
     semesters?: string[];
+    phoneNumber?: string;
   }
 }
