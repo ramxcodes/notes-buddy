@@ -26,7 +26,29 @@ export default function HeroSection() {
           <h1 className="text-[2.3rem] lg:text-[4.5rem] md:text-[4rem] leading-[1] font-bold dark:bg-gradient-to-b dark:from-[rgba(244,244,255,1)] dark:to-[rgba(181,180,207,1)] dark:text-transparent dark:bg-clip-text py-2 text-center">
             Prepare Fast
             <br />
-            Study Smart <span className="text-white">😎</span>
+            Study Smart{" "}
+            <span className="text-white">
+              <HeroSlideTextEffect interval={2} className="font-bold">
+                {[
+                  "😎",
+                  "😍",
+                  "🥳",
+                  "🎉",
+                  "🎓",
+                  "📚",
+                  "🚀",
+                  "✨",
+                  "💡",
+                  "🔥",
+                  "💬",
+                  "👋",
+                  "🤓",
+                  "💭",
+                  "🌟",
+                  "❤️",
+                ]}
+              </HeroSlideTextEffect>
+            </span>
           </h1>
         </BlurFade>
         <BlurFade delay={0.5} inView>
@@ -54,8 +76,8 @@ export default function HeroSection() {
           </div>
           <div className="w-1/2 flex flex-col md:flex-row items-center justify-center py-4">
             <Tooltip />
-            <span className="text-center pl-4 py-4 text-xs text-gray-500 dark:text-gray-400">
-              Rated by 1000+ students from 100+ colleges in India
+            <span className="pl-4 py-4 text-xs text-gray-500 dark:text-gray-400 ml-4 text-left">
+              Rated by hundreds of students. Loved by many.
             </span>
           </div>
         </div>

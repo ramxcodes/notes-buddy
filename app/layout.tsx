@@ -9,6 +9,7 @@ import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import { ReactLenis } from "@/utils/lenis";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const Gilroy = localFont({
   src: [
@@ -148,6 +149,7 @@ export default function RootLayout({
               <SiteHeader />
               <main className="flex-1">
                 {children}
+                <GoogleAnalytics gaId="G-4NRR52WMZ2" />
                 <SpeedInsights />
                 <Analytics />
               </main>

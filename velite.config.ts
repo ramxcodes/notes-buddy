@@ -37,6 +37,9 @@ const posts = defineCollection({
           degree: s.string().optional(),
           semester: s.string().optional(),
           subject: s.string().optional(),
+          premium: s.boolean().default(false),
+          contentType: s.string().optional(),
+          planTier: s.string().optional(),
         })
         .optional(),
     })
@@ -55,6 +58,12 @@ export default defineConfig({
   collections: { posts },
   mdx: {
     rehypePlugins: [
+      [
+        rehypeKatex,
+        {
+          output: "MathML",
+        },
+      ],
       rehypeSlug,
       [rehypePrettyCode, { theme: "github-dark" }],
       [
@@ -67,13 +76,12 @@ export default defineConfig({
           },
         },
       ],
-      rehypeKatex,
     ],
     remarkPlugins: [
-      remarkGfm,
-      remarkSmartypants,
-      [remarkToc, { heading: "Table of Contents" }],
       remarkMath,
+      remarkGfm,
+      // remarkSmartypants,
+      [remarkToc, { heading: "Table of Contents" }],
     ],
   },
 });

@@ -1,7 +1,0 @@
-Usage:
-7 billion token llama 3.2 lightweight model.
-RAG
-
-Working:
-storage of all files into a single folder.
-refer to documents in this folder before answering the query.
