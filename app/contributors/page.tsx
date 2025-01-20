@@ -1,91 +1,210 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { MagicCard } from "@/components/ui/magic-card";
-import ProfileCard from "@/components/ui/ProfileCard";
-import SparklesText from "@/components/ui/starry-text";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/contributor-table";
+import { Github, Linkedin, Globe } from "lucide-react";
+import BlurFade from "@/components/ui/blur-fade";
 
-const Page: React.FC = () => {
+type Contributor = {
+  name: string;
+  description: string;
+  role: string;
+  image: string;
+  github: string;
+  linkedin: string;
+  website?: string;
+  contributions?: number;
+};
+
+const customContributors: Omit<Contributor, "contributions">[] = [
+  {
+    name: "Ramkrishna Swarnkar",
+    description: "Developed the entire project and deployed it.",
+    role: "Full Stack Web Developer",
+    image: "/profile/ram.png",
+    github: "https://github.com/ramxcodes",
+    linkedin: "https://linkedin.com/in/ramxcodes",
+    website: "https://ramx.in",
+  },
+  {
+    name: "Ayush Paliwal",
+    description: "Developed Chatbot and notes for 7 subjects.",
+    role: "AI/ML Developer",
+    image: "/profile/pali.jpeg",
+    github: "https://github.com/Pali29",
+    linkedin: "https://linkedin.com/in/pali29",
+  },
+  {
+    name: "Kavyansh Yadav",
+    description: "Created searching functionality.",
+    role: "Full Stack Web Developer",
+    image: "/profile/Kavyansh.png",
+    github: "https://github.com/KavyanshYadav",
+    linkedin: "https://linkedin.com/in/KavyanshYadav",
+  },
+  {
+    name: "Kuhu Vyas",
+    description: "Created About Us page.",
+    role: "Web Developer",
+    image: "/profile/kuhu.png",
+    github: "https://github.com/KuhuVyas",
+    linkedin: "https://linkedin.com/in/KuhuVyas",
+  },
+  {
+    name: "Jeet Solanki",
+    description: "Created notes for 1 subject.",
+    role: "Web Developer",
+    image: "/profile/jeet.png",
+    github: "https://github.com/Jeet0808",
+    linkedin: "https://linkedin.com/in/Jeet0808",
+  },
+  {
+    name: "Ankit Kashyap",
+    description: "Created authentication system.",
+    role: "Full Stack Web Developer",
+    image: "/profile/ankit.jpeg",
+    github: "https://github.com/Kashyap1ankit",
+    linkedin: "https://linkedin.com/in/Kashyap1ankit",
+  },
+  {
+    name: "Swetabh Tripathy",
+    description: "Created notes for 1 subject.",
+    role: "Web Developer",
+    image: "/profile/swetabh.png",
+    github: "https://github.com/Tswetabh",
+    linkedin: "https://linkedin.com/in/Tswetabh",
+  },
+  {
+    name: "Divya Vadnere",
+    description: "Created Contributors page.",
+    role: "Web Developer",
+    image: "/profile/divya.jpeg",
+    github: "https://github.com/Doinggithub14",
+    linkedin: "https://linkedin.com/in/Doinggithub14",
+  },
+];
+
+export default function Page() {
   const { theme } = useTheme();
+  const [contributors, setContributors] = useState<Contributor[]>([]);
+
+  useEffect(() => {
+    const fetchContributors = async () => {
+      try {
+        const response = await fetch(
+          "https://api.github.com/repos/ramxcodes/notes-buddy/contributors"
+        );
+        const data = await response.json();
+
+        const contributorsData = customContributors.map((custom) => {
+          const githubUsername = custom.github.split("/").pop();
+          const githubData = data.find(
+            (item: any) => item.login === githubUsername
+          );
+
+          return {
+            ...custom,
+            contributions: githubData ? githubData.contributions : 0,
+          };
+        });
+
+        setContributors(contributorsData);
+      } catch (error) {
+        console.error("Failed to fetch contributors:", error);
+      }
+    };
+
+    fetchContributors();
+  }, []);
 
   return (
-    <div
-      className="container mx-auto py-12;
-      font-family: var(--font-Gilroy); "
-    >
-      {/* Header Section */}
-      <div className="container flex flex-col gap-14 text-center mb-12 mt-12">
-        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-balance">
-          <SparklesText text="Top Contributors" />
-        </h1>
+    <div className="container mx-auto py-16 px-4 sm:px-8 font-wotfard">
+      <div className="flex flex-col gap-8 text-center mb-16">
+        <BlurFade delay={0.2} inView>
+          <h1 className="text-[2.3rem] lg:text-[4.5rem] md:text-[4rem] leading-[1] font-bold dark:bg-gradient-to-b dark:from-[rgba(244,244,255,1)] dark:to-[rgba(181,180,207,1)] dark:text-transparent dark:bg-clip-text py-4">
+            Contributors
+          </h1>
+        </BlurFade>
       </div>
 
-      {/* Top Contributors Section */}
-      <section className="grid md:grid-cols-3 gap-6 max-md:max-w-xs mx-auto mb-12">
-        {/* Magic Cards wrapping Profile Cards */}
-        <MagicCard
-          className="cursor-pointer flex items-center justify-center shadow-2xl"
-          gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"}
-        >
-          <ProfileCard />
-        </MagicCard>
-        <MagicCard
-          className="cursor-pointer flex items-center justify-center shadow-2xl"
-          gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"}
-        >
-          <ProfileCard />
-        </MagicCard>
-        <MagicCard
-          // className="cursor-pointer flex items-center justify-center shadow-2xl"
-          gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"}
-        >
-          <ProfileCard />
-        </MagicCard>
-      </section>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {contributors.map((contributor, index) => (
+          <BlurFade key={index} delay={0.2 * index} inView>
+            <MagicCard
+              className="cursor-pointer flex flex-col items-center sm:items-start p-6 rounded-lg shadow-md"
+              gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"}
+            >
+              <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
+                {/* Profile Image */}
+                <div className="w-40 h-32 rounded-lg flex items-center justify-center overflow-hidden">
+                  <img
+                    src={contributor.image}
+                    alt={`${contributor.name} Profile Picture`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
 
-      {/* Search Input  <SearchInput />*/}
-
-      {/* Table Section */}
-      <div className="mt-25">
-        <Table>
-          <TableCaption>List of recent contributors.</TableCaption>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-[100px]">Contributor</TableHead>
-              <TableHead className="text-center">PR Merges</TableHead>
-              <TableHead className="text-right">Commits</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            <TableRow>
-              <TableCell className="font-medium">John Doe</TableCell>
-              <TableCell className="text-center">5</TableCell>
-              <TableCell className="text-right">20</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell className="font-medium">Jane Smith</TableCell>
-              <TableCell className="text-center">3</TableCell>
-              <TableCell className="text-right">15</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell className="font-medium">Alice Johnson</TableCell>
-              <TableCell className="text-center">8</TableCell>
-              <TableCell className="text-right">30</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
+                {/* Profile Content */}
+                <div className="text-center sm:text-left">
+                  <h2 className="text-xl font-bold font-gilroy">
+                    {contributor.name}
+                  </h2>
+                  <p className="text-gray-500 mt-2">
+                    <span className="text-sm font-light px-4 py-2 bg-black/50 text-white rounded-lg block sm:inline">
+                      {contributor.role}
+                    </span>
+                  </p>
+                  <p className="mt-4">{contributor.description}</p>
+                  {contributor.contributions && (
+                    <p className="mt-2 text-sm text-gray-500">
+                      <b>Contributions: </b> {contributor.contributions}
+                    </p>
+                  )}
+                  <div className="flex justify-center sm:justify-start gap-4 mt-4">
+                    {/* GitHub */}
+                    <a
+                      href={contributor.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Github
+                        className="hover:opacity-50 opacity-100 transition-all duration-300 ease-in-out"
+                        size={24}
+                      />
+                    </a>
+                    {/* LinkedIn */}
+                    {contributor.linkedin && (
+                      <a
+                        href={contributor.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Linkedin
+                          className="hover:opacity-50 opacity-100 transition-all duration-300 ease-in-out"
+                          size={24}
+                        />
+                      </a>
+                    )}
+                    {/* Website */}
+                    {contributor.website && (
+                      <a
+                        href={contributor.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Globe
+                          className="hover:opacity-50 opacity-100 transition-all duration-300 ease-in-out"
+                          size={24}
+                        />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </MagicCard>
+          </BlurFade>
+        ))}
       </div>
     </div>
   );
-};
-
-export default Page;
+}
