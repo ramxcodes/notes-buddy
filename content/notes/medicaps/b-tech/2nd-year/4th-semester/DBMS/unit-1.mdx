@@ -1,0 +1,1073 @@
+---
+title: "Unit 1: DBMS"
+description: Database Management System
+date: 2025-01-15
+tags: ["Database Management System", "4th Semester", "2nd Year"]
+published: true
+metadata:
+  university: "Medicaps University"
+  degree: "B.Tech"
+  semester: "4th Semester"
+  subject: "Database Management System"
+---
+
+## Basic Concepts: Data vs Information, Definition of Database, and Advantages of Database Systems
+
+### 1. Data vs Information
+- **Data**:  
+  - Raw, unprocessed facts or figures that have no specific meaning or context.  
+  - Examples: Numbers, text, symbols, or measurements (e.g., "123", "ABC").  
+
+- **Information**:  
+  - Processed and organised data that is meaningful and useful for decision-making.  
+  - Examples: A sales report summarising the data of monthly transactions.
+
+💡 **TIP**: Data becomes information when it is processed and contextualised.
+
+| **Aspect**       | **Data**                   | **Information**                  |
+|-------------------|----------------------------|-----------------------------------|
+| Nature            | Raw and unprocessed        | Organised and meaningful         |
+| Example           | "123, 456"                | "123 units sold in January"      |
+
+---
+
+### 2. Definition of Database
+- **Database**:  
+  - A structured collection of data that allows for easy access, management, and updating.  
+  - Examples:  
+    - A library's catalogue system.  
+    - A company's customer management system.
+
+📝 **NOTE**: A database typically requires a **Database Management System (DBMS)** to manage and interact with the stored data efficiently.
+
+---
+
+### 3. Advantages of Database Systems
+1. **Data Organisation**:  
+   - Stores data in a structured and logical manner.  
+   - Reduces redundancy and ensures consistency.
+
+2. **Improved Data Security**:  
+   - Implements user authentication and authorisation for data access.  
+
+3. **Easy Data Retrieval**:  
+   - Efficiently retrieves specific information using queries (e.g., SQL).  
+
+4. **Data Integrity**:  
+   - Ensures accuracy and reliability through constraints (e.g., primary keys).  
+
+5. **Multi-User Accessibility**:  
+   - Allows multiple users to access and work on the database simultaneously without conflicts.
+
+6. **Backup and Recovery**:  
+   - Facilitates data recovery in case of failure or corruption.
+
+⚠️ **CAUTION**: While databases improve data management, they require careful setup and maintenance to prevent errors or security breaches.
+
+---
+
+## Components of DBMS
+
+A Database Management System (DBMS) consists of several components that work together to store, retrieve, and manage data efficiently.
+
+---
+
+### 1. **Hardware**
+- Refers to the physical devices used for running the DBMS.
+- Examples:  
+  - Servers  
+  - Storage devices  
+  - Network hardware
+
+📝 **NOTE**: The hardware ensures the DBMS functions effectively by providing computational power and storage.
+
+---
+
+### 2. **Software**
+- The set of programs that manages the database and provides an interface for users.  
+- Includes:  
+  - **DBMS Software**: Core programs responsible for database management (e.g., MySQL, Oracle).  
+  - **Operating System**: Ensures the DBMS runs smoothly.  
+  - **Application Programs**: User-friendly interfaces to interact with the database.
+
+💡 **TIP**: Popular DBMS software includes SQL Server, PostgreSQL, and MongoDB.
+
+---
+
+### 3. **Data**
+- The most critical component, representing raw facts and information stored in the database.
+- Types of data:  
+  - **User Data**: Information entered by users (e.g., employee records).  
+  - **Metadata**: Data about data (e.g., structure of tables, data types).  
+  - **Indexes**: Information that improves search performance.
+
+⚠️ **CAUTION**: Ensuring data integrity and security is essential for maintaining reliable databases.
+
+---
+
+### 4. **Users**
+- Individuals or entities interacting with the DBMS.  
+- Types of Users:  
+  1. **Database Administrators (DBAs)**: Manage and maintain the database.  
+  2. **Developers**: Write applications to interact with the database.  
+  3. **End-Users**: Query and retrieve data for specific tasks.
+
+---
+
+### 5. **Procedures**
+- Predefined methods or instructions for using the DBMS.  
+- Examples:  
+  - Guidelines for data entry.  
+  - Backup and recovery strategies.
+
+📝 **NOTE**: Proper procedures ensure consistent and secure database usage.
+
+---
+
+### 6. **Query Processor**
+- Interprets and executes user queries.  
+- Converts high-level queries (e.g., SQL) into low-level instructions for efficient execution.
+
+---
+
+### 7. **Database Engine**
+- The core service of a DBMS responsible for:  
+  - Data storage  
+  - Data retrieval  
+  - Transaction processing
+
+💡 **TIP**: The database engine ensures reliability and consistency through ACID properties (Atomicity, Consistency, Isolation, Durability).
+
+---
+
+### Summary Table
+
+| **Component**       | **Description**                                    |
+|----------------------|----------------------------------------------------|
+| Hardware             | Physical devices supporting DBMS operations       |
+| Software             | Programs managing the database and interactions   |
+| Data                 | Core content stored and managed by the DBMS       |
+| Users                | Individuals interacting with the DBMS             |
+| Procedures           | Predefined rules for database usage               |
+| Query Processor      | Converts and executes user queries                |
+| Database Engine      | Core service for data handling and transactions   |
+
+---
+
+## DBMS Architecture and Data Independence
+
+### 1. DBMS Architecture
+The architecture of a Database Management System (DBMS) defines its structure, interactions, and components for efficiently managing data.
+
+---
+
+#### 1.1 **Types of DBMS Architectures**
+1. **1-Tier Architecture**
+   - The database is directly accessed by the user without any intermediate layer.  
+   - Suitable for standalone systems.  
+   - Example: Personal database applications like MS Access.
+
+2. **2-Tier Architecture**
+   - Involves two layers:  
+     - **Client:** Interface for the user.  
+     - **Server:** Processes queries and handles database operations.  
+   - Common in small to medium-sized applications.  
+   - Example: Client-server applications like MySQL with a web front-end.
+
+3. **3-Tier Architecture**
+   - Divides the system into three layers:  
+     - **Presentation Layer (Client):** User interface for interaction.  
+     - **Application Layer:** Processes application logic and communicates between client and database.  
+     - **Database Layer:** Stores and retrieves data.  
+   - Widely used in web-based applications for better scalability and security.  
+   - Example: Web apps with APIs and a database backend.
+
+📝 **NOTE**: 3-tier architecture provides enhanced modularity and separation of concerns compared to 1-tier or 2-tier systems.
+
+---
+
+#### 1.2 **DBMS Schema Levels**
+A DBMS follows a three-schema architecture to separate different perspectives of the database:
+
+1. **External Schema (View Level):**
+   - Represents the end-user view of the database.  
+   - Focuses on specific parts of the database relevant to individual users.  
+   - Example: An employee's view might only show their details.
+
+2. **Conceptual Schema (Logical Level):**
+   - Represents the overall structure of the database.  
+   - Defines entities, relationships, and constraints without detailing storage.  
+   - Example: Defining tables like `Employees` and `Departments`.
+
+3. **Internal Schema (Physical Level):**
+   - Describes how data is stored in the database.  
+   - Includes file structures, indexing, and physical storage mechanisms.
+
+💡 **TIP**: This separation ensures flexibility and supports data independence.
+
+---
+
+### 2. Data Independence
+**Data Independence** refers to the ability to modify one schema level without affecting others. It ensures changes at the physical or logical level do not disrupt user views or application functionality.
+
+#### 2.1 **Types of Data Independence**
+1. **Logical Data Independence**
+   - Ability to change the conceptual schema without altering external schemas or applications.  
+   - Example: Adding a new column to a table without affecting user views.
+
+2. **Physical Data Independence**
+   - Ability to change the internal schema (e.g., file organisation) without modifying the conceptual schema.  
+   - Example: Changing data storage from a flat file to indexed files without affecting database structure.
+
+⚠️ **CAUTION**: Achieving full data independence is challenging but critical for system flexibility and maintainability.
+
+---
+
+### Summary Table
+
+| **Aspect**              | **Description**                                                   |
+|-------------------------|-------------------------------------------------------------------|
+| 1-Tier Architecture     | Direct user-database interaction, suitable for standalone apps   |
+| 2-Tier Architecture     | Client-server model for medium-scale applications                |
+| 3-Tier Architecture     | Modular design for scalability, used in web-based systems        |
+| External Schema         | User-specific views of the database                              |
+| Conceptual Schema       | Logical structure of the entire database                         |
+| Internal Schema         | Physical storage details                                         |
+| Logical Data Independence | Changes in structure without affecting user views              |
+| Physical Data Independence | Changes in storage methods without affecting logical design   |
+
+---
+
+## Data Modelling
+
+### 1. Introduction to Data Modelling
+- **Data Modelling** is the process of creating a visual representation of a database structure to organise, define, and represent data relationships effectively.  
+- Purpose:  
+  - To ensure a well-structured database design.  
+  - To enhance data integrity and usability.
+
+📝 **NOTE**: Data models act as a blueprint for creating and maintaining a database system.
+
+---
+
+### 2. Types of Data Models
+1. **Hierarchical Model**
+   - Data is organised in a tree-like structure with parent-child relationships.  
+   - Each child node has only one parent, while a parent node can have multiple children.  
+   - Example: File systems.
+
+   💡 **TIP**: Best suited for applications with fixed relationships, like an organisational chart.
+
+2. **Network Model**
+   - Represents data using a graph structure, allowing many-to-many relationships.  
+   - Data is stored as records, with links (pointers) representing relationships.  
+   - Example: Transport routes between cities.
+
+3. **Relational Model**
+   - Represents data in tables (relations) consisting of rows (tuples) and columns (attributes).  
+   - Relationships between tables are established using **keys** (e.g., primary key, foreign key).  
+   - Example: An employee database with related department details.
+
+   📝 **NOTE**: SQL is primarily based on the relational model.
+
+4. **Entity-Relationship (ER) Model**
+   - Uses diagrams to represent entities (objects), their attributes, and relationships.  
+   - Components:  
+     - **Entity**: Represents a real-world object (e.g., Employee).  
+     - **Attribute**: Characteristics of an entity (e.g., Employee Name).  
+     - **Relationship**: Connection between entities (e.g., Employee works in Department).
+
+   ⚠️ **CAUTION**: Complex systems may require careful handling of entity relationships.
+
+5. **Object-Oriented Model**
+   - Extends the relational model by incorporating object-oriented concepts like classes and inheritance.  
+   - Example: Multimedia databases.
+
+6. **Document Model**
+   - Data is stored as semi-structured documents, often in JSON or XML format.  
+   - Example: MongoDB, Couchbase.
+
+---
+
+### 3. Key Steps in Data Modelling
+1. **Requirement Analysis**
+   - Understand the business needs and data requirements.
+
+2. **Conceptual Data Modelling**
+   - Create high-level ER diagrams to identify entities, attributes, and relationships.
+
+3. **Logical Data Modelling**
+   - Define the logical structure, including table designs, keys, and relationships.
+
+4. **Physical Data Modelling**
+   - Specify storage structures, indexes, and other physical implementations.
+
+---
+
+### 4. Benefits of Data Modelling
+1. **Improved Database Design**
+   - Helps create a structured and scalable database.
+
+2. **Enhanced Communication**
+   - Provides a common understanding between developers, stakeholders, and DBAs.
+
+3. **Reduced Redundancy**
+   - Identifies and eliminates duplicate data.
+
+4. **Better Query Performance**
+   - Ensures efficient data retrieval through optimal design.
+
+---
+
+### 5. Example: ER Diagram
+**Scenario:** A database for managing employees and departments.  
+Entities:  
+- **Employee**: Attributes – ID, Name, Salary.  
+- **Department**: Attributes – ID, Name, Location.  
+Relationship:  
+- "Employee works in Department".
+
+---
+
+### Summary Table
+
+| **Aspect**           | **Description**                                           |
+|-----------------------|-----------------------------------------------------------|
+| Hierarchical Model    | Tree structure with parent-child relationships            |
+| Network Model         | Graph structure with many-to-many relationships           |
+| Relational Model      | Tabular structure, basis of SQL                           |
+| Entity-Relationship   | Visual representation of entities, attributes, and links |
+| Object-Oriented Model | Combines object-oriented principles with database design  |
+| Document Model        | Stores semi-structured data like JSON or XML              |
+
+---
+
+## Entity-Relationship Model (ER Model)
+
+### 1. Introduction to ER Model
+- The **Entity-Relationship Model (ER Model)** is a conceptual framework used to describe the structure of a database.  
+- Represents real-world entities, their attributes, and relationships visually using diagrams called **ER diagrams**.  
+- Purpose:  
+  - To design a clear and organised database schema.  
+  - To model data in a way that reflects business processes.
+
+💡 **TIP**: ER diagrams help bridge the gap between stakeholders and database designers.
+
+---
+
+### 2. Components of ER Model
+
+#### 2.1 Entities
+- **Entity**: A real-world object or concept that is distinguishable from others.  
+- Represented by a rectangle in an ER diagram.  
+
+#### Types of Entities:
+1. **Strong Entity**:  
+   - Can exist independently.  
+   - Example: Employee, Department.
+
+2. **Weak Entity**:  
+   - Depends on a strong entity for its existence.  
+   - Example: Dependents of an Employee.
+
+⚠️ **CAUTION**: Weak entities must have a **discriminator attribute** (partial key) and a **relationship with a strong entity**.
+
+---
+
+#### 2.2 Attributes
+- Characteristics or properties of an entity.  
+- Represented by an ellipse in an ER diagram.
+
+#### Types of Attributes:
+1. **Simple Attributes**:  
+   - Cannot be divided further.  
+   - Example: Employee ID.
+
+2. **Composite Attributes**:  
+   - Can be broken into smaller sub-parts.  
+   - Example: Full Name (First Name, Last Name).
+
+3. **Derived Attributes**:  
+   - Can be derived from other attributes.  
+   - Example: Age (calculated from Date of Birth).
+
+4. **Multivalued Attributes**:  
+   - Can have multiple values.  
+   - Example: Phone Numbers.
+
+📝 **NOTE**: Attributes are linked to their entities using straight lines in an ER diagram.
+
+---
+
+#### 2.3 Relationships
+- **Relationship**: A connection between two or more entities.  
+- Represented by a diamond in an ER diagram.
+
+#### Types of Relationships:
+1. **One-to-One (1:1)**:  
+   - One entity is associated with exactly one entity of another type.  
+   - Example: Each employee has one unique ID card.
+
+2. **One-to-Many (1:N)**:  
+   - One entity is associated with multiple entities of another type.  
+   - Example: A department can have many employees.
+
+3. **Many-to-Many (M:N)**:  
+   - Many entities of one type are associated with many entities of another type.  
+   - Example: Students enrolled in multiple courses.
+
+---
+
+### 3. Keys in ER Model
+- **Primary Key**: Unique identifier for an entity.  
+  - Example: Employee ID for the Employee entity.  
+- **Foreign Key**: Attribute in one entity that references the primary key of another entity.  
+
+---
+
+### 4. Generalisation, Specialisation, and Aggregation
+
+#### 4.1 Generalisation
+- The process of abstracting common features of two or more entities into a higher-level entity.  
+- Example: Combine Student and Teacher into Person.
+
+#### 4.2 Specialisation
+- The process of creating sub-entities from a higher-level entity.  
+- Example: Employee can specialise into Manager and Engineer.
+
+#### 4.3 Aggregation
+- A higher-level abstraction where a relationship itself acts as an entity.  
+- Example: A "Project" entity can aggregate a "Manager works on Project" relationship.
+
+---
+
+### 5. ER Diagram Example
+**Scenario:** A database for managing employees and departments.  
+- Entities:  
+  - Employee (ID, Name, Salary)  
+  - Department (ID, Name, Location)  
+- Relationships:  
+  - "Employee works in Department" (One-to-Many).
+
+
+---
+
+### Summary Table
+
+| **Component**          | **Description**                                                                 |
+|-------------------------|---------------------------------------------------------------------------------|
+| Entity                 | Real-world object or concept (e.g., Employee, Department)                       |
+| Strong Entity          | Independent entity (e.g., Department)                                          |
+| Weak Entity            | Dependent entity (e.g., Dependent of an Employee)                              |
+| Attributes             | Characteristics of entities (e.g., Name, ID, Salary)                          |
+| Relationships          | Connections between entities (e.g., Employee works in Department)             |
+| Generalisation         | Combine similar entities into a higher-level entity                           |
+| Specialisation         | Divide a higher-level entity into sub-entities                                |
+| Aggregation            | Treat a relationship as an entity                                              |
+
+---
+
+## Relational Model
+
+### 1. Introduction to Relational Model
+- The **Relational Model** is a logical data model that organises data into tables called **relations**.  
+- Developed by **E. F. Codd** in 1970, it forms the foundation of most modern databases.  
+- Data is represented in **rows** (tuples) and **columns** (attributes).  
+- Relationships between tables are maintained through keys.
+
+💡 **TIP**: SQL (Structured Query Language) is used to manage and query relational databases.
+
+---
+
+### 2. Key Components of the Relational Model
+
+#### 2.1 Relation
+- A **relation** is a table with a unique name.  
+- Each row represents a **tuple** (record), and each column represents an **attribute** (field).  
+- Example: A `Student` table:
+  | **Student_ID** | **Name**     | **Age** | **Course**   |
+  |----------------|--------------|---------|--------------|
+  | 1              | Alice        | 20      | Computer Science |
+  | 2              | Bob          | 22      | Mathematics  |
+
+---
+
+#### 2.2 Attributes
+- **Attributes** are the columns in a table that represent the properties of an entity.  
+- Example: `Student_ID`, `Name`, `Age`, and `Course` are attributes of the `Student` table.
+
+---
+
+#### 2.3 Domain
+- A **domain** is the set of permissible values for an attribute.  
+- Example: The `Age` attribute may have a domain of integers between 18 and 30.
+
+---
+
+#### 2.4 Tuples
+- **Tuples** are the rows in a relation, representing a single instance of data.  
+- Example: `(1, Alice, 20, Computer Science)` is a tuple.
+
+---
+
+#### 2.5 Keys
+Keys are attributes or sets of attributes used to identify tuples uniquely or establish relationships.
+
+1. **Primary Key**:  
+   - Uniquely identifies a tuple in a relation.  
+   - Example: `Student_ID` in the `Student` table.
+
+2. **Candidate Key**:  
+   - A set of attributes that can uniquely identify tuples.  
+   - Example: Both `Student_ID` and a combination of `Name` and `Course` might serve as candidate keys.
+
+3. **Foreign Key**:  
+   - An attribute in one table that references the primary key of another table.  
+   - Example: `Department_ID` in the `Employee` table referencing `ID` in the `Department` table.
+
+4. **Composite Key**:  
+   - A key consisting of two or more attributes.  
+   - Example: `(Student_ID, Course)` as a composite key in a table tracking course enrolments.
+
+---
+
+### 3. Properties of Relations
+1. Each relation has a unique name.  
+2. Each tuple is distinct; duplicate rows are not allowed.  
+3. Attribute order does not matter.  
+4. The values in attributes must belong to their respective domains.  
+5. All attributes are atomic (indivisible).
+
+⚠️ **CAUTION**: Avoid violating these properties, as they ensure the integrity of the relational model.
+
+---
+
+### 4. Relational Integrity Constraints
+1. **Entity Integrity**:  
+   - Primary keys cannot have `NULL` values.  
+   - Ensures each tuple is uniquely identifiable.
+
+2. **Referential Integrity**:  
+   - Foreign keys must reference valid primary keys in the related table.  
+   - Ensures relationships between tables remain consistent.
+
+3. **Domain Integrity**:  
+   - Attributes must only contain values within their defined domain.  
+
+4. **Key Integrity**:  
+   - Candidate keys must uniquely identify tuples.
+
+---
+
+### 5. Advantages of Relational Model
+1. **Simplicity**:  
+   - Easy to understand and implement due to its tabular format.
+
+2. **Data Independence**:  
+   - Supports logical and physical data independence.
+
+3. **Scalability**:  
+   - Can handle large volumes of data effectively.
+
+4. **Flexibility**:  
+   - Relationships can be easily established and modified.
+
+5. **Standardisation**:  
+   - SQL serves as a standard query language.
+
+---
+
+### 6. Example: Relational Model with Two Tables
+**Tables:**
+- `Student`
+  | **Student_ID** | **Name**     | **Age** | **Department_ID** |
+  |----------------|--------------|---------|--------------------|
+  | 1              | Alice        | 20      | 101                |
+  | 2              | Bob          | 22      | 102                |
+
+- `Department`
+  | **Department_ID** | **Department_Name** |
+  |--------------------|---------------------|
+  | 101                | Computer Science    |
+  | 102                | Mathematics         |
+
+**Relationship:**  
+- The `Department_ID` in the `Student` table is a **foreign key** referencing the `Department_ID` in the `Department` table.
+
+---
+
+### Summary Table
+
+| **Aspect**               | **Description**                                                               |
+|---------------------------|-------------------------------------------------------------------------------|
+| Relation                  | A table representing data in rows and columns                                |
+| Attribute                 | A column in a relation (e.g., `Name`, `Age`)                                |
+| Tuple                    | A row in a relation (e.g., `(1, Alice, 20, 101)`)                            |
+| Domain                   | Set of valid values for an attribute                                          |
+| Primary Key              | Unique identifier for a tuple                                                 |
+| Foreign Key              | Attribute linking one relation to another                                     |
+| Integrity Constraints    | Rules ensuring data consistency (e.g., Entity, Referential, Domain Integrity) |
+
+---
+
+## Network Model
+
+### 1. Introduction to Network Model
+- The **Network Model** is a database model that represents data using a graph structure, where data is organised into records and relationships between records are represented as edges (links).  
+- It was developed as an improvement over the hierarchical model, allowing many-to-many relationships.  
+- Example: The CODASYL DBTG (Conference on Data Systems Languages Data Base Task Group) model.
+
+💡 **TIP**: The network model provides more flexibility than the hierarchical model by supporting complex relationships.
+
+---
+
+### 2. Key Concepts in Network Model
+
+#### 2.1 Records
+- **Records** represent entities, similar to rows in a relational database.  
+- Example: A record for `Employee` might contain attributes like `Employee_ID`, `Name`, and `Department`.
+
+#### 2.2 Sets
+- **Sets** define relationships between records.  
+- Consist of two types of records:
+  - **Owner Record**: Represents the parent in a relationship.
+  - **Member Record**: Represents the child in a relationship.
+
+📝 **NOTE**: A set can have one owner and multiple members, supporting many-to-many relationships.
+
+---
+
+#### 2.3 Pointers
+- The network model uses **pointers** to establish links between records.  
+- Example: An `Employee` record might have a pointer to a `Department` record, representing a relationship.
+
+---
+
+### 3. Features of the Network Model
+1. **Data Representation**:  
+   - Data is stored in the form of records connected by sets.  
+
+2. **Flexibility**:  
+   - Supports complex relationships like many-to-many and multiple parent-child links.
+
+3. **Navigation**:  
+   - Access data by traversing pointers and sets.
+
+4. **Owner-Member Relationships**:  
+   - Every relationship is defined by an owner-member pair.
+
+---
+
+### 4. Example of Network Model
+**Scenario**: A database tracking employees and projects.  
+
+**Records**:  
+1. `Employee` (attributes: `Employee_ID`, `Name`)  
+2. `Project` (attributes: `Project_ID`, `Project_Name`)  
+
+**Sets (Relationships)**:  
+1. An employee can work on multiple projects.  
+2. A project can have multiple employees.  
+
+**Graph Representation**:
+- Nodes: Represent records (e.g., `Employee`, `Project`).  
+- Edges: Represent relationships (e.g., "Employee works on Project").  
+
+---
+
+### 5. Advantages of Network Model
+1. **Flexibility**:  
+   - Allows many-to-many relationships.  
+
+2. **Efficiency**:  
+   - Provides efficient access to data through pointers.
+
+3. **Data Integrity**:  
+   - Ensures consistency through explicitly defined relationships.
+
+4. **Data Independence**:  
+   - Logical data independence is supported, enabling changes to the schema without affecting applications.
+
+---
+
+### 6. Disadvantages of Network Model
+1. **Complexity**:  
+   - Navigating and managing pointers can be challenging.
+
+2. **Difficult Maintenance**:  
+   - Modifying the database structure requires significant effort.
+
+3. **Less User-Friendly**:  
+   - Querying data is more cumbersome compared to relational databases.
+
+4. **Limited Standardisation**:  
+   - Lack of a universally accepted query language like SQL.
+
+---
+
+### Summary Table
+
+| **Aspect**             | **Description**                                           |
+|-------------------------|-----------------------------------------------------------|
+| Record                 | Represents an entity, similar to a row in a table          |
+| Set                    | Defines relationships between records                      |
+| Pointers               | Used to navigate and link records                         |
+| Flexibility            | Supports many-to-many relationships                       |
+| Data Access            | Traversal-based, following pointers and sets              |
+| Key Advantage          | Efficient representation of complex relationships         |
+| Key Limitation         | Complex navigation and maintenance                        |
+
+---
+
+## Hierarchical Model
+
+### 1. Introduction to Hierarchical Model
+- The **Hierarchical Model** is a database model that organises data in a tree-like structure, where records are represented as nodes and relationships are represented as edges.
+- Data is stored in **parent-child** relationships, with each parent record having multiple child records.
+- This model is similar to a file system, where each record has a single parent but can have multiple children.
+
+💡 **TIP**: The hierarchical model is ideal for applications with a clear parent-child relationship, like organisational structures.
+
+---
+
+### 2. Key Concepts in Hierarchical Model
+
+#### 2.1 Parent and Child Records
+- **Parent Record**: A record that has one or more child records linked to it.  
+  - Example: `Department` can be a parent record with child records being `Employee`.
+
+- **Child Record**: A record that is dependent on a parent record and cannot exist independently.  
+  - Example: `Employee` is a child record of the `Department`.
+
+#### 2.2 Tree Structure
+- The hierarchical model is based on a **tree structure** with:
+  - A **root node**: Represents the top-most parent record.
+  - **Branches**: Represent relationships between records.
+  - **Leaf nodes**: Represent records with no children.
+
+---
+
+### 3. Data Representation in Hierarchical Model
+- Data is stored in **records** that are linked in a tree structure. Each record has a **parent** and **children**.  
+- A record can have **one parent** but **multiple children**, forming a hierarchy.
+
+**Example:**
+- **Department** (Parent)
+  - **Employee 1** (Child)
+  - **Employee 2** (Child)
+
+---
+
+### 4. Characteristics of Hierarchical Model
+
+#### 4.1 One-to-Many Relationships
+- The hierarchical model represents **one-to-many relationships**, where one parent can have many children, but a child can only have one parent.
+- Example: A `Department` can have many `Employees`, but an `Employee` can belong to only one `Department`.
+
+#### 4.2 Data Integrity
+- Enforces **parent-child relationships**, ensuring data integrity. A child record cannot exist without a corresponding parent record.
+
+#### 4.3 Efficient Access
+- Data retrieval is fast for simple queries where the relationship between records is straightforward (e.g., parent-child).
+
+---
+
+### 5. Advantages of Hierarchical Model
+1. **Data Integrity**:  
+   - Ensures consistency and integrity of data with clear parent-child relationships.
+
+2. **Performance**:  
+   - Excellent for applications with predefined, fixed data structures.
+
+3. **Simplicity**:  
+   - Easy to understand and implement, especially for small databases.
+
+4. **Efficient Searching**:  
+   - Provides fast access to data if the relationships are well-defined.
+
+---
+
+### 6. Disadvantages of Hierarchical Model
+1. **Rigid Structure**:  
+   - The rigid parent-child structure limits flexibility. Changes in the hierarchy can require significant restructuring.
+
+2. **Data Redundancy**:  
+   - Data redundancy may occur as records are repeated across multiple branches.
+
+3. **Limited Relationships**:  
+   - Only supports one-to-many relationships, making it less suitable for complex relationships.
+
+4. **Difficulty in Querying**:  
+   - Querying for data that requires traversing multiple branches or relationships can be complex and inefficient.
+
+---
+
+### Summary Table
+
+| **Aspect**             | **Description**                                                  |
+|------------------------|------------------------------------------------------------------|
+| Parent Record          | A record that has one or more child records                      |
+| Child Record           | A record that is dependent on a parent record                    |
+| One-to-Many Relationship| One parent can have multiple children, but one child can have only one parent |
+| Tree Structure         | Data is organised as a tree with nodes representing records      |
+| Data Integrity         | Parent-child relationships ensure data consistency              |
+| Key Limitation         | Rigid structure limits flexibility and complexity in relationships |
+
+---
+
+## Object-Oriented Models
+
+### 1. Introduction to Object-Oriented Models
+- The **Object-Oriented Model (OOM)** combines the concepts of object-oriented programming (OOP) with database management.  
+- In this model, data is represented as **objects**, similar to how objects are used in programming languages like Java or C++.
+- The OOM supports complex data types, inheritance, encapsulation, and polymorphism, enabling the modelling of real-world entities more naturally.
+
+💡 **TIP**: The object-oriented model is suitable for applications that require complex data representation, such as multimedia or CAD (Computer-Aided Design) systems.
+
+---
+
+### 2. Key Concepts in Object-Oriented Models
+
+#### 2.1 Object
+- An **object** is an instance of a **class** and represents a real-world entity or concept.  
+- Each object has:
+  - **Attributes** (also called **properties** or **fields**): Characteristics or data about the object.
+  - **Methods** (also called **functions**): Operations or behaviours that the object can perform.
+
+📝 **NOTE**: In OOM, an object encapsulates both **data** and **behaviour**.
+
+#### 2.2 Class
+- A **class** defines the structure and behaviour of objects.  
+- It is like a blueprint from which objects are instantiated.  
+- Example: A `Car` class could have attributes like `colour`, `make`, `model`, and methods like `drive()` or `stop()`.
+
+#### 2.3 Inheritance
+- **Inheritance** allows a new class to inherit properties and behaviours from an existing class.
+- Example: A `SportsCar` class could inherit from the `Car` class but with additional features like `turboBoost()`.
+
+#### 2.4 Encapsulation
+- **Encapsulation** refers to the concept of bundling the data (attributes) and the methods (behaviours) that operate on the data within a single unit (object).  
+- It also helps in hiding the internal workings of objects and exposing only necessary interfaces.
+
+#### 2.5 Polymorphism
+- **Polymorphism** allows objects to be treated as instances of their parent class, with the ability to override methods.
+- Example: A method `drive()` can be implemented differently in the `Car` and `Truck` classes, even though both inherit from the `Vehicle` class.
+
+---
+
+### 3. Object-Oriented Database Concepts
+
+#### 3.1 Object Identity
+- Every object in an object-oriented database has a unique identifier called **Object ID (OID)**, which distinguishes it from other objects.  
+- This ID is used to reference the object in the database.
+
+#### 3.2 Object Persistence
+- In OOM, objects are **persistent**, meaning they can exist beyond the execution of a program.  
+- Objects are stored in a database and can be retrieved even after the application that created them has ended.
+
+#### 3.3 Object-Oriented Query Languages
+- Object-oriented databases use query languages like **OQL (Object Query Language)** to interact with the database.  
+- OQL allows querying of objects and their relationships in a way that mirrors the object-oriented approach.
+
+---
+
+### 4. Advantages of Object-Oriented Models
+1. **Natural Mapping to Real-World Entities**:  
+   - Object-oriented models provide a more natural way to model complex, real-world entities than traditional relational models.
+
+2. **Support for Complex Data Types**:  
+   - Object-oriented databases support complex data types such as images, audio, and video, making them ideal for multimedia applications.
+
+3. **Reusability**:  
+   - Inheritance enables code and data reuse, reducing redundancy and promoting modularity.
+
+4. **Encapsulation and Security**:  
+   - Encapsulation provides a clear interface for interaction and ensures data integrity and security.
+
+5. **Polymorphism and Flexibility**:  
+   - Polymorphism allows the same operations to be applied to different objects, promoting flexibility in database design.
+
+---
+
+### 5. Disadvantages of Object-Oriented Models
+1. **Complexity**:  
+   - Object-oriented databases can be more complex to design and maintain, especially for simple applications.
+
+2. **Performance Overhead**:  
+   - Storing and managing complex objects may result in performance overhead due to the need to manage object identity, inheritance, and relationships.
+
+3. **Lack of Standardisation**:  
+   - Unlike the relational model, there is no universally accepted standard for object-oriented databases, making it harder to adopt.
+
+4. **Less Mature**:  
+   - The object-oriented database model is less mature than the relational model, and tools for managing object-oriented databases are fewer.
+
+---
+
+### 6. Example of Object-Oriented Model
+**Scenario**: A database to manage a library system with books and authors.
+
+**Classes and Objects**:  
+1. **Book** Class:  
+   - Attributes: `title`, `author`, `ISBN`  
+   - Methods: `checkOut()`, `returnBook()`  
+2. **Author** Class:  
+   - Attributes: `name`, `birthdate`, `nationality`  
+   - Methods: `writeBook()`
+
+**Inheritance**:  
+- A `Novel` class can inherit from the `Book` class and have additional attributes such as `genre`.
+
+**Objects**:  
+- `book1 = new Book("The Great Gatsby", "F. Scott Fitzgerald", "123456")`  
+- `author1 = new Author("F. Scott Fitzgerald", "1896-09-24", "American")`
+
+---
+
+### Summary Table
+
+| **Aspect**             | **Description**                                                  |
+|------------------------|------------------------------------------------------------------|
+| Object                 | Instance of a class representing real-world entities            |
+| Class                  | Defines the structure and behaviour of objects                   |
+| Inheritance            | Mechanism to inherit properties and methods from another class   |
+| Encapsulation          | Bundles data and methods together within an object               |
+| Polymorphism           | Allows different classes to define methods with the same name   |
+| Object Identity        | Every object has a unique identifier (OID)                       |
+| Object Persistence     | Objects are persistent and can be stored in the database         |
+
+---
+
+## Data Modelling Using the Entity Relationship Model
+
+### 1. Introduction to Entity-Relationship Model (ER Model)
+- The **Entity-Relationship (ER) Model** is a conceptual framework used to represent the structure of a database.  
+- It uses **entities** and **relationships** to model real-world objects and their interconnections.
+- The ER model was introduced by Peter Chen in 1976 and is widely used for database design.
+
+💡 **TIP**: The ER model is widely used during the database design phase to map out the system before implementation.
+
+---
+
+### 2. Key Concepts in Entity-Relationship Model
+
+#### 2.1 Entity
+- An **entity** is any object or thing in the real world that is distinguishable from other objects.  
+- Entities have **attributes**, which are properties or characteristics of the entity.  
+- Example: A `Student` can be an entity with attributes like `Student_ID`, `Name`, `Date_of_Birth`.
+
+📝 **NOTE**: Entities are usually represented by rectangles in an ER diagram.
+
+#### 2.2 Entity Set
+- An **entity set** is a collection of similar types of entities.  
+- All entities in an entity set have the same attributes but differ in the data they hold.  
+- Example: The `Student` entity set consists of multiple `Student` entities.
+
+#### 2.3 Attributes
+- **Attributes** are characteristics or properties of an entity.  
+- They can be:
+  - **Simple**: An attribute that cannot be divided further (e.g., `Age`).
+  - **Composite**: An attribute that can be subdivided into smaller attributes (e.g., `Full_Name` can be subdivided into `First_Name` and `Last_Name`).
+  - **Derived**: An attribute that can be derived from other attributes (e.g., `Age` can be derived from `Date_of_Birth`).
+  
+💡 **TIP**: Attributes are represented as ovals in an ER diagram.
+
+---
+
+#### 2.4 Relationship
+- A **relationship** represents an association between two or more entities.  
+- Relationships can also have **attributes**, which describe the connection between entities.  
+- Example: A `Student` enrolls in a `Course` – the relationship is **Enrollment**.
+
+#### 2.5 Relationship Set
+- A **relationship set** is a collection of similar relationships.  
+- It represents a set of associations between entities in an entity set.
+
+---
+
+### 3. Types of Relationships
+
+#### 3.1 One-to-One (1:1)
+- In a **one-to-one** relationship, one entity is associated with exactly one other entity.  
+- Example: A `Person` has one `Passport`.
+
+#### 3.2 One-to-Many (1:M)
+- In a **one-to-many** relationship, one entity is associated with many entities, but each of those entities is associated with only one entity.  
+- Example: A `Teacher` teaches many `Courses`, but each `Course` is taught by only one `Teacher`.
+
+#### 3.3 Many-to-Many (M:N)
+- In a **many-to-many** relationship, many entities in one set are associated with many entities in another set.  
+- Example: A `Student` can enrol in multiple `Courses`, and each `Course` can have multiple `Students`.
+
+---
+
+### 4. Cardinality Constraints
+- Cardinality constraints specify the number of instances of one entity that can be associated with the instances of another entity.
+  - **1:1**: One instance of an entity can be related to only one instance of another entity.
+  - **1:N**: One instance of an entity can be related to many instances of another entity.
+  - **M:N**: Many instances of an entity can be related to many instances of another entity.
+
+---
+
+### 5. Key Constraints and Participation Constraints
+
+#### 5.1 Key Constraints
+- Key constraints define the uniqueness of relationships. For example, in a **one-to-one** relationship, the entities must have unique identifiers.
+
+#### 5.2 Participation Constraints
+- Participation constraints specify whether all entities in an entity set must participate in a relationship.  
+  - **Total Participation**: Every entity must participate in the relationship.
+  - **Partial Participation**: Some entities may not participate in the relationship.
+
+---
+
+### 6. ER Diagram Representation
+
+#### 6.1 Entity Representation
+- Entities are represented by **rectangles** in an ER diagram.
+
+#### 6.2 Attribute Representation
+- Attributes are represented by **ovals** connected to their corresponding entity or relationship.
+
+#### 6.3 Relationship Representation
+- Relationships are represented by **diamonds** connected to the related entities.
+
+---
+
+### 7. Example of Entity-Relationship Model
+
+**Scenario**: A university database for students, courses, and enrollments.
+
+1. **Entities**:  
+   - `Student`: Attributes – `Student_ID`, `Name`, `Date_of_Birth`  
+   - `Course`: Attributes – `Course_ID`, `Course_Name`, `Credits`  
+
+2. **Relationship**:  
+   - `Enrollment`: A student enrolls in a course. This is a many-to-many relationship because a student can enroll in multiple courses, and a course can have multiple students.
+
+**ER Diagram Representation**:
+
+- **Student** (Student_ID, Name, Date_of_Birth)  
+  **Enrolls** (M:N)  
+- **Course** (Course_ID, Course_Name, Credits)  
+
+---
+
+### 9. Summary Table
+
+| **Aspect**             | **Description**                                                   |
+|------------------------|-------------------------------------------------------------------|
+| Entity                 | Represents a real-world object or concept                         |
+| Attribute              | A property or characteristic of an entity                         |
+| Relationship           | An association between two or more entities                       |
+| One-to-One (1:1)       | One entity is related to exactly one other entity                 |
+| One-to-Many (1:M)      | One entity is related to many entities, but each related entity is associated with only one parent entity |
+| Many-to-Many (M:N)     | Many entities in one set are related to many entities in another set |
+| Cardinality Constraints| Specifies the number of instances of one entity related to another entity |
+| Participation Constraints| Specifies whether all entities must participate in a relationship |
+
+---
+
+
+
+
