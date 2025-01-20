@@ -26,6 +26,10 @@ export const authOptions: NextAuthOptions = {
         token.planTier = dbUser?.planTier || "Free";
         token.university = dbUser?.university;
         token.degree = dbUser?.degree;
+        token.subscriptionEndDate = dbUser?.subscriptionEndDate?.toISOString();
+        token.subscriptionStartDate = dbUser?.subscriptionStartDate?.toISOString();
+        token.semesters = dbUser?.semesters || [];
+        token.phoneNumber = dbUser?.phoneNumber || null;
       }
 
       return token;
@@ -39,6 +43,10 @@ export const authOptions: NextAuthOptions = {
         planTier: token.planTier as string | undefined,
         university: token.university as string | undefined,
         degree: token.degree as string | undefined,
+        subscriptionEndDate: token.subscriptionEndDate as string | undefined,
+        subscriptionStartDate: token.subscriptionStartDate as string | undefined,
+        semesters: token.semesters as string[],
+        phoneNumber: typeof token.phoneNumber === 'string' ? token.phoneNumber : undefined,
       };
       return session;
     },

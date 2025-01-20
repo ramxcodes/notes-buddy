@@ -32,13 +32,15 @@ async function validateAccess(
   requiredSemester: string
 ): Promise<{
   errorMessage: string | null;
-  userTier: string;
+  userTier: string | null;
+  userSemesters: string[];
   hasSemesterAccess: boolean;
 }> {
   if (requiredTier === "Free") {
     return {
       errorMessage: null,
       userTier: "Free",
+      userSemesters: [],
       hasSemesterAccess: true,
     };
   }
@@ -47,8 +49,9 @@ async function validateAccess(
 
   if (!session) {
     return {
-      errorMessage: "You must log in to access this content.",
-      userTier: "None",
+      errorMessage: "You are not signed in.",
+      userTier: null,
+      userSemesters: [],
       hasSemesterAccess: false,
     };
   }
@@ -67,6 +70,7 @@ async function validateAccess(
     return {
       errorMessage: "Access denied. Upgrade your subscription.",
       userTier,
+      userSemesters,
       hasSemesterAccess,
     };
   }
@@ -75,11 +79,17 @@ async function validateAccess(
     return {
       errorMessage: `Access denied. You do not have access to the "${requiredSemester}".`,
       userTier,
+      userSemesters,
       hasSemesterAccess,
     };
   }
 
-  return { errorMessage: null, userTier, hasSemesterAccess };
+  return {
+    errorMessage: null,
+    userTier,
+    userSemesters,
+    hasSemesterAccess,
+  };
 }
 
 export async function generateMetadata({
@@ -156,27 +166,45 @@ export default async function PostPage({ params }: PostPageProps) {
   const requiredTier = post.metadata?.planTier || "Free";
   const requiredSemester = post.metadata?.semester || "Unknown";
 
-  const { errorMessage, userTier, hasSemesterAccess } = await validateAccess(
-    requiredTier,
-    requiredSemester
-  );
+  const { errorMessage, userTier, userSemesters, hasSemesterAccess } =
+    await validateAccess(requiredTier, requiredSemester);
 
   if (errorMessage) {
     return (
       <div className="container mx-auto mt-20 text-center flex flex-col items-center justify-center h-screen">
         <UpgradePrompt message={errorMessage} />
-        <Card className="mt-4 p-4 font-wotfard text-left">
-          <p>
-            <strong>Your Current Plan:</strong> {userTier}
-          </p>
-          <p>
-            <strong>Required Plan:</strong> {requiredTier}
-          </p>
-          {!hasSemesterAccess && (
-            <p>
-              <strong>Semester Access:</strong> You do not have access to{" "}
-              {requiredSemester}.
-            </p>
+        <Card className="mt-4 p-6 text-left shadow-lg rounded-lg font-gilroy">
+          {!userTier ? (
+            <div className="flex flex-col items-center justify-center">
+              <p className="text-lg">
+                You are not signed in. Please sign in to see your plan details
+                and access content.
+              </p>
+              <Button variant="default" className="mt-4">
+                <a href="/sign-in">Sign In</a>
+              </Button>
+            </div>
+          ) : (
+            <>
+              <h2 className="text-xl font-semibold text-primary mb-4">
+                Access Details
+              </h2>
+              <p className="text-lg mb-2">
+                <strong>Your Current Plan:</strong> {userTier}
+              </p>
+              <p className="text-lg mb-2">
+                <strong>Your Semester Access:</strong>{" "}
+                {userSemesters.length > 0
+                  ? userSemesters.join(", ")
+                  : "No semester access"}
+              </p>
+              <p className="text-lg mb-2">
+                <strong>Required Plan:</strong> {requiredTier}
+              </p>
+              <p className="text-lg mb-2">
+                <strong>Required Semester:</strong> {requiredSemester}
+              </p>
+            </>
           )}
         </Card>
       </div>

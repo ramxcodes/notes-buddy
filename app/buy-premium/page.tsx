@@ -2,31 +2,11 @@
 
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { PlanSelector } from "./components/PlanSelector";
+import { Popup } from "./components/Popup";
+import { Header } from "./components/Header";
 import BlurFade from "@/components/ui/blur-fade";
-interface IRazorpayConfig {
-  key_id: string;
-  amount: number;
-  currency: string;
-  name: string;
-  description: string;
-  order_id: string;
-  handler: (response: any) => void;
-  prefill: {
-    name: string;
-    email: string;
-  };
-  theme: {
-    color: string;
-  };
-}
+import { Button } from "@/components/ui/button";
 
 export default function BuyPremiumPage() {
   const { data: session, status } = useSession();
@@ -34,9 +14,11 @@ export default function BuyPremiumPage() {
   const [university, setUniversity] = useState("");
   const [degree, setDegree] = useState("");
   const [year, setYear] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState<string | null>(null);
   const [user, setUser] = useState<any>(null);
   const [popupMessage, setPopupMessage] = useState("");
   const [showPopup, setShowPopup] = useState(false);
+  const [showPhonePrompt, setShowPhonePrompt] = useState(false);
 
   const universities = ["Medicaps University"];
   const degrees = ["B Tech"];
@@ -45,6 +27,7 @@ export default function BuyPremiumPage() {
   useEffect(() => {
     if (status === "authenticated" && session?.user) {
       setUser(session.user);
+      setPhoneNumber(session.user.phoneNumber || null); // Load phone number from session
     } else if (status === "unauthenticated") {
       setUser(null);
     }
@@ -57,18 +40,24 @@ export default function BuyPremiumPage() {
       return;
     }
 
-    // Validation for required fields
     if (!university || !degree || !year || !tier) {
       setPopupMessage("Please select all required fields");
       setShowPopup(true);
       return;
     }
 
+    if (!phoneNumber) {
+      setShowPhonePrompt(true); // Prompt for phone number if not set
+      return;
+    }
+
+    initiatePayment(); // Proceed to payment if phone number exists
+  };
+
+  const initiatePayment = async () => {
     const response = await fetch("/api/razorpay/create-order", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ tier, university, degree, year }),
     });
 
@@ -80,19 +69,17 @@ export default function BuyPremiumPage() {
       return;
     }
 
-    const options: IRazorpayConfig = {
-      key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID as string,
+    const options = {
+      key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
       amount: order.amount,
       currency: "INR",
-      name: "Notes buddy premium subscription",
+      name: "Notes buddy premium",
       description: `Subscription for ${tier} (${year})`,
       order_id: order.id,
       handler: async (response: any) => {
         const verification = await fetch("/api/razorpay/verify-payment", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             ...response,
             userId: user.id,
@@ -105,171 +92,127 @@ export default function BuyPremiumPage() {
 
         const result = await verification.json();
 
-        if (result.success) {
-          setPopupMessage("Payment successful!");
-        } else {
-          setPopupMessage("Payment verification failed");
-        }
+        setPopupMessage(
+          result.success ? "Payment successful!" : "Payment verification failed"
+        );
         setShowPopup(true);
       },
       prefill: {
-        name: user?.name || "",
-        email: user?.email || "",
+        name: user.name || "",
+        email: user.email || "",
       },
-      theme: {
-        color: "#3399cc",
-      },
+      theme: { color: "#3399cc" },
     };
 
     if (typeof window !== "undefined") {
       const script = document.createElement("script");
       script.src = "https://checkout.razorpay.com/v1/checkout.js";
       script.onload = () => {
-        if ((window as any).Razorpay) {
-          const Razorpay = (window as any).Razorpay;
-          const razorpay = new Razorpay(options);
-          razorpay.open();
-        } else {
-          setPopupMessage("Failed to load Razorpay SDK");
-          setShowPopup(true);
-        }
+        const Razorpay = (window as any).Razorpay;
+        const razorpay = new Razorpay(options);
+        razorpay.open();
       };
       document.body.appendChild(script);
     }
   };
+
+  const handlePhoneSubmit = async () => {
+    if (!phoneNumber || phoneNumber.trim().length < 10) {
+      setPopupMessage("Please enter a valid phone number");
+      setShowPopup(true);
+      return;
+    }
+
+    await fetch("/api/save-phone", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId: user.id, phoneNumber }),
+    });
+
+    setShowPhonePrompt(false);
+    initiatePayment();
+  };
+
   return (
-    <div className="p-8 h-screen mx-auto rounded-xl space-y-4 flex flex-col items-center justify-center font-wotfard">
-      <BlurFade delay={0.2} inView>
-        <h1 className="text-[2.3rem] lg:text-[4.5rem] md:text-[4rem] leading-[1] font-bold dark:bg-gradient-to-b dark:from-[rgba(244,244,255,1)] dark:to-[rgba(181,180,207,1)] dark:text-transparent dark:bg-clip-text py-2 text-center">
-          Buy Premium
-        </h1>
-      </BlurFade>
-      <BlurFade delay={0.5} inView>
+    <div className="relative">
+      {/* Main Content */}
+      <div
+        className={`p-8 h-screen mx-auto rounded-xl space-y-4 flex flex-col items-center justify-center font-wotfard ${
+          showPopup ? "blur-md" : ""
+        }`}
+      >
+        <Header isAuthenticated={!!user} userName={session?.user.name || null} />
+
         <div className="max-w-md w-full space-y-4">
-          {status === "loading" ? (
-            <p className="text-center">Loading session...</p>
-          ) : user ? (
-            <p className="text-center text-2xl">
-              Hello, {session?.user.name}! Good to see you here ✨
-            </p>
-          ) : (
-            <p className="text-center text-red-500 text-lg">
-              Please log in to continue.
-            </p>
-          )}
-          <div className="space-y-2">
-            <label className="block text-sm font-medium">University</label>
-            <DropdownMenu>
-              <DropdownMenuTrigger className="block w-full px-3 py-2 border rounded-md shadow-sm text-left">
-                {university || "Select University"}
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem onSelect={() => setUniversity("")}>
-                  Select University
-                </DropdownMenuItem>
-                {universities.map((uni) => (
-                  <DropdownMenuItem
-                    key={uni}
-                    onSelect={() => setUniversity(uni)}
-                  >
-                    {uni}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-          <div className="space-y-2">
-            <label className="block text-sm font-medium">Degree</label>
-            <DropdownMenu>
-              <DropdownMenuTrigger className="block w-full px-3 py-2 border rounded-md shadow-sm text-left">
-                {degree || "Select Degree"}
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem onSelect={() => setDegree("")}>
-                  Select Degree
-                </DropdownMenuItem>
-                {degrees.map((deg) => (
-                  <DropdownMenuItem key={deg} onSelect={() => setDegree(deg)}>
-                    {deg}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-          <div className="space-y-2">
-            <label className="block text-sm font-medium">Year</label>
-            <DropdownMenu>
-              <DropdownMenuTrigger className="block w-full px-3 py-2 border rounded-md shadow-sm text-left">
-                {year || "Select Year"}
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem onSelect={() => setYear("")}>
-                  Select Year
-                </DropdownMenuItem>
-                {years.map((yr) => (
-                  <DropdownMenuItem key={yr} onSelect={() => setYear(yr)}>
-                    {yr}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-          <div className="space-y-2">
-            <label className="block text-sm font-medium">Plan Tier</label>
-            <DropdownMenu>
-              <DropdownMenuTrigger className="block w-full px-3 py-2 border rounded-md shadow-sm text-left">
-                {tier || "Select Tier"}
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem onSelect={() => setTier("Tier 1")}>
-                  Tier 1 - ₹99/-
-                </DropdownMenuItem>
-                <DropdownMenuItem onSelect={() => setTier("Tier 2")}>
-                  Tier 2 - ₹169/-
-                </DropdownMenuItem>
-                <DropdownMenuItem onSelect={() => setTier("Tier 3")}>
-                  Tier 3 - ₹249/-
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-          <button
-            className="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md font-gilroy"
-            onClick={handleCheckout}
-          >
-            Proceed to Pay ₹
-            {tier === "Tier 1" ? 99 : tier === "Tier 2" ? 169 : 249}/-
-          </button>
+          <PlanSelector
+            label="University"
+            options={universities}
+            selectedOption={university}
+            onSelect={setUniversity}
+          />
+          <PlanSelector
+            label="Degree"
+            options={degrees}
+            selectedOption={degree}
+            onSelect={setDegree}
+          />
+          <PlanSelector
+            label="Year"
+            options={years}
+            selectedOption={year}
+            onSelect={setYear}
+          />
+          <PlanSelector
+            label="Plan Tier"
+            options={["Tier 1 - ₹99/-", "Tier 2 - ₹169/-", "Tier 3 - ₹249/-"]}
+            selectedOption={tier}
+            onSelect={setTier}
+          />
+          <BlurFade delay={0.3} inView>
+            <Button
+              variant={"default"}
+              className="w-full py-2 px-4 font-semibold rounded-md shadow-md font-gilroy"
+              onClick={handleCheckout}
+            >
+              Proceed to Pay ₹
+              {tier === "Tier 1" ? 99 : tier === "Tier 2" ? 169 : 249}/-
+            </Button>
+          </BlurFade>
         </div>
-      </BlurFade>
+      </div>
+
+      {showPhonePrompt && (
+        <Popup
+          message={
+            <div className="space-y-4">
+              <label className="block text-sm font-medium">
+                Enter your phone number
+              </label>
+              <input
+                type="text"
+                value={phoneNumber || ""}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                className="w-full px-3 py-2 border rounded-md shadow-sm"
+              />
+              <Button
+                variant={"default"}
+                className="w-full py-2"
+                onClick={handlePhoneSubmit}
+              >
+                Submit
+              </Button>
+            </div>
+          }
+          onClose={() => setShowPhonePrompt(false)}
+        />
+      )}
 
       {showPopup && (
-        <BlurFade delay={0.2} inView>
-          <div className="flex items-center justify-center font-wotfard backdrop-blur-md z-30">
-            <Card className="px-12 py-12 rounded-md shadow-md space-y-4 flex flex-col items-center justify-center">
-              <p className="font-wotfard text-lg">{popupMessage}</p>
-              <div className="flex flex-row items-center justify-center space-x-4">
-                {popupMessage === "Please log in first!" ? (
-                  <Button
-                    variant={"secondary"}
-                    onClick={() => setShowPopup(false)}
-                    className="px-4 py-2 rounded-md"
-                  >
-                    <a href="/sign-in">Log In</a>
-                  </Button>
-                ) : (
-                  <Button
-                    variant={"outline"}
-                    onClick={() => setShowPopup(false)}
-                    className="px-4 py-2 rounded-md"
-                  >
-                    Close
-                  </Button>
-                )}
-              </div>
-            </Card>
-          </div>
-        </BlurFade>
+        <Popup
+          message={popupMessage}
+          onClose={() => setShowPopup(false)}
+          showLoginButton={popupMessage === "Please log in first!"}
+        />
       )}
     </div>
   );
