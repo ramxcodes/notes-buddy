@@ -2,6 +2,7 @@
 
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 interface PopupProps {
   message: React.ReactNode;
@@ -21,7 +22,7 @@ export function Popup({ message, onClose, showLoginButton }: PopupProps) {
               onClick={onClose}
               className="px-4 py-2 rounded-md"
             >
-              <a href="/sign-in">Log In</a>
+              <Link href="/sign-in">Log In</Link>
             </Button>
           ) : (
             <Button
