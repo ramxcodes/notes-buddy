@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 interface UpgradePromptProps {
   message: string;
@@ -15,7 +16,7 @@ export default function UpgradePrompt({ message }: UpgradePromptProps) {
         variant="outline"
         className="px-6 py-3 rounded-lg font-gilroy font-semibold hover:bg-black/85 transition-colors duration-300 ease-in-out hover:text-white"
       >
-        <a href="/buy-premium">Purchase Premium to Unlock 🔓</a>
+        <Link href="/buy-premium">Purchase Premium to Unlock 🔓</Link>
       </Button>
     </div>
   );

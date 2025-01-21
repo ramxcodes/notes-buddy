@@ -29,7 +29,7 @@ function FooterSection() {
               </div>
             </BlurFade>
             <div className="sm:block flex sm:mt-0 mt-4  gap-2 sm:w-auto w-full sm:space-y-2 relative z-[1]">
-              <a
+              <Link
                 href="https://www.linkedin.com/in/ramxcodes"
                 target="_blank"
                 className="bg-gray-50 sm:w-auto w-full   grid place-content-center 2xl:h-40 h-32 2xl:p-10 p-5 rounded-lg"
@@ -47,8 +47,8 @@ function FooterSection() {
                     fill="currentColor"
                   ></path>
                 </svg>
-              </a>
-              <a
+              </Link>
+              <Link
                 href="https://x.com/ramxcodes"
                 target="_blank"
                 className="bg-gray-50 sm:w-auto w-full  grid place-content-center  2xl:h-40 h-32 2xl:p-10 p-5 rounded-lg"
@@ -66,7 +66,7 @@ function FooterSection() {
                     fill="currentColor"
                   ></path>
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
           <BlurFade delay={0.45} inView>

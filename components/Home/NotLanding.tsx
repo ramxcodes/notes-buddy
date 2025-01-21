@@ -1,41 +1,43 @@
+import Link from "next/link";
+
 export default function NotLanding() {
   return (
     <div className="flex items-center justify-center gap-2 w-full py-5">
-      <a
+      <Link
         className="opacity-50 hover:opacity-100 transition-opacity duration-300 ease-in-out hidden lg:block"
         href="/contact-us"
       >
         Contact Us
-      </a>
+      </Link>
       <span className="opacity-40 hidden lg:block">|</span>
 
-      <a
+      <Link
         className="opacity-50 hover:opacity-100 transition-opacity duration-300 ease-in-out hidden lg:block"
         href="/shipping-and-delievery"
       >
         Shipping and Delivery
-      </a>
+      </Link>
       <span className="opacity-40 hidden lg:block">|</span>
-      <a
+      <Link
         className="opacity-50 hover:opacity-100 transition-opacity duration-300 ease-in-out hidden lg:block"
         href="/privacy-policy"
       >
         Privacy policy
-      </a>
+      </Link>
       <span className="opacity-40 hidden lg:block">|</span>
-      <a
+      <Link
         className="opacity-50 hover:opacity-100 transition-opacity duration-300 ease-in-out hidden lg:block"
         href="/return-and-refund"
       >
         Cancellation/Refund Policy
-      </a>
+      </Link>
       <span className="opacity-40 hidden lg:block">|</span>
-      <a
+      <Link
         className="opacity-50 hover:opacity-100 transition-opacity duration-300 ease-in-out hidden lg:block"
         href="/terms-and-conditions"
       >
         Terms and conditions
-      </a>
+      </Link>
     </div>
   );
 }

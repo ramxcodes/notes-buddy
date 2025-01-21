@@ -10,6 +10,7 @@ import { hasAccess } from "@/lib/access";
 import clientPromise from "@/lib/db";
 import { getServerSession } from "next-auth";
 import { Card } from "@/components/ui/card";
+import Link from "next/link";
 
 interface PostPageProps {
   params: {
@@ -153,10 +154,10 @@ export default async function PostPage({ params }: PostPageProps) {
         </p>
         <div className="flex flex-row items-center justify-center space-x-4">
           <Button variant={"outline"} className="mt-4">
-            <a href="/">Home</a>
+            <Link href="/">Home</Link>
           </Button>
           <Button variant={"secondary"} className="mt-4">
-            <a href="/notes">Go to Notes</a>
+            <Link href="/notes">Go to Notes</Link>
           </Button>
         </div>
       </div>
@@ -181,7 +182,7 @@ export default async function PostPage({ params }: PostPageProps) {
                 and access content.
               </p>
               <Button variant="default" className="mt-4">
-                <a href="/sign-in">Sign In</a>
+                <Link href="/sign-in">Sign In</Link>
               </Button>
             </div>
           ) : (
