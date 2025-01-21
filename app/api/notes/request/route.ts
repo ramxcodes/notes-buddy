@@ -1,13 +1,20 @@
 import { NextResponse } from "next/server";
 import { getCollection } from "@/lib/db";
 import { verifyCaptcha } from "@/lib/captcha";
-import RequestNotes from "@/models/RequestNotes";
 
 export async function POST(request: Request) {
-  const { university, degree, year, semester, subject, syllabus, userId, captchaToken } =
-    await request.json();
+  const {
+    university,
+    degree,
+    year,
+    semester,
+    subject,
+    syllabus,
+    phoneNumber,
+    userId,
+    captchaToken,
+  } = await request.json();
 
-  // reCAPTCHA validation
   if (process.env.NODE_ENV !== "development") {
     const captchaValid = await verifyCaptcha(captchaToken);
     if (!captchaValid) {
@@ -15,12 +22,10 @@ export async function POST(request: Request) {
     }
   }
 
-  // Validate required fields
-  if (!university || !degree || !year || !semester || !subject || !syllabus || !userId) {
+  if (!university || !degree || !year || !semester || !subject || !syllabus || !userId || !phoneNumber) {
     return NextResponse.json({ error: "All fields are required" }, { status: 400 });
   }
 
-  // Save to MongoDB
   try {
     const requestNotesCollection = await getCollection("requestNotes");
     await requestNotesCollection.insertOne({
@@ -30,6 +35,7 @@ export async function POST(request: Request) {
       semester,
       subject,
       syllabus,
+      phoneNumber,
       userId,
       createdAt: new Date(),
     });

@@ -22,18 +22,20 @@ const RequestNotesPage = () => {
     semester: "",
     subject: "",
     syllabus: "",
+    phoneNumber: "",
     captchaToken: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState<string | null>(null);
   const [popupMessage, setPopupMessage] = useState("");
   const [showPopup, setShowPopup] = useState(false);
-  const [showPhonePrompt, setShowPhonePrompt] = useState(false);
 
   useEffect(() => {
     if (status === "authenticated") {
-      setPhoneNumber(session?.user.phoneNumber || null);
+      setFormData((prev) => ({
+        ...prev,
+        phoneNumber: session?.user.phoneNumber || "",
+      }));
     } else if (status === "unauthenticated") {
       setPopupMessage("Please log in to submit notes!");
       setShowPopup(true);
@@ -52,8 +54,9 @@ const RequestNotesPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!phoneNumber) {
-      setShowPhonePrompt(true);
+    if (!formData.phoneNumber || formData.phoneNumber.trim().length < 10) {
+      setPopupMessage("Please enter a valid phone number.");
+      setShowPopup(true);
       return;
     }
 
@@ -83,6 +86,7 @@ const RequestNotesPage = () => {
         semester: "",
         subject: "",
         syllabus: "",
+        phoneNumber: formData.phoneNumber,
         captchaToken: "",
       });
     } catch (error) {
@@ -90,32 +94,6 @@ const RequestNotesPage = () => {
       alert("Failed to submit the request.");
     } finally {
       setIsSubmitting(false);
-    }
-  };
-
-  const handlePhoneSubmit = async () => {
-    if (!phoneNumber || phoneNumber.trim().length < 10) {
-      setPopupMessage("Please enter a valid phone number.");
-      setShowPopup(true);
-      return;
-    }
-
-    try {
-      const response = await fetch("/api/save-phone", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId: session?.user.id, phoneNumber }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to save phone number.");
-      }
-
-      setShowPhonePrompt(false);
-    } catch (error) {
-      console.error(error);
-      setPopupMessage("Failed to save phone number. Please try again.");
-      setShowPopup(true);
     }
   };
 
@@ -207,6 +185,20 @@ const RequestNotesPage = () => {
                   required
                 />
               </div>
+              <div className="mb-4">
+                <Label htmlFor="phoneNumber">Phone Number</Label>
+                <Input
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  placeholder="Enter your phone number"
+                  type="text"
+                  value={formData.phoneNumber}
+                  onChange={(e) =>
+                    setFormData({ ...formData, phoneNumber: e.target.value })
+                  }
+                  required
+                />
+              </div>
               <Button type="submit" disabled={isSubmitting}>
                 Submit Request
               </Button>
@@ -214,24 +206,6 @@ const RequestNotesPage = () => {
           </CardContent>
         </Card>
       </BlurFade>
-
-      {showPhonePrompt && (
-        <Popup
-          message={
-            <div className="space-y-4">
-              <Label>Enter your phone number</Label>
-              <Input
-                type="text"
-                value={phoneNumber || ""}
-                onChange={(e) => setPhoneNumber(e.target.value)}
-                className="w-full"
-              />
-              <Button onClick={handlePhoneSubmit}>Submit</Button>
-            </div>
-          }
-          onClose={() => setShowPhonePrompt(false)}
-        />
-      )}
 
       {showPopup && (
         <Popup
