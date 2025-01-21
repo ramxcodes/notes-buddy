@@ -164,7 +164,7 @@ export default function BuyPremiumPage() {
           />
           <PlanSelector
             label="Plan Tier"
-            options={["Tier 1 - ₹99/-", "Tier 2 - ₹169/-", "Tier 3 - ₹249/-"]}
+            options={["Tier 1", "Tier 2", "Tier 3"]}
             selectedOption={tier}
             onSelect={setTier}
           />

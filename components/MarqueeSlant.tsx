@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Marquee from "./Marquee";
 import BlurFade from "./ui/blur-fade";
+import Link from "next/link";
 
 const reviews = [
   {
@@ -62,7 +63,7 @@ const ReviewCard = ({
   link: string;
 }) => {
   return (
-    <a href={link}>
+    <Link href={link}>
       <div className="w-full mx-auto rounded-lg shadow-md border">
         <Image
           priority={true}
@@ -81,7 +82,7 @@ const ReviewCard = ({
           </p>
         </div>
       </div>
-    </a>
+    </Link>
   );
 };
 

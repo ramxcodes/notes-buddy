@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
+import Link from "next/link";
+
 export function SiteFooter() {
   return (
     <footer>
@@ -9,22 +11,22 @@ export function SiteFooter() {
           &#169; Notes Buddy 2025
         </div>
         <div className="flex items-center gap-2">
-          <a
+          <Link
             className="opacity-50 hover:opacity-100 transition-opacity duration-300 ease-in-out hidden lg:block"
             href="/"
           >
             Home
-          </a>
+          </Link>
           <span className="opacity-40 hidden lg:block">|</span>
 
-          <a
+          <Link
             className="opacity-50 hover:opacity-100 transition-opacity duration-300 ease-in-out hidden lg:block"
             href="/notes"
           >
             Notes
-          </a>
+          </Link>
           <span className="opacity-40 hidden lg:block">|</span>
-          <a
+          <Link
             className="flex gap-2 hover:text-green-500 transition-colors duration-300 ease-in-out opacity-50"
             target="_blank"
             href="https://chat.whatsapp.com/EcretA1N7eCFQeHecm1uWO"
@@ -45,7 +47,7 @@ export function SiteFooter() {
               <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1"></path>{" "}
             </svg>
             <span>Join Whatsapp Community</span>
-          </a>
+          </Link>
         </div>
         <div className="flex items-center gap-2 group">
           <img
@@ -54,9 +56,9 @@ export function SiteFooter() {
             alt=""
           />
           <p className="opacity-50 group-hover:opacity-100 transition-all duration-300 ease-in-out">
-            <a target="_blank" href="https://www.ramx.in">
+            <Link target="_blank" href="https://www.ramx.in">
               Build with ❤️ <span className="group-hover:underline transition-all duration-300 ease-in-out">Ram</span>
-            </a>
+            </Link>
           </p>
         </div>
       </div>
