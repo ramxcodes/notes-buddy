@@ -28,12 +28,11 @@ if (process.env.NODE_ENV === "development") {
 
 export default clientPromise;
 
-/**
- * Fetches a MongoDB collection by name
- * @param collectionName - The name of the collection
- */
 export async function getCollection(collectionName: string) {
   const client = await clientPromise;
-  const db = client.db(process.env.MONGODB_DB);
+
+  const dbName = process.env.MONGODB_DB || "notesbuddy";
+  const db = client.db(dbName);
+
   return db.collection(collectionName);
 }

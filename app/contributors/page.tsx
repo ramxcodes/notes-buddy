@@ -1,9 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { MagicCard } from "@/components/ui/magic-card";
 import { Github, Linkedin, Globe } from "lucide-react";
 import BlurFade from "@/components/ui/blur-fade";
+import Link from "next/link";
 
 type Contributor = {
   name: string;
@@ -162,7 +164,7 @@ export default function Page() {
                   )}
                   <div className="flex justify-center sm:justify-start gap-4 mt-4">
                     {/* GitHub */}
-                    <a
+                    <Link
                       href={contributor.github}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -171,10 +173,10 @@ export default function Page() {
                         className="hover:opacity-50 opacity-100 transition-all duration-300 ease-in-out"
                         size={24}
                       />
-                    </a>
+                    </Link>
                     {/* LinkedIn */}
                     {contributor.linkedin && (
-                      <a
+                      <Link
                         href={contributor.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -183,11 +185,11 @@ export default function Page() {
                           className="hover:opacity-50 opacity-100 transition-all duration-300 ease-in-out"
                           size={24}
                         />
-                      </a>
+                      </Link>
                     )}
                     {/* Website */}
                     {contributor.website && (
-                      <a
+                      <Link
                         href={contributor.website}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -196,7 +198,7 @@ export default function Page() {
                           className="hover:opacity-50 opacity-100 transition-all duration-300 ease-in-out"
                           size={24}
                         />
-                      </a>
+                      </Link>
                     )}
                   </div>
                 </div>
