@@ -1,6 +1,6 @@
 ---
 title: "Unit 2: Discrete Mathematics"
-description: Partial order relation, Poset, least upper bound, greatest lower bound, maximal and minimal elements of a poset – Definition & example of Boolean algebra – Lattices, Distributive laws in lattices – Complemented lattices – Propositional Calculus – Boolean functions, minimum & maximum terms, simplification of Boolean function with Karnaugh map &Quiane Mc Clusky method. Applications in computer Science.
+description: Partial order relation, Poset, least upper bound, greatest lower bound, maximal and minimal elements of a poset, Definition & example of Boolean algebra – Lattices, Distributive laws in lattices – Complemented lattices – Propositional Calculus – Boolean functions, minimum & maximum terms, simplification of Boolean function with Karnaugh map &Quiane Mc Clusky method. Applications in computer Science.
 date: 2025-01-12
 tags: ["Discrete Mathematics", "3rd Semester", "2nd Year", "B Tech"]
 published: true
@@ -26,7 +26,7 @@ In simple terms, a **Poset** is a set in which some elements can be compared wit
 
 #### **Example of a Poset**
 
-Consider the set **S = $${1, 2, 3, 4}$$** with the usual **≤** relation. This is a Poset because:
+Consider the set **S = $$\{1, 2, 3, 4\}$$** with the usual **≤** relation. This is a Poset because:
 
 - **Reflexivity**: Every number is less than or equal to itself:  
   - **1 ≤ 1**, **2 ≤ 2**, **3 ≤ 3**, **4 ≤ 4**.
@@ -52,10 +52,10 @@ The **Least Upper Bound (LUB)** of a subset **A** of a Poset **S** is the smalle
 
 #### **Example of Least Upper Bound**
 
-Consider the Poset **S = $${1, 2, 3, 4}$$** with the usual **≤** relation. Let’s find the LUB of the subset **A = $${2, 3}$$**.
+Consider the Poset **S = $$\{1, 2, 3, 4\}$$** with the usual **≤** relation. Let’s find the LUB of the subset **A = $$\{2, 3\}$$**.
 
 - The elements of **S** that are greater than or equal to **2** and **3** are **3** and **4**.
-- The smallest of these is **4**. Therefore, the **LUB** of **A = $${2, 3}$$** is **4**.
+- The smallest of these is **4**. Therefore, the **LUB** of **A = $$\{2, 3\}$$** is **4**.
 
 In this case, **sup$$({2, 3})$$ = 4**.
 
@@ -72,10 +72,10 @@ The **Greatest Lower Bound (GLB)** of a subset **A** of a Poset **S** is the lar
 
 #### **Example of Greatest Lower Bound**
 
-Consider the Poset **S = $${1, 2, 3, 4}$$** with the usual **≤** relation. Let’s find the GLB of the subset **A = $${2, 3}$$**.
+Consider the Poset **S = $$\{1, 2, 3, 4\}$$** with the usual **≤** relation. Let’s find the GLB of the subset **A = $$\{2, 3\}$$**.
 
 - The elements of **S** that are smaller than or equal to both **2** and **3** are **1** and **2**.
-- The largest of these is **2**. Therefore, the **GLB** of **A = $${2, 3}$$** is **2**.
+- The largest of these is **2**. Therefore, the **GLB** of **A = $$\{2, 3\}$$** is **2**.
 
 In this case, **inf$$({2, 3})$$ = 2**.
 
@@ -85,9 +85,9 @@ In this case, **inf$$({2, 3})$$ = 2**.
 
 The concepts of LUB and GLB can be visualised in a Hasse diagram of a Poset. The LUB of a subset is the smallest element that is above all elements in the subset, while the GLB is the largest element that is below all elements in the subset.
 
-#### **Example Hasse Diagram for Poset \( (S, \leq) \)**
+#### **Example Hasse Diagram for Poset $$ (S, \leq) $$**
 
-Consider the set **S = $${1, 2, 3, 4}$$** with the usual **≤** relation. The Hasse diagram for this Poset would look like:
+Consider the set **S = $$\{1, 2, 3, 4\}$$** with the usual **≤** relation. The Hasse diagram for this Poset would look like:
 
 ```
       4
@@ -98,8 +98,8 @@ Consider the set **S = $${1, 2, 3, 4}$$** with the usual **≤** relation. The H
 ```
 
 From this diagram:
-- The **LUB** of **$${2, 3}$$** is **4** because **4** is the smallest element greater than or equal to both **2** and **3**.
-- The **GLB** of **$${2, 3}$$** is **2** because **2** is the largest element smaller than or equal to both **2** and **3**.
+- The **LUB** of **$$\{2, 3\}$$** is **4** because **4** is the smallest element greater than or equal to both **2** and **3**.
+- The **GLB** of **$$\{2, 3\}$$** is **2** because **2** is the largest element smaller than or equal to both **2** and **3**.
 
 ---
 
@@ -124,7 +124,7 @@ From this diagram:
 
 | **Concept**              | **Definition**                                                                                   | **Example**                          |
 |--------------------------|--------------------------------------------------------------------------------------------------|--------------------------------------|
-| **Poset**                | A set with a partial order relation.                                                              | **S = $${1, 2, 3, 4}$$** with **≤**.     |
+| **Poset**                | A set with a partial order relation.                                                              | **S = $$\{1, 2, 3, 4\}$$** with **≤**.     |
 | **LUB (Least Upper Bound)** | The smallest element greater than or equal to all elements in a subset.                          | **sup$$({2, 3})$$ = 4**.                 |
 | **GLB (Greatest Lower Bound)** | The largest element smaller than or equal to all elements in a subset.                         | **inf$$({2, 3})$$ = 2**.                 |
 
@@ -142,7 +142,7 @@ In simpler terms, a maximal element is one that cannot be surpassed or exceeded 
 
 #### **Example of Maximal Elements**
 
-Consider the Poset **S = {1, 2, 3, 4}** with the usual **≤** relation.
+Consider the Poset $$**S = {1, 2, 3, 4}**$$ with the usual **≤** relation.
 
 - The element **4** is maximal because there is no element in the set that is strictly greater than **4**.
 - The element **3** is maximal because there is no element in the set greater than **3** that is comparable to it.
@@ -159,7 +159,7 @@ In simpler terms, a minimal element is one that cannot be exceeded by any other 
 
 #### **Example of Minimal Elements**
 
-Consider the same Poset **S = {1, 2, 3, 4}** with the usual **≤** relation.
+Consider the same Poset $$**S = {1, 2, 3, 4}**$$ with the usual **≤** relation.
 
 - The element **1** is minimal because there is no element in the set that is strictly smaller than **1**.
 - The element **2** is minimal because there is no element in the set smaller than **2** that is comparable to it.
@@ -175,7 +175,7 @@ Similar to maximal elements, a Poset can have multiple minimal elements, and the
 
 #### **Example of Greatest Element**
 
-In the Poset **S = {1, 2, 3, 4}** with the usual **≤** relation, **4** is the **greatest element** because it is greater than or equal to all other elements in the set.
+In the Poset $$**S = {1, 2, 3, 4}**$$ with the usual **≤** relation, **4** is the **greatest element** because it is greater than or equal to all other elements in the set.
 
 ---
 
@@ -186,13 +186,13 @@ In the Poset **S = {1, 2, 3, 4}** with the usual **≤** relation, **4** is the 
 
 #### **Example of Least Element**
 
-In the Poset **S = {1, 2, 3, 4}** with the usual **≤** relation, **1** is the **least element** because it is less than or equal to all other elements in the set.
+In the Poset $$**S = {1, 2, 3, 4}**$$ with the usual **≤** relation, **1** is the **least element** because it is less than or equal to all other elements in the set.
 
 ---
 
 ### **5. Hasse Diagram Visualisation of Maximal and Minimal Elements**
 
-Consider the Poset **S = {1, 2, 3, 4}** with the usual **≤** relation. The Hasse diagram for this set looks like:
+Consider the Poset $$**S = {1, 2, 3, 4}**$$ with the usual **≤** relation. The Hasse diagram for this set looks like:
 
 ```
       4
@@ -228,10 +228,10 @@ In this diagram:
 
 | **Concept**              | **Definition**                                                                                     | **Example**                          |
 |--------------------------|----------------------------------------------------------------------------------------------------|--------------------------------------|
-| **Maximal Element**       | An element that is not smaller than any other element in the set.                                  | **4** in **S = {1, 2, 3, 4}**.      |
-| **Minimal Element**       | An element that is not greater than any other element in the set.                                  | **1** in **S = {1, 2, 3, 4}**.      |
-| **Greatest Element**      | An element that is greater than or equal to all other elements in the set.                         | **4** in **S = {1, 2, 3, 4}**.      |
-| **Least Element**         | An element that is smaller than or equal to all other elements in the set.                         | **1** in **S = {1, 2, 3, 4}**.      |
+| **Maximal Element**       | An element that is not smaller than any other element in the set.                                  | **4** in $$**S = {1, 2, 3, 4}**$$.      |
+| **Minimal Element**       | An element that is not greater than any other element in the set.                                  | **1** in $$**S = {1, 2, 3, 4}**$$.      |
+| **Greatest Element**      | An element that is greater than or equal to all other elements in the set.                         | **4** in $$**S = {1, 2, 3, 4}**$$.      |
+| **Least Element**         | An element that is smaller than or equal to all other elements in the set.                         | **1** in $$**S = {1, 2, 3, 4}**$$.      |
 
 💡 **TIP:**  
 Maximal and minimal elements are helpful in optimisation problems, where you may need to find the largest or smallest element in a subset based on specific constraints or properties.
@@ -251,15 +251,15 @@ The primary operations in Boolean algebra are:
 
 - **AND (Conjunction)**: The AND operation produces a true (1) result only if both operands are true (1). It is denoted by **∧** or **.** (dot).
   
-  - $$ A \land B = 1 \text{ if and only if } A = 1 \text{ and } B = 1 $$
+  - $$ A \land B = 1 if and only if A = 1 and B = 1 $$
 
 - **OR (Disjunction)**: The OR operation produces a true (1) result if at least one of the operands is true (1). It is denoted by **∨** or **+** (plus).
   
-  - $$ A \lor B = 1 \text{ if either } A = 1 \text{ or } B = 1 \text{ or both are 1} $$
+  - $$ A \lor B = 1 if either A = 1  or B = 1 or both are 1 $$
 
 - **NOT (Negation)**: The NOT operation negates the value of the operand. If the operand is true (1), the result is false (0), and vice versa. It is denoted by **¬** or **'** (prime).
   
-  - $$ \neg A = 1 \text{ if } A = 0 \text{ and } \neg A = 0 \text{ if } A = 1 $$
+  - $$ \neg A = 1 if A = 0 and \neg A = 0 if A = 1 $$
 
 ### **3. Boolean Algebra Laws**
 
@@ -363,20 +363,20 @@ A **lattice** is a set **L** equipped with two binary operations: **join (∨)**
 A lattice satisfies the following two conditions:
 
 1. **Idempotent Law**:
-   - $$ A \lor A = A \quad \text{and} \quad A \land A = A $$
+   - $$ A \lor A = A \quad and \quad A \land A = A $$
 
 2. **Commutative Law**:
-   - $$ A \lor B = B \lor A \quad \text{and} \quad A \land B = B \land A $$
+   - $$ A \lor B = B \lor A \quad and \quad A \land B = B \land A $$
 
 3. **Associative Law**:
-   - $$ A \lor (B \lor C) = (A \lor B) \lor C \quad \text{and} \quad A \land (B \land C) = (A \land B) \land C $$
+   - $$ A \lor (B \lor C) = (A \lor B) \lor C \quad and \quad A \land (B \land C) = (A \land B) \land C $$
 
 4. **Absorption Law**:
-   - $$ A \lor (A \land B) = A \quad \text{and} \quad A \land (A \lor B) = A $$
+   - $$ A \lor (A \land B) = A \quad and \quad A \land (A \lor B) = A $$
 
 #### **Example of a Lattice**
 
-Consider the set **S = {0, 1, 2, 3}** with the usual **≤** relation. The **join (∨)** and **meet (∧)** operations can be represented as follows:
+Consider the set $$**S = \{0, 1, 2, 3\}**$$ with the usual **≤** relation. The **join (∨)** and **meet (∧)** operations can be represented as follows:
 
 - **Join** (supremum) of 1 and 2:  
   $$ 1 \lor 2 = 2 $$
@@ -408,13 +408,13 @@ This law states that the **join** operation distributes over the **meet** operat
 
 ### **3. Example of Distributive Laws**
 
-Consider a lattice **L = {a, b, c, d}** with the following **meet (∧)** and **join (∨)** operations:
+Consider a lattice $$**L = \{a, b, c, d\}**$$ with the following **meet (∧)** and **join (∨)** operations:
 
 - **Meet (∧)**:  
-  $$ a \land b = a \quad \text{and} \quad b \land c = b $$
+  $$ a \land b = a \quad and \quad b \land c = b $$
 
 - **Join (∨)**:  
-  $$ a \lor b = b \quad \text{and} \quad b \lor c = c $$
+  $$ a \lor b = b \quad and \quad b \lor c = c $$
 
 Let's test the **distributive laws** using these operations:
 
@@ -466,7 +466,7 @@ However, in a modular lattice, the second distributive law does not necessarily 
 
 ### **5. Hasse Diagram Representation of a Lattice**
 
-Consider a lattice with the elements **{0, 1, 2, 3}**, where **0** is the least element and **3** is the greatest element. The Hasse diagram for this lattice looks like this:
+Consider a lattice with the elements $$**\{0, 1, 2, 3\}**$$, where **0** is the least element and **3** is the greatest element. The Hasse diagram for this lattice looks like this:
 
 ```
      3
@@ -486,7 +486,7 @@ In this diagram:
 
 | **Concept**                 | **Definition**                                                                                     | **Example**                          |
 |-----------------------------|----------------------------------------------------------------------------------------------------|--------------------------------------|
-| **Lattice**                 | A set equipped with two binary operations (join and meet) that satisfy certain properties.          | **S = {0, 1, 2, 3}** with **≤**.    |
+| **Lattice**                 | A set equipped with two binary operations (join and meet) that satisfy certain properties.          | $$**S = {0, 1, 2, 3}**$$ with **≤**.    |
 | **Distributive Lattice**    | A lattice where the join and meet operations distribute over each other.                           | Boolean algebra is a distributive lattice. |
 | **Distributive Laws**       | Laws that define the distribution of meet over join, and vice versa.                               | $$ A \land (B \lor C) = (A \land B) \lor (A \land C) $$ |
 
@@ -500,8 +500,8 @@ Distributive lattices are foundational in many areas such as Boolean algebra, se
 
 A **complemented lattice** is a special type of lattice in which each element has a **complement**. Specifically, for every element **a** in the lattice **L**, there exists an element **b** such that:
 
-- $$ a \lor b = 1 \quad \text{(the greatest element in the lattice)} $$
-- $$ a \land b = 0 \quad \text{(the least element in the lattice)} $$
+- $$ a \lor b = 1 \quad (the greatest element in the lattice) $$
+- $$ a \land b = 0 \quad (the least element in the lattice) $$
 
 Here, the element **b** is called the **complement** of **a**, and it satisfies the property that the join of **a** and its complement **b** gives the greatest element of the lattice (1), and the meet of **a** and its complement **b** gives the least element of the lattice (0).
 
@@ -530,7 +530,7 @@ A complemented lattice has the following key properties:
 
 ### **4. Example of Complemented Lattice**
 
-Consider the **Boolean algebra** **B = {0, 1}**, where the operations of **join** (∨) and **meet** (∧) follow the standard rules:
+Consider the **Boolean algebra** $$**B = \{0, 1\}**$$, where the operations of **join** (∨) and **meet** (∧) follow the standard rules:
 
 - The join (OR) operation:  
   $$ 0 \lor 0 = 0, \quad 0 \lor 1 = 1, \quad 1 \lor 1 = 1 $$
@@ -546,13 +546,13 @@ In this lattice:
 - The complement of **1** is **0**:  
   $$ 1 \lor 0 = 1, \quad 1 \land 0 = 0 $$
 
-Thus, **B = {0, 1}** is a complemented lattice because each element has a complement that satisfies the conditions.
+Thus, $$**B = {0, 1}**$$ is a complemented lattice because each element has a complement that satisfies the conditions.
 
 ---
 
 ### **5. Hasse Diagram of a Complemented Lattice**
 
-The Hasse diagram of a complemented lattice is a simple representation of the elements of the lattice, with the ordering indicated by the edges. Consider the Boolean lattice **B = {0, 1}**:
+The Hasse diagram of a complemented lattice is a simple representation of the elements of the lattice, with the ordering indicated by the edges. Consider the Boolean lattice $$**B = {0, 1}**$$:
 
 ```
     1
@@ -577,11 +577,11 @@ This is a basic example of a complemented lattice, where each element has a comp
 
 ### **7. Lattices That Are Not Complemented**
 
-Not all lattices are complemented. For example, consider the lattice of divisors of a number (e.g., the divisors of **12**: **{1, 2, 3, 4, 6, 12}**), where the meet and join operations are the greatest common divisor (gcd) and least common multiple (lcm), respectively. In this lattice, not every element has a complement.
+Not all lattices are complemented. For example, consider the lattice of divisors of a number (e.g., the divisors of **12**: $$**\{1, 2, 3, 4, 6, 12\}**$$), where the meet and join operations are the greatest common divisor (gcd) and least common multiple (lcm), respectively. In this lattice, not every element has a complement.
 
 For instance, the element **2** does not have a complement because there is no divisor **b** of 12 such that:
-   - $$ \text{lcm}(2, b) = 12 $$  
-   - $$ \text{gcd}(2, b) = 1 $$
+   - $$ lcm(2, b) = 12 $$  
+   - $$ gcd(2, b) = 1 $$
 
 Therefore, this lattice is not complemented.
 
@@ -591,9 +591,9 @@ Therefore, this lattice is not complemented.
 
 | **Concept**             | **Definition**                                                                                     | **Example**                          |
 |-------------------------|----------------------------------------------------------------------------------------------------|--------------------------------------|
-| **Complemented Lattice** | A lattice where every element has a complement such that: \( a \lor b = 1 \) and \( a \land b = 0 \). | Boolean algebra, Power set lattice  |
-| **Boolean Algebra**      | A complemented lattice that is also distributive and has both a greatest and least element.        | **B = {0, 1}** with standard operations |
-| **Complement Law**       | For any element **a**, \( a \lor \neg a = 1 \) and \( a \land \neg a = 0 \).                       | In Boolean algebra, \( 0 \lor 1 = 1 \) and \( 0 \land 1 = 0 \) |
+| **Complemented Lattice** | A lattice where every element has a complement such that: $$ a \lor b = 1 $$ and $$ a \land b = 0 $$. | Boolean algebra, Power set lattice  |
+| **Boolean Algebra**      | A complemented lattice that is also distributive and has both a greatest and least element.        | $$**B = \{0, 1\}**$$ with standard operations |
+| **Complement Law**       | For any element **a**, $$ a \lor \neg a = 1 $$ and $$ a \land \neg a = 0 $$.                       | In Boolean algebra, $$ 0 \lor 1 = 1 $$ and $$ 0 \land 1 = 0 $$ |
 | **Unique Complement**    | Each element in a complemented lattice has a unique complement.                                    | In Boolean algebra, the complement of **0** is **1** and vice versa. |
 
 💡 **TIP:**  
@@ -680,7 +680,7 @@ Logical equivalences are rules that allow us to transform logical expressions in
    - $$ p \rightarrow q \equiv \neg p \lor q $$
 
 5. **Contradiction**:
-   - $$ p \land \neg p \equiv \text{False} $$
+   - $$ p \land \neg p \equiv False $$
 
 ---
 

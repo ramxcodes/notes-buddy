@@ -153,7 +153,7 @@ Now, the matrix is in **Reduced Row Echelon Form (RREF)**.
 
 ---
 
-## **Summary**
+### **Summary**
 
 - **Rank of a Matrix**: The number of non-zero rows in the Row Echelon Form (REF).
 - **Nullity of a Matrix**: The dimension of the null space, calculated using the Rank-Nullity Theorem.
@@ -193,20 +193,20 @@ These operations are used to simplify the system of equations to find the values
 
 ---
 
-## **Steps to Solve Simultaneous Equations Using Elementary Transformation**
+### **Steps to Solve Simultaneous Equations Using Elementary Transformation**
 
-### **Step 1: Write the Augmented Matrix**
+#### **Step 1: Write the Augmented Matrix**
 Convert the system of simultaneous equations into an augmented matrix.
 
-### **Step 2: Apply Elementary Row Operations**
+#### **Step 2: Apply Elementary Row Operations**
 Perform elementary row operations to transform the augmented matrix into Row Echelon Form (REF) or Reduced Row Echelon Form (RREF).
 
-### **Step 3: Back Substitution**
+#### **Step 3: Back Substitution**
 Once the matrix is in Row Echelon Form, use back substitution to find the values of the unknown variables.
 
 ---
 
-## **Example**
+### **Example**
 
 Let's solve the following system of equations:
 
@@ -218,7 +218,7 @@ x + y + z &= 6 \\
 \end{aligned}
 $$
 
-### **Step 1: Write the Augmented Matrix**
+#### **Step 1: Write the Augmented Matrix**
 
 The augmented matrix corresponding to the system is:
 
@@ -230,9 +230,9 @@ $$
 \end{pmatrix}
 $$
 
-### **Step 2: Apply Elementary Row Operations**
+#### **Step 2: Apply Elementary Row Operations**
 
-#### Operation 1: Eliminate the $$ x $$-terms in the second and third rows.
+##### Operation 1: Eliminate the $$ x $$-terms in the second and third rows.
 
 - Subtract $$ 2 \times $$ Row 1 from Row 2:
   
@@ -256,7 +256,7 @@ $$
 \end{pmatrix}
 $$
 
-#### Operation 2: Eliminate the $$ z $$-terms in the first row.
+##### Operation 2: Eliminate the $$ z $$-terms in the first row.
 
 - Subtract Row 2 from Row 1:
 
@@ -274,7 +274,7 @@ $$
 \end{pmatrix}
 $$
 
-### **Step 3: Back Substitution**
+#### **Step 3: Back Substitution**
 
 Now that the matrix is in **Row Echelon Form (REF)**, we can solve for the variables:
 
@@ -299,7 +299,7 @@ Hence, the system has infinitely many solutions, depending on the value of $$ y 
 
 ---
 
-## **Summary**
+### **Summary**
 
 - **Elementary Row Operations**: These are used to transform the augmented matrix of the system into Row Echelon Form (REF) or Reduced Row Echelon Form (RREF).
 - **Back Substitution**: After reducing the matrix to REF, use back substitution to solve for the variables.
@@ -362,7 +362,7 @@ Thus, the system has a unique solution $$ (x, y) = (4, 0) $$, and it is **consis
 
 ---
 
-## **Inconsistency of Equations**
+### **Inconsistency of Equations**
 
 A system of equations is said to be **inconsistent** if there is **no solution** that satisfies all the equations simultaneously. Graphically, this means that the lines or planes representing the equations do not intersect at any point.
 
@@ -416,7 +416,7 @@ This is a contradiction because $$ 0 = 2 $$ is impossible. Therefore, the system
 
 ---
 
-## **Conditions for Consistency and Inconsistency**
+### **Conditions for Consistency and Inconsistency**
 
 1. **Consistent System**:
    - The system has at least one solution.
@@ -435,7 +435,7 @@ where $$ A|b $$ is the augmented matrix formed by appending the column vector $$
 
 ---
 
-## **Summary**
+### **Summary**
 
 - **Consistent System**: Has at least one solution. It can have a unique solution or infinitely many solutions.
   - Example: $$ x + y = 4 $$ and $$ 2x + 3y = 8 $$.
@@ -492,7 +492,7 @@ Solve this system of linear equations to find the eigenvector $$ \mathbf{v} $$ c
 
 ---
 
-## **Example**
+### **Example**
 
 Let’s consider the matrix:
 
@@ -503,7 +503,7 @@ A = \begin{pmatrix}
 \end{pmatrix}
 $$
 
-### **Step 1: Find the Eigenvalues**
+#### **Step 1: Find the Eigenvalues**
 
 First, compute the characteristic equation:
 
@@ -554,9 +554,9 @@ $$
 \lambda_1 = 5, \quad \lambda_2 = 2
 $$
 
-### **Step 2: Find the Eigenvectors**
+#### **Step 2: Find the Eigenvectors**
 
-#### **Eigenvector for $$ \lambda_1 = 5 $$**
+##### **Eigenvector for $$ \lambda_1 = 5 $$**
 
 Substitute $$ \lambda_1 = 5 $$ into the equation $$ (A - \lambda I) \mathbf{v} = 0 $$:
 
@@ -605,7 +605,7 @@ $$
 \mathbf{v}_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}
 $$
 
-#### **Eigenvector for $$ \lambda_2 = 2 $$**
+##### **Eigenvector for $$ \lambda_2 = 2 $$**
 
 Substitute $$ \lambda_2 = 2 $$ into the equation $$ (A - 2I) \mathbf{v} = 0 $$:
 
@@ -656,7 +656,7 @@ $$
 
 ---
 
-## **Summary**
+### **Summary**
 
 - **Eigenvalue**: A scalar $$ \lambda $$ such that $$ A \mathbf{v} = \lambda \mathbf{v} $$.
 - **Eigenvector**: A non-zero vector $$ \mathbf{v} $$ that satisfies $$ A \mathbf{v} = \lambda \mathbf{v} $$.
