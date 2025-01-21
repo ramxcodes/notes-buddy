@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { getCollection } from "@/lib/db";
-import { verifyCaptcha } from "@/lib/captcha";
 
 export async function POST(request: Request) {
   const {
@@ -12,18 +11,22 @@ export async function POST(request: Request) {
     syllabus,
     phoneNumber,
     userId,
-    captchaToken,
   } = await request.json();
 
-  if (process.env.NODE_ENV !== "development") {
-    const captchaValid = await verifyCaptcha(captchaToken);
-    if (!captchaValid) {
-      return NextResponse.json({ error: "Invalid CAPTCHA" }, { status: 400 });
-    }
-  }
-
-  if (!university || !degree || !year || !semester || !subject || !syllabus || !userId || !phoneNumber) {
-    return NextResponse.json({ error: "All fields are required" }, { status: 400 });
+  if (
+    !university ||
+    !degree ||
+    !year ||
+    !semester ||
+    !subject ||
+    !syllabus ||
+    !userId ||
+    !phoneNumber
+  ) {
+    return NextResponse.json(
+      { error: "All fields are required" },
+      { status: 400 }
+    );
   }
 
   try {
@@ -43,6 +46,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "Request successfully saved" });
   } catch (error) {
     console.error("Failed to save request notes:", error);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
   }
 }

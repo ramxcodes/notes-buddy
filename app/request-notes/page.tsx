@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -13,7 +12,6 @@ import BlurFade from "@/components/ui/blur-fade";
 
 const RequestNotesPage = () => {
   const { data: session, status } = useSession();
-  const router = useRouter();
 
   const [formData, setFormData] = useState({
     university: "",
@@ -23,7 +21,6 @@ const RequestNotesPage = () => {
     subject: "",
     syllabus: "",
     phoneNumber: "",
-    captchaToken: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -78,7 +75,10 @@ const RequestNotesPage = () => {
         throw new Error(await response.text());
       }
 
-      alert("Request submitted successfully!");
+      // Show success popup
+      setPopupMessage("Request submitted successfully!");
+      setShowPopup(true);
+
       setFormData({
         university: "",
         degree: "",
@@ -87,11 +87,13 @@ const RequestNotesPage = () => {
         subject: "",
         syllabus: "",
         phoneNumber: formData.phoneNumber,
-        captchaToken: "",
       });
     } catch (error) {
       console.error(error);
-      alert("Failed to submit the request.");
+
+      // Show failure popup
+      setPopupMessage("Failed to submit the request.");
+      setShowPopup(true);
     } finally {
       setIsSubmitting(false);
     }
