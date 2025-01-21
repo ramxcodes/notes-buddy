@@ -1,0 +1,992 @@
+---
+title: "Unit 1: Discrete Mathematics"
+description: Sets, sub-sets & operations on sets, Finite and infinite sets, principle of inclusion and exclusion Relations & Properties of relations – equivalence relation, Functions-> Definition, Classification of functions, Composition of functions, Growth of Functions, Pigeon hole principle. 
+date: 2025-01-12
+tags: ["Discrete Mathematics", "3rd Semester", "2nd Year", "B Tech"]
+published: true
+metadata:
+  university: "Medicaps University"
+  degree: "B Tech"
+  semester: "3rd Semester"
+  subject: "Discrete Mathematics"
+---
+
+---
+  ## **Sets, Subsets, and Operations on Sets**
+
+### **1. Sets**
+
+A **set** is a well-defined collection of distinct objects, considered as an object in its own right.
+
+- **Definition:** A set is usually denoted by curly braces '{}' and contains elements (also called members) separated by commas. For example:
+  $$ A = \{1, 2, 3, 4\} $$
+
+- **Notation:**
+  - A set can be represented as **A = \{a, b, c\}**.
+  - The set can contain numbers, symbols, or even other sets.
+  - Elements of a set are often denoted as **x ∈ A** meaning "x is an element of A".
+
+#### **Types of Sets:**
+- **Finite Set:** A set with a definite number of elements. E.g.,$$ A = \{1, 2, 3\}$$.
+- **Infinite Set:** A set with an infinite number of elements. E.g.,$$ A = \{1, 2, 3, 4, …\}$$.
+- **Equal Set:** Two sets that contain exactly the same elements. E.g.,$$ A = B = \{1, 2, 3\}$$.
+- **Null Set (Empty Set):** A set that contains no elements. E.g.,$$ A = \{\}$$ or A = ∅.
+- **Universal Set:** The set containing all the elements under consideration, usually denoted as **U**.
+  
+---
+### **2. Subsets**
+
+A **subset** is a set in which every element is also contained in another set.
+
+- **Definition:** A set **A** is a subset of set **B** (denoted **A ⊆ B**) if all elements of **A** are also elements of **B**.
+
+  $$ A = \{1, 2\}, B = \{1, 2, 3, 4\} \quad So, A ⊆ B $$
+
+#### **Proper Subset:**
+- A **proper subset** of a set **A** is a set **B** such that every element of **B** is also in **A**, but **B** is not equal to **A**. This is denoted as **A ⊂ B**.
+  
+---
+
+### **3. Operations on Sets**
+
+There are several key operations that can be performed on sets, which are crucial for set theory.
+
+#### **Union of Sets ( ∪ )**
+- The union of two sets **A** and **B** is the set of all elements that are in **A**, **B**, or both.
+  
+  $$ A = \{1, 2, 3\}, B = \{3, 4, 5\} \quad A ∪ B = \{1, 2, 3, 4, 5\} $$
+
+#### **Intersection of Sets ( ∩ )**
+- The intersection of two sets **A** and **B** is the set of elements that are common to both **A** and **B**.
+  
+  $$ A = \{1, 2, 3\}, B = \{3, 4, 5\} \quad A ∩ B = \{3\} $$
+
+#### **Difference of Sets ( − )**
+- The difference of two sets **A** and **B** (denoted **A − B**) is the set of elements that are in **A** but not in **B**.
+  
+  $$ A = \{1, 2, 3\}, B = \{2, 3, 4\} \quad A − B = \{1\} $$
+
+#### **Complement of a Set ( A' )**
+- The complement of a set **A** refers to all elements not in **A** (relative to a universal set **U**).
+  
+  $$ A = \{1, 2, 3\}, U = \{1, 2, 3, 4, 5\} \quad A' = \{4, 5\} $$
+
+---
+
+### **4. Venn Diagrams for Set Operations**
+
+- **Venn diagrams** visually represent the relationships between sets, such as union, intersection, and difference.
+  
+  Example: 
+  Intersection of sets
+  ![Interseaction of Sets](https://math24.net/images/set-operations2.svg)
+  Union of sets
+  ![Interseaction of Sets](https://math24.net/images/set-operations1.svg)
+  Difference of two sets
+  ![Interseaction of Sets](https://math24.net/images/set-operations3.svg)
+  Compliment of sets
+  ![Interseaction of Sets](https://math24.net/images/set-operations5.svg)
+
+---
+
+📝 **NOTE:**  
+- When performing operations on sets, it’s important to remember the following properties:
+  - **Commutative Property:** $$ A ∪ B = B ∪ A $$, $$ A ∩ B = B ∩ A $$
+  - **Associative Property:** $$ (A ∪ B) ∪ C = A ∪ (B ∪ C) $$, $$ (A ∩ B) ∩ C = A ∩ (B ∩ C) $$
+  - **Distributive Property:** $$ A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C) $$
+
+---
+## **Finite and Infinite Sets**
+
+### **1. Finite Sets**
+
+A **finite set** is a set that contains a definite or countable number of elements.
+
+- **Definition:** A set is called finite if you can count the number of elements in the set and the counting process terminates (i.e., there are no more elements to count).
+
+- **Example:**
+  
+  $$ A = \{1, 2, 3, 4\} $$  
+  This set has 4 elements, so it is a finite set.
+
+#### **Properties of Finite Sets:**
+- The number of elements in a finite set is always a non-negative integer.
+- Finite sets are countable.
+- The power set of a finite set always has a finite number of subsets.
+
+---
+  
+### **2. Infinite Sets**
+
+An **infinite set** is a set that contains an infinite number of elements, meaning the set is not countable or the counting process never ends.
+
+- **Definition:** A set is called infinite if it has endless elements. These sets can’t be fully listed or counted.
+
+- **Example:**
+  
+  $$ B = \{1, 2, 3, 4, 5, \dots\} $$  
+  This set is infinite because the elements go on forever.
+
+#### **Types of Infinite Sets:**
+
+- **Countably Infinite Set:** A set whose elements can be matched one-to-one with the natural numbers.  
+  - Example:  
+    $$ C = \{1, 2, 3, 4, \dots\} $$  
+    This set is countably infinite because the elements can be listed as 1, 2, 3, and so on.
+
+- **Uncountably Infinite Set:** A set that cannot be matched one-to-one with the natural numbers. These sets have more elements than countable sets.
+  - Example: The set of real numbers between 0 and 1 (i.e., $$ \{0 \leq x \leq 1\} $$) is uncountably infinite because there are infinite numbers in this range, and they cannot be listed in a sequence like natural numbers.
+
+#### **Properties of Infinite Sets:**
+- Infinite sets cannot be listed completely.
+- Infinite sets do not have a finite number of elements.
+- The concept of cardinality (size) is used to compare infinite sets. For example, a countably infinite set has the same cardinality as the set of natural numbers.
+
+---
+
+### **3. Key Differences between Finite and Infinite Sets**
+
+| **Property**                | **Finite Set**                                   | **Infinite Set**                              |
+|-----------------------------|--------------------------------------------------|------------------------------------------------|
+| **Number of Elements**       | Finite (countable)                              | Infinite (uncountable or countable)           |
+| **Example**                  | A = $$\{1, 2, 3\}$$                                   | B = $$\{1, 2, 3, 4, …\}$$                           |
+| **Cardinality**              | Non-negative integer (e.g., 3 elements)         | Infinite (not a finite number)                |
+| **Countability**             | Countable (number of elements can be counted)   | Uncountable or countable                      |
+| **Power Set**                | Finite (has a finite number of subsets)         | Infinite (has an infinite number of subsets)  |
+
+---
+
+💡 **TIP:**  
+- The distinction between finite and infinite sets is important in set theory, particularly when discussing the **cardinality** of sets and operations involving infinite sets.
+
+---
+## **Principle of Inclusion and Exclusion in Relations**
+
+### **1. Principle of Inclusion and Exclusion (PIE)**
+
+The **Principle of Inclusion and Exclusion** is a counting technique used in set theory to calculate the cardinality (size) of the union of multiple sets when the sets may overlap. It allows you to **count** the elements in the union of sets while ensuring that overlapping elements are not counted multiple times.
+
+#### **Formula for Two Sets:**
+
+If you have two sets **A** and **B**, the principle states:
+
+$$ |A \cup B| = |A| + |B| - |A \cap B| $$
+
+Where:
+- **|A ∪ B|** is the number of elements in the union of sets **A** and **B**.
+- **|A|** and **|B|** are the numbers of elements in sets **A** and **B**, respectively.
+- **|A ∩ B|** is the number of elements in the intersection of sets **A** and **B**.
+
+#### **Formula for Three Sets:**
+
+For three sets **A**, **B**, and **C**, the principle becomes:
+
+$$ |A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |B \cap C| - |A \cap C| + |A \cap B \cap C| $$
+
+This formula accounts for all pairwise intersections and the triple intersection.
+
+#### **General Formula for n Sets:**
+
+For **n** sets, the general formula for the union of these sets is:
+
+$$ |A_1 \cup A_2 \cup \dots \cup A_n| = \sum |A_i| - \sum |A_i \cap A_j| + \sum |A_i \cap A_j \cap A_k| - \dots + (-1)^{n+1}|A_1 \cap A_2 \cap \dots \cap A_n| $$
+
+---
+
+### **2. Applications in Relations**
+
+In the context of **relations**, the principle of inclusion and exclusion is often used when determining the size of the union or intersection of multiple relations.
+
+#### **Relations:**
+- A **relation** between two sets **A** and **B** is a subset of the Cartesian product **A × B**, i.e., a set of ordered pairs (a, b) where **a ∈ A** and **b ∈ B**.
+  
+  $$ R \subseteq A \times B $$
+
+#### **Union of Relations:**
+If we have two relations **R** and **S** between sets **A** and **B**, the union of these relations **R ∪ S** will consist of all the pairs that are in either **R** or **S**. The principle of inclusion and exclusion helps calculate the number of elements in **R ∪ S** when **R** and **S** overlap (i.e., have common pairs).
+
+#### **Intersection of Relations:**
+The intersection **R ∩ S** represents the relation between **A** and **B** that contains only the pairs that are common to both **R** and **S**. This is a straightforward application of the intersection operation on sets.
+
+#### **Example with Relations:**
+
+Consider two relations:
+- **R = \{(1, 2), (2, 3), (3, 4)\}**
+- **S = \{(2, 3), (3, 4), (4, 5)\}**
+
+Now, let’s calculate the union and intersection of these relations using the principle of inclusion and exclusion.
+
+- **Union (R ∪ S):**
+
+The union will contain all the pairs from both relations, but we will not count the common pairs twice. Using PIE:
+
+$$ |R \cup S| = |R| + |S| - |R \cap S| $$
+
+Here:
+- **|R| = 3** (3 pairs in R),
+- **|S| = 3** (3 pairs in S),
+- **|R ∩ S| = 2** (common pairs: (2, 3) and (3, 4)).
+
+So, applying PIE:
+
+$$ |R \cup S| = 3 + 3 - 2 = 4 $$
+
+The union is:
+
+$$ R \cup S = \{(1, 2), (2, 3), (3, 4), (4, 5)\} $$
+
+- **Intersection (R ∩ S):**
+
+The intersection contains the pairs that are in both **R** and **S**:
+
+$$ R \cap S = \{(2, 3), (3, 4)\} $$
+
+---
+
+### **3. Key Insights from PIE for Relations:**
+
+- When working with relations, the Principle of Inclusion and Exclusion helps in avoiding double-counting when calculating the number of elements in the union of multiple relations.
+- It’s particularly useful in **database queries** and **graph theory** where relationships (represented as sets) overlap.
+
+---
+
+📝 **NOTE:**  
+- The principle of inclusion and exclusion can be extended beyond relations to solve problems in counting, probability, and logic. It's a fundamental tool in combinatorics.
+
+---
+## **Properties of Relations – Equivalence Relation**
+
+### **1. What is a Relation?**
+
+A **relation** on a set **A** is a subset of the Cartesian product of **A** with itself, i.e., a set of ordered pairs of elements from **A**. A relation **R** on a set **A** is denoted as:
+
+$$ R \subseteq A \times A $$
+
+For example, if **A = $$\{1, 2, 3\}$$**, a relation **R** could be **R = $$\{(1, 1), (2, 2), (3, 3)\}$$**.
+
+---
+
+### **2. What is an Equivalence Relation?**
+
+An **equivalence relation** on a set is a relation that satisfies three specific properties: **reflexivity**, **symmetry**, and **transitivity**.
+
+#### **Definition:**  
+A relation **R** on a set **A** is an equivalence relation if it satisfies all three of the following properties:
+
+- **Reflexivity:** For every element **a** in **A**, **(a, a)** is in **R**.  
+  In other words, every element is related to itself.
+  $$ \forall a \in A, (a, a) \in R $$
+
+- **Symmetry:** If **(a, b)** is in **R**, then **(b, a)** must also be in **R**.  
+  If an element **a** is related to **b**, then **b** is also related to **a**.
+  $$ \forall a, b \in A, \ (a, b) \in R \implies (b, a) \in R $$
+
+- **Transitivity:** If **(a, b)** is in **R** and **(b, c)** is in **R**, then **(a, c)** must also be in **R**.  
+  If **a** is related to **b** and **b** is related to **c**, then **a** must also be related to **c**.
+  $$ \forall a, b, c \in A, \ (a, b) \in R \land (b, c) \in R \implies (a, c) \in R $$
+
+If a relation satisfies all three of these properties, it is called an **equivalence relation**.
+
+---
+
+### **3. Examples of Equivalence Relations**
+
+#### **Example 1: Equality Relation**
+The equality relation on any set is always an equivalence relation.
+
+- **Set A = $$\{1, 2, 3\}$$**  
+  Define the relation **R = $$\{(1, 1), (2, 2), (3, 3)\}$$**, i.e., every element is related to itself.
+  
+- **Reflexive:** Each element is related to itself, so **(a, a) ∈ R** for all **a ∈ A**.
+- **Symmetric:** If **(a, b) ∈ R**, then **(b, a) ∈ R** trivially because **(a, a)** is the only pair.
+- **Transitive:** If **(a, b) ∈ R** and **(b, c) ∈ R**, then **(a, c) ∈ R**.
+
+Thus, **R** is an equivalence relation.
+
+#### **Example 2: Congruence Modulo n**
+
+Consider the relation of congruence modulo **n** on the set of integers **Z**.
+
+- Define **a ≡ b (mod n)** if and only if **a - b** is divisible by **n**.
+
+- **Reflexive:** Every integer is congruent to itself because **a - a = 0**, which is divisible by **n**.
+- **Symmetric:** If **a ≡ b (mod n)**, then **b ≡ a (mod n)** because the difference **a - b** is divisible by **n**, which means **b - a** is also divisible by **n**.
+- **Transitive:** If **a ≡ b (mod n)** and **b ≡ c (mod n)**, then **a ≡ c (mod n)** because **a - b** and **b - c** are both divisible by **n**, so **a - c** is divisible by **n**.
+
+Thus, the relation **≡ (mod n)** is an equivalence relation.
+
+---
+
+### **4. Equivalence Classes**
+
+When a relation is an equivalence relation, it divides the set into **disjoint subsets**, called **equivalence classes**.
+
+#### **Definition:**  
+An **equivalence class** of an element **a** in **A** is the set of all elements in **A** that are related to **a**. The equivalence class of **a** is denoted as **[a]** and is defined as:
+
+$$ [a] = \{x \in A \mid (a, x) \in R\} $$
+
+#### **Example:**
+For **A = $$\{1, 2, 3, 4, 5\}$$** and the relation **R = $$\{(1, 1), (2, 2), (3, 3), (1, 2), (2, 1)\}$$**, the equivalence classes would be:
+
+- **[1] = $$\{1, 2\}$$** (since 1 is related to 2 and vice versa),
+- **[3] = $$\{3\}$$**,
+- **[4] = $$\{4\}$$**,
+- **[5] = $$\{5\}$$**.
+
+---
+
+### **5. Properties of Equivalence Relations**
+
+- **Partitions the Set:** An equivalence relation partitions the set into disjoint equivalence classes. Every element in the set belongs to exactly one equivalence class.
+- **Reflexivity, Symmetry, and Transitivity:** These are the defining properties of an equivalence relation, ensuring that each element relates to itself, the relation is bidirectional, and relationships are consistent across chains of related elements.
+- **Equivalence Class Partitions:** The set **A** can be viewed as the union of all its equivalence classes, with no overlap between classes.
+
+---
+
+💡 **TIP:**  
+- Equivalence relations help to simplify complex problems in set theory and other areas, like group theory and modular arithmetic, by grouping elements with similar properties together into equivalence classes.
+
+---
+## **Functions – Definition**
+
+### **1. What is a Function?**
+
+A **function** is a special type of relation that associates every element of one set (called the **domain**) with exactly one element of another set (called the **codomain**).
+
+#### **Formal Definition:**
+
+A **function** **f** from set **A** to set **B** is a relation **f: A → B** such that every element **a** in **A** is associated with exactly one element **b** in **B**. In this case, we say that **f** maps **a** to **b**, and we write:
+
+$$ f(a) = b $$
+
+Here:
+- **A** is the **domain** of the function.
+- **B** is the **codomain** (or target set) of the function.
+- **f(a)** represents the output (or value) of the function corresponding to the input **a**.
+
+### **2. Example of a Function**
+
+Consider the function **f: Z → Z** defined by:
+
+$$ f(x) = 2x $$
+
+Here:
+- **Z** is the set of integers, both for the **domain** and the **codomain**.
+- The function **f** maps any integer **x** to its double. For example:
+  - **f(2) = 4**
+  - **f(-3) = -6**
+  - **f(0) = 0**
+
+### **3. Components of a Function**
+
+A function consists of three key components:
+1. **Domain:** The set of all possible inputs (values that can be fed into the function).
+2. **Codomain:** The set of all possible outputs (the set of possible results).
+3. **Rule or Mapping:** The rule that defines how each element of the domain is mapped to an element of the codomain.
+
+---
+
+### **4. Types of Functions**
+
+Functions can be categorized into various types based on specific properties:
+
+#### **Injective Function (One-to-One):**
+A function is **injective** (or one-to-one) if distinct elements in the domain map to distinct elements in the codomain. In other words, no two different elements in the domain have the same image in the codomain.
+
+$$ f(a_1) = f(a_2) \implies a_1 = a_2 $$
+
+#### **Surjective Function (Onto):**
+A function is **surjective** (or onto) if every element in the codomain is the image of some element in the domain. In other words, the function "covers" the entire codomain.
+
+For all **b** in the codomain, there exists an **a** in the domain such that **f(a) = b**.
+
+#### **Bijective Function (One-to-One Correspondence):**
+A function is **bijective** if it is both **injective** (one-to-one) and **surjective** (onto). This means that every element in the domain is mapped to a unique element in the codomain, and every element in the codomain is the image of some element in the domain.
+
+---
+
+### **5. Domain and Codomain Example**
+
+Let’s look at the following example to understand the domain and codomain better.
+
+Consider the function:
+
+$$ f: \mathbb{R} \rightarrow \mathbb{R} $$
+
+Where **f(x) = x^2**.
+
+- **Domain:** The domain is **all real numbers** $$(**\mathbb{R}**)$$, meaning that you can input any real number.
+- **Codomain:** The codomain is also **all real numbers** $$(**\mathbb{R}**)$$, but the function only produces **non-negative real numbers** (i.e., the range is restricted to **[0, ∞]**).
+
+---
+
+### **6. Function Notation**
+
+The function is usually written in the form:
+
+$$ f: A \to B $$
+
+Where:
+- **A** is the domain (input set),
+- **B** is the codomain (output set).
+
+To denote the function's output for a specific input, we use function notation:
+
+$$ f(a) $$
+
+This reads as "**f of a**" and represents the output when the input is **a**.
+
+#### **Example:**
+For $$**f(x) = 2x + 3**, if **x = 5**$$, then:
+
+$$ f(5) = 2(5) + 3 = 13 $$
+
+---
+
+### **7. Important Notes About Functions**
+
+- A **function** associates **each input** with exactly one output.
+- A **relation** may map an element to more than one output, but a **function** maps each element to **only one** output.
+  
+---
+
+📝 **NOTE:**  
+- A function can be **visualized** using a **graph**, where the **x-axis** represents the input and the **y-axis** represents the output. If the function is well-defined, for every **x** there should be exactly one corresponding **y** value.
+
+---
+## **Classification of Functions**
+
+### **1. Based on Mapping Properties**
+
+#### **1.1. Injective Function (One-to-One Function)**
+
+A function $$**f: A → B**$$ is called **injective** (or **one-to-one**) if different elements in the domain **A** map to different elements in the codomain **B**. This means that no two distinct elements of the domain have the same image in the codomain.
+
+- **Mathematical Definition:**
+  $$ f(a_1) = f(a_2) \implies a_1 = a_2 $$
+
+- **Example:**
+  Consider the function **f: A → B**, where **A = $$\{1, 2, 3\}$$** and **B = $$\{a, b, c\}$$**. If **f(1) = a**, **f(2) = b**, and **f(3) = c**, then the function is injective.
+
+#### **1.2. Surjective Function (Onto Function)**
+
+A function **f: A → B** is called **surjective** (or **onto**) if every element in the codomain **B** has at least one element in the domain **A** mapping to it. In other words, the function "covers" the entire codomain.
+
+- **Mathematical Definition:**
+  $$ \forall b \in B, \exists a \in A  such that f(a) = b $$
+
+- **Example:**
+  Consider the function **f: Z → Z**, where **f(x) = 2x**. Here, every element in **Z** has a corresponding value in the domain, so the function is **surjective**.
+
+#### **1.3. Bijective Function (One-to-One Correspondence)**
+
+A function **f: A → B** is called **bijective** (or **one-to-one correspondence**) if it is both **injective** (one-to-one) and **surjective** (onto). This means that:
+- Each element of the domain is related to exactly one element in the codomain.
+- Each element of the codomain is related to exactly one element in the domain.
+
+- **Mathematical Definition:**
+  $$ f  is bijective if it is both injective and surjective. $$
+
+- **Example:**
+  Consider the function **f: A → B**, where **A = $$\{1, 2, 3\}$$** and **B = $$\{a, b, c\}$$**. If **f(1) = a**, **f(2) = b**, and **f(3) = c**, then the function is **bijective** because it is both one-to-one and onto.
+
+---
+
+### **2. Based on Special Properties**
+
+#### **2.1. Constant Function**
+
+A **constant function** is a function in which every element of the domain is mapped to the same element in the codomain. That is, the output does not change no matter what input is provided.
+
+- **Mathematical Definition:**
+  $$ f(x) = c, \ \forall x \in A , where  c \in B  is a constant $$
+
+- **Example:**
+  Let **f: A → B**, where **A = $$\{1, 2, 3\}$$** and **B = $$\{a, b\}$$**. If **f(1) = a**, **f(2) = a**, and **f(3) = a**, then **f** is a constant function.
+
+#### **2.2. Identity Function**
+
+The **identity function** is a function that maps every element of the domain to itself. For a set **A**, the identity function is denoted as **I_A** or **id_A**.
+
+- **Mathematical Definition:**
+  $$ I_A(x) = x, \ \forall x \in A $$
+
+- **Example:**
+  For **A = $$\{1, 2, 3\}$$**, the identity function would be **I_A = $$\{(1, 1), (2, 2), (3, 3)\}$$**.
+
+#### **2.3. Many-to-One Function**
+
+A **many-to-one function** is a function in which two or more elements of the domain are mapped to the same element in the codomain. This is the opposite of a one-to-one function.
+
+- **Example:**
+  Consider **f: A → B**, where **A = $$\{1, 2, 3, 4\}$$** and **B = $$\{a, b\}$$**. If **f(1) = a**, **f(2) = a**, **f(3) = b**, and **f(4) = b**, then **f** is a **many-to-one** function.
+
+#### **2.4. One-to-Many Function**
+
+A **one-to-many function** is a relation where a single element in the domain corresponds to multiple elements in the codomain. However, this is generally not considered a valid function in mathematics because a function, by definition, must assign exactly one element in the codomain to each element in the domain.
+
+- **Example:** This case would be a **relation**, but not a valid function.
+
+---
+
+### **3. Based on Domain and Codomain Types**
+
+#### **3.1. Polynomial Function**
+
+A **polynomial function** is a function that is defined by a polynomial expression. The function can be written in the form:
+
+$$ f(x) = a_nx^n + a_{n-1}x^{n-1} + \dots + a_1x + a_0 $$
+
+Where $$**a_n, a_\{n-1\}, ..., a_0**$$ are constants, and **n** is a non-negative integer.
+
+- **Example:**
+  $$ f(x) = 2x^2 + 3x + 1 $$
+
+#### **3.2. Rational Function**
+
+A **rational function** is a function that is the ratio of two polynomials. It can be expressed as:
+
+$$ f(x) = \frac{P(x)}{Q(x)} $$
+
+Where **P(x)** and **Q(x)** are polynomials, and **Q(x) ≠ 0**.
+
+- **Example:**
+  $$ f(x) = \frac{x^2 + 1}{x - 1} $$
+
+#### **3.3. Exponential Function**
+
+An **exponential function** is a function in which the variable appears in the exponent. The general form of an exponential function is:
+
+$$ f(x) = a^x $$
+
+Where **a** is a constant and **x** is the variable.
+
+- **Example:**
+  $$ f(x) = 2^x $$
+
+---
+
+### **4. Summary Table of Function Classifications**
+
+| **Type of Function**         | **Definition**                                          | **Example**                                           |
+|------------------------------|---------------------------------------------------------|-------------------------------------------------------|
+| **Injective (One-to-One)**    | Each element of the domain maps to a unique element in the codomain. | **f(x) = x + 1** on **A = $$\{1, 2, 3\}$$**              |
+| **Surjective (Onto)**         | Every element of the codomain is covered by the function. | **f(x) = 2x** on **Z → Z**                            |
+| **Bijective (One-to-One Correspondence)** | The function is both injective and surjective. | **f(x) = x + 1** on **A = $$\{1, 2, 3\}$$**               |
+| **Constant Function**         | All elements map to the same element in the codomain.    | **f(x) = 5** on **A = $$\{1, 2, 3\}$$**                   |
+| **Identity Function**         | Maps every element to itself.                           | **f(x) = x** on **A = $$\{1, 2, 3\}$$**                   |
+| **Many-to-One**               | Different elements map to the same element in the codomain. | **f(x) = x^2** on **A = $$\{-2, -1, 0, 1, 2\}$$**          |
+
+---
+
+💡 **TIP:**  
+Understanding the classification of functions is important in mathematics as it allows you to recognize the behavior of functions in different contexts and apply the appropriate techniques.
+
+---
+## **Composition of Functions**
+
+### **1. What is Composition of Functions?**
+
+The **composition of functions** is the process of combining two functions to create a new function. Given two functions **f: A → B** and **g: B → C**, the composition of **f** and **g** is a new function **g ∘ f: A → C**, defined as applying **f** first and then applying **g** to the result.
+
+Mathematically, the composition of functions is written as:
+
+$$ (g \circ f)(x) = g(f(x)) $$
+
+In words, **"g composed with f"** means we apply **f** first, and then apply **g** to the output of **f**.
+
+---
+
+### **2. Conditions for Composition**
+
+- The **output (codomain)** of the first function **f** must be the **input (domain)** of the second function **g** for the composition to be defined.
+- In the composition **g ∘ f**, the function **f** takes an element **x** from the domain **A** and maps it to an element **f(x)** in the codomain **B**. Then, **g** takes this output **f(x)** and maps it to an element in the codomain **C**.
+
+---
+
+### **3. Example of Composition of Functions**
+
+Let’s consider two functions:
+- **f: A → B**, where **f(x) = 2x** for **A = $$\{1, 2, 3\}$$** and **B = $$\{2, 4, 6\}$$**.
+- **g: B → C**, where **g(x) = x + 1** for **B = $$\{2, 4, 6\}$$** and **C = $$\{3, 5, 7\}$$**.
+
+#### **Step 1: Apply f**
+For **f(x) = 2x**, we have:
+- **f(1) = 2 × 1 = 2**
+- **f(2) = 2 × 2 = 4**
+- **f(3) = 2 × 3 = 6**
+
+#### **Step 2: Apply g to f(x)**
+Now, we apply **g** to the results of **f**:
+- **g(f(1)) = g(2) = 2 + 1 = 3**
+- **g(f(2)) = g(4) = 4 + 1 = 5**
+- **g(f(3)) = g(6) = 6 + 1 = 7**
+
+Thus, the composition **g ∘ f** is given by:
+- **(g ∘ f)(1) = 3**
+- **(g ∘ f)(2) = 5**
+- **(g ∘ f)(3) = 7**
+
+Therefore, the composition **g ∘ f: A → C** is:
+
+$$ (g \circ f) = \{(1, 3), (2, 5), (3, 7)\} $$
+
+---
+### **4. Properties of Composition of Functions**
+
+- **Associativity:** Composition of functions is **associative**. That is, if you have three functions **f**, **g**, and **h**, then:
+
+  $$ (h \circ (g \circ f)) = ((h \circ g) \circ f) $$
+
+  This property allows us to compose multiple functions without worrying about the order of composition.
+
+- **Non-commutativity:** Composition of functions is **not commutative**. That is, in general:
+
+  $$ g \circ f \neq f \circ g $$
+
+  The order in which the functions are applied matters.
+
+---
+
+### **5. Identity Function and Composition**
+
+The **identity function** plays a special role in function composition. The identity function **I** on a set **A** is the function that maps every element of **A** to itself:
+
+$$ I(x) = x \quad \forall x \in A $$
+
+When the identity function is composed with any other function, it leaves the function unchanged:
+
+- **(f ∘ I)(x) = f(x)**
+- **(I ∘ f)(x) = f(x)**
+
+This is because applying the identity function has no effect on the input.
+
+---
+
+### **6. Notation for Composition of Functions**
+
+We use **(g ∘ f)** to denote the composition of two functions **f** and **g**, but it is often helpful to expand the notation as follows:
+
+- **(g ∘ f)(x)** means **g(f(x))**, where **f(x)** is applied first, and then **g** is applied to the result.
+
+---
+
+### **7. Composition of Functions Example in Real-Life**
+
+Suppose we have two functions:
+1. **f(x) = x + 2**, which takes a number **x** and adds 2 to it.
+2. **g(x) = 3x**, which takes a number **x** and multiplies it by 3.
+
+If we compose **g ∘ f**, the resulting function is:
+
+$$ (g \circ f)(x) = g(f(x)) = g(x + 2) = 3(x + 2) = 3x + 6 $$
+
+So, the composition **g ∘ f** gives us the function **g(x) = 3x + 6**.
+
+---
+
+### **8. Summary Table for Composition**
+
+| **Function Composition**  | **Resulting Function**      | **Example**             |
+|---------------------------|-----------------------------|-------------------------|
+| **f ∘ g (Composition Order)**  | Apply **g** first, then **f** on the result. | **f(g(x))**             |
+| **g ∘ f**                  | Apply **f** first, then **g** on the result. | **g(f(x))**             |
+| **Identity Function**      | Does not alter the function it is composed with. | **(f ∘ I)(x) = f(x)** |
+
+---
+
+💡 **TIP:**  
+Composition of functions is widely used in mathematics and computer science, especially when creating complex operations by combining simpler functions. It's important to understand the correct order of application to avoid errors.
+
+---
+## **Growth of Functions**
+
+### **1. What is the Growth of Functions?**
+
+The **growth of a function** refers to how the value of the function changes as the input value increases. In many applications, especially in algorithm analysis, we are concerned with how fast the output of a function grows as the input becomes very large. This is particularly useful for comparing the efficiency of different algorithms.
+
+Functions can grow at different rates, and understanding this is crucial in determining the best solution for a problem based on input size.
+
+---
+
+### **2. Common Classes of Growth of Functions**
+
+The growth rate of a function can be classified into several categories based on how quickly the function’s value increases as the input grows. These include:
+
+#### **2.1. Constant Time: $$ O(1) $$**
+
+A function is said to grow at **constant time** if its value does not change as the input increases. This means that the function always produces the same output regardless of the input size.
+
+- **Example:**
+  A function **f(x) = 5** has a growth rate of **O(1)**. No matter what value **x** takes, the output is always 5.
+
+---
+
+#### **2.2. Logarithmic Growth: $$ O(\log n) $$**
+
+A function grows logarithmically when the value increases slowly as the input increases. Logarithmic growth is typically seen in algorithms that divide the problem size in half at each step, such as **binary search**.
+
+- **Example:**
+  The function **f(x) = \log(x)** grows slower compared to linear or polynomial functions.
+
+- **Key property:**
+  As **x** increases, **log(x)** increases at a decreasing rate. For instance:
+  - **log(2) = 1**
+  - **log(8) = 3**
+  - **log(1024) = 10**
+
+- **Common Algorithms:** Binary search, balanced search trees.
+
+---
+
+#### **2.3. Linear Growth: $$ O(n) $$**
+
+A function grows linearly if the output increases at the same rate as the input. The value of the function increases by a constant amount for every unit increase in the input.
+
+- **Example:**
+  The function **f(x) = 2x** grows linearly. If **x** doubles, the output will also double.
+
+- **Key property:**
+  For large values of **x**, the function grows directly in proportion to **x**.
+
+- **Common Algorithms:** Simple loop-based algorithms.
+
+---
+
+#### **2.4. Linearithmic Growth: $$ O(n \log n) $$**
+
+A function grows at a **linearithmic** rate when it combines both linear and logarithmic growth. This is a common growth rate for efficient algorithms that perform a divide-and-conquer approach and then process the results linearly.
+
+- **Example:**
+  The function **f(x) = x \log(x)** grows faster than **O(n)** but slower than **O(n^2)**.
+
+- **Common Algorithms:** Merge sort, quicksort.
+
+---
+
+#### **2.5. Quadratic Growth: $$ O(n^2) $$**
+
+A function grows quadratically if the output increases at a rate proportional to the square of the input. This means that if the input size doubles, the output will quadruple.
+
+- **Example:**
+  The function $$**f(x) = x^2**$$ has quadratic growth. As **x** grows, the output increases significantly.
+
+- **Key property:**
+  Quadratic growth is common in algorithms that involve nested loops, where each loop iterates over all elements.
+
+- **Common Algorithms:** Bubble sort, insertion sort.
+
+---
+
+#### **2.6. Cubic Growth: $$ O(n^3) $$**
+
+A function grows cubically if the output increases at a rate proportional to the cube of the input. This is slower than quadratic growth, but still increases rapidly with large inputs.
+
+- **Example:**
+  The function $$**f(x) = x^3**$$ grows cubically.
+
+- **Key property:**
+  Cubic growth can be seen in algorithms that involve three nested loops.
+
+- **Common Algorithms:** Some matrix multiplication algorithms.
+
+---
+
+#### **2.7. Exponential Growth: $$ O(2^n) $$**
+
+A function grows exponentially if the output doubles with each unit increase in the input. This type of growth is extremely fast and is generally considered impractical for large inputs.
+
+- **Example:**
+  The function $$**f(x) = 2^x**$$ exhibits exponential growth.
+
+- **Key property:**
+  Exponential growth grows **extremely rapidly**. For example:
+  - **2^10 = 1024**
+  - **2^20 = 1,048,576**
+  - **2^30 = 1,073,741,824**
+
+- **Common Algorithms:** Brute-force algorithms, certain recursive algorithms.
+
+---
+
+#### **2.8. Factorial Growth: $$ O(n!) $$**
+
+A function grows factorially when its output increases by the factorial of the input. This is one of the fastest-growing types of functions and is typically seen in combinatorial problems where every possible arrangement or permutation of inputs must be examined.
+
+- **Example:**
+  The function **f(x) = x!** grows factorially. For instance:
+  - **3! = 6**
+  - **5! = 120**
+  - **10! = 3,628,800**
+
+- **Key property:**
+  Factorial growth is even faster than exponential growth and becomes impractical for large inputs.
+
+- **Common Problems:** Travelling salesman problem, some types of backtracking problems.
+
+---
+
+### **3. Visualising Growth of Functions**
+
+Here's a quick comparison of how these functions grow:
+
+- **Constant function** remains flat (no growth).
+- **Logarithmic function** grows slowly.
+- **Linear function** grows steadily at a constant rate.
+- **Linearithmic function** grows slightly faster than linear.
+- **Quadratic function** grows faster as the input increases.
+- **Exponential and factorial functions** grow extremely fast, making them impractical for large inputs.
+
+---
+
+### **4. Big-O Notation and Growth**
+
+In **computer science**, we use **Big-O notation** to classify functions based on their growth rates. The Big-O notation describes the upper bound of the growth rate of an algorithm in the worst-case scenario.
+
+For example:
+- **O(1)** represents constant time (best-case performance).
+- **O(n)** represents linear time (performance grows linearly with the input size).
+- **O(n^2)** represents quadratic time (performance grows quadratically with the input size).
+- **O(2^n)** represents exponential time (performance grows exponentially).
+
+---
+
+### **5. Summary of Growth Rates**
+
+| **Function Type**           | **Growth Rate**      | **Example**              | **Common Algorithm**  |
+|-----------------------------|----------------------|--------------------------|-----------------------|
+| **Constant**                | O(1)                 | **f(x) = 5**             | Accessing an array element |
+| **Logarithmic**             | O(log n)             | **f(x) = log(x)**        | Binary search         |
+| **Linear**                  | O(n)                 | **f(x) = x**             | Linear search         |
+| **Linearithmic**            | O(n log n)           | **f(x) = x log(x)**      | Merge sort, Quicksort |
+| **Quadratic**               | O(n^2)               | **f(x) = x^2**           | Bubble sort, Insertion sort |
+| **Cubic**                   | O(n^3)               | **f(x) = x^3**           | Some matrix algorithms |
+| **Exponential**             | O(2^n)               | **f(x) = 2^x**           | Brute-force algorithms |
+| **Factorial**               | O(n!)                | **f(x) = x!**            | Travelling salesman problem |
+
+---
+
+💡 **TIP:**  
+When analysing algorithms, we prefer lower growth rates for efficiency, as functions with **O(n!)** or **O(2^n)** can quickly become impractical for large inputs. A function with **O(n log n)** or **O(n)** is generally considered efficient.
+
+
+---
+## **Pigeonhole Principle**
+
+### **1. What is the Pigeonhole Principle?**
+
+The **Pigeonhole Principle** is a simple, intuitive concept that states:
+
+**If you have more items (pigeons) than containers (pigeonholes) to place them in, and you place each item in a container, at least one container must contain more than one item.**
+
+Mathematically, the principle can be stated as:
+
+- If **n** items are put into **m** containers, and **n > m**, then at least one container must hold more than one item.
+
+---
+
+### **2. Formal Statement**
+
+Let’s formalise the principle:
+
+- Suppose you have **n** items (pigeons) and **m** containers (pigeonholes).
+- If **n > m**, then at least one container must contain more than one item.
+
+This principle is often used to prove that something **must** be true because of the limitations imposed by the number of items and containers.
+
+---
+
+### **3. Example of the Pigeonhole Principle**
+
+#### **Example 1: Basic Example**
+
+Imagine you have 11 pigeons and 10 pigeonholes. If you try to place the 11 pigeons into the 10 pigeonholes, you’ll see that at least one pigeonhole must contain more than one pigeon because there are more pigeons than pigeonholes.
+
+- **n = 11** (pigeons)  
+- **m = 10** (pigeonholes)
+
+In this case, it's guaranteed that one of the pigeonholes will contain at least **2 pigeons**.
+
+---
+
+#### **Example 2: Birthday Problem**
+
+A classic application of the pigeonhole principle is in the **birthday problem**, which states:
+
+- **Given a group of 23 people, there is a more than 50% chance that at least two people in the group share the same birthday.**
+
+Why is this true?
+
+- There are 365 possible birthdays (pigeonholes).
+- With 23 people (pigeons), if you try to assign each person a birthday, at least two people must share the same birthday because the number of people exceeds the number of possible birthdays.
+- By applying the pigeonhole principle, we can argue that with 23 people, some pigeonholes must contain more than one pigeon (birthday).
+
+---
+
+### **4. Generalised Pigeonhole Principle**
+
+The **generalised pigeonhole principle** extends the basic principle to allow for more flexibility in the distribution of items:
+
+- **If n items are placed into m containers, and each container can hold at most **k** items, then at least one container must contain more than **k** items if **n > m × k**.**
+
+This principle is useful when dealing with situations where you are allowed to put a limited number of items into each container.
+
+---
+
+### **5. Applications of the Pigeonhole Principle**
+
+The pigeonhole principle is widely used in mathematics and computer science to solve problems that involve proving the existence of certain configurations or outcomes. Here are a few key applications:
+
+#### **5.1. Proving Existence of a Duplicate**
+
+- If you have a list of people, and you know the number of possible birthdays is smaller than the number of people, you can use the pigeonhole principle to prove that at least two people must share the same birthday.
+
+#### **5.2. Graph Theory**
+
+- In graph theory, the pigeonhole principle can be used to show that if you have a graph with a large number of edges, there must be some vertices that are connected by more than one edge. This helps in proving certain properties of graphs.
+
+#### **5.3. Number Theory**
+
+- In number theory, the pigeonhole principle can be used to show that for any sequence of integers, some two integers must have a certain property (e.g., having the same remainder when divided by a fixed number).
+
+#### **5.4. Data Structure and Hashing**
+
+- The pigeonhole principle is useful in the context of hashing. Given a finite-sized hash table, if you insert more keys than the size of the table, then by the pigeonhole principle, at least two keys must hash to the same value (leading to a **collision**).
+
+---
+
+### **6. Visualising the Pigeonhole Principle**
+
+The Pigeonhole Principle is quite intuitive and can be illustrated through visualisation.
+
+- **Example 1:**
+  Imagine you have **10 pigeonholes** (boxes) and **11 pigeons** (balls). If you place one pigeon in each pigeonhole, you will need to place the **11th pigeon** in an already occupied pigeonhole. Hence, the pigeonhole principle guarantees that at least one pigeonhole will have more than one pigeon.
+
+---
+
+### **7. Variations of the Pigeonhole Principle**
+
+#### **7.1. Pigeonhole Principle for Divisibility**
+
+- If you divide a set of **n** integers into **m** groups, then one of the groups will contain at least **⌈n/m⌉** integers.
+
+For example:
+- If you divide 10 integers into 3 groups, at least one group will contain **⌈10/3⌉ = 4** integers.
+
+#### **7.2. Pigeonhole Principle for Colorings**
+
+In combinatorics, the pigeonhole principle is used to prove results related to coloring problems, where certain elements must share a color due to the number of elements exceeding the number of colors.
+
+---
+
+### **8. Summary**
+
+The **Pigeonhole Principle** is a simple yet powerful tool in mathematics and computer science. It states that if you have more items than containers and you place each item in a container, at least one container must contain more than one item. It can be applied in various fields like combinatorics, graph theory, number theory, and hashing.
+
+---
+
+💡 **TIP:**  
+The pigeonhole principle is a great tool for proving existence, i.e., showing that something **must** happen under certain conditions, without having to explicitly construct the object or solution.
+
+---

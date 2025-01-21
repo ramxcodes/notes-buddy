@@ -1,0 +1,831 @@
+---
+title: "Unit 4: Engineering Mathematics 1"
+description: First order differential equations (Separable, Exact, Homogeneous, Linear), Linear differential Equations of second and higher order with constant coefficients, Homogeneous linear differential equations, Simultaneous linear differential equations.
+date: 2025-01-08
+tags: ["Engineering Mathematics 1", "1st Semester", "1st Year", "B Tech"]
+published: true
+metadata:
+  university: "Medicaps University"
+  degree: "B Tech"
+  semester: "1st Semester"
+  subject: "Engineering Mathematics 1"
+---
+
+---
+## **First Order Differential Equations**
+
+A **first-order differential equation** is an equation involving a function $$ y(x) $$ and its first derivative $$ \frac{dy}{dx} $$, typically in the form:
+
+$$
+\frac{dy}{dx} = f(x, y)
+$$
+
+These equations can be classified into different types based on their structure, and each type has its own method of solving.
+
+---
+
+### **1. Separable Differential Equations**
+
+A differential equation is **separable** if it can be written as the product of two functions—one of $$ x $$ and one of $$ y $$. In other words, the equation can be rewritten as:
+
+$$
+\frac{dy}{dx} = g(x) h(y)
+$$
+
+Where:
+- $$ g(x) $$ is a function of $$ x $$ only,
+- $$ h(y) $$ is a function of $$ y $$ only.
+
+#### **Method of Solving:**
+1. Rearrange the equation to separate the variables:
+
+$$
+\frac{1}{h(y)} \, dy = g(x) \, dx
+$$
+
+2. Integrate both sides:
+
+$$
+\int \frac{1}{h(y)} \, dy = \int g(x) \, dx
+$$
+
+3. Solve the resulting equation for $$ y $$ (if possible).
+
+#### **Example:**
+Solve the differential equation $$ \frac{dy}{dx} = \frac{y}{x} $$.
+
+1. Separate the variables:
+
+$$
+\frac{dy}{y} = \frac{dx}{x}
+$$
+
+2. Integrate both sides:
+
+$$
+\int \frac{1}{y} \, dy = \int \frac{1}{x} \, dx
+$$
+
+$$
+\ln |y| = \ln |x| + C
+$$
+
+3. Solve for $$ y $$:
+
+$$
+|y| = C' |x| \quad \Rightarrow \quad y = Cx
+$$
+
+Where $$ C' $$ is a constant.
+
+---
+
+### **2. Exact Differential Equations**
+
+A differential equation is **exact** if it can be written in the form:
+
+$$
+M(x, y) \, dx + N(x, y) \, dy = 0
+$$
+
+Where:
+- $$ M(x, y) $$ and $$ N(x, y) $$ are continuous functions, and
+- There exists a function $$ \Phi(x, y) $$ such that $$ \frac{\partial \Phi}{\partial x} = M(x, y) $$ and $$ \frac{\partial \Phi}{\partial y} = N(x, y) $$.
+
+In this case, the equation is **exact** if:
+
+$$
+\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}
+$$
+
+#### **Method of Solving:**
+1. Check if the equation is exact by verifying if $$ \frac{\partial M}{\partial y} = \frac{\partial N}{\partial x} $$.
+2. If exact, find the potential function $$ \Phi(x, y) $$ such that:
+   $$
+   \frac{\partial \Phi}{\partial x} = M(x, y), \quad \frac{\partial \Phi}{\partial y} = N(x, y)
+   $$
+3. The general solution is $$ \Phi(x, y) = C $$, where $$ C $$ is a constant.
+
+#### **Example:**
+Solve $$ (2xy + y^2) \, dx + (x^2 + 2xy) \, dy = 0 $$.
+
+1. Check if the equation is exact:
+   - $$ M(x, y) = 2xy + y^2 $$, $$ N(x, y) = x^2 + 2xy $$.
+   - $$ \frac{\partial M}{\partial y} = 2x + 2y $$, $$ \frac{\partial N}{\partial x} = 2x + 2y $$.
+
+Since the condition is satisfied, the equation is exact.
+
+2. Find the potential function $$ \Phi(x, y) $$:
+   - $$ \frac{\partial \Phi}{\partial x} = 2xy + y^2 $$, so $$ \Phi(x, y) = x^2y + y^2x + h(y) $$, where $$ h(y) $$ is a function of $$ y $$.
+   - $$ \frac{\partial \Phi}{\partial y} = x^2 + 2xy $$, which matches $$ N(x, y) $$.
+   
+Thus, the general solution is:
+
+$$
+\Phi(x, y) = x^2 y + x y^2 = C
+$$
+
+---
+
+### **3. Homogeneous Differential Equations**
+
+A differential equation is **homogeneous** if it can be written as:
+
+$$
+\frac{dy}{dx} = F\left( \frac{y}{x} \right)
+$$
+
+This means the equation is homogeneous in terms of the ratio $$ \frac{y}{x} $$. The substitution $$ v = \frac{y}{x} $$ is often used to solve these equations.
+
+#### **Method of Solving:**
+1. Substitute $$ v = \frac{y}{x} $$, so $$ y = vx $$.
+2. Compute $$ \frac{dy}{dx} $$ using the product rule:
+
+$$
+\frac{dy}{dx} = v + x \frac{dv}{dx}
+$$
+
+3. Substitute this into the original equation, which now becomes a separable differential equation in terms of $$ v $$.
+4. Solve for $$ v $$, then substitute back to find $$ y $$.
+
+#### **Example:**
+Solve $$ \frac{dy}{dx} = \frac{x + y}{x - y} $$.
+
+1. Use the substitution $$ v = \frac{y}{x} $$, so $$ y = vx $$.
+2. Compute $$ \frac{dy}{dx} = v + x \frac{dv}{dx} $$.
+3. Substitute into the equation:
+
+$$
+v + x \frac{dv}{dx} = \frac{x + vx}{x - vx}
+$$
+
+4. Simplify and solve the resulting separable equation for $$ v $$, then back-substitute $$ y = vx $$.
+
+---
+
+### **4. Linear Differential Equations**
+
+A first-order **linear differential equation** is in the form:
+
+$$
+\frac{dy}{dx} + P(x) y = Q(x)
+$$
+
+Where $$ P(x) $$ and $$ Q(x) $$ are continuous functions of $$ x $$.
+
+#### **Method of Solving:**
+1. Identify $$ P(x) $$ and $$ Q(x) $$.
+2. Find the **integrating factor** $$ \mu(x) $$, which is given by:
+
+$$
+\mu(x) = e^{\int P(x) \, dx}
+$$
+
+3. Multiply the entire differential equation by the integrating factor $$ \mu(x) $$ to make the left-hand side an exact derivative:
+
+$$
+\mu(x) \frac{dy}{dx} + \mu(x) P(x) y = \mu(x) Q(x)
+$$
+
+4. Rewrite the left-hand side as the derivative of $$ \mu(x) y $$:
+
+$$
+\frac{d}{dx} \left( \mu(x) y \right) = \mu(x) Q(x)
+$$
+
+5. Integrate both sides with respect to $$ x $$ and solve for $$ y $$.
+
+#### **Example:**
+Solve $$ \frac{dy}{dx} + 3y = 6x $$.
+
+1. Identify $$ P(x) = 3 $$ and $$ Q(x) = 6x $$.
+2. Find the integrating factor:
+
+$$
+\mu(x) = e^{\int 3 \, dx} = e^{3x}
+$$
+
+3. Multiply the differential equation by $$ \mu(x) $$:
+
+$$
+e^{3x} \frac{dy}{dx} + 3e^{3x} y = 6x e^{3x}
+$$
+
+4. Rewrite the left-hand side:
+
+$$
+\frac{d}{dx} \left( e^{3x} y \right) = 6x e^{3x}
+$$
+
+5. Integrate both sides:
+
+$$
+e^{3x} y = \int 6x e^{3x} \, dx
+$$
+
+Using integration by parts, you can find the solution and back-substitute to solve for $$ y $$.
+
+---
+
+### **Summary of Methods for First-Order Differential Equations**
+
+1. **Separable Equations**: Separate the variables and integrate each side.
+2. **Exact Equations**: Verify the exactness condition, then find a potential function.
+3. **Homogeneous Equations**: Use the substitution $$ v = \frac{y}{x} $$, and then solve.
+4. **Linear Equations**: Use the integrating factor to solve the equation.
+
+---
+
+💡 **TIP**: Identifying the correct type of first-order differential equation is key to applying the appropriate solution method. Always start by analyzing the structure of the equation before proceeding with a solution.
+
+---
+## **Linear Differential Equations of Second and Higher Order with Constant Coefficients**
+
+### **1. General Form of Linear Differential Equations**
+
+A **linear differential equation** of order $$n$$ with constant coefficients is of the form:
+
+$$
+a_n \frac{d^n y}{dx^n} + a_{n-1} \frac{d^{n-1} y}{dx^{n-1}} + \cdots + a_1 \frac{dy}{dx} + a_0 y = f(x)
+$$
+
+Where:
+- $$a_n, a_{n-1}, \dots, a_1, a_0$$ are constant coefficients,
+- $$f(x)$$ is a given function of $$x$$ (if non-homogeneous, i.e., $$ f(x) \neq 0 $$),
+- $$y$$ is the dependent variable (the unknown function),
+- $$x$$ is the independent variable.
+
+When $$f(x) = 0$$, the equation is called a **homogeneous linear differential equation**. If $$f(x) \neq 0$$, the equation is **non-homogeneous**.
+
+### **2. Solving Homogeneous Linear Differential Equations**
+
+For simplicity, let's first focus on **homogeneous equations**. A general second-order linear differential equation with constant coefficients is:
+
+$$
+a_2 \frac{d^2 y}{dx^2} + a_1 \frac{dy}{dx} + a_0 y = 0
+$$
+
+#### **Method of Solution:**
+
+The solution to this equation is found by assuming that $$y = e^{rx}$$, where $$r$$ is a constant. This leads to the **characteristic equation**, which is a quadratic equation in terms of $$r$$:
+
+$$
+a_2 r^2 + a_1 r + a_0 = 0
+$$
+
+The roots of this quadratic equation determine the form of the solution.
+
+---
+
+### **3. Types of Solutions Based on the Roots of the Characteristic Equation**
+
+The nature of the roots of the characteristic equation governs the form of the general solution:
+
+#### **(i) Distinct Real Roots**
+
+If the characteristic equation has **two distinct real roots** $$r_1$$ and $$r_2$$ (i.e., the discriminant $$ \Delta = a_1^2 - 4a_2a_0 > 0 $$), the solution is:
+
+$$
+y(x) = C_1 e^{r_1 x} + C_2 e^{r_2 x}
+$$
+
+Where $$C_1$$ and $$C_2$$ are arbitrary constants, determined by initial conditions.
+
+#### **Example:**
+
+Solve the equation $$ y'' - 5y' + 6y = 0 $$.
+
+1. The characteristic equation is:
+
+$$
+r^2 - 5r + 6 = 0
+$$
+
+2. The roots of this equation are $$ r_1 = 2 $$ and $$ r_2 = 3 $$.
+
+3. Therefore, the general solution is:
+
+$$
+y(x) = C_1 e^{2x} + C_2 e^{3x}
+$$
+
+---
+
+#### **(ii) Repeated Real Roots**
+
+If the characteristic equation has **repeated real roots** (i.e., the discriminant $$ \Delta = 0 $$), the solution is:
+
+$$
+y(x) = (C_1 + C_2 x) e^{r_1 x}
+$$
+
+Here, $$r_1$$ is the repeated root, and $$C_1$$ and $$C_2$$ are constants determined by initial conditions.
+
+#### **Example:**
+
+Solve the equation $$ y'' - 4y' + 4y = 0 $$.
+
+1. The characteristic equation is:
+
+$$
+r^2 - 4r + 4 = 0
+$$
+
+2. The root is $$r_1 = 2$$, repeated.
+
+3. Therefore, the general solution is:
+
+$$
+y(x) = (C_1 + C_2 x) e^{2x}
+$$
+
+---
+
+#### **(iii) Complex Roots**
+
+If the characteristic equation has **complex roots** (i.e., $$ \Delta < 0 $$), the solution is of the form:
+
+$$
+y(x) = e^{\alpha x} \left( C_1 \cos(\beta x) + C_2 \sin(\beta x) \right)
+$$
+
+Where $$ \alpha $$ and $$ \beta $$ are the real and imaginary parts of the complex roots $$ r_1 = \alpha + i \beta $$, and $$C_1$$ and $$C_2$$ are constants.
+
+#### **Example:**
+
+Solve the equation $$ y'' + 4y = 0 $$.
+
+1. The characteristic equation is:
+
+$$
+r^2 + 4 = 0
+$$
+
+2. The roots are $$r_1 = i2$$ and $$r_2 = -i2$$, which are complex with $$ \alpha = 0 $$ and $$ \beta = 2 $$.
+
+3. Therefore, the general solution is:
+
+$$
+y(x) = C_1 \cos(2x) + C_2 \sin(2x)
+$$
+
+---
+
+### **4. Non-Homogeneous Linear Differential Equations**
+
+For non-homogeneous equations of the form:
+
+$$
+a_2 \frac{d^2 y}{dx^2} + a_1 \frac{dy}{dx} + a_0 y = f(x)
+$$
+
+Where $$ f(x) $$ is a non-zero function, the solution is the sum of the **complementary solution** (the solution to the homogeneous equation) and a **particular solution** to the non-homogeneous equation:
+
+$$
+y(x) = y_h(x) + y_p(x)
+$$
+
+- $$ y_h(x) $$ is the solution to the corresponding homogeneous equation.
+- $$ y_p(x) $$ is a particular solution to the non-homogeneous equation, which is found using methods like **undetermined coefficients** or **variation of parameters**.
+
+#### **Example:**
+
+Solve the equation $$ y'' - 3y' + 2y = e^x $$.
+
+1. Solve the homogeneous equation $$ y'' - 3y' + 2y = 0 $$:
+   - The characteristic equation is $$ r^2 - 3r + 2 = 0 $$, with roots $$ r_1 = 1 $$ and $$ r_2 = 2 $$.
+   - The complementary solution is $$ y_h(x) = C_1 e^x + C_2 e^{2x} $$.
+
+2. For the non-homogeneous part $$ y'' - 3y' + 2y = e^x $$, use the method of undetermined coefficients:
+   - Assume a particular solution of the form $$ y_p(x) = A e^x $$.
+   - Substitute $$ y_p(x) $$ into the non-homogeneous equation and solve for $$ A $$.
+
+   After substitution, we find $$ A = \frac{1}{2} $$.
+
+3. Therefore, the general solution is:
+
+$$
+y(x) = C_1 e^x + C_2 e^{2x} + \frac{1}{2} e^x
+$$
+
+---
+
+### **5. Higher-Order Linear Differential Equations**
+
+For higher-order linear differential equations, the process is similar to the second-order case, but we work with higher-degree characteristic equations.
+
+For example, for a third-order linear differential equation:
+
+$$
+a_3 \frac{d^3 y}{dx^3} + a_2 \frac{d^2 y}{dx^2} + a_1 \frac{dy}{dx} + a_0 y = 0
+$$
+
+The solution depends on the nature of the roots of the **third-degree characteristic equation**:
+
+- **Distinct real roots**: The solution is a sum of terms involving $$ e^{r_1 x}, e^{r_2 x}, e^{r_3 x} $$.
+- **Repeated real roots**: Involves terms like $$ x^k e^{r x} $$.
+- **Complex roots**: Involves terms like $$ e^{\alpha x} (C_1 \cos(\beta x) + C_2 \sin(\beta x)) $$.
+
+---
+
+### **Summary**
+
+- **Homogeneous Linear Equations**: Solutions depend on the roots of the characteristic equation, with distinct real roots, repeated roots, and complex roots giving different forms of the solution.
+- **Non-Homogeneous Linear Equations**: The general solution is the sum of the homogeneous solution and a particular solution, which can be found using methods like undetermined coefficients or variation of parameters.
+- **Higher-Order Equations**: The method is similar to second-order equations, but the degree of the characteristic equation increases.
+
+---
+
+💡 **TIP**: For non-homogeneous equations, always first solve the homogeneous part, then focus on finding a suitable particular solution for the non-homogeneous term.
+
+---
+## **Homogeneous Linear Differential Equations**
+
+A **homogeneous linear differential equation** is one where the dependent variable and its derivatives appear linearly, and the equation equals zero. The general form for a **second-order** homogeneous linear differential equation with constant coefficients is:
+
+$$
+a_2 \frac{d^2 y}{dx^2} + a_1 \frac{dy}{dx} + a_0 y = 0
+$$
+
+Where:
+- $$ a_2, a_1, a_0 $$ are constant coefficients,
+- $$ y $$ is the dependent variable (the unknown function),
+- $$ x $$ is the independent variable.
+
+### **1. General Approach to Solving**
+
+The solution to this type of equation involves finding the **characteristic equation** associated with the differential equation and solving it for its roots. These roots determine the form of the general solution.
+
+#### **Characteristic Equation**
+
+For a second-order homogeneous linear differential equation:
+
+$$
+a_2 \frac{d^2 y}{dx^2} + a_1 \frac{dy}{dx} + a_0 y = 0
+$$
+
+We assume a solution of the form:
+
+$$
+y = e^{rx}
+$$
+
+Substitute this into the equation, where $$ r $$ is a constant, and the derivatives of $$ y $$ are:
+
+$$
+\frac{dy}{dx} = r e^{rx}, \quad \frac{d^2 y}{dx^2} = r^2 e^{rx}
+$$
+
+Substituting into the equation gives the characteristic equation:
+
+$$
+a_2 r^2 + a_1 r + a_0 = 0
+$$
+
+This is a **quadratic equation** in $$ r $$, and its roots will dictate the form of the solution.
+
+---
+
+### **2. Types of Solutions Based on the Roots of the Characteristic Equation**
+
+The form of the solution depends on the nature of the roots of the characteristic equation $$ a_2 r^2 + a_1 r + a_0 = 0 $$.
+
+#### **(i) Two Distinct Real Roots**
+
+If the characteristic equation has **two distinct real roots** $$ r_1 $$ and $$ r_2 $$, then the general solution is:
+
+$$
+y(x) = C_1 e^{r_1 x} + C_2 e^{r_2 x}
+$$
+
+Where $$ C_1 $$ and $$ C_2 $$ are constants determined by initial or boundary conditions.
+
+**Example 1:**
+
+Solve the equation $$ y'' - 5y' + 6y = 0 $$.
+
+1. The characteristic equation is:
+
+$$
+r^2 - 5r + 6 = 0
+$$
+
+2. Solve for the roots:
+
+$$
+r_1 = 2, \quad r_2 = 3
+$$
+
+3. The general solution is:
+
+$$
+y(x) = C_1 e^{2x} + C_2 e^{3x}
+$$
+
+---
+
+#### **(ii) Repeated Real Roots**
+
+If the characteristic equation has **repeated real roots**, i.e., if the discriminant $$ \Delta = a_1^2 - 4a_2 a_0 = 0 $$, then the equation has one repeated root $$ r $$. In this case, the solution takes the form:
+
+$$
+y(x) = (C_1 + C_2 x) e^{r x}
+$$
+
+Where $$ C_1 $$ and $$ C_2 $$ are constants.
+
+**Example 2:**
+
+Solve the equation $$ y'' - 4y' + 4y = 0 $$.
+
+1. The characteristic equation is:
+
+$$
+r^2 - 4r + 4 = 0
+$$
+
+2. The root is $$ r = 2 $$, repeated.
+
+3. The general solution is:
+
+$$
+y(x) = (C_1 + C_2 x) e^{2x}
+$$
+
+---
+
+#### **(iii) Complex Conjugate Roots**
+
+If the characteristic equation has **complex conjugate roots**, i.e., the discriminant $$ \Delta = a_1^2 - 4a_2 a_0 < 0 $$, the roots will be of the form:
+
+$$
+r_1 = \alpha + i\beta, \quad r_2 = \alpha - i\beta
+$$
+
+Where $$ \alpha $$ and $$ \beta $$ are real numbers, and $$ i $$ is the imaginary unit. The general solution in this case is:
+
+$$
+y(x) = e^{\alpha x} \left( C_1 \cos(\beta x) + C_2 \sin(\beta x) \right)
+$$
+
+Where $$ C_1 $$ and $$ C_2 $$ are constants.
+
+**Example 3:**
+
+Solve the equation $$ y'' + 4y = 0 $$.
+
+1. The characteristic equation is:
+
+$$
+r^2 + 4 = 0
+$$
+
+2. The roots are $$ r_1 = 2i $$, $$ r_2 = -2i $$, which are complex.
+
+3. The general solution is:
+
+$$
+y(x) = C_1 \cos(2x) + C_2 \sin(2x)
+$$
+
+---
+
+### **3. Higher-Order Homogeneous Linear Differential Equations**
+
+For higher-order homogeneous linear differential equations, the process is similar. The general form of an $$n$$-th order linear homogeneous differential equation is:
+
+$$
+a_n \frac{d^n y}{dx^n} + a_{n-1} \frac{d^{n-1} y}{dx^{n-1}} + \cdots + a_1 \frac{dy}{dx} + a_0 y = 0
+$$
+
+The characteristic equation will be of degree $$n$$, and the solution will depend on the nature of the roots of the characteristic equation.
+
+- **Distinct Real Roots**: The solution will be the sum of exponential functions, one for each root.
+- **Repeated Real Roots**: For repeated roots, the solution will involve terms like $$x^k e^{r x}$$ for each repeated root.
+- **Complex Conjugate Roots**: The solution will involve exponential, sine, and cosine terms.
+
+#### **Example 4:**
+
+Solve the third-order differential equation $$ y''' - 6y'' + 11y' - 6y = 0 $$.
+
+1. The characteristic equation is:
+
+$$
+r^3 - 6r^2 + 11r - 6 = 0
+$$
+
+2. Solving this cubic equation, we find the roots:
+
+$$
+r_1 = 1, \quad r_2 = 2, \quad r_3 = 3
+$$
+
+3. The general solution is:
+
+$$
+y(x) = C_1 e^{x} + C_2 e^{2x} + C_3 e^{3x}
+$$
+
+---
+
+### **Summary of Methods**
+
+1. **Distinct Real Roots**: If the characteristic equation has distinct real roots, the solution is the sum of exponential terms: $$ y(x) = C_1 e^{r_1 x} + C_2 e^{r_2 x} $$.
+2. **Repeated Real Roots**: If there is a repeated root $$r$$, the solution is $$ y(x) = (C_1 + C_2 x) e^{r x} $$.
+3. **Complex Roots**: If the roots are complex, the solution is $$ y(x) = e^{\alpha x} (C_1 \cos(\beta x) + C_2 \sin(\beta x)) $$, where $$ \alpha $$ and $$ \beta $$ are the real and imaginary parts of the complex roots.
+
+---
+
+💡 **TIP**: Always begin by solving the characteristic equation and identifying the type of roots (distinct real, repeated, or complex) to determine the form of the solution.
+
+---
+## **Simultaneous Linear Differential Equations**
+
+### **1. General Form of Simultaneous Linear Differential Equations**
+
+A system of **simultaneous linear differential equations** consists of two or more equations that involve derivatives of different functions. The general form for a system of two first-order linear differential equations with constant coefficients is:
+
+$$
+\frac{dx}{dt} = a_1 x + b_1 y
+$$
+
+$$
+\frac{dy}{dt} = a_2 x + b_2 y
+$$
+
+Where:
+- $$ x(t) $$ and $$ y(t) $$ are dependent variables (functions of $$ t $$),
+- $$ a_1, b_1, a_2, b_2 $$ are constant coefficients.
+
+In matrix form, we can express this system as:
+
+$$
+\frac{d}{dt} \begin{pmatrix} x(t) \\ y(t) \end{pmatrix} = \begin{pmatrix} a_1 & b_1 \\ a_2 & b_2 \end{pmatrix} \begin{pmatrix} x(t) \\ y(t) \end{pmatrix}
+$$
+
+This is a system of **first-order linear differential equations**. Higher-order systems can be similarly written, but we focus on the first-order case for now.
+
+---
+
+### **2. Solving Simultaneous Linear Differential Equations**
+
+There are several methods to solve systems of simultaneous linear differential equations, but we'll focus on two main approaches:
+
+#### **(i) Method of Eigenvalues and Eigenvectors (Matrix Method)**
+
+1. **Rewrite the system in matrix form:**
+
+$$
+\frac{d}{dt} \begin{pmatrix} x(t) \\ y(t) \end{pmatrix} = A \begin{pmatrix} x(t) \\ y(t) \end{pmatrix}
+$$
+
+Where $$ A = \begin{pmatrix} a_1 & b_1 \\ a_2 & b_2 \end{pmatrix} $$ is the coefficient matrix.
+
+2. **Find the eigenvalues and eigenvectors of the matrix $$ A $$:**
+
+- Solve for the eigenvalues $$ \lambda $$ by solving the characteristic equation:
+
+$$
+\text{det}(A - \lambda I) = 0
+$$
+
+Where $$ I $$ is the identity matrix.
+
+3. **Find the general solution:**
+
+- For each eigenvalue $$ \lambda $$, find the corresponding eigenvector $$ \mathbf{v} $$ by solving:
+
+$$
+(A - \lambda I) \mathbf{v} = 0
+$$
+
+- The general solution will be a linear combination of exponential functions with eigenvalues as exponents, and eigenvectors as the directions of the solutions.
+
+#### **(ii) Method of Substitution**
+
+This method involves solving one of the equations for one variable, and then substituting it into the other equation.
+
+---
+
+### **3. Solving a System of Two First-Order Differential Equations (Example)**
+
+Let's solve the following system of simultaneous linear differential equations:
+
+$$
+\frac{dx}{dt} = 3x + 4y
+$$
+
+$$
+\frac{dy}{dt} = -2x + y
+$$
+
+#### **Step 1: Write the system in matrix form**
+
+We can write the system as:
+
+$$
+\frac{d}{dt} \begin{pmatrix} x(t) \\ y(t) \end{pmatrix} = \begin{pmatrix} 3 & 4 \\ -2 & 1 \end{pmatrix} \begin{pmatrix} x(t) \\ y(t) \end{pmatrix}
+$$
+
+Here, the matrix $$ A = \begin{pmatrix} 3 & 4 \\ -2 & 1 \end{pmatrix} $$.
+
+#### **Step 2: Find the eigenvalues**
+
+We solve for the eigenvalues $$ \lambda $$ by solving the characteristic equation:
+
+$$
+\text{det}(A - \lambda I) = 0
+$$
+
+$$
+\text{det} \begin{pmatrix} 3 - \lambda & 4 \\ -2 & 1 - \lambda \end{pmatrix} = 0
+$$
+
+$$
+(3 - \lambda)(1 - \lambda) - (-2)(4) = 0
+$$
+
+$$
+(3 - \lambda)(1 - \lambda) + 8 = 0
+$$
+
+Expanding the equation:
+
+$$
+3 - 3\lambda - \lambda + \lambda^2 + 8 = 0
+$$
+
+$$
+\lambda^2 - 4\lambda + 11 = 0
+$$
+
+The discriminant $$ \Delta = (-4)^2 - 4(1)(11) = 16 - 44 = -28 $$. Since the discriminant is negative, the eigenvalues are **complex**.
+
+#### **Step 3: Solve for the eigenvalues**
+
+The eigenvalues are:
+
+$$
+\lambda = \frac{4 \pm \sqrt{-28}}{2} = 2 \pm i\sqrt{7}
+$$
+
+So, the eigenvalues are $$ \lambda_1 = 2 + i\sqrt{7} $$ and $$ \lambda_2 = 2 - i\sqrt{7} $$.
+
+#### **Step 4: Find the eigenvectors**
+
+Now we find the eigenvectors corresponding to each eigenvalue. For $$ \lambda_1 = 2 + i\sqrt{7} $$, we solve:
+
+$$
+(A - \lambda_1 I) \mathbf{v} = 0
+$$
+
+This gives us the eigenvector corresponding to $$ \lambda_1 $$. The process is similar for $$ \lambda_2 $$.
+
+#### **Step 5: Form the general solution**
+
+The general solution to the system will be a linear combination of the solutions for each eigenvalue and eigenvector:
+
+$$
+\begin{pmatrix} x(t) \\ y(t) \end{pmatrix} = e^{\lambda_1 t} \mathbf{v}_1 + e^{\lambda_2 t} \mathbf{v}_2
+$$
+
+This will yield a solution that combines exponential terms with sine and cosine functions due to the complex eigenvalues.
+
+---
+
+### **4. Example 2: Method of Substitution**
+
+Consider the system:
+
+$$
+\frac{dx}{dt} = 2x + 3y
+$$
+
+$$
+\frac{dy}{dt} = -x + 4y
+$$
+
+#### **Step 1: Solve the first equation for $$ x(t) $$:**
+
+$$
+\frac{dx}{dt} = 2x + 3y \quad \Rightarrow \quad x(t) = \frac{1}{2} \frac{dx}{dt} - \frac{3}{2} y
+$$
+
+#### **Step 2: Substitute $$ x(t) $$ into the second equation:**
+
+Now, substitute the expression for $$ x(t) $$ into the second equation, and solve the resulting equation for $$ y(t) $$.
+
+---
+
+### **Summary**
+
+- **Simultaneous linear differential equations** are systems of two or more linear differential equations involving multiple dependent variables.
+- These can be solved using the **matrix method** (eigenvalues and eigenvectors) or **substitution method**.
+- The **eigenvalue method** involves writing the system in matrix form, finding the eigenvalues and eigenvectors, and then forming the general solution.
+- The **substitution method** involves solving one equation for one variable and then substituting it into the other equation.
+
+---
+
+💡 **TIP**: If the system has complex eigenvalues, the solution will involve oscillatory functions (sine and cosine), while real eigenvalues lead to exponential solutions.
+
+---
