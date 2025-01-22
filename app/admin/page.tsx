@@ -5,11 +5,16 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { UserTable } from "./components/UserTable";
 
+// Define interfaces for the stats and user data
 interface Stats {
   totalUsers: number;
   premiumUsers: number;
   blockedUsers: number;
   totalRevenue: number;
+  totalNotesRequests: number;
+  completedNotesRequests: number;
+  totalNotesReports: number;
+  completedNotesReports: number;
 }
 
 interface User {
@@ -34,6 +39,7 @@ export default function AdminDashboard() {
   const [loadingStats, setLoadingStats] = useState(true);
   const [loadingUsers, setLoadingUsers] = useState(true);
 
+  // Fetch stats and users data on page load
   useEffect(() => {
     async function fetchStats() {
       try {
@@ -63,6 +69,7 @@ export default function AdminDashboard() {
     fetchUsers();
   }, []);
 
+  // Toggle block status of users
   const handleToggleBlock = async (userId: string, action: "block" | "unblock") => {
     try {
       const response = await fetch("/admin/api/blocked", {
@@ -96,29 +103,56 @@ export default function AdminDashboard() {
         <p>Loading stats...</p>
       ) : stats ? (
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          {/* Display the cards for various stats */}
           <Card>
             <CardHeader>
-              <CardTitle>Total Users</CardTitle>
+              <CardTitle className="font-gilroy">Total Users</CardTitle>
             </CardHeader>
             <CardContent>{stats.totalUsers}</CardContent>
           </Card>
           <Card>
             <CardHeader>
-              <CardTitle>Premium Users</CardTitle>
+              <CardTitle className="font-gilroy">Premium Users</CardTitle>
             </CardHeader>
             <CardContent>{stats.premiumUsers}</CardContent>
           </Card>
           <Card>
             <CardHeader>
-              <CardTitle>Blocked Users</CardTitle>
+              <CardTitle className="font-gilroy">Blocked Users</CardTitle>
             </CardHeader>
             <CardContent>{stats.blockedUsers}</CardContent>
           </Card>
           <Card>
             <CardHeader>
-              <CardTitle>Total Revenue (₹)</CardTitle>
+              <CardTitle className="font-gilroy">Total Revenue (₹)</CardTitle>
             </CardHeader>
             <CardContent>{stats.totalRevenue}</CardContent>
+          </Card>
+
+          {/* Display additional cards for notes requests and reports */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="font-gilroy">Total Notes Requests</CardTitle>
+            </CardHeader>
+            <CardContent>{stats.totalNotesRequests}</CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="font-gilroy">Completed Notes Requests</CardTitle>
+            </CardHeader>
+            <CardContent>{stats.completedNotesRequests}</CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="font-gilroy">Total Notes Reports</CardTitle>
+            </CardHeader>
+            <CardContent>{stats.totalNotesReports}</CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="font-gilroy">Completed Notes Reports</CardTitle>
+            </CardHeader>
+            <CardContent>{stats.completedNotesReports}</CardContent>
           </Card>
         </div>
       ) : (

@@ -24,7 +24,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
           </nav>
         </div>
       </header>
-      <main className="flex-1 p-6">{children}</main>
+      <main className="flex-1 p-6 font-wotfard tracking-wider">{children}</main>
     </div>
   );
 }

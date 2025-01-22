@@ -70,7 +70,7 @@ export default function NotesReportsPage() {
 
   return (
     <div className="container mx-auto py-8">
-      <h1 className="text-2xl font-bold mb-4">Notes Reports</h1>
+      <h1 className="text-2xl font-bold mb-4">Notes Requests</h1>
       <Separator className="mb-6" />
 
       {loading ? (
