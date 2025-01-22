@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
+import React, { Suspense, useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { Input } from "@/components/ui/input";
 import {
@@ -25,6 +25,14 @@ const ERROR_MESSAGES = {
 };
 
 const ReportNotePage = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ReportNotePageContent />
+    </Suspense>
+  );
+};
+
+const ReportNotePageContent = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { data: session, status } = useSession();
@@ -121,7 +129,9 @@ const ReportNotePage = () => {
             </Select>
           </div>
           <div>
-            <label className="block font-bold mb-2">Other Issue (Optional)</label>
+            <label className="block font-bold mb-2">
+              Other Issue (Optional)
+            </label>
             <Textarea
               placeholder="Describe your issue"
               value={otherText}
