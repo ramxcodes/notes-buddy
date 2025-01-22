@@ -1,0 +1,717 @@
+---
+title: "Unit 3: Engineering Mathematics 1"
+description: Definite Integral as a limit of sum and its application in summation of series, Beta and Gamma functions (Definitions, Relation between Beta and Gamma functions without proof, Duplication formula without proof). Multiple Integral (Double and Triple Integrals), Change the Order of Integration, Applications of Multiple Integral in Area, Volume.
+date: 2025-01-08
+tags: ["Engineering Mathematics 1", "1st Semester", "1st Year", "B Tech"]
+published: true
+metadata:
+  university: "Medicaps University"
+  degree: "B Tech"
+  semester: "1st Semester"
+  subject: "Engineering Mathematics 1"
+---
+
+---
+## **Definite Integral as a Limit of Sum**
+
+A **definite integral** can be viewed as the **limit of a sum**. This interpretation is important because it links the concept of integration to the process of summation, which is fundamental in calculus.
+
+### **The Riemann Sum**
+
+The process of defining a definite integral involves approximating the area under a curve by dividing the area into small rectangles. The sum of the areas of these rectangles is called the **Riemann sum**, and it is defined as:
+
+$$
+S_n = \sum_{i=1}^{n} f(x_i^*) \Delta x
+$$
+
+Here:
+- $$ f(x_i^*) $$ is the value of the function at the point $$ x_i^* $$ (which could be any point in the interval, like the left endpoint, right endpoint, or midpoint).
+- $$ \Delta x = \frac{b - a}{n} $$ is the width of each subinterval, where $$ a $$ and $$ b $$ are the limits of integration, and $$ n $$ is the number of subintervals.
+
+### **Definite Integral as a Limit**
+
+The **definite integral** of a function $$ f(x) $$ over the interval $$[a, b]$$ is defined as the limit of the Riemann sum as $$ n \to \infty $$ (i.e., the number of subintervals approaches infinity):
+
+$$
+\int_a^b f(x) \, dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \Delta x
+$$
+
+Thus, the integral represents the **exact area under the curve** as the width of the rectangles approaches zero.
+
+### **Steps to Interpret Definite Integral as a Limit of Sum**
+
+1. **Divide the interval $$[a, b]$$ into $$ n $$ subintervals**.
+2. **Choose points** (like $$ x_i^* $$) in each subinterval where the function will be evaluated.
+3. **Sum the areas of the rectangles** formed by the function values and the subinterval widths.
+4. **Take the limit as $$ n \to \infty $$**, which leads to the exact value of the integral.
+
+---
+
+## **Application of Definite Integral in Summation of Series**
+
+One of the key applications of definite integrals is in the **summation of series**. Specifically, integrals can be used to approximate or sum infinite series by transforming the series into an integral.
+
+### **Using Integrals to Sum Series**
+
+Some infinite series can be approximated or expressed as definite integrals. For example, the **power series** expansion for functions can sometimes be integrated term-by-term to find sums of specific series.
+
+#### **Example 1: Summation of a Geometric Series Using Integration**
+
+Consider the geometric series:
+
+$$
+S = 1 + x + x^2 + x^3 + \dots = \sum_{n=0}^{\infty} x^n
+$$
+
+We know that for $$ |x| < 1 $$, the sum of this series is:
+
+$$
+S = \frac{1}{1 - x}
+$$
+
+Now, consider the **integral** representation of this series. We can integrate both sides of the equation:
+
+$$
+\int_0^a \left( 1 + x + x^2 + x^3 + \dots \right) dx = \int_0^a \frac{1}{1 - x} dx
+$$
+
+On the left-hand side, we are summing the terms of the series term-by-term, and on the right-hand side, we can perform the integration.
+
+#### **Step 1: Integrating the series term by term**
+
+$$
+\int_0^a \left( 1 + x + x^2 + x^3 + \dots \right) dx = \int_0^a 1 \, dx + \int_0^a x \, dx + \int_0^a x^2 \, dx + \dots
+$$
+
+Each integral evaluates as follows:
+
+$$
+\int_0^a x^n \, dx = \frac{a^{n+1}}{n+1}
+$$
+
+Thus, the left-hand side becomes:
+
+$$
+\sum_{n=0}^{\infty} \frac{a^{n+1}}{n+1}
+$$
+
+#### **Step 2: Integrating the right-hand side**
+
+The integral on the right-hand side is:
+
+$$
+\int_0^a \frac{1}{1 - x} dx = -\ln(1 - a)
+$$
+
+Thus, the sum of the series is related to the logarithmic function.
+
+---
+
+### **Example 2: Using Integrals to Sum the Series for $$ e^x $$**
+
+The **exponential function** can be expanded as a power series:
+
+$$
+e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!}
+$$
+
+To compute the sum of specific terms or to approximate $$ e^x $$, we can use definite integrals to represent the series. For example, integrating the series term-by-term can provide insights into summing related series.
+
+#### **Step 1: Consider the integral of $$ e^x $$ over $$[0, 1]$$**
+
+$$
+\int_0^1 e^x \, dx = \int_0^1 \sum_{n=0}^{\infty} \frac{x^n}{n!} \, dx
+$$
+
+#### **Step 2: Integrate term by term**
+
+$$
+\int_0^1 \sum_{n=0}^{\infty} \frac{x^n}{n!} \, dx = \sum_{n=0}^{\infty} \frac{1}{n!} \int_0^1 x^n \, dx
+$$
+
+The integral of $$ x^n $$ over $$[0, 1]$$ is:
+
+$$
+\int_0^1 x^n \, dx = \frac{1}{n+1}
+$$
+
+Thus, the sum becomes:
+
+$$
+\sum_{n=0}^{\infty} \frac{1}{n! (n+1)}
+$$
+
+This series is related to the integral and can be used to compute approximate values for functions like $$ e^x $$.
+
+---
+
+### **Summary**
+
+- A **definite integral** can be understood as the **limit of a sum** (the Riemann sum), where we approximate the area under a curve by summing the areas of rectangles and then taking the limit as the number of rectangles approaches infinity.
+  
+- The **Riemann sum** for a function $$ f(x) $$ over the interval $$[a, b]$$ is given by:
+
+$$
+S_n = \sum_{i=1}^{n} f(x_i^*) \Delta x
+$$
+
+- The **definite integral** is the limit of the sum as $$ n \to \infty $$:
+
+$$
+\int_a^b f(x) \, dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \Delta x
+$$
+
+- **Application in Series Summation**: Definite integrals can be used to sum or approximate infinite series by transforming the series into integrals or using term-by-term integration.
+  
+- **Example 1**: The geometric series can be expressed and summed using an integral representation.
+  
+- **Example 2**: The exponential function’s power series can be integrated term-by-term, which can help in summing related series.
+
+---
+
+💡 **TIP**: Definite integrals provide a powerful tool to approximate and sum series, and they offer an alternative way to approach complex infinite sums by transforming them into continuous integrals.
+
+---
+## **Beta and Gamma Functions**
+
+### **Gamma Function (Definition)**
+
+The **Gamma function** is a generalization of the factorial function to real and complex numbers. It is defined for all complex numbers except for non-positive integers.
+
+The Gamma function $$ \Gamma(x) $$ is defined as:
+
+$$
+\Gamma(x) = \int_0^\infty t^{x-1} e^{-t} \, dt
+$$
+
+Where:
+- $$ x > 0 $$
+- The integral converges for $$ x > 0 $$.
+
+For integer values, the Gamma function relates to the factorial as:
+
+$$
+\Gamma(n) = (n - 1)!
+$$
+For any positive integer $$ n $$, $$ \Gamma(n) = (n-1)! $$.
+
+### **Beta Function (Definition)**
+
+The **Beta function** is a special function that is closely related to the Gamma function. It is defined for two positive real numbers $$ x $$ and $$ y $$ as:
+
+$$
+B(x, y) = \int_0^1 t^{x-1} (1 - t)^{y-1} \, dt
+$$
+
+Where:
+- $$ x, y > 0 $$
+- The integral converges for $$ x, y > 0 $$.
+
+The Beta function can also be viewed as a symmetric function:
+
+$$
+B(x, y) = B(y, x)
+$$
+
+### **Relation Between Beta and Gamma Functions (Without Proof)**
+
+The Beta function and Gamma function are related in the following way:
+
+$$
+B(x, y) = \frac{\Gamma(x) \Gamma(y)}{\Gamma(x + y)}
+$$
+
+This relation connects the Beta and Gamma functions and simplifies many expressions involving the Beta function by using the Gamma function.
+
+### **Duplication Formula (Without Proof)**
+
+The **Duplication formula** is a relationship between the Gamma function at $$ x $$ and $$ \frac{x}{2} $$. It is particularly useful for simplifying expressions involving the Gamma function.
+
+The Duplication formula states:
+
+$$
+\Gamma\left( \frac{x}{2} \right) \Gamma\left( \frac{x+1}{2} \right) = 2^{x-1} \Gamma(x)
+$$
+
+This formula is widely used in many areas of mathematical analysis, especially in simplifying integrals and expressions that involve Gamma functions.
+
+---
+
+### **Summary**
+
+- The **Gamma function** $$ \Gamma(x) $$ is defined as:
+
+$$
+\Gamma(x) = \int_0^\infty t^{x-1} e^{-t} \, dt
+$$
+
+- The **Beta function** $$ B(x, y) $$ is defined as:
+
+$$
+B(x, y) = \int_0^1 t^{x-1} (1 - t)^{y-1} \, dt
+$$
+
+- The **relation between the Beta and Gamma functions** is:
+
+$$
+B(x, y) = \frac{\Gamma(x) \Gamma(y)}{\Gamma(x + y)}
+$$
+
+- The **Duplication formula** for the Gamma function is:
+
+$$
+\Gamma\left( \frac{x}{2} \right) \Gamma\left( \frac{x+1}{2} \right) = 2^{x-1} \Gamma(x)
+$$
+
+These concepts are fundamental in various areas of advanced mathematics, especially in integrals and series summations.
+
+---
+
+💡 **TIP**: Understanding the relations between Beta and Gamma functions is very useful in simplifying complex integrals, particularly when dealing with integrals that arise in probability theory and statistical mechanics.
+
+--
+## **Multiple Integrals: Double and Triple Integrals**
+
+Multiple integrals are integrals that involve more than one variable, and they allow us to compute quantities like areas, volumes, and mass distributions over regions in higher-dimensional spaces.
+
+### **Double Integral**
+
+A **double integral** is used to compute quantities over a **two-dimensional region**. It is typically used to find the **area** or **volume** under a surface in the plane.
+
+#### **Definition of Double Integral**
+
+The double integral of a function $$ f(x, y) $$ over a region $$ R $$ is written as:
+
+$$
+\iint_R f(x, y) \, dA
+$$
+
+Where:
+- $$ R $$ is the region in the $$ xy $$-plane over which the integration is performed.
+- $$ f(x, y) $$ is the function being integrated.
+- $$ dA $$ represents an infinitesimal area element (which can be written as $$ dx \, dy $$ or $$ dy \, dx $$).
+
+If the region $$ R $$ is bounded by specific limits for $$ x $$ and $$ y $$, the double integral can be written as:
+
+$$
+\int_{x_1}^{x_2} \left( \int_{y_1(x)}^{y_2(x)} f(x, y) \, dy \right) dx
+$$
+
+Or equivalently:
+
+$$
+\int_{y_1}^{y_2} \left( \int_{x_1(y)}^{x_2(y)} f(x, y) \, dx \right) dy
+$$
+
+#### **Interpretation**
+
+The double integral can be interpreted as the volume under the surface $$ f(x, y) $$ over the region $$ R $$. It adds up all the small volumes of rectangular prisms with bases $$ dx \, dy $$ and height $$ f(x, y) $$.
+
+#### **Example of a Double Integral**
+
+Find the area of a region $$ R $$ bounded by the curve $$ y = x^2 $$ and the line $$ y = 4 $$.
+
+The limits for $$ y $$ are from $$ 0 $$ to $$ 4 $$, and for each fixed $$ y $$, $$ x $$ ranges from $$ -\sqrt{y} $$ to $$ \sqrt{y} $$.
+
+The area is given by:
+
+$$
+A = \iint_R 1 \, dA = \int_0^4 \left( \int_{-\sqrt{y}}^{\sqrt{y}} 1 \, dx \right) dy
+$$
+
+---
+
+### **Triple Integral**
+
+A **triple integral** extends the concept of multiple integration to three variables and is used to compute quantities over **three-dimensional regions**. Triple integrals are commonly used to find volumes, masses, or other properties in 3D space.
+
+#### **Definition of Triple Integral**
+
+The triple integral of a function $$ f(x, y, z) $$ over a region $$ V $$ in three-dimensional space is written as:
+
+$$
+\iiint_V f(x, y, z) \, dV
+$$
+
+Where:
+- $$ V $$ is the region in the $$ xyz $$-space.
+- $$ f(x, y, z) $$ is the function being integrated.
+- $$ dV $$ represents the infinitesimal volume element (which can be written as $$ dx \, dy \, dz $$).
+
+If the region $$ V $$ is bounded by specific limits for $$ x $$, $$ y $$, and $$ z $$, the triple integral can be written as:
+
+$$
+\int_{x_1}^{x_2} \left( \int_{y_1(x)}^{y_2(x)} \left( \int_{z_1(x, y)}^{z_2(x, y)} f(x, y, z) \, dz \right) dy \right) dx
+$$
+
+#### **Interpretation**
+
+The triple integral sums up small volume elements, each with volume $$ dx \, dy \, dz $$, and adds up the values of the function $$ f(x, y, z) $$ at each point.
+
+#### **Example of a Triple Integral**
+
+Find the volume of the region bounded by the cylinder $$ x^2 + y^2 = 9 $$ and the planes $$ z = 0 $$ and $$ z = 4 $$.
+
+The limits for $$ x $$ and $$ y $$ are determined by the cylinder equation, and $$ z $$ ranges from 0 to 4.
+
+The volume is given by:
+
+$$
+V = \iiint_V 1 \, dV = \int_{-3}^{3} \left( \int_{-\sqrt{9 - x^2}}^{\sqrt{9 - x^2}} \left( \int_0^4 1 \, dz \right) dy \right) dx
+$$
+
+---
+
+### **Changing Order of Integration**
+
+Sometimes, changing the order of integration can simplify a double or triple integral. This involves switching the order of the limits and the integration variables.
+
+For example, if we have:
+
+$$
+\int_{a}^{b} \left( \int_{c(x)}^{d(x)} f(x, y) \, dy \right) dx
+$$
+
+We may change the order of integration to:
+
+$$
+\int_{c_1}^{c_2} \left( \int_{a(y)}^{b(y)} f(x, y) \, dx \right) dy
+$$
+
+This is useful when the limits of the region are easier to describe in one order than the other.
+
+---
+
+### **Summary**
+
+- **Double Integral**: Used for integrating functions over a two-dimensional region. The integral is expressed as:
+
+  $$
+  \iint_R f(x, y) \, dA
+  $$
+
+  It can be interpreted as finding the volume under a surface.
+
+- **Triple Integral**: Used for integrating functions over a three-dimensional region. The integral is expressed as:
+
+  $$
+  \iiint_V f(x, y, z) \, dV
+  $$
+
+  It can be interpreted as finding the total value of a function in 3D space, such as the volume of a region or mass.
+
+- **Changing Order of Integration**: Sometimes it is useful to change the order of integration to make the problem easier to solve.
+
+---
+
+💡 **TIP**: For double and triple integrals, always sketch the region of integration if possible. This helps in understanding the limits of integration and deciding on the most convenient order of integration.
+
+---
+## **Changing the Order of Integration**
+
+### **Concept**
+
+In double or triple integrals, the order of integration refers to the sequence in which we perform the integrations over the variables. In certain cases, it can be advantageous to switch the order of integration to make the integral easier to evaluate.
+
+- **Double Integrals**: If you are given a double integral with limits expressed in one order (e.g., integrating $$ y $$ first, then $$ x $$), you can sometimes change the order to integrate $$ x $$ first, then $$ y $$, if the region of integration allows it.
+  
+- **Triple Integrals**: Similar to double integrals, the order of integration in triple integrals (involving $$ x $$, $$ y $$, and $$ z $$) can also be changed to simplify the process.
+
+### **Procedure for Changing the Order of Integration**
+
+1. **Identify the region of integration**: Look at the given limits for the variables. This helps to visualize the region of integration in the coordinate plane (or space for triple integrals).
+
+2. **Sketch the region**: Draw the region bounded by the limits. This visual representation is crucial for changing the order.
+
+3. **Analyze the boundaries**: Check the limits for each variable and determine how they depend on the others.
+
+4. **Rewrite the limits**: Change the order of integration and express the limits accordingly. Make sure to adjust the bounds to fit the new order of integration.
+
+---
+
+### **Changing the Order of Integration in a Double Integral**
+
+#### **Example 1:**
+
+Given the double integral:
+
+$$
+I = \int_0^2 \left( \int_0^{4 - x^2} f(x, y) \, dy \right) dx
+$$
+
+#### **Step 1: Sketch the region of integration**
+
+The limits tell us:
+- $$ x $$ varies from $$ 0 $$ to $$ 2 $$.
+- For each $$ x $$, $$ y $$ varies from $$ 0 $$ to $$ 4 - x^2 $$.
+
+The region $$ R $$ is bounded by:
+- The curve $$ y = 4 - x^2 $$ (a downward-opening parabola).
+- The lines $$ x = 0 $$ and $$ x = 2 $$.
+
+#### **Step 2: Change the order of integration**
+
+We want to express the integral with $$ y $$ as the outer variable and $$ x $$ as the inner variable.
+
+- The range for $$ y $$ is from $$ 0 $$ to $$ 4 $$ (since $$ y = 4 - x^2 $$ reaches a maximum value of $$ 4 $$ when $$ x = 0 $$).
+- For each fixed $$ y $$, $$ x $$ varies between $$ 0 $$ and $$ \sqrt{4 - y} $$ (since $$ x^2 = 4 - y $$).
+
+Thus, the new double integral with the order of integration changed becomes:
+
+$$
+I = \int_0^4 \left( \int_0^{\sqrt{4 - y}} f(x, y) \, dx \right) dy
+$$
+
+---
+
+#### **Example 2:**
+
+Consider the following double integral:
+
+$$
+I = \int_0^1 \left( \int_0^{1 - y} x \, dx \right) dy
+$$
+
+#### **Step 1: Sketch the region of integration**
+
+The limits tell us:
+- $$ y $$ varies from $$ 0 $$ to $$ 1 $$.
+- For each $$ y $$, $$ x $$ varies from $$ 0 $$ to $$ 1 - y $$.
+
+The region $$ R $$ is a triangle with vertices at $$ (0, 0) $$, $$ (1, 0) $$, and $$ (0, 1) $$.
+
+#### **Step 2: Change the order of integration**
+
+To change the order, we need to describe the region differently. The new description is:
+- $$ x $$ varies from $$ 0 $$ to $$ 1 $$.
+- For each $$ x $$, $$ y $$ ranges from $$ 0 $$ to $$ 1 - x $$ (since $$ 1 - y = x $$).
+
+Thus, the new double integral is:
+
+$$
+I = \int_0^1 \left( \int_0^{1 - x} x \, dy \right) dx
+$$
+
+---
+
+### **Changing the Order of Integration in a Triple Integral**
+
+The process for changing the order of integration in a **triple integral** is very similar, but it involves considering the limits for three variables. This is often used in volumes and other physical problems.
+
+#### **Example 3:**
+
+Given the triple integral:
+
+$$
+I = \int_0^2 \left( \int_0^{\sqrt{4 - x^2}} \left( \int_0^{4 - x^2 - y^2} f(x, y, z) \, dz \right) dy \right) dx
+$$
+
+This represents a volume under a surface bounded by a cylinder $$ x^2 + y^2 \leq 4 $$ and a plane $$ z = 4 - x^2 - y^2 $$.
+
+#### **Step 1: Sketch the region of integration**
+
+- The region is bounded by the cylinder $$ x^2 + y^2 \leq 4 $$.
+- For each point $$ (x, y) $$ inside the cylinder, $$ z $$ ranges from $$ 0 $$ to $$ 4 - x^2 - y^2 $$.
+
+#### **Step 2: Change the order of integration**
+
+To change the order, we express the limits for $$ x $$, $$ y $$, and $$ z $$ in a different order. The bounds for $$ x $$ and $$ y $$ are given by the circle $$ x^2 + y^2 \leq 4 $$, and $$ z $$ ranges from $$ 0 $$ to $$ 4 - x^2 - y^2 $$.
+
+For the new order of integration, we express $$ z $$ as the outermost integral, followed by $$ x $$ and $$ y $$.
+
+Thus, the new triple integral becomes:
+
+$$
+I = \int_0^4 \left( \int_{-\sqrt{4 - z}}^{\sqrt{4 - z}} \left( \int_0^{\sqrt{4 - x^2 - z}} f(x, y, z) \, dy \right) dx \right) dz
+$$
+
+---
+
+### **Summary of Steps for Changing the Order of Integration**
+
+1. **Visualize the region of integration** by sketching the boundaries (either on a plane for double integrals or in space for triple integrals).
+2. **Rewrite the region** to express the limits of integration in a different order.
+3. **Adjust the limits** for the new order of integration. Make sure the bounds are consistent with the new order of variables.
+4. **Evaluate the integral** with the new order of integration, which may simplify the calculation.
+
+---
+
+💡 **TIP**: Changing the order of integration is especially useful when the integral has complicated limits. Sketching the region helps to better understand how the limits change and allows for easier re-expression of the integral.
+
+---
+
+## **Applications of Multiple Integrals in Area and Volume**
+
+Multiple integrals, specifically **double and triple integrals**, are widely used in various fields to calculate **areas** and **volumes** in multidimensional spaces. Here, we'll discuss how **multiple integrals** are applied to compute areas in the plane and volumes in 3D space.
+
+### **1. Area Calculation using Double Integrals**
+
+The **double integral** is often used to find the **area** of regions in the plane, especially when the region is irregular or defined by complex boundaries. The general approach is to integrate a constant function (like $$ f(x, y) = 1 $$) over the given region.
+
+#### **Area of a Region in the Plane**
+
+The **area** of a two-dimensional region $$ R $$ bounded by curves can be calculated using a double integral:
+
+$$
+\text{Area} = \iint_R 1 \, dA
+$$
+
+This simply means integrating the constant function $$ 1 $$ over the region $$ R $$, effectively summing up infinitesimally small area elements within $$ R $$.
+
+#### **Example: Area of a Region Bounded by Curves**
+
+Find the area of the region bounded by the curve $$ y = x^2 $$ and the line $$ y = 4 $$.
+
+1. **Set up the limits**: The region is bounded by:
+   - $$ y = x^2 $$ (a parabola),
+   - $$ y = 4 $$ (a horizontal line).
+
+The limits for $$ x $$ are from $$ -2 $$ to $$ 2 $$, and for each $$ x $$, $$ y $$ varies from $$ x^2 $$ to 4.
+
+2. **Set up the double integral**:
+
+$$
+\text{Area} = \int_{-2}^2 \left( \int_{x^2}^4 1 \, dy \right) dx
+$$
+
+3. **Evaluate the integral**:
+
+First, integrate with respect to $$ y $$:
+
+$$
+\int_{x^2}^4 1 \, dy = 4 - x^2
+$$
+
+Now, integrate with respect to $$ x $$:
+
+$$
+\text{Area} = \int_{-2}^2 (4 - x^2) \, dx
+$$
+
+This can be simplified and evaluated to obtain the area of the region.
+
+---
+
+### **2. Volume Calculation using Triple Integrals**
+
+The **triple integral** is used to compute the **volume** of a three-dimensional region. This is particularly useful in cases where the region has curved boundaries or is described in complex terms.
+
+#### **Volume of a Solid Region**
+
+The **volume** of a region $$ V $$ in 3D space can be calculated using a triple integral:
+
+$$
+\text{Volume} = \iiint_V 1 \, dV
+$$
+
+This sums up infinitesimal volume elements $$ dV $$ (which is typically $$ dx \, dy \, dz $$) over the region $$ V $$.
+
+#### **Example: Volume of a Solid Bounded by a Cylinder**
+
+Find the volume of the region bounded by the cylinder $$ x^2 + y^2 = 9 $$ and the planes $$ z = 0 $$ and $$ z = 4 $$.
+
+1. **Set up the limits**:
+   - The cylinder is $$ x^2 + y^2 = 9 $$, so in cylindrical coordinates, $$ r $$ ranges from 0 to 3, and $$ \theta $$ ranges from 0 to $$ 2\pi $$.
+   - The height $$ z $$ ranges from 0 to 4.
+
+2. **Set up the triple integral** in cylindrical coordinates:
+
+$$
+\text{Volume} = \int_0^{2\pi} \int_0^3 \int_0^4 r \, dz \, dr \, d\theta
+$$
+
+Here, the factor $$ r $$ appears due to the change to cylindrical coordinates.
+
+3. **Evaluate the integral**:
+
+First, integrate with respect to $$ z $$:
+
+$$
+\int_0^4 1 \, dz = 4
+$$
+
+Next, integrate with respect to $$ r $$:
+
+$$
+\int_0^3 r \, dr = \frac{r^2}{2} \Big|_0^3 = \frac{9}{2}
+$$
+
+Finally, integrate with respect to $$ \theta $$:
+
+$$
+\int_0^{2\pi} d\theta = 2\pi
+$$
+
+Thus, the volume is:
+
+$$
+\text{Volume} = 4 \times \frac{9}{2} \times 2\pi = 36\pi
+$$
+
+So, the volume of the solid is $$ 36\pi $$ cubic units.
+
+---
+
+### **3. Volume Under a Surface**
+
+In addition to simple solids, multiple integrals can be used to calculate the volume under a surface $$ f(x, y) $$ over a region in the plane. This is a very common application of double integrals.
+
+#### **Volume Under a Surface**
+
+The volume under a surface $$ z = f(x, y) $$ over a region $$ R $$ is given by the double integral:
+
+$$
+\text{Volume} = \iint_R f(x, y) \, dA
+$$
+
+This calculates the accumulated volume between the surface and the $$ xy $$-plane.
+
+#### **Example: Volume Under a Paraboloid**
+
+Find the volume under the surface $$ z = 9 - x^2 - y^2 $$ over the disk $$ x^2 + y^2 \leq 9 $$.
+
+1. **Set up the limits**: The region $$ R $$ is the disk $$ x^2 + y^2 \leq 9 $$, which has radius 3.
+
+2. **Set up the double integral** in polar coordinates (since the region is circular):
+
+$$
+\text{Volume} = \int_0^{2\pi} \int_0^3 (9 - r^2) r \, dr \, d\theta
+$$
+
+3. **Evaluate the integral**:
+
+First, integrate with respect to $$ r $$:
+
+$$
+\int_0^3 (9r - r^3) \, dr = \frac{9r^2}{2} - \frac{r^4}{4} \Big|_0^3 = \frac{9 \times 9}{2} - \frac{3^4}{4} = \frac{81}{2} - \frac{81}{4} = \frac{81}{4}
+$$
+
+Now, integrate with respect to $$ \theta $$:
+
+$$
+\int_0^{2\pi} d\theta = 2\pi
+$$
+
+Thus, the volume is:
+
+$$
+\text{Volume} = \frac{81}{4} \times 2\pi = \frac{81\pi}{2}
+$$
+
+So, the volume under the surface is $$ \frac{81\pi}{2} $$ cubic units.
+
+---
+
+### **Summary of Applications**
+
+- **Area Calculation (Double Integrals)**: A double integral is used to compute the area of a region in the plane by integrating the constant function $$ 1 $$ over the region. This is especially useful when the region has irregular boundaries.
+  
+- **Volume Calculation (Triple Integrals)**: A triple integral is used to compute the volume of a 3D solid by integrating the constant function $$ 1 $$ over the region. It is useful for irregular solids or regions described by complex boundaries.
+
+- **Volume Under a Surface (Double Integrals)**: A double integral can also be used to compute the volume under a surface by integrating the function $$ f(x, y) $$ over a region in the plane.
+
+---
+
+💡 **TIP**: For areas or volumes with circular or spherical symmetry, converting to polar or cylindrical coordinates can significantly simplify the integration process.
+
+---
