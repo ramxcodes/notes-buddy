@@ -10,9 +10,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Popup } from "../buy-premium/components/Popup";
+import { Popup } from "../../components/Popup";
 
-// Constants for validation and error messages
 const ERROR_MESSAGES = {
   LOGIN_REQUIRED: "Please log in to submit notes!",
   BLOCKED_USER: "You are blocked by an admin from submitting requests.",
@@ -49,7 +48,6 @@ const RequestNotesPage = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [isBlocked, setIsBlocked] = useState(false);
 
-  // Validate phone number using regex
   const isValidPhoneNumber = (phone: string) =>
     /^[0-9]{10,15}$/.test(phone.trim());
 
