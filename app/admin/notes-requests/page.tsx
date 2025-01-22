@@ -1,82 +1,72 @@
 "use client";
-
 import { useEffect, useState } from "react";
-import { NotesReportsTable } from "../components/NotesReportsTable";
+import { NotesRequestTable } from "../components/NotesRequestTable";
 import { Separator } from "@/components/ui/separator";
-
-interface NotesReport {
+interface NotesRequest {
   _id: string;
-  noteUrl: string;
-  issue: string;
-  otherText?: string;
-  userName: string;
-  userEmail: string;
+  user: { name: string; email: string };
+  university: string;
+  degree: string;
+  year: number;
+  semester: string;
+  subject: string;
+  syllabus: string;
+  phoneNumber: string;
   status: string;
   createdAt: string;
 }
-
-export default function NotesReportsPage() {
-  const [reports, setReports] = useState<NotesReport[]>([]);
+export default function NotesRequestsPage() {
+  const [requests, setRequests] = useState<NotesRequest[]>([]);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
-    async function fetchReports() {
+    async function fetchRequests() {
       try {
-        const response = await fetch("/admin/api/notes-reports");
+        const response = await fetch("/admin/api/notes-requests");
         const data = await response.json();
-
-        console.log("Fetched Reports:", data); 
-
         if (Array.isArray(data)) {
-          setReports(data);
+          setRequests(data);
         } else {
           console.error("API Error: Response is not an array.");
-          setReports([]);
+          setRequests([]);
         }
       } catch (error) {
-        console.error("Failed to fetch notes reports:", error);
-        setReports([]);
+        console.error("Failed to fetch notes requests:", error);
+        setRequests([]);
       } finally {
         setLoading(false);
       }
     }
-
-    fetchReports();
+    fetchRequests();
   }, []);
-
-  const handleUpdateStatus = async (reportId: string, status: string) => {
+  const handleUpdateStatus = async (requestId: string, status: string) => {
     try {
-      const response = await fetch("/admin/api/notes-reports", {
+      const response = await fetch("/api/notes/request", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ reportId, status }),
+        body: JSON.stringify({ requestId, status }),
       });
-
       const result = await response.json();
-
       if (result.success) {
-        setReports((prev) =>
-          prev.map((report) =>
-            report._id === reportId ? { ...report, status } : report
+        setRequests((prev) =>
+          prev.map((request) =>
+            request._id === requestId ? { ...request, status } : request
           )
         );
       } else {
-        console.error("Failed to update report status:", result.error);
+        console.error("Failed to update request status:", result.error);
       }
     } catch (error) {
-      console.error("Error updating report status:", error);
+      console.error("Error updating request status:", error);
     }
   };
-
   return (
     <div className="container mx-auto py-8">
       <h1 className="text-2xl font-bold mb-4">Notes Requests</h1>
       <Separator className="mb-6" />
-
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <NotesReportsTable reports={reports} onUpdateStatus={handleUpdateStatus} />
+        <NotesRequestTable requests={requests} onUpdateStatus={handleUpdateStatus} />
       )}
     </div>
   );

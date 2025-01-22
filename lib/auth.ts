@@ -1,4 +1,4 @@
-import { NextAuthOptions } from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "@/lib/db";
@@ -24,32 +24,37 @@ export const authOptions: NextAuthOptions = {
         const dbUser = await usersCollection.findOne({ email: user.email });
 
         if (!dbUser) {
-          await usersCollection.insertOne({
+          const insertResult = await usersCollection.insertOne({
             email: user.email,
             name: user.name || "",
             image: user.image || "",
             Blocked: false,
             createdAt: new Date(),
           });
-        } else if (!("Blocked" in dbUser)) {
-          await usersCollection.updateOne(
-            { email: user.email },
-            { $set: { Blocked: false } }
-          );
+
+          token.id = insertResult.insertedId.toString();
+          token.Blocked = false;
+        } else {
+          if (!("Blocked" in dbUser)) {
+            await usersCollection.updateOne(
+              { email: user.email },
+              { $set: { Blocked: false } }
+            );
+          }
+
+          token.id = dbUser._id.toString();
+          token.Blocked = dbUser.Blocked ?? false;
         }
 
-        token.id = dbUser?._id?.toString();
-        token.Blocked = dbUser?.Blocked ?? false;
-
         const adminEmails =
-          process.env.ADMIN_EMAILS?.split(",").filter((email) =>
-            email.trim()
-          ) || [];
+          process.env.ADMIN_EMAILS?.split(",").map((email) => email.trim()) ||
+          [];
         token.isAdmin = adminEmails.includes(user.email || "");
       }
 
       return token;
     },
+
     async session({ session, token }) {
       session.user = {
         id: token.id as string,
@@ -63,3 +68,7 @@ export const authOptions: NextAuthOptions = {
     },
   },
 };
+
+const handler = NextAuth(authOptions);
+
+export { handler as GET, handler as POST };
