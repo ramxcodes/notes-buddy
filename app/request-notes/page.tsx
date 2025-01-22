@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Popup } from "../../components/Popup";
+import { Popup } from "../buy-premium/components/Popup";
 
 const ERROR_MESSAGES = {
   LOGIN_REQUIRED: "Please log in to submit notes!",
