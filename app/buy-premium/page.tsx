@@ -3,10 +3,10 @@
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { PlanSelector } from "./components/PlanSelector";
-import { Popup } from "./components/Popup";
 import { Header } from "./components/Header";
 import BlurFade from "@/components/ui/blur-fade";
 import { Button } from "@/components/ui/button";
+import { Popup } from "./components/Popup";
 
 export default function BuyPremiumPage() {
   const { data: session, status } = useSession();
@@ -141,7 +141,10 @@ export default function BuyPremiumPage() {
           showPopup ? "blur-md" : ""
         }`}
       >
-        <Header isAuthenticated={!!user} userName={session?.user.name || null} />
+        <Header
+          isAuthenticated={!!user}
+          userName={session?.user.name || null}
+        />
 
         <div className="max-w-md w-full space-y-4">
           <PlanSelector
