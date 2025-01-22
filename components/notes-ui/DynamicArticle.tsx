@@ -23,6 +23,7 @@ import { MDXContent } from "@/components/notes-ui/mdx-components";
 import { Tag } from "@/components/tag";
 import { Brush, Flag } from "lucide-react";
 import Head from "next/head";
+import { useHeadingTracker } from "@/hooks/useHeadingTracker";
 
 interface DynamicArticleProps {
   title: string;
@@ -48,8 +49,11 @@ export default function DynamicArticle({
   const [selectedSize, setSelectedSize] = useState("text-base");
   const [isClient, setIsClient] = useState(false);
 
+  const storageKey = `last-read-heading-${slug}`;
+  useHeadingTracker(storageKey); 
+
   useEffect(() => {
-    setIsClient(true); // Ensures rendering occurs after hydration
+    setIsClient(true);
     const storedFont = localStorage.getItem("preferredFont");
     const storedSize = localStorage.getItem("preferredSize");
     if (storedFont) setSelectedFont(storedFont);
