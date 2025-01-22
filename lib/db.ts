@@ -36,3 +36,9 @@ export async function getCollection(collectionName: string) {
 
   return db.collection(collectionName);
 }
+
+export async function isUserBlocked(email: string): Promise<boolean> {
+  const usersCollection = await getCollection("users");
+  const user = await usersCollection.findOne({ email });
+  return user?.Blocked ?? false;
+}
