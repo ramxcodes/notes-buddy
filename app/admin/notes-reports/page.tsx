@@ -25,8 +25,6 @@ export default function NotesReportsPage() {
         const response = await fetch("/admin/api/notes-reports");
         const data = await response.json();
 
-        console.log("Fetched Reports:", data); 
-
         if (Array.isArray(data)) {
           setReports(data);
         } else {
