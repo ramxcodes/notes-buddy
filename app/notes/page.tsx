@@ -25,26 +25,37 @@ const QueryPagination = dynamic(
 
 const POSTS_PER_PAGE = 6;
 
-function BlogContent() {
+function NotesContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const [selectedUniversity, setSelectedUniversity] = useState<string>("");
-  const [selectedDegree, setSelectedDegree] = useState<string>("");
-  const [selectedSemester, setSelectedSemester] = useState<string>("");
-  const [selectedSubject, setSelectedSubject] = useState<string>("");
+  const [selectedUniversity, setSelectedUniversity] = useState<string>(
+    searchParams.get("university") || ""
+  );
+  const [selectedDegree, setSelectedDegree] = useState<string>(
+    searchParams.get("degree") || ""
+  );
+  const [selectedSemester, setSelectedSemester] = useState<string>(
+    searchParams.get("semester") || ""
+  );
+  const [selectedSubject, setSelectedSubject] = useState<string>(
+    searchParams.get("subject") || ""
+  );
   const [currentPage, setCurrentPage] = useState(
     Number(searchParams.get("page")) || 1
   );
 
   useEffect(() => {
     const params = new URLSearchParams();
+
     if (selectedUniversity) params.set("university", selectedUniversity);
     if (selectedDegree) params.set("degree", selectedDegree);
     if (selectedSemester) params.set("semester", selectedSemester);
     if (selectedSubject) params.set("subject", selectedSubject);
     params.set("page", currentPage.toString());
-    router.push(`?${params.toString()}`);
+
+    const newUrl = `?${params.toString()}`;
+    router.replace(newUrl); // Replace without a full refresh
   }, [
     selectedUniversity,
     selectedDegree,
@@ -180,13 +191,13 @@ function BlogContent() {
               <DropdownMenuContent>
                 {semesters.sort().map((sem) => (
                   <DropdownMenuItem
-                  key={sem}
-                  onClick={() => {
-                    setSelectedSemester(sem!);
-                    setSelectedSubject("");
-                  }}
+                    key={sem}
+                    onClick={() => {
+                      setSelectedSemester(sem!);
+                      setSelectedSubject("");
+                    }}
                   >
-                  {sem}
+                    {sem}
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
@@ -251,7 +262,7 @@ function BlogContent() {
 export default function BlogPage() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <BlogContent />
+      <NotesContent />
     </Suspense>
   );
 }
