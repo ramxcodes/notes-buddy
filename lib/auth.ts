@@ -20,16 +20,26 @@ export const authOptions: NextAuthOptions = {
       if (user) {
         const db = await clientPromise;
         const usersCollection = db.db().collection("users");
+
         const dbUser = await usersCollection.findOne({ email: token.email });
 
+        if (!dbUser) {
+          await usersCollection.insertOne({
+            email: token.email,
+            name: token.name || "",
+            image: token.picture || "",
+            Blocked: false,
+            createdAt: new Date(),
+          });
+        } else if (!("Blocked" in dbUser)) {
+          await usersCollection.updateOne(
+            { email: token.email },
+            { $set: { Blocked: false } }
+          );
+        }
+
         token.id = dbUser?._id;
-        token.planTier = dbUser?.planTier || "Free";
-        token.university = dbUser?.university;
-        token.degree = dbUser?.degree;
-        token.subscriptionEndDate = dbUser?.subscriptionEndDate?.toISOString();
-        token.subscriptionStartDate = dbUser?.subscriptionStartDate?.toISOString();
-        token.semesters = dbUser?.semesters || [];
-        token.phoneNumber = dbUser?.phoneNumber || null;
+        token.Blocked = dbUser?.Blocked ?? false;
       }
 
       return token;
@@ -40,13 +50,7 @@ export const authOptions: NextAuthOptions = {
         email: token.email || "",
         name: token.name || "",
         image: token.picture || "",
-        planTier: token.planTier as string | undefined,
-        university: token.university as string | undefined,
-        degree: token.degree as string | undefined,
-        subscriptionEndDate: token.subscriptionEndDate as string | undefined,
-        subscriptionStartDate: token.subscriptionStartDate as string | undefined,
-        semesters: token.semesters as string[],
-        phoneNumber: typeof token.phoneNumber === 'string' ? token.phoneNumber : undefined,
+        Blocked: token.Blocked as boolean,
       };
       return session;
     },

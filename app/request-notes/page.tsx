@@ -1,17 +1,39 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import BlurFade from "@/components/ui/blur-fade";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Popup } from "../buy-premium/components/Popup";
-import BlurFade from "@/components/ui/blur-fade";
+
+// Constants for validation and error messages
+const ERROR_MESSAGES = {
+  LOGIN_REQUIRED: "Please log in to submit notes!",
+  BLOCKED_USER: "You are blocked by an admin from submitting requests.",
+  INVALID_PHONE: "Please enter a valid phone number.",
+  SUBMISSION_FAILED: "Failed to submit the request.",
+  SUBMISSION_SUCCESS: "Request submitted successfully!",
+};
+
+type FormFields = {
+  university: string;
+  degree: string;
+  year: string;
+  semester: string;
+  subject: string;
+  syllabus: string;
+  phoneNumber: string;
+};
 
 const RequestNotesPage = () => {
   const { data: session, status } = useSession();
+  const router = useRouter();
 
   const [formData, setFormData] = useState({
     university: "",
@@ -22,37 +44,59 @@ const RequestNotesPage = () => {
     syllabus: "",
     phoneNumber: "",
   });
-
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
   const [showPopup, setShowPopup] = useState(false);
+  const [isBlocked, setIsBlocked] = useState(false);
+
+  // Validate phone number using regex
+  const isValidPhoneNumber = (phone: string) =>
+    /^[0-9]{10,15}$/.test(phone.trim());
+
+  const fetchBlockStatus = async () => {
+    try {
+      const response = await fetch(`/api/user/status`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await response.json();
+      setIsBlocked(data.blocked);
+
+      if (data.blocked) {
+        router.push("/blocked");
+      }
+    } catch (error) {
+      console.error("Error fetching block status:", error);
+    }
+  };
 
   useEffect(() => {
     if (status === "authenticated") {
-      setFormData((prev) => ({
-        ...prev,
-        phoneNumber: session?.user.phoneNumber || "",
-      }));
+      fetchBlockStatus();
     } else if (status === "unauthenticated") {
-      setPopupMessage("Please log in to submit notes!");
+      setPopupMessage(ERROR_MESSAGES.LOGIN_REQUIRED);
       setShowPopup(true);
     }
-  }, [status, session]);
+  }, [status]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value } as FormFields));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    if (!formData.phoneNumber || formData.phoneNumber.trim().length < 10) {
-      setPopupMessage("Please enter a valid phone number.");
+    if (isBlocked) {
+      setPopupMessage(ERROR_MESSAGES.BLOCKED_USER);
+      setShowPopup(true);
+      return;
+    }
+
+    if (!isValidPhoneNumber(formData.phoneNumber)) {
+      setPopupMessage(ERROR_MESSAGES.INVALID_PHONE);
       setShowPopup(true);
       return;
     }
@@ -62,23 +106,22 @@ const RequestNotesPage = () => {
     try {
       const response = await fetch("/api/notes/request", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...formData,
-          userId: session?.user.id,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, userId: session?.user.id }),
       });
+
+      if (response.status === 403) {
+        setPopupMessage(ERROR_MESSAGES.BLOCKED_USER);
+        setShowPopup(true);
+        return;
+      }
 
       if (!response.ok) {
         throw new Error(await response.text());
       }
 
-      // Show success popup
-      setPopupMessage("Request submitted successfully!");
+      setPopupMessage(ERROR_MESSAGES.SUBMISSION_SUCCESS);
       setShowPopup(true);
-
       setFormData({
         university: "",
         degree: "",
@@ -89,26 +132,29 @@ const RequestNotesPage = () => {
         phoneNumber: formData.phoneNumber,
       });
     } catch (error) {
-      console.error(error);
-
-      // Show failure popup
-      setPopupMessage("Failed to submit the request.");
+      console.error("Submission error:", error);
+      setPopupMessage(ERROR_MESSAGES.SUBMISSION_FAILED);
       setShowPopup(true);
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  if (status === "loading") {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <p>Loading...</p>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col items-center min-h-screen p-6">
-      <div>
-        <BlurFade delay={0.2} inView>
-          <h1 className="text-[2.3rem] lg:text-[4.5rem] md:text-[4rem] leading-[1] font-bold dark:bg-gradient-to-b dark:from-[rgba(244,244,255,1)] dark:to-[rgba(181,180,207,1)] dark:text-transparent dark:bg-clip-text py-2 text-center">
-            Request Notes
-          </h1>
-        </BlurFade>
-      </div>
-
+      <BlurFade delay={0.2} inView>
+        <h1 className="text-[2.3rem] lg:text-[4.5rem] font-bold text-center py-2">
+          Request Notes
+        </h1>
+      </BlurFade>
       <BlurFade delay={0.3} inView>
         <Card className="w-full max-w-lg mt-8">
           <CardHeader>
@@ -116,91 +162,37 @@ const RequestNotesPage = () => {
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit}>
-              <div className="mb-4">
-                <Label htmlFor="university">University</Label>
-                <Input
-                  id="university"
-                  placeholder="Acme University"
-                  name="university"
-                  type="text"
-                  value={formData.university}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <Label htmlFor="degree">Degree</Label>
-                <Input
-                  id="degree"
-                  placeholder="Acme Degree"
-                  name="degree"
-                  type="text"
-                  value={formData.degree}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <Label htmlFor="year">Year</Label>
-                <Input
-                  id="year"
-                  name="year"
-                  placeholder="Year"
-                  type="number"
-                  value={formData.year}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <Label htmlFor="semester">Semester</Label>
-                <Input
-                  id="semester"
-                  placeholder="Acme Semester"
-                  name="semester"
-                  type="text"
-                  value={formData.semester}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <Label htmlFor="subject">Subject</Label>
-                <Input
-                  id="subject"
-                  name="subject"
-                  placeholder="Acme Subject"
-                  type="text"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <Label htmlFor="syllabus">Syllabus</Label>
-                <Textarea
-                  id="syllabus"
-                  name="syllabus"
-                  placeholder="Copy/paste the syllabus here OR  Provide a public google drive link"
-                  value={formData.syllabus}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <Label htmlFor="phoneNumber">Phone Number</Label>
-                <Input
-                  id="phoneNumber"
-                  name="phoneNumber"
-                  placeholder="Enter your phone number"
-                  type="text"
-                  value={formData.phoneNumber}
-                  onChange={(e) =>
-                    setFormData({ ...formData, phoneNumber: e.target.value })
-                  }
-                  required
-                />
-              </div>
+              {[
+                { label: "University", name: "university" },
+                { label: "Degree", name: "degree" },
+                { label: "Year", name: "year", type: "number" },
+                { label: "Semester", name: "semester" },
+                { label: "Subject", name: "subject" },
+                { label: "Syllabus", name: "syllabus", textarea: true },
+                { label: "Phone Number", name: "phoneNumber" },
+              ].map(({ label, name, type = "text", textarea }) => (
+                <div key={name} className="mb-4">
+                  <Label htmlFor={name}>{label}</Label>
+                  {textarea ? (
+                    <Textarea
+                      id={name}
+                      name={name}
+                      value={formData[name as keyof FormFields]}
+                      onChange={handleChange}
+                      required
+                    />
+                  ) : (
+                    <Input
+                      id={name}
+                      name={name}
+                      type={type}
+                      value={formData[name as keyof FormFields]}
+                      onChange={handleChange}
+                      required
+                    />
+                  )}
+                </div>
+              ))}
               <Button type="submit" disabled={isSubmitting}>
                 Submit Request
               </Button>
@@ -208,12 +200,11 @@ const RequestNotesPage = () => {
           </CardContent>
         </Card>
       </BlurFade>
-
       {showPopup && (
         <Popup
           message={popupMessage}
           onClose={() => setShowPopup(false)}
-          showLoginButton={popupMessage === "Please log in to submit notes!"}
+          showLoginButton={popupMessage === ERROR_MESSAGES.LOGIN_REQUIRED}
         />
       )}
     </div>
