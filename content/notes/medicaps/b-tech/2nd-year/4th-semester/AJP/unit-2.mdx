@@ -1,0 +1,756 @@
+---
+title: "Unit 2: Advanced Java Programming"
+description: Basics of Web Application, web client and web server, Servlets, HTTP Methods; GET, POST, PUT, DELETE, TRACE, OPTIONS, MVC design pattern, Init Parameters, Servlet Context, Inter Servlet Communication, Servlet Listeners, Servlet Filters.
+date: 2025-01-18
+tags: ["Advanced Java Programming", "4th Semester", "2nd Year", "medicaps university"]
+published: true
+metadata:
+  university: "Medicaps University"
+  degree: "B Tech"
+  semester: "4th Semester"
+  subject: "Advanced Java Programming"
+---
+
+## Basics of Web Application
+
+A **web application** is a software application that runs on a web server rather than being installed on the local computer. Web applications can be accessed using a web browser over the internet or an intranet.
+
+---
+
+### Components of a Web Application
+
+1. **Frontend** (Client-side)
+   - The frontend is the part of the web application that users interact with.
+   - It includes everything the user experiences, such as the layout, design, text, images, and interactive elements.
+
+2. **Backend** (Server-side)
+   - The backend is responsible for processing user requests, performing operations, and sending responses to the frontend.
+   - It includes the server, database, and server-side application logic.
+
+3. **Database**
+   - The database stores and manages the data used by the web application.
+   - Web applications typically use relational databases (e.g., MySQL, PostgreSQL) or NoSQL databases (e.g., MongoDB).
+
+---
+
+### Web Application Flow
+
+1. **User Request**: The user sends a request via their browser (e.g., clicking a button or entering a URL).
+2. **Request Processing**: The request is sent to the server, where the backend processes it and interacts with the database if necessary.
+3. **Response**: The server sends the response back to the user's browser, which renders the web page.
+
+---
+
+### Technologies Used in Web Applications
+
+1. **Frontend Technologies**:
+   - **HTML** (HyperText Markup Language): Structures content on the web.
+   - **CSS** (Cascading Style Sheets): Defines the style (layout, design) of the web page.
+   - **JavaScript**: Adds interactivity and dynamic behavior to web pages.
+   - **Frameworks**: Examples include React, Angular, and Vue.js.
+
+2. **Backend Technologies**:
+   - **Server-Side Languages**: Examples include Java, Python, Node.js, PHP, Ruby.
+   - **Frameworks**: Examples include Spring (Java), Django (Python), Express (Node.js).
+   - **APIs**: The backend often exposes APIs (Application Programming Interfaces) for communication between the frontend and backend.
+
+3. **Databases**:
+   - **Relational Databases**: Use SQL (Structured Query Language) for managing structured data. Examples include MySQL, PostgreSQL.
+   - **NoSQL Databases**: Manage unstructured or semi-structured data. Examples include MongoDB, CouchDB.
+
+---
+
+### Example Web Application Flow
+
+```mermaid
+graph LR
+    A[User Request] --> B[Frontend (HTML, CSS, JS)]
+    B --> C[Backend (Server-side Logic)]
+    C --> D[Database (e.g., MySQL, MongoDB)]
+    D --> C
+    C --> B
+    B --> A[User View]
+```
+
+### Key Points
+
+- **Frontend** is the part that users interact with.
+- **Backend** processes requests and performs operations.
+- Web applications involve a combination of **frontend technologies**, **backend technologies**, and a **database**.
+
+💡 **TIP**: Understanding both the frontend and backend is essential for full-stack development, where you can build both the client-side and server-side components of a web application.
+
+---
+
+## Web Client and Web Server
+
+In a web application, communication happens between two primary components: the **web client** and the **web server**. These components interact to deliver the web content to the user.
+
+---
+
+### Web Client
+
+A **web client** is a device or software that requests resources or services from a web server. The most common web client is the **web browser**, but other clients can include mobile apps or desktop applications that make HTTP requests.
+
+#### Characteristics of Web Client:
+- **User Interface (UI)**: The web client presents the user interface and handles user interactions.
+- **HTTP Requests**: The client sends HTTP requests to the web server for web pages or resources.
+- **Rendering**: The web client (browser) renders the response (e.g., HTML, CSS, JavaScript) and displays it to the user.
+
+#### Example:
+When you enter a URL in the browser, it sends an HTTP request to the web server to fetch the requested web page.
+
+---
+
+### Web Server
+
+A **web server** is a system or software that listens for incoming requests from web clients (e.g., browsers) and responds by sending the requested content or data. It hosts web applications, handles HTTP requests, and serves web resources (e.g., HTML files, images, videos, API responses).
+
+#### Characteristics of Web Server:
+- **Request Handling**: The server handles incoming requests, processes them, and sends back an appropriate response.
+- **Hosting**: The web server hosts the files and resources needed by the client (e.g., HTML, CSS, images).
+- **Security**: The server ensures secure communication (using SSL/TLS) and implements access controls.
+
+#### Example:
+When you visit a website, your browser (client) sends a request to the web server, which responds by sending the HTML, CSS, and JavaScript files back to the browser for rendering.
+
+---
+
+### Communication Between Client and Server
+
+1. **HTTP Request**: The client (browser) sends an HTTP request to the server, usually via a URL (Uniform Resource Locator).
+2. **Processing Request**: The web server processes the request and retrieves the required resource (e.g., HTML file, database data).
+3. **HTTP Response**: The server sends back the response, which includes the requested content (e.g., web page, image) or data (e.g., JSON).
+
+---
+
+### Key Points
+
+- **Web Client**: The interface through which users interact with web applications (e.g., browsers).
+- **Web Server**: Hosts resources, processes requests, and serves content back to the client.
+- Web clients and servers communicate using the **HTTP protocol** to request and deliver resources.
+
+💡 **TIP**: Understanding the roles of both the client and server is crucial for building web applications that efficiently handle user requests and responses.
+
+---
+
+## Servlets
+
+A **Servlet** is a Java program that runs on a web server and handles client requests. It is a key component in Java-based web applications, commonly used for dynamic content generation. Servlets provide a way for web applications to interact with users and generate responses based on user inputs.
+
+---
+
+### What is a Servlet?
+
+A **Servlet** is a server-side Java program that handles HTTP requests and generates HTTP responses. Servlets run within a servlet container (such as Apache Tomcat) and are used to extend the capabilities of a web server.
+
+---
+
+### Working of a Servlet
+
+1. **Client Request**: A client (usually a web browser) sends an HTTP request to the server.
+2. **Servlet Handling**: The request is received by the servlet container, which routes it to the appropriate servlet.
+3. **Processing Request**: The servlet processes the request, which could involve database interaction, computation, or other logic.
+4. **Response Generation**: The servlet generates an HTTP response, typically in the form of HTML, JSON, or XML.
+5. **Client Response**: The servlet container sends the response back to the client, which is rendered in the browser.
+
+---
+
+### Structure of a Servlet
+
+A servlet must implement the `javax.servlet.Servlet` interface or extend `HttpServlet` (which is a more specific subclass for HTTP requests).
+
+#### Commonly Used Methods in Servlets:
+- `init()`: Initializes the servlet. It is called only once when the servlet is loaded into memory.
+- `service()`: Handles requests from the client and generates a response. This method is called every time a request is made to the servlet.
+- `destroy()`: Cleans up any resources before the servlet is removed from memory.
+
+---
+
+### Example of a Simple Servlet
+
+```java
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class HelloWorldServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Set content type
+        response.setContentType("text/html");
+        
+        // Write response
+        PrintWriter out = response.getWriter();
+        out.println("<html><body>");
+        out.println("<h1>Hello, World!</h1>");
+        out.println("</body></html>");
+    }
+}
+```
+
+## Deployment of a Servlet
+
+### Steps to Deploy a Servlet
+
+1. **Create a Web Application**: Place the servlet in the `WEB-INF/classes` directory of the web application.
+2. **Servlet Configuration**: Configure the servlet in the `web.xml` file or use annotations (Java EE 6 and above) to map the servlet to a specific URL pattern.
+3. **Deploy**: Deploy the web application on a servlet container (e.g., Apache Tomcat).
+
+---
+
+### Key Points
+
+- **Servlets** handle client requests and generate dynamic responses.
+- They are written in Java and run on a servlet container (e.g., Apache Tomcat).
+- The main lifecycle methods are `init()`, `service()`, and `destroy()`.
+- **HTTPServlet** is the most commonly used subclass for handling HTTP requests.
+
+💡 **TIP**: Servlets are a foundational technology for Java web applications, often used in conjunction with JSP (JavaServer Pages) or frameworks like Spring.
+
+---
+
+## HTTP Methods
+
+HTTP (Hypertext Transfer Protocol) methods are used to perform operations on resources identified by URLs. They define the action to be performed on the resource. The most commonly used HTTP methods in web development are **GET**, **POST**, **PUT**, **DELETE**, **PATCH**, and **OPTIONS**.
+
+---
+
+### Common HTTP Methods
+
+1. **GET**
+   - Retrieves data from the server.
+   - It is **idempotent**, meaning calling the same GET request multiple times will return the same result without any side effects.
+   - Example: Retrieving a webpage or an API resource.
+   
+   ```http
+   GET /index.html HTTP/1.1
+
+2. **POST**
+
+    - Sends data to the server to create or update a  resource.
+    - It is **non-idempotent**, meaning calling the same POST request multiple times may result in different outcomes (e.g., creating multiple records).
+    - Example: Submitting a form or sending data to create a new resource.
+
+    ```http
+    POST /users HTTP/1.1
+    Content-Type: application/json
+    {
+    "name": "John",
+    "email": "john@example.com"
+    }
+
+3. **PUT**
+
+    - Updates or creates a resource on the server with the provided data.
+    - It is idempotent, meaning calling the same PUT request multiple times will produce the same result.
+    - Example: Updating a user's information.
+
+    ```http
+    PUT /users/1 HTTP/1.1
+    `Content-Type: application/json
+    {
+    "name": "John Updated",
+    "email": "john.updated@example.com"
+    }
+
+4. **DELETE**
+
+    - Removes the specified resource from the server.
+    - It is idempotent, meaning calling the same DELETE request multiple times will result in the same outcome (resource is deleted).
+    - Example: Deleting a user or a post.
+
+    ```http
+    DELETE /users/1 HTTP/1.1
+
+5. **OPTIONS**
+
+    - Retrieves the supported HTTP methods for a resource, often used to check for cross-origin requests (CORS).
+    - Example: Checking allowed methods on a server endpoint.
+
+    ```http
+    OPTIONS /users HTTP/1.1
+
+6. **TRACE**
+    - Used for diagnostic and debugging purposes to view the request headers as they reach the server.
+    **TRACE Request**:  
+    ```http
+    TRACE /example HTTP/1.1
+    Host: www.example.com
+    User-Agent: Mozilla/5.0
+    ```
+    **TRACE Response**:
+    ```http
+    HTTP/1.1 200 OK
+    Content-Type: message/http
+
+    TRACE /example HTTP/1.1
+    Host: www.example.com
+    User-Agent: Mozilla/5.0
+    ```
+
+### Key Points
+
+- **GET** is used to retrieve data, **POST** to submit data, **PUT** to update data, **DELETE** to remove data, **PATCH** for partial updates, and **OPTIONS** to check supported methods.
+- **GET** and **POST** are the most commonly used methods in web development.
+- HTTP methods help define the type of operation you want to perform on the resource.
+
+💡 **TIP**: Choose the appropriate HTTP method based on the operation. **GET** is for reading, **POST** is for creating, and **PUT/DELETE/PATCH** are for updating or deleting resources.
+
+---
+
+## MVC Design Pattern
+
+The **MVC (Model-View-Controller)** design pattern is a widely used architectural pattern for developing software applications. It separates an application into three interconnected components to achieve separation of concerns and enhance scalability, maintainability, and testability.
+
+---
+
+### Components of MVC
+
+1. **Model**  
+   - Represents the **data** and the business logic of the application.  
+   - It directly manages the data, logic, and rules of the application.  
+   - **Responsibilities**:  
+     - Fetch and store data (e.g., database interactions).  
+     - Notify views when the data changes.
+
+   **Example**:  
+   ```java
+   public class User {
+       private String name;
+       private String email;
+
+       // Getters and setters
+       public String getName() {
+           return name;
+       }
+
+       public void setName(String name) {
+           this.name = name;
+       }
+
+       public String getEmail() {
+           return email;
+       }
+
+       public void setEmail(String email) {
+           this.email = email;
+       }
+   }
+    ```
+
+2. **View**:
+    - Responsible for the presentation layer.
+    - Displays the data provided by the model to the user.
+    - Does not handle any business logic.
+
+    ```html
+    <html>
+    <body>
+        <h1>Welcome, ${user.name}</h1>
+        <p>Your email: ${user.email}</p>
+    </body>
+    </html>
+    ```
+
+3. **Controller**:
+    - Acts as the intermediary between the Model and the View.
+    - Processes user input, invokes the model to perform operations, and updates the view.
+
+    ```java
+    public class UserController {
+    private User model;
+    private UserView view;
+
+    public UserController(User model, UserView view) {
+        this.model = model;
+        this.view = view;
+    }
+
+    public void setUserName(String name) {
+        model.setName(name);
+    }
+
+    public void updateView() {
+        view.displayUserDetails(model.getName(), model.getEmail());
+    }
+    }
+    ```
+
+## Workflow of MVC
+
+### User Input
+The user interacts with the **View** (e.g., a form or UI component).
+
+### Controller
+The **Controller** processes the user input and interacts with the **Model**.
+
+### Model
+The **Model** performs the necessary business logic or data operations.
+
+### View Update
+The **View** is updated based on changes in the **Model**.
+
+---
+
+## Advantages of MVC
+
+1. **Separation of Concerns**  
+   - Clear separation between data (**Model**), UI (**View**), and logic (**Controller**).  
+
+2. **Scalability**  
+   - Easier to add or modify features without affecting other components.  
+
+3. **Reusability**  
+   - Components like **Models** and **Views** can be reused across the application.  
+
+---
+
+## Key Points
+
+- **Model** handles data and business logic.  
+- **View** presents data to the user.  
+- **Controller** manages input and coordinates between **Model** and **View**.  
+
+💡 **TIP**: Use the **MVC pattern** to organise your application for better maintainability and scalability.
+
+---
+
+## Init Parameters
+
+### What Are Init Parameters?
+
+**Init Parameters** (initialisation parameters) are key-value pairs defined for a servlet or web application. They allow the configuration of a servlet or application without hardcoding values in the code.
+
+Init parameters are used to provide data such as database connection details, file paths, or other configuration settings that a servlet or web application needs during runtime.
+
+---
+
+### Types of Init Parameters
+
+1. **Servlet Init Parameters**  
+   - Specific to a particular servlet.  
+   - Configured in the `web.xml` file or using annotations.  
+
+2. **Context Init Parameters**  
+   - Shared across the entire web application.  
+   - Configured in the `web.xml` file.
+
+---
+
+### Example: Servlet Init Parameters
+
+#### Using `web.xml`
+```xml
+<servlet>
+  <servlet-name>MyServlet</servlet-name>
+  <servlet-class>com.example.MyServlet</servlet-class>
+  <init-param>
+    <param-name>databaseURL</param-name>
+    <param-value>jdbc:mysql://localhost:3306/mydb</param-value>
+  </init-param>
+</servlet>
+<servlet-mapping>
+  <servlet-name>MyServlet</servlet-name>
+  <url-pattern>/myServlet</url-pattern>
+</servlet-mapping>
+```
+
+### Example: Context Init Parameters
+
+#### Using `web.xml`
+```xml
+<context-param>
+  <param-name>appName</param-name>
+  <param-value>My Web Application</param-value>
+</context-param>
+```
+
+## Key Points
+
+- **Servlet Init Parameters** are specific to a servlet, while **Context Init Parameters** are shared across the web application.
+- Use `getServletConfig().getInitParameter()` for servlet-specific parameters.
+- Use `getServletContext().getInitParameter()` for application-wide parameters.
+
+💡 **TIP**: Store configuration settings in init parameters to decouple them from the application code, improving maintainability.
+
+---
+
+## Servlet Context
+
+### What is a Servlet Context?
+
+The **Servlet Context** is an interface that provides communication between the servlet and the web application environment. It allows servlets to access information about the web application, such as initialization parameters, application-wide resources, and shared objects.
+
+Each web application has one Servlet Context, which is shared by all the servlets within that application.
+
+---
+
+### Key Features of Servlet Context
+
+1. **Access Application-wide Parameters**  
+   - Retrieve initialization parameters defined in `web.xml` using `getInitParameter()`.
+
+2. **Share Data Between Servlets**  
+   - Servlets can store and retrieve objects using the context as a shared storage.
+
+3. **Access Application-wide Resources**  
+   - Access resources like files, images, or database connections.
+
+4. **Logging**  
+   - Use the context's logging mechanism to write application logs.
+
+---
+
+### Methods in Servlet Context
+
+| **Method**                     | **Description**                                                                            |
+|---------------------------------|--------------------------------------------------------------------------------------------|
+| `getInitParameter(String name)` | Retrieves a context-wide initialization parameter.                                         |
+| `getAttribute(String name)`     | Retrieves an object bound to a specific name in the context.                              |
+| `setAttribute(String name, Object object)` | Stores an object in the context, making it accessible to all servlets.               |
+| `getRealPath(String path)`      | Converts a virtual path (e.g., `/WEB-INF`) to a real server file system path.             |
+| `log(String message)`           | Writes a message to the servlet container's log file.                                     |
+
+---
+
+### Example: Using Servlet Context
+
+#### Define Context Parameters in `web.xml`
+```xml
+<context-param>
+  <param-name>databaseURL</param-name>
+  <param-value>jdbc:mysql://localhost:3306/mydb</param-value>
+</context-param>
+```
+
+#### Access Context Parameters in a Servlet
+```java
+@WebServlet("/contextExample")
+public class ContextExampleServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        ServletContext context = getServletContext();
+        
+        // Access context-wide parameters
+        String databaseURL = context.getInitParameter("databaseURL");
+        response.getWriter().println("Database URL: " + databaseURL);
+        
+        // Share data between servlets
+        context.setAttribute("sharedData", "Hello from ContextExampleServlet");
+        
+        // Log a message
+        context.log("ContextExampleServlet executed successfully.");
+    }
+}
+```
+
+## Key Points
+
+- The **Servlet Context** provides an interface for communication between the servlet and the web application environment.
+- Use `getServletContext()` to retrieve the context in a servlet.
+- Shared data can be stored in the context using `setAttribute()` and retrieved using `getAttribute()`.
+- Context parameters defined in `web.xml` are accessible using `getInitParameter()`.
+
+💡 **TIP**: Use the Servlet Context for application-wide settings or shared resources to promote reusability and reduce redundancy.
+
+---
+
+## Inter-Servlet Communication
+
+**Inter-Servlet Communication** refers to the process of communication between two or more servlets within a web application. It allows servlets to share data or invoke methods on each other.
+
+---
+
+### Techniques for Inter-Servlet Communication
+
+1. **Request Dispatching**  
+   - Use the `RequestDispatcher` object to forward a request from one servlet to another or include the response of another servlet.
+   - Methods:
+     - `forward(request, response)`: Passes control to another servlet or JSP.
+     - `include(request, response)`: Includes the output of another servlet or JSP.
+
+   **Example**:
+   ```java
+   RequestDispatcher dispatcher = request.getRequestDispatcher("/targetServlet");
+   dispatcher.forward(request, response);
+   ```
+
+2. **Shared Object via Servlet Context**
+
+    - Store shared data in the Servlet Context using  methods like setAttribute() and getAttribute().
+
+    ```java
+    ServletContext context = getServletContext();
+    context.setAttribute("sharedData", "Hello from Servlet 1");
+
+    String data = (String) context.getAttribute("sharedData");
+    ```
+
+3. **Direct Servlet Access**
+
+    - Use the ServletConfig or ServletContext to obtain a reference to another servlet.
+    - This method requires the servlet to be initialized in the web application.
+
+    ```java
+    MyServlet otherServlet = (MyServlet) getServletContext().getServlet("otherServlet");
+    otherServlet.someMethod();
+    ```
+
+4. **Session Sharing**
+
+    - Store data in the HttpSession object to share information between servlets for the same user session.
+
+    ```java
+    HttpSession session = request.getSession();
+    session.setAttribute("userName", "John Doe");
+
+    String name = (String) session.getAttribute("userName");
+    ```
+
+### Key Points
+
+- **RequestDispatcher** allows request forwarding and response inclusion.
+- Use **ServletContext** for application-wide data sharing.
+- **HttpSession** is ideal for sharing user-specific data.
+- Direct servlet access provides control but may violate encapsulation principles.
+- Always consider thread-safety when sharing objects between servlets.
+
+💡 **TIP**: Use `RequestDispatcher` for decoupled communication and `ServletContext` for sharing global data efficiently.
+
+---
+
+## Servlet Listeners  
+
+Servlet Listeners are special interfaces in Java that allow developers to monitor and respond to specific events in a web application lifecycle. These events can be related to the lifecycle of the application, HTTP sessions, or servlet requests.
+
+---
+
+### Types of Servlet Listeners  
+
+1. **ServletContextListener**  
+   - Monitors the lifecycle of the web application.  
+   - Methods:  
+     - `contextInitialized(ServletContextEvent event)`: Called when the application is started.  
+     - `contextDestroyed(ServletContextEvent event)`: Called when the application is shut down.  
+
+2. **HttpSessionListener**  
+   - Monitors the lifecycle of HTTP sessions.  
+   - Methods:  
+     - `sessionCreated(HttpSessionEvent event)`: Called when a session is created.  
+     - `sessionDestroyed(HttpSessionEvent event)`: Called when a session is invalidated or times out.  
+
+3. **ServletRequestListener**  
+   - Monitors the lifecycle of HTTP requests.  
+   - Methods:  
+     - `requestInitialized(ServletRequestEvent event)`: Called when a request is received.  
+     - `requestDestroyed(ServletRequestEvent event)`: Called when a request is completed.  
+
+---
+
+### Example: ServletContextListener  
+
+```java
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+
+public class MyAppListener implements ServletContextListener {
+    @Override
+    public void contextInitialized(ServletContextEvent event) {
+        System.out.println("Application started!");
+    }
+
+    @Override
+    public void contextDestroyed(ServletContextEvent event) {
+        System.out.println("Application stopped!");
+    }
+}
+```
+
+### Key Points
+
+- **Listeners** provide hooks into various lifecycle events of a web application, sessions, and requests.
+- Use **ServletContextListener** for application-wide initialisation and cleanup.
+- Use **HttpSessionListener** to manage session-specific data or logging.
+- Use **ServletRequestListener** for request-specific operations.
+
+💡 **TIP**: Implement listeners to handle application-wide or session-wide tasks, such as resource allocation, logging, or performance monitoring.
+
+---
+
+## Servlet Filters  
+
+Servlet Filters are Java classes that intercept and modify the request and response objects in a web application. Filters allow for pre-processing or post-processing of requests, such as logging, authentication, input validation, or content compression.
+
+---
+
+### Types of Servlet Filters  
+
+1. **Request Filters**  
+   - Modify or validate incoming request data before passing it to the servlet.  
+   - Examples: Input sanitization, authentication, logging.  
+
+2. **Response Filters**  
+   - Modify or compress the outgoing response data before it is sent to the client.  
+   - Examples: Content encoding, logging response times.  
+
+3. **Chain Filters**  
+   - Multiple filters can be chained together. Each filter in the chain can perform a specific task before passing control to the next filter in the chain.  
+
+---
+
+### Filter Interface  
+To create a filter, a class must implement the `javax.servlet.Filter` interface and override the following methods:
+
+1. `init(FilterConfig filterConfig)`  
+   - Called when the filter is initialized, usually for setting up resources.
+   
+2. `doFilter(ServletRequest request, ServletResponse response, FilterChain chain)`  
+   - The core method, where filtering logic is implemented. After performing the filter logic, `chain.doFilter(request, response)` is called to pass the request/response to the next filter or the servlet.
+   
+3. `destroy()`  
+   - Called when the filter is destroyed, allowing for resource cleanup.
+
+---
+
+### Example: Logging Filter  
+
+```java
+import javax.servlet.*;
+import java.io.IOException;
+
+public class LoggingFilter implements Filter {
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+        // Initialization logic, if any.
+    }
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        System.out.println("Request received at: " + System.currentTimeMillis());
+        chain.doFilter(request, response); // Pass the request to the next filter or servlet
+        System.out.println("Response sent at: " + System.currentTimeMillis());
+    }
+
+    @Override
+    public void destroy() {
+        // Cleanup logic, if any.
+    }
+}
+```
+
+### Key Points
+
+- **Filters** can be used for pre-processing and post-processing of requests and responses.
+- Filters can be **chained together** to perform multiple tasks in sequence.
+- The **doFilter** method is where the main filtering logic is written.
+- Filters can be used for **cross-cutting concerns** like logging, authentication, and compression.
+
+💡 **TIP**: Use filters to centralize common tasks (such as logging or validation) across multiple servlets, improving maintainability and reusability.
+
+---
+
+
+
+
+
+
