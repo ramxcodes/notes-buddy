@@ -42,3 +42,24 @@ export async function isUserBlocked(email: string): Promise<boolean> {
   const user = await usersCollection.findOne({ email });
   return user?.Blocked ?? false;
 }
+
+export async function getAdminStats() {
+  const usersCollection = await getCollection("users");
+  const paymentsCollection = await getCollection("payments");
+
+  const totalUsers = await usersCollection.countDocuments();
+  const premiumUsers = await usersCollection.countDocuments({
+    isPremium: true,
+  });
+  const blockedUsers = await usersCollection.countDocuments({ Blocked: true });
+  const totalRevenue = await paymentsCollection
+    .aggregate([{ $group: { _id: null, total: { $sum: "$amount" } } }])
+    .toArray();
+
+  return {
+    totalUsers,
+    premiumUsers,
+    blockedUsers,
+    totalRevenue: totalRevenue[0]?.total || 0,
+  };
+}

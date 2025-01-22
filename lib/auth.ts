@@ -21,25 +21,31 @@ export const authOptions: NextAuthOptions = {
         const db = await clientPromise;
         const usersCollection = db.db().collection("users");
 
-        const dbUser = await usersCollection.findOne({ email: token.email });
+        const dbUser = await usersCollection.findOne({ email: user.email });
 
         if (!dbUser) {
           await usersCollection.insertOne({
-            email: token.email,
-            name: token.name || "",
-            image: token.picture || "",
+            email: user.email,
+            name: user.name || "",
+            image: user.image || "",
             Blocked: false,
             createdAt: new Date(),
           });
         } else if (!("Blocked" in dbUser)) {
           await usersCollection.updateOne(
-            { email: token.email },
+            { email: user.email },
             { $set: { Blocked: false } }
           );
         }
 
-        token.id = dbUser?._id;
+        token.id = dbUser?._id?.toString();
         token.Blocked = dbUser?.Blocked ?? false;
+
+        const adminEmails =
+          process.env.ADMIN_EMAILS?.split(",").filter((email) =>
+            email.trim()
+          ) || [];
+        token.isAdmin = adminEmails.includes(user.email || "");
       }
 
       return token;
@@ -51,6 +57,7 @@ export const authOptions: NextAuthOptions = {
         name: token.name || "",
         image: token.picture || "",
         Blocked: token.Blocked as boolean,
+        isAdmin: token.isAdmin as boolean,
       };
       return session;
     },

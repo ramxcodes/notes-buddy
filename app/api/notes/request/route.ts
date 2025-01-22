@@ -8,26 +8,21 @@ const ERROR_MESSAGES = {
   USER_NOT_FOUND: "User not found.",
   USER_BLOCKED: "You are blocked by an admin from submitting requests.",
   INVALID_USER_ID: "Invalid user ID format.",
+  INVALID_REQUEST_ID: "Invalid request ID format.",
   SERVER_ERROR: "Internal server error.",
+  REQUEST_NOT_FOUND: "Request not found.",
 };
-const SUCCESS_MESSAGE = "Request successfully saved.";
+const SUCCESS_MESSAGE = "Request successfully updated.";
 
-// Utility function for validating required fields
-function validateFields(
-  data: Record<string, any>,
-  requiredFields: string[]
-): string[] {
-  return requiredFields.filter((field) => !data[field]);
-}
-
-// Utility function to validate ObjectId
+// Utility function for validating ObjectId
 function isValidObjectId(id: string): boolean {
   return ObjectId.isValid(id);
 }
 
+// POST: Create a new notes request
 export async function POST(request: Request) {
   try {
-    // Parse and validate the request body
+    const requestBody = await request.json();
     const {
       university,
       degree,
@@ -37,7 +32,7 @@ export async function POST(request: Request) {
       syllabus,
       phoneNumber,
       userId,
-    } = await request.json();
+    } = requestBody;
 
     const requiredFields = [
       "university",
@@ -50,19 +45,7 @@ export async function POST(request: Request) {
       "userId",
     ];
 
-    const missingFields = validateFields(
-      {
-        university,
-        degree,
-        year,
-        semester,
-        subject,
-        syllabus,
-        phoneNumber,
-        userId,
-      },
-      requiredFields
-    );
+    const missingFields = requiredFields.filter((field) => !requestBody[field]);
 
     if (missingFields.length > 0) {
       return NextResponse.json(
@@ -82,7 +65,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Check if the user exists and their BLOCKED status
     const usersCollection = await getCollection("users");
     const user = await usersCollection.findOne({ _id: new ObjectId(userId) });
 
@@ -100,7 +82,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Save the request in the requestNotes collection
     const requestNotesCollection = await getCollection("requestNotes");
     await requestNotesCollection.insertOne({
       university,
@@ -112,17 +93,57 @@ export async function POST(request: Request) {
       phoneNumber,
       userId,
       createdAt: new Date(),
+      status: "Pending", // Default status for new requests
     });
 
     return NextResponse.json({ message: SUCCESS_MESSAGE }, { status: 200 });
   } catch (error) {
-    if (error instanceof Error) {
-      console.error("Failed to save request notes:", error.message);
-    } else {
-      console.error("Failed to save request notes:", error);
-    }
+    console.error("Failed to save request notes:", error);
     return NextResponse.json(
       { error: ERROR_MESSAGES.SERVER_ERROR },
+      { status: 500 }
+    );
+  }
+}
+
+// PATCH: Update the status of an existing notes request
+export async function PATCH(request: Request) {
+  try {
+    const { requestId, status }: { requestId: string; status: string } =
+      await request.json();
+
+    if (!requestId || !status) {
+      return NextResponse.json(
+        { error: "Request ID and status are required." },
+        { status: 400 }
+      );
+    }
+
+    if (!ObjectId.isValid(requestId)) {
+      return NextResponse.json(
+        { error: "Invalid Request ID." },
+        { status: 400 }
+      );
+    }
+
+    const requestNotesCollection = await getCollection("requestNotes");
+    const updateResult = await requestNotesCollection.updateOne(
+      { _id: new ObjectId(requestId) },
+      { $set: { status } }
+    );
+
+    if (updateResult.matchedCount === 0) {
+      return NextResponse.json(
+        { error: "Request not found." },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json({ success: true }, { status: 200 });
+  } catch (error) {
+    console.error("Failed to update request status:", error);
+    return NextResponse.json(
+      { error: "Internal Server Error" },
       { status: 500 }
     );
   }

@@ -10,7 +10,7 @@ import { Popup } from "./components/Popup";
 
 export default function BuyPremiumPage() {
   const { data: session, status } = useSession();
-  const [tier, setTier] = useState("Tier 1");
+  const [tier, setTier] = useState<keyof typeof tierPricing>("Tier 1");
   const [university, setUniversity] = useState("");
   const [degree, setDegree] = useState("");
   const [year, setYear] = useState("");
@@ -19,15 +19,17 @@ export default function BuyPremiumPage() {
   const [popupMessage, setPopupMessage] = useState("");
   const [showPopup, setShowPopup] = useState(false);
   const [showPhonePrompt, setShowPhonePrompt] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const universities = ["Medicaps University"];
   const degrees = ["B Tech"];
   const years = ["1st Year", "2nd Year", "3rd Year", "4th Year"];
+  const tierPricing = { "Tier 1": 99, "Tier 2": 169, "Tier 3": 249 };
 
   useEffect(() => {
     if (status === "authenticated" && session?.user) {
       setUser(session.user);
-      setPhoneNumber(session.user.phoneNumber || null); // Load phone number from session
+      setPhoneNumber(session.user.phoneNumber || null);
     } else if (status === "unauthenticated") {
       setUser(null);
     }
@@ -47,73 +49,101 @@ export default function BuyPremiumPage() {
     }
 
     if (!phoneNumber) {
-      setShowPhonePrompt(true); // Prompt for phone number if not set
+      setShowPhonePrompt(true);
       return;
     }
 
-    initiatePayment(); // Proceed to payment if phone number exists
+    initiatePayment();
   };
 
   const initiatePayment = async () => {
-    const response = await fetch("/api/razorpay/create-order", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ tier, university, degree, year }),
-    });
+    try {
+      setLoading(true);
+      const response = await fetch("/api/razorpay/create-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          tier,
+          university,
+          degree,
+          year,
+          amount: tierPricing[tier],
+        }),
+      });
 
-    const order = await response.json();
+      const order = await response.json();
 
-    if (!order.id) {
-      setPopupMessage("Failed to create Razorpay order");
-      setShowPopup(true);
-      return;
-    }
-
-    const options = {
-      key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-      amount: order.amount,
-      currency: "INR",
-      name: "Notes buddy premium",
-      description: `Subscription for ${tier} (${year})`,
-      order_id: order.id,
-      handler: async (response: any) => {
-        const verification = await fetch("/api/razorpay/verify-payment", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            ...response,
-            userId: user.id,
-            tier,
-            university,
-            degree,
-            year,
-          }),
-        });
-
-        const result = await verification.json();
-
-        setPopupMessage(
-          result.success ? "Payment successful!" : "Payment verification failed"
-        );
+      if (!order.id) {
+        setPopupMessage("Failed to create Razorpay order");
         setShowPopup(true);
-      },
-      prefill: {
-        name: user.name || "",
-        email: user.email || "",
-      },
-      theme: { color: "#3399cc" },
-    };
+        return;
+      }
 
-    if (typeof window !== "undefined") {
+      const options = {
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+        amount: order.amount,
+        currency: "INR",
+        name: "Notes Buddy Premium",
+        description: `Subscription for ${tier} (${year})`,
+        order_id: order.id,
+        handler: async (response: any) => {
+          const verification = await fetch("/api/razorpay/verify-payment", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              ...response,
+              userId: user.id,
+              tier,
+              university,
+              degree,
+              year,
+              amount: tierPricing[tier],
+            }),
+          });
+
+          const result = await verification.json();
+
+          setPopupMessage(
+            result.success
+              ? "Payment successful!"
+              : "Payment verification failed"
+          );
+          setShowPopup(true);
+        },
+        prefill: {
+          name: user.name || "",
+          email: user.email || "",
+        },
+        theme: { color: "#3399cc" },
+      };
+
+      if (typeof window !== "undefined") {
+        const Razorpay = await loadRazorpayScript();
+        if (Razorpay) {
+          const razorpay = new (Razorpay as any)(options);
+          razorpay.open();
+        } else {
+          setPopupMessage("Failed to load Razorpay script");
+          setShowPopup(true);
+        }
+      }
+    } catch (error) {
+      console.error("Error initiating payment:", error);
+      setPopupMessage("An error occurred during checkout");
+      setShowPopup(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const loadRazorpayScript = () => {
+    return new Promise((resolve) => {
       const script = document.createElement("script");
       script.src = "https://checkout.razorpay.com/v1/checkout.js";
-      script.onload = () => {
-        const Razorpay = (window as any).Razorpay;
-        const razorpay = new Razorpay(options);
-        razorpay.open();
-      };
+      script.onload = () => resolve((window as any).Razorpay);
+      script.onerror = () => resolve(null);
       document.body.appendChild(script);
-    }
+    });
   };
 
   const handlePhoneSubmit = async () => {
@@ -135,7 +165,6 @@ export default function BuyPremiumPage() {
 
   return (
     <div className="relative">
-      {/* Main Content */}
       <div
         className={`p-8 h-screen mx-auto rounded-xl space-y-4 flex flex-col items-center justify-center font-wotfard ${
           showPopup ? "blur-md" : ""
@@ -145,7 +174,6 @@ export default function BuyPremiumPage() {
           isAuthenticated={!!user}
           userName={session?.user.name || null}
         />
-
         <div className="max-w-md w-full space-y-4">
           <PlanSelector
             label="University"
@@ -169,16 +197,18 @@ export default function BuyPremiumPage() {
             label="Plan Tier"
             options={["Tier 1", "Tier 2", "Tier 3"]}
             selectedOption={tier}
-            onSelect={setTier}
+            onSelect={(value) => setTier(value as keyof typeof tierPricing)}
           />
           <BlurFade delay={0.3} inView>
             <Button
               variant={"default"}
               className="w-full py-2 px-4 font-semibold rounded-md shadow-md font-gilroy"
               onClick={handleCheckout}
+              disabled={loading}
             >
-              Proceed to Pay ₹
-              {tier === "Tier 1" ? 99 : tier === "Tier 2" ? 169 : 249}/-
+              {loading
+                ? "Processing..."
+                : `Proceed to Pay ₹${tierPricing[tier]}/-`}
             </Button>
           </BlurFade>
         </div>

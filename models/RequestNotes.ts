@@ -9,6 +9,11 @@ const RequestNotesSchema = new Schema({
   syllabus: { type: String, required: true },
   phoneNumber: { type: String, required: true },
   userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+  status: {
+    type: String,
+    default: "Pending",
+    enum: ["Pending", "In Progress", "Completed", "Rejected"],
+  },
   createdAt: { type: Date, default: Date.now },
 });
 

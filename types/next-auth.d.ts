@@ -13,6 +13,12 @@ declare module "next-auth" {
       semesters?: string[];
       phoneNumber?: string;
       Blocked?: boolean;
+      isAdmin?: boolean;
+      razorpayDetails?: {
+        orderId: string;
+        paymentId: string;
+        amount: number;
+      };
     } & DefaultSession["user"];
   }
 
@@ -27,5 +33,11 @@ declare module "next-auth" {
     semesters?: string[];
     phoneNumber?: string;
     Blocked?: boolean;
+    isAdmin?: boolean;
+    razorpayDetails?: {
+      orderId: string;
+      paymentId: string;
+      amount: number;
+    };
   }
 }

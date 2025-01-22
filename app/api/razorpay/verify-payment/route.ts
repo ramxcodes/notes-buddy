@@ -14,6 +14,7 @@ export async function POST(request: Request) {
       university,
       degree,
       year,
+      amount,
     }: {
       razorpay_order_id: string;
       razorpay_payment_id: string;
@@ -23,6 +24,7 @@ export async function POST(request: Request) {
       university: string;
       degree: string;
       year: "1st Year" | "2nd Year" | "3rd Year" | "4th Year";
+      amount: number;
     } = await request.json();
 
     const generatedSignature = crypto
@@ -61,6 +63,7 @@ export async function POST(request: Request) {
           razorpayDetails: {
             orderId: razorpay_order_id,
             paymentId: razorpay_payment_id,
+            amount,
           },
         },
       }
@@ -70,6 +73,26 @@ export async function POST(request: Request) {
       console.error("User not found or update failed");
       return NextResponse.json(
         { error: "Failed to update subscription details" },
+        { status: 500 }
+      );
+    }
+
+    const paymentResult = await db.collection("payments").insertOne({
+      userId: new ObjectId(userId),
+      email: await db
+        .collection("users")
+        .findOne({ _id: new ObjectId(userId) }, { projection: { email: 1 } })
+        .then((user) => user?.email),
+      amount,
+      orderId: razorpay_order_id,
+      paymentId: razorpay_payment_id,
+      createdAt: new Date(),
+    });
+
+    if (!paymentResult.insertedId) {
+      console.error("Failed to record payment");
+      return NextResponse.json(
+        { error: "Failed to record payment" },
         { status: 500 }
       );
     }
