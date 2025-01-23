@@ -11,6 +11,7 @@ import clientPromise from "@/lib/db";
 import { getServerSession } from "next-auth";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 interface PostPageProps {
   params: {
@@ -28,21 +29,14 @@ async function getPostFromParams(params: PostPageProps["params"]) {
   return post;
 }
 
-async function validateAccess(
-  requiredTier: string,
-  requiredSemester: string
-): Promise<{
-  errorMessage: string | null;
-  userTier: string | null;
-  userSemesters: string[];
-  hasSemesterAccess: boolean;
-}> {
+async function validateAccess(requiredTier: string, requiredSemester: string) {
   if (requiredTier === "Free") {
     return {
       errorMessage: null,
       userTier: "Free",
       userSemesters: [],
       hasSemesterAccess: true,
+      isBlocked: false,
     };
   }
 
@@ -54,6 +48,7 @@ async function validateAccess(
       userTier: null,
       userSemesters: [],
       hasSemesterAccess: false,
+      isBlocked: false,
     };
   }
 
@@ -61,8 +56,22 @@ async function validateAccess(
   const usersCollection = db.db().collection("users");
   const user = await usersCollection.findOne({ email: session.user?.email });
 
-  const userTier = user?.planTier || "Free";
-  const userSemesters = user?.semesters || [];
+  if (!user) {
+    return {
+      errorMessage: "User not found.",
+      userTier: null,
+      userSemesters: [],
+      hasSemesterAccess: false,
+      isBlocked: false,
+    };
+  }
+
+  if (user.Blocked) {
+    redirect("/blocked");
+  }
+
+  const userTier = user.planTier || "Free";
+  const userSemesters = user.semesters || [];
 
   const hasTierAccess = hasAccess(userTier, requiredTier);
   const hasSemesterAccess = userSemesters.includes(requiredSemester);
@@ -73,6 +82,7 @@ async function validateAccess(
       userTier,
       userSemesters,
       hasSemesterAccess,
+      isBlocked: false,
     };
   }
 
@@ -82,6 +92,7 @@ async function validateAccess(
       userTier,
       userSemesters,
       hasSemesterAccess,
+      isBlocked: false,
     };
   }
 
@@ -90,6 +101,7 @@ async function validateAccess(
     userTier,
     userSemesters,
     hasSemesterAccess,
+    isBlocked: false,
   };
 }
 
