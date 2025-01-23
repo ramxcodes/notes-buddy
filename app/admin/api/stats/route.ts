@@ -7,25 +7,35 @@ export async function GET() {
     const requestNotesCollection = await getCollection("requestNotes");
     const reportsCollection = await getCollection("reportNotes");
 
-    // Users Stats
-    const totalUsers = await usersCollection.countDocuments();
-    const premiumUsers = await usersCollection.countDocuments({ planTier: { $exists: true, $ne: null } });
-    const blockedUsers = await usersCollection.countDocuments({ Blocked: true });
+    const [
+      totalUsers,
+      premiumUsers,
+      blockedUsers,
+      payments,
+      totalNotesRequests,
+      completedNotesRequests,
+      totalNotesReports,
+      completedNotesReports,
+    ] = await Promise.all([
+      usersCollection.countDocuments(),
+      usersCollection.countDocuments({
+        planTier: { $exists: true, $ne: null },
+      }),
+      usersCollection.countDocuments({ Blocked: true }),
+      usersCollection
+        .find({ razorpayDetails: { $exists: true } })
+        .project({ "razorpayDetails.amount": 1 })
+        .toArray(),
+      requestNotesCollection.countDocuments(),
+      requestNotesCollection.countDocuments({ status: "Completed" }),
+      reportsCollection.countDocuments(),
+      reportsCollection.countDocuments({ status: "Completed" }),
+    ]);
 
-    // Revenue Stats
-    const payments = await usersCollection
-      .find({ razorpayDetails: { $exists: true } })
-      .project({ "razorpayDetails.amount": 1 })
-      .toArray();
-    const totalRevenue = payments.reduce((sum, user) => sum + (user.razorpayDetails.amount || 0), 0);
-
-    // Notes Requests Stats
-    const totalNotesRequests = await requestNotesCollection.countDocuments();
-    const completedNotesRequests = await requestNotesCollection.countDocuments({ status: "Completed" });
-
-    // Notes Reports Stats
-    const totalNotesReports = await reportsCollection.countDocuments();
-    const completedNotesReports = await reportsCollection.countDocuments({ status: "Completed" });
+    const totalRevenue = payments.reduce(
+      (sum, user) => sum + (user.razorpayDetails?.amount || 0),
+      0
+    );
 
     return NextResponse.json({
       totalUsers,
@@ -39,6 +49,9 @@ export async function GET() {
     });
   } catch (error) {
     console.error("Error fetching admin stats:", error);
-    return NextResponse.json({ error: "Failed to fetch stats" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to fetch stats" },
+      { status: 500 }
+    );
   }
 }

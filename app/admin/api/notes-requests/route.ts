@@ -2,9 +2,9 @@ import { NextResponse } from "next/server";
 import { getCollection } from "@/lib/db";
 import { ObjectId } from "mongodb";
 
-// Constants for error messages
 const ERROR_MESSAGES = {
   SERVER_ERROR: "Failed to fetch notes requests.",
+  INVALID_OBJECT_ID: "Invalid userId format in requestNotes.",
 };
 
 export async function GET() {
@@ -14,8 +14,21 @@ export async function GET() {
     const notesRequests = await requestNotesCollection
       .aggregate([
         {
+          $match: {
+            userId: { $exists: true, $ne: null },
+          },
+        },
+        {
           $addFields: {
-            userId: { $toObjectId: "$userId" }, // Convert userId to ObjectId
+            userId: {
+              $cond: {
+                if: {
+                  $regexMatch: { input: "$userId", regex: /^[a-f\d]{24}$/i },
+                },
+                then: { $toObjectId: "$userId" },
+                else: null,
+              },
+            },
           },
         },
         {
@@ -26,7 +39,12 @@ export async function GET() {
             as: "user",
           },
         },
-        { $unwind: "$user" },
+        {
+          $unwind: {
+            path: "$user",
+            preserveNullAndEmptyArrays: false,
+          },
+        },
         {
           $project: {
             _id: 1,
@@ -50,7 +68,14 @@ export async function GET() {
 
     return NextResponse.json(notesRequests, { status: 200 });
   } catch (error) {
-    console.error(ERROR_MESSAGES.SERVER_ERROR, error);
-    return NextResponse.json({ error: ERROR_MESSAGES.SERVER_ERROR }, { status: 500 });
+    if ((error as any).code === 121) {
+      console.error(ERROR_MESSAGES.INVALID_OBJECT_ID, error);
+    } else {
+      console.error(ERROR_MESSAGES.SERVER_ERROR, error);
+    }
+    return NextResponse.json(
+      { error: ERROR_MESSAGES.SERVER_ERROR },
+      { status: 500 }
+    );
   }
 }
