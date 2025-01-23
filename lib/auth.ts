@@ -1,4 +1,4 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
+import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "@/lib/db";
@@ -17,44 +17,40 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async jwt({ token, user }) {
-      if (user) {
-        const db = await clientPromise;
-        const usersCollection = db.db().collection("users");
+      const db = await clientPromise;
+      const usersCollection = db.db().collection("users");
 
-        const dbUser = await usersCollection.findOne({ email: user.email });
+      if (user) {
+        const email = user.email || token.email;
+        const dbUser = await usersCollection.findOne({ email });
 
         if (!dbUser) {
-          const insertResult = await usersCollection.insertOne({
-            email: user.email,
-            name: user.name || "",
-            image: user.image || "",
+          await usersCollection.insertOne({
+            email,
+            name: user.name || token.name || "",
+            image: user.image || token.picture || "",
             Blocked: false,
             createdAt: new Date(),
           });
-
-          token.id = insertResult.insertedId.toString();
-          token.Blocked = false;
-        } else {
-          if (!("Blocked" in dbUser)) {
-            await usersCollection.updateOne(
-              { email: user.email },
-              { $set: { Blocked: false } }
-            );
-          }
-
-          token.id = dbUser._id.toString();
-          token.Blocked = dbUser.Blocked ?? false;
+        } else if (!("Blocked" in dbUser)) {
+          await usersCollection.updateOne(
+            { email },
+            { $set: { Blocked: false } }
+          );
         }
 
+        token.id = dbUser?._id?.toString() || token.id;
+        token.Blocked = dbUser?.Blocked ?? false;
+        token.email = email;
+        token.name = user.name || token.name;
+
         const adminEmails =
-          process.env.ADMIN_EMAILS?.split(",").map((email) => email.trim()) ||
-          [];
-        token.isAdmin = adminEmails.includes(user.email || "");
+          process.env.ADMIN_EMAILS?.split(",").map((e) => e.trim()) || [];
+        token.isAdmin = adminEmails.includes(email || "");
       }
 
       return token;
     },
-
     async session({ session, token }) {
       session.user = {
         id: token.id as string,
@@ -68,7 +64,3 @@ export const authOptions: NextAuthOptions = {
     },
   },
 };
-
-const handler = NextAuth(authOptions);
-
-export { handler as GET, handler as POST };
