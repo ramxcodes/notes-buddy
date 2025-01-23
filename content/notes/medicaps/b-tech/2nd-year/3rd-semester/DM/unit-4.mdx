@@ -12,3 +12,1055 @@ metadata:
 ---
 
 ---
+## Trees
+
+A **tree** is a widely used data structure in computer science and mathematics that represents hierarchical relationships between objects. It is made up of nodes connected by edges. Trees are used to model various hierarchical structures like file systems, organization charts, and decision processes.
+
+### 1. **Definition of a Tree**
+
+A tree is a **connected, acyclic, undirected graph** that consists of the following components:
+- **Nodes (or vertices):** The individual elements or entities in the tree.
+- **Edges:** The connections between the nodes.
+- **Root:** The topmost node of the tree, from which all other nodes are reachable.
+- **Leaf Nodes:** Nodes that do not have any children (i.e., nodes with no outgoing edges).
+- **Internal Nodes:** Nodes that have one or more children (i.e., nodes with outgoing edges).
+
+In a tree:
+- There is exactly one path between any two nodes.
+- There are no cycles (i.e., no node can be revisited by traversing edges).
+
+### 2. **Key Properties of a Tree**
+- **Acyclic:** A tree has no cycles or loops.
+- **Connected:** There is a path between any two nodes in the tree.
+- **Rooted Tree:** In most tree structures, one node is designated as the root, and all other nodes are descendants of the root.
+
+### 3. **Terminology in Trees**
+
+- **Parent:** A node that has one or more child nodes connected to it.
+- **Child:** A node that is directly connected to another node (its parent) by an edge.
+- **Subtree:** A tree formed by a node and all of its descendants.
+- **Height of a Node:** The number of edges on the longest path from that node to a leaf.
+- **Depth of a Node:** The number of edges from the root to that node.
+- **Level of a Node:** The number of edges from the root to that node (same as the depth).
+
+### 4. **Types of Trees**
+
+- **Binary Tree:** A tree in which each node has at most two children (left child and right child).
+- **Binary Search Tree (BST):** A binary tree where the nodes are arranged in such a way that for every node, the left child has a value smaller than the parent node, and the right child has a value larger than the parent node.
+- **AVL Tree:** A self-balancing binary search tree where the height of the left and right subtrees of every node differs by at most 1.
+- **N-ary Tree:** A tree in which each node can have up to **n** children, where **n** is a fixed number.
+- **Heap:** A binary tree-based data structure that satisfies the heap property (e.g., in a max-heap, every parent node is greater than or equal to its children).
+
+### 5. **Example of a Simple Tree**
+
+Consider the following tree structure:
+```mathematics
+     A
+    / \
+   B   C
+  / \    \
+ D   E    F
+```
+
+- **Root:** A
+- **Leaves:** D, E, F
+- **Internal Nodes:** A, B, C
+- **Height of the Tree:** 2 (the longest path from the root to a leaf is 2 edges)
+- **Depth of Node C:** 1 (1 edge from the root to node C)
+
+### 6. **Representation of Trees**
+
+- **Adjacency List:** Each node stores a list of its children.
+- **Adjacency Matrix:** A 2D array where the entry at (i, j) is 1 if there is an edge from node i to node j, and 0 otherwise.
+- **Parent Array:** Each node has a reference to its parent.
+
+---
+## Binary Tree
+
+A **binary tree** is a type of tree in which each node has at most two children, commonly referred to as the **left child** and the **right child**. It is one of the most fundamental and widely used data structures in computer science, especially in algorithms related to searching, sorting, and hierarchical structures.
+
+### 1. **Definition of a Binary Tree**
+
+A binary tree is a tree data structure where each node has:
+- **At most two children:** These children are typically called the **left child** and the **right child**.
+- **A root node:** The topmost node in the tree.
+- **A leaf node:** A node that does not have any children.
+
+In a binary tree:
+- The root node has no parent.
+- All other nodes have one parent and up to two children.
+
+### 2. **Properties of Binary Trees**
+- **Height:** The height of a binary tree is the number of edges from the root node to the farthest leaf node. A binary tree with only one node has a height of 0.
+- **Depth:** The depth of a node is the number of edges from the root node to that node.
+- **Full Binary Tree:** A binary tree where every node has either 0 or exactly 2 children.
+- **Complete Binary Tree:** A binary tree where all levels are completely filled, except possibly the last level, which is filled from left to right.
+- **Balanced Binary Tree:** A binary tree where the left and right subtrees of every node differ in height by at most 1.
+  
+### 3. **Types of Binary Trees**
+- **Binary Search Tree (BST):** A binary tree where for each node, all nodes in its left subtree have values less than the node, and all nodes in its right subtree have values greater than the node.
+- **AVL Tree:** A self-balancing binary search tree, where the balance factor of every node is checked to ensure that the difference in heights between the left and right subtrees is at most 1.
+- **Heap:** A binary tree that satisfies the heap property. In a **max heap**, each parent node is greater than or equal to its children; in a **min heap**, each parent node is less than or equal to its children.
+
+---
+
+## Binary Tree Traversal
+
+**Binary tree traversal** refers to the process of visiting all the nodes in a binary tree in a systematic way. There are several types of binary tree traversal, which are commonly used in algorithms for searching, sorting, and evaluating expressions.
+
+### 1. **Types of Binary Tree Traversal**
+
+#### **In-order Traversal (Left, Root, Right)**
+- **Definition:** In this traversal, the left subtree is visited first, followed by the root node, and then the right subtree.
+- **Algorithm:** 
+  1. Traverse the left subtree.
+  2. Visit the root node.
+  3. Traverse the right subtree.
+  
+  This traversal is particularly useful for **binary search trees (BSTs)** because it visits the nodes in ascending order.
+
+- **Example:**
+  For the tree:
+
+  ```mathematics
+         A
+        / \
+       B   C
+      / \    \
+     D   E    F
+  ```
+
+  The in-order traversal would be: **D, B, E, A, C, F**
+
+#### **Pre-order Traversal (Root, Left, Right)**
+- **Definition:** In this traversal, the root node is visited first, followed by the left subtree, and then the right subtree.
+- **Algorithm:**
+  1. Visit the root node.
+  2. Traverse the left subtree.
+  3. Traverse the right subtree.
+  
+  Pre-order traversal is used in algorithms like **expression tree evaluation** and **creating a copy of a tree**.
+
+- **Example:**
+  For the tree:
+
+  ```mathematics
+         A
+        / \
+       B   C
+      / \    \
+     D   E    F
+  ```
+
+  The pre-order traversal would be: **A, B, D, E, C, F**
+
+#### **Post-order Traversal (Left, Right, Root)**
+- **Definition:** In this traversal, the left subtree is visited first, followed by the right subtree, and then the root node.
+- **Algorithm:**
+  1. Traverse the left subtree.
+  2. Traverse the right subtree.
+  3. Visit the root node.
+  
+  Post-order traversal is useful for operations like **deleting a tree** or **evaluating expressions** in reverse Polish notation.
+
+- **Example:**
+  For the tree:
+
+  ```Mathematics
+         A
+        / \
+       B   C
+      / \    \
+     D   E    F
+  ```
+
+  The post-order traversal would be: **D, E, B, F, C, A**
+
+#### **Level-order Traversal (Breadth-First)**
+- **Definition:** In level-order traversal, all nodes are visited level by level, starting from the root and moving down level by level. This is implemented using a queue data structure.
+- **Algorithm:**
+  1. Start from the root node and enqueue it.
+  2. Dequeue a node from the front of the queue, visit it, and enqueue its children.
+  3. Repeat until the queue is empty.
+  
+  This traversal is often used in algorithms like **breadth-first search (BFS)**.
+
+- **Example:**
+  For the tree:
+
+  ```mathematics
+         A
+        / \
+       B   C
+      / \    \
+     D   E    F
+  ```
+
+  The level-order traversal would be: **A, B, C, D, E, F**
+
+---
+
+### 2. **Time Complexity of Tree Traversals**
+
+- **In-order, Pre-order, and Post-order Traversals:**
+  - Time Complexity: $$ O(n) $$, where $$ n $$ is the number of nodes in the tree, because each node is visited once.
+  
+- **Level-order Traversal:**
+  - Time Complexity: $$ O(n) $$, because each node is also visited once, and it uses a queue to store nodes.
+
+---
+## Binary Search Tree (BST)
+
+A **Binary Search Tree (BST)** is a binary tree data structure where each node follows a specific property: for any given node, the values of all the nodes in its left subtree are smaller than the node’s value, and the values of all the nodes in its right subtree are greater than the node’s value.
+
+### 1. **Definition of a Binary Search Tree**
+
+A **Binary Search Tree (BST)** is a binary tree in which:
+- For each node **N**, the value of all nodes in the left subtree of **N** is less than the value of **N**.
+- The value of all nodes in the right subtree of **N** is greater than the value of **N**.
+- The left and right subtrees of each node are also binary search trees.
+
+In a BST, the **root node** is the starting point, and it serves as a reference for the ordering of all other nodes.
+
+### 2. **Properties of a Binary Search Tree**
+- **Left Subtree:** The left child of a node contains values that are **smaller** than the parent node’s value.
+- **Right Subtree:** The right child of a node contains values that are **greater** than the parent node’s value.
+- **No Duplicate Values:** In a typical binary search tree, **duplicate values are not allowed**. Each value in the tree must be unique.
+- **Search Efficiency:** The height of the tree determines the search efficiency. Ideally, if the tree is balanced, the time complexity of search operations is $$ O(\log n) $$, where $$ n $$ is the number of nodes.
+
+### 3. **Operations on a Binary Search Tree**
+
+#### **Search Operation**
+To search for a node in a BST:
+1. Start at the root node.
+2. If the value to search for is smaller than the current node’s value, move to the left subtree.
+3. If the value to search for is greater than the current node’s value, move to the right subtree.
+4. Repeat the process until you either find the value or reach a leaf node (end of the tree).
+
+The time complexity of search in a **balanced BST** is $$ O(\log n) $$, but in an **unbalanced BST**, it can degrade to $$ O(n) $$ in the worst case.
+
+#### **Insert Operation**
+To insert a node in a BST:
+1. Start at the root node.
+2. Compare the value to insert with the current node’s value.
+3. If the value to insert is smaller, move to the left child; if the value is greater, move to the right child.
+4. Repeat this process until you reach an empty spot (null) where the new node can be inserted.
+
+The time complexity of insertion in a **balanced BST** is $$ O(\log n) $$, but in an **unbalanced BST**, it can degrade to $$ O(n) $$ in the worst case.
+
+#### **Delete Operation**
+To delete a node from a BST:
+- If the node to be deleted has **no children** (a leaf node), simply remove it.
+- If the node to be deleted has **one child**, remove the node and replace it with its only child.
+- If the node to be deleted has **two children**, find the **in-order successor** (the smallest node in the right subtree) or the **in-order predecessor** (the largest node in the left subtree), copy its value to the node to be deleted, and then remove the in-order successor/predecessor.
+
+The time complexity of deletion in a **balanced BST** is $$ O(\log n) $$, but in an **unbalanced BST**, it can degrade to $$ O(n) $$ in the worst case.
+
+### 4. **Balancing a Binary Search Tree**
+
+A **balanced binary search tree** is one in which the difference in heights of the left and right subtrees of any node is at most 1. This ensures that the tree remains as flat as possible, keeping the operations efficient.
+
+- **AVL Tree:** A self-balancing binary search tree in which the heights of the left and right subtrees of every node differ by at most 1.
+- **Red-Black Tree:** A binary search tree that maintains balance using extra "color" information with specific rules to ensure logarithmic height.
+
+Balancing operations help maintain the time complexity of operations like insertion, deletion, and search at **O(log n)** in the worst case.
+
+### 5. **Example of a Binary Search Tree**
+
+Consider the following example of a Binary Search Tree:
+
+```mathematics
+         50
+        /  \
+       30   70
+      /  \  /  \
+     20  40 60  80
+```
+
+In this tree:
+- **Root:** 50
+- **Left Subtree of 50:** Contains nodes with values less than 50 (30, 20, 40).
+- **Right Subtree of 50:** Contains nodes with values greater than 50 (70, 60, 80).
+- **In-order Traversal:** 20, 30, 40, 50, 60, 70, 80 (values are in ascending order).
+
+### 6. **Applications of Binary Search Trees**
+
+- **Searching:** The primary use of a BST is for efficient searching, as it provides faster search times compared to unsorted data structures.
+- **Sorting:** In-order traversal of a BST visits nodes in ascending order, making it a useful tool for sorting.
+- **Priority Queue:** A BST can be used to implement a priority queue, where the node with the highest or lowest priority is always at the root.
+- **Dynamic Set Operations:** Operations like union, intersection, and difference can be efficiently implemented using BSTs.
+
+---
+
+### 7. **Time Complexity of Operations in a Binary Search Tree**
+
+- **Search:** $$ O(h) $$, where $$ h $$ is the height of the tree. In the best case (balanced tree), $$ h = O(\log n) $$.
+- **Insertion:** $$ O(h) $$, where $$ h $$ is the height of the tree. In the best case (balanced tree), $$ h = O(\log n) $$.
+- **Deletion:** $$ O(h) $$, where $$ h $$ is the height of the tree. In the best case (balanced tree), $$ h = O(\log n) $$.
+
+---
+## Graphs: Definition and Terminology
+
+A **graph** is a non-linear data structure used to represent relationships between objects. It consists of a set of **vertices** (or nodes) and a set of **edges** (or arcs) that connect pairs of vertices. Graphs are widely used to model various real-world structures, such as networks, social connections, and transportation systems.
+
+### 1. **Definition of a Graph**
+
+A **graph** is a collection of:
+- **Vertices (or Nodes):** The entities or points in the graph.
+- **Edges (or Arcs):** The connections or relationships between the vertices.
+
+Formally, a graph is represented as a pair of sets: $$ G = (V, E) $$, where:
+- **V** is the set of vertices.
+- **E** is the set of edges, which are unordered pairs (or directed pairs) of vertices.
+
+### 2. **Types of Graphs**
+
+Graphs can be classified based on various properties, such as directionality, edge weights, and connectivity.
+
+#### **1. Directed Graph (Digraph)**
+- In a directed graph, each edge has a **direction**, meaning that it goes from one vertex to another. 
+- An edge from vertex $$ u $$ to vertex $$ v $$ is denoted as $$ u \to v $$.
+
+#### **2. Undirected Graph**
+- In an undirected graph, the edges do not have a direction. The edge between vertices $$ u $$ and $$ v $$ is simply denoted as $$ u - v $$, indicating a mutual relationship.
+
+#### **3. Weighted Graph**
+- A weighted graph assigns a weight or cost to each edge, representing things like distance, time, or cost. In this type of graph, each edge is associated with a number (a weight).
+
+#### **4. Unweighted Graph**
+- An unweighted graph does not assign weights to the edges. The edges simply represent a connection between vertices.
+
+#### **5. Simple Graph**
+- A simple graph is a graph where there are no multiple edges (more than one edge between the same pair of vertices) and no loops (edges that connect a vertex to itself).
+
+#### **6. Multi-Graph**
+- A multi-graph allows multiple edges between the same pair of vertices, i.e., multiple connections are permitted.
+
+#### **7. Complete Graph**
+- A complete graph is a graph in which every pair of distinct vertices is connected by a unique edge.
+
+#### **8. Bipartite Graph**
+- A bipartite graph is a graph where the set of vertices can be divided into two disjoint sets, such that no two vertices within the same set are adjacent.
+
+---
+
+### 3. **Terminology in Graphs**
+
+Here are some important terms and concepts associated with graphs:
+
+#### **1. Vertex (Node)**
+- A **vertex** (or **node**) is an individual element in the graph. It represents an entity or object.
+
+#### **2. Edge (Arc)**
+- An **edge** (or **arc**) is a connection between two vertices in the graph. It represents a relationship or interaction between the two vertices.
+
+#### **3. Degree of a Vertex**
+- The **degree** of a vertex is the number of edges incident to the vertex.
+  - In an **undirected graph**, the degree is the number of edges connected to the vertex.
+  - In a **directed graph**, there are two types of degree:
+    - **In-degree:** The number of edges directed towards the vertex.
+    - **Out-degree:** The number of edges directed away from the vertex.
+
+#### **4. Path**
+- A **path** is a sequence of edges that connect a sequence of vertices.
+  - **Simple Path:** A path in which no vertex is repeated.
+  - **Cycle:** A path that starts and ends at the same vertex, with no other repeated vertices.
+
+#### **5. Connected Graph**
+- A graph is said to be **connected** if there is a path between every pair of vertices. In other words, there is a way to travel from any vertex to any other vertex in the graph.
+
+#### **6. Disconnected Graph**
+- A graph is **disconnected** if there are vertices that do not have a path connecting them to the rest of the graph. In such graphs, there are multiple components.
+
+#### **7. Subgraph**
+- A **subgraph** is a graph formed by a subset of the vertices and edges of another graph. It contains some or all the vertices and edges of the original graph.
+
+#### **8. Component**
+- A **component** of a graph is a maximal connected subgraph. In a disconnected graph, the graph may consist of multiple components.
+
+#### **9. Neighbour**
+- A vertex **u** is said to be a **neighbour** of vertex **v** if there is an edge between them. In other words, **u** and **v** are adjacent vertices.
+
+#### **10. Adjacency**
+- Two vertices are said to be **adjacent** if they are connected by an edge.
+
+#### **11. Weighted Edges**
+- In a **weighted graph**, each edge has a value (weight) associated with it, often representing cost, distance, or time.
+
+#### **12. Loop**
+- A **loop** is an edge that connects a vertex to itself. This is allowed in multigraphs but not in simple graphs.
+
+#### **13. Directed Acyclic Graph (DAG)**
+- A **directed acyclic graph (DAG)** is a directed graph with no cycles. It is used to represent structures like task scheduling and data flow.
+
+---
+
+### 4. **Graph Representation**
+
+There are several ways to represent graphs in computer memory:
+
+#### **1. Adjacency Matrix**
+- An **adjacency matrix** is a 2D array where each element represents the presence or absence of an edge between two vertices.
+  - For an undirected graph, the matrix is symmetric (i.e., if there's an edge from vertex $$ i $$ to vertex $$ j $$, then there’s also an edge from vertex $$ j $$ to vertex $$ i $$).
+  - For a directed graph, the matrix is not necessarily symmetric.
+
+#### **2. Adjacency List**
+- An **adjacency list** is an array of lists, where each list corresponds to a vertex and stores all its adjacent vertices (i.e., the vertices connected by edges).
+
+#### **3. Edge List**
+- An **edge list** is a list of all the edges in the graph, where each edge is represented as a pair (or tuple) of vertices.
+
+---
+## Representation of Graphs
+
+Graphs can be represented in several ways in computer memory, depending on the requirements of the problem and the operations to be performed on the graph. The most common representations of a graph are **Adjacency Matrix**, **Adjacency List**, and **Edge List**. Each representation has its own advantages and trade-offs based on the type of graph and operations.
+
+### 1. **Adjacency Matrix**
+
+An **adjacency matrix** is a 2D array (matrix) used to represent a graph. The matrix is used to indicate whether pairs of vertices are adjacent or not in the graph.
+
+- **For an undirected graph:** The adjacency matrix is symmetric (i.e., if there is an edge from vertex $$ u $$ to vertex $$ v $$, then there is an edge from $$ v $$ to $$ u $$ as well).
+- **For a directed graph:** The adjacency matrix is not necessarily symmetric.
+- The matrix element at position $$ (i, j) $$ indicates the presence or absence of an edge between vertex $$ i $$ and vertex $$ j $$.
+  - **1 (or non-zero value):** An edge exists between the vertices.
+  - **0 (or zero value):** No edge exists between the vertices.
+
+#### **Example:**
+
+Consider the following undirected graph:
+
+```mathematics
+     1 --- 2
+     |     |
+     3 --- 4
+```
+
+The adjacency matrix for this graph would be:
+
+```mathematics
+     1  2  3  4
+1  [ 0, 1, 1, 0 ]
+2  [ 1, 0, 0, 1 ]
+3  [ 1, 0, 0, 1 ]
+4  [ 0, 1, 1, 0 ]
+```
+
+- Row 1 indicates that vertex 1 is connected to vertices 2 and 3.
+- Row 2 indicates that vertex 2 is connected to vertices 1 and 4, and so on.
+
+#### **Advantages of Adjacency Matrix:**
+- Efficient for checking if an edge exists between two vertices: $$ O(1) $$ time complexity.
+- Simple and easy to implement for dense graphs (graphs with many edges).
+
+#### **Disadvantages of Adjacency Matrix:**
+- Requires $$ O(n^2) $$ space, where $$ n $$ is the number of vertices, making it inefficient for sparse graphs (graphs with few edges).
+- For sparse graphs, a lot of memory is wasted for non-existent edges.
+
+---
+
+### 2. **Adjacency List**
+
+An **adjacency list** is a collection of lists or arrays, where each list corresponds to a vertex in the graph and stores all the vertices that are adjacent to it. Each vertex stores a list of its neighbours (i.e., vertices connected by edges).
+
+#### **Example:**
+
+Consider the same graph as above:
+
+```mathematics
+     1 --- 2
+     |     |
+     3 --- 4
+```
+
+The adjacency list for this graph would be:
+
+```mathematics
+1: [2, 3]
+2: [1, 4]
+3: [1, 4]
+4: [2, 3]
+```
+
+- Vertex 1 has edges to vertices 2 and 3.
+- Vertex 2 has edges to vertices 1 and 4, and so on.
+
+#### **Advantages of Adjacency List:**
+- Efficient in terms of space, especially for sparse graphs (only stores existing edges).
+- **O(degree of vertex)** time complexity to get the list of adjacent vertices for a given vertex.
+
+#### **Disadvantages of Adjacency List:**
+- Not as efficient as adjacency matrix for checking if there is an edge between two vertices. You must search through the list of adjacent vertices, which takes time proportional to the degree of the vertex.
+
+---
+
+### 3. **Edge List**
+
+An **edge list** is a list (or array) of all edges in the graph. Each edge is typically represented as a pair of vertices that it connects. In an undirected graph, each edge is stored only once, but in a directed graph, each directed edge is stored as a directed pair.
+
+#### **Example:**
+
+Consider the same graph:
+
+```mathematics
+     1 --- 2
+     |     |
+     3 --- 4
+```
+
+The edge list for this graph would be:
+
+```mathematics
+[(1, 2), (1, 3), (2, 4), (3, 4)]
+```
+
+- Each tuple represents an edge between the two vertices.
+- The list contains all the edges in the graph, and each edge is represented as a pair of connected vertices.
+
+#### **Advantages of Edge List:**
+- Simple to implement and understand.
+- Efficient for storing and processing small graphs or when you only need to process edges without needing to traverse neighbors.
+
+#### **Disadvantages of Edge List:**
+- Inefficient for quickly determining if there is an edge between two vertices (requires a search through the entire edge list).
+- Less efficient for graph algorithms that need to explore neighbors of a vertex frequently.
+
+---
+
+### 4. **Adjacency Matrix vs. Adjacency List**
+
+#### **Time Complexity Comparison:**
+- **Adjacency Matrix:**
+  - Checking if an edge exists between two vertices: **O(1)**.
+  - Iterating through all neighbors of a vertex: **O(n)**.
+  
+- **Adjacency List:**
+  - Checking if an edge exists between two vertices: **O(d)**, where **d** is the degree of the vertex (number of adjacent vertices).
+  - Iterating through all neighbors of a vertex: **O(d)**.
+
+#### **Space Complexity Comparison:**
+- **Adjacency Matrix:** **O(n^2)**, where **n** is the number of vertices.
+- **Adjacency List:** **O(n + e)**, where **e** is the number of edges (space is proportional to the number of edges and vertices).
+
+---
+
+### 5. **Applications of Graph Representation**
+
+- **Adjacency Matrix:** Used for dense graphs and when you need quick lookups to check if two vertices are connected.
+- **Adjacency List:** Used for sparse graphs and is more memory-efficient. It is the preferred representation in most graph algorithms (e.g., Depth-First Search, Breadth-First Search).
+- **Edge List:** Used when the graph is primarily edge-focused and when algorithms need to process or store edges directly (e.g., Kruskal's algorithm for Minimum Spanning Tree).
+
+---
+## Multigraphs, Bipartite Graphs, Planar Graphs
+
+### 1. **Multigraphs**
+
+A **multigraph** is a type of graph that allows multiple edges between the same pair of vertices. Unlike simple graphs, where there is at most one edge between any two vertices, a multigraph can have several edges between the same vertices, which are called **parallel edges**.
+
+#### **Key Characteristics of Multigraphs:**
+- **Multiple Edges:** A multigraph allows multiple edges (parallel edges) between two vertices.
+- **Loops:** A multigraph may also allow **loops**, where an edge connects a vertex to itself.
+- **Edge Count:** The number of edges in a multigraph is the total number of edges, including parallel edges and loops.
+
+#### **Example of a Multigraph:**
+
+```mathematics
+     1 --- 2
+     |     |
+     1 --- 3
+     |     |
+     2 --- 2
+```
+
+- There are multiple edges between vertex 1 and vertex 2, as well as a loop at vertex 2.
+
+#### **Applications of Multigraphs:**
+- **Transportation Networks:** When multiple routes exist between two locations.
+- **Communication Networks:** Multiple communication channels between two nodes.
+- **Social Networks:** Multiple relationships or interactions between two individuals can be represented.
+
+---
+
+### 2. **Bipartite Graphs**
+
+A **bipartite graph** is a graph in which the set of vertices can be divided into two disjoint sets such that no two vertices within the same set are adjacent. In other words, every edge connects a vertex from the first set to a vertex from the second set.
+
+#### **Key Characteristics of Bipartite Graphs:**
+- **Two Sets of Vertices:** The vertices can be divided into two sets, **U** and **V**, such that every edge connects a vertex from **U** to a vertex from **V**.
+- **No Edges Within a Set:** No edges exist between vertices within the same set.
+
+#### **Example of a Bipartite Graph:**
+
+$$ Set U: \{1, 2\} $$
+$$ Set V: \{A, B\} $$
+
+$$ Edges: (1, A), (1, B), (2, A) $$
+
+The graph can be represented as:
+
+```mathematics
+     1 --- A
+     |
+     B
+     |
+     2 --- A
+```
+
+- The graph has two sets: Set $$**U** = \{1, 2\}$$ and Set $$**V** = \{A, B\}$$.
+- All edges are between the two sets, ensuring no edges exist between vertices in the same set.
+
+#### **Applications of Bipartite Graphs:**
+- **Matching Problems:** Bipartite graphs are useful in matching problems, where you want to match elements from two different sets (e.g., job applicants to jobs, students to courses).
+- **Network Flow:** Bipartite graphs are used in modeling network flows, where the flow is from one set to another (e.g., communication between two types of entities).
+- **Recommendation Systems:** For example, in collaborative filtering, you might have a bipartite graph between users and items they have rated.
+
+#### **Special Case - Complete Bipartite Graph:**
+A **complete bipartite graph** is a bipartite graph where every vertex in set **U** is connected to every vertex in set **V**. It is denoted as $$ K_\{m, n\} $$, where **m** and **n** are the sizes of sets **U** and **V**, respectively.
+
+---
+
+### 3. **Planar Graphs**
+
+A **planar graph** is a graph that can be drawn on a plane without any of its edges crossing. In other words, the graph can be embedded in the plane in such a way that no two edges intersect except at their endpoints.
+
+#### **Key Characteristics of Planar Graphs:**
+- **Non-Crossing Edges:** The graph can be drawn on a flat surface without edges intersecting each other (except at the vertices).
+- **Kuratowski’s Theorem:** A graph is planar if and only if it does not contain a subgraph that is a subdivision of either the complete graph $$ K_5 $$ (5 vertices) or the complete bipartite graph $$ K_\{3,3\} $$ (3 vertices in each set).
+
+#### **Example of a Planar Graph:**
+
+```mathematics
+     1 --- 2
+     |     |
+     4 --- 3
+```
+
+This graph is planar because it can be drawn on a plane without any edges crossing.
+
+#### **Non-Planar Graph Example:**
+
+```mathematics
+     1 --- 2
+     |     |
+     3 --- 4
+     |     |
+     5 --- 6
+```
+
+This graph is **non-planar** because there is no way to draw it on a plane without the edges crossing. It contains a subgraph that is a subdivision of $$ K_5 $$ or $$ K_\{3,3\} $$.
+
+#### **Applications of Planar Graphs:**
+- **Geographical Maps:** Planar graphs can be used to model geographical maps, where vertices represent locations, and edges represent roads or connections between locations.
+- **Circuit Design:** In VLSI (Very-Large-Scale Integration) design, planar graphs are used to design the layout of circuits where the components need to be connected without overlap.
+- **Graph Drawing and Visualization:** Planar graphs are used in graph drawing algorithms, ensuring that graphs can be displayed clearly without edge crossings.
+
+#### **Euler’s Formula for Planar Graphs:**
+Euler’s formula for a connected planar graph is:
+
+$$ v - e + f = 2 $$
+
+Where:
+- **v** = number of vertices,
+- **e** = number of edges,
+- **f** = number of faces (regions formed by edges, including the outer region).
+
+---
+
+### 4. **Summary of Characteristics:**
+
+| Type of Graph      | Key Characteristics                                            | Example                           |
+|--------------------|-----------------------------------------------------------------|-----------------------------------|
+| **Multigraph**      | Multiple edges allowed between vertices; may include loops.     | Multiple routes between cities.   |
+| **Bipartite Graph** | Vertices divided into two disjoint sets, no edges within sets.  | Job assignments, student-course matches. |
+| **Planar Graph**    | Can be drawn on a plane without edge crossings.                 | Geographical maps, circuit designs. |
+
+---
+## Isomorphism and Homeomorphism of Graphs
+
+### 1. **Graph Isomorphism**
+
+Two graphs $$ G_1 $$ and $$ G_2 $$ are said to be **isomorphic** if there exists a one-to-one correspondence between their vertices and edges such that the adjacency relationship is preserved. In other words, if there is a mapping from the vertices of $$ G_1 $$ to the vertices of $$ G_2 $$ and the edges of $$ G_1 $$ to the edges of $$ G_2 $$, then the graphs are isomorphic.
+
+#### **Key Characteristics of Isomorphism:**
+- There exists a bijection between the vertex sets of the two graphs, say $$ f: V(G_1) \to V(G_2) $$.
+- If there is an edge between vertices $$ u $$ and $$ v $$ in $$ G_1 $$, then there must be an edge between $$ f(u) $$ and $$ f(v) $$ in $$ G_2 $$.
+- The structure of the graph remains unchanged under isomorphism.
+
+#### **Example:**
+
+Consider two graphs $$ G_1 $$ and $$ G_2 $$:
+
+- **Graph $$ G_1 $$:**
+  - Vertices: $$ \{A, B, C\} $$
+  - Edges: $$ (A, B), (B, C), (C, A) $$
+
+- **Graph $$ G_2 $$:**
+  - Vertices: $$ \{1, 2, 3\} $$
+  - Edges: $$ (1, 2), (2, 3), (3, 1) $$
+
+Since there is a one-to-one correspondence between the vertices and edges of both graphs, where $$ A \to 1 $$, $$ B \to 2 $$, and $$ C \to 3 $$, the graphs are **isomorphic**.
+
+#### **Applications of Graph Isomorphism:**
+- **Pattern Recognition:** Used in computer vision to detect similar structures.
+- **Graph Comparison:** Helpful for comparing network topologies, databases, or chemical structures.
+
+---
+
+### 2. **Graph Homeomorphism**
+
+Two graphs $$ G_1 $$ and $$ G_2 $$ are **homeomorphic** if one can be transformed into the other by a series of edge subdivisions. This means you can replace an edge in the graph with a path of vertices, but the overall structure (the connectivity) of the graph remains the same.
+
+#### **Key Characteristics of Homeomorphism:**
+- **Subdivision of Edges:** In a homeomorphic graph, each edge can be subdivided into multiple edges by introducing new vertices, but the graph's essential structure doesn't change.
+- **Preserved Connectivity:** The connectivity of the vertices remains intact even after subdividing edges.
+  
+#### **Example:**
+
+Consider the following graphs:
+
+- **Graph $$ G_1 $$:** A simple path: $$ A - B - C - D $$.
+  
+- **Graph $$ G_2 $$:** A graph with a subdivision: $$ A - X - B - Y - C - D $$, where $$ X $$ and $$ Y $$ are newly added vertices.
+
+In this case, $$ G_1 $$ and $$ G_2 $$ are **homeomorphic** because you can obtain $$ G_2 $$ by subdividing the edges of $$ G_1 $$ by introducing the new vertices $$ X $$ and $$ Y $$.
+
+#### **Applications of Graph Homeomorphism:**
+- **Topological Graph Theory:** Used to study the topological properties of graphs.
+- **Network Design:** Useful in optimizing network layouts, ensuring the structure remains the same but with potentially different configurations.
+  
+---
+
+### 3. **Isomorphism vs Homeomorphism**
+
+| Property            | Isomorphism                                   | Homeomorphism                              |
+|---------------------|-----------------------------------------------|--------------------------------------------|
+| **Definition**       | Bijection between vertices and edges.         | Transformation by subdividing edges.       |
+| **Preservation**     | Exact same structure and relationships.      | Preserves connectivity but allows edge subdivision. |
+| **Applications**     | Used for comparing graphs, pattern recognition. | Used for topological graph theory, network design. |
+
+---
+## Euler and Hamiltonian Paths
+
+### 1. **Eulerian Path and Circuit**
+
+An **Eulerian Path** is a path in a graph that visits every edge exactly once. An **Eulerian Circuit** is an Eulerian Path that starts and ends at the same vertex.
+
+#### **Key Characteristics of Eulerian Paths and Circuits:**
+
+- **Eulerian Path:** A path that covers each edge of the graph exactly once.
+- **Eulerian Circuit:** A closed Eulerian Path, i.e., a path that starts and ends at the same vertex.
+- **Conditions for Existence:**
+  - A graph has an **Eulerian Path** if it has exactly 0 or 2 vertices with an odd degree.
+  - A graph has an **Eulerian Circuit** if every vertex has an even degree, and the graph is connected.
+
+#### **Euler’s Theorem:**
+- **Eulerian Circuit:** A connected graph has an Eulerian Circuit if and only if all vertices have an even degree.
+- **Eulerian Path (but not Circuit):** A connected graph has an Eulerian Path if and only if exactly two vertices have an odd degree.
+
+#### **Example:**
+
+Consider the following graph:
+
+```mathematics
+     1 --- 2
+     |     |
+     4 --- 3
+```
+
+- The degree of each vertex is 2 (even), so this graph has an Eulerian Circuit.
+
+On the other hand, if we consider the following graph:
+
+```mathematics
+     1 --- 2
+     |     
+     4 --- 3
+```
+
+- The vertices 1 and 3 have an odd degree, so this graph has an Eulerian Path but not an Eulerian Circuit.
+
+#### **Applications of Eulerian Paths:**
+- **Route Optimization:** Finding optimal routes in networks (e.g., garbage collection routes, mail delivery paths).
+- **Network Design:** Ensuring that a network is traversed efficiently without retracing edges.
+  
+---
+
+### 2. **Hamiltonian Path and Circuit**
+
+A **Hamiltonian Path** is a path that visits every vertex exactly once, while a **Hamiltonian Circuit** (or Hamiltonian Cycle) is a Hamiltonian Path that starts and ends at the same vertex.
+
+#### **Key Characteristics of Hamiltonian Paths and Circuits:**
+- **Hamiltonian Path:** A path that visits each vertex exactly once.
+- **Hamiltonian Circuit:** A closed Hamiltonian Path, i.e., a path that starts and ends at the same vertex.
+- **Conditions for Existence:** There is no simple, general condition for the existence of Hamiltonian Paths or Circuits, unlike Eulerian Paths. The problem of finding Hamiltonian Paths is NP-complete, meaning there is no known efficient algorithm for arbitrary graphs.
+
+#### **Example:**
+
+Consider the following graph:
+
+```mathematics
+     1 --- 2
+     |     |
+     4 --- 3
+```
+
+- A Hamiltonian Path in this graph could be: 1 → 2 → 3 → 4.
+
+But there is no Hamiltonian Circuit because there’s no way to start and end at the same vertex without repeating vertices.
+
+#### **Applications of Hamiltonian Paths:**
+- **Travelling Salesman Problem (TSP):** This is a famous problem that asks for the shortest Hamiltonian Circuit in a weighted graph (each edge has a cost or distance).
+- **Network Routing:** Used for optimal routing problems in communications, where visiting each node exactly once is required.
+
+---
+
+### 3. **Comparison of Eulerian and Hamiltonian Paths**
+
+| Property               | Eulerian Path/Circuit                          | Hamiltonian Path/Circuit                   |
+|------------------------|------------------------------------------------|--------------------------------------------|
+| **Definition**          | Visits every edge exactly once.               | Visits every vertex exactly once.          |
+| **Conditions for Existence** | 0 or 2 vertices with odd degree (for Path), all vertices have even degree (for Circuit). | No simple condition for existence; NP-complete problem. |
+| **Applications**        | Routing and optimization problems (e.g., garbage collection, mail delivery). | Travelling Salesman Problem (TSP), network routing. |
+| **Graph Structure**     | Eulerian Path: 0 or 2 vertices with odd degree. Eulerian Circuit: All vertices with even degree. | No simple conditions for Hamiltonian Paths or Circuits. |
+
+---
+## Graph Coloring
+
+### 1. **Definition of Graph Coloring**
+
+**Graph Coloring** is the assignment of labels (or "colors") to the vertices or edges of a graph such that certain conditions are met. The most common type of graph coloring is **vertex coloring**, where each vertex is assigned a color, and adjacent vertices cannot share the same color.
+
+#### **Key Concepts of Graph Coloring:**
+- **Vertex Coloring:** Each vertex of the graph is assigned a color such that no two adjacent vertices share the same color.
+- **Edge Coloring:** Each edge of the graph is assigned a color such that no two edges sharing a vertex have the same color.
+- **Proper Coloring:** A coloring is proper if adjacent vertices (or edges) do not share the same color.
+- **Chromatic Number:** The **chromatic number** of a graph is the minimum number of colors required to color the graph such that no two adjacent vertices have the same color.
+
+#### **Applications of Graph Coloring:**
+- **Scheduling Problems:** Assigning time slots or resources to tasks without conflict.
+- **Frequency Assignment:** Assigning frequencies to radio stations or communication channels without interference.
+- **Map Coloring:** Coloring regions of a map such that no two adjacent regions share the same color.
+
+---
+
+### 2. **Chromatic Number**
+
+The **chromatic number** of a graph is the smallest number of colors needed to color the vertices of the graph such that no two adjacent vertices share the same color.
+
+#### **Key Characteristics of Chromatic Number:**
+- **Lower Bound:** The chromatic number of a graph is at least the maximum degree of the graph + 1.
+- **Upper Bound:** The chromatic number of any graph is at most $$ n $$, where $$ n $$ is the number of vertices in the graph (a trivial upper bound).
+- **Complete Graphs:** The chromatic number of a complete graph $$ K_n $$ is $$ n $$ because all vertices are adjacent to each other.
+
+#### **Example:**
+
+For the following graph:
+
+```mathematics
+     1 --- 2
+     |     |
+     4 --- 3
+```
+
+- The chromatic number is 3 because we need at least three colors to color the graph such that adjacent vertices do not share the same color.
+
+---
+
+### 3. **Graph Coloring Algorithms**
+
+Several algorithms can be used to find a coloring of a graph. Some common ones include:
+
+- **Greedy Algorithm:**
+  - Start with the first vertex and assign it a color.
+  - For each subsequent vertex, assign the smallest available color that hasn't been used by its adjacent vertices.
+  - This algorithm does not always produce the optimal (minimum) coloring, but it works efficiently in many cases.
+
+- **Backtracking Algorithm:**
+  - Assign colors to the vertices recursively and backtrack if a conflict arises (i.e., if two adjacent vertices have the same color).
+  - This approach can be more computationally expensive but guarantees an optimal solution.
+
+#### **Example of Greedy Algorithm:**
+
+Consider the following graph:
+
+```mathematics
+     1 --- 2
+     |     |
+     4 --- 3
+```
+
+- Start by coloring vertex 1 with color 1.
+- Assign color 2 to vertex 2 (because it is adjacent to vertex 1).
+- Assign color 3 to vertex 3 (because it is adjacent to both vertices 1 and 2).
+- Finally, assign color 2 to vertex 4 (because it is adjacent to vertex 3).
+
+Thus, the graph is colored with three colors.
+
+---
+
+### 4. **Planar Graph Coloring**
+
+A **planar graph** is a graph that can be drawn on a plane without any edges crossing. One of the key results in graph theory is the **Four Color Theorem**, which states that:
+
+#### **Four Color Theorem:**
+- Any **planar graph** can be colored using no more than four colors such that no two adjacent vertices have the same color.
+
+#### **Example:**
+
+A famous example of a planar graph that can be colored with four colors is a map of countries where no two adjacent countries share the same color.
+
+---
+
+### 5. **Chromatic Polynomial**
+
+The **chromatic polynomial** of a graph is a polynomial that gives the number of ways to color the graph with $$ k $$ colors such that adjacent vertices receive different colors.
+
+#### **Example:**
+
+For a simple graph such as a path, the chromatic polynomial $$ P(G, k) $$ is given by:
+
+$$ P(G, k) = k(k-1)^{n-1} $$
+
+Where:
+- $$ k $$ is the number of available colors.
+- $$ n $$ is the number of vertices in the path.
+
+---
+
+### 6. **Summary of Graph Coloring Concepts**
+
+| Concept               | Description                                           | Example                           |
+|-----------------------|-------------------------------------------------------|-----------------------------------|
+| **Graph Coloring**     | Assigning colors to vertices/edges of a graph.        | Assigning time slots to tasks.    |
+| **Chromatic Number**   | The minimum number of colors needed for vertex coloring. | Chromatic number of a complete graph $$ K_n $$ is $$ n $$. |
+| **Greedy Algorithm**   | An efficient algorithm that colors vertices sequentially. | Used in map coloring problems.    |
+| **Four Color Theorem** | Any planar graph can be colored with at most 4 colors. | Coloring map regions on a plane.  |
+
+---
+## Applications of Trees and Graphs in Computer Science
+
+### 1. **Trees in Computer Science**
+
+#### 1.1 **File Systems**
+
+File systems are often organized as hierarchical trees. Each directory can contain subdirectories or files, and each file or subdirectory can be considered as a node in the tree. This allows for efficient traversal, searching, and storage management.
+
+- **Example:**
+  - A typical file system structure might look like:
+
+    ```
+    Root
+     ├── Folder1
+     │    ├── File1
+     │    └── File2
+     └── Folder2
+          └── File3
+    ```
+
+#### 1.2 **Binary Search Trees (BSTs)**
+
+Binary Search Trees are used to store data in a way that allows for fast searching, insertion, and deletion operations. The tree is structured so that for any given node, all values in the left subtree are smaller, and all values in the right subtree are larger.
+
+- **Example:**
+  - Searching in a BST is efficient, with an average time complexity of $$ O(\log n) $$.
+  - Used in applications like **database indexing** and **efficient searching algorithms**.
+
+#### 1.3 **Expression Parsing**
+
+Expression trees are used in compilers and interpreters for evaluating expressions in programming languages. For example, when you evaluate a mathematical expression such as $$ a + b * c $$, it is represented as a binary tree, where:
+- Each leaf node represents an operand.
+- Internal nodes represent operators.
+
+- **Example:**
+  - Expression: $$ a + b * c $$ is represented as:
+  
+    ```mathematics
+        +
+       / \
+      a   *
+         / \
+        b   c
+    ```
+
+  - This tree structure allows for easy evaluation of expressions using a post-order traversal.
+
+#### 1.4 **Decision Trees**
+
+Decision trees are used in machine learning and artificial intelligence to model decisions and their possible consequences. They are especially useful in decision analysis and classification problems.
+
+- **Example:**
+  - In classification problems, a decision tree might classify a data point into categories based on feature values.
+  
+    ```
+       Is age > 18?
+      /         \
+     Yes         No
+      |          |
+     Employed  Not Employed
+    ```
+
+#### 1.5 **Network Routing Algorithms**
+
+In networking, trees are used in **routing algorithms** like **Minimum Spanning Trees (MST)** and **Shortest Path Trees (SPT)**. These trees help in determining the most efficient paths for data transmission.
+
+- **Example:**
+  - **Dijkstra's Algorithm** uses a tree structure to find the shortest path in a graph from a source node to other nodes.
+
+---
+
+### 2. **Graphs in Computer Science**
+
+#### 2.1 **Social Networks**
+
+Graphs are used extensively in social networks to model relationships between users. Each user is a vertex, and relationships (such as friendship or followers) are represented by edges.
+
+- **Example:**
+  - **Facebook Graph:** Users are vertices, and relationships (friendship, following, etc.) are edges.
+  - **Recommendation Systems:** Graphs help in recommending friends, posts, or products based on shared connections.
+
+#### 2.2 **Web Crawling and Page Ranking**
+
+In web crawling, the web is represented as a directed graph, where each webpage is a vertex, and hyperlinks between pages are directed edges. This structure helps search engines like Google rank pages based on their importance (using algorithms like PageRank).
+
+- **Example:**
+  - A graph structure is used to navigate through web pages and determine the ranking of pages based on links (edges) that point to them.
+
+#### 2.3 **Network Topology**
+
+In computer networks, graphs are used to represent the layout of a network. Each node represents a computer or device, and edges represent communication links between them. This helps in analyzing the network's structure and finding the best paths for data transmission.
+
+- **Example:**
+  - **Routing Protocols:** Algorithms like **Bellman-Ford** and **Dijkstra's Algorithm** use graphs to determine the shortest path between nodes in a network.
+
+#### 2.4 **Resource Allocation**
+
+Graphs are used in scheduling and resource allocation problems, where nodes represent tasks or resources, and edges represent constraints between them. The goal is often to find the most efficient schedule that meets the constraints.
+
+- **Example:**
+  - In **task scheduling**, tasks are nodes, and edges indicate dependencies. Algorithms like **topological sorting** are used to find a valid execution order.
+
+#### 2.5 **Graph Databases**
+
+Graph databases store data in the form of a graph, with nodes and edges representing entities and their relationships. These databases excel in handling highly connected data.
+
+- **Example:**
+  - **Neo4j** is a popular graph database that uses graph structures to represent and query data efficiently, making it ideal for applications like social networks, fraud detection, and recommendation systems.
+
+#### 2.6 **Pathfinding in Games**
+
+In game development, graphs are used to represent maps, where each node is a location, and edges represent paths between locations. **A* (A-star)** and **Dijkstra’s algorithm** are popular algorithms used for pathfinding to find the shortest path between points.
+
+- **Example:**
+  - In a game like **Minecraft**, pathfinding algorithms help non-playable characters (NPCs) navigate through the world’s graph structure (blocks and paths).
+
+---
+
+### 3. **Comparison: Trees vs Graphs**
+
+| Property                    | Trees                                       | Graphs                                       |
+|-----------------------------|---------------------------------------------|----------------------------------------------|
+| **Structure**                | Hierarchical (No cycles, a parent-child relation) | Can be cyclic or acyclic (more general structure) |
+| **Root Node**                | Always has a single root node               | No root node (but can have a starting node)  |
+| **Edges**                    | $$ n - 1 $$ edges for $$ n $$ vertices      | Can have any number of edges                 |
+| **Common Uses**              | File systems, decision trees, network routing | Social networks, web crawling, pathfinding   |
+
+---

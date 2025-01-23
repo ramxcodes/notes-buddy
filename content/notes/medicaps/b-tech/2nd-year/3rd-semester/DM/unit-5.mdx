@@ -12,3 +12,490 @@ metadata:
 ---
 
 ---
+## Recurrence Relation & Generating Functions: Introduction
+
+### 1. **Recurrence Relation**
+
+A **recurrence relation** defines a sequence of values using previous terms. It is used to express sequences and solve problems in algorithms.
+
+- **Example:** Fibonacci sequence:  
+  $$ F_n = F_\{n-1\} + F_\{n-2\} $$ with initial conditions $$ F_0 = 0 $$ and $$ F_1 = 1 $$.
+
+#### **Types of Recurrence Relations:**
+- **Linear:** $$ a_n = 3a_\{n-1\} + 2a_\{n-2\} $$.
+- **Non-Homogeneous:** Includes constant terms, e.g., $$ a_n = 2a_\{n-1\} + 5 $$.
+
+#### **Solving Recurrences:**  
+Using methods like substitution, characteristic equations, and generating functions.
+
+---
+
+### 2. **Generating Function**
+
+A **generating function** is a power series representing a sequence, useful for solving recurrence relations.
+
+- **Example:** The generating function for a sequence $$ a_0, a_1, a_2, \dots $$ is:
+  $$ G(x) = a_0 + a_1x + a_2x^2 + \dots $$.
+
+#### **Types of Generating Functions:**
+- **Ordinary Generating Function (OGF):** $$ G(x) = \sum_{n=0}^{\infty} a_n x^n $$.
+- **Exponential Generating Function (EGF):** $$ G(x) = \sum_{n=0}^{\infty} a_n \frac{x^n}{n!} $$.
+
+---
+
+### 3. **Recurrence Relations & Generating Functions in Computer Science**
+
+- **Algorithm Analysis:** Recurrences express the time complexity of recursive algorithms, and generating functions help solve these recurrences.
+- **Dynamic Programming:** Recurrence relations are used to break down problems, and generating functions help in analyzing complexity.
+
+---
+
+### 4. **Summary**
+
+| Concept                | Description                                 |
+|------------------------|---------------------------------------------|
+| **Recurrence Relation** | Defines a sequence using previous terms.    |
+| **Generating Function** | A power series to represent a sequence.     |
+| **Applications**        | Used in algorithm analysis and dynamic programming. |
+
+---
+## Recursive Definition of Functions
+
+### 1. **Introduction**
+
+A **recursive definition** of a function defines the function in terms of itself. It is a method used to define functions that have an inherently self-referential structure, commonly used in algorithms, data structures, and mathematical functions.
+
+### 2. **Basic Structure of Recursive Definition**
+
+A recursive function typically follows these two key steps:
+
+1. **Base Case(s):** Defines the function for simple, non-recursive cases.
+2. **Recursive Step:** Defines the function for more complex cases, referring to the function itself.
+
+#### **Example: Factorial Function**
+
+The factorial of a number $$ n $$, denoted $$ n! $$, can be recursively defined as:
+- Base case: $$ 0! = 1 $$
+- Recursive case: $$ n! = n \times (n-1)! $$ for $$ n > 0 $$.
+
+### 3. **Recursive Definition of Common Functions**
+
+#### 3.1 **Fibonacci Sequence**
+The Fibonacci sequence can be defined recursively as:
+- Base cases: $$ F_0 = 0, F_1 = 1 $$
+- Recursive case: $$ F_n = F_\{n-1\} + F_\{n-2\} $$ for $$ n \geq 2 $$.
+
+#### 3.2 **Power Function**
+The power function $$ x^n $$ (where $$ x $$ is a number and $$ n $$ is a non-negative integer) can be defined recursively as:
+- Base case: $$ x^0 = 1 $$
+- Recursive case: $$ x^n = x \times x^{n-1} $$ for $$ n > 0 $$.
+
+### 4. **Applications of Recursive Definitions**
+
+- **Mathematics:** Recursive definitions are fundamental in defining sequences, series, and mathematical functions.
+- **Computer Science:** Used in defining recursive algorithms and data structures like trees and graphs.
+
+### 5. **Advantages of Recursive Definitions**
+- Simplifies the problem-solving process for functions with self-similar structures.
+- Makes complex problems more manageable by breaking them down into simpler subproblems.
+
+### 6. **Summary**
+
+| Concept                     | Description                                      |
+|-----------------------------|--------------------------------------------------|
+| **Base Case**                | Defines the function for simple, non-recursive cases. |
+| **Recursive Step**           | Defines the function in terms of itself.         |
+| **Applications**             | Used in mathematics, algorithms, and data structures. |
+
+---
+## Recursive Algorithms
+
+### 1. **Introduction**
+
+A **recursive algorithm** is an algorithm that solves a problem by calling itself with smaller inputs. It typically involves breaking down a problem into simpler, smaller subproblems of the same type. Recursive algorithms are often elegant and concise, particularly for problems involving divide-and-conquer strategies, like searching, sorting, and traversing structures like trees and graphs.
+
+### 2. **Basic Structure of Recursive Algorithms**
+
+A recursive algorithm has two main components:
+1. **Base Case(s):** A condition that stops the recursion. It handles the simplest case that does not require further recursive calls.
+2. **Recursive Case:** The part of the algorithm that divides the problem into smaller subproblems and calls the function recursively.
+
+#### **General Format:**
+```text
+Function(problem):
+  If base case:
+    Return result
+  Else:
+    Solve smaller subproblem(s)
+    Combine results and return
+```
+
+### 3. **Examples of Recursive Algorithms**
+
+#### 3.1 **Factorial Algorithm**
+
+The factorial function is defined recursively:
+- Base case: $$ 0! = 1 $$.
+- Recursive case: $$ n! = n \times (n-1)! $$ for $$ n > 0 $$.
+
+**Algorithm:**
+```text
+Factorial(n):
+  If n == 0:
+    Return 1
+  Else:
+    Return n * Factorial(n-1)
+```
+
+#### 3.2 **Fibonacci Sequence**
+
+The Fibonacci sequence is another classic example:
+- Base cases: $$ F_0 = 0 $$, $$ F_1 = 1 $$.
+- Recursive case: $$ F_n = F_\{n-1\} + F_\{n-2\} $$ for $$ n > 1 $$.
+
+**Algorithm:**
+```text
+Fibonacci(n):
+  If n == 0:
+    Return 0
+  If n == 1:
+    Return 1
+  Else:
+    Return Fibonacci(n-1) + Fibonacci(n-2)
+```
+
+#### 3.3 **Binary Search**
+
+In binary search, the algorithm recursively divides the search space into two halves:
+- Base case: If the search space is empty or the target is found.
+- Recursive case: Search the left or right half based on the comparison.
+
+**Algorithm:**
+```text
+BinarySearch(arr, target, low, high):
+  If low > high:
+    Return -1  // target not found
+  mid = (low + high) / 2
+  If arr[mid] == target:
+    Return mid
+  Else If arr[mid] > target:
+    Return BinarySearch(arr, target, low, mid-1)
+  Else:
+    Return BinarySearch(arr, target, mid+1, high)
+```
+
+### 4. **Advantages of Recursive Algorithms**
+- **Simplicity:** Recursive algorithms often offer a simple, elegant solution to complex problems.
+- **Ease of Implementation:** Problems like tree traversal, divide-and-conquer, and backtracking are naturally suited to recursion.
+  
+### 5. **Disadvantages of Recursive Algorithms**
+- **Overhead:** Each recursive call adds a new frame to the call stack, which may lead to performance issues (stack overflow) for deep recursions.
+- **Efficiency:** In some cases, recursion can be less efficient than iterative solutions (e.g., recalculating results in overlapping subproblems).
+
+### 6. **Applications of Recursive Algorithms**
+- **Sorting Algorithms:** QuickSort, MergeSort.
+- **Tree Traversal:** In-order, Pre-order, Post-order traversal of trees.
+- **Dynamic Programming:** Solving problems like Fibonacci, Knapsack, and others where subproblems overlap.
+- **Graph Traversal:** Depth-First Search (DFS) for searching or exploring graphs.
+
+### 7. **Summary**
+
+| Concept                | Description                                    |
+|------------------------|------------------------------------------------|
+| **Base Case**           | Stops recursion when a simple solution is found. |
+| **Recursive Case**      | Calls the algorithm on smaller subproblems.    |
+| **Applications**        | Sorting, searching, tree traversal, dynamic programming, graph algorithms. |
+
+---
+## Method of Solving Recurrence Relation
+
+### 1. **Introduction**
+
+A **recurrence relation** defines a sequence of values based on its previous terms. Solving recurrence relations is important for analyzing algorithms, particularly recursive ones. There are several methods to solve recurrence relations, each applicable depending on the form of the recurrence.
+
+### 2. **Methods to Solve Recurrence Relations**
+
+#### 2.1 **Substitution Method**
+
+The **substitution method** involves assuming a solution and then using mathematical induction to prove it. This method is especially useful for simple recurrences where a pattern is easily identifiable.
+
+- **Steps:**
+  1. Guess the form of the solution (e.g., polynomial, exponential).
+  2. Substitute this guess into the recurrence relation.
+  3. Use induction to prove the guess is correct.
+
+**Example:**
+For the recurrence $$ T(n) = 2T(n/2) + n $$, we guess a solution of the form $$ T(n) = O(n \log n) $$ and prove it by induction.
+
+#### 2.2 **Recursion Tree Method**
+
+The **recursion tree method** involves drawing a tree to represent the recurrence, where each node corresponds to a subproblem. This helps in visualizing how the problem is broken down and determining the total cost.
+
+- **Steps:**
+  1. Draw the tree representing recursive calls.
+  2. Calculate the work done at each level.
+  3. Sum the work across all levels.
+
+**Example:**
+For $$ T(n) = 2T(n/2) + n $$, the recursion tree reveals that the total work done is proportional to $$ O(n \log n) $$.
+
+#### 2.3 **Master Theorem**
+
+The **Master Theorem** provides a direct way to solve recurrences of the form:
+$$ T(n) = aT(n/b) + f(n) $$,
+where:
+- $$ a \geq 1 $$, $$ b > 1 $$, and $$ f(n) $$ is an asymptotically positive function.
+
+The solution depends on the comparison of $$ f(n) $$ with $$ n^{\log_b a} $$.
+
+**Master Theorem Cases:**
+1. If $$ f(n) = O(n^c) $$ where $$ c < \log_b a $$, then $$ T(n) = O(n^{\log_b a}) $$.
+2. If $$ f(n) = O(n^c) $$ where $$ c = \log_b a $$, then $$ T(n) = O(n^c \log n) $$.
+3. If $$ f(n) = O(n^c) $$ where $$ c > \log_b a $$, then $$ T(n) = O(f(n)) $$.
+
+**Example:**
+For $$ T(n) = 2T(n/2) + n $$, we compare $$ n $$ with $$ n^{\log_2 2} = n $$, so by case 2, $$ T(n) = O(n \log n) $$.
+
+#### 2.4 **Iteration Method**
+
+The **iteration method** involves unrolling the recurrence step by step, repeatedly expanding the recurrence until a pattern emerges. This method is useful for solving simple recurrences.
+
+- **Steps:**
+  1. Start by expanding the recurrence.
+  2. Expand terms until a base case is reached.
+  3. Sum the terms to find the closed-form solution.
+
+**Example:**
+For $$ T(n) = 2T(n/2) + n $$, expanding gives:
+$$ T(n) = 2[2T(n/4) + n/2] + n = 4T(n/4) + 2n + n $$,
+and so on, eventually giving the solution $$ T(n) = O(n \log n) $$.
+
+---
+
+### 3. **Summary**
+
+| Method                | Description                                        |
+|-----------------------|----------------------------------------------------|
+| **Substitution**       | Guess and prove the solution using induction.      |
+| **Recursion Tree**     | Visualize recursion as a tree and sum the work.    |
+| **Master Theorem**     | Use predefined cases for divide-and-conquer recurrences. |
+| **Iteration**          | Expand the recurrence step by step and sum terms.  |
+
+---
+## Combinatorics: Introduction
+
+### 1. **Introduction to Combinatorics**
+
+**Combinatorics** is the branch of mathematics focused on counting, arranging, and analyzing discrete structures. It plays a crucial role in computer science, particularly in areas like algorithm design, cryptography, and data structures.
+
+### 2. **Key Topics in Combinatorics**
+
+Combinatorics covers a variety of important topics:
+1. **Counting Principles**
+2. **Permutations and Combinations**
+3. **Pigeonhole Principle**
+4. **Inclusion-Exclusion Principle**
+5. **Graph Theory**
+
+### 3. **Counting Principles**
+
+Counting is the fundamental task in combinatorics, dealing with how to count the number of possible arrangements or selections from a given set.
+
+#### 3.1 **Addition Rule**
+If there are two tasks and one can be performed in $$ A $$ ways and another in $$ B $$ ways, the total number of ways to perform one of the tasks is:
+$$ A + B $$.
+
+#### 3.2 **Multiplication Rule**
+If one task can be performed in $$ A $$ ways and another independent task can be performed in $$ B $$ ways, the total number of ways to perform both tasks is:
+$$ A \times B $$.
+
+---
+
+### 4. **Permutations and Combinations**
+
+#### 4.1 **Permutations**
+A **permutation** refers to an arrangement of objects in a specific order. The number of ways to arrange $$ n $$ objects is:
+$$ P(n) = n! $$.
+
+- **Example:** The number of ways to arrange 3 objects (A, B, C) is:
+  $$ 3! = 6 $$.
+
+#### 4.2 **Combinations**
+A **combination** refers to selecting a subset of objects where order does not matter. The number of ways to choose $$ r $$ objects from a set of $$ n $$ objects is given by:
+$$ C(n, r) = \frac{n!}{r!(n-r)!} $$.
+
+- **Example:** The number of ways to choose 2 objects from a set of 3 objects (A, B, C) is:
+  $$ C(3, 2) = \frac{3!}{2!1!} = 3 $$.
+
+---
+
+### 5. **Applications of Combinatorics in Computer Science**
+
+- **Algorithm Analysis:** Combinatorics helps in determining the complexity and efficiency of algorithms, especially those involving sorting, searching, and graph traversal.
+- **Data Structures:** Counting principles are used in data structures like heaps, trees, and hash tables.
+- **Cryptography:** Combinatorics plays a crucial role in designing cryptographic algorithms and ensuring secure data transmission.
+
+---
+
+### 6. **Summary**
+
+| Concept                | Description                                         |
+|------------------------|-----------------------------------------------------|
+| **Combinatorics**       | The study of counting, arrangement, and structure of discrete objects. |
+| **Permutations**        | Arrangements of objects where order matters.       |
+| **Combinations**        | Selections of objects where order does not matter. |
+| **Applications**        | Used in algorithm analysis, data structures, and cryptography. |
+
+---
+## Counting Techniques: Basic Theorems on Permutations & Combinations
+
+### 1. **Introduction**
+
+Counting techniques are fundamental to combinatorics and are used to solve problems related to arrangements and selections of objects. These techniques help determine the number of possible ways to arrange or select elements from a set, often leading to solutions in areas like probability, optimization, and algorithm design.
+
+### 2. **Permutations**
+
+A **permutation** refers to an arrangement of objects in a specific order. The basic formula for permutations is:
+
+$$ P(n, r) = \frac{n!}{(n-r)!} $$
+
+where:
+- $$ n $$ is the total number of objects.
+- $$ r $$ is the number of objects to arrange.
+
+#### 2.1 **Example:**
+The number of ways to arrange 3 objects (A, B, C) from 5 objects (A, B, C, D, E) is:
+$$ P(5, 3) = \frac{5!}{(5-3)!} = \frac{5!}{2!} = 60 $$.
+
+### 3. **Combinations**
+
+A **combination** refers to selecting a subset of objects where the order does not matter. The number of ways to select $$ r $$ objects from a set of $$ n $$ objects is given by:
+
+$$ C(n, r) = \frac{n!}{r!(n-r)!} $$
+
+#### 3.1 **Example:**
+The number of ways to select 2 objects from a set of 5 objects (A, B, C, D, E) is:
+$$ C(5, 2) = \frac{5!}{2!(5-2)!} = 10 $$.
+
+### 4. **Basic Theorems on Permutations & Combinations**
+
+#### 4.1 **Theorem 1: Permutation of n Objects**
+The number of ways to arrange $$ n $$ objects is:
+$$ P(n) = n! $$.
+
+- **Example:** The number of ways to arrange 4 objects (A, B, C, D) is:
+  $$ P(4) = 4! = 24 $$.
+
+#### 4.2 **Theorem 2: Permutation with Repetition**
+If there are repeated objects, the formula for permutations becomes:
+$$ P(n; k_1, k_2, \dots, k_r) = \frac{n!}{k_1!k_2!\dots k_r!} $$,
+where $$ k_1, k_2, \dots, k_r $$ are the frequencies of the repeated objects.
+
+- **Example:** The number of ways to arrange the letters in the word "AAB" is:
+  $$ P(3; 2, 1) = \frac{3!}{2!1!} = 3 $$.
+
+#### 4.3 **Theorem 3: Combination of n Objects**
+The number of ways to select $$ r $$ objects from $$ n $$ objects, without considering the order, is:
+$$ C(n, r) = \frac{n!}{r!(n-r)!} $$.
+
+#### 4.4 **Theorem 4: Selection with Repetition (Stars and Bars)**
+The number of ways to select $$ r $$ objects from $$ n $$ types, with repetition allowed, is given by:
+$$ C(n + r - 1, r) $$.
+
+- **Example:** The number of ways to choose 3 objects from 5 types, allowing repetition, is:
+  $$ C(5 + 3 - 1, 3) = C(7, 3) = 35 $$.
+
+#### 4.5 **Theorem 5: Binomial Theorem**
+The binomial coefficient $$ C(n, r) $$ represents the number of ways to choose $$ r $$ objects from $$ n $$ objects and is related to the binomial expansion:
+$$ (x + y)^n = \sum_{r=0}^{n} C(n, r) x^{n-r} y^r $$.
+
+- **Example:** The expansion of $$ (x + y)^3 $$ is:
+  $$ (x + y)^3 = C(3, 0) x^3 + C(3, 1) x^2y + C(3, 2) xy^2 + C(3, 3) y^3 = x^3 + 3x^2y + 3xy^2 + y^3 $$.
+
+---
+
+### 5. **Applications of Permutations and Combinations**
+
+- **Algorithm Design:** Counting techniques help analyze the complexity of recursive algorithms and dynamic programming problems.
+- **Cryptography:** Permutations and combinations are used in key generation, encryption algorithms, and hashing functions.
+- **Probability:** Counting principles are essential in calculating probabilities in scenarios like random selection, sampling, and events.
+
+---
+
+### 6. **Summary**
+
+| Concept                          | Description                                      |
+|----------------------------------|--------------------------------------------------|
+| **Permutations**                 | Arrangements of objects where order matters.     |
+| **Combinations**                 | Selections of objects where order does not matter. |
+| **Theorems**                     | Basic theorems provide formulas for counting permutations and combinations, including cases with repetition. |
+| **Applications**                 | Used in algorithms, cryptography, and probability. |
+
+---
+## Applications of Functions and Combinatorics in Computer Science
+
+### 1. **Introduction**
+
+Functions and combinatorics play crucial roles in solving problems related to algorithms, data structures, optimization, cryptography, and complexity analysis in computer science. Understanding how to apply counting techniques, functions, and combinatorics can lead to more efficient and effective solutions in various computational fields.
+
+### 2. **Applications of Functions in Computer Science**
+
+Functions in computer science often refer to mathematical functions, and they are used to define relationships between input and output. These functions are integral in defining recursive algorithms, designing efficient data structures, and analyzing algorithm complexity.
+
+#### 2.1 **Recursive Algorithms**
+- **Use Case:** Recursive functions are used to define and solve problems that can be broken down into smaller subproblems. For example, functions such as those for calculating the **Fibonacci sequence** or **factorial** can be implemented recursively.
+  
+- **Example:** The **divide-and-conquer** algorithm is based on recursive functions, and it is used in algorithms like **QuickSort** and **MergeSort**.
+
+#### 2.2 **Mathematical Functions for Analysis**
+- **Use Case:** Mathematical functions are used to analyze algorithmic time complexity, such as through **Big-O notation**.
+  - For example, the time complexity of the **binary search** algorithm is $$ O(\log n) $$, which is derived using mathematical functions to describe the growth of the algorithm’s runtime with respect to input size.
+
+#### 2.3 **Data Structures**
+- **Use Case:** Functions are used to define operations in data structures, such as accessing or modifying elements in **arrays**, **linked lists**, and **trees**.
+  - **Example:** In a **hash table**, functions like the **hash function** help in mapping keys to indices in the hash table for efficient data retrieval.
+
+---
+
+### 3. **Applications of Combinatorics in Computer Science**
+
+Combinatorics, which deals with counting, arrangement, and selection, has broad applications in computer science. Many problems in algorithms, graph theory, cryptography, and optimization rely on combinatorial methods.
+
+#### 3.1 **Algorithm Design**
+- **Use Case:** Combinatorial techniques are used to analyze and design efficient algorithms, particularly for problems like **searching**, **sorting**, and **graph traversal**.
+  
+- **Example:** The **Knapsack problem**, a classic combinatorial optimization problem, is solved using dynamic programming, which utilizes combinatorial principles for counting possible subsets.
+
+#### 3.2 **Graph Theory**
+- **Use Case:** Graph theory, which is rooted in combinatorics, is used to model and solve problems involving networks, such as social networks, web pages, and transportation systems.
+  
+- **Example:** **Graph coloring** (a combinatorial problem) is used in applications like task scheduling and resource allocation, where tasks are assigned resources in such a way that no two tasks share the same resource.
+
+#### 3.3 **Cryptography**
+- **Use Case:** Combinatorial methods help in designing secure encryption algorithms, which often rely on combinatorial structures like **prime numbers** and **permutations** for key generation and encryption.
+  
+- **Example:** In **RSA encryption**, large prime numbers are used to create keys, and the security relies on the difficulty of factoring large numbers—an inherently combinatorial problem.
+
+#### 3.4 **Network Design**
+- **Use Case:** Combinatorics is used in designing optimal communication networks and ensuring efficient routing in computer networks.
+  
+- **Example:** The **minimum spanning tree** (a combinatorial optimization problem) is used in network design to find the most efficient way to connect all nodes in a network with the least cost.
+
+#### 3.5 **Combinatorial Optimization**
+- **Use Case:** Many real-world optimization problems can be modeled as combinatorial problems. These include problems in resource allocation, scheduling, and pathfinding.
+  
+- **Example:** The **Travelling Salesman Problem** (TSP) is a classic example of combinatorial optimization, where the goal is to find the shortest possible route that visits each city exactly once and returns to the origin city.
+
+---
+
+### 4. **Summary of Applications**
+
+| Concept                     | Application in Computer Science                                      |
+|-----------------------------|----------------------------------------------------------------------|
+| **Functions**                | Recursive algorithms, time complexity analysis, data structure operations |
+| **Combinatorics**            | Algorithm design, graph theory, cryptography, network design, optimization |
+| **Graph Theory**             | Network analysis, task scheduling, resource allocation               |
+| **Cryptography**             | Key generation, encryption algorithms                                |
+| **Optimization**             | Resource allocation, scheduling, pathfinding (e.g., TSP)            |
+
+---

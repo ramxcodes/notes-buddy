@@ -12,3 +12,647 @@ metadata:
 ---
 
 ---
+## Binary Composition
+
+### Definition
+- **Binary composition** refers to the operation of combining two elements of a set to produce a third element within the same set. It is commonly used in mathematics, particularly in group theory and operations involving binary relations.
+
+### Properties of Binary Composition
+- The binary composition is a function that maps two elements from a set to another element within the same set.
+- The set of possible outcomes is called the *resulting set*.
+
+### Common Types of Binary Operations
+- **Addition (+)**: Involves the sum of two numbers, typically in arithmetic or algebra.
+- **Multiplication (×)**: The result of multiplying two numbers.
+- **AND/OR (for logic operations)**: These are common binary operations in Boolean algebra.
+
+### Examples:
+1. **Addition of integers**:
+   - Example: If we take two integers, $$ a = 3 $$ and $$ b = 5 $$, then their binary composition under addition is:
+   $$ a + b = 3 + 5 = 8 $$
+
+2. **Multiplication of integers**:
+   - Example: If we take two integers, $$ a = 4 $$ and $$ b = 6 $$, their binary composition under multiplication is:
+   $$ a \times b = 4 \times 6 = 24 $$
+
+3. **Logical AND Operation**:
+   - Example: If we have two Boolean values, $$ A = \text{True} $$ and $$ B = \text{False} $$, their binary composition under AND is:
+   $$ A \land B = \text{True} \land \text{False} = \text{False} $$
+
+### Properties of Binary Operations
+- **Commutativity**: A binary operation is commutative if $$ a * b = b * a $$.
+  - Example: Addition is commutative since $$ 3 + 5 = 5 + 3 $$.
+  
+- **Associativity**: A binary operation is associative if $$ (a * b) * c = a * (b * c) $$.
+  - Example: Multiplication is associative since $$ (2 \times 3) \times 4 = 2 \times (3 \times 4) $$.
+  
+- **Identity Element**: An identity element is an element $$ e $$ in a set such that $$ a * e = a $$ for any element $$ a $$ in the set.
+  - Example: For addition, the identity element is 0, since $$ a + 0 = a $$.
+
+- **Inverse Element**: An element $$ b $$ is the inverse of $$ a $$ with respect to the binary operation $$ * $$ if $$ a * b = e $$ where $$ e $$ is the identity element.
+  - Example: For addition, the inverse of any number $$ a $$ is $$ -a $$, since $$ a + (-a) = 0 $$.
+
+### Applications
+- **Set Theory**: In set theory, binary operations like union and intersection are often used to combine sets.
+- **Cryptography**: Binary operations are crucial for encryption and decryption algorithms, especially in modular arithmetic and Boolean algebra.
+- **Computer Science**: Binary operations are widely used in programming and algorithm design, particularly in low-level operations like bitwise operations.
+
+---
+
+📝 **NOTE**: Binary operations are fundamental in both abstract mathematics (like group theory) and practical applications, such as computing and cryptography.
+
+---
+## Algebraic Structure
+
+### Definition
+- **Algebraic structures** are sets equipped with operations that satisfy certain properties. These structures are essential in abstract algebra and provide a way to study mathematical systems.
+- An algebraic structure consists of a set along with one or more operations that combine elements of the set.
+
+### Types of Algebraic Structures
+1. **Group**:
+   - A **group** is an algebraic structure consisting of a set $$ G $$ and a binary operation $$ * $$ that satisfies the following properties:
+     - **Closure**: For any $$ a, b \in G $$, $$ a * b $$ is also in $$ G $$.
+     - **Associativity**: For any $$ a, b, c \in G $$, $$ (a * b) * c = a * (b * c) $$.
+     - **Identity Element**: There exists an element $$ e \in G $$ such that $$ a * e = e * a = a $$ for all $$ a \in G $$.
+     - **Inverse Element**: For each $$ a \in G $$, there exists an element $$ b \in G $$ such that $$ a * b = b * a = e $$ (the identity element).
+
+   - Example: The set of integers $$ \mathbb{Z} $$ with the operation of addition is a group, because:
+     - Closure: $$ a + b \in \mathbb{Z} $$ for any $$ a, b \in \mathbb{Z} $$.
+     - Associativity: $$ (a + b) + c = a + (b + c) $$.
+     - Identity: The identity element is 0, because $$ a + 0 = a $$ for all $$ a \in \mathbb{Z} $$.
+     - Inverse: The inverse of any integer $$ a $$ is $$ -a $$, because $$ a + (-a) = 0 $$.
+
+2. **Ring**:
+   - A **ring** is an algebraic structure consisting of a set $$ R $$ with two binary operations: addition (+) and multiplication (×). The set $$ R $$ must satisfy the following properties:
+     - **Additive group**: The set $$ R $$ under addition is a group.
+     - **Distributivity**: Multiplication distributes over addition: 
+       $$ a \times (b + c) = (a \times b) + (a \times c) $$.
+       $$ (a + b) \times c = (a \times c) + (b \times c) $$.
+
+   - Example: The set of integers $$ \mathbb{Z} $$ with the usual addition and multiplication is a ring.
+
+3. **Field**:
+   - A **field** is an algebraic structure consisting of a set $$ F $$ with two operations, addition and multiplication, that satisfy the following properties:
+     - The set $$ F $$ is a ring.
+     - Every non-zero element has a multiplicative inverse: for each $$ a \in F $$, where $$ a \neq 0 $$, there exists an element $$ b \in F $$ such that $$ a \times b = b \times a = 1 $$ (the multiplicative identity).
+
+   - Example: The set of rational numbers $$ \mathbb{Q} $$ with the usual addition and multiplication is a field.
+
+4. **Vector Space**:
+   - A **vector space** is a set of vectors, along with two operations (vector addition and scalar multiplication), that satisfies a list of axioms, including:
+     - **Additive closure**: The sum of any two vectors is also a vector.
+     - **Multiplicative closure**: The product of any vector with a scalar is also a vector.
+     - **Distributivity**: Scalar multiplication distributes over vector addition and scalar addition.
+
+   - Example: The set of all 2-dimensional vectors $$ \mathbb{R}^2 $$ with vector addition and scalar multiplication is a vector space.
+
+### Properties of Algebraic Structures
+- **Closure**: If $$ a $$ and $$ b $$ are elements of a set, their combination under a specific operation should result in an element that is still within the set.
+- **Identity Element**: An identity element is an element that leaves any element of the set unchanged when combined with it under the operation.
+- **Inverse Element**: For each element in the set, there exists an element that combines with it to yield the identity element.
+- **Associativity**: The grouping of elements should not affect the outcome of the operation.
+
+### Applications of Algebraic Structures
+- **Cryptography**: Algebraic structures such as groups and rings play a key role in encryption algorithms, particularly in modular arithmetic and elliptic curve cryptography.
+- **Computer Science**: Data structures like hash tables and binary search trees use algebraic principles for their design and efficiency.
+- **Physics**: Many physical theories, such as quantum mechanics, use algebraic structures to describe symmetries and interactions.
+
+---
+
+📝 **NOTE**: Algebraic structures are foundational concepts in mathematics and have broad applications in computer science, cryptography, physics, and beyond.
+
+---
+## Semigroup
+
+### Definition
+- A **semigroup** is an algebraic structure consisting of a non-empty set $$ S $$ along with a binary operation $$ * $$ that satisfies the **associativity property**. In other words, for any three elements $$ a, b, c \in S $$, the following condition must hold:
+$$ (a * b) * c = a * (b * c) $$
+
+### Properties of Semigroups
+- **Closure**: If $$ a $$ and $$ b $$ are elements of the semigroup, then $$ a * b $$ must also be an element of the semigroup.
+  - Example: In the set of integers $$ \mathbb{Z} $$ under addition, if $$ a = 2 $$ and $$ b = 3 $$, then $$ a + b = 5 $$, which is also an integer, so closure is satisfied.
+
+- **Associativity**: The binary operation must be associative.
+  - Example: In the set of natural numbers $$ \mathbb{N} $$ under multiplication, $$ (2 \times 3) \times 4 = 2 \times (3 \times 4) $$, showing that multiplication is associative.
+
+### Example of a Semigroup
+- **Natural Numbers with Addition**: The set of natural numbers $$ \mathbb{N} $$ under the operation of addition is a semigroup because:
+  - Closure: $$ a + b \in \mathbb{N} $$ for any $$ a, b \in \mathbb{N} $$.
+  - Associativity: $$ (a + b) + c = a + (b + c) $$.
+
+- **Strings with Concatenation**: The set of all strings over a given alphabet with the operation of string concatenation forms a semigroup. This is because:
+  - Closure: The concatenation of two strings results in another string.
+  - Associativity: Concatenation is associative, i.e., $$ (xy)z = x(yz) $$ where $$ x, y, z $$ are strings.
+
+### Non-Example
+- **Integers with Subtraction**: The set of integers under subtraction is not a semigroup because subtraction is not associative. For example, $$ (5 - 3) - 1 \neq 5 - (3 - 1) $$.
+
+### Subsets of Semigroups
+- **Monoid**: A semigroup is called a **monoid** if it has an identity element $$ e $$ such that for any $$ a \in S $$, $$ a * e = e * a = a $$.
+  - Example: The set of natural numbers $$ \mathbb{N} $$ under addition is a monoid, with 0 as the identity element because $$ a + 0 = a $$ for all $$ a \in \mathbb{N} $$.
+
+- **Group**: A semigroup is called a **group** if it has an identity element and every element has an inverse element. 
+  - Example: The set of integers $$ \mathbb{Z} $$ under addition is a group because:
+    - It is a semigroup.
+    - It has an identity element (0).
+    - Every element $$ a $$ has an inverse element $$ -a $$ such that $$ a + (-a) = 0 $$.
+
+### Applications of Semigroups
+- **Theoretical Computer Science**: Semigroups are used in the study of formal languages and automata theory. They help in defining certain operations on languages.
+- **Cryptography**: Some cryptographic algorithms make use of semigroup properties for encryption and decryption.
+- **Mathematical Modelling**: Semigroups are used in the study of processes that evolve over time, such as in semigroup theory in functional analysis.
+
+---
+
+📝 **NOTE**: A semigroup is a simple yet powerful structure in algebra. It forms the basis for more complex algebraic structures like monoids and groups.
+
+---
+## Monoid, Group, and Abelian Group
+
+### Monoids
+
+#### Definition
+- A **monoid** is an algebraic structure consisting of a non-empty set $$ M $$ and a binary operation $$ * $$ that satisfies the following conditions:
+  - **Closure**: If $$ a, b \in M $$, then $$ a * b \in M $$.
+  - **Associativity**: The operation is associative, i.e., for all $$ a, b, c \in M $$:
+  $$ (a * b) * c = a * (b * c) $$.
+  - **Identity Element**: There exists an element $$ e \in M $$ such that for every element $$ a \in M $$:
+  $$ a * e = e * a = a $$.
+
+#### Example of a Monoid
+- **Natural Numbers under Addition**: The set of natural numbers $$ \mathbb{N} $$ with the operation of addition is a monoid because:
+  - Closure: $$ a + b \in \mathbb{N} $$ for all $$ a, b \in \mathbb{N} $$.
+  - Associativity: $$ (a + b) + c = a + (b + c) $$.
+  - Identity: The identity element is 0, since $$ a + 0 = a $$ for all $$ a \in \mathbb{N} $$.
+
+---
+
+### Groups
+
+#### Definition
+- A **group** is an algebraic structure consisting of a non-empty set $$ G $$ and a binary operation $$ * $$ that satisfies the following conditions:
+  - **Closure**: If $$ a, b \in G $$, then $$ a * b \in G $$.
+  - **Associativity**: For all $$ a, b, c \in G $$:
+  $$ (a * b) * c = a * (b * c) $$.
+  - **Identity Element**: There exists an element $$ e \in G $$ such that for every $$ a \in G $$:
+  $$ a * e = e * a = a $$.
+  - **Inverse Element**: For each $$ a \in G $$, there exists an element $$ b \in G $$ such that:
+  $$ a * b = b * a = e $$ (the identity element).
+
+#### Example of a Group
+- **Integers under Addition**: The set of integers $$ \mathbb{Z} $$ with the operation of addition is a group because:
+  - Closure: $$ a + b \in \mathbb{Z} $$ for any $$ a, b \in \mathbb{Z} $$.
+  - Associativity: $$ (a + b) + c = a + (b + c) $$.
+  - Identity: The identity element is 0, since $$ a + 0 = a $$ for all $$ a \in \mathbb{Z} $$.
+  - Inverse: The inverse of any integer $$ a $$ is $$ -a $$, since $$ a + (-a) = 0 $$.
+
+---
+
+## Abelian Group
+
+### Definition
+- An **Abelian group** (or **commutative group**) is a group $$ G $$ in which the binary operation is commutative. In other words, for all $$ a, b \in G $$:
+$$ a * b = b * a $$.
+
+### Example of an Abelian Group
+- **Integers under Addition**: The set of integers $$ \mathbb{Z} $$ with the operation of addition is an Abelian group because:
+  - It satisfies all the group properties.
+  - It is commutative, i.e., for any $$ a, b \in \mathbb{Z} $$, $$ a + b = b + a $$.
+
+- **Real Numbers under Addition**: The set of real numbers $$ \mathbb{R} $$ under addition is also an Abelian group, as it satisfies all group properties and is commutative.
+
+### Non-Example of an Abelian Group
+- **Integers under Multiplication (without 0)**: The set of integers $$ \mathbb{Z}^* $$ (non-zero integers) under multiplication is a group but not Abelian because multiplication of integers is not commutative for some cases (e.g., $$ -1 \times 2 \neq 2 \times -1 $$).
+
+---
+
+### Summary of Properties
+
+| Structure    | Closure | Associativity | Identity Element | Inverse Element | Commutativity |
+|--------------|---------|---------------|------------------|-----------------|---------------|
+| **Monoid**   | Yes     | Yes           | Yes              | No              | No            |
+| **Group**    | Yes     | Yes           | Yes              | Yes             | No            |
+| **Abelian Group** | Yes | Yes           | Yes              | Yes             | Yes           |
+
+---
+
+### Applications
+- **Monoids and Groups**: These structures are used in many fields such as cryptography, coding theory, and group theory, especially in modular arithmetic and symmetry analysis.
+- **Abelian Groups**: These are widely used in physics, particularly in the study of symmetries, and also in cryptographic algorithms like elliptic curve cryptography.
+
+---
+
+📝 **NOTE**: The key distinction between a group and an Abelian group is that the operation in an Abelian group must be commutative, whereas a group does not require this property.
+
+---
+## Properties of Groups
+
+A **group** is a set $$ G $$ along with a binary operation $$ * $$ that satisfies four key properties:
+
+1. **Closure**
+2. **Associativity**
+3. **Identity Element**
+4. **Inverse Element**
+
+### 1. **Closure Property**
+
+- A set $$ G $$ is closed under an operation $$ * $$ if for any two elements $$ a, b \in G $$, the result of the operation $$ a * b $$ is also an element of $$ G $$.
+- In other words, performing the operation on two elements from the set will always yield a result that belongs to the same set.
+
+💡 **TIP:** If $$ a $$ and $$ b $$ are in $$ G $$, then $$ a * b $$ must also be in $$ G $$.
+
+**Example:**
+If $$ G = \{1, 2, 3, 4\} $$ and the operation is multiplication, then:
+- $$ 2 * 3 = 6 $$, which is not in $$ G $$, so $$ G $$ is not closed under multiplication.
+
+### 2. **Associativity Property**
+
+- A group must satisfy the **associative law**: For all elements $$ a, b, c \in G $$, the equation $$ (a * b) * c = a * (b * c) $$ must hold.
+- This means the way we group elements does not affect the result of the operation.
+
+📝 **NOTE:** In everyday arithmetic, addition and multiplication are associative operations. For example:
+- $$ (2 + 3) + 4 = 2 + (3 + 4) = 9 $$
+
+### 3. **Identity Element**
+
+- An identity element $$ e \in G $$ is an element in the group such that for every element $$ a \in G $$, $$ a * e = e * a = a $$.
+- The identity element leaves any other element unchanged when the operation is applied.
+
+**Example:**
+In the set of integers with addition as the operation, the identity element is $$ 0 $$ because:
+- $$ a + 0 = 0 + a = a $$ for any integer $$ a $$.
+
+### 4. **Inverse Element**
+
+- Every element $$ a \in G $$ must have an inverse element $$ b \in G $$ such that $$ a * b = b * a = e $$, where $$ e $$ is the identity element.
+- The inverse element "undoes" the operation performed on $$ a $$.
+
+**Example:**
+In the set of integers with addition as the operation:
+- The inverse of $$ 3 $$ is $$ -3 $$ because:
+  - $$ 3 + (-3) = (-3) + 3 = 0 $$, where $$ 0 $$ is the identity element.
+
+### Additional Notes:
+- A group that satisfies all four properties (Closure, Associativity, Identity, Inverse) is called a **group**.
+- A group can be finite or infinite, depending on the number of elements it contains.
+
+⚠️ **CAUTION:** Not all sets with an operation form a group. For example, the set of natural numbers $$ \mathbb{N} $$ with subtraction does not form a group because subtraction does not have an inverse for all elements.
+
+---
+## Coset Decomposition
+
+In group theory, a **coset** is a form of decomposition of a group into distinct subsets. Cosets play an essential role in understanding the structure of a group and its subgroups. A coset is formed by multiplying all elements of a subgroup by a fixed element of the group.
+
+### 1. **Definition of Coset**
+
+For a group $$ G $$ and a subgroup $$ H $$ of $$ G $$, the left coset of $$ H $$ corresponding to an element $$ g \in G $$ is defined as:
+$$ gH = \{ gh \mid h \in H \} $$
+
+Similarly, the right coset of $$ H $$ corresponding to an element $$ g \in G $$ is:
+$$ Hg = \{ hg \mid h \in H \} $$
+
+### 2. **Properties of Cosets**
+
+- **Cosets partition the group:** The cosets of a subgroup $$ H $$ in group $$ G $$ partition the group $$ G $$ into disjoint subsets.
+  - In other words, each element of $$ G $$ belongs to exactly one coset of $$ H $$.
+  
+- **Cosets are either identical or disjoint:** For any two cosets $$ gH $$ and $$ g'H $$, they are either the same or disjoint.
+  
+- **Number of cosets:** The number of distinct cosets of a subgroup $$ H $$ in $$ G $$ is given by the index of $$ H $$ in $$ G $$, denoted by $$ [G : H] $$, which is the number of cosets. This is a finite number if $$ G $$ is finite and $$ H $$ is a subgroup.
+
+### 3. **Coset Decomposition Theorem**
+
+Given a group $$ G $$ and a subgroup $$ H $$, the group $$ G $$ can be written as a union of disjoint cosets of $$ H $$:
+$$ G = \bigcup_{i=1}^{n} g_i H $$ 
+where $$ \{ g_1, g_2, \dots, g_n \} $$ are representatives of the distinct cosets.
+
+💡 **TIP:** If the group $$ G $$ is finite and $$ H $$ is a subgroup, then the number of cosets of $$ H $$ in $$ G $$ is equal to the index $$ [G : H] $$, and:
+$$ |G| = [G : H] \cdot |H| $$
+
+### 4. **Example of Coset Decomposition**
+
+Consider the group $$ G = \mathbb{Z}_6 $$ (the integers modulo 6) and the subgroup $$ H = \{ 0, 3 \} $$.
+
+The left cosets of $$ H $$ in $$ G $$ are:
+-  $$ 0H = \{ 0, 3 \} $$
+-  $$ 1H = \{ 1, 4 \} $$
+-  $$ 2H = \{ 2, 5 \} $$
+
+Therefore, the group $$ \mathbb{Z}_6 $$ can be decomposed into the disjoint union of these cosets:
+$$ \mathbb{Z}_6 = 0H \cup 1H \cup 2H $$
+
+### 5. **Important Properties of Cosets**
+
+- **Cosets are of equal size:** All cosets of a subgroup $$ H $$ have the same number of elements, which is the order of $$ H $$.
+  
+- **Cosets of a normal subgroup are identical:** If $$ H $$ is a normal subgroup of $$ G $$ (i.e., $$ gH = Hg $$ for all $$ g \in G $$), then the left cosets and right cosets coincide, and the coset decomposition can be written as a quotient group:
+  $$ G/H = \{ gH \mid g \in G \} $$
+
+⚠️ **CAUTION:** If $$ H $$ is not normal, the left cosets and right cosets may differ, and we cannot form the quotient group $$ G/H $$.
+
+---
+## Subgroup
+
+A **subgroup** is a group that is a subset of another group, but with the same group operation. For a subset $$ H $$ of a group $$ G $$ to be a subgroup, it must satisfy the following conditions:
+
+### 1. **Subgroup Criteria**
+
+For $$ H $$ to be a subgroup of $$ G $$, the following three conditions must be met:
+
+1. **Closure:** For all $$ a, b \in H $$, the product $$ a * b $$ must also be in $$ H $$.
+2. **Identity:** The identity element of $$ G $$ must be in $$ H $$.
+3. **Inverse:** For every element $$ a \in H $$, the inverse element $$ a^{-1} $$ must also be in $$ H $$.
+
+In summary, $$ H $$ is a subgroup of $$ G $$ if:
+- $$ a * b \in H $$ for all $$ a, b \in H $$,
+- $$ e \in H $$, where $$ e $$ is the identity element of $$ G $$,
+- $$ a^{-1} \in H $$ for all $$ a \in H $$.
+
+### 2. **Notation**
+
+If $$ H $$ is a subgroup of $$ G $$, we write:
+$$ H \leq G $$
+
+💡 **TIP:** A subgroup is a smaller group within a larger group that follows all the same group properties.
+
+### 3. **Example of a Subgroup**
+
+Let $$ G = \mathbb{Z}_6 $$ (the integers modulo 6) and $$ H = \{ 0, 3 \} $$.
+
+- **Closure:** $$ 0 + 3 = 3 $$, and $$ 3 + 3 = 0 $$ (both elements are in $$ H $$).
+- **Identity:** The identity element for addition in $$ \mathbb{Z}_6 $$ is $$ 0 $$, which is in $$ H $$.
+- **Inverse:** The inverse of $$ 0 $$ is itself, and the inverse of $$ 3 $$ is also $$ 3 $$, since $$ 3 + 3 = 0 $$.
+
+Thus, $$ H = \{ 0, 3 \} $$ is a subgroup of $$ \mathbb{Z}_6 $$.
+
+---
+
+## Cyclic Group
+
+A **cyclic group** is a group that can be generated by a single element. That is, every element of the group can be written as a power (or multiple) of a particular element, called the **generator**.
+
+### 1. **Definition of Cyclic Group**
+
+A group $$ G $$ is **cyclic** if there exists an element $$ g \in G $$ such that every element of $$ G $$ can be written as:
+$$ g^n $$ for some integer $$ n $$.
+
+The element $$ g $$ is called a **generator** of the group, and the group is denoted as $$ \langle g \rangle $$.
+
+- If the group is finite, $$ g $$ generates all the elements of $$ G $$ by taking powers of $$ g $$.
+- If the group is infinite, $$ g $$ generates an infinite number of distinct elements by taking all powers of $$ g $$.
+
+### 2. **Notation**
+
+If $$ G $$ is a cyclic group generated by $$ g $$, we write:
+$$ G = \langle g \rangle $$
+
+### 3. **Properties of Cyclic Groups**
+
+- **Finite Cyclic Group:** If $$ G $$ is finite and cyclic, the order of $$ G $$ is the smallest integer $$ n $$ such that $$ g^n = e $$, where $$ e $$ is the identity element.
+- **Infinite Cyclic Group:** If $$ G $$ is infinite, every element is of the form $$ g^n $$ for some integer $$ n $$, and the group does not have a finite order.
+
+💡 **TIP:** The integers under addition, $$ \mathbb{Z} $$, form an infinite cyclic group generated by $$ 1 $$.
+
+### 4. **Example of Cyclic Groups**
+
+- **Finite Cyclic Group Example:**
+  Consider $$ G = \mathbb{Z}_4 $$, the integers modulo 4 under addition. The generator is $$ 1 $$, because every element of $$ G $$ can be written as a multiple of $$ 1 $$:
+  - $$ 1 \cdot 1 = 1 $$
+  - $$ 2 \cdot 1 = 2 $$
+  - $$ 3 \cdot 1 = 3 $$
+  - $$ 4 \cdot 1 = 0 $$ (the identity element)
+
+Thus, $$ G = \langle 1 \rangle $$ is a cyclic group.
+
+- **Infinite Cyclic Group Example:**
+  The group of integers under addition, $$ \mathbb{Z} $$, is an infinite cyclic group. The generator is $$ 1 $$ because every element of $$ \mathbb{Z} $$ can be written as $$ n \cdot 1 $$ for some integer $$ n $$.
+
+### 5. **Cyclic Group Theorem**
+
+Every subgroup of a cyclic group is also cyclic. If $$ G $$ is a cyclic group, then any subgroup $$ H $$ of $$ G $$ is also cyclic, and the generator of $$ H $$ can be written as a power of the generator of $$ G $$.
+
+---
+## Normal Subgroup
+
+A **normal subgroup** is a subgroup that remains invariant under conjugation by any element of the group. This concept is crucial in group theory as it allows for the formation of quotient groups, which are fundamental in understanding the structure of a group.
+
+### 1. **Definition of Normal Subgroup**
+
+A subgroup $$ H $$ of a group $$ G $$ is called a **normal subgroup** if, for every element $$ g \in G $$, the left coset $$ gH $$ is equal to the right coset $$ Hg $$:
+$$ gH = Hg $$
+
+Alternatively, this condition can be written as:
+$$ g h g^{-1} \in H \quad $$ for all $$ \quad g \in G, h \in H $$
+
+In other words, $$ H $$ is invariant under conjugation by any element of $$ G $$.
+
+### 2. **Notation**
+
+If $$ H $$ is a normal subgroup of $$ G $$, we write:
+$$ H \triangleleft G $$
+
+This symbol indicates that $$ H $$ is normal in $$ G $$.
+
+💡 **TIP:** The key idea of a normal subgroup is that it is "unaffected" by conjugation within the group.
+
+### 3. **Properties of Normal Subgroups**
+
+- **Left and Right Cosets:** For a normal subgroup $$ H $$ of $$ G $$, the left cosets $$ gH $$ and the right cosets $$ Hg $$ are always the same. This is a defining characteristic of normal subgroups.
+  
+- **Quotient Group:** If $$ H $$ is a normal subgroup of $$ G $$, we can form the **quotient group** (also called the factor group) $$ G/H $$, where the elements of $$ G/H $$ are the cosets of $$ H $$ in $$ G $$.
+
+- **Subgroup of Quotient Group:** The cosets of a normal subgroup in the quotient group \( G/H \) behave like elements of a group, meaning the operation of cosets is well-defined.
+
+### 4. **Example of a Normal Subgroup**
+
+Consider the group $$ G = \mathbb{Z}_6 $$ (integers modulo 6) and the subgroup $$ H = \{ 0, 3 \} $$.
+
+- **Conjugation:** Since $$ \mathbb{Z}_6 $$ is an abelian group (i.e., $$ g h = h g $$ for all $$ g, h \in G $$), the subgroup $$ H $$ is normal in $$ G $$ because conjugation by any element does not change the elements of $$ H $$.
+
+Thus, $$ H $$ is a normal subgroup of $$ \mathbb{Z}_6 $$, and we write:
+$$ H \triangleleft \mathbb{Z}_6 $$.
+
+### 5. **Normal Subgroup Test**
+
+To check if a subgroup $$ H $$ of a group $$ G $$ is normal, you can use the following equivalent conditions:
+
+1. **Conjugation Condition:** For all $$ g \in G $$ and $$ h \in H $$, $$ g h g^{-1} \in H $$.
+2. **Coset Condition:** $$ gH = Hg $$ for all $$ g \in G $$.
+3. **Subgroup of Quotient Group:** The quotient group $$ G/H $$ is well-defined if and only if $$ H $$ is normal in $$ G $$.
+
+### 6. **Normal Subgroups and Quotient Groups**
+
+If $$ H $$ is a normal subgroup of $$ G $$, the quotient group $$ G/H $$ is defined by:
+$$ (gH) \cdot (g'H) = (gg')H $$
+
+This operation is well-defined, meaning the product of two cosets is the coset of the product.
+
+### 7. **Example of a Non-Normal Subgroup**
+
+Consider the group $$ G = S_3 $$ (the symmetric group on 3 elements) and the subgroup $$ H = \{ (1), (12) \} $$ (the subgroup generated by the transposition $$ (12) $$). 
+
+- The conjugation of $$ (12) $$ by elements of $$ S_3 $$ does not leave $$ H $$ invariant. For example:
+  - $$ (13) \cdot (12) \cdot (13)^{-1} = (23) $$, which is not in $$ H $$.
+
+Thus, $$ H $$ is not a normal subgroup of $$ S_3 $$.
+
+⚠️ **CAUTION:** Not all subgroups are normal. Only subgroups that satisfy the conjugation condition can be normal subgroups.
+
+---
+## Rings
+
+A **ring** is a set equipped with two binary operations: addition and multiplication, where the set and the operations satisfy certain properties. Rings generalise many familiar number systems, including integers, polynomials, and matrices.
+
+### 1. **Definition of a Ring**
+
+A set $$ R $$ with two binary operations, **addition** and **multiplication**, is called a **ring** if it satisfies the following properties:
+
+#### **Addition Properties (Abelian Group)**
+- **Closure under Addition:** For all $$ a, b \in R $$, $$ a + b \in R $$.
+- **Associativity of Addition:** For all $$ a, b, c \in R $$, $$ (a + b) + c = a + (b + c) $$.
+- **Commutativity of Addition:** For all $$ a, b \in R $$, $$ a + b = b + a $$.
+- **Identity Element for Addition:** There exists an element $$ 0 \in R $$ such that for all $$ a \in R $$, $$ a + 0 = a $$.
+- **Inverse Elements for Addition:** For each $$ a \in R $$, there exists an element $$ -a \in R $$ such that $$ a + (-a) = 0 $$.
+
+#### **Multiplication Properties**
+- **Closure under Multiplication:** For all $$ a, b \in R $$, $$ a \cdot b \in R $$.
+- **Associativity of Multiplication:** For all $$ a, b, c \in R $$, $$ (a \cdot b) \cdot c = a \cdot (b \cdot c) $$.
+- **Distributivity of Multiplication over Addition:** For all $$ a, b, c \in R $$, 
+  - $$ a \cdot (b + c) = a \cdot b + a \cdot c $$,
+  - $$ (a + b) \cdot c = a \cdot c + b \cdot c $$.
+
+### 2. **Types of Rings**
+- **Commutative Ring:** A ring where multiplication is commutative, i.e., for all $$ a, b \in R $$, $$ a \cdot b = b \cdot a $$.
+- **Ring with Unity (Unital Ring):** A ring that contains a multiplicative identity, denoted as $$ 1 $$, such that for all $$ a \in R $$, $$ a \cdot 1 = a $$.
+- **Division Ring (Skew Field):** A ring where every non-zero element has a multiplicative inverse, but multiplication may not be commutative.
+
+### 3. **Example of a Ring**
+
+The set of integers $$ \mathbb{Z} $$ with the usual addition and multiplication is a ring. The properties of closure, associativity, and distributivity hold, and the identity element for addition is $$ 0 $$, and the identity element for multiplication is $$ 1 $$.
+
+---
+
+## Fields
+
+A **field** is a more restricted structure than a ring. In a field, every non-zero element has a multiplicative inverse, and multiplication is commutative. Fields are essential in algebra and are the basis for many mathematical systems.
+
+### 1. **Definition of a Field**
+
+A set $$ F $$ with two binary operations, **addition** and **multiplication**, is called a **field** if it satisfies the following properties:
+
+#### **Addition and Multiplication Properties (Ring Properties)**
+- **Commutative Ring:** The set $$ F $$ is a commutative ring with respect to both addition and multiplication.
+- **Multiplicative Inverse:** Every non-zero element in $$ F $$ has a multiplicative inverse. For each $$ a \in F $$ where $$ a \neq 0 $$, there exists an element $$ a^{-1} \in F $$ such that $$ a \cdot a^{-1} = 1 $$.
+
+#### **Distributive Law**
+- The distributive property holds: $$ a \cdot (b + c) = a \cdot b + a \cdot c $$ for all $$ a, b, c \in F $$.
+
+### 2. **Standard Properties of Fields**
+- **Additive Identity:** There exists an element $$ 0 \in F $$ such that for every $$ a \in F $$, $$ a + 0 = a $$.
+- **Multiplicative Identity:** There exists an element $$ 1 \in F $$ such that for every $$ a \in F $$, $$ a \cdot 1 = a $$.
+- **Additive Inverse:** For every $$ a \in F $$, there exists an element $$ -a \in F $$ such that $$ a + (-a) = 0 $$.
+- **Multiplicative Inverse:** For every $$ a \in F $$, where $$ a \neq 0 $$, there exists an element $$ a^{-1} \in F $$ such that $$ a \cdot a^{-1} = 1 $$.
+
+### 3. **Example of a Field**
+
+- **The Field of Real Numbers, $$ \mathbb{R} $$:** The real numbers with the usual operations of addition and multiplication form a field. Every non-zero real number has a multiplicative inverse, and both addition and multiplication are commutative.
+  
+- **The Field of Rational Numbers, $$ \mathbb{Q} $$:** The set of rational numbers with the usual addition and multiplication also forms a field.
+
+- **Finite Field Example:** The set $$ \mathbb{Z}_p $$ (integers modulo a prime number $$ p $$) with addition and multiplication modulo $$ p $$ forms a field. This is a finite field, and it is often denoted as $$ \mathbb{F}_p $$.
+
+### 4. **Standard Results in Fields**
+
+- **Characteristic of a Field:** The **characteristic** of a field is the smallest number of times the additive identity (0) must be added to itself to get 0. If no such number exists, the characteristic is 0. 
+  - For fields like $$ \mathbb{R} $$ or $$ \mathbb{Q} $$, the characteristic is 0.
+  - For finite fields like $$ \mathbb{F}_p $$, the characteristic is $$ p $$.
+
+- **Field Extensions:** A **field extension** is a larger field that contains a given field as a subfield. For example, the complex numbers $$ \mathbb{C} $$ form a field extension of the real numbers $$ \mathbb{R} $$.
+
+---
+## Applications of Rings and Fields in Computer Science
+
+Rings and fields are fundamental algebraic structures that have several applications in computer science. These applications span across areas like cryptography, coding theory, computer graphics, and error detection/correction. Understanding how these structures are used helps in designing efficient algorithms and systems that leverage algebraic properties.
+
+### 1. **Cryptography**
+
+Cryptography relies heavily on number theory, and both rings and fields play a crucial role in the security of digital communication. 
+
+#### **Public Key Cryptography (RSA Algorithm)**
+- **Fields and Modular Arithmetic:** In RSA encryption, operations are performed in a finite field, specifically a ring of integers modulo a large prime number.
+- **Rings in RSA:** The encryption and decryption processes rely on modular arithmetic, which operates within a ring structure. The key operations, such as exponentiation modulo a prime, are performed in a ring, ensuring the security of the encryption.
+- **Field Extensions:** In some advanced cryptographic systems (such as elliptic curve cryptography), field extensions are used to create elliptic curves over finite fields, which enhances security and performance.
+
+💡 **TIP:** The security of cryptographic systems like RSA depends on the difficulty of factoring large integers, which is a problem tied to the properties of numbers in rings.
+
+#### **Elliptic Curve Cryptography (ECC)**
+- **Field Theory:** ECC is based on elliptic curves defined over finite fields, making use of the structure of both fields and rings. 
+- **Efficiency:** ECC provides the same level of security as RSA but with much smaller key sizes, making it computationally more efficient.
+
+---
+
+### 2. **Error Detection and Correction**
+
+Rings and fields are extensively used in error detection and correction algorithms, which ensure the integrity of transmitted data.
+
+#### **Error-Correcting Codes (ECC)**
+- **Finite Fields in Coding Theory:** The most common algebraic structure used in error-correcting codes is the finite field. Codes like the **Hamming code** and **Reed-Solomon code** are built using finite fields.
+  - **Hamming Code:** This error-correcting code is based on a binary field (a field with two elements, usually denoted as $$ \mathbb{F}_2 $$). It helps detect and correct single-bit errors in data transmission.
+  - **Reed-Solomon Codes:** These are widely used in CDs, DVDs, QR codes, and other storage mediums. They are constructed over finite fields, ensuring that errors in data can be detected and corrected efficiently.
+
+#### **Polynomial Codes**
+- **Rings in Polynomial Codes:** Polynomial rings over finite fields are used to construct codes that detect and correct errors. These codes operate by treating the message as a polynomial and performing operations like addition and multiplication in a ring.
+
+⚠️ **CAUTION:** The choice of field or ring is critical in ensuring that the error-correction codes are efficient and capable of detecting and correcting the desired number of errors.
+
+---
+
+### 3. **Digital Signal Processing (DSP)**
+
+Rings and fields also find applications in **Digital Signal Processing (DSP)**, where operations on sequences of data are required.
+
+#### **Fourier Transform**
+- **Fields in Fourier Transforms:** In discrete Fourier transforms (DFT) and fast Fourier transforms (FFT), operations are often performed in finite fields or rings. These transforms are used for signal analysis, image processing, and many other applications.
+- **Finite Field Fourier Transforms:** In some cases, Fourier transforms are calculated over finite fields (e.g., $$ \mathbb{F}_2 $$) to optimize computations in digital systems.
+
+---
+
+### 4. **Polynomial Time Algorithms and Complexity**
+
+Rings and fields play an important role in designing efficient algorithms for problems that can be solved in polynomial time.
+
+#### **Solving Polynomial Equations**
+- **Finite Fields in Polynomial Equations:** In areas like computational algebra and polynomial equations, fields and rings are used to find efficient algorithms for solving systems of polynomial equations. This is important in areas such as symbolic computation and algorithm design.
+
+- **Algorithms like Berlekamp’s Algorithm:** Used in factoring polynomials over finite fields, these algorithms rely on the algebraic properties of finite fields to perform efficient factorization in polynomial time.
+
+---
+
+### 5. **Computer Graphics and Geometric Modeling**
+
+Rings and fields are used in computer graphics for tasks such as transformations, color representation, and geometric operations.
+
+#### **Homogeneous Coordinates and Matrix Operations**
+- **Rings in Graphics Transformations:** In computer graphics, transformations like translation, rotation, and scaling are often represented using matrices. The operations on these matrices can be performed using the structure of rings and fields to ensure that the transformations are computationally efficient.
+- **Field Theory in Color Models:** Color models such as RGB or CMYK in digital imaging sometimes use finite fields to represent and manipulate color data efficiently, ensuring that calculations like color blending are done in a finite set of values.
+
+---
+
+### 6. **Algorithms in Computational Algebra**
+
+Algorithms in computational algebra systems (CAS) like Mathematica or Maple frequently use fields and rings to perform symbolic manipulations of algebraic expressions.
+
+#### **Symbolic Computation**
+- **Field Theory in Symbolic Computation:** Many symbolic computations, such as polynomial division, finding greatest common divisors (GCD), and solving systems of equations, use field and ring theory to simplify and efficiently compute results.
+- **Computer Algebra Systems (CAS):** These systems use the properties of rings and fields to handle a wide range of mathematical problems symbolically, including simplification, factorization, and solving equations.
+
+---
+
+### 7. **Hashing Algorithms**
+
+Hash functions, which are crucial in data security, also make use of algebraic structures like finite fields and rings to design efficient and collision-resistant hash functions.
+
+#### **Finite Field Hashing**
+- **Field-based Hash Functions:** Many cryptographic hash functions use finite fields for operations such as modular multiplication and addition. This ensures that the hash function remains efficient and resistant to collision attacks.
+
+---
