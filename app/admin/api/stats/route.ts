@@ -37,16 +37,27 @@ export async function GET() {
       0
     );
 
-    return NextResponse.json({
-      totalUsers,
-      premiumUsers,
-      blockedUsers,
-      totalRevenue,
-      totalNotesRequests,
-      completedNotesRequests,
-      totalNotesReports,
-      completedNotesReports,
-    });
+    return new NextResponse(
+      JSON.stringify({
+        totalUsers,
+        premiumUsers,
+        blockedUsers,
+        totalRevenue,
+        totalNotesRequests,
+        completedNotesRequests,
+        totalNotesReports,
+        completedNotesReports,
+      }),
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Cache-Control":
+            "no-store, no-cache, must-revalidate, proxy-revalidate",
+          Expires: "0",
+          Pragma: "no-cache",
+        },
+      }
+    );
   } catch (error) {
     console.error("Error fetching admin stats:", error);
     return NextResponse.json(

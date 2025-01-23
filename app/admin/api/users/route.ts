@@ -23,7 +23,15 @@ export async function GET(req: NextRequest) {
       })
       .toArray();
 
-    return NextResponse.json(users);
+    return new NextResponse(JSON.stringify(users), {
+      headers: {
+        "Content-Type": "application/json",
+        "Cache-Control":
+          "no-store, no-cache, must-revalidate, proxy-revalidate",
+        Expires: "0",
+        Pragma: "no-cache",
+      },
+    });
   } catch (error) {
     console.error("Error fetching users:", error);
     return NextResponse.json(

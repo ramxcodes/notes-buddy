@@ -5,7 +5,6 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { UserTable } from "./components/UserTable";
 
-// Define interfaces for the stats and user data
 interface Stats {
   totalUsers: number;
   premiumUsers: number;
@@ -39,38 +38,45 @@ export default function AdminDashboard() {
   const [loadingStats, setLoadingStats] = useState(true);
   const [loadingUsers, setLoadingUsers] = useState(true);
 
-  // Fetch stats and users data on page load
+  const fetchStats = async () => {
+    try {
+      const response = await fetch("/admin/api/stats", { cache: "no-store" });
+      const data = await response.json();
+      setStats(data);
+    } catch (error) {
+      console.error("Failed to fetch stats:", error);
+    } finally {
+      setLoadingStats(false);
+    }
+  };
+
+  const fetchUsers = async () => {
+    try {
+      const response = await fetch("/admin/api/users", { cache: "no-store" });
+      const data = await response.json();
+      setUsers(data);
+    } catch (error) {
+      console.error("Failed to fetch users:", error);
+    } finally {
+      setLoadingUsers(false);
+    }
+  };
+
   useEffect(() => {
-    async function fetchStats() {
-      try {
-        const response = await fetch("/admin/api/stats");
-        const data = await response.json();
-        setStats(data);
-      } catch (error) {
-        console.error("Failed to fetch stats:", error);
-      } finally {
-        setLoadingStats(false);
-      }
-    }
-
-    async function fetchUsers() {
-      try {
-        const response = await fetch("/admin/api/users");
-        const data = await response.json();
-        setUsers(data);
-      } catch (error) {
-        console.error("Failed to fetch users:", error);
-      } finally {
-        setLoadingUsers(false);
-      }
-    }
-
     fetchStats();
     fetchUsers();
+    const interval = setInterval(() => {
+      fetchStats();
+      fetchUsers();
+    }, 5000);
+
+    return () => clearInterval(interval);
   }, []);
 
-  // Toggle block status of users
-  const handleToggleBlock = async (userId: string, action: "block" | "unblock") => {
+  const handleToggleBlock = async (
+    userId: string,
+    action: "block" | "unblock"
+  ) => {
     try {
       const response = await fetch("/admin/api/blocked", {
         method: "POST",
@@ -83,7 +89,9 @@ export default function AdminDashboard() {
       if (result.success) {
         setUsers((prevUsers) =>
           prevUsers.map((user) =>
-            user._id === userId ? { ...user, Blocked: action === "block" } : user
+            user._id === userId
+              ? { ...user, Blocked: action === "block" }
+              : user
           )
         );
       } else {
@@ -103,7 +111,6 @@ export default function AdminDashboard() {
         <p>Loading stats...</p>
       ) : stats ? (
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          {/* Display the cards for various stats */}
           <Card>
             <CardHeader>
               <CardTitle className="font-gilroy">Total Users</CardTitle>
@@ -128,17 +135,19 @@ export default function AdminDashboard() {
             </CardHeader>
             <CardContent>{stats.totalRevenue}</CardContent>
           </Card>
-
-          {/* Display additional cards for notes requests and reports */}
           <Card>
             <CardHeader>
-              <CardTitle className="font-gilroy">Total Notes Requests</CardTitle>
+              <CardTitle className="font-gilroy">
+                Total Notes Requests
+              </CardTitle>
             </CardHeader>
             <CardContent>{stats.totalNotesRequests}</CardContent>
           </Card>
           <Card>
             <CardHeader>
-              <CardTitle className="font-gilroy">Completed Notes Requests</CardTitle>
+              <CardTitle className="font-gilroy">
+                Completed Notes Requests
+              </CardTitle>
             </CardHeader>
             <CardContent>{stats.completedNotesRequests}</CardContent>
           </Card>
@@ -150,7 +159,9 @@ export default function AdminDashboard() {
           </Card>
           <Card>
             <CardHeader>
-              <CardTitle className="font-gilroy">Completed Notes Reports</CardTitle>
+              <CardTitle className="font-gilroy">
+                Completed Notes Reports
+              </CardTitle>
             </CardHeader>
             <CardContent>{stats.completedNotesReports}</CardContent>
           </Card>
