@@ -68,7 +68,7 @@ export default function AdminDashboard() {
     const interval = setInterval(() => {
       fetchStats();
       fetchUsers();
-    }, 5000);
+    }, 300000);
 
     return () => clearInterval(interval);
   }, []);
