@@ -1,4 +1,7 @@
 import { Schema, model, models } from "mongoose";
+import { connectToDatabase } from "@/lib/db";
+
+connectToDatabase();
 
 const RequestNotesSchema = new Schema({
   university: { type: String, required: true },

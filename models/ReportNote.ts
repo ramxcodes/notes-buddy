@@ -1,4 +1,7 @@
 import { Schema, model, models } from "mongoose";
+import { connectToDatabase } from "@/lib/db";
+
+connectToDatabase();
 
 const ReportNoteSchema = new Schema({
   noteUrl: { type: String, required: true },

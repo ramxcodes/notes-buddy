@@ -25,6 +25,7 @@ export const authOptions: NextAuthOptions = {
         const dbUser = await usersCollection.findOne({ email });
 
         if (!dbUser) {
+          // Create a new user if not found
           await usersCollection.insertOne({
             email,
             name: user.name || token.name || "",
@@ -33,17 +34,20 @@ export const authOptions: NextAuthOptions = {
             createdAt: new Date(),
           });
         } else if (!("Blocked" in dbUser)) {
+          // Ensure Blocked field exists
           await usersCollection.updateOne(
             { email },
             { $set: { Blocked: false } }
           );
         }
 
+        // Update token with user details
         token.id = dbUser?._id?.toString() || token.id;
         token.Blocked = dbUser?.Blocked ?? false;
         token.email = email;
         token.name = user.name || token.name;
 
+        // Admin check
         const adminEmails =
           process.env.ADMIN_EMAILS?.split(",").map((e) => e.trim()) || [];
         token.isAdmin = adminEmails.includes(email || "");

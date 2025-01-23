@@ -1,4 +1,5 @@
 import { MongoClient } from "mongodb";
+import mongoose from "mongoose";
 
 const uri = process.env.MONGO_URI as string;
 
@@ -8,19 +9,18 @@ if (!uri) {
   );
 }
 
-declare global {
-  var _mongoClientPromise: Promise<MongoClient>;
-}
-
 let client: MongoClient;
 let clientPromise: Promise<MongoClient>;
 
+let isConnected = false; // For Mongoose connection tracking
+
+// MongoClient connection for direct queries
 if (process.env.NODE_ENV === "development") {
-  if (!global._mongoClientPromise) {
+  if (!(global as any)._mongoClientPromise) {
     client = new MongoClient(uri);
-    global._mongoClientPromise = client.connect();
+    (global as any)._mongoClientPromise = client.connect();
   }
-  clientPromise = global._mongoClientPromise;
+  clientPromise = (global as any)._mongoClientPromise;
 } else {
   client = new MongoClient(uri);
   clientPromise = client.connect();
@@ -28,15 +28,36 @@ if (process.env.NODE_ENV === "development") {
 
 export default clientPromise;
 
+// Helper to get a collection
 export async function getCollection(collectionName: string) {
   const client = await clientPromise;
 
   const dbName = process.env.MONGODB_DB || "notesbuddy";
   const db = client.db(dbName);
 
+  console.log(`Accessing collection: ${collectionName} in database: ${dbName}`);
   return db.collection(collectionName);
 }
 
+// Mongoose connection setup
+export async function connectToDatabase() {
+  if (isConnected) return;
+
+  try {
+    await mongoose.connect(uri, {
+      dbName: process.env.MONGODB_DB || "notesbuddy",
+    });
+    isConnected = true;
+    console.log(
+      `Connected to database: ${process.env.MONGODB_DB || "notesbuddy"}`
+    );
+  } catch (error) {
+    console.error("Error connecting to database:", error);
+    throw new Error("Failed to connect to database.");
+  }
+}
+
+// Additional utilities
 export async function isUserBlocked(email: string): Promise<boolean> {
   const usersCollection = await getCollection("users");
   const user = await usersCollection.findOne({ email });
