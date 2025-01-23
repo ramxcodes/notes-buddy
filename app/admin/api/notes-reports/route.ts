@@ -66,7 +66,6 @@ export async function PATCH(request: Request) {
       );
     }
 
-    console.log(`Report ${reportId} updated to status: ${status}`);
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {
     console.error(ERROR_MESSAGES.UPDATE_ERROR, error);

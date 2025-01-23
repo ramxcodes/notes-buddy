@@ -62,11 +62,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    console.log(
-      `User with ID ${userId} has been ${
-        action === "block" ? "blocked" : "unblocked"
-      }.`
-    );
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error(ERROR_MESSAGES.SERVER_ERROR, error);
