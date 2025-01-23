@@ -1,0 +1,1052 @@
+---
+title: "Unit 5: Internet and Web Technology"
+description: Introduction to Java Server Page (JSP), JSP Application Design, JSP objects, Conditional Processing, declaring variables and methods, sharing data between JSP pages, Sharing Session and Application Data, Database Programming using JDBC, web application framework, MVC framework, Introduction to bootstrap, angular JS
+date: 2025-01-20
+tags: ["Internet and Web Technology", "4th Semester", "2nd Year", "medicaps university"]
+published: true
+metadata:
+  university: "Medicaps University"
+  degree: "B Tech"
+  semester: "4th Semester"
+  subject: "Internet and Web Technology"
+---
+
+## Introduction to Java Server Pages (JSP)
+
+### What is JSP?
+JavaServer Pages (JSP) is a technology that allows developers to create dynamically generated web pages based on HTML, XML, or other document types. JSP is built on top of the Servlet technology and provides a more convenient way to create dynamic content by embedding Java code into HTML.
+
+---
+
+### Features of JSP
+1. **Separation of Concerns**: JSP allows for a clear separation of presentation (HTML) and business logic (Java code), promoting a cleaner architecture.
+2. **Ease of Use**: JSP pages are simple to develop and maintain, with an easy-to-read syntax.
+3. **Platform Independence**: Like Java, JSP is platform-independent, running on any server that supports JSP (e.g., Apache Tomcat).
+4. **Integration with Servlets**: JSP works seamlessly with servlets, allowing developers to use both technologies in the same application.
+5. **Rich Tag Library**: JSP provides standard tags and custom tag libraries for complex operations.
+
+---
+
+### How JSP Works
+
+1. **Client Request**: A client (browser) sends an HTTP request to a web server.
+2. **Servlet Container**: The request is handled by the servlet container (e.g., Apache Tomcat), which passes the request to the JSP file.
+3. **JSP Compilation**:
+   - The JSP file is converted into a servlet (compiled to Java code).
+   - The resulting servlet is executed, and dynamic content is generated.
+4. **Response Generation**: The servlet container sends the generated content (usually HTML) back to the client’s browser.
+
+---
+
+### JSP Syntax
+
+JSP pages contain both static content (HTML) and dynamic content (Java code). Java code in JSP is enclosed within special tags:
+
+#### 1. **Directives**
+Directives provide global information about the page.
+
+#### 2. **Declarations**
+Declarations are used to declare variables and methods that will be available in the JSP page.
+
+#### 3. **Scriplets**
+Scriplets allow embedding Java code inside the HTML. Code inside a scriplet tag is executed at the request time.
+
+#### 4. **Expressions**
+An expression is used to output the result of an evaluation directly to the client.
+
+#### 5. **Actions**
+JSP actions are used to perform operations such as including files or forwarding requests.
+
+---
+
+### JSP Life Cycle
+The lifecycle of a JSP is managed by the servlet container and includes the following stages:
+1. **Translation**: The JSP file is converted into a servlet.
+2. **Compilation**: The servlet is compiled into bytecode.
+3. **Initialization**: The servlet container initializes the servlet.
+4. **Request Handling**: The servlet handles requests and generates responses.
+5. **Destruction**: When the JSP is no longer needed, the servlet container destroys the servlet instance.
+
+---
+
+### Advantages of JSP
+1. **Simple to Use**: JSP allows Java code to be written directly in HTML, making it easier for web developers to create dynamic web pages.
+2. **Integration with Java**: As part of the Java ecosystem, JSP integrates well with other Java technologies like JDBC, EJB, and JavaBeans.
+3. **Separation of Business Logic and Presentation**: It helps in separating the HTML code from the business logic, which is managed in Java classes.
+
+---
+
+### Limitations of JSP
+1. **Performance Overhead**: Since JSP is first compiled into a servlet, there might be a slight delay in processing the first request.
+2. **Complexity in Large Applications**: As the size and complexity of the application grow, maintaining JSP pages can become difficult due to the mixing of business logic and presentation.
+3. **Less Flexibility**: Unlike other technologies like JavaScript, JSP is primarily server-side, and client-side interactivity may require additional tools like JavaScript or AJAX.
+
+--- 
+
+## JSP Application Design
+
+### Introduction
+JSP Application Design involves structuring and organizing a web application that uses JavaServer Pages (JSP) to generate dynamic content. The design focuses on separating business logic, presentation, and control flow, making the application easier to manage, scale, and maintain.
+
+---
+
+### Key Components of a JSP Application
+A typical JSP-based web application consists of the following components:
+
+1. **JSP Pages**: These are the view components that generate dynamic content. JSP pages are responsible for rendering the user interface.
+2. **Servlets**: Servlets are responsible for controlling the flow of the application and managing business logic. They process requests, interact with back-end systems, and forward data to JSP pages.
+3. **JavaBeans**: JavaBeans are reusable components that encapsulate business logic and data, making it easier to manage complex operations in a structured way.
+4. **Database**: The database is where application data is stored. JSPs can interact with databases to display dynamic content or store user input.
+
+---
+
+### Design Patterns in JSP Applications
+
+1. **Model-View-Controller (MVC)**: 
+   - The **Model** represents the business logic and data (often implemented as JavaBeans).
+   - The **View** consists of the JSP pages that display content to the user.
+   - The **Controller** is a servlet that handles requests, processes user input, and determines which view to display.
+
+2. **Front Controller Pattern**:
+   - A single servlet (the front controller) acts as the entry point for all requests.
+   - The front controller forwards the request to the appropriate handler (a JSP or another servlet) after processing.
+
+3. **Business Delegate Pattern**:
+   - A business delegate serves as an intermediary between the presentation layer (JSP) and the business logic (e.g., EJB or other back-end services).
+   - It simplifies communication and hides the complexity of the business logic from the JSP layer.
+
+---
+
+### JSP Application Architecture
+The architecture of a JSP application typically follows the MVC pattern, with additional considerations for separation of concerns.
+
+1. **Presentation Layer** (View):
+   - JSP pages serve as the user interface, displaying dynamic content.
+   - They use tag libraries like **JSTL** (JavaServer Pages Standard Tag Library) for dynamic content generation.
+
+2. **Business Logic Layer** (Model):
+   - JavaBeans and Enterprise JavaBeans (EJB) are often used to encapsulate the business logic.
+   - This layer interacts with the database and performs computations, validation, and other tasks.
+
+3. **Control Layer** (Controller):
+   - Servlets act as controllers, handling user input, processing requests, and directing responses.
+   - They forward requests to the appropriate JSP pages after performing necessary business operations.
+
+4. **Persistence Layer**:
+   - This layer is responsible for interacting with databases, typically through **JDBC** or an **ORM framework** like **Hibernate**.
+   - It manages CRUD (Create, Read, Update, Delete) operations.
+
+---
+
+### Workflow of a JSP Application
+1. **Request Handling**: A client sends an HTTP request to the web server (e.g., Apache Tomcat).
+2. **Controller Processing**: The controller (usually a servlet) processes the request, interacts with the model (JavaBeans or EJBs), and retrieves the necessary data.
+3. **Data Passing**: The servlet passes data to the JSP for display. This is done using `request.setAttribute()` to forward data to the JSP.
+4. **Response Generation**: The JSP generates dynamic HTML content, and the server sends the response back to the client.
+5. **Database Interaction**: If needed, the servlet or JavaBeans interact with the database to perform operations and provide the results.
+
+---
+
+### Best Practices for JSP Application Design
+1. **Separation of Concerns**: Keep business logic separate from the presentation layer by using MVC architecture. This enhances maintainability and readability.
+2. **Use of JSP Tags**: Leverage **JSTL** and custom tags to separate Java code from HTML and avoid excessive scripting within JSP pages.
+3. **Efficient Database Access**: Use connection pooling and ORM frameworks (e.g., Hibernate) to efficiently manage database connections and operations.
+4. **Error Handling**: Implement error-handling mechanisms using `errorPage` attribute in the JSP or custom error pages for a more user-friendly experience.
+5. **Session Management**: Use **HttpSession** for managing user sessions and storing user-specific data across multiple requests.
+
+---
+
+### Example Workflow in MVC Pattern
+
+1. **Client Request**: The client makes an HTTP request (e.g., submitting a form).
+2. **Controller (Servlet)**: The servlet processes the request, validates the data, and interacts with JavaBeans or database.
+3. **Model (JavaBeans)**: The model layer performs necessary business logic and returns the result to the controller.
+4. **View (JSP)**: The controller forwards the data to the JSP for rendering dynamic content.
+5. **Client Response**: The JSP generates an HTML response, which is sent back to the client.
+
+---
+
+### Advantages of JSP Application Design
+1. **Maintainability**: Separation of concerns allows for easier maintenance and code updates.
+2. **Scalability**: JSP-based applications can be easily scaled to handle more users by adding more servlets or optimizing existing components.
+3. **Reusability**: Components like JavaBeans and servlets are reusable, promoting code efficiency.
+4. **Separation of Business Logic and Presentation**: This ensures that updates to business logic or UI elements can be done independently without affecting other components.
+
+---
+
+### Limitations
+1. **Complexity in Large Applications**: As the application grows, managing multiple JSP pages, servlets, and beans can become complex.
+2. **Performance Overhead**: Since JSP pages are first compiled into servlets, the initial request may experience a slight delay.
+
+---
+
+## JSP Objects
+
+### Introduction
+JSP objects are predefined objects that the servlet container provides to JSP pages automatically. These objects are used to perform various tasks, such as handling requests, managing sessions, and interacting with the application context. These objects are available in all JSP pages and eliminate the need for explicit object creation.
+
+---
+
+### Types of JSP Objects
+There are several predefined objects in JSP that simplify development:
+
+1. **Request Object (`request`)**: 
+   - Represents the HTTP request sent by the client.
+   - Used to retrieve request parameters (form data, URL parameters) and request headers.
+   - Can also be used to set and get attributes specific to the request.
+
+2. **Response Object (`response`)**:
+   - Represents the HTTP response sent to the client.
+   - Used to send data to the client, such as text or HTML, and set HTTP headers.
+   - Provides methods to set the content type, cookies, and status codes.
+
+3. **Session Object (`session`)**:
+   - Represents the HTTP session, which is used to store session-specific data across multiple requests from the same user.
+   - Stores information like user preferences or login details.
+   - The session is maintained automatically by the server, typically through a session ID stored in a cookie.
+
+4. **Application Object (`application`)**:
+   - Represents the entire web application's context.
+   - Allows storing data that is shared across all users and requests in the application.
+   - Useful for storing application-wide settings or resources, such as configuration values or database connections.
+
+5. **Out Object (`out`)**:
+   - Represents the output stream used to send data to the client.
+   - It is typically used to print dynamic content (like HTML) in a JSP page.
+   - The `out` object is implicitly created and available to every JSP page.
+
+6. **Config Object (`config`)**:
+   - Represents the configuration of the servlet associated with the JSP page.
+   - Provides access to initialization parameters of the servlet, such as values from the web.xml configuration file.
+
+7. **PageContext Object (`pageContext`)**:
+   - Provides methods for managing various aspects of the JSP page's environment.
+   - It allows access to other JSP objects (request, response, session, etc.) and can manage attributes for the page scope.
+
+8. **Exception Object (`exception`)**:
+   - Available only in error pages, it represents the exception object thrown during the execution of the JSP page.
+   - It can be used to display the error details or log the exception for troubleshooting purposes.
+
+---
+
+### Usage of JSP Objects
+Each JSP object serves a specific purpose and is automatically instantiated and made available by the container:
+
+1. **Request Object**:
+   - Accessing request parameters (e.g., form data):
+     - `String username = request.getParameter("username");`
+   - Setting request attributes:
+     - `request.setAttribute("user", user);`
+
+2. **Response Object**:
+   - Setting response content type:
+     - `response.setContentType("text/html");`
+   - Redirecting to another URL:
+     - `response.sendRedirect("homepage.jsp");`
+
+3. **Session Object**:
+   - Storing session attributes:
+     - `session.setAttribute("username", username);`
+   - Retrieving session attributes:
+     - `String username = (String) session.getAttribute("username");`
+
+4. **Application Object**:
+   - Storing application-wide attributes:
+     - `application.setAttribute("appVersion", "1.0");`
+   - Retrieving application-wide attributes:
+     - `String version = (String) application.getAttribute("appVersion");`
+
+5. **Out Object**:
+   - Outputting dynamic content:
+     - `out.println("<h1>Welcome to the application</h1>");`
+
+6. **Config Object**:
+   - Accessing servlet initialization parameters:
+     - `String dbUrl = config.getInitParameter("databaseUrl");`
+
+7. **PageContext Object**:
+   - Accessing and managing other JSP objects:
+     - `String clientIp = pageContext.getRequest().getRemoteAddr();`
+
+8. **Exception Object**:
+   - Handling exceptions in error pages:
+     - `String errorMessage = exception.getMessage();`
+
+---
+
+### Scope of JSP Objects
+Each of the JSP objects has a specific scope:
+
+1. **Request Scope**: 
+   - The `request` object is valid for the current request only. Once the request is complete, the object is discarded.
+
+2. **Session Scope**: 
+   - The `session` object persists across multiple requests from the same client (browser session). It is tied to the client's session.
+
+3. **Application Scope**: 
+   - The `application` object is valid across the entire web application, shared by all users and requests.
+
+4. **Page Scope**: 
+   - The `pageContext` object has page-level scope and is valid only within the current JSP page.
+
+---
+
+### Advantages of JSP Objects
+1. **Ease of Access**: JSP objects are automatically available to every JSP page, eliminating the need to manually instantiate them.
+2. **Data Persistence**: They allow for easy data storage across requests, sessions, and throughout the application.
+3. **Reduced Boilerplate Code**: The predefined objects simplify common tasks like request processing, session management, and output generation.
+
+---
+
+### Limitations of JSP Objects
+1. **Scope Limitations**: Objects like `request` and `response` are only available during the lifecycle of the current request, which limits their ability to hold data across multiple requests unless stored in a session or application object.
+2. **Overuse of Application Object**: Storing large amounts of data in the `application` object may impact application performance, as the data is shared across all users.
+
+---
+
+## Conditional Processing in JSP
+
+### Introduction
+Conditional processing in JSP refers to the use of Java control structures such as **if**, **else**, **else if**, and **switch** statements within JSP pages. These structures allow dynamic control over the content displayed on the page based on certain conditions. By embedding Java code in JSP, developers can customize the HTML output based on user inputs, request parameters, or session data.
+
+---
+
+### Types of Conditional Statements in JSP
+The conditional processing in JSP involves using standard Java control flow statements.
+
+1. **If-Else Statement**
+   - The `if` statement evaluates a condition and executes the code block only if the condition is true.
+   - Optionally, an `else` statement can be added to execute code when the condition is false.
+
+2. **Else If Statement**
+   - The `else if` statement allows you to chain multiple conditions, executing different blocks of code for different conditions.
+
+3. **Switch Statement**
+   - The `switch` statement is used to select one of many code blocks to be executed based on the value of an expression.
+   - It is typically more efficient than using multiple `if-else` statements when checking a single variable against many values.
+
+---
+
+### Using Conditional Processing in JSP
+Conditional processing in JSP is typically done by embedding Java code within the JSP page. The Java code is used to evaluate certain conditions (e.g., form input, session attributes, etc.) and decide what content to display.
+
+---
+
+### Common Use Cases
+1. **Displaying Content Based on User Role**:
+   - Conditional statements are used to display content differently based on the user's role or session data.
+   
+2. **Form Validation**:
+   - Before processing user-submitted data, conditions can be used to validate the input.
+   
+3. **Conditional Content Display**:
+   - Content can be shown or hidden based on conditions, such as whether a user is logged in or if certain data is available.
+
+---
+
+### Best Practices for Conditional Processing in JSP
+1. **Minimize Java Code in JSP**: 
+   - While conditional processing is essential, avoid excessive Java code within JSP pages. Try to use servlets or beans for business logic to keep the JSP focused on presentation.
+
+2. **Use JSTL Tags**:
+   - The JavaServer Pages Standard Tag Library (JSTL) provides tags like `<c:if>` and `<c:choose>` for conditional processing, which are more readable and efficient than using scriptlets.
+
+3. **Avoid Complex Logic in JSP**:
+   - Keep the logic in JSP pages simple and avoid complex conditionals. It's better to delegate such logic to controllers or business logic layers.
+
+---
+
+### Advantages of Conditional Processing
+1. **Dynamic Content**: Conditional statements allow for the dynamic generation of content based on runtime conditions.
+2. **Custom User Experiences**: By checking conditions such as user roles or request parameters, JSP pages can be customized to provide personalized experiences.
+
+---
+
+### Limitations
+1. **Code Maintainability**: Embedding too much conditional logic within JSP pages can make the code harder to maintain.
+2. **Performance Concerns**: Excessive conditional checks in the view layer may lead to performance issues if not managed properly.
+
+---
+
+## Declaring Variables and Methods in JSP
+
+### Introduction
+In JSP, variables and methods can be declared in the Java code section embedded within the JSP page. These declarations allow you to store and manipulate data, and encapsulate logic for use within the JSP page. While it’s common to declare variables and methods in JSP, it's recommended to keep business logic outside the JSP by using Java classes or beans.
+
+---
+
+### Declaring Variables in JSP
+Variables in JSP are typically declared inside the scriptlet, or by using the page directive.
+
+1. **Page Directive**:
+   - The `page` directive can be used to declare variables for the entire JSP page. These variables are accessible across the entire page.
+
+2. **Scriptlets**:
+   - Java code can be written directly within scriptlets using `<% %>` tags. Inside these scriptlets, you can declare variables of any type.
+
+3. **Scope of Variables**:
+   - The scope of a variable depends on where it is declared. For example, variables declared inside a scriptlet are valid within that scriptlet, and variables declared at the page level are accessible throughout the entire page.
+
+4. **Data Types**:
+   - You can declare variables of primitive types (e.g., `int`, `float`, `boolean`) or object types (e.g., `String`, `Date`, `List`).
+
+---
+
+### Declaring Methods in JSP
+Methods can be declared in the scriptlet, although it's more common to declare them in Java classes and call them from the JSP page.
+
+1. **Defining Methods in Scriptlets**:
+   - You can define methods within a JSP page using scriptlets. These methods are typically used for simple logic and calculations within the page.
+
+2. **Method Return Type**:
+   - Methods can return different types of data, such as `void` (no return value), `String`, or `int`, depending on the operation they perform.
+
+3. **Method Parameters**:
+   - Methods in JSP can also take parameters to make them reusable and to accept values from the page.
+
+4. **Calling Methods**:
+   - Once methods are defined, they can be called within the JSP page, either directly or by using attributes like the pageContext or request object.
+
+---
+
+### Recommended Practices for Declaring Variables and Methods
+1. **Minimize Java Code in JSP**:
+   - While declaring variables and methods is possible in JSP, it is recommended to minimize Java code and delegate complex logic to Java classes or beans.
+
+2. **Use EL (Expression Language) for Simplicity**:
+   - In most cases, it's better to use Expression Language (EL) for simple data access and avoid embedding too much Java code in the JSP page.
+
+3. **Limit Scriptlets**:
+   - Scriptlets are considered outdated, and their use should be limited. The JSP specification encourages the use of JavaBeans, servlets, or JSTL (JavaServer Pages Standard Tag Library) for better separation of concerns.
+
+4. **Use Beans for Business Logic**:
+   - Any complex logic should be placed in JavaBeans or helper classes, which can then be accessed via JSP tags, rather than embedding business logic directly into the JSP page.
+
+---
+
+### Advantages of Declaring Variables and Methods in JSP
+1. **Simplicity**: Embedding small variables and methods directly in JSP can be simpler for small, straightforward pages.
+2. **Faster Development**: For smaller projects or quick prototyping, declaring variables and methods directly in JSP can speed up development.
+
+---
+
+### Limitations
+1. **Maintainability**: Embedding logic in JSP pages can lead to difficult-to-maintain code, especially as the project grows.
+2. **Separation of Concerns**: Declaring variables and methods in JSP pages violates the principle of separating business logic from presentation logic, making the code harder to manage in large applications.
+
+---
+
+## Sharing Data Between JSP Pages
+
+### Introduction
+In JSP, sharing data between different JSP pages is essential for creating dynamic web applications. Data can be passed between pages in various ways, such as through request attributes, session attributes, application attributes, or URL parameters. These methods allow JSP pages to communicate with each other, ensuring smooth user interactions across multiple pages.
+
+---
+
+### Methods for Sharing Data Between JSP Pages
+
+1. **Request Attributes**:
+   - **Request attributes** are used to share data between JSP pages that are part of the same request-response cycle.
+   - Data stored in the request object is accessible across JSP pages until the response is sent to the client.
+   - You can use the `setAttribute()` and `getAttribute()` methods to store and retrieve data.
+
+2. **Session Attributes**:
+   - **Session attributes** allow data to persist across multiple requests made by the same user during their session.
+   - Data stored in the session object remains available across different JSP pages during the user's session, even across multiple requests.
+   - Use the `session.setAttribute()` method to store data and `session.getAttribute()` to retrieve it.
+
+3. **Application Attributes**:
+   - **Application attributes** are shared across all users and requests in the entire web application.
+   - The data stored in the application context is available to all JSP pages and servlets in the application.
+   - Use the `application.setAttribute()` and `application.getAttribute()` methods to store and retrieve application-wide data.
+
+4. **URL Parameters (Query String)**:
+   - **URL parameters** are part of the URL and can be used to send data between pages by appending key-value pairs to the URL.
+   - These parameters are typically used in GET requests, and the values can be accessed from the request object using `request.getParameter()`.
+
+5. **Hidden Form Fields**:
+   - **Hidden form fields** are used to send data between JSP pages through form submissions.
+   - They are not visible to the user but allow data to be sent along with the form, making it accessible to the receiving JSP page via the request object.
+
+6. **Forwarding Request**:
+   - When using `RequestDispatcher.forward()`, data in the request attributes can be shared with the destination JSP page.
+   - This method forwards the request from one JSP to another while preserving request data, making it a useful way to share data between pages during the same request cycle.
+
+---
+
+### Advantages of Sharing Data Between JSP Pages
+
+1. **State Persistence**:
+   - Sharing data via session or application attributes ensures persistence across multiple requests, enabling the application to maintain user-specific or application-wide state.
+   
+2. **Seamless User Experience**:
+   - By passing data between JSP pages, users can interact with the application without losing context, such as maintaining login status or form data.
+
+3. **Modular Design**:
+   - Sharing data between JSP pages allows the modularization of the web application. Different pages can handle specific tasks while sharing necessary data.
+
+---
+
+### Limitations of Sharing Data Between JSP Pages
+
+1. **Data Size**:
+   - Large amounts of data should not be stored in session or application attributes as it may lead to performance issues.
+   
+2. **Security Concerns**:
+   - Sensitive data should not be passed through URL parameters, as they can be exposed in the browser history, logs, or during navigation.
+
+3. **Complexity**:
+   - Excessive sharing of data between multiple pages could lead to code complexity, making it difficult to trace how and where certain data is being modified or accessed.
+
+---
+
+### Recommended Practices for Sharing Data Between JSP Pages
+
+1. **Minimize Use of URL Parameters**:
+   - URL parameters should be used for non-sensitive, lightweight data to avoid exposing important information in the URL.
+   
+2. **Use Session and Application Attributes for State Management**:
+   - For maintaining user-specific or application-wide data, use session and application attributes. However, be mindful of not overusing them to avoid excessive memory consumption.
+
+3. **Use JSTL for Better Data Handling**:
+   - The JavaServer Pages Standard Tag Library (JSTL) offers tags like `<c:set>`, `<c:out>`, and `<c:if>` for handling data more effectively in JSP pages, reducing the need for scriptlets.
+
+4. **Limit Data Sharing to Relevant Pages**:
+   - Only share the necessary data between JSP pages to keep the flow of information simple and relevant to the specific requirements of the pages.
+
+---
+
+## Sharing Session and Application Data
+
+### Introduction
+Sharing session and application data is crucial for maintaining persistent state across different JSP pages and multiple requests in a web application. **Session data** allows you to store user-specific information across multiple requests, while **application data** is used for data that needs to be accessible across all users and pages in the entire web application.
+
+---
+
+### Session Data
+Session data is used to store information that should persist across multiple requests for a specific user. This data is stored in the `HttpSession` object, and it remains available as long as the session is active.
+
+1. **Storing Session Data**:
+   - To store data in the session, you use the `setAttribute()` method of the `HttpSession` object.
+   - Session data can include user-specific information such as login status, user preferences, or shopping cart contents.
+
+2. **Retrieving Session Data**:
+   - To retrieve session data, you use the `getAttribute()` method of the `HttpSession` object.
+   - If the data is not found, it returns `null`.
+
+3. **Session Expiration**:
+   - Session data remains valid as long as the session is active. Sessions can expire after a set time of inactivity, or they can be invalidated manually using the `invalidate()` method of the `HttpSession` object.
+
+4. **Session Management**:
+   - You can manage session attributes using the `HttpSession` object, such as setting timeouts or manually removing attributes.
+
+---
+
+### Application Data
+Application data is shared across all users and pages of a web application. This data is stored in the `ServletContext` object, which is available to all components (servlets, JSP pages, etc.) of the web application.
+
+1. **Storing Application Data**:
+   - To store data in the application context, you use the `setAttribute()` method of the `ServletContext` object.
+   - Application data can include data such as system-wide configurations, shared resources, or static content like global settings.
+
+2. **Retrieving Application Data**:
+   - To retrieve data from the application context, you use the `getAttribute()` method of the `ServletContext` object.
+   - Like session data, if the attribute is not found, it returns `null`.
+
+3. **Application Lifecycle**:
+   - Application data persists throughout the lifecycle of the web application. It is only removed or modified when the web application is redeployed or shut down.
+   
+4. **Global Availability**:
+   - Application data is accessible to all users and pages, making it ideal for sharing global settings or resources that need to be accessed across different sessions.
+
+---
+
+### Differences Between Session and Application Data
+
+| **Aspect**            | **Session Data**                                           | **Application Data**                                         |
+|-----------------------|------------------------------------------------------------|--------------------------------------------------------------|
+| **Scope**             | Specific to the user session                               | Available to all users and across all sessions in the app    |
+| **Lifetime**          | Data persists as long as the session is active             | Data persists for the entire application lifecycle           |
+| **Storage**           | Stored in the `HttpSession` object                         | Stored in the `ServletContext` object                         |
+| **Usage**             | Used for user-specific information (e.g., login state)     | Used for application-wide settings (e.g., configuration)      |
+| **Access**            | Can be accessed only by the current user’s session         | Can be accessed by all users and pages within the application |
+
+---
+
+### Best Practices for Sharing Session and Application Data
+
+1. **Session Data Best Practices**:
+   - Store only essential user-specific data in the session to avoid excessive memory usage.
+   - Avoid storing sensitive information such as passwords in the session. Instead, store only necessary flags or tokens.
+   - Set appropriate session timeouts to free up resources after the session expires.
+   - Use session management techniques to ensure session data is cleared when no longer needed.
+
+2. **Application Data Best Practices**:
+   - Store only global, read-only data in application context to prevent modification from multiple users.
+   - Keep application data minimal to reduce memory usage, especially in large applications.
+   - Be cautious when using application data for resources that are not thread-safe. Proper synchronization should be implemented.
+
+---
+
+### Advantages of Sharing Session and Application Data
+1. **Persistence of User Data**: Session data ensures that user-specific information is maintained across multiple requests, leading to a smoother user experience.
+2. **Global Resource Sharing**: Application data allows you to store global settings or resources, providing consistency across all users.
+3. **Improved Performance**: By sharing common data (e.g., configurations, resources), you can avoid recalculating or reloading the same data across different JSP pages or users.
+
+---
+
+### Limitations of Sharing Session and Application Data
+1. **Memory Usage**: Storing too much data in session or application attributes can lead to high memory consumption, especially in large-scale applications.
+2. **Security Risks**: Storing sensitive information in session data increases the risk of session hijacking or data exposure.
+3. **Concurrency Issues**: When using application data in a multi-user environment, improper synchronization may lead to race conditions or inconsistent data.
+
+---
+
+## Database Programming using JDBC
+
+### Introduction
+JDBC (Java Database Connectivity) is an API provided by Java for connecting and interacting with relational databases. It allows Java applications to execute SQL queries, update databases, and retrieve data using a standard set of interfaces. JDBC serves as a bridge between Java applications and databases, making it essential for building dynamic, database-driven web applications.
+
+---
+
+### Key Concepts in JDBC
+
+1. **JDBC Drivers**:
+   - JDBC drivers enable Java applications to connect to different types of databases. There are four types of JDBC drivers:
+     - **Type 1 Driver (JDBC-ODBC Bridge Driver)**: Relies on ODBC to connect to databases. It is slower and deprecated in newer versions of Java.
+     - **Type 2 Driver (Native-API Driver)**: Uses database-specific native code to communicate with the database.
+     - **Type 3 Driver (Network Protocol Driver)**: Converts JDBC calls into a database-independent network protocol, which is then translated into database-specific calls.
+     - **Type 4 Driver (Thin Driver)**: Directly converts JDBC calls into the database-specific protocol. It is platform-independent and widely used for modern databases.
+
+2. **Establishing a Database Connection**:
+   - To interact with a database, first, a connection is established using `DriverManager.getConnection()` method.
+   - The connection string typically includes the database URL, username, and password for authentication.
+
+   ```java
+   Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "password");
+   ```
+
+3. **Statement Interface:**
+
+    - The `Statement` interface is used to execute SQL queries against the database. There are three types of statements:
+        - `Statement`: Used for simple SQL queries.
+        - `PreparedStatement`: Used for executing precompiled SQL queries with parameters, offering better performance and security (prevents SQL injection).
+        - `CallableStatement`: Used to call stored procedures.
+
+4. **Executing Queries:**
+
+    - SQL queries are executed using the `executeQuery()` method for SELECT queries and `executeUpdate()` for INSERT, UPDATE, DELETE queries.
+
+    ```java
+    // Example of executing a SELECT query
+    ResultSet rs = stmt.executeQuery("SELECT * FROM users");
+    ```
+
+5. **ResultSet:**
+
+    The `ResultSet` interface represents the result of a query and provides methods to retrieve data from the database.
+    Methods like `next()`, `getInt()`, `getString()`, etc., are used to retrieve data from the result set.
+
+### Steps for JDBC Database Programming
+
+#### 1. **Load the JDBC Driver**
+Before establishing a connection, load the appropriate JDBC driver using `Class.forName()`.
+
+```java
+Class.forName("com.mysql.cj.jdbc.Driver");
+```
+
+#### 2. **Establish the Connection**
+Use the `DriverManager.getConnection()` method to connect to the database.
+
+```java
+Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "password");
+```
+
+#### 3. **Create a Statement**
+```java
+Statement stmt = con.createStatement();
+```
+
+#### 4. **Execute SQL Queries**
+```java
+// SELECT query example
+ResultSet rs = stmt.executeQuery("SELECT * FROM users");
+
+// INSERT query example
+int rowsAffected = stmt.executeUpdate("INSERT INTO users (name, email) VALUES ('John Doe', 'john@example.com')");
+```
+
+#### 5. **Process the Results**
+```java
+while (rs.next()) {
+    String name = rs.getString("name");
+    String email = rs.getString("email");
+    // Process the data
+}
+```
+
+#### 6. **Close Connections**
+```java
+rs.close();
+stmt.close();
+con.close();
+```
+
+### Advantages of Using JDBC
+
+1. **Database Independence**:  
+   JDBC allows Java applications to interact with various databases, making the application database-agnostic.
+
+2. **Standardization**:  
+   JDBC provides a standard API for database interaction, ensuring consistency across different database systems.
+
+3. **Scalability**:  
+   JDBC supports large-scale applications by allowing efficient querying and database connection management.
+
+---
+
+### Limitations of JDBC
+
+1. **Boilerplate Code**:  
+   JDBC involves writing a lot of boilerplate code, especially for error handling and resource management.
+
+2. **Complexity**:  
+   For complex database operations, JDBC programming can become cumbersome and error-prone.
+
+3. **No ORM**:  
+   Unlike frameworks like Hibernate, JDBC does not provide an Object-Relational Mapping (ORM) system, meaning you must manually handle the conversion between Java objects and database tables.
+
+---
+
+## Web Application Framework
+
+A **Web Application Framework** is a software framework designed to simplify the development and deployment of web applications. It provides developers with tools, libraries, and components to build scalable, secure, and maintainable web applications efficiently.
+
+---
+
+### Features of Web Application Frameworks
+
+1. **Code Reusability**:  
+   Frameworks encourage the use of reusable components and modular code, reducing development time.
+
+2. **Security**:  
+   Many frameworks include built-in security features like protection against SQL injection, XSS, and CSRF attacks.
+
+3. **Scalability**:  
+   Frameworks are designed to support applications that need to handle large volumes of traffic and data.
+
+4. **MVC Architecture**:  
+   Most frameworks implement the **Model-View-Controller (MVC)** design pattern, which separates application logic, UI, and data, improving maintainability.
+
+5. **Routing**:  
+   Frameworks provide routing mechanisms to map URLs to specific application functions or controllers.
+
+6. **Session Management**:  
+   Frameworks help manage user sessions and state information seamlessly.
+
+7. **Database Integration**:  
+   Built-in tools or ORM (Object-Relational Mapping) libraries simplify database interaction.
+
+---
+
+### Types of Web Application Frameworks
+
+#### 1. **Server-Side Frameworks**
+Server-side frameworks handle application logic, database interaction, and server operations. Examples include:
+- **Django** (Python)
+- **Spring** (Java)
+- **ASP.NET** (C#)
+
+#### 2. **Client-Side Frameworks**
+Client-side frameworks focus on building dynamic and interactive user interfaces. Examples include:
+- **React** (JavaScript)
+- **Angular** (JavaScript)
+- **Vue.js** (JavaScript)
+
+#### 3. **Full-Stack Frameworks**
+Full-stack frameworks offer both server-side and client-side development capabilities. Examples include:
+- **Ruby on Rails** (Ruby)
+- **Laravel** (PHP)
+- **Meteor** (JavaScript)
+
+---
+
+### Advantages of Using Web Application Frameworks
+
+1. **Faster Development**:  
+   Frameworks provide pre-built components, reducing development time.
+
+2. **Consistency**:  
+   Frameworks enforce coding standards, ensuring consistency across the project.
+
+3. **Maintenance**:  
+   The structured nature of frameworks makes web applications easier to maintain and scale.
+
+4. **Community Support**:  
+   Popular frameworks have strong community support, extensive documentation, and a wide range of plugins or libraries.
+
+---
+
+### Limitations of Web Application Frameworks
+
+1. **Learning Curve**:  
+   Developers may need time to learn the framework's conventions and tools.
+
+2. **Overhead**:  
+   Frameworks might include unnecessary features that increase resource usage or complexity.
+
+3. **Lack of Flexibility**:  
+   Frameworks impose certain constraints, which may limit customisation.
+
+4. **Dependency Risks**:  
+   Applications built with frameworks rely on external libraries, which may become outdated or unsupported.
+
+---
+
+## MVC Framework
+
+The **Model-View-Controller (MVC)** framework is a software architectural pattern used to develop web applications. It separates an application into three interconnected components, allowing for better organisation, scalability, and maintainability.
+
+---
+
+### Components of MVC Framework
+
+#### 1. **Model**
+- Represents the **data layer** of the application.
+- Responsible for managing application data, business logic, and interactions with the database.
+- Notifies the `View` of any updates to the data.
+
+#### 2. **View**
+- Represents the **presentation layer** of the application.
+- Handles the display of data to the user.
+- Fetches data from the `Model` and sends user input back to the `Controller`.
+
+#### 3. **Controller**
+- Represents the **application logic layer** of the application.
+- Handles user input and updates the `Model` and `View` accordingly.
+- Acts as a bridge between the `Model` and `View`.
+
+---
+
+### Workflow of MVC Framework
+
+1. **User Interaction**:  
+   The user interacts with the application (e.g., clicks a button or submits a form).
+   
+2. **Controller Handling**:  
+   The `Controller` processes the user input and interacts with the `Model`.
+
+3. **Model Update**:  
+   The `Model` updates the data or retrieves data from the database as needed.
+
+4. **View Update**:  
+   The updated data from the `Model` is sent to the `View` for rendering.
+
+5. **Display to User**:  
+   The `View` displays the updated content to the user.
+
+---
+
+### Features of MVC Framework
+
+1. **Separation of Concerns**:  
+   MVC divides the application into distinct layers, simplifying development and maintenance.
+
+2. **Reusability**:  
+   Components like `View` and `Model` can be reused across different parts of the application.
+
+3. **Parallel Development**:  
+   Developers can work on the `Model`, `View`, and `Controller` independently.
+
+4. **Testability**:  
+   The separation of components makes it easier to test the application.
+
+---
+
+### Advantages of MVC Framework
+
+1. **Scalability**:  
+   MVC frameworks are suitable for large, complex applications due to their modular nature.
+
+2. **Maintainability**:  
+   Separation of concerns simplifies debugging, updating, and maintaining the application.
+
+3. **Flexibility**:  
+   Developers can customise individual layers without affecting others.
+
+4. **Faster Development**:  
+   The framework’s structure supports rapid application development (RAD).
+
+---
+
+### Limitations of MVC Framework
+
+1. **Complexity**:  
+   MVC can add complexity to smaller applications where the architecture may be unnecessary.
+
+2. **Learning Curve**:  
+   Developers need to understand the MVC pattern and its implementation.
+
+3. **Tight Coupling in Some Frameworks**:  
+   Some MVC frameworks may have tight coupling between components, limiting flexibility.
+
+---
+
+### Popular MVC Frameworks
+
+1. **Spring MVC** (Java)  
+2. **Ruby on Rails** (Ruby)  
+3. **Django** (Python)  
+4. **Laravel** (PHP)  
+5. **ASP.NET MVC** (C#)
+
+---
+
+## Introduction to Bootstrap
+
+**Bootstrap** is a popular, open-source front-end framework for developing responsive and mobile-first websites and web applications. It provides pre-designed CSS and JavaScript components to streamline the process of building web pages with consistent styling and layout.
+
+---
+
+### Features of Bootstrap
+
+1. **Responsive Design**:  
+   Built with a mobile-first approach, Bootstrap ensures websites adapt seamlessly to various screen sizes and devices.
+
+2. **Pre-Styled Components**:  
+   Offers a wide range of pre-designed UI components like buttons, modals, navigation bars, and carousels.
+
+3. **Customisable Grid System**:  
+   Features a 12-column responsive grid system for flexible and consistent layout design.
+
+4. **Cross-Browser Compatibility**:  
+   Ensures uniform behaviour across major web browsers.
+
+5. **Utility Classes**:  
+   Includes utility classes for common CSS properties, making styling faster and easier.
+
+6. **Extensibility**:  
+   Developers can customise the framework using SASS or LESS.
+
+7. **Integration with JavaScript Plugins**:  
+   Bootstrap comes with built-in JavaScript plugins for enhanced interactivity.
+
+---
+
+### Advantages of Bootstrap
+
+1. **Ease of Use**:  
+   Offers a simple structure, making it beginner-friendly and easy to implement.
+
+2. **Time-Saving**:  
+   Pre-designed components and templates reduce development time significantly.
+
+3. **Consistent Design**:  
+   Ensures a uniform look and feel across the application.
+
+4. **Responsive by Default**:  
+   Guarantees an optimal viewing experience across all devices.
+
+5. **Active Community Support**:  
+   A large community provides extensive documentation, tutorials, and plugins.
+
+---
+
+### Limitations of Bootstrap
+
+1. **Learning Curve for Customisation**:  
+   Customising Bootstrap beyond the default styles may require additional effort.
+
+2. **Overhead**:  
+   Loading the entire framework can lead to unused CSS or JavaScript, increasing page size.
+
+3. **Uniformity**:  
+   Applications built with Bootstrap can look similar unless customised extensively.
+
+4. **Dependency on jQuery**:  
+   Earlier versions of Bootstrap relied heavily on jQuery, although this has improved with newer releases.
+
+---
+
+### Key Components of Bootstrap
+
+1. **Grid System**:  
+   A responsive 12-column grid layout for designing layouts.
+
+2. **Typography**:  
+   Predefined styles for text, headings, and alignment.
+
+3. **Forms**:  
+   Styled form controls with validation options.
+
+4. **Buttons**:  
+   Various button styles with hover effects and customisable sizes.
+
+5. **Modals and Alerts**:  
+   Components for popups and notifications.
+
+6. **Navigation Bars**:  
+   Fully responsive navigation menus.
+
+7. **Cards**:  
+   Flexible and extensible containers for displaying content.
+
+---
+
+### Popular Uses of Bootstrap
+
+1. **Rapid Prototyping**:  
+   Used to quickly build prototypes of web applications.
+
+2. **Responsive Websites**:  
+   Commonly used for creating websites that adapt to different devices.
+
+3. **Admin Dashboards**:  
+   Widely employed in creating admin panels with pre-designed components.
+
+---
+
+## Introduction to AngularJS
+
+AngularJS is a structural framework used to build dynamic web applications. It is an open-source JavaScript framework maintained by Google. AngularJS allows developers to use HTML as the template language and extend its syntax to express application components clearly and succinctly.
+
+- **Full Name**: Angular JavaScript
+- **Type**: Front-end framework
+- **Main Purpose**: Simplifying the development of Single Page Applications (SPAs) by providing a robust framework for building dynamic web applications.
+
+### Key Features of AngularJS
+
+#### 1. Two-way Data Binding
+- AngularJS allows automatic synchronization of data between the model and the view.
+- **Example**: If the model data changes, the view updates automatically, and vice versa.
+
+📝 **NOTE:** This eliminates the need for direct manipulation of the DOM (Document Object Model), simplifying development.
+
+#### 2. Dependency Injection
+- AngularJS has a built-in dependency injection system that helps to manage services and controllers in a more modular way.
+- It makes the application easier to manage and test.
+
+#### 3. Directives
+- Directives are special markers in the HTML code that tell AngularJS to attach specific behavior to DOM elements or transform the DOM structure.
+- Examples include `ng-model`, `ng-repeat`, and `ng-if`.
+
+#### 4. Controllers
+- Controllers in AngularJS manage the data and business logic for the view (HTML).
+- **Example**: The controller defines the data model and interacts with services or APIs.
+
+#### 5. Templates
+- AngularJS uses templates that are written in HTML with Angular-specific syntax.
+- Templates define the view of the application, which is dynamically rendered in the browser.
+
+#### 6. Filters
+- Filters allow you to format data before displaying it on the UI.
+- Examples: `currency`, `date`, `uppercase`, etc.
+- **Example**: `{{ price | currency }}` will format the `price` value as a currency.
+
+#### 7. Routing
+- AngularJS provides a routing mechanism for navigating between views or pages without reloading the entire application.
+- **Example**: A single-page application (SPA) with multiple routes like `/home`, `/about`, `/contact`.
+
+---
+

@@ -1,0 +1,714 @@
+---
+title: "Unit 4: Internet and Web Technology"
+description: PHP- working with variables and constants, controlling program flow, working with functions, arrays, files, and directories, working with forms and databases, Introduction to Servlet, Lifecycle, API, and Servlet Packages.
+date: 2025-01-20
+tags: ["Internet and Web Technology", "4th Semester", "2nd Year", "medicaps university"]
+published: true
+metadata:
+  university: "Medicaps University"
+  degree: "B Tech"
+  semester: "4th Semester"
+  subject: "Internet and Web Technology"
+---
+
+## PHP: Working with Variables and Constants
+
+### Introduction to PHP Variables
+Variables in PHP are used to store data that can be manipulated during the script execution.  
+- **Key Characteristics**:
+  - Variables in PHP start with a `$` symbol (e.g., `$variableName`).
+  - PHP is loosely typed, meaning variable types do not need to be declared explicitly.
+  - Variable names are case-sensitive.
+
+### Rules for Naming Variables
+1. Must start with a letter or an underscore (`_`).
+2. Cannot start with a number.
+3. Can only contain alphanumeric characters and underscores (`A-Z`, `a-z`, `0-9`, `_`).
+4. Must not contain spaces or special characters.
+
+### PHP Variable Scope
+1. **Local Scope**: Variables declared inside a function.
+2. **Global Scope**: Variables declared outside any function.
+3. **Static Scope**: Retains the variable's value even after the function execution ends.
+4. **Superglobals**: Predefined variables in PHP like `$_POST`, `$_GET`, `$_SESSION`.
+
+---
+
+### PHP Constants
+Constants are used to define a value that cannot be changed during script execution.  
+- Defined using the `define()` function or `const` keyword.
+
+### Key Characteristics of Constants
+1. Once defined, they cannot be redefined or undefined.
+2. Constants are global and can be accessed anywhere in the script.
+3. By convention, constant names are written in uppercase.
+
+---
+
+### Differences Between Variables and Constants
+| **Aspect**       | **Variables**                                  | **Constants**                          |
+|-------------------|-----------------------------------------------|----------------------------------------|
+| Value Change      | Can be changed during script execution        | Cannot be changed once defined         |
+| Declaration       | Starts with `$`                              | Declared using `define()` or `const`  |
+| Scope             | Can have local, global, or static scope       | Always global                          |
+| Syntax            | `$variableName = value`                      | `define("NAME", value)` or `const NAME = value` |
+
+---
+
+### Examples
+
+```php
+<?php
+// Variables
+$name = "Medicaps University";
+$year = 2025;
+$percentage = 88.75;
+$isEnrolled = true;
+
+// Constants
+define("SITE_NAME", "Medicaps University");
+const VERSION = "1.0.0";
+
+// Using variables and constants
+echo "Name: $name";
+echo "Year: $year";
+echo "Welcome to " . SITE_NAME;
+echo "Version: " . VERSION;
+?>
+```
+
+## Controlling Program Flow in PHP
+
+### Introduction
+Program flow control refers to the mechanisms that determine the sequence in which statements are executed in a script. PHP provides several control structures for decision-making, looping, and managing execution flow.
+
+---
+
+### Conditional Statements
+Conditional statements execute different code blocks based on certain conditions.
+
+#### 1. **if Statement**
+Executes a block of code if a condition evaluates to true.
+
+#### 2. **if-else Statement**
+Provides an alternative block of code to execute if the condition is false.
+
+#### 3. **if-elseif-else Statement**
+Allows multiple conditions to be checked sequentially.
+
+#### 4. **switch Statement**
+Tests a variable against multiple cases and executes the matching case.
+
+---
+
+### Looping Constructs
+Loops are used to execute a block of code repeatedly based on a condition.
+
+#### 1. **for Loop**
+Executes a block of code a specified number of times.
+
+#### 2. **while Loop**
+Executes a block of code as long as the condition evaluates to true.
+
+#### 3. **do-while Loop**
+Executes the block of code once, then repeats it as long as the condition is true.
+
+#### 4. **foreach Loop**
+Iterates over each element in an array.
+
+---
+
+### Jump Statements
+These control the flow of execution by altering the normal sequence.
+
+#### 1. **break Statement**
+Exits a loop or a switch statement prematurely.
+
+#### 2. **continue Statement**
+Skips the current iteration of a loop and proceeds with the next iteration.
+
+#### 3. **goto Statement**
+Transfers control to a predefined label in the script.
+
+---
+
+### Examples
+
+```php
+<?php
+// Conditional Statements
+$age = 20;
+if ($age >= 18) {
+  echo "You are eligible to vote.";
+} else {
+  echo "You are not eligible to vote.";
+}
+
+// Looping Constructs
+for ($i = 1; $i <= 5; $i++) {
+  echo "Iteration: $i\n";
+}
+
+// Foreach with an array
+$colors = ["Red", "Green", "Blue"];
+foreach ($colors as $color) {
+  echo $color . "\n";
+}
+?>
+```
+
+---
+
+## Working with Functions in PHP
+
+### Introduction to Functions
+Functions in PHP are blocks of code that can be executed when called. Functions allow for code reuse and modularity. They can accept parameters and return values.
+
+---
+
+### Declaring a Function
+A function is declared using the `function` keyword followed by the function name and an optional parameter list.
+
+- Function names are case-insensitive.
+- Parameters inside the parentheses are optional.
+
+---
+
+### Types of Functions
+
+#### 1. **User-defined Functions**
+Functions created by the programmer to perform specific tasks. They can have parameters and return values.
+
+#### 2. **Built-in Functions**
+PHP provides a large number of built-in functions that perform common tasks (e.g., `strlen()`, `array_merge()`).
+
+#### 3. **Anonymous Functions (Closures)**
+Functions that do not have a name and can be used as values, often assigned to variables or passed as arguments to other functions.
+
+---
+
+### Function Parameters
+Functions can accept parameters, which are values passed into the function when it is called. These parameters can be:
+
+1. **Required Parameters**: Must be passed in the correct order.
+2. **Optional Parameters**: Can have default values specified.
+3. **Variable-length Parameters**: Allows functions to accept a variable number of arguments using the `...` operator.
+
+---
+
+### Return Statement
+The `return` keyword is used to return a value from a function. Once the `return` statement is executed, the function terminates and the value is returned to the caller.
+
+- Functions can return any data type.
+- If no `return` statement is used, the function returns `NULL` by default.
+
+---
+
+### Function Scope
+Functions have their own scope, meaning variables declared inside a function are local to that function.
+
+- **Local Variables**: Declared inside the function.
+- **Global Variables**: Declared outside any function but can be accessed inside a function using the `global` keyword or the `$GLOBALS` array.
+
+---
+
+### Examples
+
+```php
+<?php
+// User-defined function
+function greet($name) {
+  return "Hello, $name!";
+}
+
+// Anonymous function
+$square = function($number) {
+  return $number * $number;
+};
+
+// Calling a function with required and optional parameters
+function add($a, $b = 10) {
+  return $a + $b;
+}
+
+// Function with variable-length parameters
+function sum(...$numbers) {
+  return array_sum($numbers);
+}
+
+// Return statement in functions
+function multiply($x, $y) {
+  return $x * $y;
+}
+?>
+```
+
+---
+
+## Arrays in PHP
+
+### Introduction
+An array is a collection of data that stores multiple values in a single variable. Arrays allow efficient manipulation and organisation of data in PHP.
+
+---
+
+### Types of Arrays
+PHP supports three types of arrays:
+
+#### 1. **Indexed Arrays**
+- Stores values with numeric keys starting from 0.
+- Keys are automatically assigned unless explicitly specified.
+
+#### 2. **Associative Arrays**
+- Uses named keys (strings) instead of numeric indexes.
+- Ideal for storing key-value pairs.
+
+#### 3. **Multidimensional Arrays**
+- Arrays containing one or more arrays.
+- Used to represent data in a tabular or hierarchical format.
+
+---
+
+### Creating Arrays
+- Arrays can be created using the `array()` function or the shorthand `[]` syntax.
+- Associative arrays use the `key => value` format.
+
+---
+
+### Array Functions
+PHP provides many built-in functions to work with arrays. Common functions include:
+
+#### 1. **Manipulating Arrays**
+- `array_push()`: Adds elements to the end of an array.
+- `array_pop()`: Removes the last element of an array.
+- `array_merge()`: Combines two or more arrays.
+- `array_reverse()`: Reverses the order of elements.
+
+#### 2. **Searching Arrays**
+- `in_array()`: Checks if a value exists in an array.
+- `array_search()`: Searches for a value and returns its key.
+
+#### 3. **Sorting Arrays**
+- `sort()`: Sorts an indexed array in ascending order.
+- `rsort()`: Sorts an indexed array in descending order.
+- `ksort()`: Sorts an associative array by key in ascending order.
+- `asort()`: Sorts an associative array by value in ascending order.
+
+#### 4. **Other Useful Functions**
+- `count()`: Returns the number of elements in an array.
+- `array_keys()`: Returns all the keys in an array.
+- `array_values()`: Returns all the values in an array.
+
+---
+
+### Examples
+
+```php
+<?php
+// Indexed array
+$fruits = ["Apple", "Banana", "Cherry"];
+
+// Associative array
+$ages = ["Alice" => 25, "Bob" => 30, "Charlie" => 35];
+
+// Multidimensional array
+$products = [
+  ["Laptop", 50000, 10],
+  ["Mobile", 20000, 25],
+  ["Tablet", 15000, 30]
+];
+
+// Array manipulation
+array_push($fruits, "Mango");
+$removedFruit = array_pop($fruits);
+
+// Searching in arrays
+$isPresent = in_array("Banana", $fruits);
+$key = array_search(30, $ages);
+
+// Sorting arrays
+sort($fruits);
+ksort($ages);
+
+// Counting elements
+$totalFruits = count($fruits);
+?>
+
+---
+
+## Files and Directories in PHP
+
+### Introduction
+PHP provides a wide range of built-in functions to handle file and directory operations. These include creating, reading, writing, and deleting files, as well as managing directories.
+
+---
+
+### Working with Files
+
+#### 1. **File Handling Functions**
+- `fopen()`: Opens a file.
+- `fclose()`: Closes an open file.
+- `fread()`: Reads content from a file.
+- `fwrite()`: Writes data to a file.
+- `file_exists()`: Checks if a file exists.
+- `filesize()`: Returns the size of a file in bytes.
+
+#### 2. **File Modes**
+When opening files using `fopen()`, different modes specify how the file is accessed:
+- `'r'`: Read-only mode. Starts at the beginning of the file.
+- `'w'`: Write-only mode. Truncates the file or creates a new one.
+- `'a'`: Append mode. Writes at the end of the file or creates a new one.
+- `'r+'`: Read and write. Starts at the beginning of the file.
+- `'w+'`: Read and write. Truncates the file or creates a new one.
+
+#### 3. **File Operations**
+- `unlink()`: Deletes a file.
+- `rename()`: Renames or moves a file.
+- `copy()`: Copies a file to a new location.
+
+---
+
+### Working with Directories
+
+#### 1. **Directory Handling Functions**
+- `opendir()`: Opens a directory.
+- `readdir()`: Reads an entry from the directory.
+- `closedir()`: Closes an open directory handle.
+- `mkdir()`: Creates a new directory.
+- `rmdir()`: Removes an empty directory.
+
+#### 2. **Directory Scanning**
+- `scandir()`: Returns an array of files and directories within a directory.
+- `is_dir()`: Checks if a path is a directory.
+- `is_file()`: Checks if a path is a file.
+
+---
+
+### Examples
+
+```php
+<?php
+// File handling
+$file = "example.txt";
+
+// Writing to a file
+if ($handle = fopen($file, "w")) {
+  fwrite($handle, "Hello, PHP File Handling!");
+  fclose($handle);
+}
+
+// Reading from a file
+if (file_exists($file)) {
+  $content = file_get_contents($file);
+  echo $content;
+}
+
+// Directory handling
+$directory = "test_dir";
+
+// Creating a directory
+if (!is_dir($directory)) {
+  mkdir($directory);
+}
+
+// Listing contents of a directory
+$files = scandir($directory);
+foreach ($files as $file) {
+  echo $file . "\n";
+}
+
+// Deleting a directory
+if (is_dir($directory)) {
+  rmdir($directory);
+}
+?>
+```
+
+---
+
+## Working with Forms and Databases in PHP
+
+### Introduction
+PHP provides robust tools to handle form submissions and interact with databases. This combination allows developers to build dynamic web applications by collecting user input and storing or retrieving it from a database.
+
+---
+
+### Working with Forms
+
+#### 1. **HTML Forms**
+HTML forms collect user input and send it to the server using either the `GET` or `POST` method.
+
+- **GET Method**: Appends data to the URL. Suitable for non-sensitive data.
+- **POST Method**: Sends data in the request body. Suitable for sensitive data.
+
+#### 2. **Accessing Form Data in PHP**
+PHP provides superglobal variables to handle form data:
+- `$_GET`: Retrieves data sent using the `GET` method.
+- `$_POST`: Retrieves data sent using the `POST` method.
+- `$_REQUEST`: Retrieves data sent using both methods.
+
+---
+
+### Validating and Sanitising Form Data
+Validation ensures the correctness of user input, while sanitisation removes harmful or unnecessary data.
+
+- **Validation Functions**: `filter_var()`, `preg_match()`
+- **Sanitisation Functions**: `htmlspecialchars()`, `strip_tags()`
+
+---
+
+### Connecting to a Database
+
+#### 1. **Database Systems**
+PHP commonly interacts with MySQL/MariaDB databases. To work with databases, you can use:
+- **MySQLi (MySQL Improved)**: Procedural and object-oriented interface.
+- **PDO (PHP Data Objects)**: Object-oriented and supports multiple database types.
+
+#### 2. **Database Configuration**
+To connect to a database, you'll need:
+- Hostname (e.g., `localhost`)
+- Username
+- Password
+- Database name
+
+#### 3. **Connecting Using MySQLi**
+PHP provides the `mysqli_connect()` function for procedural connections and the `new mysqli` class for object-oriented connections.
+
+#### 4. **Connecting Using PDO**
+PDO offers a more flexible and secure approach. Use the `PDO` class to connect.
+
+---
+
+### Performing Database Operations
+
+#### 1. **CRUD Operations**
+- **Create**: Insert new records using the `INSERT` statement.
+- **Read**: Retrieve records using the `SELECT` statement.
+- **Update**: Modify records using the `UPDATE` statement.
+- **Delete**: Remove records using the `DELETE` statement.
+
+#### 2. **Prepared Statements**
+Prepared statements protect against SQL injection by separating SQL logic from user input.
+
+---
+
+### Examples
+
+```php
+<?php
+// Handling form submission
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+  $name = htmlspecialchars($_POST["name"]);
+  $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
+}
+
+// Database connection using MySQLi
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db = "test_db";
+
+$conn = new mysqli($host, $user, $pass, $db);
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+// Inserting data into the database
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+  $stmt = $conn->prepare("INSERT INTO users (name, email) VALUES (?, ?)");
+  $stmt->bind_param("ss", $name, $email);
+  $stmt->execute();
+  $stmt->close();
+}
+
+$conn->close();
+?>
+```
+
+---
+
+## Introduction to Servlet
+
+### What is a Servlet?
+A Servlet is a Java program that runs on a server and processes client requests, typically in a web application. Servlets are used to handle requests sent via HTTP (e.g., GET, POST) and generate dynamic web content like HTML or JSON.
+
+---
+
+### Features of Servlets
+1. **Platform Independence**: Servlets are written in Java, making them portable across platforms.
+2. **Robust and Secure**: Leverages Java's robust and secure architecture.
+3. **Efficient**: Servlets are executed within a single process, reducing overhead.
+4. **Scalability**: Designed to handle a large number of simultaneous requests.
+5. **Integration**: Servlets can integrate with other Java technologies like JDBC, EJB, and JSP.
+
+---
+
+### How Servlets Work
+
+1. **Client Request**: A client sends an HTTP request to a web server.
+2. **Servlet Container**: The web server passes the request to the servlet container (e.g., Apache Tomcat).
+3. **Servlet Execution**:
+   - The servlet container loads the servlet class if not already loaded.
+   - It creates an instance of the servlet and calls its lifecycle methods (e.g., `init()`, `service()`, `destroy()`).
+   - The `service()` method processes the request and generates a response.
+4. **Response Generation**: The servlet sends the generated response back to the client.
+
+---
+
+### Servlet Lifecycle
+The lifecycle of a servlet includes the following stages:
+
+1. **Loading and Instantiation**: The servlet container loads the servlet class and creates its instance.
+2. **Initialization (`init()` Method)**: Called once when the servlet is initialized.
+3. **Request Handling (`service()` Method)**: Processes each client request and generates a response.
+4. **Termination (`destroy()` Method)**: Called once before the servlet is destroyed.
+
+---
+
+### Advantages of Servlets
+1. **Better Performance**: Executes within the server, reducing latency.
+2. **Portable**: Runs on any server that supports Java Servlets.
+3. **Powerful API**: Provides extensive APIs for HTTP handling, session management, and database interaction.
+4. **Platform-Independent**: Can be deployed on various operating systems and servers.
+
+---
+
+### Limitations of Servlets
+1. **Complexity**: Writing and managing servlets can be cumbersome for large applications.
+2. **Presentation Logic**: Mixing business logic with presentation logic can make code harder to maintain.
+3. **Scalability**: Handling very high traffic might require additional optimisations or technologies.
+
+---
+
+### Real-Life Use Cases
+1. Processing form submissions (e.g., login, registration).
+2. Generating dynamic web pages (e.g., dashboards).
+3. Interfacing with databases for CRUD operations.
+4. Creating RESTful APIs for client-server communication.
+
+---
+
+## API and Servlet Packages
+
+### Servlet API Overview
+The **Servlet API** provides a set of classes and interfaces that define the methods and mechanisms for building web applications using servlets. It facilitates request-response communication, session management, and other web-related tasks.
+
+The `javax.servlet` and `javax.servlet.http` packages are the core of the Servlet API.
+
+---
+
+### Key Servlet Packages
+
+#### 1. **javax.servlet**
+This package contains the fundamental classes and interfaces for working with servlets.
+
+**Important Classes and Interfaces**:
+- `Servlet`: Defines the methods that must be implemented by any servlet.
+- `GenericServlet`: A protocol-independent, simple servlet implementation.
+- `ServletRequest`: Encapsulates client request data.
+- `ServletResponse`: Encapsulates server response data.
+- `ServletConfig`: Provides configuration information to the servlet.
+- `ServletContext`: Provides a way for servlets to communicate with the servlet container.
+
+---
+
+#### 2. **javax.servlet.http**
+This package provides HTTP-specific functionality for servlets.
+
+**Important Classes and Interfaces**:
+- `HttpServlet`: An abstract class that extends `GenericServlet` and simplifies the creation of HTTP servlets.
+- `HttpServletRequest`: Provides methods to access HTTP request information such as headers, parameters, and attributes.
+- `HttpServletResponse`: Provides methods to send HTTP-specific responses to the client.
+- `HttpSession`: Manages session-related data between the client and the server.
+- `Cookie`: Represents HTTP cookies for managing client-side state.
+
+---
+
+### Important Interfaces and Classes in Servlet API
+
+#### **Interfaces**
+1. **Servlet**:
+   - The base interface for all servlets.
+   - Key methods:
+     - `init(ServletConfig config)`: Called during servlet initialization.
+     - `service(ServletRequest req, ServletResponse res)`: Processes client requests.
+     - `destroy()`: Cleans up resources before the servlet is destroyed.
+
+2. **ServletConfig**:
+   - Provides initialization parameters for a servlet.
+   - Methods:
+     - `getInitParameter(String name)`: Retrieves a specific initialization parameter.
+     - `getServletContext()`: Returns the `ServletContext` object.
+
+3. **ServletContext**:
+   - Allows servlets to interact with the servlet container.
+   - Methods:
+     - `getAttribute(String name)`: Retrieves an attribute from the context.
+     - `setAttribute(String name, Object obj)`: Sets an attribute in the context.
+
+#### **Classes**
+1. **GenericServlet**:
+   - A generic, protocol-independent implementation of the `Servlet` interface.
+   - Subclassed by `HttpServlet` for HTTP-specific implementations.
+
+2. **HttpServlet**:
+   - Extends `GenericServlet` to provide HTTP-specific functionality.
+   - Commonly overridden methods:
+     - `doGet(HttpServletRequest req, HttpServletResponse res)`: Handles GET requests.
+     - `doPost(HttpServletRequest req, HttpServletResponse res)`: Handles POST requests.
+     - `doPut(HttpServletRequest req, HttpServletResponse res)`: Handles PUT requests.
+     - `doDelete(HttpServletRequest req, HttpServletResponse res)`: Handles DELETE requests.
+
+---
+
+### HTTP-Specific Functionality
+
+1. **HttpServletRequest**:
+   - Key Methods:
+     - `getParameter(String name)`: Retrieves form data sent via GET or POST.
+     - `getHeader(String name)`: Retrieves the value of a specific HTTP header.
+     - `getSession()`: Returns the current session object.
+
+2. **HttpServletResponse**:
+   - Key Methods:
+     - `setContentType(String type)`: Sets the MIME type of the response.
+     - `sendRedirect(String location)`: Redirects the client to another URL.
+     - `addCookie(Cookie cookie)`: Adds a cookie to the response.
+
+3. **HttpSession**:
+   - Manages user sessions.
+   - Key Methods:
+     - `setAttribute(String name, Object value)`: Stores data in the session.
+     - `getAttribute(String name)`: Retrieves data from the session.
+     - `invalidate()`: Invalidates the session.
+
+---
+
+### Summary of Key Features
+1. **javax.servlet**:
+   - Generic functionality for handling requests and responses.
+   - Provides methods for configuring servlets and managing servlet context.
+
+2. **javax.servlet.http**:
+   - Extends functionality to support HTTP protocol-specific features.
+   - Includes methods for handling cookies, sessions, and HTTP request/response.
+
+---
+
+### Example Usage
+```java
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.io.*;
+
+public class MyServlet extends HttpServlet {
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("<h1>Welcome to Servlet API!</h1>");
+    }
+}
+```
+
+

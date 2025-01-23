@@ -1,0 +1,1227 @@
+---
+title: "Unit 2: Statistical Analysis"
+description: Random variables- Discrete and Continuous random variables, Mass and Density function (pmf, pdf), Cumulative Distribution function, Expectation of a random variables, Expectation of random variable in terms of variance, Introduction to probability theory, Trial and Event, law of probability theory, Introduction to Conditional probability.
+date: 2025-01-19
+tags: ["Statistical Analysis", "4th Semester", "2nd Year", "medicaps university"]
+published: true
+metadata:
+  university: "Medicaps University"
+  degree: "B Tech"
+  semester: "4th Semester"
+  subject: "Statistical Analysis"
+---
+
+## Random Variables: Discrete and Continuous
+
+---
+
+### 1. Random Variables
+
+A **Random Variable (RV)** is a variable whose values are determined by the outcome of a random experiment or phenomenon. It is a function that associates a numerical value to each outcome in the sample space of an experiment. Random variables are typically classified into two categories: **Discrete** and **Continuous**.
+
+#### 1.1 Types of Random Variables
+
+1. **Discrete Random Variable**  
+   A discrete random variable can take only a finite or countable number of values. The outcomes of the variable are distinct and separate. For example, the number of heads when flipping three coins is a discrete random variable because the possible outcomes are countable (0, 1, 2, or 3 heads).
+
+2. **Continuous Random Variable**  
+   A continuous random variable can take any value within a given range or interval. The outcomes of the variable are not distinct but form a continuum. For example, the height of a person or the time it takes for a car to travel a distance are continuous random variables because they can take infinitely many values within a range.
+
+---
+
+### 2. Discrete Random Variables
+
+#### 2.1 Definition
+
+A **Discrete Random Variable** is a random variable that can take only a **finite** or **countably infinite** number of values. These values are usually integers or whole numbers.
+
+#### 2.2 Example of Discrete Random Variables
+
+- The number of students in a classroom.
+- The number of cars passing through a toll booth in a given time period.
+- The number of heads in a set of coin tosses.
+
+#### 2.3 Probability Distribution for Discrete Random Variables
+
+The probability distribution of a discrete random variable is a list of the possible values of the variable and their corresponding probabilities. The sum of the probabilities of all possible outcomes must equal 1.
+
+For example, if $$ X $$ is a discrete random variable representing the number of heads in two tosses of a coin, the probability distribution is:
+
+| Value of $$ X $$ | Probability $$ P(X) $$ |
+|------------------|------------------------|
+| 0                | 0.25                   |
+| 1                | 0.50                   |
+| 2                | 0.25                   |
+
+---
+
+### 3. Continuous Random Variables
+
+#### 3.1 Definition
+
+A **Continuous Random Variable** is a random variable that can take an **infinite number of values** within a given range. These values are real numbers, and the variable is typically associated with measurements (e.g., height, time, temperature).
+
+#### 3.2 Example of Continuous Random Variables
+
+- The height of a person (can take any value within a range like 150 cm to 200 cm).
+- The time it takes to run a race (can take any real value within a range).
+- The weight of a fruit (can take values such as 50.5 grams, 50.55 grams, etc.).
+
+#### 3.3 Probability Distribution for Continuous Random Variables
+
+For continuous random variables, the probability distribution is represented by a **Probability Density Function (PDF)**. The probability that a continuous random variable takes a specific value is zero, but the probability that it falls within an interval can be found by calculating the area under the PDF curve.
+
+For example, the probability that a continuous random variable $$ X $$ lies between two values $$ a $$ and $$ b $$ is given by:
+$$ P(a \leq X \leq b) = \int_a^b f(x) \, dx $$
+
+Where:
+- $$ f(x) $$ is the probability density function (PDF) of the random variable.
+
+---
+
+### 4. Key Differences between Discrete and Continuous Random Variables
+
+| Feature                       | **Discrete Random Variable**                       | **Continuous Random Variable**                 |
+|-------------------------------|-----------------------------------------------------|-------------------------------------------------|
+| **Nature of Values**          | Takes finite or countably infinite values          | Takes any value within a given range (real numbers) |
+| **Examples**                   | Number of students, number of heads in coin tosses | Height, weight, time                           |
+| **Probability Distribution**  | Probability Mass Function (PMF)                    | Probability Density Function (PDF)             |
+| **Sum of Probabilities**      | Sum of probabilities of all outcomes equals 1      | Area under the PDF curve equals 1              |
+| **Probability of a Specific Value** | Non-zero (can assign probability to specific values) | Zero (probability of a specific value is 0)   |
+
+---
+
+### 5. Mathematical Representation
+
+1. **For Discrete Random Variables**:  
+   The probability mass function (PMF) $$ P(X = x) $$ gives the probability that the random variable $$ X $$ takes the value $$ x $$.
+   
+2. **For Continuous Random Variables**:  
+   The probability density function (PDF) $$ f(x) $$ gives the likelihood of the random variable falling in a particular range. To find the probability of $$ X $$ lying between two values $$ a $$ and $$ b $$, we compute the area under the curve between these values:
+   $$ P(a \leq X \leq b) = \int_a^b f(x) \, dx $$
+
+---
+
+### 6. Cumulative Distribution Function (CDF)
+
+The **Cumulative Distribution Function (CDF)** of a random variable $$ X $$ gives the probability that $$ X $$ takes a value less than or equal to a given value $$ x $$.
+
+- **For Discrete Random Variables**:
+  $$ F(x) = P(X \leq x) $$
+
+- **For Continuous Random Variables**:
+  $$ F(x) = \int_{-\infty}^{x} f(t) \, dt $$
+
+The CDF is always non-decreasing and ranges from 0 to 1.
+
+---
+
+### 7. Applications of Random Variables
+
+1. **Discrete Random Variables**:  
+   - Used in situations involving countable outcomes such as the number of successes in trials (binomial distribution), number of defects in products, etc.
+
+2. **Continuous Random Variables**:  
+   - Used for measurements like height, weight, temperature, and time, and are often modeled using distributions like the normal distribution.
+
+---
+
+### 8. Summary
+
+- A **Discrete Random Variable** takes distinct values and is usually represented using a probability mass function (PMF).
+- A **Continuous Random Variable** can take any value in a given range and is represented by a probability density function (PDF).
+- Both types of random variables play a crucial role in probability theory and statistics, helping model and understand random phenomena.
+
+---
+
+**💡 TIP:** Discrete random variables are used when the outcomes are countable, while continuous random variables are used when the outcomes are measured on a continuous scale.
+
+**📝 NOTE:** Probability distributions of continuous random variables require integration over intervals, whereas for discrete random variables, probabilities can be summed.
+
+**⚠️ CAUTION:** For continuous random variables, the probability of the variable taking any specific value is always zero.
+
+---
+
+## Mass and Density Functions (PMF, PDF)
+
+---
+
+### 1. Introduction to Mass and Density Functions
+
+In probability theory, the **Probability Mass Function (PMF)** and **Probability Density Function (PDF)** are used to describe the probability distributions of random variables. These functions define the likelihood of a random variable taking specific values (for discrete variables) or falling within a particular range (for continuous variables).
+
+- **PMF (Probability Mass Function)**: Used for **discrete random variables**.
+- **PDF (Probability Density Function)**: Used for **continuous random variables**.
+
+---
+
+### 2. Probability Mass Function (PMF)
+
+---
+
+#### 2.1 Definition
+
+A **Probability Mass Function (PMF)** is a function that gives the probability that a discrete random variable takes a specific value. It is used for **discrete random variables**, where the outcomes are countable.
+
+#### 2.2 Properties of PMF
+
+1. **Non-negative**:  
+   The probability of any event must be greater than or equal to zero.
+   $$ P(X = x) \geq 0 $$
+
+2. **Sum of Probabilities**:  
+   The sum of the probabilities of all possible outcomes must equal 1.
+   $$ \sum_{x} P(X = x) = 1 $$
+
+3. **Discrete Values**:  
+   The PMF is defined for discrete outcomes, and each outcome has a specific probability associated with it.
+
+#### 2.3 Example of PMF
+
+Consider the experiment of rolling a fair six-sided die. Let $$ X $$ represent the number rolled, a discrete random variable. The PMF for $$ X $$ is:
+
+| Value of $$ X $$ | Probability $$ P(X = x) $$ |
+|------------------|----------------------------|
+| 1                | $$ \frac{1}{6} $$          |
+| 2                | $$ \frac{1}{6} $$          |
+| 3                | $$ \frac{1}{6} $$          |
+| 4                | $$ \frac{1}{6} $$          |
+| 5                | $$ \frac{1}{6} $$          |
+| 6                | $$ \frac{1}{6} $$          |
+
+In this case, the probability that $$ X = 1 $$ (rolling a 1) is $$ \frac{1}{6} $$, and similarly for all other values.
+
+---
+
+### 3. Probability Density Function (PDF)
+
+---
+
+#### 3.1 Definition
+
+A **Probability Density Function (PDF)** is a function that describes the likelihood of a continuous random variable taking a value within a certain range. Unlike the PMF, the probability that a continuous random variable takes any specific value is **zero**. However, the probability of the variable falling within an interval can be calculated by integrating the PDF over that interval.
+
+#### 3.2 Properties of PDF
+
+1. **Non-negative**:  
+   The PDF must always be greater than or equal to zero.
+   $$ f(x) \geq 0 $$
+
+2. **Total Area Under the Curve**:  
+   The total area under the curve of the PDF equals 1. This represents the total probability for all possible outcomes.
+   $$ \int_{-\infty}^{\infty} f(x) \, dx = 1 $$
+
+3. **Probability Calculation**:  
+   The probability that a continuous random variable $$ X $$ lies in an interval $$ [a, b] $$ is calculated as the area under the PDF curve between $$ a $$ and $$ b $$:
+   $$ P(a \leq X \leq b) = \int_a^b f(x) \, dx $$
+
+#### 3.3 Example of PDF
+
+Consider a continuous random variable $$ X $$ that follows a uniform distribution between 0 and 1. The PDF of $$ X $$ is:
+
+$$ f(x) = \begin{cases} 1 & \text{if } 0 \leq x \leq 1 \\0 & \text{otherwise}\end{cases} $$
+
+The total area under the curve from 0 to 1 is 1, and the probability of $$ X $$ lying between 0 and 0.5 is:
+
+$$ P(0 \leq X \leq 0.5) = \int_0^{0.5} 1 \, dx = 0.5 $$
+
+---
+
+### 4. Key Differences Between PMF and PDF
+
+| Feature                         | **PMF (Probability Mass Function)**                  | **PDF (Probability Density Function)**        |
+|----------------------------------|-------------------------------------------------------|-----------------------------------------------|
+| **Type of Random Variable**     | Discrete random variables                            | Continuous random variables                   |
+| **Value of Function**           | Gives the probability of a specific value of $$ X $$  | Gives the probability density (likelihood)    |
+| **Total Probability**           | Sum of probabilities of all outcomes equals 1        | Area under the curve equals 1                 |
+| **Probability of Specific Value** | Non-zero (i.e., $$ P(X = x) $$)                       | Zero (probability of exact value is 0)        |
+| **Example**                     | Rolling a die, number of heads in coin tosses        | Height, weight, time                          |
+
+---
+
+### 5. Cumulative Distribution Function (CDF)
+
+Both PMF and PDF are related to the **Cumulative Distribution Function (CDF)**. The CDF gives the probability that a random variable $$ X $$ takes a value less than or equal to $$ x $$.
+
+- **For Discrete Random Variables (PMF)**:
+  $$ F(x) = P(X \leq x) = \sum_{i \leq x} P(X = i) $$
+
+- **For Continuous Random Variables (PDF)**:
+  $$ F(x) = P(X \leq x) = \int_{-\infty}^{x} f(t) \, dt $$
+
+The CDF is always non-decreasing and ranges from 0 to 1.
+
+---
+
+### 6. Summary
+
+- The **PMF (Probability Mass Function)** is used for discrete random variables and provides the probability that a random variable takes a specific value.
+- The **PDF (Probability Density Function)** is used for continuous random variables and provides the probability density at a point. The probability of a continuous random variable taking a specific value is zero; instead, probabilities are calculated over intervals.
+
+---
+
+**💡 TIP:** The PMF is used when the random variable has a countable set of outcomes, while the PDF is used for variables with a continuous range of outcomes.
+
+**📝 NOTE:** The key difference is that the probability for discrete random variables can be assigned to specific outcomes, while for continuous random variables, probabilities are computed over intervals.
+
+**⚠️ CAUTION:** The PDF for continuous variables does not give the probability of exact values, only the probability over an interval.
+
+---
+
+## Cumulative Distribution Function (CDF)
+
+---
+
+### 1. Introduction to Cumulative Distribution Function (CDF)
+
+The **Cumulative Distribution Function (CDF)** of a random variable is a function that provides the probability that the random variable will take a value less than or equal to a specific value. The CDF is used to describe the cumulative probability of the occurrence of a random variable.
+
+#### 1.1 Definition
+
+The **CDF** of a random variable $$ X $$, denoted as $$ F(x) $$, is defined as:
+
+$$ F(x) = P(X \leq x) $$
+
+It gives the probability that the random variable $$ X $$ takes a value less than or equal to $$ x $$.
+
+- For **discrete random variables**, the CDF is the sum of the probabilities of the random variable being less than or equal to $$ x $$.
+- For **continuous random variables**, the CDF is the integral of the probability density function (PDF) from $$ -\infty $$ to $$ x $$.
+
+---
+
+### 2. Properties of the CDF
+
+The CDF has several important properties:
+
+1. **Non-decreasing**:  
+   The CDF is a non-decreasing function because as $$ x $$ increases, the probability $$ P(X \leq x) $$ can only stay the same or increase.
+   $$ F(x_1) \leq F(x_2) \quad \text{for} \quad x_1 \leq x_2 $$
+
+2. **Range**:  
+   The CDF ranges from 0 to 1, inclusive. That is:
+   $$ 0 \leq F(x) \leq 1 $$
+
+3. **Limits**:
+   - As $$ x \to -\infty $$, $$ F(x) \to 0 $$.
+   - As $$ x \to \infty $$, $$ F(x) \to 1 $$.
+
+4. **Jump Discontinuity (For Discrete Random Variables)**:  
+   The CDF of a discrete random variable may have jump discontinuities at specific values where the random variable takes discrete values. At these points, the CDF increases by the probability of the corresponding value.
+
+5. **Continuous**:  
+   The CDF is continuous for continuous random variables, and there are no jumps in the graph.
+
+---
+
+### 3. CDF for Discrete Random Variables
+
+For discrete random variables, the CDF is computed by summing the probabilities of the outcomes less than or equal to $$ x $$.
+
+#### 3.1 Formula for Discrete CDF
+
+If $$ X $$ is a discrete random variable, the CDF is:
+
+$$ F(x) = P(X \leq x) = \sum_{i \leq x} P(X = i) $$
+
+#### 3.2 Example for Discrete Random Variables
+
+Consider a fair die roll with the discrete random variable $$ X $$, where $$ X $$ represents the outcome of the die roll (1 through 6). The PMF for $$ X $$ is:
+
+| Value of $$ X $$ | Probability $$ P(X = x) $$ |
+|------------------|----------------------------|
+| 1                | $$ \frac{1}{6} $$          |
+| 2                | $$ \frac{1}{6} $$          |
+| 3                | $$ \frac{1}{6} $$          |
+| 4                | $$ \frac{1}{6} $$          |
+| 5                | $$ \frac{1}{6} $$          |
+| 6                | $$ \frac{1}{6} $$          |
+
+The CDF, $$ F(x) = P(X \leq x) $$, is:
+
+| Value of $$ X $$ | CDF $$ F(x) $$ |
+|------------------|-----------------|
+| 1                | $$ \frac{1}{6} $$  |
+| 2                | $$ \frac{2}{6} $$  |
+| 3                | $$ \frac{3}{6} $$  |
+| 4                | $$ \frac{4}{6} $$  |
+| 5                | $$ \frac{5}{6} $$  |
+| 6                | 1                 |
+
+This shows the cumulative probability as the outcomes of the die roll increase.
+
+---
+
+### 4. CDF for Continuous Random Variables
+
+For continuous random variables, the CDF is the integral of the probability density function (PDF) from $$ -\infty $$ to $$ x $$:
+
+#### 4.1 Formula for Continuous CDF
+
+If $$ X $$ is a continuous random variable with PDF $$ f(x) $$, the CDF is:
+
+$$ F(x) = P(X \leq x) = \int_{-\infty}^{x} f(t) \, dt $$
+
+#### 4.2 Example for Continuous Random Variables
+
+Consider a continuous random variable $$ X $$ that follows a uniform distribution between 0 and 1. The PDF for $$ X $$ is:
+
+$$ f(x) = \begin{cases} 1 & \text{if } 0 \leq x \leq 1 \\0 & \text{otherwise}\end{cases} $$
+
+To find the CDF of $$ X $$, we integrate the PDF:
+
+$$ F(x) = \int_{0}^{x} 1 \, dt = x \quad \text{for} \quad 0 \leq x \leq 1 $$
+
+Thus, the CDF for this uniform distribution is:
+
+$$ F(x) = \begin{cases} 0 & \text{if } x < 0 \\x & \text{if } 0 \leq x \leq 1 \\1 & \text{if } x > 1\end{cases} $$
+
+---
+
+### 5. Relationship Between PDF and CDF
+
+For continuous random variables, the CDF is related to the PDF by the following derivative relationship:
+
+$$ f(x) = \frac{d}{dx} F(x) $$
+
+This means that the PDF is the derivative of the CDF. Conversely, the CDF is the integral of the PDF.
+
+---
+
+### 6. Applications of CDF
+
+1. **Probability Calculation**:  
+   The CDF is used to calculate the probability that a random variable takes a value within a certain range. For example, the probability that $$ X $$ lies between $$ a $$ and $$ b $$ is:
+
+   $$ P(a \leq X \leq b) = F(b) - F(a) $$
+
+2. **Statistical Analysis**:  
+   The CDF is used in statistical analysis to describe the distribution of data and to compute quantiles, percentiles, and other measures.
+
+---
+
+### 7. Summary
+
+- The **CDF** is a function that gives the probability that a random variable $$ X $$ takes a value less than or equal to $$ x $$.
+- For **discrete random variables**, the CDF is the sum of the probabilities of the outcomes less than or equal to $$ x $$.
+- For **continuous random variables**, the CDF is the integral of the probability density function (PDF) over the range from $$ -\infty $$ to $$ x $$.
+- The CDF is always non-decreasing and ranges from 0 to 1.
+
+---
+
+**💡 TIP:** The CDF is a useful tool for calculating probabilities over intervals and understanding the distribution of a random variable.
+
+**📝 NOTE:** For discrete random variables, the CDF increases in steps, while for continuous random variables, the CDF is a smooth curve.
+
+**⚠️ CAUTION:** The probability of a continuous random variable taking a specific value is always zero. The CDF gives the probability for intervals, not individual values.
+
+---
+
+## Expectation of a Random Variable
+
+---
+
+### 1. Introduction to Expectation
+
+The **expectation** (or **expected value**, **mean**) of a random variable is a measure of the "center" of its distribution. It represents the average or mean value that we expect the random variable to take, based on its probability distribution.
+
+- **For discrete random variables**, the expected value is a weighted average of all possible values of the variable, with weights being the probabilities of those values.
+- **For continuous random variables**, the expected value is calculated by integrating the product of the variable and its probability density function (PDF) over the entire range of the variable.
+
+---
+
+### 2. Definition of Expectation
+
+#### 2.1 Expectation for Discrete Random Variables
+
+If $$ X $$ is a discrete random variable with possible values $$ x_1, x_2, x_3, \dots $$ and corresponding probabilities $$ P(X = x_i) $$, then the expected value of $$ X $$, denoted $$ E[X] $$, is given by:
+
+$$ E[X] = \sum_{i} x_i \cdot P(X = x_i) $$
+
+#### 2.2 Example for Discrete Random Variables
+
+Consider a fair die roll with $$ X $$ representing the outcome (values 1 through 6). The PMF of $$ X $$ is:
+
+| Value of $$ X $$ | Probability $$ P(X = x) $$ |
+|------------------|----------------------------|
+| 1                | $$ \frac{1}{6} $$          |
+| 2                | $$ \frac{1}{6} $$          |
+| 3                | $$ \frac{1}{6} $$          |
+| 4                | $$ \frac{1}{6} $$          |
+| 5                | $$ \frac{1}{6} $$          |
+| 6                | $$ \frac{1}{6} $$          |
+
+The expected value of $$ X $$ is:
+
+$$ E[X] = (1 \times \frac{1}{6}) + (2 \times \frac{1}{6}) + (3 \times \frac{1}{6}) + (4 \times \frac{1}{6}) + (5 \times \frac{1}{6}) + (6 \times \frac{1}{6}) $$
+
+$$ E[X] = \frac{1 + 2 + 3 + 4 + 5 + 6}{6} = 3.5 $$
+
+Thus, the expected value of a die roll is 3.5.
+
+---
+
+#### 2.3 Expectation for Continuous Random Variables
+
+If $$ X $$ is a continuous random variable with a probability density function $$ f(x) $$, then the expected value of $$ X $$, denoted $$ E[X] $$, is given by:
+
+$$ E[X] = \int_{-\infty}^{\infty} x \cdot f(x) \, dx $$
+
+#### 2.4 Example for Continuous Random Variables
+
+Consider a continuous random variable $$ X $$ that follows a uniform distribution between 0 and 1. The PDF of $$ X $$ is:
+
+$$ f(x) = \begin{cases} 1 & \text{if } 0 \leq x \leq 1 \\0 & \text{otherwise}\end{cases} $$
+
+The expected value of $$ X $$ is:
+
+$$ E[X] = \int_{0}^{1} x \cdot 1 \, dx = \left[ \frac{x^2}{2} \right]_0^1 = \frac{1}{2} $$
+
+Thus, the expected value of $$ X $$ is $$ 0.5 $$.
+
+---
+
+### 3. Properties of Expectation
+
+1. **Linearity of Expectation**:  
+   The expected value operator is linear, meaning for any two random variables $$ X $$ and $$ Y $$, and constants $$ a $$ and $$ b $$, the following property holds:
+   $$ E[aX + bY] = aE[X] + bE[Y] $$
+
+2. **Expectation of a Constant**:  
+   If $$ c $$ is a constant, then:
+   $$ E[c] = c $$
+
+3. **Expectation of a Function of a Random Variable**:  
+   If $$ g(X) $$ is a function of $$ X $$, then:
+   $$ E[g(X)] = \sum_{i} g(x_i) \cdot P(X = x_i) \quad \text{(for discrete)} $$  
+   or  
+   $$ E[g(X)] = \int_{-\infty}^{\infty} g(x) \cdot f(x) \, dx \quad \text{(for continuous)} $$
+
+---
+
+### 4. Variance and Standard Deviation
+
+While **expectation** gives us the "average" value of a random variable, it does not measure how spread out the values are around the expected value. To measure this spread, we use the **variance** and **standard deviation**.
+
+#### 4.1 Variance
+
+The **variance** of a random variable $$ X $$, denoted $$ \text{Var}(X) $$, is the expected value of the squared deviation from the mean. It is defined as:
+
+$$ \text{Var}(X) = E[(X - E[X])^2] $$
+
+Alternatively, the variance can be computed as:
+
+$$ \text{Var}(X) = E[X^2] - (E[X])^2 $$
+
+#### 4.2 Standard Deviation
+
+The **standard deviation** of a random variable $$ X $$, denoted $$ \sigma_X $$, is the square root of the variance:
+
+$$ \sigma_X = \sqrt{\text{Var}(X)} $$
+
+The standard deviation provides a measure of how spread out the values are around the mean, in the same units as the random variable itself.
+
+---
+
+### 5. Applications of Expectation
+
+1. **Decision Making**:  
+   Expectation is widely used in decision-making processes under uncertainty, such as in economics, finance, and insurance, where we calculate the expected profit or loss.
+
+2. **Risk Assessment**:  
+   In risk management, the expected value helps in assessing potential outcomes, enabling better preparation for extreme events.
+
+3. **Prediction and Forecasting**:  
+   Expectation is used in predicting future events or outcomes based on historical data.
+
+---
+
+### 6. Summary
+
+- The **expectation** (or expected value) of a random variable is the average value it takes based on its probability distribution.
+- For **discrete random variables**, the expected value is the weighted average of the possible values of the random variable.
+- For **continuous random variables**, the expected value is the integral of the random variable multiplied by its PDF.
+- The **linearity of expectation** makes it useful for many applications, and it plays a key role in calculating the **variance** and **standard deviation**.
+
+---
+
+**💡 TIP:** The expected value is often used to represent the "center" of a random variable’s distribution, providing a useful summary of its characteristics.
+
+**📝 NOTE:** While the expected value gives us the average outcome, it doesn't tell us about the spread or risk, which is why variance and standard deviation are also important.
+
+**⚠️ CAUTION:** Expectation only provides a central measure and does not account for extreme values or how spread out the values are around the mean.
+
+---
+
+## Expectation of a Random Variable in Terms of Variance
+
+---
+
+### 1. Introduction to Expectation and Variance
+
+The **expectation** (or **expected value**) and **variance** are both fundamental concepts in probability theory and statistics. While the expectation gives us the central location or average value of a random variable, the variance provides a measure of how spread out the values of the random variable are around the expected value.
+
+In this topic, we explore the relationship between the **expectation** of a random variable and its **variance**, and how these concepts are connected mathematically.
+
+---
+
+### 2. Relationship Between Expectation and Variance
+
+The **variance** of a random variable $$ X $$, denoted as $$ \text{Var}(X) $$, measures how much the values of $$ X $$ deviate from its expected value. It is defined as the expected value of the squared difference between $$ X $$ and its expected value $$ E[X] $$:
+
+$$ \text{Var}(X) = E[(X - E[X])^2] $$
+
+Expanding the square inside the expectation, we get:
+
+$$ \text{Var}(X) = E[X^2] - (E[X])^2 $$
+
+This equation shows the relationship between the variance of a random variable and its expected value. Notice that the variance involves the **second moment** $$ E[X^2] $$, which is the expected value of the square of the random variable, and the square of the expected value $$ (E[X])^2 $$.
+
+---
+
+### 3. Expectation in Terms of Variance
+
+Using the formula for variance, we can express the **expectation** $$ E[X] $$ in terms of the **variance** and the second moment $$ E[X^2] $$. Rearranging the equation for variance:
+
+$$ \text{Var}(X) = E[X^2] - (E[X])^2 $$
+
+We can solve for $$ E[X] $$ (the expected value) if we know the variance and the second moment:
+
+$$ E[X] = \sqrt{E[X^2] - \text{Var}(X)} $$
+
+However, this relationship is typically more useful when computing variance or second moments rather than directly expressing expectation from variance. 
+
+---
+
+### 4. Example Calculation
+
+#### 4.1 Example for Discrete Random Variable
+
+Suppose $$ X $$ is a discrete random variable with the following probability mass function (PMF):
+
+| Value of $$ X $$ | Probability $$ P(X = x) $$ |
+|------------------|----------------------------|
+| 1                | $$ \frac{1}{4} $$          |
+| 2                | $$ \frac{1}{4} $$          |
+| 3                | $$ \frac{1}{4} $$          |
+| 4                | $$ \frac{1}{4} $$          |
+
+To calculate $$ E[X] $$ and $$ \text{Var}(X) $$, we first compute the expected value:
+
+$$ E[X] = (1 \times \frac{1}{4}) + (2 \times \frac{1}{4}) + (3 \times \frac{1}{4}) + (4 \times \frac{1}{4}) = 2.5 $$
+
+Next, we compute $$ E[X^2] $$:
+
+$$ E[X^2] = (1^2 \times \frac{1}{4}) + (2^2 \times \frac{1}{4}) + (3^2 \times \frac{1}{4}) + (4^2 \times \frac{1}{4}) $$
+
+$$ E[X^2] = \frac{1}{4} + \frac{4}{4} + \frac{9}{4} + \frac{16}{4} = \frac{30}{4} = 7.5 $$
+
+Now, we calculate the variance:
+
+$$ \text{Var}(X) = E[X^2] - (E[X])^2 = 7.5 - (2.5)^2 = 7.5 - 6.25 = 1.25 $$
+
+Thus, the **expectation** of $$ X $$ is 2.5, and the **variance** of $$ X $$ is 1.25.
+
+---
+
+#### 4.2 Example for Continuous Random Variable
+
+Consider a continuous random variable $$ X $$ that follows a normal distribution with mean $$ \mu $$ and variance $$ \sigma^2 $$. The PDF of $$ X $$ is:
+
+$$ f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{(x - \mu)^2}{2\sigma^2}} $$
+
+For a normal distribution, the **mean** $$ E[X] $$ is $$ \mu $$, and the **variance** $$ \text{Var}(X) $$ is $$ \sigma^2 $$. Hence, for a normal distribution:
+
+$$ E[X] = \mu $$
+
+The relationship between expectation and variance holds directly in this case without needing further calculation, as the normal distribution has the property that the expected value is the mean and variance is $$ \sigma^2 $$.
+
+---
+
+### 5. Summary
+
+- The **expectation** of a random variable $$ X $$ is a measure of its average or central value, and the **variance** quantifies the spread of its values around the expected value.
+- The formula relating **expectation** and **variance** is:
+
+  $$ \text{Var}(X) = E[X^2] - (E[X])^2 $$
+
+- This formula shows how the variance is related to the second moment $$ E[X^2] $$ and the square of the expectation $$ (E[X])^2 $$.
+- Expectation can be computed in terms of variance and the second moment, but typically, variance and expectation are used together to describe the characteristics of a random variable.
+
+---
+
+**💡 TIP:** Understanding the relationship between **expectation** and **variance** is crucial for interpreting the behavior of random variables in statistics and probability.
+
+**📝 NOTE:** The variance formula $$ \text{Var}(X) = E[X^2] - (E[X])^2 $$ is a key result that is often used in statistical analysis and data modeling.
+
+**⚠️ CAUTION:** The **expectation** itself does not give any information about the spread or variability of the random variable. For that, you need to calculate the variance or standard deviation.
+
+---
+
+## Introduction to Probability Theory
+
+---
+
+### 1. What is Probability Theory?
+
+**Probability theory** is the branch of mathematics that deals with the analysis of random phenomena. It provides a framework for modeling situations where outcomes are uncertain and quantifying the likelihood of various events occurring.
+
+- **Probability** is a measure of the likelihood of an event. It quantifies uncertainty, which plays a critical role in many fields such as statistics, finance, engineering, and computer science.
+  
+The foundation of probability theory is based on the concept of a **random experiment**, which produces outcomes that cannot be predicted with certainty.
+
+---
+
+### 2. Basic Terminology
+
+Before delving deeper into probability theory, it is important to understand some fundamental concepts:
+
+- **Experiment**: A process that leads to one of several possible outcomes (e.g., rolling a die).
+- **Sample space** $$ S $$: The set of all possible outcomes of an experiment (e.g., for a die roll, $$ S = \{1, 2, 3, 4, 5, 6\} $$).
+- **Event**: A subset of the sample space, representing one or more outcomes of interest (e.g., rolling an even number on a die, $$ E = \{2, 4, 6\} $$).
+- **Outcome**: A single result from the sample space (e.g., rolling a 3 on a die).
+
+---
+
+### 3. Probability of an Event
+
+The **probability** of an event $$ A $$, denoted as $$ P(A) $$, is a number between 0 and 1 that represents the likelihood of the event occurring. It is calculated as the ratio of the number of favorable outcomes to the total number of possible outcomes in the sample space, assuming all outcomes are equally likely.
+
+$$ P(A) = \frac{\text{Number of favorable outcomes for event A}}{\text{Total number of possible outcomes in the sample space}} $$
+
+#### 3.1 Example
+
+Consider a fair six-sided die. The sample space is:
+
+$$ S = \{1, 2, 3, 4, 5, 6\} $$
+
+- The event of rolling an even number is $$ E = \{2, 4, 6\} $$.
+- The probability of rolling an even number is:
+
+$$ P(E) = \frac{\text{Number of even outcomes}}{\text{Total number of outcomes}} = \frac{3}{6} = 0.5 $$
+
+Thus, the probability of rolling an even number is 0.5.
+
+---
+
+### 4. Types of Probability
+
+There are various approaches to defining and calculating probabilities based on the nature of the problem:
+
+- **Classical Probability**: This is used when all outcomes are equally likely. It is calculated using the ratio of favorable outcomes to total outcomes, as shown earlier.
+- **Empirical (or Experimental) Probability**: This is based on observed data. It is calculated by conducting experiments and observing the frequency of occurrence of an event.
+  
+$$ P(A) = \frac{\text{Number of times event A occurs}}{\text{Total number of trials}} $$
+
+- **Subjective Probability**: This type of probability is based on personal belief or judgment rather than empirical evidence. It is often used in scenarios where no historical data is available.
+
+---
+
+### 5. Axioms of Probability
+
+Probability theory is built on three basic axioms:
+
+1. **Non-negativity**: The probability of any event is always greater than or equal to 0.
+   
+   $$ P(A) \geq 0 \quad \text{for all events} A $$
+
+2. **Normalization**: The probability of the entire sample space is 1.
+
+   $$ P(S) = 1 $$
+
+3. **Additivity**: For any two mutually exclusive events $$ A $$ and $$ B $$, the probability of their union is the sum of their individual probabilities.
+
+   $$ P(A \cup B) = P(A) + P(B) \quad \text{if } A \cap B = \emptyset $$
+
+---
+
+### 6. Types of Events
+
+Events in probability theory can be classified based on certain relationships between them:
+
+- **Mutually Exclusive Events**: Two events are mutually exclusive if they cannot occur at the same time. For example, when rolling a die, the events "rolling a 3" and "rolling a 5" are mutually exclusive.
+  
+  $$ P(A \cap B) = 0 $$
+
+- **Independent Events**: Two events are independent if the occurrence of one does not affect the probability of the occurrence of the other. For example, flipping a coin and rolling a die are independent events.
+  
+  $$ P(A \cap B) = P(A) \cdot P(B) $$
+
+- **Complementary Events**: Two events $$ A $$ and $$ A^c $$ (the complement of $$ A $$) are complementary if one of them must occur. The probability of the complement event is:
+
+  $$ P(A^c) = 1 - P(A) $$
+
+---
+
+### 7. Conditional Probability
+
+**Conditional probability** is the probability of an event occurring given that another event has already occurred. It is denoted by $$ P(A|B) $$, which represents the probability of event $$ A $$ occurring given that event $$ B $$ has already occurred.
+
+The formula for conditional probability is:
+
+$$ P(A|B) = \frac{P(A \cap B)}{P(B)} $$
+
+#### 7.1 Example
+
+If you roll a die and are given the information that the number rolled is even, the conditional probability of rolling a 4 is:
+
+$$ P(\text{roll a 4}|\text{even roll}) = \frac{P(\text{roll a 4} \cap \text{even roll})}{P(\text{even roll})} = \frac{P(\text{roll a 4})}{P(\text{even roll})} = \frac{\frac{1}{6}}{\frac{3}{6}} = \frac{1}{3} $$
+
+---
+
+### 8. Law of Total Probability
+
+The **law of total probability** provides a way to calculate the probability of an event based on conditional probabilities. It states that if $$ B_1, B_2, \dots, B_n $$ are mutually exclusive and exhaustive events, then:
+
+$$ P(A) = \sum_{i=1}^{n} P(A|B_i) \cdot P(B_i) $$
+
+This law helps break down complex probability problems into simpler conditional probabilities.
+
+---
+
+### 9. Bayes’ Theorem
+
+**Bayes' Theorem** is a powerful rule for updating the probability of an event based on new information. It is given by:
+
+$$ P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)} $$
+
+Where:
+- $$ P(A|B) $$ is the **posterior probability** of $$ A $$ given $$ B $$,
+- $$ P(B|A) $$ is the **likelihood** of $$ B $$ given $$ A $$,
+- $$ P(A) $$ is the **prior probability** of $$ A $$,
+- $$ P(B) $$ is the **marginal probability** of $$ B $$.
+
+Bayes' Theorem is extensively used in areas such as machine learning, medical diagnosis, and decision-making.
+
+---
+
+### 10. Summary
+
+- **Probability theory** is a branch of mathematics that models uncertain events and measures the likelihood of various outcomes.
+- Key concepts include **sample space**, **events**, **probability of events**, and **types of events** such as mutually exclusive, independent, and complementary events.
+- The **axioms of probability** form the foundation of the theory, and probability is governed by several important rules and laws, including the **law of total probability** and **Bayes’ Theorem**.
+- **Conditional probability** allows us to compute probabilities in situations where some events are known to have occurred.
+
+---
+
+**💡 TIP:** Probability theory is the foundation for many advanced concepts in statistics, machine learning, and data analysis. A solid understanding of probability is essential for modeling real-world phenomena.
+
+**📝 NOTE:** The concepts of **independence** and **conditional probability** are crucial in understanding how different events influence each other in various probability scenarios.
+
+**⚠️ CAUTION:** Be careful not to confuse **mutually exclusive** events (events that cannot occur together) with **independent** events (events whose occurrence does not affect each other).
+
+---
+
+## Trial and Event
+
+---
+
+### 1. Introduction
+
+In probability theory, the concepts of **trial** and **event** form the foundation for understanding and modeling random experiments. These concepts are critical for formulating probability problems and calculating the likelihood of different outcomes.
+
+---
+
+### 2. Trial
+
+A **trial** is a single execution or performance of an **experiment** or **random process**. Each trial results in one or more outcomes, and the objective is to determine the probability of specific events occurring.
+
+#### 2.1 Characteristics of a Trial
+- **Randomness**: The outcome of a trial cannot be predicted with certainty.
+- **Repetition**: Trials can be repeated under similar conditions to observe the consistency of outcomes.
+- **Outcome**: Each trial results in one of several possible outcomes, but which outcome will occur is unknown until the trial is performed.
+
+##### Example of a Trial:
+- **Coin Toss**: Tossing a fair coin is a random trial. The outcome could be either **Heads** or **Tails**.
+- **Die Roll**: Rolling a six-sided die is another example of a trial. The possible outcomes are the numbers 1 through 6.
+
+---
+
+### 3. Event
+
+An **event** is a specific outcome or a set of outcomes from a trial. It is a subset of the sample space, which is the set of all possible outcomes of a random experiment. An event may consist of a single outcome or multiple outcomes.
+
+#### 3.1 Types of Events
+
+1. **Simple Event**: An event that consists of a single outcome.
+   - Example: In a die roll, the event of rolling a 3 is a simple event, denoted as $$ E = \{3\} $$.
+   
+2. **Compound Event**: An event that consists of two or more outcomes.
+   - Example: In a die roll, the event of rolling an even number $$ E = \{2, 4, 6\} $$ is a compound event.
+   
+3. **Null Event**: An event that contains no outcomes. It represents the possibility of no occurrence of any outcome.
+   - Example: In a die roll, the event of rolling a 7 is a null event, denoted as $$ E = \emptyset $$.
+
+4. **Certain Event**: An event that is guaranteed to occur. This is the entire sample space of the experiment.
+   - Example: In a coin toss, the event of getting **Heads** or **Tails** is a certain event, as one of them must occur.
+
+5. **Complementary Event**: The event that represents the opposite outcome of a given event. The probability of an event and its complement always adds up to 1.
+   - Example: If the event is rolling an even number on a die, the complementary event is rolling an odd number. If $$ E = \{2, 4, 6\} $$, then $$ E^c = \{1, 3, 5\} $$.
+
+6. **Mutually Exclusive Events**: Two events are mutually exclusive if they cannot occur simultaneously. 
+   - Example: When rolling a die, the events "rolling a 2" and "rolling a 4" are mutually exclusive because both cannot happen at the same time.
+
+7. **Independent Events**: Two events are independent if the occurrence of one does not affect the occurrence of the other.
+   - Example: Flipping a coin and rolling a die are independent events. The outcome of the coin toss does not affect the outcome of the die roll.
+
+---
+
+### 4. Sample Space
+
+The **sample space** of an experiment is the set of all possible outcomes of that experiment. It is denoted by $$ S $$.
+
+- **Example**: 
+   - For a coin toss, the sample space is $$ S = \{ \text{Heads}, \text{Tails} \} $$.
+   - For rolling a die, the sample space is $$ S = \{ 1, 2, 3, 4, 5, 6 \} $$.
+
+---
+
+### 5. Probability of an Event
+
+The probability of an event is a measure of how likely that event is to occur. It is a number between 0 and 1, where 0 means the event will never occur, and 1 means the event is certain to occur.
+
+The probability of an event $$ E $$ is calculated as:
+
+$$ P(E) = \frac{\text{Number of favorable outcomes}}{\text{Total number of possible outcomes}} $$
+
+- **Example**: 
+  - For a coin toss, the probability of getting **Heads** is $$ P(\text{Heads}) = \frac{1}{2} $$.
+  - For rolling a die, the probability of rolling an even number is $$ P(\text{Even}) = \frac{3}{6} = \frac{1}{2} $$.
+
+---
+
+### 6. Important Concepts Related to Events
+
+#### 6.1 Mutually Exclusive Events
+
+Two events $$ A $$ and $$ B $$ are mutually exclusive if the occurrence of one event excludes the possibility of the other event occurring. In mathematical terms, two events are mutually exclusive if:
+
+$$ P(A \cap B) = 0 $$
+
+- **Example**: 
+  - In a die roll, the events "rolling a 2" and "rolling a 4" are mutually exclusive events because they cannot happen simultaneously.
+
+#### 6.2 Independent Events
+
+Two events $$ A $$ and $$ B $$ are independent if the occurrence of one event does not affect the probability of the other event occurring. In mathematical terms:
+
+$$ P(A \cap B) = P(A) \cdot P(B) $$
+
+- **Example**: 
+  - Flipping a coin and rolling a die are independent events because the result of the coin toss does not affect the result of the die roll.
+
+#### 6.3 Complementary Events
+
+The complement of an event $$ A $$, denoted as $$ A^c $$, is the event that $$ A $$ does not occur. The probability of $$ A^c $$ is given by:
+
+$$ P(A^c) = 1 - P(A) $$
+
+- **Example**: 
+  - If the probability of rolling a 2 on a die is $$ P(\text{roll a 2}) = \frac{1}{6} $$, then the probability of not rolling a 2 is $$ P(\text{not a 2}) = 1 - \frac{1}{6} = \frac{5}{6} $$.
+
+---
+
+### 7. Summary
+
+- A **trial** is a single performance of a random experiment, and the **event** is the specific outcome or set of outcomes from that trial.
+- Events can be **simple** or **compound**, and can also be **mutually exclusive**, **independent**, or **complementary**.
+- The **sample space** is the set of all possible outcomes of a trial, and the **probability** of an event is calculated based on the number of favorable outcomes relative to the total outcomes in the sample space.
+
+---
+
+**💡 TIP:** Understanding the difference between **mutually exclusive** and **independent** events is crucial for solving probability problems accurately.
+
+**📝 NOTE:** The concept of **complementary events** is useful for calculating the probability of "not occurring" events, which is often required in various probability problems.
+
+**⚠️ CAUTION:** Be careful not to confuse **mutually exclusive** events with **independent** events. Mutually exclusive events cannot happen at the same time, while independent events do not influence each other's occurrence.
+
+---
+
+## Law of Probability Theory
+
+---
+
+### 1. Introduction to Laws of Probability
+
+In probability theory, several fundamental laws and rules govern how probabilities are calculated and manipulated. These laws form the backbone of probability theory, helping in the analysis of random experiments, events, and outcomes.
+
+The most important laws of probability include:
+
+- **Addition Law** (or **Sum Rule**)
+- **Multiplication Law** (or **Product Rule**)
+- **Complementary Law**
+- **Conditional Probability and Bayes’ Theorem**
+
+These laws are essential tools for solving a wide range of probability problems in various fields such as statistics, engineering, finance, and computer science.
+
+---
+
+### 2. Addition Law (Sum Rule)
+
+The **Addition Law** is used to calculate the probability of the union of two or more events. It helps us determine the probability that at least one of the events occurs.
+
+#### 2.1 General Addition Law
+
+For two events $$ A $$ and $$ B $$, the probability of their union is given by:
+
+$$ P(A \cup B) = P(A) + P(B) - P(A \cap B) $$
+
+- $$ P(A \cup B) $$ is the probability that event $$ A $$ or event $$ B $$ occurs (or both).
+- $$ P(A \cap B) $$ is the probability that both events $$ A $$ and $$ B $$ occur.
+
+#### 2.2 Special Case: Mutually Exclusive Events
+
+If two events $$ A $$ and $$ B $$ are mutually exclusive, meaning they cannot both occur at the same time, then:
+
+$$ P(A \cup B) = P(A) + P(B) $$
+
+In this case, $$ P(A \cap B) = 0 $$, so there is no need to subtract the intersection.
+
+##### Example
+
+- If a die is rolled, the events "rolling a 2" and "rolling a 4" are mutually exclusive. Therefore:
+
+  $$ P(\text{2 or 4}) = P(\text{2}) + P(\text{4}) = \frac{1}{6} + \frac{1}{6} = \frac{2}{6} = \frac{1}{3} $$
+
+---
+
+### 3. Multiplication Law (Product Rule)
+
+The **Multiplication Law** helps calculate the probability of the intersection of two or more events. It is particularly useful for finding the probability of events occurring simultaneously.
+
+#### 3.1 General Multiplication Law
+
+For two events $$ A $$ and $$ B $$, the probability of both events occurring is given by:
+
+$$ P(A \cap B) = P(A) \cdot P(B|A) $$
+
+Where:
+- $$ P(A \cap B) $$ is the probability that both events $$ A $$ and $$ B $$ occur.
+- $$ P(B|A) $$ is the **conditional probability** of event $$ B $$ occurring given that event $$ A $$ has already occurred.
+
+#### 3.2 Special Case: Independent Events
+
+If two events $$ A $$ and $$ B $$ are **independent**, meaning the occurrence of one does not affect the occurrence of the other, the multiplication law simplifies to:
+
+$$ P(A \cap B) = P(A) \cdot P(B) $$
+
+##### Example
+
+- If you flip a coin and roll a die, the probability of getting **Heads** and **rolling a 4** is:
+
+  $$ P(\text{Heads and 4}) = P(\text{Heads}) \cdot P(\text{4}) = \frac{1}{2} \cdot \frac{1}{6} = \frac{1}{12} $$
+
+---
+
+### 4. Complementary Law
+
+The **Complementary Law** is used when you are interested in the probability of an event **not** occurring. It states that the probability of the complement of an event $$ A $$, denoted as $$ A^c $$, is:
+
+$$ P(A^c) = 1 - P(A) $$
+
+Where:
+- $$ A^c $$ is the complement of event $$ A $$, meaning that event $$ A $$ does not occur.
+
+##### Example
+
+- If the probability of rolling an even number on a die is $$ P(\text{Even}) = \frac{3}{6} = \frac{1}{2} $$, then the probability of not rolling an even number is:
+
+  $$ P(\text{Not Even}) = 1 - \frac{1}{2} = \frac{1}{2} $$
+
+---
+
+### 5. Conditional Probability
+
+**Conditional probability** is the probability of an event occurring given that another event has already occurred. It is denoted as $$ P(A|B) $$, which represents the probability of event $$ A $$ occurring given that event $$ B $$ has occurred.
+
+The formula for conditional probability is:
+
+$$ P(A|B) = \frac{P(A \cap B)}{P(B)} $$
+
+Where:
+- $$ P(A|B) $$ is the probability of $$ A $$ given $$ B $$.
+- $$ P(A \cap B) $$ is the probability that both events $$ A $$ and $$ B $$ occur.
+- $$ P(B) $$ is the probability of event $$ B $$.
+
+##### Example
+
+- Suppose you roll a die and it is known that the result is an even number. The probability of rolling a 4, given that the result is even, is:
+
+  $$ P(\text{4 | Even}) = \frac{P(\text{4})}{P(\text{Even})} = \frac{\frac{1}{6}}{\frac{3}{6}} = \frac{1}{3} $$
+
+---
+
+### 6. Bayes’ Theorem
+
+**Bayes' Theorem** is a fundamental result in probability theory that provides a way to update the probability of an event based on new evidence or information. It is particularly useful in situations where we want to revise our beliefs about a hypothesis after observing some data.
+
+The formula for Bayes' Theorem is:
+
+$$ P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)} $$
+
+Where:
+- $$ P(A|B) $$ is the **posterior probability** of event $$ A $$ given event $$ B $$.
+- $$ P(B|A) $$ is the **likelihood** of observing event $$ B $$ given event $$ A $$.
+- $$ P(A) $$ is the **prior probability** of event $$ A $$.
+- $$ P(B) $$ is the **marginal probability** of event $$ B $$.
+
+#### Example: Medical Diagnosis
+
+- Suppose a test for a disease has a known **sensitivity** (probability that the test is positive when the person has the disease) and **specificity** (probability that the test is negative when the person does not have the disease). Bayes' Theorem can be used to calculate the probability that a person actually has the disease given that they tested positive.
+
+---
+
+### 7. Summary
+
+- **Addition Law** (Sum Rule): Used to calculate the probability of the union of two events. For mutually exclusive events, the probability is the sum of individual probabilities.
+- **Multiplication Law** (Product Rule): Used to calculate the probability of the intersection of two events. For independent events, the probability is the product of individual probabilities.
+- **Complementary Law**: The probability of the complement of an event is $$ 1 - P(A) $$.
+- **Conditional Probability**: The probability of one event occurring given that another event has already occurred.
+- **Bayes' Theorem**: A method for updating the probability of an event based on new evidence.
+
+---
+
+**💡 TIP:** Understanding the **Addition** and **Multiplication Laws** is essential for calculating probabilities in complex scenarios involving multiple events.
+
+**📝 NOTE:** **Bayes' Theorem** is widely used in fields like machine learning, statistics, and decision theory, where you need to update the probability of a hypothesis based on new data.
+
+**⚠️ CAUTION:** Be sure to check whether events are **independent** or **mutually exclusive** when applying the **Multiplication** or **Addition Laws**, as using the wrong rule can lead to incorrect results.
+
+---
+
+## Introduction to Conditional Probability
+
+---
+
+### 1. What is Conditional Probability?
+
+**Conditional probability** is the probability of an event occurring given that another event has already occurred. It allows us to update our probability assessments based on additional information. The concept is crucial when the probability of an event is influenced by the outcome of a previous event.
+
+The conditional probability of event $$ A $$ given that event $$ B $$ has occurred is denoted as $$ P(A|B) $$. It is read as "the probability of $$ A $$ given $$ B $$."
+
+---
+
+### 2. Formula for Conditional Probability
+
+The formula for conditional probability is derived using the concept of joint probability and is expressed as:
+
+$$ P(A|B) = \frac{P(A \cap B)}{P(B)} $$
+
+Where:
+- $$ P(A|B) $$ is the conditional probability of $$ A $$ given $$ B $$.
+- $$ P(A \cap B) $$ is the probability that both events $$ A $$ and $$ B $$ occur (joint probability).
+- $$ P(B) $$ is the probability that event $$ B $$ occurs (and $$ P(B) > 0 $$).
+
+The formula shows that conditional probability is the ratio of the probability of both events occurring to the probability of the given event $$ B $$.
+
+---
+
+### 3. Conditions for Conditional Probability
+
+For conditional probability to be valid, the probability of event $$ B $$ must be greater than zero:
+
+$$ P(B) > 0 $$
+
+If $$ P(B) = 0 $$, the conditional probability $$ P(A|B) $$ is undefined because you cannot condition on an event that has no chance of occurring.
+
+---
+
+### 4. Example of Conditional Probability
+
+Consider the following example with a deck of 52 playing cards:
+
+- **Event A**: Drawing a red card.
+- **Event B**: Drawing a face card.
+
+Now, let's say we want to calculate the probability of drawing a red card given that a face card has already been drawn. The probability is expressed as:
+
+$$ P(\text{Red}|\text{Face}) = \frac{P(\text{Red} \cap \text{Face})}{P(\text{Face})} $$
+
+- $$ P(\text{Red} \cap \text{Face}) $$ is the probability of drawing a red face card. There are 6 red face cards (2 from hearts and 2 from diamonds, each with 3 face cards: Jack, Queen, and King), so:
+
+  $$ P(\text{Red} \cap \text{Face}) = \frac{6}{52} $$
+
+- $$ P(\text{Face}) $$ is the probability of drawing any face card. There are 12 face cards in total (3 from each suit), so:
+
+  $$ P(\text{Face}) = \frac{12}{52} $$
+
+Thus, the conditional probability is:
+
+$$ P(\text{Red}|\text{Face}) = \frac{\frac{6}{52}}{\frac{12}{52}} = \frac{6}{12} = \frac{1}{2} $$
+
+So, the probability of drawing a red card, given that the card drawn is a face card, is $$ \frac{1}{2} $$.
+
+---
+
+### 5. Generalized Multiplication Rule
+
+Conditional probability is closely related to the **multiplication rule** for finding the probability of two events occurring together. The multiplication rule can be written as:
+
+$$ P(A \cap B) = P(A|B) \cdot P(B) $$
+
+This equation states that the joint probability of $$ A $$ and $$ B $$ is the product of the conditional probability of $$ A $$ given $$ B $$ and the probability of $$ B $$.
+
+Similarly, the multiplication rule can be expressed in reverse as:
+
+$$ P(A \cap B) = P(B|A) \cdot P(A) $$
+
+This form of the rule allows you to compute the joint probability using the conditional probability of $$ B $$ given $$ A $$ and the probability of $$ A $$.
+
+---
+
+### 6. Important Concepts Related to Conditional Probability
+
+#### 6.1 Independent Events
+
+Two events $$ A $$ and $$ B $$ are **independent** if the occurrence of one event does not affect the occurrence of the other. For independent events, the conditional probability simplifies to:
+
+$$ P(A|B) = P(A) $$
+
+This indicates that the probability of $$ A $$ is unchanged by the occurrence of event $$ B $$.
+
+##### Example
+
+If you flip a fair coin and roll a die, the outcome of the coin flip does not affect the probability of rolling a 4 on the die. Thus, the probability of rolling a 4 is:
+
+$$ P(\text{4}|\text{Heads}) = P(\text{4}) = \frac{1}{6} $$
+
+#### 6.2 Dependent Events
+
+If two events are **dependent**, the occurrence of one event affects the probability of the other. In this case, the conditional probability is not equal to the probability of the event alone. 
+
+---
+
+### 7. Law of Total Probability
+
+The **Law of Total Probability** is a powerful tool that allows you to compute the probability of an event by considering all possible ways it can occur. If events $$ B_1, B_2, B_3, \dots, B_n $$ form a partition of the sample space (i.e., they are mutually exclusive and exhaustive), then:
+
+$$ P(A) = \sum_{i=1}^{n} P(A|B_i) \cdot P(B_i) $$
+
+This law is useful when you can decompose the event $$ A $$ into several disjoint scenarios and know the conditional probabilities of $$ A $$ in each scenario.
+
+---
+
+### 8. Summary
+
+- **Conditional Probability** is the probability of an event occurring given that another event has already occurred.
+- The formula for conditional probability is:
+
+  $$ P(A|B) = \frac{P(A \cap B)}{P(B)} $$
+
+- If two events are **independent**, then:
+
+  $$ P(A|B) = P(A) $$
+
+- **Multiplication Rule** relates joint probabilities to conditional probabilities.
+- **Law of Total Probability** is a method for calculating the probability of an event by considering all possible ways it can occur.
+
+---
+
+**💡 TIP:** Conditional probability is key to understanding complex systems and is heavily used in fields like machine learning, statistics, and data science, where prior knowledge affects outcomes.
+
+**📝 NOTE:** If two events are **independent**, the probability of one event occurring does not depend on the other event. Make sure to verify whether events are independent before simplifying conditional probabilities.
+
+**⚠️ CAUTION:** Always check that $$ P(B) > 0 $$ before calculating conditional probabilities. If $$ P(B) = 0 $$, the conditional probability is undefined.
+
+---
+
+

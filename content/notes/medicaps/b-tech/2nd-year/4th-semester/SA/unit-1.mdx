@@ -1,0 +1,1134 @@
+---
+title: "Unit 1: Statistical Analysis"
+description: Descriptive Statistics– Measure of central tendency-Mean- Arithmetic mean, Geometric mean and Harmonic mean with its Mathematical properties, Properties of mean, Median and mode, Relationship among mean, median and mode, Measure of dispersion – standard deviation, Variance, Covariance and its properties, Coefficient of variation, Quartiles, Quartile deviation and Mean deviation.
+date: 2025-01-19
+tags: ["Statistical Analysis", "4th Semester", "2nd Year", "medicaps university"]
+published: true
+metadata:
+  university: "Medicaps University"
+  degree: "B Tech"
+  semester: "4th Semester"
+  subject: "Statistical Analysis"
+---
+
+## Descriptive Statistics
+
+Descriptive statistics summarise and organise data in a meaningful way, making it easier to understand patterns and characteristics within a dataset. It includes measures of central tendency, dispersion, and data distribution.
+
+### Importance of Descriptive Statistics
+- Provides a summary of large datasets.
+- Helps identify patterns, trends, and outliers in the data.
+- Simplifies complex data for easier interpretation.
+
+---
+
+### Types of Descriptive Statistics
+
+1. **Measures of Central Tendency**
+   - Represents the centre or typical value of a dataset.
+   - **Key Measures**:
+     - **Mean (Arithmetic Average):**
+       $$ \text{Mean} = \frac{\sum x_i}{n} $$
+       Where $$ x_i $$ are the data points and $$ n $$ is the number of observations.
+     - **Median:** The middle value when data is sorted in ascending order. If $$ n $$ is even, the median is the average of the two middle values.
+     - **Mode:** The most frequently occurring value in the dataset.
+
+2. **Measures of Dispersion**
+   - Indicate the spread or variability of data.
+   - **Key Measures**:
+     - **Range:** Difference between the maximum and minimum values.
+       $$ \text{Range} = \text{Maximum} - \text{Minimum} $$
+     - **Variance:** Measures the average squared deviation from the mean.
+       $$ \text{Variance} (\sigma^2) = \frac{\sum (x_i - \mu)^2}{n} $$
+       Where $$ \mu $$ is the mean.
+     - **Standard Deviation (SD):** The square root of variance.
+       $$ \text{SD} = \sqrt{\sigma^2} $$
+     - **Interquartile Range (IQR):** Difference between the 75th percentile (Q3) and the 25th percentile (Q1).
+       $$ \text{IQR} = Q_3 - Q_1 $$
+
+3. **Measures of Shape**
+   - Describe the distribution of data.
+   - **Key Measures**:
+     - **Skewness:** Indicates asymmetry in the data distribution.
+       - **Positive Skewness:** Longer tail on the right.
+       - **Negative Skewness:** Longer tail on the left.
+     - **Kurtosis:** Indicates the "peakedness" of the distribution.
+       - **Leptokurtic:** Higher peak.
+       - **Platykurtic:** Flatter peak.
+
+---
+
+### Data Visualisation Techniques
+- **Bar Charts:** Used for categorical data representation.
+- **Histograms:** Show frequency distribution for continuous data.
+- **Pie Charts:** Display proportions of a whole.
+- **Box Plots:** Illustrate data spread, outliers, and quartiles.
+
+---
+
+### Example
+
+Consider the dataset: $$ [4, 8, 6, 5, 3, 7, 9] $$
+
+1. **Mean**:  
+   $$ \text{Mean} = \frac{4 + 8 + 6 + 5 + 3 + 7 + 9}{7} = 6 $$
+
+2. **Median**:  
+   Sorted dataset: $$ [3, 4, 5, 6, 7, 8, 9] $$  
+   Median = 6 (middle value).
+
+3. **Mode**:  
+   No repeated values, so there is **no mode**.
+
+4. **Range**:  
+   $$ \text{Range} = 9 - 3 = 6 $$
+
+5. **Variance**:  
+   $$ \sigma^2 = \frac{(4-6)^2 + (8-6)^2 + (6-6)^2 + (5-6)^2 + (3-6)^2 + (7-6)^2 + (9-6)^2}{7} = 4 $$
+
+6. **Standard Deviation**:  
+   $$ \text{SD} = \sqrt{4} = 2 $$
+
+---
+
+### Applications of Descriptive Statistics
+- Summarising survey results.
+- Analysing trends in financial data.
+- Evaluating student performance.
+- Quality control in manufacturing.
+
+---
+
+**💡 TIP:** Use descriptive statistics as a foundation before applying advanced statistical methods or inferential analysis.
+
+---
+
+## Measure of Central Tendency
+
+The **measure of central tendency** is a statistical concept used to find a single value that represents the centre or typical value of a dataset. It helps summarise the data and provides a quick insight into its distribution.
+
+---
+
+### Types of Measures of Central Tendency
+
+1. **Mean (Arithmetic Average)**  
+   - The sum of all data points divided by the total number of observations.  
+   - **Formula**:  
+     $$ \text{Mean} = \frac{\sum x_i}{n} $$  
+     Where:  
+     $$ x_i $$: Individual data points  
+     $$ n $$: Total number of observations  
+
+   **Example**:  
+   Dataset: $$ [10, 20, 30, 40, 50] $$  
+   $$ \text{Mean} = \frac{10 + 20 + 30 + 40 + 50}{5} = 30 $$
+
+   **Advantages**:  
+   - Easy to calculate and interpret.  
+   - Considers all data points.  
+   **Disadvantages**:  
+   - Sensitive to extreme values (outliers).  
+
+---
+
+2. **Median**  
+   - The middle value when the data is arranged in ascending or descending order.  
+   - If $$ n $$ is odd, the median is the middle value.  
+   - If $$ n $$ is even, the median is the average of the two middle values.  
+
+   **Example**:  
+   Dataset (odd): $$ [3, 5, 7, 9, 11] $$  
+   Median = 7 (middle value).  
+   Dataset (even): $$ [2, 4, 6, 8] $$  
+   Median = $$ \frac{4 + 6}{2} = 5 $$.  
+
+   **Advantages**:  
+   - Not affected by outliers.  
+   - Useful for skewed data.  
+   **Disadvantages**:  
+   - Ignores the actual values of data points.  
+
+---
+
+3. **Mode**  
+   - The value that appears most frequently in a dataset.  
+   - A dataset can be:  
+     - **Unimodal**: One mode.  
+     - **Bimodal**: Two modes.  
+     - **Multimodal**: More than two modes.  
+
+   **Example**:  
+   Dataset: $$ [1, 2, 2, 3, 4, 4, 4, 5] $$  
+   Mode = 4 (most frequent value).  
+
+   **Advantages**:  
+   - Easy to identify in small datasets.  
+   - Applicable to categorical data.  
+   **Disadvantages**:  
+   - Not useful when there is no repetition or multiple modes.  
+
+---
+
+### Comparison of Measures of Central Tendency
+
+| Measure | Best Used For               | Sensitivity to Outliers | Example Use Cases                  |
+|---------|-----------------------------|--------------------------|------------------------------------|
+| **Mean** | Symmetrical data              | Highly sensitive         | Calculating average marks or income |
+| **Median** | Skewed data or outliers present | Not sensitive           | Analysing house prices            |
+| **Mode** | Categorical or discrete data   | Not sensitive           | Determining the most popular product |
+
+---
+
+### Choosing the Right Measure
+- Use the **mean** for normally distributed data.  
+- Use the **median** when the data has outliers or is skewed.  
+- Use the **mode** for categorical data.
+
+**💡 TIP:** Always analyse the nature of your dataset before deciding on the measure of central tendency to use.
+
+---
+
+## Mean: Arithmetic Mean, Geometric Mean, and Harmonic Mean
+
+The **mean** is a measure of central tendency that summarises data into a single representative value. The three commonly used types of means are **Arithmetic Mean (AM)**, **Geometric Mean (GM)**, and **Harmonic Mean (HM)**, each with its own applications and properties.
+
+---
+
+### 1. Arithmetic Mean (AM)
+The **Arithmetic Mean** is the sum of all data points divided by the total number of observations.
+
+#### Formula:
+$$ \text{AM} = \frac{\sum x_i}{n} $$  
+Where:  
+$$ x_i $$: Individual data points  
+$$ n $$: Number of observations  
+
+#### Example:
+Dataset: $$ [5, 10, 15, 20, 25] $$  
+$$ \text{AM} = \frac{5 + 10 + 15 + 20 + 25}{5} = 15 $$
+
+#### Properties of Arithmetic Mean:
+1. **Additivity Property**:  
+   If a constant $$ c $$ is added to or subtracted from each data point, the mean changes by the same constant.  
+   $$ \text{AM (x + c)} = \text{AM} + c $$
+
+2. **Multiplicative Property**:  
+   If each data point is multiplied by a constant $$ c $$, the mean is also multiplied by $$ c $$.  
+   $$ {AM (c \cdot x)} = c \cdot\text{AM} $$
+
+3. **Effect of Combined Groups**:  
+   The mean of two groups can be calculated using:  
+   $$ \text{Combined AM} = \frac{n_1 \cdot \text{AM}_1 + n_2 \cdot \text{AM}_2}{n_1 + n_2} $$  
+   Where $$ n_1 $$ and $$ n_2 $$ are the sizes of the two groups, and $$ \text{AM}_1 $$, $$ \text{AM}_2 $$ are their respective means.
+
+---
+
+### 2. Geometric Mean (GM)
+The **Geometric Mean** is the $$ n $$-th root of the product of all data points. It is useful for datasets involving ratios, percentages, or growth rates.
+
+#### Formula:
+$$ \text{GM} = \left( \prod x_i \right)^{\frac{1}{n}} $$  
+Where:  
+$$ x_i $$: Individual data points  
+$$ n $$: Number of observations  
+$$ \prod x_i $$: Product of all data points  
+
+#### Example:
+Dataset: $$ [2, 4, 8] $$  
+$$ \text{GM} = \sqrt[3]{2 \cdot 4 \cdot 8} = \sqrt[3]{64} = 4 $$
+
+#### Properties of Geometric Mean:
+1. **Multiplicative Property**:  
+   If each data point is multiplied by a constant $$ c $$, the geometric mean is also multiplied by $$ c $$.  
+   $$ {GM (c \cdot x)} = c \cdot \text{GM} $$
+
+2. **Relationship with AM**:  
+   For positive data points, the GM is always less than or equal to the AM:  
+   $$ \text{GM} \leq \text{AM} $$  
+   Equality holds if all data points are equal.
+
+3. **Logarithmic Transformation**:  
+   The GM can be calculated using logarithms:  
+   $$ \text{GM} = e^{\frac{\sum \ln(x_i)}{n}} $$
+
+---
+
+### 3. Harmonic Mean (HM)
+The **Harmonic Mean** is the reciprocal of the arithmetic mean of the reciprocals of the data points. It is used for datasets with rates or ratios.
+
+#### Formula:
+$$ \text{HM} = \frac{n}{\sum \frac{1}{x_i}} $$  
+Where:  
+$$ x_i $$: Individual data points  
+$$ n $$: Number of observations  
+
+#### Example:
+Dataset: $$ [2, 4, 8] $$  
+$$ \text{HM} = \frac{3}{\frac{1}{2} + \frac{1}{4} + \frac{1}{8}} = \frac{3}{0.5 + 0.25 + 0.125} = 3.43 $$
+
+#### Properties of Harmonic Mean:
+1. **Relationship with AM and GM**:  
+   For positive data points:  
+   $$ \text{HM} \leq \text{GM} \leq \text{AM} $$  
+   Equality holds if all data points are equal.
+
+2. **Sensitivity to Small Values**:  
+   The HM is greatly influenced by small values in the dataset.
+
+3. **Reciprocal Property**:  
+   If data points are reciprocals of another set, the HM of one set is the reciprocal of the AM of the other.
+
+---
+
+### Comparison of AM, GM, and HM
+
+| Measure       | Formula                            | Application Areas                           |
+|---------------|------------------------------------|---------------------------------------------|
+| **AM**        | $$ \frac{\sum x_i}{n} $$          | Average marks, income, or daily sales.      |
+| **GM**        | $$ \left( \prod x_i \right)^{1/n} $$ | Growth rates, financial returns, or indices. |
+| **HM**        | $$ \frac{n}{\sum \frac{1}{x_i}} $$ | Speed, rates, or ratios.                    |
+
+---
+
+### Mathematical Relationship
+For $$ n $$ positive numbers:  
+$$ \text{HM} \leq \text{GM} \leq \text{AM} $$  
+
+Equality holds only if all the data points are identical.
+
+---
+
+**💡 TIP:** Choose the appropriate mean based on the data context. Use AM for general averages, GM for growth rates, and HM for rates or speeds.
+
+---
+
+## Properties of Mean, Median, and Mode
+
+The **mean**, **median**, and **mode** are fundamental measures of central tendency, each with unique properties that make them suitable for specific datasets and contexts.
+
+---
+
+### 1. Properties of Mean (Arithmetic Mean)
+
+1. **Additive Property**:  
+   If a constant $$ c $$ is added to every observation, the mean also increases by $$ c $$:  
+   $$ \text{AM(x + c)} = \text{AM(x)} + c $$
+
+2. **Multiplicative Property**:  
+   If each observation is multiplied by $$ c $$, the mean is also multiplied by $$ c $$:  
+   $$ {AM(c \cdot x)} = c \cdot \text{AM(x)} $$
+
+3. **Uniqueness**:  
+   The mean is unique for a given dataset.
+
+4. **Sensitivity to Outliers**:  
+   The mean is highly influenced by extreme values or outliers, making it less robust in skewed data.
+
+5. **Applicable to Interval and Ratio Scales**:  
+   The mean is meaningful only for numerical data measured on interval or ratio scales.
+
+6. **Combined Mean**:  
+   For two datasets with means $$ \text{AM}_1 $$ and $$ \text{AM}_2 $$:  
+   $$ \text{Combined AM} = \frac{n_1 \cdot \text{AM}_1 + n_2 \cdot \text{AM}_2}{n_1 + n_2} $$  
+   Where $$ n_1 $$ and $$ n_2 $$ are the sizes of the datasets.
+
+---
+
+### 2. Properties of Median
+
+1. **Positional Measure**:  
+   The median is the middle value in an ordered dataset. It depends on the position of the values rather than their magnitudes.
+
+2. **Robustness to Outliers**:  
+   The median is not affected by extreme values, making it suitable for skewed data.
+
+3. **Uniqueness**:  
+   The median is unique for a given dataset.
+
+4. **Applicable to Ordinal, Interval, and Ratio Scales**:  
+   The median can be used for data that is ordinal (ranked) or higher.
+
+5. **Interpolation for Even Observations**:  
+   If $$ n $$ is even, the median is the average of the two middle values:  
+   $$ \text{Median} = \frac{x_{\frac{n}{2}} + x_{\frac{n}{2} + 1}}{2} $$
+
+6. **50th Percentile**:  
+   The median divides the data into two equal halves, where 50% of the observations are below and 50% are above it.
+
+---
+
+### 3. Properties of Mode
+
+1. **Most Frequent Value**:  
+   The mode is the value that appears most frequently in the dataset.
+
+2. **Applicable to All Scales**:  
+   The mode can be used for nominal, ordinal, interval, and ratio scales.
+
+3. **Not Affected by Extreme Values**:  
+   Like the median, the mode is not influenced by outliers.
+
+4. **Multiple Modes**:  
+   - A dataset can be:
+     - **Unimodal**: One mode.
+     - **Bimodal**: Two modes.
+     - **Multimodal**: More than two modes.
+   - If no value is repeated, the dataset has **no mode**.
+
+5. **Graphical Representation**:  
+   The mode corresponds to the highest peak in a frequency distribution curve.
+
+6. **Mode Formula for Grouped Data**:  
+   For a grouped frequency distribution:  
+   $$ \text{Mode} = L + \left( \frac{f_m - f_{1}}{2f_m - f_{1} - f_{2}} \right) \cdot h $$  
+   Where:  
+   $$ L $$: Lower boundary of the modal class  
+   $$ f_m $$: Frequency of the modal class  
+   $$ f_1 $$: Frequency of the class before the modal class  
+   $$ f_2 $$: Frequency of the class after the modal class  
+   $$ h $$: Width of the class interval  
+
+---
+
+### Comparison of Mean, Median, and Mode
+
+| Property                    | **Mean**                 | **Median**               | **Mode**                 |
+|-----------------------------|--------------------------|--------------------------|--------------------------|
+| **Definition**              | Arithmetic average       | Middle value             | Most frequent value      |
+| **Robustness to Outliers**  | Affected                 | Not affected             | Not affected             |
+| **Applicability**           | Interval/Ratio scales    | Ordinal/Interval/Ratio   | All scales               |
+| **Uniqueness**              | Unique                   | Unique                   | May not be unique        |
+| **Ease of Calculation**     | Simple                  | Requires sorting         | Simple for small data    |
+| **Best Use Case**           | Symmetrical data         | Skewed data              | Categorical data         |
+
+---
+
+### Relationship Between Mean, Median, and Mode
+
+In a **symmetrical distribution**:  
+$$ \text{Mean} = \text{Median} = \text{Mode} $$
+
+In a **positively skewed distribution**:  
+$$ \text{Mean} > \text{Median} > \text{Mode} $$
+
+In a **negatively skewed distribution**:  
+$$ \text{Mean} < \text{Median} < \text{Mode} $$
+
+---
+
+**💡 TIP:** Choose the measure of central tendency based on the nature of your dataset. Use the **mean** for normal distributions, the **median** for skewed data, and the **mode** for categorical or modal data.
+
+---
+
+## Relationship Among Mean, Median, and Mode
+
+The relationship among the **mean**, **median**, and **mode** provides valuable insights into the shape of a frequency distribution. This relationship is particularly significant for **unimodal distributions** (distributions with a single peak).
+
+---
+
+### 1. Formula: Empirical Relationship
+
+For a moderately skewed distribution, the following empirical formula relates the three measures of central tendency:  
+$$ \text{Mode} = 3 \cdot \text{Median} - 2 \cdot \text{Mean} $$  
+
+Alternatively:  
+$$ \text{Mean} - \text{Mode} = 3 \cdot (\text{Mean} - \text{Median}) $$  
+
+#### Key Points:
+- This relationship holds true for unimodal and moderately skewed distributions.
+- It is an **approximation** and may not apply to highly skewed or irregular datasets.
+
+---
+
+### 2. Relationship Based on Skewness
+
+#### (a) **Symmetrical Distribution**:
+In a symmetrical frequency distribution:  
+$$ \text{Mean} = \text{Median} = \text{Mode} $$  
+
+- Example: Normal distribution (bell-shaped curve).  
+- The measures coincide at the centre of the distribution.
+
+#### (b) **Positively Skewed Distribution**:
+In a positively skewed distribution (tail on the right):  
+$$ \text{Mean} > \text{Median} > \text{Mode} $$  
+
+- The mean is pulled to the right due to higher values (outliers).  
+- Example: Income distribution in a population.
+
+#### (c) **Negatively Skewed Distribution**:
+In a negatively skewed distribution (tail on the left):  
+$$ \text{Mean} < \text{Median} < \text{Mode} $$  
+
+- The mean is pulled to the left due to lower values (outliers).  
+- Example: Test scores where most students score high marks.
+
+---
+
+### 3. Applications of the Relationship
+
+1. **Identifying Skewness**:  
+   By comparing the mean, median, and mode, the type of skewness can be determined:
+   - If $$ \text{Mean} > \text{Median} > \text{Mode} $$: Positive skew.
+   - If $$ \text{Mean} < \text{Median} < \text{Mode} $$: Negative skew.
+
+2. **Approximating Missing Values**:  
+   If one of the measures (mean, median, or mode) is missing, the empirical formula can estimate it.
+
+3. **Data Analysis and Interpretation**:  
+   The relationship is useful for summarising and describing data in fields like economics, biology, and social sciences.
+
+---
+
+### Summary Table
+
+| Type of Distribution       | Relationship                        | Shape of Distribution |
+|----------------------------|-------------------------------------|-----------------------|
+| **Symmetrical**            | $$ \text{Mean} = \text{Median} = \text{Mode} $$ | Bell-shaped          |
+| **Positively Skewed**      | $$ \text{Mean} > \text{Median} > \text{Mode} $$ | Tail on the right    |
+| **Negatively Skewed**      | $$ \text{Mean} < \text{Median} < \text{Mode} $$ | Tail on the left     |
+
+---
+
+**💡 TIP:** Use the empirical relationship and skewness analysis to interpret and summarise datasets effectively.
+
+---
+
+## Measure of Dispersion
+
+### Introduction
+
+The **measure of dispersion** is a statistical tool used to quantify the extent of variability or spread in a dataset. It indicates how much the data deviates from its central tendency (mean, median, or mode) and provides insights into the reliability and consistency of the data.
+
+---
+
+### 1. Importance of Dispersion
+
+1. **Understanding Variability**:  
+   Dispersion measures the degree of variation in data values.
+   
+2. **Comparison of Datasets**:  
+   Helps compare the spread of two or more datasets.
+
+3. **Identifying Outliers**:  
+   Detects unusual values in the data.
+
+4. **Risk Assessment**:  
+   Used in decision-making processes to assess risks (e.g., in finance or quality control).
+
+---
+
+### 2. Types of Measures of Dispersion
+
+#### (a) **Absolute Measures**
+Absolute measures express dispersion in the same units as the data. Common types include:
+1. **Range ($$R$$)**:  
+   - Difference between the maximum and minimum values.  
+   $$ R = X_{\text{max}} - X_{\text{min}} $$  
+   - **Advantages**: Easy to calculate.  
+   - **Disadvantages**: Sensitive to outliers.
+
+2. **Quartile Deviation (QD)**:  
+   - Also called the semi-interquartile range. It is half the difference between the third quartile ($$Q_3$$) and the first quartile ($$Q_1$$).  
+   $$ QD = \frac{Q_3 - Q_1}{2} $$  
+   - **Advantages**: Robust to extreme values.  
+   - **Disadvantages**: Ignores data outside the interquartile range.
+
+3. **Mean Deviation (MD)**:  
+   - Average of absolute deviations from the central value (mean or median).  
+   $$ \text{MD} = \frac{\sum |X_i - M|}{n} $$  
+   Where $$ M $$ is the mean or median.  
+   - **Advantages**: More representative than the range.  
+   - **Disadvantages**: Requires more computation.
+
+4. **Standard Deviation (SD)**:  
+   - Square root of the average of squared deviations from the mean.  
+   $$ \sigma = \sqrt{\frac{\sum (X_i - \mu)^2}{n}} $$  
+   - **Advantages**: Widely used and highly precise.  
+   - **Disadvantages**: Sensitive to outliers.
+
+#### (b) **Relative Measures**
+Relative measures express dispersion as a proportion or percentage, allowing for comparison between datasets of different units or scales:
+1. **Coefficient of Range**:  
+   $$ \text{Coefficient of Range} = \frac{X_{\text{max}} - X_{\text{min}}}{X_{\text{max}} + X_{\text{min}}} $$  
+
+2. **Coefficient of Quartile Deviation**:  
+   $$ \text{Coefficient of QD} = \frac{Q_3 - Q_1}{Q_3 + Q_1} $$  
+
+3. **Coefficient of Variation (CV)**:  
+   - Measures the relative variability of data.  
+   $$ \text{CV} = \frac{\sigma}{\mu} \times 100 $$  
+   Where $$ \mu $$ is the mean, and $$ \sigma $$ is the standard deviation.  
+   - **Higher CV**: Greater variability.  
+   - **Lower CV**: Greater consistency.
+
+---
+
+### 3. Comparison of Measures
+
+| Measure                | **Type**          | **Best Used For**                  | **Advantages**          | **Disadvantages**           |
+|------------------------|-------------------|-------------------------------------|-------------------------|-----------------------------|
+| **Range**             | Absolute          | Quick overview of spread           | Simple and intuitive    | Sensitive to outliers       |
+| **Quartile Deviation** | Absolute          | Skewed distributions               | Robust to outliers      | Ignores extreme values      |
+| **Mean Deviation**     | Absolute          | General datasets                   | Comprehensive           | Requires computation        |
+| **Standard Deviation** | Absolute          | Precise and normal distributions   | Widely applicable       | Affected by outliers        |
+| **Coefficient of Variation** | Relative  | Comparing datasets with different units | Scales variability      | Requires standard deviation |
+
+---
+
+### 4. Applications of Dispersion
+
+1. **Finance**:  
+   Used to assess investment risks through measures like volatility and variance.
+
+2. **Quality Control**:  
+   Ensures consistency in manufacturing and production processes.
+
+3. **Social Sciences**:  
+   Analyses income inequality, educational attainment, and more.
+
+4. **Research**:  
+   Helps determine the reliability of experimental results.
+
+---
+
+### Summary
+
+- Measures of dispersion quantify the spread of data around a central value.
+- Absolute measures (e.g., range, SD) provide exact spread values, while relative measures (e.g., CV) allow comparisons.
+- Standard deviation and coefficient of variation are the most widely used measures due to their precision and versatility.
+
+**💡 TIP:** Choose the appropriate measure of dispersion based on the dataset and the analysis objective. Standard deviation is preferred for normally distributed data, while quartile deviation works well for skewed distributions.
+
+---
+
+## Standard Deviation, Variance, Covariance, and Their Properties
+
+---
+
+### 1. Standard Deviation ($$ \sigma $$)
+
+#### Definition:
+The **standard deviation** is the square root of the variance. It measures the average deviation of data points from the mean and provides insights into the spread of data.
+
+#### Formula:
+For a population:  
+$$ \sigma = \sqrt{\frac{\sum (X_i - \mu)^2}{N}} $$  
+
+For a sample:  
+$$ s = \sqrt{\frac{\sum (X_i - \bar{X})^2}{n-1}} $$  
+
+#### Properties of Standard Deviation:
+1. **Non-Negative**:  
+   $$ \sigma \geq 0 $$. A zero value indicates no variability.
+   
+2. **Affected by Scaling**:  
+   If all data values are multiplied by a constant $$ k $$, the standard deviation becomes $$ k \cdot \sigma $$.
+
+3. **Sensitive to Outliers**:  
+   Large deviations significantly impact the value of $$ \sigma $$.
+
+4. **Minimum Property**:  
+   The standard deviation is minimum when deviations are measured from the mean.
+
+---
+
+### 2. Variance ($$ \sigma^2 $$)
+
+#### Definition:
+Variance is the square of the standard deviation. It measures the average squared deviations of data points from the mean.
+
+#### Formula:
+For a population:  
+$$ \sigma^2 = \frac{\sum (X_i - \mu)^2}{N} $$  
+
+For a sample:  
+$$ s^2 = \frac{\sum (X_i - \bar{X})^2}{n-1} $$  
+
+#### Properties of Variance:
+1. **Non-Negative**:  
+   Variance is always $$ \geq 0 $$.
+   
+2. **Additivity**:  
+   If $$ X $$ and $$ Y $$ are independent random variables, then:  
+   $$ \text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y) $$  
+
+3. **Scaling Property**:  
+   If all data values are multiplied by a constant $$ k $$, variance becomes $$ k^2 \cdot \text{Var}(X) $$.
+
+4. **Unit Dependence**:  
+   Variance is expressed in squared units of the data.
+
+---
+
+### 3. Covariance ($$ \text{Cov}(X, Y) $$)
+
+#### Definition:
+Covariance measures the joint variability between two variables $$ X $$ and $$ Y $$. A positive value indicates that the variables tend to move in the same direction, while a negative value indicates opposite directions.
+
+#### Formula:
+For a population:  
+$$ \text{Cov}(X, Y) = \frac{\sum (X_i - \mu_X)(Y_i - \mu_Y)}{N} $$  
+
+For a sample:  
+$$ \text{Cov}(X, Y) = \frac{\sum (X_i - \bar{X})(Y_i - \bar{Y})}{n-1} $$  
+
+#### Properties of Covariance:
+1. **Symmetry**:  
+   $$ \text{Cov}(X, Y) = \text{Cov}(Y, X) $$  
+
+2. **Constant Multiplication**:  
+   If $$ X $$ is multiplied by a constant $$ k $$, covariance is scaled accordingly:  
+   $$ \text{Cov}(kX, Y) = k \cdot \text{Cov}(X, Y) $$  
+
+3. **Independence**:  
+   If $$ X $$ and $$ Y $$ are independent, then:  
+   $$ \text{Cov}(X, Y) = 0 $$  
+
+4. **Additivity**:  
+   $$ \text{Cov}(X + Z, Y) = \text{Cov}(X, Y) + \text{Cov}(Z, Y) $$  
+
+#### Limitation:
+Covariance does not provide standardised results and depends on the units of the variables.  
+
+---
+
+### 4. Relationship Between Variance and Covariance
+
+- Variance is a special case of covariance where the two variables are the same:  
+  $$ \text{Var}(X) = \text{Cov}(X, X) $$  
+
+---
+
+### 5. Applications of Standard Deviation, Variance, and Covariance
+
+1. **Finance**:  
+   - **Standard Deviation**: Measures market volatility.  
+   - **Variance**: Evaluates the risk of an investment.  
+   - **Covariance**: Analyses relationships between assets to build portfolios.
+
+2. **Statistics and Research**:  
+   - Assess data variability, reliability, and consistency.  
+
+3. **Machine Learning**:  
+   - Used in regression, clustering, and evaluating models.
+
+---
+
+### Summary Table
+
+| Measure         | **Definition**                           | **Formula**                               | **Key Properties**                              |
+|-----------------|-----------------------------------------|-------------------------------------------|------------------------------------------------|
+| **Standard Deviation** | Average spread from the mean          | $$ \sigma = \sqrt{\text{Var}(X)} $$        | Non-negative, affected by scaling              |
+| **Variance**        | Average squared spread from the mean | $$ \sigma^2 = \frac{\sum (X_i - \mu)^2}{N} $$ | Additive, depends on squared units             |
+| **Covariance**      | Joint variability of two variables   | $$ \text{Cov}(X, Y) = \frac{\sum (X_i - \mu_X)(Y_i - \mu_Y)}{N} $$ | Symmetric, indicates directional relationship |
+
+---
+
+**💡 TIP:** Use standard deviation for single-variable analysis and covariance to understand relationships between two variables.  
+
+---
+
+## Coefficient of Variation (CV)
+
+---
+
+### 1. Definition
+
+The **coefficient of variation (CV)** is a relative measure of the dispersion of data points around the mean. It expresses the standard deviation as a percentage of the mean, making it useful for comparing the variability of different datasets, even if the scales or units of measurement are different.
+
+#### Formula:
+$$ \text{CV} = \frac{\sigma}{\mu} \times 100 $$  
+
+Where:
+- $$ \sigma $$ = Standard Deviation
+- $$ \mu $$ = Mean of the data
+
+---
+
+### 2. Interpretation
+
+- **Higher CV**: Indicates greater relative variability (more inconsistent data).
+- **Lower CV**: Indicates lower relative variability (more consistent data).
+- A **CV of 0** means no variability, i.e., all values are the same.
+
+---
+
+### 3. Characteristics of Coefficient of Variation
+
+1. **Unit-Free**:  
+   Since the CV is a ratio of the standard deviation to the mean, it is dimensionless and does not depend on the units of measurement. This makes it useful for comparing datasets with different units or scales.
+
+2. **Relative Measure**:  
+   CV is relative to the size of the mean, providing a better comparison between datasets with different units or different means.
+
+3. **Usefulness in Comparing Datasets**:  
+   The CV is especially useful when comparing the dispersion of data with different units or when the means differ significantly across datasets.
+
+---
+
+### 4. Applications of Coefficient of Variation
+
+1. **Finance**:  
+   In finance, CV is used to compare the risk (volatility) of different investments. A higher CV indicates more risk in relation to the expected return.
+   - Example: Comparing two stocks, Stock A with a high return and high risk and Stock B with a low return and low risk.
+
+2. **Quality Control**:  
+   CV can be used in manufacturing to assess the consistency of a process or product. Lower CV values indicate a more consistent product.
+
+3. **Statistical Analysis**:  
+   The CV is used when comparing data with different means or units, such as comparing the variability in the test scores of two different exams with different average scores.
+
+4. **Medical Research**:  
+   CV is used to assess the variability in experimental results, such as the measurement of a biological parameter.
+
+---
+
+### 5. Example Calculation
+
+Consider two datasets:
+
+- Dataset 1: $$ [50, 60, 70, 80, 90] $$
+- Dataset 2: $$ [500, 600, 700, 800, 900] $$
+
+#### For Dataset 1:
+1. Mean ($$ \mu $$):  
+   $$ \mu_1 = \frac{50 + 60 + 70 + 80 + 90}{5} = 70 $$  
+
+2. Standard Deviation ($$ \sigma $$):  
+   $$ \sigma_1 = \sqrt{\frac{(50-70)^2 + (60-70)^2 + (70-70)^2 + (80-70)^2 + (90-70)^2}{5}} = \sqrt{200} \approx 14.14 $$  
+
+3. Coefficient of Variation (CV):  
+   $$ \text{CV}_1 = \frac{14.14}{70} \times 100 \approx 20.2\% $$  
+
+#### For Dataset 2:
+1. Mean ($$ \mu $$):  
+   $$ \mu_2 = \frac{500 + 600 + 700 + 800 + 900}{5} = 700 $$  
+
+2. Standard Deviation ($$ \sigma $$):  
+   $$ \sigma_2 = \sqrt{\frac{(500-700)^2 + (600-700)^2 + (700-700)^2 + (800-700)^2 + (900-700)^2}{5}} = \sqrt{20000} \approx 141.42 $$  
+
+3. Coefficient of Variation (CV):  
+   $$ \text{CV}_2 = \frac{141.42}{700} \times 100 \approx 20.2\% $$  
+
+#### Conclusion:
+Both datasets have the same coefficient of variation ($$ 20.2\% $$), indicating that their relative variability is the same, despite the difference in their scale (Dataset 2 has higher values, but the variability relative to the mean is the same as Dataset 1).
+
+---
+
+### 6. Advantages of Coefficient of Variation
+
+1. **Comparability**:  
+   CV allows comparison of datasets with different units or scales, making it a versatile measure of variability.
+
+2. **Relative Assessment**:  
+   It provides a relative measure of variability, helping to understand whether a dataset's spread is large or small in relation to the mean.
+
+3. **Standardised Measure**:  
+   Unlike standard deviation, CV is standardised and can be used across different datasets, even with different means.
+
+---
+
+### 7. Limitations of Coefficient of Variation
+
+1. **Sensitivity to Mean**:  
+   If the mean is close to zero, the CV may be misleading or undefined (it can become very large or infinite).
+
+2. **Not Useful for Skewed Distributions**:  
+   The CV may not be an effective measure when the data distribution is highly skewed, as it assumes a symmetric distribution around the mean.
+
+---
+
+### Summary Table
+
+| Measure                     | **Definition**                          | **Formula**                             | **Use Cases**                        |
+|-----------------------------|----------------------------------------|-----------------------------------------|--------------------------------------|
+| **Coefficient of Variation (CV)** | Relative measure of dispersion         | $$ \text{CV} = \frac{\sigma}{\mu} \times 100 $$ | Comparing datasets with different units or scales |
+
+---
+
+**💡 TIP:** The Coefficient of Variation is particularly helpful when comparing datasets with different units or means. A higher CV indicates greater variability relative to the mean.
+
+---
+
+## Quartiles
+
+---
+
+### 1. Definition
+
+**Quartiles** are values that divide a dataset into four equal parts, each containing 25% of the data points. They provide a way to understand the spread and distribution of data. The three quartiles are:
+- **First Quartile (Q1)**: The median of the lower half of the data.
+- **Second Quartile (Q2)**: The median of the entire dataset (also called the median).
+- **Third Quartile (Q3)**: The median of the upper half of the data.
+
+---
+
+### 2. Calculation of Quartiles
+
+To calculate the quartiles, follow these steps:
+
+1. **Sort the Data**: Arrange the dataset in ascending order.
+2. **Find the Median (Q2)**: The second quartile, or median, divides the dataset into two halves.
+3. **Find Q1**: The first quartile is the median of the lower half of the data (the data points below Q2).
+4. **Find Q3**: The third quartile is the median of the upper half of the data (the data points above Q2).
+
+#### Formula for Quartiles:
+- $$ Q1 = \text{Median of the lower half of the data} $$
+- $$ Q2 = \text{Median of the dataset} $$
+- $$ Q3 = \text{Median of the upper half of the data} $$
+
+---
+
+### 3. Types of Quartiles
+
+1. **First Quartile (Q1)**:  
+   This is the median of the lower half of the data. It represents the 25th percentile, meaning 25% of the data points lie below this value.
+   
+2. **Second Quartile (Q2)**:  
+   This is the median of the entire dataset, also called the 50th percentile. It divides the data into two equal halves.
+   
+3. **Third Quartile (Q3)**:  
+   This is the median of the upper half of the data. It represents the 75th percentile, meaning 75% of the data points lie below this value.
+
+---
+
+### 4. Interquartile Range (IQR)
+
+The **Interquartile Range (IQR)** is the difference between the third and first quartiles. It measures the spread of the middle 50% of the data, excluding outliers.
+
+#### Formula:
+$$ \text{IQR} = Q3 - Q1 $$  
+
+---
+
+### 5. Outliers and Quartiles
+
+- **Outliers** can be detected using the **IQR**. Any data point that lies outside the range:
+  $$ Q1 - 1.5 \times \text{IQR} \quad \text{or} \quad Q3 + 1.5 \times \text{IQR} $$  
+  is considered an outlier.
+
+---
+
+### 6. Example of Quartiles Calculation
+
+Consider the dataset:  
+\[ 5, 8, 12, 15, 18, 20, 22, 25, 30, 35, 40 \]
+
+#### Step-by-Step Calculation:
+
+1. **Sort the Data**:  
+   The data is already sorted in ascending order:  
+   \[ 5, 8, 12, 15, 18, 20, 22, 25, 30, 35, 40 \]
+
+2. **Find the Median (Q2)**:  
+   The median is the middle value. For an odd number of data points, the middle value is the 6th value.  
+   $$ Q2 = 20 $$
+
+3. **Find Q1**:  
+   The lower half of the data (before Q2) is:  
+   \[ 5, 8, 12, 15, 18 \]  
+   The median of this subset is:  
+   $$ Q1 = 12 $$
+
+4. **Find Q3**:  
+   The upper half of the data (after Q2) is:  
+   \[ 22, 25, 30, 35, 40 \]  
+   The median of this subset is:  
+   $$ Q3 = 30 $$
+
+#### Results:
+- $$ Q1 = 12 $$
+- $$ Q2 = 20 $$
+- $$ Q3 = 30 $$
+
+---
+
+### 7. Summary Table
+
+| Quartile            | **Definition**                              | **Position in Data Set**    |
+|---------------------|---------------------------------------------|-----------------------------|
+| **Q1 (First Quartile)**   | 25th percentile, median of the lower half     | 25% of the data is below Q1 |
+| **Q2 (Second Quartile)**  | Median of the dataset, 50th percentile       | 50% of the data is below Q2 |
+| **Q3 (Third Quartile)**   | 75th percentile, median of the upper half     | 75% of the data is below Q3 |
+
+---
+
+### 9. Applications of Quartiles
+
+1. **Statistical Analysis**:  
+   Quartiles help understand the distribution of data, especially when analyzing the spread of data or comparing different datasets.
+
+2. **Outlier Detection**:  
+   Quartiles are used to identify potential outliers in a dataset using the IQR method.
+
+3. **Data Visualisation**:  
+   Box plots use quartiles to visually represent the spread and central tendency of data.
+
+---
+
+**💡 TIP:** Quartiles provide more detailed insights into the spread of data than just the range or mean. They are particularly useful when the data is not symmetrically distributed.
+
+**📝 NOTE:** The IQR is a robust measure of spread, as it is less affected by extreme values than the range.
+
+**⚠️ CAUTION:** When working with very small datasets, the quartile values may not be as reliable.
+
+---
+
+## Quartile Deviation and Mean Deviation
+
+---
+
+### 1. Quartile Deviation (QD)
+
+---
+
+#### 1.1 Definition
+
+**Quartile Deviation (QD)** is a measure of statistical dispersion, which represents half of the **Interquartile Range (IQR)**. It gives an idea of how spread out the middle 50% of the data is. It is particularly useful for identifying the variability in the central part of a dataset, avoiding the influence of extreme values (outliers).
+
+#### Formula for Quartile Deviation:
+$$ \text{QD} = \frac{Q3 - Q1}{2} $$  
+
+Where:
+- $$ Q3 $$ = Third Quartile (75th percentile)
+- $$ Q1 $$ = First Quartile (25th percentile)
+
+---
+
+#### 1.2 Interpretation
+
+- **Higher QD**: Indicates greater spread or variability in the middle 50% of the data.
+- **Lower QD**: Indicates lesser spread or consistency in the middle 50% of the data.
+
+The quartile deviation is always non-negative and is expressed in the same units as the original data.
+
+---
+
+#### 1.3 Advantages of Quartile Deviation
+
+1. **Resistant to Outliers**:  
+   Unlike the range, which is heavily influenced by extreme values, the quartile deviation only considers the middle 50% of the data, making it less sensitive to outliers.
+   
+2. **Simpler Interpretation**:  
+   As it is based on the central data points, it provides a clear understanding of the spread in the middle range.
+
+3. **Usefulness in Skewed Data**:  
+   The quartile deviation is effective in datasets that are skewed or asymmetrical because it focuses on the spread of the middle half of the data.
+
+---
+
+#### 1.4 Example of Quartile Deviation
+
+Consider the dataset:  
+\[ 5, 8, 12, 15, 18, 20, 22, 25, 30, 35, 40 \]
+
+From the previous calculations:
+- $$ Q1 = 12 $$
+- $$ Q3 = 30 $$
+
+Using the formula:
+$$ \text{QD} = \frac{30 - 12}{2} = 9 $$
+
+Thus, the **Quartile Deviation (QD)** is 9.
+
+---
+
+### 2. Mean Deviation (MD)
+
+---
+
+#### 2.1 Definition
+
+**Mean Deviation (MD)** is a measure of the average deviation of each data point from the **mean** of the dataset. It quantifies the dispersion of data by calculating the average of absolute deviations from the mean.
+
+#### Formula for Mean Deviation:
+$$ \text{MD} = \frac{1}{N} \sum_{i=1}^{N} |X_i - \mu| $$  
+
+Where:
+- $$ X_i $$ = Each data point
+- $$ \mu $$ = Mean of the dataset
+- $$ N $$ = Number of data points in the dataset
+
+---
+
+#### 2.2 Interpretation
+
+- **Higher MD**: Indicates a greater average deviation from the mean, suggesting higher variability in the data.
+- **Lower MD**: Indicates that the data points are closer to the mean, suggesting lower variability or more consistency.
+
+---
+
+#### 2.3 Steps to Calculate Mean Deviation
+
+1. **Find the Mean**:  
+   Calculate the mean ($$ \mu $$) of the dataset.
+   
+2. **Calculate the Absolute Deviations**:  
+   For each data point, subtract the mean and take the absolute value.
+
+3. **Find the Average of the Absolute Deviations**:  
+   Sum the absolute deviations and divide by the total number of data points to obtain the mean deviation.
+
+---
+
+#### 2.4 Example of Mean Deviation
+
+Consider the dataset:  
+\[ 5, 8, 12, 15, 18, 20, 22, 25, 30, 35, 40 \]
+
+1. **Find the Mean**:  
+   $$ \mu = \frac{5 + 8 + 12 + 15 + 18 + 20 + 22 + 25 + 30 + 35 + 40}{11} = 20.3 $$
+
+2. **Calculate the Absolute Deviations**:
+
+| Data Point $$ X_i $$ | Absolute Deviation $$ \|X_i - \mu\| $$ |
+|----------------------|-----------------------|
+| 5                    | 15.3                  |
+| 8                    | 12.3                  |
+| 12                   | 8.3                   |
+| 15                   | 5.3                   |
+| 18                   | 2.3                   |
+| 20                   | 0.3                   |
+| 22                   | 1.7                   |
+| 25                   | 4.7                   |
+| 30                   | 9.7                   |
+| 35                   | 14.7                  |
+| 40                   | 19.7                  |
+
+3. **Find the Average of the Absolute Deviations**:
+$$ \text{MD} = \frac{15.3 + 12.3 + 8.3 + 5.3 + 2.3 + 0.3 + 1.7 + 4.7 + 9.7 + 14.7 + 19.7}{11} = 8.5 $$
+
+Thus, the **Mean Deviation (MD)** is 8.5.
+
+---
+
+### 3. Comparison of Quartile Deviation and Mean Deviation
+
+| Measure                   | **Definition**                                 | **Formula**                                   | **Data Sensitivity**          | **Units**   |
+|---------------------------|------------------------------------------------|-----------------------------------------------|-------------------------------|-------------|
+| **Quartile Deviation (QD)**| Measures the spread of the middle 50% of the data | $$ QD = \frac{Q3 - Q1}{2} $$                  | Less sensitive to outliers     | Same as data |
+| **Mean Deviation (MD)**    | Measures the average deviation from the mean     | $$ MD = \frac{1}{N} \sum_{i=1}^{N} $$ $$ \|X_i - \mu\|$$ | Sensitive to all data points | Same as data |
+
+---
+
+### 4. Applications of Quartile Deviation and Mean Deviation
+
+1. **Quartile Deviation**:  
+   - Used in situations where the focus is on the central part of the data (middle 50%), such as in skewed distributions or when extreme values need to be excluded.
+   - Common in **descriptive statistics**, especially when comparing datasets with outliers.
+
+2. **Mean Deviation**:  
+   - Used when an overall measure of variability is needed, including all data points in the dataset.
+   - Common in fields such as **finance** and **engineering** where variability needs to be quantified.
+
+---
+
+**💡 TIP:** The quartile deviation provides a robust measure of spread, while the mean deviation considers the spread of all data points from the mean, making it more sensitive to extreme values.
+
+**📝 NOTE:** Quartile deviation is less influenced by outliers, while the mean deviation gives an overall measure of variability.
+
+**⚠️ CAUTION:** When working with highly skewed data, quartile deviation might be more informative than mean deviation, as it focuses on the central range of data.
+
+---
+
