@@ -1,4 +1,11 @@
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
@@ -53,14 +60,16 @@ export function UserTable({ users, onToggleBlock }: UserTableProps) {
             <TableCell>{user.name || "N/A"}</TableCell>
             <TableCell>{user.email}</TableCell>
             <TableCell>{user.planTier ? "Yes" : "No"}</TableCell>
-            <TableCell>{user.planTier ? user.phoneNumber || "N/A" : "N/A"}</TableCell>
+            <TableCell>{user.phoneNumber || "N/A"}</TableCell>{" "}
             <TableCell>{user.university || "N/A"}</TableCell>
             <TableCell>{user.year || "N/A"}</TableCell>
             <TableCell>{user.semesters?.join(", ") || "N/A"}</TableCell>
             <TableCell>
               <Button
                 variant={user.Blocked ? "default" : "destructive"}
-                onClick={() => onToggleBlock(user._id, user.Blocked ? "unblock" : "block")}
+                onClick={() =>
+                  onToggleBlock(user._id, user.Blocked ? "unblock" : "block")
+                }
               >
                 {user.Blocked ? "Unblock" : "Block"}
               </Button>

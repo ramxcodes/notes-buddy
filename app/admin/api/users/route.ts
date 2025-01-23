@@ -18,12 +18,17 @@ export async function GET(req: NextRequest) {
         subscriptionStartDate: 1,
         subscriptionEndDate: 1,
         Blocked: 1,
+        phoneNumber: 1,
+        image: 1,
       })
       .toArray();
 
     return NextResponse.json(users);
   } catch (error) {
     console.error("Error fetching users:", error);
-    return NextResponse.json({ error: "Failed to fetch users" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to fetch users" },
+      { status: 500 }
+    );
   }
 }
