@@ -10,44 +10,48 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.AUTH_GOOGLE_ID as string,
       clientSecret: process.env.AUTH_GOOGLE_SECRET as string,
+      allowDangerousEmailAccountLinking: true,
     }),
   ],
   session: {
     strategy: "jwt",
   },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, account }) {
       const db = await clientPromise;
       const usersCollection = db.db().collection("users");
 
       if (user) {
         const email = user.email || token.email;
-        const dbUser = await usersCollection.findOne({ email });
+
+        let dbUser = await usersCollection.findOne({ email });
 
         if (!dbUser) {
-          // Create a new user if not found
-          await usersCollection.insertOne({
+          const result = await usersCollection.insertOne({
             email,
             name: user.name || token.name || "",
             image: user.image || token.picture || "",
             Blocked: false,
             createdAt: new Date(),
           });
-        } else if (!("Blocked" in dbUser)) {
-          // Ensure Blocked field exists
-          await usersCollection.updateOne(
-            { email },
-            { $set: { Blocked: false } }
-          );
+          dbUser = { _id: result.insertedId, Blocked: false };
+        } else {
+          if (
+            account &&
+            (!dbUser.provider || dbUser.provider !== account.provider)
+          ) {
+            await usersCollection.updateOne(
+              { email },
+              { $set: { provider: account.provider } }
+            );
+          }
         }
 
-        // Update token with user details
-        token.id = dbUser?._id?.toString() || token.id;
-        token.Blocked = dbUser?.Blocked ?? false;
+        token.id = dbUser._id?.toString() || token.id;
+        token.Blocked = dbUser.Blocked ?? false;
         token.email = email;
         token.name = user.name || token.name;
 
-        // Admin check
         const adminEmails =
           process.env.ADMIN_EMAILS?.split(",").map((e) => e.trim()) || [];
         token.isAdmin = adminEmails.includes(email || "");
@@ -55,6 +59,7 @@ export const authOptions: NextAuthOptions = {
 
       return token;
     },
+
     async session({ session, token }) {
       session.user = {
         id: token.id as string,
