@@ -1,9 +1,14 @@
 ---
 title: "Unit 1: Design and Analysis of Algorithms"
-description: Overview of Unit 1 in Design and Analysis of Algorithms
+description: Algorithms, Analysis, Performance issues Time and Space complexity; Asymptotic Notations. Mathematical preliminaries functions & their growth rates; Recurrence relations, Methods for solving recurrences. Elementary Sorting techniques and its analysis Selection, Bubble, Insertion sort 
 date: 2025-01-19
-tags: ["Design and Analysis of Algorithms", "6th Semester", "3rd Year"]
+tags: ["DAA", "6th Semester", "3rd Year", "medicaps university"]
 published: true
+metadata:
+  university: "Medicaps University"
+  degree: "B Tech"
+  semester: "6th Semester"
+  subject: "DAA"
 ---
 ## Algorithms  
 
@@ -65,11 +70,11 @@ The analysis of algorithms is the process of determining the efficiency of an al
 
 ### 4. **Metrics for Algorithm Analysis**  
 #### (a) **Time Complexity**  
-- **Definition**: The time taken by an algorithm to complete as a function of input size \(n\).  
-- Expressed using Big-O notation (e.g., \(O(n)\), \(O(n^2)\)).  
+- **Definition**: The time taken by an algorithm to complete as a function of input size $$n$$.  
+- Expressed using Big-O notation (e.g., $$O(n)$$, $$O(n^2)$$).  
 
 #### (b) **Space Complexity**  
-- **Definition**: The amount of memory required by an algorithm as a function of input size \(n\).  
+- **Definition**: The amount of memory required by an algorithm as a function of input size $$n$$.  
 - Includes both fixed and variable memory allocations.  
 
 💡 **TIP**: Focus on algorithms with both low time and space complexities for practical applications.
@@ -79,10 +84,10 @@ The analysis of algorithms is the process of determining the efficiency of an al
 ### 5. **Big-O Notation**  
 - **Definition**: Represents the upper bound of an algorithm’s runtime, indicating its worst-case performance.  
 - Common complexities:  
-  - \(O(1)\): Constant time.  
-  - \(O(\log n)\): Logarithmic time.  
-  - \(O(n)\): Linear time.  
-  - \(O(n^2)\): Quadratic time.  
+  - $$O(1)$$: Constant time.  
+  - $$O(\log n)$$: Logarithmic time.  
+  - $$O(n)$$: Linear time.  
+  - $$O(n^2)$$: Quadratic time.  
 
 ---
 
@@ -93,8 +98,8 @@ The analysis of algorithms is the process of determining the efficiency of an al
 ---
 
 ### 7. **Steps in Algorithm Analysis**  
-1. Identify the input size \(n\).  
-2. Count the basic operations performed as a function of \(n\).  
+1. Identify the input size $$n$$.  
+2. Count the basic operations performed as a function of $$n$$.  
 3. Express the operation count using mathematical notations.  
 4. Simplify the expression to determine the time and space complexity.  
 
@@ -112,7 +117,7 @@ Efficient algorithms optimise both time and space to ensure optimal performance,
 ---
 
 ### 2. **Time Complexity**  
-- **Definition**: Measures the number of basic operations executed by an algorithm as a function of the input size (\(n\)).  
+- **Definition**: Measures the number of basic operations executed by an algorithm as a function of the input size ($$n$$).  
 - **Factors Affecting Time Complexity**:  
   - Size and nature of the input.  
   - Type of operations performed.  
@@ -120,20 +125,20 @@ Efficient algorithms optimise both time and space to ensure optimal performance,
 
 #### (a) **Asymptotic Notations**:  
 Used to express the growth rate of time complexity:  
-- \(O(n)\) (Big-O): Worst-case performance.  
-- \(\Omega(n)\) (Omega): Best-case performance.  
-- \(\Theta(n)\) (Theta): Average-case performance.
+- $$O(n)$$ (Big-O): Worst-case performance.  
+- $$\Omega(n)$$ (Omega): Best-case performance.  
+- $$\Theta(n)$$ (Theta): Average-case performance.
 
 #### (b) **Common Time Complexities**:  
-- **Constant Time** (\(O(1)\)): Independent of input size.  
-- **Linear Time** (\(O(n)\)): Increases proportionally with input size.  
-- **Quadratic Time** (\(O(n^2)\)): Performance degrades rapidly as input size increases.  
-- **Logarithmic Time** (\(O(\log n)\)): Efficient for large inputs.  
+- **Constant Time** ($$O(1)$$): Independent of input size.  
+- **Linear Time** ($$O(n)$$): Increases proportionally with input size.  
+- **Quadratic Time** ($$O(n^2)$$): Performance degrades rapidly as input size increases.  
+- **Logarithmic Time** ($$O(\log n)$$): Efficient for large inputs.  
 
 ---
 
 ### 3. **Space Complexity**  
-- **Definition**: Quantifies the amount of memory used by an algorithm as a function of the input size (\(n\)).  
+- **Definition**: Quantifies the amount of memory used by an algorithm as a function of the input size ($$n$$).  
 - **Components of Space Complexity**:  
   - **Fixed Part**: Memory required for constants, program code, and variables.  
   - **Variable Part**: Memory required during execution (e.g., recursion stack, temporary variables).
@@ -159,7 +164,7 @@ Used to express the growth rate of time complexity:
 ## Asymptotic Notations  
 
 ### 1. **Definition**  
-Asymptotic notations describe the growth rate of an algorithm's time or space complexity as the input size (\(n\)) approaches infinity. These notations provide a mathematical way to evaluate and compare the efficiency of algorithms.  
+Asymptotic notations describe the growth rate of an algorithm's time or space complexity as the input size ($$n$$) approaches infinity. These notations provide a mathematical way to evaluate and compare the efficiency of algorithms.  
 
 ---
 
@@ -171,23 +176,23 @@ Asymptotic notations describe the growth rate of an algorithm's time or space co
 
 ### 3. **Types of Asymptotic Notations**  
 
-#### (a) **Big-O Notation (\(O\))**  
+#### (a) **Big-O Notation ($$O$$)**  
 - **Definition**: Represents the upper bound of an algorithm's growth rate, focusing on the worst-case performance.  
-- **Interpretation**: An algorithm is \(O(f(n))\) if it does not take more than \(c \cdot f(n)\) time for sufficiently large \(n\).  
+- **Interpretation**: An algorithm is $$O(f(n))$$ if it does not take more than $$c \cdot f(n)$$ time for sufficiently large $$n$$.  
 - **Usage**: Ensures an algorithm performs within a specified time limit.  
 
 ---
 
-#### (b) **Omega Notation (\(\Omega\))**  
+#### (b) **Omega Notation ($$\Omega$$)**  
 - **Definition**: Represents the lower bound of an algorithm's growth rate, focusing on the best-case performance.  
-- **Interpretation**: An algorithm is \(\Omega(f(n))\) if it takes at least \(c \cdot f(n)\) time for sufficiently large \(n\).  
+- **Interpretation**: An algorithm is $$\Omega(f(n))$$ if it takes at least $$c \cdot f(n)$$ time for sufficiently large $$n$$.  
 - **Usage**: Guarantees a minimum performance level.  
 
 ---
 
-#### (c) **Theta Notation (\(\Theta\))**  
+#### (c) **Theta Notation ($$\Theta$$)**  
 - **Definition**: Represents both the upper and lower bounds of an algorithm's growth rate, focusing on the average-case performance.  
-- **Interpretation**: An algorithm is \(\Theta(f(n))\) if its time complexity is bounded both above and below by \(c_1 \cdot f(n)\) and \(c_2 \cdot f(n)\).  
+- **Interpretation**: An algorithm is $$\Theta(f(n))$$ if its time complexity is bounded both above and below by $$c_1 \cdot f(n)$$ and $$c_2 \cdot f(n)$$.  
 - **Usage**: Provides the most precise growth rate of an algorithm.  
 
 ---
@@ -205,9 +210,9 @@ Asymptotic notations describe the growth rate of an algorithm's time or space co
 
 | Notation      | Description            | Focus      | Example Usage       |  
 |---------------|------------------------|------------|---------------------|  
-| Big-O (\(O\)) | Upper bound (worst case) | Efficiency | \(O(n^2)\)          |  
-| Omega (\(\Omega\)) | Lower bound (best case) | Guarantee  | \(\Omega(n)\)       |  
-| Theta (\(\Theta\)) | Tight bound (average case) | Precision  | \(\Theta(n \log n)\)|  
+| Big-O ($$O$$) | Upper bound (worst case) | Efficiency | $$O(n^2)$$          |  
+| Omega ($$\Omega$$) | Lower bound (best case) | Guarantee  | $$\Omega(n)$$       |  
+| Theta ($$\Theta$$) | Tight bound (average case) | Precision  | $$\Theta(n \log n)$$|  
 
 ## Mathematical Preliminaries: Functions & Their Growth Rates  
 
@@ -217,31 +222,31 @@ Functions and their growth rates are fundamental to analysing algorithm performa
 ---
 
 ### 2. **Functions**  
-- A **function** \( f(n) \) maps input size \( n \) to the amount of time or space an algorithm consumes.  
+- A **function** $$ f(n) $$ maps input size $$ n $$ to the amount of time or space an algorithm consumes.  
 - Common types of functions used in algorithm analysis include:  
-  - **Constant Function**: \( f(n) = c \)  
-  - **Linear Function**: \( f(n) = n \)  
-  - **Quadratic Function**: \( f(n) = n^2 \)  
-  - **Logarithmic Function**: \( f(n) = \log n \)  
-  - **Exponential Function**: \( f(n) = 2^n \)  
+  - **Constant Function**: $$ f(n) = c $$  
+  - **Linear Function**: $$ f(n) = n $$  
+  - **Quadratic Function**: $$ f(n) = n^2 $$  
+  - **Logarithmic Function**: $$ f(n) = \log n $$  
+  - **Exponential Function**: $$ f(n) = 2^n $$  
 
 ---
 
 ### 3. **Growth Rates**  
-Growth rates describe how a function increases as the input size \( n \) becomes large. They help in predicting the scalability and efficiency of algorithms.  
+Growth rates describe how a function increases as the input size $$ n $$ becomes large. They help in predicting the scalability and efficiency of algorithms.  
 
 #### (a) **Dominance of Growth Rates**  
 The growth rates of functions can be ranked as follows (from slowest to fastest):  
-1. \( O(1) \): Constant  
-2. \( O(\log n) \): Logarithmic  
-3. \( O(n) \): Linear  
-4. \( O(n \log n) \): Log-linear  
-5. \( O(n^2) \): Quadratic  
-6. \( O(2^n) \): Exponential  
+1. $$ O(1) $$: Constant  
+2. $$ O(\log n) $$: Logarithmic  
+3. $$ O(n) $$: Linear  
+4. $$ O(n \log n) $$: Log-linear  
+5. $$ O(n^2) $$: Quadratic  
+6. $$ O(2^n) $$: Exponential  
 
 #### (b) **Implication**  
 - Algorithms with slower growth rates are more efficient for large inputs.  
-- For example, \( O(\log n) \) grows much slower than \( O(n^2) \), making logarithmic algorithms more scalable.
+- For example, $$ O(\log n) $$ grows much slower than $$ O(n^2) $$, making logarithmic algorithms more scalable.
 
 ---
 
@@ -249,11 +254,11 @@ The growth rates of functions can be ranked as follows (from slowest to fastest)
 
 | **Function Type** | **Expression**       | **Growth Description**                       |  
 |--------------------|----------------------|---------------------------------------------|  
-| Constant           | \( c \)             | Remains the same regardless of input size.  |  
-| Linear             | \( n \)             | Grows proportionally with input size.       |  
-| Quadratic          | \( n^2 \)           | Grows rapidly with the square of input size.|  
-| Logarithmic        | \( \log n \)        | Grows slowly as input size increases.       |  
-| Exponential        | \( 2^n \)           | Grows extremely fast; impractical for large inputs. |  
+| Constant           | $$ c $$             | Remains the same regardless of input size.  |  
+| Linear             | $$ n $$             | Grows proportionally with input size.       |  
+| Quadratic          | $$ n^2 $$           | Grows rapidly with the square of input size.|  
+| Logarithmic        | $$ \log n $$        | Grows slowly as input size increases.       |  
+| Exponential        | $$ 2^n $$           | Grows extremely fast; impractical for large inputs. |  
 
 ---
 
@@ -273,29 +278,29 @@ A recurrence relation expresses the running time of an algorithm as a function o
 
 ### 2. **General Form**  
 A recurrence relation is typically written as:  
-\[
+$$
 T(n) = g(n) + h(n) \cdot T(f(n))
-\]  
+$$  
 Where:  
-- \( T(n) \): Time complexity for input size \( n \).  
-- \( g(n) \): Additional work done outside recursive calls (e.g., splitting, merging).  
-- \( h(n) \): Number of recursive calls.  
-- \( f(n) \): Size of the input in recursive calls.  
+- $$ T(n) $$: Time complexity for input size $$ n $$.  
+- $$ g(n) $$: Additional work done outside recursive calls (e.g., splitting, merging).  
+- $$ h(n) $$: Number of recursive calls.  
+- $$ f(n) $$: Size of the input in recursive calls.  
 
 ---
 
 ### 3. **Examples of Recurrence Relations**  
 
 #### (a) **Linear Recurrence**  
-\[
+$$
 T(n) = T(n-1) + c
-\]  
+$$  
 - Represents algorithms with one recursive call that reduces the problem size by 1.  
 
 #### (b) **Divide-and-Conquer Recurrence**  
-\[
+$$
 T(n) = a \cdot T\left(\frac{n}{b}\right) + g(n)
-\]  
+$$  
 - Common in divide-and-conquer algorithms like merge sort.  
 
 ---
@@ -310,18 +315,18 @@ T(n) = a \cdot T\left(\frac{n}{b}\right) + g(n)
 
 #### (c) **Master Theorem**  
 Used to solve divide-and-conquer recurrences of the form:  
-\[
+$$
 T(n) = a \cdot T\left(\frac{n}{b}\right) + g(n)
-\]  
+$$  
 Where:  
-- \( a \): Number of subproblems.  
-- \( b \): Factor by which the problem size is divided.  
-- \( g(n) \): Cost of dividing and merging.  
+- $$ a $$: Number of subproblems.  
+- $$ b $$: Factor by which the problem size is divided.  
+- $$ g(n) $$: Cost of dividing and merging.  
 
-The solution depends on the comparison of \( g(n) \) with \( n^{\log_b a} \):  
-1. If \( g(n) = O(n^{\log_b a - \epsilon}) \), \( T(n) = \Theta(n^{\log_b a}) \).  
-2. If \( g(n) = \Theta(n^{\log_b a}) \), \( T(n) = \Theta(n^{\log_b a} \log n) \).  
-3. If \( g(n) = \Omega(n^{\log_b a + \epsilon}) \), \( T(n) = \Theta(g(n)) \).  
+The solution depends on the comparison of $$ g(n) $$ with $$ n^{\log_b a} $$:  
+1. If $$ g(n) = O(n^{\log_b a - \epsilon}) $$, $$ T(n) = \Theta(n^{\log_b a}) $$.  
+2. If $$ g(n) = \Theta(n^{\log_b a}) $$, $$ T(n) = \Theta(n^{\log_b a} \log n) $$.  
+3. If $$ g(n) = \Omega(n^{\log_b a + \epsilon}) $$, $$ T(n) = \Theta(g(n)) $$.  
 
 ---
 
@@ -364,18 +369,18 @@ Recurrence relations are equations that define sequences based on earlier terms.
 
 #### (c) **Master Theorem**  
 - **Form**:  
-  \[
+  $$
   T(n) = a \cdot T\left(\frac{n}{b}\right) + g(n)
-  \]  
+  $$  
   Where:  
-  - \( a \): Number of subproblems.  
-  - \( b \): Division factor.  
-  - \( g(n) \): Cost of dividing and combining.  
+  - $$ a $$: Number of subproblems.  
+  - $$ b $$: Division factor.  
+  - $$ g(n) $$: Cost of dividing and combining.  
 - **Solution**:  
-  - Compare \( g(n) \) with \( n^{\log_b a} \):  
-    1. If \( g(n) = O(n^{\log_b a - \epsilon}) \), \( T(n) = \Theta(n^{\log_b a}) \).  
-    2. If \( g(n) = \Theta(n^{\log_b a}) \), \( T(n) = \Theta(n^{\log_b a} \log n) \).  
-    3. If \( g(n) = \Omega(n^{\log_b a + \epsilon}) \), \( T(n) = \Theta(g(n)) \).  
+  - Compare $$ g(n) $$ with $$ n^{\log_b a} $$:  
+    1. If $$ g(n) = O(n^{\log_b a - \epsilon}) $$, $$ T(n) = \Theta(n^{\log_b a}) $$.  
+    2. If $$ g(n) = \Theta(n^{\log_b a}) $$, $$ T(n) = \Theta(n^{\log_b a} \log n) $$.  
+    3. If $$ g(n) = \Omega(n^{\log_b a + \epsilon}) $$, $$ T(n) = \Theta(g(n)) $$.  
 - **Usage**:  
   - Best suited for divide-and-conquer algorithms.  
 
@@ -435,22 +440,22 @@ Selection Sort is a simple comparison-based sorting algorithm. It repeatedly sel
 ---
 
 ### 3. **Algorithm**  
-1. For \( i = 0 \) to \( n-1 \):  
-   - Find the index of the minimum element in the unsorted portion (from \( i \) to \( n-1 \)).  
-   - Swap the minimum element with the element at index \( i \).  
+1. For $$ i = 0 $$ to $$ n-1 $$:  
+   - Find the index of the minimum element in the unsorted portion (from $$ i $$ to $$ n-1 $$).  
+   - Swap the minimum element with the element at index $$ i $$.  
 
 ---
 
 ### 4. **Analysis of Selection Sort**  
 
 #### (a) **Time Complexity**  
-- **Best Case**: \( O(n^2) \)  
-- **Average Case**: \( O(n^2) \)  
-- **Worst Case**: \( O(n^2) \)  
-  - In all cases, the algorithm makes \( n(n-1)/2 \) comparisons, regardless of the initial order.  
+- **Best Case**: $$ O(n^2) $$  
+- **Average Case**: $$ O(n^2) $$  
+- **Worst Case**: $$ O(n^2) $$  
+  - In all cases, the algorithm makes $$ n(n-1)/2 $$ comparisons, regardless of the initial order.  
 
 #### (b) **Space Complexity**  
-- **Auxiliary Space**: \( O(1) \)  
+- **Auxiliary Space**: $$ O(1) $$  
   - Selection Sort is an in-place sorting algorithm.  
 
 #### (c) **Stability**  
@@ -470,7 +475,7 @@ Selection Sort is a simple comparison-based sorting algorithm. It repeatedly sel
 ---
 
 ### 6. **Disadvantages**  
-- Inefficient on large datasets due to \( O(n^2) \) time complexity.  
+- Inefficient on large datasets due to $$ O(n^2) $$ time complexity.  
 - Not suitable for datasets where stability is critical.  
 
 ---
@@ -493,25 +498,25 @@ Bubble Sort is a simple comparison-based sorting algorithm. It repeatedly steps 
 ---
 
 ### 3. **Algorithm**
-1. For \( i = 0 \) to \( n-1 \):  
-   - For \( j = 0 \) to \( n-i-2 \):  
-     - If the element at index \( j \) is greater than the element at index \( j+1 \), swap them.  
-   - After the \( i \)-th iteration, the largest element is placed at the correct position.
+1. For $$ i = 0 $$ to $$ n-1 $$:  
+   - For $$ j = 0 $$ to $$ n-i-2 $$:  
+     - If the element at index $$ j $$ is greater than the element at index $$ j+1 $$, swap them.  
+   - After the $$ i $$-th iteration, the largest element is placed at the correct position.
 
 ---
 
 ### 4. **Analysis of Bubble Sort**
 
 #### (a) **Time Complexity**
-- **Best Case**: \( O(n) \)  
+- **Best Case**: $$ O(n) $$  
   - Occurs when the array is already sorted. Only one pass is needed to check that no swaps are required.
-- **Average Case**: \( O(n^2) \)  
+- **Average Case**: $$ O(n^2) $$  
   - Occurs for randomly ordered elements, where each element may require comparisons with every other element.
-- **Worst Case**: \( O(n^2) \)  
+- **Worst Case**: $$ O(n^2) $$  
   - Occurs when the array is sorted in reverse order, and each element needs to be compared and swapped multiple times.
 
 #### (b) **Space Complexity**
-- **Auxiliary Space**: \( O(1) \)  
+- **Auxiliary Space**: $$ O(1) $$  
   - Bubble Sort is an in-place sorting algorithm.
 
 #### (c) **Stability**
@@ -531,7 +536,7 @@ Bubble Sort is a simple comparison-based sorting algorithm. It repeatedly steps 
 ---
 
 ### 6. **Disadvantages**
-- Inefficient on large datasets due to \( O(n^2) \) time complexity.
+- Inefficient on large datasets due to $$ O(n^2) $$ time complexity.
 - Not suitable for practical use on large or unordered datasets due to its poor time efficiency.
 
 ---
@@ -555,8 +560,8 @@ Insertion Sort is a simple comparison-based sorting algorithm. It builds the fin
 ---
 
 ### 3. **Algorithm**
-1. For \( i = 1 \) to \( n-1 \):
-   - Set the current element as `key` (i.e., element at index \( i \)).
+1. For $$ i = 1 $$ to $$ n-1 $$:
+   - Set the current element as `key` (i.e., element at index $$ i $$).
    - Compare `key` with the elements before it and shift elements greater than `key` one position to the right.
    - Insert `key` in the correct position.
 
@@ -565,15 +570,15 @@ Insertion Sort is a simple comparison-based sorting algorithm. It builds the fin
 ### 4. **Analysis of Insertion Sort**
 
 #### (a) **Time Complexity**
-- **Best Case**: \( O(n) \)  
+- **Best Case**: $$ O(n) $$  
   - Occurs when the array is already sorted, as each element is inserted without shifting any elements.
-- **Average Case**: \( O(n^2) \)  
+- **Average Case**: $$ O(n^2) $$  
   - Occurs when the array is in random order and requires comparisons and shifting for each element.
-- **Worst Case**: \( O(n^2) \)  
+- **Worst Case**: $$ O(n^2) $$  
   - Occurs when the array is sorted in reverse order and requires maximum shifting and comparisons.
 
 #### (b) **Space Complexity**
-- **Auxiliary Space**: \( O(1) \)  
+- **Auxiliary Space**: $$ O(1) $$  
   - Insertion Sort is an in-place sorting algorithm.
 
 #### (c) **Stability**
@@ -594,7 +599,7 @@ Insertion Sort is a simple comparison-based sorting algorithm. It builds the fin
 ---
 
 ### 6. **Disadvantages**
-- Inefficient for large datasets due to \( O(n^2) \) time complexity.
+- Inefficient for large datasets due to $$ O(n^2) $$ time complexity.
 - Performs poorly when the array is unsorted or very large.
 
 ---

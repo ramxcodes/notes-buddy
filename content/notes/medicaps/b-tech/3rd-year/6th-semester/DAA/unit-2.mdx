@@ -1,9 +1,14 @@
 ---
 title: "Unit 2: Design and Analysis of Algorithms"
-description: Understanding and analyzing algorithms, their complexities, and common design techniques.
+description: Advance sorting techniques and its analysis Heap sort, Radix sort and Bucket sort, Divide and Conquer techniques and its analysis - Binary search, Merge Sort, Quick sort, Strassen’s Matrix multiplication. 
 date: 2025-01-19
-tags: ["Design and Analysis of Algorithms", "6th Semester", "3rd Year"]
+tags: ["DAA", "6th Semester", "3rd Year", "medicaps university"]
 published: true
+metadata:
+  university: "Medicaps University"
+  degree: "B Tech"
+  semester: "6th Semester"
+  subject: "DAA"
 ---
 ## Heap Sort
 
@@ -22,7 +27,7 @@ Heap Sort is a comparison-based sorting algorithm that uses a binary heap data s
 
 ### 3. **Algorithm**
 1. Build a max heap from the input data.
-2. For \( i = n-1 \) down to \( 1 \):
+2. For $$ i = n-1 $$ down to $$ 1 $$:
    - Swap the root (maximum element) with the last element of the heap.
    - Decrease the heap size by 1.
    - Heapify the root element to maintain the max heap property.
@@ -32,15 +37,15 @@ Heap Sort is a comparison-based sorting algorithm that uses a binary heap data s
 ### 4. **Analysis of Heap Sort**
 
 #### (a) **Time Complexity**
-- **Best Case**: \( O(n \log n) \)  
-  - Building the heap takes \( O(n) \) time, and each heapification operation takes \( O(\log n) \).
-- **Average Case**: \( O(n \log n) \)  
-  - The time complexity remains \( O(n \log n) \) regardless of the input distribution.
-- **Worst Case**: \( O(n \log n) \)  
-  - The time complexity is \( O(n \log n) \) even for the worst-case scenario.
+- **Best Case**: $$ O(n \log n) $$  
+  - Building the heap takes $$ O(n) $$ time, and each heapification operation takes $$ O(\log n) $$.
+- **Average Case**: $$ O(n \log n) $$  
+  - The time complexity remains $$ O(n \log n) $$ regardless of the input distribution.
+- **Worst Case**: $$ O(n \log n) $$  
+  - The time complexity is $$ O(n \log n) $$ even for the worst-case scenario.
 
 #### (b) **Space Complexity**
-- **Auxiliary Space**: \( O(1) \)  
+- **Auxiliary Space**: $$ O(1) $$  
   - Heap Sort is an in-place sorting algorithm, requiring no additional space apart from the input array.
 
 #### (c) **Stability**
@@ -48,12 +53,12 @@ Heap Sort is a comparison-based sorting algorithm that uses a binary heap data s
   - Heap Sort is not stable, meaning that equal elements might not retain their original relative order.
 
 #### (d) **Adaptability**
-- Heap Sort does not adapt to the input data as efficiently as algorithms like Insertion Sort or Bubble Sort. It always performs \( O(n \log n) \) regardless of whether the array is partially sorted.
+- Heap Sort does not adapt to the input data as efficiently as algorithms like Insertion Sort or Bubble Sort. It always performs $$ O(n \log n) $$ regardless of whether the array is partially sorted.
 
 ---
 
 ### 5. **Advantages**
-- Efficient for large datasets with \( O(n \log n) \) time complexity.
+- Efficient for large datasets with $$ O(n \log n) $$ time complexity.
 - Does not require additional memory, as it sorts in-place.
 - Suitable for applications that need to maintain a dynamically changing dataset, such as priority queues.
 
@@ -82,7 +87,7 @@ Radix Sort is a non-comparative sorting algorithm that sorts numbers by processi
 ---
 
 ### 3. **Algorithm**
-1. Find the maximum number in the list to determine the number of digits (let's call this \(d\)).
+1. Find the maximum number in the list to determine the number of digits (let's call this $$d$$).
 2. For each digit place (starting from the least significant digit):
    - Apply a stable sub-sorting algorithm (usually Counting Sort) to sort the numbers based on that digit.
    - Move to the next significant digit and repeat the process.
@@ -93,15 +98,15 @@ Radix Sort is a non-comparative sorting algorithm that sorts numbers by processi
 ### 4. **Analysis of Radix Sort**
 
 #### (a) **Time Complexity**
-- **Best Case**: \( O(nk) \)  
-  - Radix Sort's performance is largely determined by the number of digits in the largest number, denoted by \(k\), and the number of elements, denoted by \(n\). The sub-sorting algorithm, typically Counting Sort, takes \( O(n) \) time for each digit.
-- **Average Case**: \( O(nk) \)  
-  - Radix Sort's time complexity remains \( O(nk) \), where \(k\) is the number of digits.
-- **Worst Case**: \( O(nk) \)  
-  - The time complexity is still \( O(nk) \), regardless of the input distribution.
+- **Best Case**: $$ O(nk) $$  
+  - Radix Sort's performance is largely determined by the number of digits in the largest number, denoted by $$k$$, and the number of elements, denoted by $$n$$. The sub-sorting algorithm, typically Counting Sort, takes $$ O(n) $$ time for each digit.
+- **Average Case**: $$ O(nk) $$  
+  - Radix Sort's time complexity remains $$ O(nk) $$, where $$k$$ is the number of digits.
+- **Worst Case**: $$ O(nk) $$  
+  - The time complexity is still $$ O(nk) $$, regardless of the input distribution.
 
 #### (b) **Space Complexity**
-- **Auxiliary Space**: \( O(n + k) \)  
+- **Auxiliary Space**: $$ O(n + k) $$  
   - Radix Sort requires additional space for sorting the digits and for the sub-sorting algorithm, which is often Counting Sort.
 
 #### (c) **Stability**
@@ -109,14 +114,14 @@ Radix Sort is a non-comparative sorting algorithm that sorts numbers by processi
   - Radix Sort is stable because it uses a stable sub-sorting algorithm, like Counting Sort, which preserves the relative order of equal elements.
 
 #### (d) **Adaptability**
-- Radix Sort is not particularly adaptive to the data. It always processes every digit of every number, which results in \( O(nk) \) time complexity regardless of the input's initial order.
+- Radix Sort is not particularly adaptive to the data. It always processes every digit of every number, which results in $$ O(nk) $$ time complexity regardless of the input's initial order.
 
 ---
 
 ### 5. **Advantages**
-- **Efficient for large datasets** with a small range of digits (when \(k\) is small).
+- **Efficient for large datasets** with a small range of digits (when $$k$$ is small).
 - **Stable sorting algorithm**, which preserves the relative order of equal elements.
-- **Linear time complexity** in terms of the number of elements, given that the number of digits \(k\) is small.
+- **Linear time complexity** in terms of the number of elements, given that the number of digits $$k$$ is small.
 
 ---
 
@@ -136,7 +141,7 @@ Bucket Sort is a distribution-based sorting algorithm that divides the input int
 ---
 
 ### 2. **Working of Bucket Sort**
-- **Step 1**: Create \( n \) empty buckets where \( n \) is the number of elements in the array.
+- **Step 1**: Create $$ n $$ empty buckets where $$ n $$ is the number of elements in the array.
 - **Step 2**: Distribute the elements of the array into the buckets. This is typically done by determining the range of values and mapping each element to the appropriate bucket.
 - **Step 3**: Sort each individual bucket. This can be done using any sorting algorithm, with Insertion Sort being commonly used when the number of elements in the bucket is small.
 - **Step 4**: Concatenate the sorted buckets to form the final sorted array.
@@ -144,7 +149,7 @@ Bucket Sort is a distribution-based sorting algorithm that divides the input int
 ---
 
 ### 3. **Algorithm**
-1. Initialize \( n \) empty buckets.
+1. Initialize $$ n $$ empty buckets.
 2. For each element in the input array, calculate the bucket index and place the element in the corresponding bucket.
 3. Sort each bucket individually using a sorting algorithm (e.g., Insertion Sort).
 4. Concatenate all the sorted buckets to form the final sorted array.
@@ -154,16 +159,16 @@ Bucket Sort is a distribution-based sorting algorithm that divides the input int
 ### 4. **Analysis of Bucket Sort**
 
 #### (a) **Time Complexity**
-- **Best Case**: \( O(n + k) \)  
-  - If the elements are uniformly distributed among the buckets, each bucket will have only a few elements. Sorting each bucket individually using an efficient sorting algorithm like Insertion Sort can lead to an overall best case time complexity of \( O(n + k) \), where \( k \) is the number of buckets.
-- **Average Case**: \( O(n + k + n \log n) \)  
+- **Best Case**: $$ O(n + k) $$  
+  - If the elements are uniformly distributed among the buckets, each bucket will have only a few elements. Sorting each bucket individually using an efficient sorting algorithm like Insertion Sort can lead to an overall best case time complexity of $$ O(n + k) $$, where $$ k $$ is the number of buckets.
+- **Average Case**: $$ O(n + k + n \log n) $$  
   - On average, the time complexity is dependent on the distribution of elements and the sorting algorithm used for each bucket.
-- **Worst Case**: \( O(n^2) \)  
+- **Worst Case**: $$ O(n^2) $$  
   - If all elements are placed into the same bucket (i.e., poor distribution), the algorithm essentially degenerates into the time complexity of the sorting algorithm used for the bucket (e.g., Insertion Sort).
 
 #### (b) **Space Complexity**
-- **Auxiliary Space**: \( O(n + k) \)  
-  - The space complexity is dominated by the space required for the \( n \) buckets.
+- **Auxiliary Space**: $$ O(n + k) $$  
+  - The space complexity is dominated by the space required for the $$ n $$ buckets.
 
 #### (c) **Stability**
 - **Stability**: Stable  
@@ -176,7 +181,7 @@ Bucket Sort is a distribution-based sorting algorithm that divides the input int
 
 ### 5. **Advantages**
 - **Efficient for uniformly distributed data**: Bucket Sort is efficient when the input elements are uniformly distributed over a range, as it splits the input into smaller sub-problems (buckets).
-- **Linear time complexity**: In ideal cases where the distribution of elements is uniform, it can achieve linear time complexity, \( O(n) \).
+- **Linear time complexity**: In ideal cases where the distribution of elements is uniform, it can achieve linear time complexity, $$ O(n) $$.
 
 ---
 
@@ -199,7 +204,7 @@ Binary Search is an efficient algorithm for finding an element in a sorted array
 ### 2. **Working of Binary Search**
 - **Step 1**: Start with two pointers, `low` and `high`, which represent the current bounds of the search space.
 - **Step 2**: Find the middle element of the current search space by calculating the index:  
-  \( \text{mid} = \frac{\text{low} + \text{high}}{2} \).
+  $$ mid = \frac{low + high}{2} $$.
 - **Step 3**: Compare the middle element with the target value:
   - If the middle element is equal to the target, return the index.
   - If the target is less than the middle element, adjust the `high` pointer to `mid - 1` (search the left half).
@@ -209,11 +214,11 @@ Binary Search is an efficient algorithm for finding an element in a sorted array
 ---
 
 ### 3. **Algorithm**
-1. Set `low = 0` and `high = n - 1` where \( n \) is the number of elements in the array.
-2. Calculate the middle index: \( \text{mid} = \frac{\text{low} + \text{high}}{2} \).
-3. If \( \text{array[mid]} = \text{target} \), return `mid`.
-4. If \( \text{target} < \text{array[mid]} \), set `high = mid - 1`.
-5. If \( \text{target} > \text{array[mid]} \), set `low = mid + 1`.
+1. Set `low = 0` and `high = n - 1` where $$ n $$ is the number of elements in the array.
+2. Calculate the middle index: $$ mid = \frac{low + high}{2} $$.
+3. If $$ array[mid] = target $$, return `mid`.
+4. If $$ target < array[mid] $$, set `high = mid - 1`.
+5. If $$ target > array[mid] $$, set `low = mid + 1`.
 6. If `low > high`, the target is not in the array, return -1.
 
 ---
@@ -221,15 +226,15 @@ Binary Search is an efficient algorithm for finding an element in a sorted array
 ### 4. **Analysis of Binary Search**
 
 #### (a) **Time Complexity**
-- **Best Case**: \( O(1) \)  
+- **Best Case**: $$ O(1) $$  
   - The best case occurs when the target element is found at the first middle element in the initial comparison.
-- **Average Case**: \( O(\log n) \)  
+- **Average Case**: $$ O(\log n) $$  
   - The algorithm divides the search space in half with each step, leading to a logarithmic time complexity.
-- **Worst Case**: \( O(\log n) \)  
-  - In the worst case, the algorithm has to search through the entire array, but it still performs this in \( O(\log n) \) time.
+- **Worst Case**: $$ O(\log n) $$  
+  - In the worst case, the algorithm has to search through the entire array, but it still performs this in $$ O(\log n) $$ time.
 
 #### (b) **Space Complexity**
-- **Auxiliary Space**: \( O(1) \)  
+- **Auxiliary Space**: $$ O(1) $$  
   - Binary Search uses only a constant amount of space, as it only requires a few variables for indexing and comparison.
 
 #### (c) **Stability**
@@ -242,7 +247,7 @@ Binary Search is an efficient algorithm for finding an element in a sorted array
 ---
 
 ### 5. **Advantages**
-- **Efficient**: The main advantage of Binary Search is its time complexity of \( O(\log n) \), which is much faster than linear search, especially for large datasets.
+- **Efficient**: The main advantage of Binary Search is its time complexity of $$ O(\log n) $$, which is much faster than linear search, especially for large datasets.
 - **Simple and easy to implement**: The algorithm is straightforward and can be implemented efficiently.
 
 ---
@@ -258,7 +263,7 @@ Binary Search is an efficient algorithm for finding an element in a sorted array
 ## Merge Sort
 
 ### 1. **Introduction**
-Merge Sort is a highly efficient, stable, and comparison-based sorting algorithm that uses the **Divide and Conquer** technique. It divides the input array into two halves, recursively sorts them, and then merges the two sorted halves. It is known for its consistent \(O(n \log n)\) time complexity, making it an excellent choice for large datasets.
+Merge Sort is a highly efficient, stable, and comparison-based sorting algorithm that uses the **Divide and Conquer** technique. It divides the input array into two halves, recursively sorts them, and then merges the two sorted halves. It is known for its consistent $$O(n \log n)$$ time complexity, making it an excellent choice for large datasets.
 
 ---
 
@@ -270,26 +275,26 @@ Merge Sort is a highly efficient, stable, and comparison-based sorting algorithm
 ---
 
 ### 3. **Algorithm**
-1. **Divide**: Split the input array into two halves, \( \text{left} \) and \( \text{right} \).
-2. **Conquer**: Recursively sort the \( \text{left} \) and \( \text{right} \) halves.
+1. **Divide**: Split the input array into two halves, left and right.
+2. **Conquer**: Recursively sort the left and right halves.
 3. **Combine**: Merge the two sorted halves into a single sorted array.
-   - During merging, compare elements from the \( \text{left} \) and \( \text{right} \) arrays and place the smaller element in the resulting array.
+   - During merging, compare elements from the left and right arrays and place the smaller element in the resulting array.
 
 ---
 
 ### 4. **Analysis of Merge Sort**
 
 #### (a) **Time Complexity**
-- **Best Case**: \( O(n \log n) \)  
-  - Even if the input is already sorted, Merge Sort divides the array and merges the halves, resulting in \( O(n \log n) \) time complexity.
-- **Average Case**: \( O(n \log n) \)  
+- **Best Case**: $$ O(n \log n) $$  
+  - Even if the input is already sorted, Merge Sort divides the array and merges the halves, resulting in $$ O(n \log n) $$ time complexity.
+- **Average Case**: $$ O(n \log n) $$  
   - On average, Merge Sort divides and merges the array recursively, which leads to a logarithmic depth of recursion and linear merging.
-- **Worst Case**: \( O(n \log n) \)  
-  - The worst-case time complexity is still \( O(n \log n) \), as every division and merge takes the same time regardless of input ordering.
+- **Worst Case**: $$ O(n \log n) $$  
+  - The worst-case time complexity is still $$ O(n \log n) $$, as every division and merge takes the same time regardless of input ordering.
 
 #### (b) **Space Complexity**
-- **Auxiliary Space**: \( O(n) \)  
-  - Merge Sort requires extra space to store the temporary arrays during the merging process. Therefore, the space complexity is \( O(n) \), which is higher than some other algorithms like Quick Sort.
+- **Auxiliary Space**: $$ O(n) $$  
+  - Merge Sort requires extra space to store the temporary arrays during the merging process. Therefore, the space complexity is $$ O(n) $$, which is higher than some other algorithms like Quick Sort.
 
 #### (c) **Stability**
 - **Stability**: Yes  
@@ -301,9 +306,9 @@ Merge Sort is a highly efficient, stable, and comparison-based sorting algorithm
 ---
 
 ### 5. **Advantages**
-- **Time Complexity**: Merge Sort has a time complexity of \( O(n \log n) \), which is faster than simpler algorithms like Bubble Sort or Selection Sort, especially for larger datasets.
+- **Time Complexity**: Merge Sort has a time complexity of $$ O(n \log n) $$, which is faster than simpler algorithms like Bubble Sort or Selection Sort, especially for larger datasets.
 - **Stability**: Since Merge Sort is stable, it is useful in cases where the relative order of equal elements matters.
-- **Predictable**: It guarantees \( O(n \log n) \) time complexity regardless of the input's initial ordering.
+- **Predictable**: It guarantees $$ O(n \log n) $$ time complexity regardless of the input's initial ordering.
 
 ---
 
@@ -318,7 +323,7 @@ Merge Sort is a highly efficient, stable, and comparison-based sorting algorithm
 ## Quick Sort
 
 ### 1. **Introduction**
-Quick Sort is a highly efficient, comparison-based sorting algorithm that follows the **Divide and Conquer** paradigm. It divides the input array into smaller sub-arrays and recursively sorts them. Quick Sort is known for its average-case time complexity of \(O(n \log n)\), though it can degrade to \(O(n^2)\) in the worst case if not implemented with care.
+Quick Sort is a highly efficient, comparison-based sorting algorithm that follows the **Divide and Conquer** paradigm. It divides the input array into smaller sub-arrays and recursively sorts them. Quick Sort is known for its average-case time complexity of $$O(n \log n)$$, though it can degrade to $$O(n^2)$$ in the worst case if not implemented with care.
 
 ---
 
@@ -347,16 +352,16 @@ Quick Sort is a highly efficient, comparison-based sorting algorithm that follow
 ### 4. **Analysis of Quick Sort**
 
 #### (a) **Time Complexity**
-- **Best Case**: \( O(n \log n) \)  
+- **Best Case**: $$ O(n \log n) $$  
   - The best case occurs when the pivot divides the array into two equal halves, resulting in a logarithmic depth of recursion and linear work for partitioning.
-- **Average Case**: \( O(n \log n) \)  
-  - On average, the pivot divides the array into reasonably balanced partitions, yielding a time complexity of \( O(n \log n) \).
-- **Worst Case**: \( O(n^2) \)  
-  - In the worst case, Quick Sort can degrade to \( O(n^2) \), which occurs when the pivot is always the smallest or largest element, causing unbalanced partitioning.
+- **Average Case**: $$ O(n \log n) $$  
+  - On average, the pivot divides the array into reasonably balanced partitions, yielding a time complexity of $$ O(n \log n) $$.
+- **Worst Case**: $$ O(n^2) $$  
+  - In the worst case, Quick Sort can degrade to $$ O(n^2) $$, which occurs when the pivot is always the smallest or largest element, causing unbalanced partitioning.
 
 #### (b) **Space Complexity**
-- **Auxiliary Space**: \( O(\log n) \)  
-  - Quick Sort is an in-place sorting algorithm, meaning it does not require additional arrays. The space complexity is \( O(\log n) \) due to the recursion stack, assuming a good pivot selection strategy.
+- **Auxiliary Space**: $$ O(\log n) $$  
+  - Quick Sort is an in-place sorting algorithm, meaning it does not require additional arrays. The space complexity is $$ O(\log n) $$ due to the recursion stack, assuming a good pivot selection strategy.
 
 #### (c) **Stability**
 - **Stability**: No  
@@ -368,31 +373,31 @@ Quick Sort is a highly efficient, comparison-based sorting algorithm that follow
 ---
 
 ### 5. **Advantages**
-- **Time Complexity**: Quick Sort has an average-case time complexity of \( O(n \log n) \), which is faster than other comparison-based algorithms like Merge Sort and Bubble Sort for large datasets.
+- **Time Complexity**: Quick Sort has an average-case time complexity of $$ O(n \log n) $$, which is faster than other comparison-based algorithms like Merge Sort and Bubble Sort for large datasets.
 - **In-Place Sorting**: It is an in-place sorting algorithm, which means it does not require extra space apart from the input array and recursion stack.
 - **Efficient for Large Datasets**: Quick Sort is often faster than Merge Sort for practical inputs due to lower constant factors and better cache performance.
 
 ---
 
 ### 6. **Disadvantages**
-- **Worst-Case Time Complexity**: The worst-case time complexity is \( O(n^2) \) if the pivot is not chosen carefully. This can be mitigated by using randomization or other pivot selection techniques.
+- **Worst-Case Time Complexity**: The worst-case time complexity is $$ O(n^2) $$ if the pivot is not chosen carefully. This can be mitigated by using randomization or other pivot selection techniques.
 - **Not Stable**: Quick Sort is not stable, which could be a limitation when sorting records with equal keys.
 
 ---
 
-💡 **TIP**: To avoid the worst-case time complexity of \( O(n^2) \), it's common to use techniques like **randomized pivoting** or choosing the **median of three** elements as the pivot.
+💡 **TIP**: To avoid the worst-case time complexity of $$ O(n^2) $$, it's common to use techniques like **randomized pivoting** or choosing the **median of three** elements as the pivot.
 
 ## Strassen’s Matrix Multiplication
 
 ### 1. **Introduction**
-Strassen’s Matrix Multiplication algorithm is an advanced method of multiplying two matrices. It was developed by Volker Strassen in 1969 and is based on the **divide and conquer** technique. Unlike the conventional matrix multiplication, which has a time complexity of \(O(n^3)\), Strassen’s algorithm reduces the time complexity to approximately \(O(n^{2.81})\), making it more efficient for large matrices.
+Strassen’s Matrix Multiplication algorithm is an advanced method of multiplying two matrices. It was developed by Volker Strassen in 1969 and is based on the **divide and conquer** technique. Unlike the conventional matrix multiplication, which has a time complexity of $$O(n^3)$$, Strassen’s algorithm reduces the time complexity to approximately $$O(n^{2.81})$$, making it more efficient for large matrices.
 
 ---
 
 ### 2. **Working of Strassen’s Algorithm**
-Strassen’s algorithm improves the traditional matrix multiplication by reducing the number of multiplications required. The conventional matrix multiplication involves performing \(8\) multiplications and \(4\) additions for two \(2 \times 2\) matrices. Strassen’s approach reduces the number of multiplications to \(7\) and uses additional additions and subtractions.
+Strassen’s algorithm improves the traditional matrix multiplication by reducing the number of multiplications required. The conventional matrix multiplication involves performing $$8$$ multiplications and $$4$$ additions for two $$2 \times 2$$ matrices. Strassen’s approach reduces the number of multiplications to $$7$$ and uses additional additions and subtractions.
 
-- **Step 1**: Divide each matrix into 4 sub-matrices of size \(n/2 \times n/2\).
+- **Step 1**: Divide each matrix into 4 sub-matrices of size $$n/2 \times n/2$$.
 - **Step 2**: Calculate 7 intermediate matrices using a combination of additions, subtractions, and multiplications of the sub-matrices.
 - **Step 3**: Combine these intermediate results to compute the final product matrix.
 
@@ -400,8 +405,8 @@ Strassen’s algorithm improves the traditional matrix multiplication by reducin
 
 ### 3. **Algorithm**
 
-Let \(A\) and \(B\) be two \(2 \times 2\) matrices:
-\[
+Let $$A$$ and $$B$$ be two $$2 \times 2$$ matrices:
+$$
 A = \begin{bmatrix} 
 a & b \\
 c & d
@@ -409,10 +414,10 @@ c & d
 e & f \\
 g & h
 \end{bmatrix}
-\]
+$$
 
-**Step 1**: Divide the matrices \(A\) and \(B\) into four sub-matrices:
-\[
+**Step 1**: Divide the matrices $$A$$ and $$B$$ into four sub-matrices:
+$$
 A = \begin{bmatrix} 
 a & b \\
 c & d
@@ -420,47 +425,47 @@ c & d
 e & f \\
 g & h
 \end{bmatrix}
-\]
+$$
 So,
-- \(A_1 = a, A_2 = b, A_3 = c, A_4 = d\)
-- \(B_1 = e, B_2 = f, B_3 = g, B_4 = h\)
+- $$A_1 = a, A_2 = b, A_3 = c, A_4 = d$$
+- $$B_1 = e, B_2 = f, B_3 = g, B_4 = h$$
 
 **Step 2**: Compute the 7 intermediate matrices:
-1. \(P_1 = (a + d) \times (e + h)\)
-2. \(P_2 = (c + d) \times e\)
-3. \(P_3 = a \times (f - h)\)
-4. \(P_4 = d \times (g - e)\)
-5. \(P_5 = (a + b) \times h\)
-6. \(P_6 = (c - a) \times (e + f)\)
-7. \(P_7 = (b - d) \times (g + h)\)
+1. $$P_1 = (a + d) \times (e + h)$$
+2. $$P_2 = (c + d) \times e$$
+3. $$P_3 = a \times (f - h)$$
+4. $$P_4 = d \times (g - e)$$
+5. $$P_5 = (a + b) \times h$$
+6. $$P_6 = (c - a) \times (e + f)$$
+7. $$P_7 = (b - d) \times (g + h)$$
 
 **Step 3**: Compute the final result matrix using the intermediate values:
-\[
+$$
 C = \begin{bmatrix}
-C_{11} & C_{12} \\
-C_{21} & C_{22}
+C_\{11\} & C_\{12\} \\
+C_\{21\} & C_\{22\}
 \end{bmatrix}
-\]
+$$
 Where:
-- \(C_{11} = P_1 + P_4 - P_5 + P_7\)
-- \(C_{12} = P_3 + P_5\)
-- \(C_{21} = P_2 + P_4\)
-- \(C_{22} = P_1 + P_3 - P_2 + P_6\)
+- $$C_\{11\} = P_1 + P_4 - P_5 + P_7$$
+- $$C_\{12\} = P_3 + P_5$$
+- $$C_\{21\} = P_2 + P_4$$
+- $$C_\{22\} = P_1 + P_3 - P_2 + P_6$$
 
 ---
 
 ### 4. **Analysis of Strassen’s Algorithm**
 
 #### (a) **Time Complexity**
-- **Traditional Matrix Multiplication**: \(O(n^3)\)
-- **Strassen’s Algorithm**: \(O(n^{\log_2 7}) \approx O(n^{2.81})\)
+- **Traditional Matrix Multiplication**: $$O(n^3)$$
+- **Strassen’s Algorithm**: $$O(n^{\log_2 7}) \approx O(n^{2.81})$$
   - By reducing the number of multiplications, Strassen’s algorithm improves the time complexity, especially for larger matrices.
 
 #### (b) **Space Complexity**
-- Strassen’s algorithm requires additional space for storing the intermediate matrices, resulting in a space complexity of \(O(n^2)\), which is higher than the traditional approach that requires only \(O(n^2)\) space for the output.
+- Strassen’s algorithm requires additional space for storing the intermediate matrices, resulting in a space complexity of $$O(n^2)$$, which is higher than the traditional approach that requires only $$O(n^2)$$ space for the output.
 
 #### (c) **Recursive Nature**
-- Strassen’s algorithm is recursive and works by breaking down the problem into smaller sub-problems. For a matrix of size \(n \times n\), it recursively divides the matrix into smaller sub-matrices of size \(n/2 \times n/2\) and solves them. 
+- Strassen’s algorithm is recursive and works by breaking down the problem into smaller sub-problems. For a matrix of size $$n \times n$$, it recursively divides the matrix into smaller sub-matrices of size $$n/2 \times n/2$$ and solves them. 
 
 ---
 
