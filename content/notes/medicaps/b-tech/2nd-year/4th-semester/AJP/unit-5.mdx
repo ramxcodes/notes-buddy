@@ -1,0 +1,245 @@
+---
+title: "Unit 5: Advanced Java Programming"
+description: Data Access operations with JDBC Template and Spring , Modelling JDBC Operations as Java Objects, Spring Boot and Database, Spring Boot Web Application Development
+date: 2025-01-18
+tags: ["Advanced Java Programming", "4th Semester", "2nd Year", "medicaps university"]
+published: true
+metadata:
+  university: "Medicaps University"
+  degree: "B Tech"
+  semester: "4th Semester"
+  subject: "Advanced Java Programming"
+---
+
+## Data Access Operations with JDBC Template and Spring
+
+### Introduction to JDBC Template
+- **JDBC Template** is a part of the Spring Framework that simplifies database interaction.
+- It provides a high-level API to perform CRUD (Create, Read, Update, Delete) operations on databases.
+- The **JDBC Template** removes the need for manually managing connections, handling exceptions, and other boilerplate code related to database operations.
+
+💡 **TIP:** JDBC Template handles all the low-level details of database communication, allowing you to focus on writing business logic.
+
+### Setting Up JDBC Template in Spring
+1. **Add Dependencies:**
+   - Ensure you have the necessary dependencies in your `pom.xml` file for Spring JDBC and a database driver (e.g., MySQL, H2, etc.).
+
+   ```xml
+   <dependency>
+       <groupId>org.springframework</groupId>
+       <artifactId>spring-jdbc</artifactId>
+       <version>5.3.10</version>
+   </dependency>
+   <dependency>
+       <groupId>com.mysql.cj</groupId>
+       <artifactId>mysql-connector-java</artifactId>
+       <version>8.0.23</version>
+   </dependency>
+   ```
+
+2. **Configure DataSource:**
+    A DataSource bean is used to provide a connection to the database.
+    Example of configuring a DataSource in your Spring configuration file:
+
+    ```java
+    @Configuration
+    @EnableTransactionManagement
+    @ComponentScan(basePackages = "com.example")
+    public class AppConfig {
+        @Bean
+        public DataSource dataSource() {
+            BasicDataSource dataSource = new BasicDataSource();
+            dataSource.setUrl("jdbc:mysql://localhost:3306/mydb");
+            dataSource.setUsername("root");
+            dataSource.setPassword("password");
+            return dataSource;
+        }
+
+        @Bean
+        public JdbcTemplate jdbcTemplate() {
+            return new JdbcTemplate(dataSource());
+        }
+    }
+    ```
+
+## Performing Data Operations with JDBC Template
+
+### 1. CRUD Operations
+
+#### Create Operation (Insert)
+You can insert data into the database using the `update()` method of the `JdbcTemplate`. Here's how you do it:
+
+```java
+String sql = "INSERT INTO employees (id, name, salary) VALUES (?, ?, ?)";
+jdbcTemplate.update(sql, 1, "John Doe", 50000);
+```
+
+#### Read Operation (Select)
+```java
+String sql = "SELECT * FROM employees WHERE id = ?";
+Employee employee = jdbcTemplate.queryForObject(sql, new Object[]{1}, new BeanPropertyRowMapper<>(Employee.class));
+```
+
+#### Update Operation
+```java
+String sql = "UPDATE employees SET salary = ? WHERE id = ?";
+jdbcTemplate.update(sql, 55000, 1);
+```
+
+#### Delete Operation
+```java
+String sql = "DELETE FROM employees WHERE id = ?";
+jdbcTemplate.update(sql, 1);
+```
+
+---
+
+## Modeling JDBC Operations as Java Objects
+
+### Introduction
+Modeling JDBC operations as Java objects is a key concept in Spring JDBC, enabling you to interact with databases in an object-oriented manner. This approach allows you to represent database rows as Java objects, making your code more readable, maintainable, and decoupled from the underlying database logic.
+
+### 1. Using JavaBeans for Mapping Database Records
+In Spring JDBC, we use **JavaBeans** (POJOs) to model database records. A JavaBean is simply a Java class with private fields, public getters and setters, and a no-argument constructor. Each property of the JavaBean corresponds to a column in the database table.
+
+### 2. Mapping JDBC Results to Java Objects
+To convert rows from a `ResultSet` into Java objects, you use **RowMapper**. The `RowMapper` interface allows you to implement logic for mapping each row of the result set to a Java object. This helps abstract the conversion logic and promotes code reusability.
+
+### 3. Performing Operations Using JdbcTemplate
+Once the JavaBeans and `RowMapper` are set up, Spring’s `JdbcTemplate` can be used to perform various database operations. For example:
+- **Select queries** can return a list of Java objects.
+- **Insert, update, and delete operations** can map Java objects' properties to SQL queries.
+
+### 4. Inserting, Updating, and Deleting Java Objects
+Spring JDBC allows you to easily perform insert, update, and delete operations by passing the properties of Java objects to SQL queries. These operations can be done with methods like `update()` in `JdbcTemplate`, making it simple to manage CRUD operations.
+
+### Advantages of Modeling JDBC Operations as Java Objects
+- **Cleaner Code:** By using Java objects, the code becomes more readable, reducing the complexity of SQL query management.
+- **Type Safety:** Java objects provide type safety, which minimizes errors that could arise from mismatched data types between SQL queries and application logic.
+- **Separation of Concerns:** The database interaction logic is decoupled from the business logic, enhancing the maintainability and scalability of your application.
+- **Reusability:** Java objects and `RowMapper` implementations can be reused across different parts of the application.
+
+💡 **TIP:** Using Java objects for database operations aligns with the object-oriented principles and helps in writing cleaner, more modular code.
+
+---
+
+## Spring Boot and Database
+
+### Introduction
+Spring Boot simplifies the integration between Java applications and databases, providing a seamless way to manage database connections and perform various data operations. With Spring Boot, you can easily set up a data source, configure your database, and use Spring Data JPA, JDBC, or other libraries for database interaction.
+
+### 1. Setting Up Database with Spring Boot
+Spring Boot auto-configures the database connection and ORM tools like **JPA**, **Hibernate**, and **JDBC**. You can integrate various databases (e.g., MySQL, PostgreSQL, H2) with Spring Boot without the need for complex configuration files.
+
+#### Steps to Configure Database in Spring Boot:
+- **Add Dependencies:** Include dependencies for your database (e.g., MySQL, PostgreSQL) and JPA or JDBC in the `pom.xml` file.
+- **Database Configuration:** Spring Boot uses the `application.properties` or `application.yml` file for configuration. You can configure database connection properties such as the URL, username, password, and Hibernate settings.
+- **Auto Configuration:** Spring Boot auto-configures the `DataSource` and related beans if the correct dependencies are available in the classpath.
+
+### 2. Spring Data JPA for Database Operations
+Spring Data JPA simplifies database interaction by providing a repository layer for CRUD operations. You only need to define a **Repository** interface, and Spring Data will implement the methods for you.
+
+### 3. Database Operations with Spring Boot
+
+#### CRUD Operations:
+With Spring Data JPA, performing CRUD operations becomes easy.
+- **Create (Insert):** Use the `save()` method to insert or update an entity.
+- **Read (Select):** Use methods like `findById()`, `findAll()`, or custom query methods to retrieve data.
+- **Update:** By calling `save()`, you can update an existing record. If the entity exists, it will update the record; otherwise, it will insert a new record.
+- **Delete:** You can delete records using methods like `deleteById()`.
+
+### 4. Custom Queries with Spring Data JPA
+You can define custom queries using the `@Query` annotation or create complex queries using **JPQL** (Java Persistence Query Language) or **native SQL**.
+
+### 5. Using Spring JDBC Template in Spring Boot
+While Spring Data JPA is the preferred way to interact with databases in Spring Boot, you can also use `JdbcTemplate` for more direct database operations.
+
+### Advantages of Using Spring Boot with Database
+- **Auto Configuration:** Spring Boot automatically configures database connections and ORM tools, reducing manual configuration.
+- **Ease of Use:** Spring Data JPA simplifies data operations by abstracting complex SQL queries and providing a repository layer.
+- **Scalability:** Spring Boot offers a highly scalable approach to database interaction, making it ideal for both small and large applications.
+- **Integration:** Spring Boot seamlessly integrates with various databases, supporting both SQL and NoSQL databases.
+
+💡 **TIP:** Spring Boot’s auto-configuration and Spring Data JPA significantly reduce the boilerplate code, making it easier to perform database operations efficiently.
+
+---
+
+## Spring Boot Web Application Development
+
+### Introduction
+Spring Boot makes it easy to build web applications with minimal setup. It provides a comprehensive framework to develop RESTful services, server-side rendered web applications, and more. With built-in features like embedded servers (Tomcat, Jetty, or Undertow), Spring Boot reduces the complexities of traditional Spring application setup and configuration.
+
+### 1. Setting Up a Spring Boot Web Application
+To start developing a web application with Spring Boot, you need to:
+- **Add Spring Web Dependency:** Include the `spring-boot-starter-web` dependency in your `pom.xml` file. This starter brings in everything required to build a web application.
+- **Configure Application Properties:** Configure application settings like port, session management, and server properties in `application.properties` or `application.yml`.
+
+### 2. Building RESTful Services with Spring Boot
+Spring Boot makes it simple to build **RESTful APIs** using `@RestController` annotations. You can easily map HTTP methods (GET, POST, PUT, DELETE) to Java methods.
+
+#### Key Annotations for RESTful Services:
+- `@RestController`: Defines a controller that handles HTTP requests and returns JSON responses.
+- `@RequestMapping`: Maps HTTP requests to methods.
+- `@GetMapping`, `@PostMapping`, `@PutMapping`, `@DeleteMapping`: Shortened versions of `@RequestMapping` for specific HTTP methods.
+- `@PathVariable`, `@RequestParam`: Used to capture URL variables or query parameters from HTTP requests.
+
+### 3. Handling Web Requests
+In addition to REST APIs, Spring Boot supports traditional web applications using **Thymeleaf** or **JSP** for server-side rendering. You can use `@Controller` to handle HTTP requests and return HTML views.
+
+#### Key Annotations for MVC Applications:
+- `@Controller`: Marks a class as a controller for web requests.
+- `@RequestMapping`: Specifies the URL for the handler method.
+- `ModelAndView`: Used to return both a model and a view name.
+- `@GetMapping` / `@PostMapping`: Used to handle GET or POST requests.
+
+### 4. Data Binding and Validation
+Spring Boot makes it easy to bind incoming request parameters to Java objects and validate them. You can use `@Valid` and `@NotNull` annotations for validation purposes.
+
+#### Key Annotations for Data Binding and Validation:
+- `@Valid`: Tells Spring to validate the object before processing.
+- `@NotNull`, `@Size`, `@Min`, `@Max`: Validation constraints that can be applied to fields in the model object.
+  
+### 5. Working with Databases in Web Applications
+Spring Boot makes it easy to integrate a database with web applications. You can use **Spring Data JPA**, **Spring JDBC**, or other persistence layers to store data.
+
+- **Spring Data JPA**: Simplifies database interaction using repositories and auto-generated methods.
+- **Spring JDBC**: Provides an alternative for direct SQL-based database operations.
+
+### 6. Security in Web Applications
+Spring Security provides comprehensive security services for web applications. You can secure REST APIs and traditional web applications with features like authentication, authorization, and CSRF protection.
+
+#### Key Features in Spring Security:
+- **Basic Authentication**: Simple username and password-based authentication.
+- **JWT (JSON Web Tokens)**: Used for stateless authentication in REST APIs.
+- **Role-based Authorization**: You can define which user roles have access to which resources.
+
+### 7. Error Handling
+Spring Boot provides a centralized way of handling errors using `@ControllerAdvice` and `@ExceptionHandler`. You can handle application exceptions globally and send custom error responses.
+
+- **@ControllerAdvice**: A global exception handler that catches exceptions across all controllers.
+- **@ExceptionHandler**: Handles specific exceptions in the controller or globally.
+
+### 8. Testing Spring Boot Web Applications
+Spring Boot provides powerful testing support for web applications using `@SpringBootTest`, `@WebMvcTest`, and mock objects. You can easily write tests for your controllers, services, and repositories.
+
+- `@SpringBootTest`: Runs the application context for integration tests.
+- `@WebMvcTest`: Focuses on testing web layers and controllers.
+
+### 9. Deploying Spring Boot Web Applications
+Spring Boot applications are packaged as **self-contained JARs** with embedded web servers (like Tomcat). You can run them with a simple command or deploy them to external servers like **Apache Tomcat**.
+
+#### Steps for Deployment:
+- Package your application as a JAR using `mvn package`.
+- Run the application using `java -jar your-application.jar`.
+
+### Advantages of Using Spring Boot for Web Application Development
+- **Ease of Use:** Spring Boot’s auto-configuration and minimal setup make it easy to get started.
+- **Built-in Web Server:** Spring Boot comes with embedded servers like Tomcat, which eliminates the need for external server setups.
+- **Comprehensive Framework:** Spring Boot provides built-in tools for handling database interactions, security, testing, and more.
+- **Scalability:** Spring Boot applications are highly scalable, making it suitable for large-scale applications.
+
+💡 **TIP:** Spring Boot’s opinionated setup and comprehensive tools can drastically speed up the development process for web applications while ensuring maintainability.
+
+---
+
+
