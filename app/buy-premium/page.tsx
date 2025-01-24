@@ -24,7 +24,7 @@ export default function BuyPremiumPage() {
   const universities = ["Medicaps University"];
   const degrees = ["B Tech"];
   const years = ["1st Year", "2nd Year", "3rd Year", "4th Year"];
-  const tierPricing = { "Tier 1": 99, "Tier 2": 169, "Tier 3": 249 };
+  const tierPricing = { "Tier 1": 59, "Tier 2": 129, "Tier 3": 169 };
 
   useEffect(() => {
     if (status === "authenticated" && session?.user) {

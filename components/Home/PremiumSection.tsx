@@ -24,12 +24,13 @@ export default function PremiumSection() {
             <div className="w-full md:w-1/3 p-6">
               <div className="h-full bg-white dark:bg-black/30 border border-neutral-300 dark:border-neutral-600 rounded-2xl transform-gpu hover:-translate-y-2 transition duration-500">
                 <div className="p-12 border-b border-neutral-300 dark:border-neutral-600">
-                  <h4 className="mb-6 text-6xl tracking-tighter">₹99/-</h4>
+                  <h4 className="mb-6 text-6xl tracking-tighter">59/-</h4>
                   <p className="text-xl font-semibold font-gilroy mb-2">
                     Tier 1 - Noob
                   </p>
                   <p className="tracking-tight">
-                    The ideal plan for newbies to start with.
+                    The ideal plan for newbies to start with. <br />
+                    Valid for 1 Year (2 Semester).
                   </p>
                 </div>
                 <div className="p-12 pb-11">
@@ -40,6 +41,8 @@ export default function PremiumSection() {
                     <FeatureItem checked={true}>
                       Access to Quizzes of all units
                     </FeatureItem>
+                    <FeatureItem checked={true}>Book PDF</FeatureItem>
+                    <FeatureItem checked={false}>Faculty Notes</FeatureItem>
                     <FeatureItem checked={false}>
                       Previous Year Questions with answers
                     </FeatureItem>
@@ -75,12 +78,13 @@ export default function PremiumSection() {
                     }}
                   >
                     <div className="pr-9">
-                      <h4 className="mb-6 text-6xl tracking-tighter">₹169/-</h4>
+                      <h4 className="mb-6 text-6xl tracking-tighter">₹129/-</h4>
                       <p className="mb-2 text-xl font-semibold text-black font-gilroy">
                         Tier 2 - Pro
                       </p>
                       <p className="tracking-tight text-black">
                         The ideal plan for last minute preparation.
+                        <br /> Valid for 1 Year (2 Semester).
                       </p>
                     </div>
                   </div>
@@ -92,6 +96,8 @@ export default function PremiumSection() {
                       <FeatureItem checked={true}>
                         Access to Quizzes of all units
                       </FeatureItem>
+                      <FeatureItem checked={true}>Book PDF</FeatureItem>
+                      <FeatureItem checked={true}>Faculty Notes</FeatureItem>
                       <FeatureItem checked={true}>
                         Previous Year Questions with answers
                       </FeatureItem>
@@ -112,12 +118,13 @@ export default function PremiumSection() {
             <div className="w-full md:w-1/3 p-6">
               <div className="h-full bg-white dark:bg-black/30 border border-neutral-300 dark:border-neutral-600 rounded-2xl transform-gpu hover:-translate-y-2 transition duration-500">
                 <div className="p-12 border-b border-neutral-300 dark:border-neutral-600">
-                  <h4 className="mb-6 text-6xl tracking-tighter">₹199/-</h4>
+                  <h4 className="mb-6 text-6xl tracking-tighter">₹169/-</h4>
                   <p className="text-xl font-semibold font-gilroy mb-2">
                     Tier 3 - Cracked
                   </p>
                   <p className="tracking-tight">
-                    The ideal plan for absolute cracked students.
+                    The ideal plan for absolute cracked students. <br /> Valid
+                    for 1 Year (2 Semester).
                   </p>
                 </div>
                 <div className="p-12 pb-11">
@@ -128,6 +135,8 @@ export default function PremiumSection() {
                     <FeatureItem checked={true}>
                       Access to Quizzes of all units
                     </FeatureItem>
+                    <FeatureItem checked={true}>Book PDF</FeatureItem>
+                    <FeatureItem checked={true}>Faculty Notes</FeatureItem>
                     <FeatureItem checked={true}>
                       Previous Year Questions with answers
                     </FeatureItem>
