@@ -44,6 +44,27 @@ export function NotesReportsTable({
     setLoading(null);
   };
 
+  const getStatusIndicator = (status: string) => {
+    let indicatorColor = "";
+    switch (status) {
+      case "Pending":
+        indicatorColor = "bg-gray-400";
+        break;
+      case "In Progress":
+        indicatorColor = "bg-yellow-500";
+        break;
+      case "Completed":
+        indicatorColor = "bg-green-500";
+        break;
+      case "Rejected":
+        indicatorColor = "bg-red-500";
+        break;
+    }
+    return (
+      <span className={`inline-block h-3 w-3 rounded-full ${indicatorColor}`} />
+    );
+  };
+
   return (
     <Table className="min-w-full">
       <TableHeader>
@@ -75,7 +96,8 @@ export function NotesReportsTable({
             </TableCell>
             <TableCell>{report.issue}</TableCell>
             <TableCell>{report.otherText || "N/A"}</TableCell>
-            <TableCell>
+            <TableCell className="flex items-center gap-2">
+              {getStatusIndicator(report.status)}
               <Select
                 onValueChange={(value) => handleStatusChange(report._id, value)}
                 defaultValue={report.status || "Pending"}

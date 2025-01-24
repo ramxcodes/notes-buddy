@@ -19,6 +19,8 @@ export async function GET() {
       completedNotesRequests,
       totalNotesReports,
       completedNotesReports,
+      rejectedNotesRequests,
+      pendingNotesRequests,
     ] = await Promise.all([
       usersCollection.countDocuments(),
       usersCollection.countDocuments({
@@ -33,6 +35,8 @@ export async function GET() {
       requestNotesCollection.countDocuments({ status: "Completed" }),
       reportsCollection.countDocuments(),
       reportsCollection.countDocuments({ status: "Completed" }),
+      requestNotesCollection.countDocuments({ status: "Rejected" }),
+      requestNotesCollection.countDocuments({ status: "Pending" }),
     ]);
 
     const totalRevenue = payments.reduce(
@@ -50,6 +54,8 @@ export async function GET() {
         completedNotesRequests,
         totalNotesReports,
         completedNotesReports,
+        rejectedNotesRequests,
+        pendingNotesRequests,
       }),
       {
         headers: {

@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { Skeleton } from "@/components/ui/skeleton";
 import { UserTable } from "./components/UserTable";
+import { Users, DollarSign, FileText, CheckCircle } from "lucide-react"; // Icons
 
 const BASE_URL = process.env.NEXTAUTH_URL || "";
 
@@ -120,69 +122,63 @@ export default function AdminDashboard() {
     }
   };
 
+  const statCards = [
+    { title: "Total Users", value: stats?.totalUsers, icon: Users },
+    { title: "Premium Users", value: stats?.premiumUsers, icon: CheckCircle },
+    { title: "Blocked Users", value: stats?.blockedUsers, icon: Users },
+    {
+      title: "Total Revenue (₹)",
+      value: stats?.totalRevenue,
+      icon: DollarSign,
+    },
+    {
+      title: "Total Notes Requests",
+      value: stats?.totalNotesRequests,
+      icon: FileText,
+    },
+    {
+      title: "Completed Notes Requests",
+      value: stats?.completedNotesRequests,
+      icon: CheckCircle,
+    },
+    {
+      title: "Total Notes Reports",
+      value: stats?.totalNotesReports,
+      icon: FileText,
+    },
+    {
+      title: "Completed Notes Reports",
+      value: stats?.completedNotesReports,
+      icon: CheckCircle,
+    },
+  ];
+
   return (
     <div className="container mx-auto py-8">
       <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
       <Separator className="mb-6" />
 
       {loadingStats ? (
-        <p>Loading stats...</p>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          {[...Array(8)].map((_, index) => (
+            <Skeleton key={index} className="h-32 w-full" />
+          ))}
+        </div>
       ) : stats ? (
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <Card>
-            <CardHeader>
-              <CardTitle className="font-gilroy">Total Users</CardTitle>
-            </CardHeader>
-            <CardContent>{stats.totalUsers}</CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle className="font-gilroy">Premium Users</CardTitle>
-            </CardHeader>
-            <CardContent>{stats.premiumUsers}</CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle className="font-gilroy">Blocked Users</CardTitle>
-            </CardHeader>
-            <CardContent>{stats.blockedUsers}</CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle className="font-gilroy">Total Revenue (₹)</CardTitle>
-            </CardHeader>
-            <CardContent>{stats.totalRevenue}</CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle className="font-gilroy">
-                Total Notes Requests
-              </CardTitle>
-            </CardHeader>
-            <CardContent>{stats.totalNotesRequests}</CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle className="font-gilroy">
-                Completed Notes Requests
-              </CardTitle>
-            </CardHeader>
-            <CardContent>{stats.completedNotesRequests}</CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle className="font-gilroy">Total Notes Reports</CardTitle>
-            </CardHeader>
-            <CardContent>{stats.totalNotesReports}</CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle className="font-gilroy">
-                Completed Notes Reports
-              </CardTitle>
-            </CardHeader>
-            <CardContent>{stats.completedNotesReports}</CardContent>
-          </Card>
+          {statCards.map((stat, index) => (
+            <Card key={index}>
+              <CardHeader className="flex flex-col items-center">
+                {stat.icon && <stat.icon className="w-8 h-8 mb-2" />}
+                <CardContent className="text-4xl font-bold">
+                  {stat.value || "N/A"}
+                </CardContent>
+                <CardTitle className="text-base text-center font-gilroy">
+                  {stat.title}
+                </CardTitle>
+              </CardHeader>
+            </Card>
+          ))}
         </div>
       ) : (
         <p>Failed to load stats. Please try again later.</p>
@@ -192,7 +188,7 @@ export default function AdminDashboard() {
       <Separator className="mb-6" />
 
       {loadingUsers ? (
-        <p>Loading users...</p>
+        <Skeleton className="h-64 w-full" />
       ) : (
         <UserTable users={users} onToggleBlock={handleToggleBlock} />
       )}

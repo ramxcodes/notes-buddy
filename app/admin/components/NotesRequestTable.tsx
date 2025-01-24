@@ -14,7 +14,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { formatDistanceToNow } from "date-fns";
 
 interface NotesRequest {
@@ -45,8 +50,13 @@ export function NotesRequestTable({
 
   const handleStatusChange = async (requestId: string, status: string) => {
     setLoading(requestId);
-    await onUpdateStatus(requestId, status); // Call parent function
-    setLoading(null);
+    try {
+      await onUpdateStatus(requestId, status);
+    } catch (error) {
+      console.error(`Error updating status for request ${requestId}:`, error);
+    } finally {
+      setLoading(null);
+    }
   };
 
   const handleOpenSyllabus = (syllabus: string) => {
@@ -55,6 +65,27 @@ export function NotesRequestTable({
 
   const handleCloseSyllabus = () => {
     setSelectedSyllabus(null);
+  };
+
+  const getStatusIndicator = (status: string) => {
+    let indicatorColor = "";
+    switch (status) {
+      case "Pending":
+        indicatorColor = "bg-gray-400";
+        break;
+      case "In Progress":
+        indicatorColor = "bg-yellow-500";
+        break;
+      case "Completed":
+        indicatorColor = "bg-green-500";
+        break;
+      case "Rejected":
+        indicatorColor = "bg-red-500";
+        break;
+    }
+    return (
+      <span className={`inline-block h-3 w-3 rounded-full ${indicatorColor}`} />
+    );
   };
 
   return (
@@ -92,9 +123,12 @@ export function NotesRequestTable({
                   {request.subject}
                 </button>
               </TableCell>
-              <TableCell>
+              <TableCell className="flex items-center gap-2">
+                {getStatusIndicator(request.status)}
                 <Select
-                  onValueChange={(value) => handleStatusChange(request._id, value)}
+                  onValueChange={(value) =>
+                    handleStatusChange(request._id, value)
+                  }
                   defaultValue={request.status || "Pending"}
                   disabled={loading === request._id}
                 >

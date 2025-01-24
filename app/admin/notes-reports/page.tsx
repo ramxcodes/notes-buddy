@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { NotesReportsTable } from "../components/NotesReportsTable";
 import { Separator } from "@/components/ui/separator";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface NotesReport {
   _id: string;
@@ -74,12 +75,16 @@ export default function NotesReportsPage() {
   };
 
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto py-8 min-w-fit">
       <h1 className="text-2xl font-bold mb-4">Notes Reports</h1>
       <Separator className="mb-6" />
 
       {loading ? (
-        <p>Loading...</p>
+        <div className="space-y-4">
+          {[...Array(5)].map((_, index) => (
+            <Skeleton key={index} className="h-6 w-full" />
+          ))}
+        </div>
       ) : (
         <NotesReportsTable
           reports={reports}
