@@ -5,6 +5,8 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { UserTable } from "./components/UserTable";
 
+const BASE_URL = process.env.NEXTAUTH_URL || "";
+
 interface Stats {
   totalUsers: number;
   premiumUsers: number;
@@ -38,10 +40,17 @@ export default function AdminDashboard() {
   const [loadingStats, setLoadingStats] = useState(true);
   const [loadingUsers, setLoadingUsers] = useState(true);
 
+  // Fetch stats
   const fetchStats = async () => {
+    setLoadingStats(true);
     try {
-      const response = await fetch("/admin/api/stats", { cache: "no-store" });
-      const data = await response.json();
+      const response = await fetch(`${BASE_URL}/admin/api/stats`, {
+        cache: "no-store",
+      });
+      if (!response.ok) {
+        throw new Error(`Failed to fetch stats: ${response.statusText}`);
+      }
+      const data: Stats = await response.json();
       setStats(data);
     } catch (error) {
       console.error("Failed to fetch stats:", error);
@@ -50,10 +59,17 @@ export default function AdminDashboard() {
     }
   };
 
+  // Fetch users
   const fetchUsers = async () => {
+    setLoadingUsers(true);
     try {
-      const response = await fetch("/admin/api/users", { cache: "no-store" });
-      const data = await response.json();
+      const response = await fetch(`${BASE_URL}/admin/api/users`, {
+        cache: "no-store",
+      });
+      if (!response.ok) {
+        throw new Error(`Failed to fetch users: ${response.statusText}`);
+      }
+      const data: User[] = await response.json();
       setUsers(data);
     } catch (error) {
       console.error("Failed to fetch users:", error);
@@ -62,28 +78,30 @@ export default function AdminDashboard() {
     }
   };
 
+  // Poll every 5 minutes
   useEffect(() => {
     fetchStats();
     fetchUsers();
+
     const interval = setInterval(() => {
       fetchStats();
       fetchUsers();
-    }, 300000);
+    }, 300_000);
 
     return () => clearInterval(interval);
   }, []);
 
+  // Handle block/unblock
   const handleToggleBlock = async (
     userId: string,
     action: "block" | "unblock"
   ) => {
     try {
-      const response = await fetch("/admin/api/blocked", {
+      const response = await fetch(`${BASE_URL}/admin/api/blocked`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, action }),
       });
-
       const result = await response.json();
 
       if (result.success) {
