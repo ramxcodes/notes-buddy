@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { getCollection } from "@/lib/db";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function GET() {
   try {
     const usersCollection = await getCollection("users");
@@ -33,7 +36,7 @@ export async function GET() {
     ]);
 
     const totalRevenue = payments.reduce(
-      (sum, user) => sum + (user.razorpayDetails?.amount || 0),
+      (sum, user: any) => sum + (user.razorpayDetails?.amount || 0),
       0
     );
 
