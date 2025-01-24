@@ -13,11 +13,9 @@
     "downlevelIteration": true,
     "jsx": "preserve",
     "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
+    "plugins": [{
+      "name": "next"
+    }],
     "paths": {
       "@/*": ["./*"],
       "#site/content": ["./.velite"]
@@ -27,6 +25,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "scripts/**/*.ts",
     ".next/types/**/*.ts",
     "types/**/*.d.ts"
   ],
