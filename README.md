@@ -43,8 +43,6 @@ Built with a modern tech stack, it ensures an easy-to-use, visually appealing, a
 ## Contributing
 
 Contributions are welcome! Feel free to:
-- Visit Here for Collaboration Guide :
-    https://notes-buddy.ramx.in/notes/github/contribution-guide
 - Open issues for bug reports or feature requests.
 - Fork the repository, make changes, and submit pull requests.
 
