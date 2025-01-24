@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "build:scripts": "tsc -p tsconfig.scripts.json",
+    "generate-sitemap": "pnpm build:scripts && node dist-scripts/generate-sitemap.js",
     "build": "pnpm generate-sitemap && next build",
     "start": "next start",
-    "lint": "next lint",
-    "generate-sitemap": "ts-node scripts/generate-sitemap.ts"
+    "lint": "next lint"
   },
   "dependencies": {
     "@motionone/utils": "^10.18.0",
