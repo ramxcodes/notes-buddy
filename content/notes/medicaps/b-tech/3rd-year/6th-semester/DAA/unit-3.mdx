@@ -2,13 +2,13 @@
 title: "Unit 3: Design and Analysis of Algorithms"
 description: Greedy problems and its complexity analysis Optimal merge patterns, Huffman coding, Minimum spanning trees, Knapsack problem, Job sequencing with deadlines, Single source shortest path problem - Dijkstra’s Algorithm
 date: 2025-01-19
-tags: ["Design and Analysis of Algorithms", "6th Semester", "3rd Year", "medicaps university"]
+tags: ["DAA", "6th Semester", "3rd Year", "medicaps university"]
 published: true
 metadata:
   university: "Medicaps University"
   degree: "B Tech"
   semester: "6th Semester"
-  subject: "Design and Analysis of Algorithms"
+  subject: "DAA"
 ---
 ## Optimal Merge Patterns
 
@@ -41,27 +41,27 @@ The greedy algorithm for the optimal merge pattern follows these steps:
 
 The time complexity of the greedy algorithm for optimal merge patterns is dominated by the operations on the priority queue:
 
-- **Step 1 (Initial heap construction)**: Building the initial priority queue takes \(O(n)\) time, where \(n\) is the number of files.
-- **Step 2-5 (Repetition of merging)**: Each merge operation involves extracting two nodes, merging them, and inserting the resulting node back into the queue. Each of these operations takes \(O(\log n)\) time due to the heap operations. Since there are \(n-1\) merge operations (to combine \(n\) files into one), the total time complexity for these steps is \(O(n \log n)\).
+- **Step 1 (Initial heap construction)**: Building the initial priority queue takes $$O(n)$$ time, where $$n$$ is the number of files.
+- **Step 2-5 (Repetition of merging)**: Each merge operation involves extracting two nodes, merging them, and inserting the resulting node back into the queue. Each of these operations takes $$O(\log n)$$ time due to the heap operations. Since there are $$n-1$$ merge operations (to combine $$n$$ files into one), the total time complexity for these steps is $$O(n \log n)$$.
 
-Thus, the overall time complexity is **O(n \log n)**, where \(n\) is the number of files.
+Thus, the overall time complexity is **O(n \log n)**, where $$n$$ is the number of files.
 
 ---
 
 ### 5. **Example**
 For example, suppose there are 5 files with the following sizes:
-- \( \{10, 20, 30, 40, 50\} \)
+- $$ \{10, 20, 30, 40, 50\} $$
 
 Using the greedy algorithm:
 
-1. Merge the smallest two files: \(10 + 20 = 30\)
-   - Remaining files: \( \{30, 30, 40, 50\} \)
-2. Merge the next smallest two files: \(30 + 30 = 60\)
-   - Remaining files: \( \{40, 50, 60\} \)
-3. Merge the next smallest two files: \(40 + 50 = 90\)
-   - Remaining files: \( \{60, 90\} \)
-4. Merge the last two files: \(60 + 90 = 150\)
-   - Final result: Total cost = \(10 + 20 + 30 + 40 + 50 + 60 + 90 = 300\)
+1. Merge the smallest two files: $$10 + 20 = 30$$
+   - Remaining files: $$ \{30, 30, 40, 50\} $$
+2. Merge the next smallest two files: $$30 + 30 = 60$$
+   - Remaining files: $$ \{40, 50, 60\} $$
+3. Merge the next smallest two files: $$40 + 50 = 90$$
+   - Remaining files: $$ \{60, 90\} $$
+4. Merge the last two files: $$60 + 90 = 150$$
+   - Final result: Total cost = $$10 + 20 + 30 + 40 + 50 + 60 + 90 = 300$$
 
 Thus, the total cost of merging the files optimally is **300**.
 
@@ -77,7 +77,7 @@ Thus, the total cost of merging the files optimally is **300**.
 ### 7. **Advantages and Disadvantages**
 
 #### **Advantages**:
-- **Efficiency**: The greedy approach ensures that the merging process is fast, with a time complexity of \(O(n \log n)\).
+- **Efficiency**: The greedy approach ensures that the merging process is fast, with a time complexity of $$O(n \log n)$$.
 - **Simplicity**: The algorithm is easy to understand and implement.
 
 #### **Disadvantages**:
@@ -121,14 +121,14 @@ The goal is to build an optimal prefix-free binary code for the set of character
 
 ### 4. **Complexity Analysis**
 
-- **Time Complexity**: The time complexity of Huffman coding is \(O(n \log n)\), where \(n\) is the number of characters.
-  - Constructing the priority queue takes \(O(n \log n)\).
-  - Inserting and removing nodes from the queue also takes \(O(n \log n)\).
-  - Building the tree and assigning codes can be done in \(O(n)\) time.
+- **Time Complexity**: The time complexity of Huffman coding is $$O(n \log n)$$, where $$n$$ is the number of characters.
+  - Constructing the priority queue takes $$O(n \log n)$$.
+  - Inserting and removing nodes from the queue also takes $$O(n \log n)$$.
+  - Building the tree and assigning codes can be done in $$O(n)$$ time.
 
 Thus, the overall complexity is dominated by the heap operations, which is **O(n \log n)**.
 
-- **Space Complexity**: The space complexity is \(O(n)\), since we store the characters and their corresponding frequencies in the priority queue and the final tree structure.
+- **Space Complexity**: The space complexity is $$O(n)$$, since we store the characters and their corresponding frequencies in the priority queue and the final tree structure.
 
 ---
 
@@ -214,7 +214,7 @@ Two widely used algorithms to find the Minimum Spanning Tree of a graph are:
   1. Sort the edges in non-decreasing order of their weights.
   2. Initialize the MST as an empty set of edges.
   3. For each edge, add it to the MST if it doesn’t form a cycle (using a disjoint-set data structure).
-  4. Repeat until the MST contains \(V-1\) edges (where \(V\) is the number of vertices).
+  4. Repeat until the MST contains $$V-1$$ edges (where $$V$$ is the number of vertices).
 
 #### **Prim’s Algorithm**:
 - This algorithm starts with a single vertex and grows the MST by adding the minimum-weight edge from the tree to a vertex outside the tree.
@@ -229,13 +229,13 @@ Two widely used algorithms to find the Minimum Spanning Tree of a graph are:
 ### 5. **Complexity Analysis**
 
 - **Kruskal's Algorithm**:
-  - Sorting edges takes \(O(E \log E)\) time.
-  - Union-Find operations take \(O(E \alpha(V))\), where \(\alpha(V)\) is the inverse Ackermann function, which is almost constant.
-  - Overall complexity: **\(O(E \log E)\)**.
+  - Sorting edges takes $$O(E \log E)$$ time.
+  - Union-Find operations take $$O(E \alpha(V))$$, where $$\alpha(V)$$ is the inverse Ackermann function, which is almost constant.
+  - Overall complexity: **$$O(E \log E)$$**.
 
 - **Prim’s Algorithm**:
-  - Using a binary heap for selecting the minimum weight edge takes \(O(E \log V)\).
-  - Overall complexity: **\(O(E \log V)\)**.
+  - Using a binary heap for selecting the minimum weight edge takes $$O(E \log V)$$.
+  - Overall complexity: **$$O(E \log V)$$**.
 
 In practice, Kruskal’s algorithm is faster for sparse graphs, while Prim’s algorithm is better for dense graphs.
 
@@ -282,17 +282,17 @@ The problem comes in different variations, including the **0/1 Knapsack Problem*
 
 ### 2. **Problem Definition**
 In the **0/1 Knapsack Problem**, we are given:
-- \(n\) items, each with a value \(v_i\) and a weight \(w_i\).
-- A knapsack with a maximum weight capacity \(W\).
+- $$n$$ items, each with a value $$v_i$$ and a weight $$w_i$$.
+- A knapsack with a maximum weight capacity $$W$$.
   
 The goal is to select items such that:
-- The total weight does not exceed \(W\).
+- The total weight does not exceed $$W$$.
 - The total value is maximized.
 
 Mathematically, the problem is represented as:
-- Maximize \( \sum_{i=1}^{n} v_i x_i \)
-- Subject to: \( \sum_{i=1}^{n} w_i x_i \leq W \)
-- Where \(x_i \in \{0, 1\}\) (0 if the item is not included, 1 if it is).
+- Maximize $$ \sum_{i=1}^{n} v_i x_i $$
+- Subject to: $$ \sum_{i=1}^{n} w_i x_i \leq W $$
+- Where $$x_i \in \{0, 1\}$$ (0 if the item is not included, 1 if it is).
 
 ---
 
@@ -309,13 +309,13 @@ Mathematically, the problem is represented as:
 In the **0/1 Knapsack Problem**, the dynamic programming approach is often used for an optimal solution. The idea is to use a 2D table to store the maximum value achievable for a given weight capacity.
 
 #### **Steps for DP Solution**:
-1. Let \(dp[i][w]\) be the maximum value that can be obtained using the first \(i\) items with a weight capacity \(w\).
+1. Let $$dp[i][w]$$ be the maximum value that can be obtained using the first $$i$$ items with a weight capacity $$w$$.
 2. Initialize the first row and column with zeros (base case where either no items or no capacity are available).
-3. For each item \(i\) and weight capacity \(w\):
-   - If the weight of the current item \(w_i\) is less than or equal to the remaining capacity \(w\), either include the item or exclude it.
-   - If including the item, the value will be \(v_i + dp[i-1][w - w_i]\).
-   - If excluding, the value remains \(dp[i-1][w]\).
-4. The optimal solution will be found in \(dp[n][W]\), where \(n\) is the number of items and \(W\) is the knapsack capacity.
+3. For each item $$i$$ and weight capacity $$w$$:
+   - If the weight of the current item $$w_i$$ is less than or equal to the remaining capacity $$w$$, either include the item or exclude it.
+   - If including the item, the value will be $$v_i + dp[i-1][w - w_i]$$.
+   - If excluding, the value remains $$dp[i-1][w]$$.
+4. The optimal solution will be found in $$dp[n][W]$$, where $$n$$ is the number of items and $$W$$ is the knapsack capacity.
 
 ---
 
@@ -333,8 +333,8 @@ The **Fractional Knapsack Problem** can be solved using a greedy approach, which
 
 ### 6. **Time Complexity**
 
-- **0/1 Knapsack (Dynamic Programming)**: The time complexity is \(O(nW)\), where \(n\) is the number of items and \(W\) is the knapsack capacity.
-- **Fractional Knapsack (Greedy)**: The time complexity is \(O(n \log n)\) due to sorting the items based on their value-to-weight ratio.
+- **0/1 Knapsack (Dynamic Programming)**: The time complexity is $$O(nW)$$, where $$n$$ is the number of items and $$W$$ is the knapsack capacity.
+- **Fractional Knapsack (Greedy)**: The time complexity is $$O(n \log n)$$ due to sorting the items based on their value-to-weight ratio.
 
 ---
 
@@ -374,8 +374,8 @@ The objective is to select and schedule jobs to maximize the total profit.
 
 ### 2. **Problem Definition**
 Given:
-- A set of jobs \(J_1, J_2, \dots, J_n\), each job \(J_i\) has a profit \(P_i\) and a deadline \(D_i\).
-- The time slots for the jobs are numbered from 1 to \(T\) (where \(T\) is the maximum deadline across all jobs).
+- A set of jobs $$J_1, J_2, \dots, J_n$$, each job $$J_i$$ has a profit $$P_i$$ and a deadline $$D_i$$.
+- The time slots for the jobs are numbered from 1 to $$T$$ (where $$T$$ is the maximum deadline across all jobs).
   
 The task is to sequence the jobs in such a way that:
 - Each job is completed before its deadline.
@@ -383,8 +383,8 @@ The task is to sequence the jobs in such a way that:
 - The total profit is maximized.
 
 Mathematically:
-- Maximize \( \sum_{i=1}^{n} P_i \)
-- Subject to: \( \text{Job i completes before its deadline} \)
+- Maximize $$ \sum_{i=1}^{n} P_i $$
+- Subject to: Job i completes before its deadline
 
 ---
 
@@ -408,10 +408,10 @@ The steps for the greedy solution are as follows:
 ---
 
 ### 4. **Time Complexity**
-- **Sorting Jobs**: \(O(n \log n)\), where \(n\) is the number of jobs.
-- **Scheduling Jobs**: For each job, checking available slots can take \(O(T)\), where \(T\) is the maximum deadline.
+- **Sorting Jobs**: $$O(n \log n)$$, where $$n$$ is the number of jobs.
+- **Scheduling Jobs**: For each job, checking available slots can take $$O(T)$$, where $$T$$ is the maximum deadline.
   
-Thus, the overall time complexity is \(O(n \log n + nT)\).
+Thus, the overall time complexity is $$O(n \log n + nT)$$.
 
 ---
 
@@ -447,10 +447,10 @@ The **Single Source Shortest Path Problem** involves finding the shortest path f
 
 ### 2. **Problem Definition**
 Given:
-- A weighted graph \(G = (V, E)\) with vertices \(V\) and edges \(E\).
-- A source vertex \(s\).
+- A weighted graph $$G = (V, E)$$ with vertices $$V$$ and edges $$E$$.
+- A source vertex $$s$$.
 
-The task is to find the shortest path from the source vertex \(s\) to every other vertex in \(V\).
+The task is to find the shortest path from the source vertex $$s$$ to every other vertex in $$V$$.
 
 ---
 
@@ -460,7 +460,7 @@ Dijkstra’s algorithm works by maintaining a set of vertices whose shortest dis
 
 The algorithm works in the following steps:
 1. **Initialize**:
-   - Set the distance to the source vertex \(s\) as 0 and the distance to all other vertices as infinity.
+   - Set the distance to the source vertex $$s$$ as 0 and the distance to all other vertices as infinity.
    - Set all vertices as unvisited.
 
 2. **Select the Vertex**:
@@ -485,11 +485,11 @@ The algorithm works in the following steps:
 ---
 
 ### 5. **Time Complexity**
-- The time complexity of Dijkstra's algorithm is \(O(V^2)\) using a simple array to represent the distance. However, it can be improved to \(O(E + V \log V)\) by using a priority queue (min-heap).
+- The time complexity of Dijkstra's algorithm is $$O(V^2)$$ using a simple array to represent the distance. However, it can be improved to $$O(E + V \log V)$$ by using a priority queue (min-heap).
 
 Where:
-- \(V\) is the number of vertices.
-- \(E\) is the number of edges.
+- $$V$$ is the number of vertices.
+- $$E$$ is the number of edges.
 
 ---
 

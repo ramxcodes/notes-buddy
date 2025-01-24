@@ -2,25 +2,25 @@
 title: "Unit 5: Design and Analysis of Algorithms"
 description: Backtracking Approach N-Queen’s problem, Hamiltonian cycle, Graph coloring problem, Sum of Subset problem. Introduction to branch & bound method, examples of branch and bound method like15 puzzle traveling salesman problem, 0/1 knapsack. An introduction to P, NP, NP Complete and NP hard problems.
 date: 2025-01-19
-tags: ["Design and Analysis of Algorithms", "6th Semester", "3rd Year", "medicaps university"]
+tags: ["DAA", "6th Semester", "3rd Year", "medicaps university"]
 published: true
 metadata:
   university: "Medicaps University"
   degree: "B Tech"
   semester: "6th Semester"
-  subject: "Design and Analysis of Algorithms"
+  subject: "DAA"
 ---
 ## Backtracking Approach: N-Queen’s Problem
 
 ### 1. **Introduction to Backtracking**
 Backtracking is a general algorithmic technique used to solve problems recursively by trying out different possibilities and abandoning solutions ("backtracking") as soon as it is determined that they cannot lead to a valid solution.
 
-The N-Queen problem is a classic example of backtracking. It involves placing N chess queens on an \( N \times N \) chessboard such that no two queens threaten each other. This means that no two queens can share the same row, column, or diagonal.
+The N-Queen problem is a classic example of backtracking. It involves placing N chess queens on an $$ N \times N $$ chessboard such that no two queens threaten each other. This means that no two queens can share the same row, column, or diagonal.
 
 ---
 
 ### 2. **Problem Definition**
-Given an \( N \times N \) chessboard, the goal is to place N queens on the board such that:
+Given an $$ N \times N $$ chessboard, the goal is to place N queens on the board such that:
 - Each queen is placed in a different row.
 - No two queens can be in the same column.
 - No two queens can be placed on the same diagonal.
@@ -38,8 +38,8 @@ Given an \( N \times N \) chessboard, the goal is to place N queens on the board
    At each step, check whether the current queen placement is valid by ensuring:
    - The column is not already occupied by another queen.
    - The diagonal is not already occupied. This can be checked using the following conditions:
-     - \( \text{row} - \text{column} \) is unique for each queen.
-     - \( \text{row} + \text{column} \) is unique for each queen.
+     - row - column is unique for each queen.
+     - row + column is unique for each queen.
 
 3. **Backtrack When Invalid**:
    If placing a queen leads to an invalid configuration, the algorithm backtracks by removing the queen and trying the next possible position.
@@ -196,15 +196,15 @@ The **Sum of Subset Problem** is a decision problem in which we are given a set 
 
 ### 2. **Problem Definition**
 Given:
-- A set of integers: {x₁, x₂, ..., xn}
+- A set of integers: $$ \{x₁, x₂, ..., xn\} $$
 - A target sum: S
 
-The problem is to find a subset of the set {x₁, x₂, ..., xn} such that the sum of the elements in the subset equals S.
+The problem is to find a subset of the set $$ \{x₁, x₂, ..., xn\} $$ such that the sum of the elements in the subset equals S.
 
 For example:
-- Set = {3, 34, 4, 12, 5, 2}
+- Set = $$ \{3, 34, 4, 12, 5, 2\} $$
 - Target Sum = 9
-- Output: Yes, because the subset {4, 5} has a sum of 9.
+- Output: Yes, because the subset $$ \{4, 5\} $$ has a sum of 9.
 
 ---
 
@@ -248,11 +248,11 @@ Backtracking can also be used to solve the Sum of Subset problem by exploring al
 ---
 
 ### 8. **Example Problem**
-- Set = {1, 2, 3, 4, 5}
+- Set = $$ \{1, 2, 3, 4, 5\} $$
 - Target Sum = 9
 
-Is there a subset of the set {1, 2, 3, 4, 5} whose sum equals 9?
-- Yes, because the subset {4, 5} sums to 9.
+Is there a subset of the set $$ \{1, 2, 3, 4, 5\} $$ whose sum equals 9?
+- Yes, because the subset $$ \{4, 5\} $$ sums to 9.
 
 ---
 
@@ -405,14 +405,6 @@ Given a set of items with weights and values, and a knapsack with a weight capac
 
 💡 **TIP**: The **Branch and Bound** method can be effective for combinatorial optimization problems where an exhaustive search would be computationally infeasible. By using good heuristics for bounding and pruning, the method can significantly reduce the search space.
 
----
-title: "0/1 Knapsack Problem"
-description: The 0/1 Knapsack Problem is a combinatorial optimization problem where the goal is to find the most valuable subset of items that can fit into a knapsack with a weight limit.
-date: 2025-01-19
-tags: ["Design and Analysis of Algorithms", "6th Semester", "3rd Year"]
-published: true
----
-
 ## 0/1 Knapsack Problem
 
 The **0/1 Knapsack Problem** is a classic problem in combinatorial optimization. The objective is to select a subset of items to maximize the total value without exceeding a given weight limit.
@@ -423,12 +415,12 @@ You are given a set of items, each with a weight and a value. You have a knapsac
 - The total value of the selected items is maximized.
 
 ### Problem Formulation:
-- Let there be \( n \) items, with each item \( i \) having a weight \( w_i \) and a value \( v_i \).
-- The knapsack has a total capacity \( W \).
-- The goal is to select a subset of items such that the sum of the weights of the selected items does not exceed \( W \), and the sum of their values is maximized.
+- Let there be $$ n $$ items, with each item $$ i $$ having a weight $$ w_i $$ and a value $$ v_i $$.
+- The knapsack has a total capacity $$ W $$.
+- The goal is to select a subset of items such that the sum of the weights of the selected items does not exceed $$ W $$, and the sum of their values is maximized.
 
 ### Dynamic Programming Approach:
-The problem can be solved using dynamic programming, where we build a table \( dp \) where each entry \( dp[i][w] \) represents the maximum value that can be achieved with the first \( i \) items and a weight capacity \( w \).
+The problem can be solved using dynamic programming, where we build a table $$ dp $$ where each entry $$ dp[i][w] $$ represents the maximum value that can be achieved with the first $$ i $$ items and a weight capacity $$ w $$.
 
 The recurrence relation is as follows:
 - If the weight of the current item is less than or equal to the current capacity, we can either:
@@ -437,48 +429,40 @@ The recurrence relation is as follows:
   
   The recurrence relation becomes:
   
-  \[
+  $$
   dp[i][w] = \max(dp[i-1][w], dp[i-1][w-w_i] + v_i)
-  \]
+  $$
 
-  - \( dp[i-1][w] \) represents excluding the item.
-  - \( dp[i-1][w-w_i] + v_i \) represents including the item.
+  - $$ dp[i-1][w] $$ represents excluding the item.
+  - $$ dp[i-1][w-w_i] + v_i $$ represents including the item.
 
 - If the weight of the current item is greater than the current capacity, we cannot include it:
   
-  \[
+  $$
   dp[i][w] = dp[i-1][w]
-  \]
+  $$
 
 ### Time Complexity:
-The time complexity of the dynamic programming solution is \( O(nW) \), where \( n \) is the number of items and \( W \) is the capacity of the knapsack. This is because we are filling up a table of size \( n \times W \).
+The time complexity of the dynamic programming solution is $$ O(nW) $$, where $$ n $$ is the number of items and $$ W $$ is the capacity of the knapsack. This is because we are filling up a table of size $$ n \times W $$.
 
 ### Space Complexity:
-The space complexity is \( O(nW) \) as we need a table to store the values for each subproblem. However, this can be optimized to \( O(W) \) by using a 1D array instead of a 2D array.
+The space complexity is $$ O(nW) $$ as we need a table to store the values for each subproblem. However, this can be optimized to $$ O(W) $$ by using a 1D array instead of a 2D array.
 
 ### Advantages:
 - The dynamic programming approach provides an optimal solution to the 0/1 knapsack problem.
 - It guarantees finding the most valuable subset of items that fit into the knapsack.
 
 ### Disadvantages:
-- The time complexity of \( O(nW) \) may still be infeasible for very large inputs where both \( n \) and \( W \) are large.
+- The time complexity of $$ O(nW) $$ may still be infeasible for very large inputs where both $$ n $$ and $$ W $$ are large.
 
-### 💡 **TIP**: The **0/1 Knapsack Problem** can be solved efficiently using dynamic programming, but its time complexity may not be suitable for problems where the capacity \( W \) is very large.
-
----
-title: "An Introduction to P, NP, NP-Complete, and NP-Hard Problems"
-description: This topic covers the basic concepts of complexity classes in computational theory, including P, NP, NP-Complete, and NP-Hard problems.
-date: 2025-01-19
-tags: ["Design and Analysis of Algorithms", "6th Semester", "3rd Year"]
-published: true
----
+### 💡 **TIP**: The **0/1 Knapsack Problem** can be solved efficiently using dynamic programming, but its time complexity may not be suitable for problems where the capacity $$ W $$ is very large.
 
 ## Introduction to P, NP, NP-Complete, and NP-Hard Problems
 
 In computational theory, the classification of problems based on their complexity is crucial for understanding the limits of efficient computation. Four important complexity classes are **P**, **NP**, **NP-Complete**, and **NP-Hard**. These classes help in determining whether a problem can be solved in a reasonable amount of time or if it is computationally intractable.
 
 ### P (Polynomial Time):
-- **Definition**: The class **P** consists of decision problems (problems with a yes/no answer) that can be solved in **polynomial time**. A problem is in P if there exists an algorithm to solve it that runs in time \( O(n^k) \), where \( n \) is the size of the input and \( k \) is a constant.
+- **Definition**: The class **P** consists of decision problems (problems with a yes/no answer) that can be solved in **polynomial time**. A problem is in P if there exists an algorithm to solve it that runs in time $$ O(n^k) $$, where $$ n $$ is the size of the input and $$ k $$ is a constant.
 - **Examples**: Sorting, finding the shortest path in a graph (Dijkstra's algorithm), matrix multiplication, etc.
 - **Key Concept**: These problems are considered "easy" because they can be solved efficiently as the input size grows.
 
@@ -491,7 +475,7 @@ In computational theory, the classification of problems based on their complexit
 - **Definition**: A problem is **NP-Complete** if it is both in NP and as hard as any other problem in NP. In other words, any problem in NP can be reduced to an NP-Complete problem in polynomial time.
 - **Key Concept**: NP-Complete problems are considered the "hardest" problems in NP, and they are often used to represent the most challenging computational problems.
 - **Examples**: **SAT (Boolean Satisfiability)**, **Traveling Salesman Problem (TSP)**, and **Clique Problem**.
-- **The P = NP Question**: A major unsolved question in computer science is whether **P = NP**. If \( P = NP \), it means that all problems for which a solution can be verified in polynomial time can also be solved in polynomial time. Most believe that \( P \neq NP \), but it remains an open question.
+- **The P = NP Question**: A major unsolved question in computer science is whether **P = NP**. If $$ P = NP $$, it means that all problems for which a solution can be verified in polynomial time can also be solved in polynomial time. Most believe that $$ P \neq NP $$, but it remains an open question.
 
 ### NP-Hard:
 - **Definition**: A problem is **NP-Hard** if every problem in NP can be reduced to it in polynomial time. NP-Hard problems are at least as hard as the hardest problems in NP, but they may not necessarily be in NP (i.e., they do not need to be decision problems).
@@ -505,4 +489,3 @@ In computational theory, the classification of problems based on their complexit
 - **P ≠ NP?**: The question of whether P = NP remains unsolved. If P = NP, it means every problem for which a solution can be verified in polynomial time can also be solved in polynomial time.
 
 ### 💡 **TIP**: Understanding the relationships between these classes helps in identifying the computational complexity of problems and guides decision-making in algorithm design.
-
