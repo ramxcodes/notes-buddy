@@ -22,9 +22,16 @@ export default function NotesReportsPage() {
   useEffect(() => {
     async function fetchReports() {
       try {
-        const response = await fetch("/admin/api/notes-reports");
-        const data = await response.json();
+        const response = await fetch("/admin/api/notes-reports", {
+          cache: "no-store",
+        });
+        if (!response.ok) {
+          throw new Error(
+            `Failed to fetch notes reports: ${response.statusText}`
+          );
+        }
 
+        const data = await response.json();
         if (Array.isArray(data)) {
           setReports(data);
         } else {
@@ -74,7 +81,10 @@ export default function NotesReportsPage() {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <NotesReportsTable reports={reports} onUpdateStatus={handleUpdateStatus} />
+        <NotesReportsTable
+          reports={reports}
+          onUpdateStatus={handleUpdateStatus}
+        />
       )}
     </div>
   );

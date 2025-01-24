@@ -1,7 +1,11 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import { NotesRequestTable } from "../components/NotesRequestTable";
 import { Separator } from "@/components/ui/separator";
+
+const BASE_URL = process.env.NEXTAUTH_URL || "";
+
 interface NotesRequest {
   _id: string;
   user: { name: string; email: string };
@@ -15,18 +19,27 @@ interface NotesRequest {
   status: string;
   createdAt: string;
 }
+
 export default function NotesRequestsPage() {
   const [requests, setRequests] = useState<NotesRequest[]>([]);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     async function fetchRequests() {
       try {
-        const response = await fetch("/admin/api/notes-requests");
+        const response = await fetch(`${BASE_URL}/admin/api/notes-requests`, {
+          cache: "no-store",
+        });
+
+        if (!response.ok) {
+          throw new Error(`API Error: ${response.statusText}`);
+        }
+
         const data = await response.json();
         if (Array.isArray(data)) {
           setRequests(data);
         } else {
-          console.error("API Error: Response is not an array.");
+          console.error("API Error: Response is not an array.", data);
           setRequests([]);
         }
       } catch (error) {
@@ -36,8 +49,10 @@ export default function NotesRequestsPage() {
         setLoading(false);
       }
     }
+
     fetchRequests();
   }, []);
+
   const handleUpdateStatus = async (requestId: string, status: string) => {
     try {
       const response = await fetch("/api/notes/request", {
@@ -46,6 +61,7 @@ export default function NotesRequestsPage() {
         body: JSON.stringify({ requestId, status }),
       });
       const result = await response.json();
+
       if (result.success) {
         setRequests((prev) =>
           prev.map((request) =>
@@ -59,6 +75,7 @@ export default function NotesRequestsPage() {
       console.error("Error updating request status:", error);
     }
   };
+
   return (
     <div className="container mx-auto py-8">
       <h1 className="text-2xl font-bold mb-4">Notes Requests</h1>
@@ -66,7 +83,10 @@ export default function NotesRequestsPage() {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <NotesRequestTable requests={requests} onUpdateStatus={handleUpdateStatus} />
+        <NotesRequestTable
+          requests={requests}
+          onUpdateStatus={handleUpdateStatus}
+        />
       )}
     </div>
   );

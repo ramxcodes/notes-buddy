@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 import { getCollection } from "@/lib/db";
 import { ObjectId } from "mongodb";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 const ERROR_MESSAGES = {
   INVALID_REPORT_ID: "Invalid Report ID.",
   INVALID_STATUS:
@@ -19,11 +22,23 @@ export async function GET(request: Request) {
     const statusFilter = url.searchParams.get("status");
 
     const reportsCollection = await getCollection("reportNotes");
-
     const query = statusFilter ? { status: statusFilter } : {};
-    const reports = await reportsCollection.find(query).toArray();
 
-    return NextResponse.json(reports, { status: 200 });
+    const reports = await reportsCollection
+      .find(query)
+      .sort({ createdAt: -1 })
+      .toArray();
+
+    return new NextResponse(JSON.stringify(reports), {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+        "Cache-Control":
+          "no-store, no-cache, must-revalidate, proxy-revalidate",
+        Expires: "0",
+        Pragma: "no-cache",
+      },
+    });
   } catch (error) {
     console.error(ERROR_MESSAGES.FETCH_ERROR, error);
     return NextResponse.json(
@@ -53,7 +68,6 @@ export async function PATCH(request: Request) {
     }
 
     const reportsCollection = await getCollection("reportNotes");
-
     const updateResult = await reportsCollection.updateOne(
       { _id: new ObjectId(reportId) },
       { $set: { status } }
@@ -66,7 +80,16 @@ export async function PATCH(request: Request) {
       );
     }
 
-    return NextResponse.json({ success: true }, { status: 200 });
+    return new NextResponse(JSON.stringify({ success: true }), {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+        "Cache-Control":
+          "no-store, no-cache, must-revalidate, proxy-revalidate",
+        Expires: "0",
+        Pragma: "no-cache",
+      },
+    });
   } catch (error) {
     console.error(ERROR_MESSAGES.UPDATE_ERROR, error);
     return NextResponse.json(
