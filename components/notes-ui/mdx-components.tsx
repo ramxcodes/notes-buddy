@@ -4,6 +4,7 @@ import { TableOfContents } from "./TableOfContents";
 import { Callout } from "./callout";
 import { UnitPagination } from "./unit-pagination";
 import QuizComponent from "./QuizComponent";
+import { PdfViewer } from "./PdfViewer"; // Import the new component
 import { isPaginationDisabled } from "@/utils/pagination-config";
 
 const useMDXComponent = (code: string) => {
@@ -15,6 +16,7 @@ const components = {
   Image,
   Callout,
   Quiz: QuizComponent,
+  PdfViewer, // Add the PDF viewer here
 };
 
 interface MdxProps {

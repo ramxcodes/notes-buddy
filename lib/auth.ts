@@ -10,40 +10,56 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.AUTH_GOOGLE_ID as string,
       clientSecret: process.env.AUTH_GOOGLE_SECRET as string,
+      allowDangerousEmailAccountLinking: true,
     }),
   ],
   session: {
     strategy: "jwt",
   },
   callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        const db = await clientPromise;
-        const usersCollection = db.db().collection("users");
+    async jwt({ token, user, account }) {
+      const db = await clientPromise;
+      const usersCollection = db.db().collection("users");
 
-        const dbUser = await usersCollection.findOne({ email: token.email });
+      if (user) {
+        const email = user.email || token.email;
+
+        let dbUser = await usersCollection.findOne({ email });
 
         if (!dbUser) {
-          await usersCollection.insertOne({
-            email: token.email,
-            name: token.name || "",
-            image: token.picture || "",
+          const result = await usersCollection.insertOne({
+            email,
+            name: user.name || token.name || "",
+            image: user.image || token.picture || "",
             Blocked: false,
             createdAt: new Date(),
           });
-        } else if (!("Blocked" in dbUser)) {
-          await usersCollection.updateOne(
-            { email: token.email },
-            { $set: { Blocked: false } }
-          );
+          dbUser = { _id: result.insertedId, Blocked: false };
+        } else {
+          if (
+            account &&
+            (!dbUser.provider || dbUser.provider !== account.provider)
+          ) {
+            await usersCollection.updateOne(
+              { email },
+              { $set: { provider: account.provider } }
+            );
+          }
         }
 
-        token.id = dbUser?._id;
-        token.Blocked = dbUser?.Blocked ?? false;
+        token.id = dbUser._id?.toString() || token.id;
+        token.Blocked = dbUser.Blocked ?? false;
+        token.email = email;
+        token.name = user.name || token.name;
+
+        const adminEmails =
+          process.env.ADMIN_EMAILS?.split(",").map((e) => e.trim()) || [];
+        token.isAdmin = adminEmails.includes(email || "");
       }
 
       return token;
     },
+
     async session({ session, token }) {
       session.user = {
         id: token.id as string,
@@ -51,6 +67,7 @@ export const authOptions: NextAuthOptions = {
         name: token.name || "",
         image: token.picture || "",
         Blocked: token.Blocked as boolean,
+        isAdmin: token.isAdmin as boolean,
       };
       return session;
     },

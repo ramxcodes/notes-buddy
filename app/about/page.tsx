@@ -43,9 +43,9 @@ export default function AboutSection() {
             About Us
           </h1>
           <h2 className="text-lg md:text-xl lg:text-2xl text-center text-gray-800 dark:text-white mt-4 md:mt-6 lg:mt-8 px-4 md:px-12 lg:px-24">
-            Welcome to NotesBuddy👋, think of us as your nerdy best friend 🤝 who
-            loves simplifying tough concepts into clear, and bite-sized
-            notes—no stress, no drama!👍🏻💫
+            Your ultimate study partner, simplifying tough topics with smart,
+            quick resources. Ace your exams with notes loved by students
+            everywhere!
           </h2>
         </BlurFade>
       </section>
@@ -63,7 +63,8 @@ export default function AboutSection() {
             <span>
               What
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-indigo-800 dark:from-purple-500 dark:to-cyan-200">
-                {" "}NotesBuddy{" "}
+                {" "}
+                NotesBuddy{" "}
               </span>
               is?
             </span>
@@ -74,12 +75,11 @@ export default function AboutSection() {
             animate={controls}
             className="text-base md:text-lg lg:text-xl text-gray-800 dark:text-white mt-4 leading-relaxed"
           >
-            We take the headache out of learning by turning boring 💤,
-            complicated notes into fun 🎉, simplified AI-driven notes 📓.
-            Whether you&apos;re cramming for exams or just trying to make sense
-            of your textbooks📚, NotesBuddy has got your back🤚🏻. Think of us as
-            the superhero cape 🦸🏻 you wear to conquer academics—without the
-            stress, but with a lot of style! 🎓💡
+            We make learning simple by turning boring, complicated notes into
+            fun, easy-to-read notes. Whether you&apos;re preparing for exams or
+            trying to understand your textbooks, Notes Buddy is here to help.
+            Think of us as the superhero cape you put on to tackle your
+            studies stress free and full of confidence!
           </motion.p>
         </div>
         <motion.div
@@ -130,13 +130,7 @@ export default function AboutSection() {
             animate={controls}
             className="text-2xl md:text-4xl lg:text-5xl font-bold dark:text-white mb-4"
           >
-            <span>
-              Why we
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-indigo-800 dark:from-purple-500 dark:to-cyan-200">
-                {" "}Built{" "}
-              </span>
-              it?
-            </span>
+            <span>Why we Built it?</span>
           </motion.div>
           <motion.p
             variants={slideInFromRight(1.5)}
@@ -144,13 +138,13 @@ export default function AboutSection() {
             animate={controls}
             className="text-base md:text-lg lg:text-xl text-gray-700 dark:text-white leading-relaxed"
           >
-            We started NotesBuddy because, let’s face it, studying shouldn’t feel
-            like deciphering ancient hieroglyphs!🍂 We’ve been there—lost in piles
-            of notes, wondering 💭 what’s important and what’s just noise🔉.
-            That’s why we decided to create a space where students like you can
-            find notes that are simple, clear, and to the point🎯. No jargon, no
-            fluff, just the stuff you need to shine💫. Because we believe learning
-            should be smart, not hard. 😎🚀
+            We started Notes Buddy because, let’s face it, studying shouldn’t
+            feel like deciphering ancient hieroglyphs! We’ve been there—lost in
+            piles of notes, wondering what’s important and what’s just noise.
+            That’s why we created a space where students like you can find notes
+            that are simple, clear, and to the point. No jargon, no fluff, just
+            the stuff you need to shine. Because we believe learning should be
+            smart, not hard.
           </motion.p>
         </div>
       </section>

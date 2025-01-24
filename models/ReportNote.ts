@@ -1,4 +1,7 @@
 import { Schema, model, models } from "mongoose";
+import { connectToDatabase } from "@/lib/db";
+
+connectToDatabase();
 
 const ReportNoteSchema = new Schema({
   noteUrl: { type: String, required: true },
@@ -8,6 +11,11 @@ const ReportNoteSchema = new Schema({
   userName: { type: String, required: true },
   userEmail: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
+  status: {
+    type: String,
+    enum: ["Pending", "In Progress", "Completed", "Rejected"],
+    default: "Pending",
+  },
 });
 
 const ReportNote = models.ReportNote || model("ReportNote", ReportNoteSchema);

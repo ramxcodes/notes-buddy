@@ -38,6 +38,7 @@ export async function POST(request: Request) {
       userName,
       userEmail,
       createdAt: new Date(),
+      status: "Pending",
     });
 
     return NextResponse.json({ message: "Report submitted successfully" });
