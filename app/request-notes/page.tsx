@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Popup } from "../buy-premium/components/Popup";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const ERROR_MESSAGES = {
   LOGIN_REQUIRED: "Please log in to submit notes!",
@@ -141,7 +142,14 @@ const RequestNotesPage = () => {
   if (status === "loading") {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <p>Loading...</p>
+        <div className="w-full max-w-lg space-y-4">
+          <Skeleton className="h-8 w-1/2" />
+          <Skeleton className="h-12 w-full" />
+          <Skeleton className="h-12 w-full" />
+          <Skeleton className="h-12 w-full" />
+          <Skeleton className="h-32 w-full" />
+          <Skeleton className="h-12 w-1/3" />
+        </div>
       </div>
     );
   }
@@ -154,13 +162,13 @@ const RequestNotesPage = () => {
         </h1>
       </BlurFade>
       <BlurFade delay={0.3} inView>
-        <Card className="w-full max-w-lg mt-8">
+        <Card className="w-72 md:w-96 mt-8">
           <CardHeader>
             <CardTitle>Submit your notes request</CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit}>
-              {[
+              {[ 
                 { label: "University", name: "university" },
                 { label: "Degree", name: "degree" },
                 { label: "Year", name: "year", type: "number" },
