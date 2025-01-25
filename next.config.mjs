@@ -4,10 +4,17 @@ import { build } from "velite";
 const nextConfig = {
   webpack: (config) => {
     config.plugins.push(new VeliteWebpackPlugin());
+
+    config.module.rules.push({
+      test: /\.ttf$/,
+      use: ["file-loader"],
+    });
+
     config.cache = {
-      type: "filesystem", // Enable filesystem caching
-      allowCollectingMemory: true, // Optimize cache collection
+      type: "filesystem",
+      allowCollectingMemory: true,
     };
+
     return config;
   },
 };
@@ -30,7 +37,7 @@ class VeliteWebpackPlugin {
 
       try {
         console.log("Starting Velite build...");
-        await build(this.options); // Start Velite build
+        await build(this.options);
         console.log("Velite build completed.");
       } catch (err) {
         console.error("Velite build failed:", err);
