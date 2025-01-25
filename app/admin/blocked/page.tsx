@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { BlockedUserTable } from "../components/BlockedUserTable";
 import { Separator } from "@/components/ui/separator";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface BlockedUser {
   _id: string;
@@ -57,7 +58,17 @@ export default function BlockedUsersPage() {
       <Separator className="mb-6" />
 
       {loading ? (
-        <p>Loading...</p>
+        <div className="space-y-4">
+          {[...Array(5)].map((_, index) => (
+            <div key={index} className="flex items-center space-x-4">
+              <Skeleton className="h-8 w-8 rounded-full" />
+              <div className="flex-1 space-y-2">
+                <Skeleton className="h-4 w-1/3" />
+                <Skeleton className="h-4 w-1/2" />
+              </div>
+            </div>
+          ))}
+        </div>
       ) : blockedUsers.length > 0 ? (
         <BlockedUserTable users={blockedUsers} onUnblock={handleUnblock} />
       ) : (

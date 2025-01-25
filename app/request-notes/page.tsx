@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Popup } from "../buy-premium/components/Popup";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const ERROR_MESSAGES = {
   LOGIN_REQUIRED: "Please log in to submit notes!",
@@ -141,70 +142,79 @@ const RequestNotesPage = () => {
   if (status === "loading") {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <p>Loading...</p>
+        <div className="w-full max-w-lg space-y-4">
+          <Skeleton className="h-8 w-1/2" />
+          <Skeleton className="h-12 w-full" />
+          <Skeleton className="h-12 w-full" />
+          <Skeleton className="h-12 w-full" />
+          <Skeleton className="h-32 w-full" />
+          <Skeleton className="h-12 w-1/3" />
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col items-center min-h-screen p-6">
-      <BlurFade delay={0.2} inView>
-        <h1 className="text-[2.3rem] lg:text-[4.5rem] font-bold text-center py-2">
-          Request Notes
-        </h1>
-      </BlurFade>
-      <BlurFade delay={0.3} inView>
-        <Card className="w-full max-w-lg mt-8">
-          <CardHeader>
-            <CardTitle>Submit your notes request</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit}>
-              {[
-                { label: "University", name: "university" },
-                { label: "Degree", name: "degree" },
-                { label: "Year", name: "year", type: "number" },
-                { label: "Semester", name: "semester" },
-                { label: "Subject", name: "subject" },
-                { label: "Syllabus", name: "syllabus", textarea: true },
-                { label: "Phone Number", name: "phoneNumber" },
-              ].map(({ label, name, type = "text", textarea }) => (
-                <div key={name} className="mb-4">
-                  <Label htmlFor={name}>{label}</Label>
-                  {textarea ? (
-                    <Textarea
-                      id={name}
-                      name={name}
-                      value={formData[name as keyof FormFields]}
-                      onChange={handleChange}
-                      required
-                    />
-                  ) : (
-                    <Input
-                      id={name}
-                      name={name}
-                      type={type}
-                      value={formData[name as keyof FormFields]}
-                      onChange={handleChange}
-                      required
-                    />
-                  )}
-                </div>
-              ))}
-              <Button type="submit" disabled={isSubmitting}>
-                Submit Request
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
-      </BlurFade>
-      {showPopup && (
-        <Popup
-          message={popupMessage}
-          onClose={() => setShowPopup(false)}
-          showLoginButton={popupMessage === ERROR_MESSAGES.LOGIN_REQUIRED}
-        />
-      )}
+    <div className="max-w-3xl mx-auto p-6">
+      <div className="min-h-screen flex flex-col justify-center space-y-6">
+        <BlurFade delay={0.2} inView>
+          <h1 className="text-[2.3rem] lg:text-[4.5rem] font-bold text-center py-2">
+            Request Notes
+          </h1>
+        </BlurFade>
+        <BlurFade delay={0.3} inView>
+          <Card className="mt-8">
+            <CardHeader>
+              <CardTitle className="text-center font-wotfard tracking-wide">Submit your notes request</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit}>
+                {[
+                  { label: "University", name: "university" },
+                  { label: "Degree", name: "degree" },
+                  { label: "Year", name: "year", type: "number" },
+                  { label: "Semester", name: "semester" },
+                  { label: "Subject", name: "subject" },
+                  { label: "Syllabus", name: "syllabus", textarea: true },
+                  { label: "Phone Number", name: "phoneNumber" },
+                ].map(({ label, name, type = "text", textarea }) => (
+                  <div key={name} className="mb-4">
+                    <Label htmlFor={name}>{label}</Label>
+                    {textarea ? (
+                      <Textarea
+                        id={name}
+                        name={name}
+                        value={formData[name as keyof FormFields]}
+                        onChange={handleChange}
+                        required
+                      />
+                    ) : (
+                      <Input
+                        id={name}
+                        name={name}
+                        type={type}
+                        value={formData[name as keyof FormFields]}
+                        onChange={handleChange}
+                        required
+                      />
+                    )}
+                  </div>
+                ))}
+                <Button type="submit" disabled={isSubmitting}>
+                  Submit Request
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </BlurFade>
+        {showPopup && (
+          <Popup
+            message={popupMessage}
+            onClose={() => setShowPopup(false)}
+            showLoginButton={popupMessage === ERROR_MESSAGES.LOGIN_REQUIRED}
+          />
+        )}
+      </div>
     </div>
   );
 };

@@ -16,6 +16,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Popup } from "../buy-premium/components/Popup";
 import BlurFade from "@/components/ui/blur-fade";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const ERROR_MESSAGES = {
   LOGIN_REQUIRED: "Please log in to report notes!",
@@ -26,7 +27,19 @@ const ERROR_MESSAGES = {
 
 const ReportNotePage = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense
+      fallback={
+        <div className="max-w-3xl mx-auto p-6">
+          <Skeleton className="h-10 w-full mb-4" />
+          <Skeleton className="h-14 w-full mb-6" />
+          <Skeleton className="h-10 w-1/2 mb-4" />
+          <Skeleton className="h-14 w-full mb-6" />
+          <Skeleton className="h-10 w-1/2 mb-4" />
+          <Skeleton className="h-24 w-full mb-6" />
+          <Skeleton className="h-10 w-32" />
+        </div>
+      }
+    >
       <ReportNotePageContent />
     </Suspense>
   );
@@ -98,56 +111,63 @@ const ReportNotePageContent = () => {
 
   return (
     <div className="max-w-3xl mx-auto p-6">
-      <BlurFade delay={0.2} inView>
-        <h1 className="text-[2.3rem] lg:text-[4.5rem] md:text-[4rem] leading-[1] font-bold dark:bg-gradient-to-b dark:from-[rgba(244,244,255,1)] dark:to-[rgba(181,180,207,1)] dark:text-transparent dark:bg-clip-text py-2 text-center">
-          Report Notes
-        </h1>
-      </BlurFade>
-      <BlurFade delay={0.3} inView>
-        <div className="space-y-4">
-          <div>
-            <label className="block font-bold mb-2">Notes URL</label>
-            <Input
-              value={noteUrl}
-              readOnly={!noteUrl}
-              onChange={(e) => setNoteUrl(e.target.value)}
-            />
+      <div className="min-h-screen flex flex-col justify-center space-y-6">
+        <BlurFade delay={0.2} inView>
+          <h1 className="text-[2.3rem] lg:text-[4.5rem] md:text-[4rem] leading-[1] font-bold dark:bg-gradient-to-b dark:from-[rgba(244,244,255,1)] dark:to-[rgba(181,180,207,1)] dark:text-transparent dark:bg-clip-text py-2 text-center">
+            Report Notes
+          </h1>
+        </BlurFade>
+        <BlurFade delay={0.3} inView>
+          <div className="space-y-4">
+            <div>
+              <label className="block font-bold mb-2">Notes URL</label>
+              <Input
+                value={noteUrl}
+                readOnly={!noteUrl}
+                onChange={(e) => setNoteUrl(e.target.value)}
+              />
+            </div>
+            <div>
+              <label className="block font-bold mb-2">Select an Issue</label>
+              <Select onValueChange={setIssue}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Choose an issue" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="misinformation">
+                    Misinformation / Wrong Information
+                  </SelectItem>
+                  <SelectItem value="short-notes">
+                    Notes are too short
+                  </SelectItem>
+                  <SelectItem value="diagrams-needed">
+                    Need more diagrams
+                  </SelectItem>
+                  <SelectItem value="other">Other</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <label className="block font-bold mb-2">
+                Other Issue (Optional)
+              </label>
+              <Textarea
+                placeholder="Describe your issue"
+                value={otherText}
+                onChange={(e) => setOtherText(e.target.value)}
+              />
+            </div>
+            <Button onClick={handleSubmit}>Submit</Button>
           </div>
-          <div>
-            <label className="block font-bold mb-2">Select an Issue</label>
-            <Select onValueChange={setIssue}>
-              <SelectTrigger>
-                <SelectValue placeholder="Choose an issue" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="misinformation">Misinformation</SelectItem>
-                <SelectItem value="short-notes">Notes are too short</SelectItem>
-                <SelectItem value="diagrams-needed">
-                  Need more diagrams
-                </SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <div>
-            <label className="block font-bold mb-2">
-              Other Issue (Optional)
-            </label>
-            <Textarea
-              placeholder="Describe your issue"
-              value={otherText}
-              onChange={(e) => setOtherText(e.target.value)}
-            />
-          </div>
-          <Button onClick={handleSubmit}>Submit</Button>
-        </div>
-      </BlurFade>
-      {showPopup && (
-        <Popup
-          message={popupMessage}
-          onClose={() => setShowPopup(false)}
-          showLoginButton={popupMessage === ERROR_MESSAGES.LOGIN_REQUIRED}
-        />
-      )}
+        </BlurFade>
+        {showPopup && (
+          <Popup
+            message={popupMessage}
+            onClose={() => setShowPopup(false)}
+            showLoginButton={popupMessage === ERROR_MESSAGES.LOGIN_REQUIRED}
+          />
+        )}
+      </div>
     </div>
   );
 };
