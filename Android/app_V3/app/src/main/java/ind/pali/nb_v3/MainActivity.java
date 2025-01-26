@@ -1,137 +1,111 @@
 package ind.pali.nb_v3;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
+import android.widget.LinearLayout;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class MainActivity extends AppCompatActivity {
-
-    String websiteURL = "https://notesbuddy.in"; // sets web url
-    private WebView webview;
-    SwipeRefreshLayout mySwipeRefreshLayout;
+    private static final String WEBSITE_URL = "https://notesbuddy.in";
+    private WebView webView;
+    private SwipeRefreshLayout swipeContainer;
+    private LinearLayout splashLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if( ! CheckNetwork.isInternetAvailable(this)) //returns true if internet available
-        {
-            //if there is no internet do this
-            setContentView(R.layout.activity_main);
-            //Toast.makeText(this,"No Internet Connection, Chris",Toast.LENGTH_LONG).show();
+        // Initialize views
+        webView = findViewById(R.id.webView);
+        swipeContainer = findViewById(R.id.swipeContainer);
+        splashLayout = findViewById(R.id.splashLayout);
 
-            new AlertDialog.Builder(this) //alert the person knowing they are about to close
-                    .setTitle("No internet connection available")
-                    .setMessage("Please Check you're Mobile data or Wifi network.")
-                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            finish();
-                        }
-                    })
-                    //.setNegativeButton("No", null)
-                    .show();
-
-        }
-        else
-        {
-            //Webview stuff
-            webview = findViewById(R.id.webView);
-            webview.getSettings().setJavaScriptEnabled(true);
-            webview.getSettings().setDomStorageEnabled(true);
-            webview.setOverScrollMode(WebView.OVER_SCROLL_NEVER);
-            webview.loadUrl(websiteURL);
-            webview.setWebViewClient(new WebViewClientDemo());
-
+        // Check internet connection
+        if (!isInternetAvailable()) {
+            showNoInternetDialog();
+        } else {
+            initializeWebView();
         }
 
-        //Swipe to refresh functionality
-        mySwipeRefreshLayout = (SwipeRefreshLayout)this.findViewById(R.id.swipeContainer);
-
-        mySwipeRefreshLayout.setOnRefreshListener(
-                new SwipeRefreshLayout.OnRefreshListener() {
-                    @Override
-                    public void onRefresh() {
-                        webview.reload();
-                    }
-                }
-        );
+        // Configure swipe-to-refresh
+        swipeContainer.setOnRefreshListener(() -> webView.reload());
     }
 
+    private boolean isInternetAvailable() {
+        NetworkInfo info = ((ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
+        return info != null && info.isConnected();
+    }
 
-    private class WebViewClientDemo extends WebViewClient {
+    private void showNoInternetDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("No Internet Connection")
+                .setMessage("Please check your mobile data or Wi-Fi network.")
+                .setPositiveButton("Exit", (dialog, which) -> finish())
+                .setCancelable(false)
+                .show();
+    }
+
+    private void initializeWebView() {
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setDomStorageEnabled(true);
+        webView.setWebViewClient(new CustomWebViewClient());
+        webView.loadUrl(WEBSITE_URL);
+    }
+
+    private class CustomWebViewClient extends WebViewClient {
         @Override
-        //Keep webview in app when clicking links
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            // Handle WhatsApp links
+            if (url.startsWith("https://api.whatsapp.com/") ||
+                    url.startsWith("http://api.whatsapp.com/")) {
+                openExternalApp(url);
+                return true;
+            }
             view.loadUrl(url);
             return true;
         }
+
         @Override
         public void onPageFinished(WebView view, String url) {
-            super.onPageFinished(view, url);
-            mySwipeRefreshLayout.setRefreshing(false);
+            // Hide splash screen when page loads
+            swipeContainer.setRefreshing(false);
+            splashLayout.setVisibility(View.GONE);
         }
     }
 
-    //set back button functionality
-    @Override
-    public void onBackPressed() { //if user presses the back button do this
-        if (webview.isFocused() && webview.canGoBack()) { //check if in webview and the user can go back
-            webview.goBack(); //go back in webview
-        } else { //do this if the webview cannot go back any further
+    private void openExternalApp(String url) {
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(intent);
+        } catch (Exception e) {
+            // Fallback to WebView if app not installed
+            webView.loadUrl(url);
+        }
+    }
 
-            new AlertDialog.Builder(this) //alert the person knowing they are about to close
-                    .setTitle("EXIT")
-                    .setMessage("Tussi ja rhe ho ?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            finish();
-                        }
-                    })
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (webView.canGoBack()) {
+            webView.goBack();
+        } else {
+            new AlertDialog.Builder(this)
+                    .setTitle("Exit App")
+                    .setMessage("Are you sure you want to exit?")
+                    .setPositiveButton("Yes", (dialog, which) -> finish())
                     .setNegativeButton("No", null)
                     .show();
-        }
-    }
-}
-
-class CheckNetwork {
-
-    private static final String TAG = CheckNetwork.class.getSimpleName();
-
-    public static boolean isInternetAvailable(Context context)
-    {
-        NetworkInfo info = (NetworkInfo) ((ConnectivityManager)
-                context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
-
-        if (info == null)
-        {
-            Log.d(TAG,"no internet connection");
-            return false;
-        }
-        else
-        {
-            if(info.isConnected())
-            {
-                Log.d(TAG," internet connection available...");
-                return true;
-            }
-            else
-            {
-                Log.d(TAG," internet connection");
-                return true;
-            }
-
         }
     }
 }
