@@ -129,3 +129,39 @@ body {
 .animate-fade-in {
   animation: fade-in 0.3s ease-out;
 }
+
+
+/* Flashcard animation styles */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+.rotate-y-0 {
+  transform: rotateY(0deg);
+}
+
+.transition-transform {
+  transition: transform 0.6s;
+}
+
+/* Fix for card content positioning */
+.absolute {
+  position: absolute;
+  inset: 0;
+}
+
+.relative {
+  position: relative;
+}
