@@ -4,8 +4,9 @@ import { TableOfContents } from "./TableOfContents";
 import { Callout } from "./callout";
 import { UnitPagination } from "./unit-pagination";
 import QuizComponent from "./QuizComponent";
-import { PdfViewer } from "./PdfViewer"; // Import the new component
+import { PdfViewer } from "./PdfViewer";
 import { isPaginationDisabled } from "@/utils/pagination-config";
+import FlashcardComponent from "./Flashcard";
 
 const useMDXComponent = (code: string) => {
   const fn = new Function(code);
@@ -16,7 +17,8 @@ const components = {
   Image,
   Callout,
   Quiz: QuizComponent,
-  PdfViewer, // Add the PDF viewer here
+  PdfViewer,
+  Flashcard: FlashcardComponent,
 };
 
 interface MdxProps {
