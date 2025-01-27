@@ -30,7 +30,7 @@ const customContributors: Omit<Contributor, "contributions">[] = [
   },
   {
     name: "Ayush Paliwal",
-    description: "Developed Chatbot and notes for 7 subjects.",
+    description: "Developed Chatbot and Versatility across platforms.",
     role: "AI/ML Developer",
     image: "/profile/pali.jpeg",
     github: "https://github.com/Pali29",
@@ -83,6 +83,22 @@ const customContributors: Omit<Contributor, "contributions">[] = [
     image: "/profile/divya.jpeg",
     github: "https://github.com/Doinggithub14",
     linkedin: "https://linkedin.com/in/Doinggithub14",
+  },
+  {
+    name: "Taha Mill Wala",
+    description: "Created Notes for 1 semester.",
+    role: "Web Developer",
+    image: "/profile/taha.png",
+    github: "https://github.com/Taha7838",
+    linkedin: "https://linkedin.com/in/Taha7838",
+  },
+  {
+    name: "Srijan Nigam",
+    description: "Created Notes for 1 semester.",
+    role: "Web Developer",
+    image: "/profile/srijan.png",
+    github: "https://github.com/Srophos",
+    linkedin: "https://linkedin.com/in/srijan-nigam-5b23602ba/",
   },
 ];
 
