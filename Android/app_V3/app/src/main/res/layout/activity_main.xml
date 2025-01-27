@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!-- ProgressBar MUST COME FIRST to be accessible -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/OrangeProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:visibility="gone"
+        android:max="100"/>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
@@ -18,6 +27,7 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+    <!-- Existing splash screen (unchanged) -->
     <LinearLayout
         android:id="@+id/splashLayout"
         android:layout_width="match_parent"
