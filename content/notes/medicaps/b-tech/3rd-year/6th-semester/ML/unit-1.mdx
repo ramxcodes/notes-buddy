@@ -1,0 +1,722 @@
+---
+title: "Unit 1: Machine Learning"
+description: Introduction to machine learning, Applications, Classification; Supervised Learning-> Linear Regression Cost function, Gradient descent; Logistic Regression, Nearest-Neighbors, Gaussian function. 
+date: 2025-01-19
+tags: ["Machine Learning", "6th Semester", "3rd Year", "medicaps university"]
+published: true
+metadata:
+  university: "Medicaps University"
+  degree: "B Tech"
+  semester: "6th Semester"
+  subject: "Machine Learning"
+---
+
+---
+## Introduction to Machine Learning
+
+### What is Machine Learning?
+Machine Learning (ML) is a subset of Artificial Intelligence (AI) that enables systems to learn and improve from experience without being explicitly programmed. It focuses on developing algorithms that can analyse data, identify patterns, and make predictions or decisions.
+
+### Key Features of Machine Learning
+- **Data-Driven:** ML systems learn from data rather than relying on predefined rules.
+- **Automation:** Reduces human intervention by automating tasks.
+- **Improvement Over Time:** Models improve as they are exposed to more data.
+
+### Definition
+💡 **Arthur Samuel (1959):** Machine Learning is the "field of study that gives computers the ability to learn without being explicitly programmed."
+
+---
+
+### Components of Machine Learning
+1. **Data:**
+   - Raw information used to train the model.
+   - Example: Images, text, numerical data, etc.
+2. **Model:**
+   - The mathematical representation of the real-world process.
+3. **Algorithms:**
+   - Procedures used to train models.
+   - Examples: Linear Regression, Decision Trees.
+4. **Evaluation:**
+   - Assessing the performance of the model using metrics like accuracy or precision.
+
+---
+
+### Characteristics of Machine Learning
+- **Scalability:** ML models can handle large datasets effectively.
+- **Adaptability:** Models can adjust to new, unseen data.
+- **Non-linearity:** Capable of modelling complex relationships.
+
+---
+
+### Types of Machine Learning
+1. **Supervised Learning:**  
+   The model learns from labelled data.  
+   Example: Predicting house prices.  
+   
+2. **Unsupervised Learning:**  
+   The model finds patterns in unlabelled data.  
+   Example: Customer segmentation.  
+
+3. **Reinforcement Learning:**  
+   The model learns through trial and error to maximise rewards.  
+   Example: Game-playing AI like AlphaGo.
+
+---
+
+### Applications of Machine Learning
+- **Healthcare:** Predicting diseases, drug discovery.  
+- **Finance:** Fraud detection, stock price prediction.  
+- **Retail:** Personalised recommendations, inventory management.  
+- **Autonomous Systems:** Self-driving cars, robotics.  
+
+---
+
+### Advantages of Machine Learning
+- Automates decision-making processes.  
+- Provides accurate and scalable solutions.  
+- Identifies hidden patterns in large datasets.  
+
+### Disadvantages of Machine Learning
+- **Data Dependency:** Requires a large amount of high-quality data.  
+- **Complexity:** Algorithms and models can be challenging to interpret.  
+- **Computational Cost:** Demands significant computational resources.
+
+#### 📝 **NOTE:** Machine Learning is a foundational technology powering advancements in AI, Big Data, and Analytics.
+---
+
+## Classification in Supervised Learning
+
+### What is Supervised Learning?
+Supervised Learning is a type of Machine Learning where the model is trained on labelled data. Each input comes with an associated output, and the model learns to map inputs to the correct outputs.
+
+### Classification in Supervised Learning
+Classification is a supervised learning task where the model predicts a discrete output, or **class label**, based on input features.
+
+---
+
+### Key Characteristics of Classification
+- **Discrete Output:** The output belongs to a predefined set of categories or classes.
+- **Examples of Classification Tasks:**
+  - Email Spam Detection: Spam or Not Spam.
+  - Disease Diagnosis: Positive or Negative.
+  - Image Recognition: Cat, Dog, or Bird.
+
+---
+
+### Workflow of a Classification Model
+1. **Data Collection:**  
+   - Gather labelled data.  
+   - Example: A dataset of customer emails with labels like "spam" or "not spam."
+   
+2. **Feature Engineering:**  
+   - Extract meaningful features from raw data.  
+   - Example: Email length, number of keywords, etc.
+
+3. **Model Selection:**  
+   - Choose a suitable classification algorithm, such as:
+     - Decision Tree
+     - Support Vector Machine (SVM)
+     - Logistic Regression
+     - Neural Networks
+
+4. **Training:**  
+   - Train the model using the labelled dataset.
+
+5. **Testing and Evaluation:**  
+   - Evaluate the model using metrics like:
+     - **Accuracy:** Percentage of correct predictions.
+     - **Precision and Recall:** Performance on specific classes.
+     - **F1 Score:** Balances precision and recall.
+
+6. **Prediction:**  
+   - Use the trained model to classify new, unseen data.
+
+---
+
+### Common Algorithms for Classification
+1. **Logistic Regression:**
+   - Predicts probabilities for binary classification tasks.
+   - Example: Predicting if a customer will purchase a product (Yes/No).
+
+2. **Decision Trees:**
+   - Splits data based on feature values to classify samples.
+   - Example: Diagnosing a disease based on symptoms.
+
+3. **Support Vector Machines (SVM):**
+   - Finds the best boundary (hyperplane) to separate classes.
+
+4. **Naive Bayes:**
+   - Based on Bayes’ theorem and assumes feature independence.
+   - Example: Text classification.
+
+5. **K-Nearest Neighbours (KNN):**
+   - Assigns the class of the nearest neighbours in the feature space.
+
+6. **Neural Networks:**
+   - Uses interconnected layers of neurons to classify complex data.
+
+---
+
+### Evaluation Metrics for Classification
+- **Confusion Matrix:** Provides a summary of prediction results on a classification problem.
+  - True Positive (TP): Correctly predicted positive cases.
+  - True Negative (TN): Correctly predicted negative cases.
+  - False Positive (FP): Incorrectly predicted as positive.
+  - False Negative (FN): Incorrectly predicted as negative.
+
+- **Accuracy:**
+  $$
+  Accuracy = \frac{(TP + TN)}{(TP + TN + FP + FN)}
+  $$
+
+- **Precision:**
+  $$
+  Precision = \frac{TP}{(TP + FP)}
+  $$
+
+- **Recall:**
+  $$
+  Recall = \frac{TP}{(TP + FN)}
+  $$
+
+- **F1 Score:**
+  $$
+  F1 = 2 \cdot \frac{Precision \cdot Recall}{Precision + Recall}
+  $$
+
+---
+
+### Applications of Classification
+- **Medical Diagnosis:** Predicting diseases (e.g., cancer detection).  
+- **Fraud Detection:** Identifying fraudulent transactions.  
+- **Customer Segmentation:** Grouping customers based on purchase behaviour.  
+- **Natural Language Processing (NLP):** Sentiment analysis, spam filtering.  
+
+#### ⚠️ **CAUTION:** Ensure the dataset is balanced (similar class proportions) to avoid biased predictions.
+---
+
+## Linear Regression: Cost Function
+
+### What is Linear Regression?
+Linear Regression is a supervised learning algorithm used to model the relationship between a dependent variable (target) and one or more independent variables (features). It aims to find the best-fitting line that minimises the error between predicted and actual values.
+
+---
+
+### Cost Function in Linear Regression
+The **Cost Function** in Linear Regression measures how well the model's predictions match the actual target values. It quantifies the error by comparing predicted values ($$ \hat{y} $$) with actual values ($$ y $$) in the training dataset.
+
+---
+
+### Mean Squared Error (MSE) Cost Function
+The most commonly used cost function in Linear Regression is the **Mean Squared Error (MSE)**, defined as:
+
+$$
+J(\theta) = \frac{1}{2m} \sum_{i=1}^{m} (\hat{y}_i - y_i)^2
+$$
+
+Where:
+- $$ J(\theta) $$: Cost function.
+- $$ m $$: Number of training examples.
+- $$ \hat{y}_i $$: Predicted value for the $$ i $$-th example.
+- $$ y_i $$: Actual value for the $$ i $$-th example.
+- $$ \theta $$: Parameters (weights and bias) of the linear model.
+
+---
+
+### Steps to Minimise the Cost Function
+1. **Initialisation:**  
+   - Start with random values for $$ \theta $$ (weights and bias).
+   
+2. **Gradient Descent Algorithm:**  
+   - Use Gradient Descent to update $$ \theta $$ iteratively to minimise $$ J(\theta) $$.
+
+   **Update Rule:**
+   $$
+   \theta_j := \theta_j - \alpha \frac{\partial J(\theta)}{\partial \theta_j}
+   $$
+
+   Where:
+   - $$ \alpha $$: Learning rate (controls step size).
+   - $$ \frac{\partial J(\theta)}{\partial \theta_j} $$: Partial derivative of the cost function with respect to parameter $$ \theta_j $$.
+
+3. **Convergence:**  
+   - Repeat the update until the cost function $$ J(\theta) $$ converges to a minimum value.
+
+---
+
+### Why Divide by $$ 2m $$ in MSE?
+- The factor $$ \frac{1}{2m} $$ simplifies the derivative of the cost function during Gradient Descent.  
+- The factor $$ 2 $$ cancels out when differentiating $$ (\hat{y} - y)^2 $$.
+
+---
+
+### Example: Calculating MSE
+Given a dataset with $$ m = 3 $$ examples:
+- Actual values: $$ y = [3, 5, 7] $$
+- Predicted values: $$ \hat{y} = [2.5, 5.1, 6.8] $$
+
+1. Compute the squared error for each example:
+   $$
+   (\hat{y}_1 - y_1)^2 = (2.5 - 3)^2 = 0.25  
+   (\hat{y}_2 - y_2)^2 = (5.1 - 5)^2 = 0.01  
+   (\hat{y}_3 - y_3)^2 = (6.8 - 7)^2 = 0.04
+   $$
+
+2. Sum the squared errors:
+   $$
+   \text{Sum} = 0.25 + 0.01 + 0.04 = 0.30
+   $$
+
+3. Compute MSE:
+   $$
+   J(\theta) = \frac{1}{2m} \sum_{i=1}^{m} (\hat{y}_i - y_i)^2 = \frac{1}{2 \cdot 3} \cdot 0.30 = 0.05
+   $$
+
+---
+
+### Importance of the Cost Function
+- Helps measure model performance during training.  
+- Guides the optimisation process using Gradient Descent.  
+
+#### 📝 **NOTE:** The cost function is crucial for tuning the parameters $$ \theta $$ to achieve the best-fit line and minimise prediction error.
+---
+
+## Gradient Descent
+
+### What is Gradient Descent?
+Gradient Descent is an optimisation algorithm used to minimise a cost function by iteratively adjusting model parameters ($$ \theta $$). It is widely used in Machine Learning to train models by finding the optimal parameters that minimise the error.
+
+---
+
+### Key Idea
+Gradient Descent works by:
+1. Calculating the slope (gradient) of the cost function with respect to each parameter.
+2. Updating the parameters in the opposite direction of the gradient to reduce the cost.
+
+---
+
+### Gradient Descent Algorithm
+For each parameter $$ \theta_j $$ (where $$ j = 0, 1, 2, \dots, n $$), update the value using the following rule:
+
+$$
+\theta_j := \theta_j - \alpha \frac{\partial J(\theta)}{\partial \theta_j}
+$$
+
+Where:
+- $$ \theta_j $$: Parameter to be updated.
+- $$ \alpha $$: Learning rate (controls the size of the steps).
+- $$ \frac{\partial J(\theta)}{\partial \theta_j} $$: Partial derivative of the cost function $$ J(\theta) $$ with respect to $$ \theta_j $$.
+
+---
+
+### Steps in Gradient Descent
+1. **Initialise Parameters:**  
+   Start with random or zero values for all parameters $$ \theta $$.
+
+2. **Compute Predictions:**  
+   Use the current parameters to make predictions ($$ \hat{y} $$).
+
+3. **Calculate the Cost Function:**  
+   Compute the error using the cost function $$ J(\theta) $$.
+
+4. **Update Parameters:**  
+   Use the gradient of the cost function to adjust the parameters $$ \theta_j $$.
+
+5. **Repeat Until Convergence:**  
+   Stop when the cost function $$ J(\theta) $$ does not decrease significantly.
+
+---
+
+### Learning Rate ($$ \alpha $$)
+The learning rate determines the step size for updating parameters:
+- **Small $$ \alpha $$:** Slow convergence (long training time).  
+- **Large $$ \alpha $$:** May overshoot or fail to converge.  
+
+💡 **TIP:** Use techniques like learning rate scheduling or adaptive methods (e.g., Adam, RMSProp) to optimise $$ \alpha $$.
+
+---
+
+### Types of Gradient Descent
+1. **Batch Gradient Descent:**  
+   - Uses the entire training dataset to compute the gradient.  
+   - **Advantages:** Stable convergence.  
+   - **Disadvantages:** Computationally expensive for large datasets.
+
+2. **Stochastic Gradient Descent (SGD):**  
+   - Updates parameters using a single training example at each step.  
+   - **Advantages:** Faster updates; works well for large datasets.  
+   - **Disadvantages:** Noisy convergence; may overshoot.
+
+3. **Mini-Batch Gradient Descent:**  
+   - Combines the advantages of Batch and Stochastic methods.  
+   - Updates parameters using small subsets (mini-batches) of the training dataset.  
+   - **Advantages:** Efficient and more stable than SGD.
+
+---
+
+### Gradient Descent for Linear Regression
+For Linear Regression, the gradient of the cost function $$ J(\theta) $$ is:
+
+$$
+\frac{\partial J(\theta)}{\partial \theta_0} = \frac{1}{m} \sum_{i=1}^m (\hat{y}_i - y_i)
+$$
+
+$$
+\frac{\partial J(\theta)}{\partial \theta_1} = \frac{1}{m} \sum_{i=1}^m (\hat{y}_i - y_i) x_i
+$$
+
+Where:
+- $$ \hat{y}_i = \theta_0 + \theta_1 x_i $$: Predicted value.  
+- $$ y_i $$: Actual value.
+
+---
+
+### Convergence
+Gradient Descent is said to converge when:
+1. The cost function $$ J(\theta) $$ becomes stable (does not change significantly between iterations).
+2. The gradients $$ \frac{\partial J(\theta)}{\partial \theta_j} $$ approach zero.
+
+---
+
+### Example
+Given a simple dataset and a linear model:
+- $$ y = 2x + 1 $$ (true equation).  
+- Initial $$ \theta_0 = 0, \theta_1 = 0 $$.  
+
+**Steps:**
+1. Predict $$ \hat{y}_i $$.  
+2. Compute the cost $$ J(\theta) $$.  
+3. Calculate gradients:
+   $$
+   \frac{\partial J(\theta)}{\partial \theta_0}, \frac{\partial J(\theta)}{\partial \theta_1}
+   $$
+4. Update $$ \theta_0 $$, $$ \theta_1 $$.  
+5. Repeat until convergence.
+
+#### 📝 **NOTE:** Gradient Descent can be sensitive to the choice of learning rate and initialisation. Experimentation and tuning are often required.
+---
+
+## Logistic Regression
+
+### What is Logistic Regression?
+Logistic Regression is a supervised learning algorithm used for binary classification problems. Instead of predicting continuous values (as in Linear Regression), it predicts the probability that a given input belongs to one of two classes.
+
+---
+
+### Key Concept: Sigmoid Function
+Logistic Regression uses the **sigmoid function** to map the output of a linear equation to a probability value between 0 and 1.
+
+The sigmoid function is defined as:
+
+$$
+h_\theta(x) = \sigma(z) = \frac{1}{1 + e^{-z}}
+$$
+
+Where:
+- $$ z = \theta_0 + \theta_1x_1 + \theta_2x_2 + \dots + \theta_nx_n $$: Linear combination of input features and weights.
+- $$ \sigma(z) $$: Sigmoid function.
+- $$ h_\theta(x) $$: Predicted probability.
+
+---
+
+### Decision Rule
+The output of the sigmoid function is interpreted as a probability:
+- If $$ h_\theta(x) \geq 0.5 $$, predict **class 1**.
+- If $$ h_\theta(x) < 0.5 $$, predict **class 0**.
+
+---
+
+### Cost Function for Logistic Regression
+The cost function for Logistic Regression is designed to handle probabilities and ensure efficient optimisation:
+
+$$
+J(\theta) = -\frac{1}{m} \sum_{i=1}^{m} \big[ y^{(i)} \log(h_\theta(x^{(i)})) + (1 - y^{(i)}) \log(1 - h_\theta(x^{(i)})) \big]
+$$
+
+Where:
+- $$ m $$: Number of training examples.
+- $$ y^{(i)} $$: Actual label for the $$ i $$-th training example.
+- $$ h_\theta(x^{(i)}) $$: Predicted probability for the $$ i $$-th training example.
+
+---
+
+### Gradient Descent for Logistic Regression
+Logistic Regression uses Gradient Descent to optimise parameters $$ \theta $$. The update rule is:
+
+$$
+\theta_j := \theta_j - \alpha \frac{\partial J(\theta)}{\partial \theta_j}
+$$
+
+Where:
+- $$ \alpha $$: Learning rate.
+- $$ \frac{\partial J(\theta)}{\partial \theta_j} $$: Partial derivative of the cost function with respect to $$ \theta_j $$.
+
+---
+
+### Applications of Logistic Regression
+- **Healthcare:** Predicting the likelihood of diseases (e.g., heart attack, diabetes).  
+- **Marketing:** Customer conversion prediction (e.g., click-through rate).  
+- **Finance:** Fraud detection and credit risk assessment.  
+- **Natural Language Processing (NLP):** Sentiment analysis, spam filtering.
+
+---
+
+### Assumptions of Logistic Regression
+1. **Linear Relationship:** Assumes a linear relationship between input features and the log-odds of the output.
+2. **Independence:** Features are assumed to be independent of each other.
+3. **Binary Output:** Typically used for two-class problems, though it can be extended to multi-class classification.
+
+---
+
+### Advantages of Logistic Regression
+- **Simplicity:** Easy to implement and interpret.  
+- **Efficient:** Computationally inexpensive for small datasets.  
+- **Probability Output:** Provides probabilistic predictions for better decision-making.
+
+### Disadvantages of Logistic Regression
+- **Linear Boundary:** Cannot model non-linear relationships without feature transformations.  
+- **Feature Engineering Required:** Sensitive to irrelevant or highly correlated features.  
+- **Large Datasets:** Performance may degrade on very large datasets.
+
+---
+
+### Example
+#### Problem:
+Predict whether a student will pass an exam based on study hours.
+
+#### Dataset:
+- $$ x = [2, 4, 6, 8] $$ (hours studied).  
+- $$ y = [0, 0, 1, 1] $$ (pass/fail).
+
+#### Steps:
+1. Compute $$ z = \theta_0 + \theta_1x $$.  
+2. Apply sigmoid:  
+   $$
+   h_\theta(x) = \frac{1}{1 + e^{-z}}
+   $$
+
+3. Use Gradient Descent to optimise $$ \theta $$ based on the cost function.
+
+#### Prediction:
+For $$ x = 5 $$:  
+- Compute $$ z $$ and $$ h_\theta(x) $$.  
+- Predict $$ y = 1 $$ if $$ h_\theta(x) \geq 0.5 $$.
+
+#### 📝 **NOTE:** Logistic Regression is a foundational algorithm in classification tasks and serves as a baseline for more advanced models.
+---
+
+## Nearest Neighbors
+
+### What is the Nearest Neighbors Algorithm?
+The **Nearest Neighbors** algorithm is a non-parametric, instance-based supervised learning technique used for classification and regression. It relies on measuring the similarity (or distance) between data points to make predictions.
+
+---
+
+### Key Idea
+The algorithm classifies a data point based on the **majority class** of its nearest neighbours in the feature space.
+
+---
+
+### Workflow of Nearest Neighbors
+1. **Data Representation:**
+   - Each data point is represented as a vector of features.
+
+2. **Distance Calculation:**
+   - The algorithm computes the distance between the query point and all points in the dataset.
+
+3. **Neighbour Selection:**
+   - Select the $$ k $$-nearest data points based on the computed distance.
+
+4. **Prediction:**
+   - For classification: Assign the majority class among the $$ k $$-nearest neighbours.
+   - For regression: Compute the average (or weighted average) of the $$ k $$-nearest neighbours' target values.
+
+---
+
+### Distance Metrics
+1. **Euclidean Distance:**
+   $$
+   d(x_1, x_2) = \sqrt{\sum_{i=1}^n (x_{1i} - x_{2i})^2}
+   $$
+
+2. **Manhattan Distance:**
+   $$
+   d(x_1, x_2) = \sum_{i=1}^n |x_{1i} - x_{2i}|
+   $$
+
+3. **Minkowski Distance:**
+   $$
+   d(x_1, x_2) = \left( \sum_{i=1}^n |x_{1i} - x_{2i}|^p \right)^{\frac{1}{p}}
+   $$
+
+4. **Hamming Distance (for categorical data):**
+   - Counts the number of differing features.
+
+💡 **TIP:** Choose the distance metric based on the nature of your data.
+
+---
+
+### Value of $$ k $$ (Number of Neighbours)
+- **Small $$ k $$:** Sensitive to noise and may lead to overfitting.  
+- **Large $$ k $$:** Provides smoother decision boundaries but may underfit the data.  
+
+⚠️ **CAUTION:** Use techniques like cross-validation to select an optimal $$ k $$.
+
+---
+
+### Applications of Nearest Neighbors
+- **Classification:**
+  - Spam detection (e.g., spam or not spam).
+  - Image recognition (e.g., handwritten digit classification).
+
+- **Regression:**
+  - Predicting house prices based on location and features.
+
+- **Anomaly Detection:**
+  - Identifying unusual patterns in data, like fraud detection.
+
+---
+
+### Advantages of Nearest Neighbors
+- **Simplicity:** Easy to understand and implement.
+- **No Assumptions:** Does not assume any specific data distribution.
+- **Versatility:** Can be used for both classification and regression tasks.
+
+---
+
+### Disadvantages of Nearest Neighbors
+- **High Computational Cost:** Distance calculation can be slow for large datasets.
+- **Storage Requirement:** Requires storing the entire dataset in memory.
+- **Sensitive to Irrelevant Features:** Performance can degrade if irrelevant features are present.
+- **Curse of Dimensionality:** Performance decreases as the number of dimensions increases.
+
+---
+
+### Example: Classification with $$ k $$-NN
+#### Dataset:
+- Features: Height (cm), Weight (kg).
+- Labels: Gender (Male/Female).
+
+| Height | Weight | Label  |
+|--------|--------|--------|
+| 170    | 65     | Male   |
+| 160    | 55     | Female |
+| 180    | 75     | Male   |
+
+#### Query Point:
+- Height = 175, Weight = 70.
+
+#### Steps:
+1. Compute the distance from the query point to each data point.
+2. Select the $$ k $$-nearest neighbours (e.g., $$ k = 3 $$).
+3. Assign the majority label (e.g., "Male").
+
+---
+
+### Implementation in Python
+```python
+from sklearn.neighbors import KNeighborsClassifier
+
+# Data
+X = [[170, 65], [160, 55], [180, 75]]
+y = ["Male", "Female", "Male"]
+
+# Model
+model = KNeighborsClassifier(n_neighbors=3)
+model.fit(X, y)
+
+# Prediction
+query = [[175, 70]]
+prediction = model.predict(query)
+print("Predicted label:", prediction)
+```
+---
+
+## Gaussian Function
+
+### What is the Gaussian Function?
+The **Gaussian Function**, also known as the **Normal Distribution** or **Bell Curve**, is a fundamental function in mathematics and statistics. It describes a symmetric, bell-shaped curve that represents the distribution of data around a central mean.
+
+---
+
+### Mathematical Formula
+The Gaussian function is defined as:
+
+$$
+f(x) = \frac{1}{\sqrt{2\pi \sigma^2}} e^{-\frac{(x - \mu)^2}{2\sigma^2}}
+$$
+
+Where:
+- $$ x $$: Random variable.
+- $$ \mu $$: Mean (centre of the curve).
+- $$ \sigma $$: Standard deviation (spread of the curve).
+- $$ \sigma^2 $$: Variance.
+
+---
+
+### Key Properties of the Gaussian Function
+1. **Symmetry:**
+   - The curve is symmetric about the mean $$ \mu $$.
+
+2. **Mean ($$ \mu $$):**
+   - Represents the peak of the curve, where the data is most concentrated.
+
+3. **Standard Deviation ($$ \sigma $$):**
+   - Controls the spread of the curve.
+   - A larger $$ \sigma $$ results in a flatter and wider curve.
+   - A smaller $$ \sigma $$ results in a taller and narrower curve.
+
+4. **Area Under the Curve (AUC):**
+   - The total area under the curve equals 1, representing the entire probability space.
+
+5. **Inflection Points:**
+   - Located at $$ \mu - \sigma $$ and $$ \mu + \sigma $$.
+
+---
+
+### Applications of the Gaussian Function
+1. **Statistics:**
+   - Models normal distributions for data analysis.
+   - Example: Heights of individuals in a population.
+
+2. **Machine Learning:**
+   - Basis for algorithms like Gaussian Naive Bayes and Gaussian Mixture Models.
+
+3. **Signal Processing:**
+   - Used in smoothing filters (e.g., Gaussian blur in image processing).
+
+4. **Physics:**
+   - Models phenomena like heat distribution and quantum mechanics.
+
+5. **Probability Density Function (PDF):**
+   - Represents the probability of a random variable $$ x $$ taking on a value near $$ \mu $$.
+
+---
+
+### Example: Standard Normal Distribution
+A **Standard Normal Distribution** is a special case of the Gaussian function where:
+- $$ \mu = 0 $$
+- $$ \sigma = 1 $$
+
+The formula simplifies to:
+
+$$
+f(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}
+$$
+
+#### Properties:
+- Mean = 0.
+- Standard deviation = 1.
+- 68% of the data lies within 1 standard deviation ($$ \mu \pm \sigma $$).
+- 95% of the data lies within 2 standard deviations ($$ \mu \pm 2\sigma $$).
+
+---
+
+### Relation to Machine Learning
+The Gaussian function plays a critical role in:
+- **Gaussian Naive Bayes:** Assumes features follow a Gaussian distribution.  
+- **Kernel Methods:** Used in Support Vector Machines (SVM) and Gaussian Processes.  
+- **Clustering Algorithms:** Basis of Gaussian Mixture Models (GMM).  
+
+#### 📝 **NOTE:** The Gaussian function is ubiquitous across disciplines due to its simplicity and ability to model natural phenomena.
+---
