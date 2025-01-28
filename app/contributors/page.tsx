@@ -1,228 +1,64 @@
-/* eslint-disable @next/next/no-img-element */
-"use client";
-import React, { useEffect, useState } from "react";
-import { useTheme } from "next-themes";
-import { MagicCard } from "@/components/ui/magic-card";
-import { Github, Linkedin, Globe } from "lucide-react";
-import BlurFade from "@/components/ui/blur-fade";
-import Link from "next/link";
+import ContributorComponent from "./components/ContributorComponent";
+import { Metadata } from "next";
 
-type Contributor = {
-  name: string;
-  description: string;
-  role: string;
-  image: string;
-  github: string;
-  linkedin: string;
-  website?: string;
-  contributions?: number;
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/contributors",
+    languages: {
+      "en-US": "/en-US",
+    },
+  },
+
+  title: "Contributors | Notes Buddy",
+  description:
+    "Meet the amazing team behind Notes Buddy—full-stack developers, AI/ML experts, and web creators contributing their skills to make studying smarter and easier.",
+
+  keywords: [
+    "Notes Buddy",
+    "Contributors",
+    "Full Stack Web Developer",
+    "AI/ML Developer",
+    "Web Developer",
+    "Developer Team",
+    "Study Tools",
+    "Online Notes",
+    "Exam Preparation",
+    "Student Resources",
+  ],
+
+  robots: "index, follow",
+
+  openGraph: {
+    title: "Contributors | Notes Buddy",
+    description:
+      "Discover the talented individuals behind Notes Buddy. Learn about each contributor’s role and how they’ve helped shape this all-in-one study platform.",
+    url: `${process.env.NEXTAUTH_URL}/contributors`,
+    type: "website",
+    siteName: "Notes Buddy",
+    images: [
+      {
+        url: "/OG/opengraph-contributors.png",
+        width: 1200,
+        height: 630,
+        alt: "Notes Buddy Contributors Page",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    site: "notesbuddy.in",
+    creator: "@Ramxcodes",
+    title: "Contributors | Notes Buddy",
+    description:
+      "Get to know the developers, AI/ML experts, and web creators who’ve made Notes Buddy a reality. Check out their unique contributions!",
+  },
 };
 
-const customContributors: Omit<Contributor, "contributions">[] = [
-  {
-    name: "Ramkrishna Swarnkar",
-    description: "Developed the entire project and deployed it.",
-    role: "Full Stack Web Developer",
-    image: "/profile/ram.png",
-    github: "https://github.com/ramxcodes",
-    linkedin: "https://linkedin.com/in/ramxcodes",
-    website: "https://ramx.in",
-  },
-  {
-    name: "Ayush Paliwal",
-    description: "Developed Chatbot and Versatility across platforms.",
-    role: "AI/ML Developer",
-    image: "/profile/pali.jpeg",
-    github: "https://github.com/Pali29",
-    linkedin: "https://linkedin.com/in/pali29",
-  },
-  {
-    name: "Kavyansh Yadav",
-    description: "Created searching functionality.",
-    role: "Full Stack Web Developer",
-    image: "/profile/Kavyansh.png",
-    github: "https://github.com/KavyanshYadav",
-    linkedin: "https://linkedin.com/in/KavyanshYadav",
-  },
-  {
-    name: "Kuhu Vyas",
-    description: "Created About Us page.",
-    role: "Web Developer",
-    image: "/profile/kuhu.png",
-    github: "https://github.com/KuhuVyas",
-    linkedin: "https://linkedin.com/in/KuhuVyas",
-  },
-  {
-    name: "Jeet Solanki",
-    description: "Created notes for 1 subject.",
-    role: "Web Developer",
-    image: "/profile/jeet.png",
-    github: "https://github.com/Jeet0808",
-    linkedin: "https://linkedin.com/in/Jeet0808",
-  },
-  {
-    name: "Ankit Kashyap",
-    description: "Created authentication system.",
-    role: "Full Stack Web Developer",
-    image: "/profile/ankit.jpeg",
-    github: "https://github.com/Kashyap1ankit",
-    linkedin: "https://linkedin.com/in/Kashyap1ankit",
-  },
-  {
-    name: "Swetabh Tripathy",
-    description: "Created notes for 1 subject.",
-    role: "Web Developer",
-    image: "/profile/swetabh.png",
-    github: "https://github.com/Tswetabh",
-    linkedin: "https://linkedin.com/in/Tswetabh",
-  },
-  {
-    name: "Divya Vadnere",
-    description: "Created Contributors page.",
-    role: "Web Developer",
-    image: "/profile/divya.jpeg",
-    github: "https://github.com/Doinggithub14",
-    linkedin: "https://linkedin.com/in/Doinggithub14",
-  },
-  {
-    name: "Taha Mill Wala",
-    description: "Created Notes for 1 semester.",
-    role: "Web Developer",
-    image: "/profile/taha.png",
-    github: "https://github.com/Taha7838",
-    linkedin: "https://linkedin.com/in/Taha7838",
-  },
-  {
-    name: "Srijan Nigam",
-    description: "Created Notes for 1 semester.",
-    role: "Web Developer",
-    image: "/profile/srijan.png",
-    github: "https://github.com/Srophos",
-    linkedin: "https://linkedin.com/in/srijan-nigam-5b23602ba/",
-  },
-];
-
 export default function Page() {
-  const { theme } = useTheme();
-  const [contributors, setContributors] = useState<Contributor[]>([]);
-
-  useEffect(() => {
-    const fetchContributors = async () => {
-      try {
-        const response = await fetch(
-          "https://api.github.com/repos/ramxcodes/notes-buddy/contributors"
-        );
-        const data = await response.json();
-
-        const contributorsData = customContributors.map((custom) => {
-          const githubUsername = custom.github.split("/").pop();
-          const githubData = data.find(
-            (item: any) => item.login === githubUsername
-          );
-
-          return {
-            ...custom,
-            contributions: githubData ? githubData.contributions : 0,
-          };
-        });
-
-        setContributors(contributorsData);
-      } catch (error) {
-        console.error("Failed to fetch contributors:", error);
-      }
-    };
-
-    fetchContributors();
-  }, []);
-
   return (
-    <div className="container mx-auto py-16 px-4 sm:px-8 font-wotfard">
-      <div className="flex flex-col gap-8 text-center mb-16">
-        <BlurFade delay={0.2} inView>
-          <h1 className="text-[2.3rem] lg:text-[4.5rem] md:text-[4rem] leading-[1] font-bold dark:bg-gradient-to-b dark:from-[rgba(244,244,255,1)] dark:to-[rgba(181,180,207,1)] dark:text-transparent dark:bg-clip-text py-4">
-            Contributors
-          </h1>
-        </BlurFade>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {contributors.map((contributor, index) => (
-          <BlurFade key={index} delay={0.2 * index} inView>
-            <MagicCard
-              className="cursor-pointer flex flex-col items-center sm:items-start p-6 rounded-lg shadow-md"
-              gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"}
-            >
-              <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start">
-                {/* Profile Image */}
-                <div className="w-40 h-32 rounded-lg flex items-center justify-center overflow-hidden">
-                  <img
-                    src={contributor.image}
-                    alt={`${contributor.name} Profile Picture`}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                {/* Profile Content */}
-                <div className="text-center sm:text-left">
-                  <h2 className="text-xl font-bold font-gilroy">
-                    {contributor.name}
-                  </h2>
-                  <p className="text-gray-500 mt-2">
-                    <span className="text-sm font-light px-4 py-2 bg-black/50 text-white rounded-lg block sm:inline">
-                      {contributor.role}
-                    </span>
-                  </p>
-                  <p className="mt-4">{contributor.description}</p>
-                  {contributor.contributions && (
-                    <p className="mt-2 text-sm text-gray-500">
-                      <b>Contributions: </b> {contributor.contributions}
-                    </p>
-                  )}
-                  <div className="flex justify-center sm:justify-start gap-4 mt-4">
-                    {/* GitHub */}
-                    <Link
-                      href={contributor.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Github
-                        className="hover:opacity-50 opacity-100 transition-all duration-300 ease-in-out"
-                        size={24}
-                      />
-                    </Link>
-                    {/* LinkedIn */}
-                    {contributor.linkedin && (
-                      <Link
-                        href={contributor.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Linkedin
-                          className="hover:opacity-50 opacity-100 transition-all duration-300 ease-in-out"
-                          size={24}
-                        />
-                      </Link>
-                    )}
-                    {/* Website */}
-                    {contributor.website && (
-                      <Link
-                        href={contributor.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Globe
-                          className="hover:opacity-50 opacity-100 transition-all duration-300 ease-in-out"
-                          size={24}
-                        />
-                      </Link>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </MagicCard>
-          </BlurFade>
-        ))}
-      </div>
-    </div>
+    <>
+      <ContributorComponent />
+    </>
   );
 }

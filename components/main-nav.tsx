@@ -13,77 +13,48 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { Notebook } from "lucide-react";
-import Image from "next/image";
 
 export function MainNav() {
   const notes: { title: string; href: string; description?: string }[] = [
     {
-      title: "View Notes",
+      title: "View All Notes",
       href: "/notes",
       description: "Click here to view all notes.",
     },
     {
-      title: "First Year Notes",
+      title: "B.Tech First Year Notes",
       href: "/tags/1st-Year",
       description: "Click here to view notes for the first Year.",
     },
     {
-      title: "Second Year Notes",
+      title: "B.Tech Second Year Notes",
       href: "/tags/2nd-Year",
       description: "Click here to view notes for the second Year.",
     },
     {
-      title: "Third Year Notes",
+      title: "B.Tech Third Year Notes",
       href: "/tags/3rd-Year",
       description: "Click here to view notes for the third Year.",
     },
     {
-      title: "Fourth Year Notes",
+      title: "B.Tech Fourth Year Notes",
       href: "/tags/4th-Year",
       description: "Click here to view notes for the fourth Year.",
     },
+  ];
+  const others: { title: string; href: string; description?: string }[] = [
     {
-      title: "Semester 1",
-      href: "/tags/1st-Semester",
-      description: "Click here to view notes for 1st Semester subjects.",
+      title: "Online Compilers",
+      href: "/compiler",
+      description: "Feature rich online compiler for C, C++, Java, JavaScript, Python",
     },
     {
-      title: "Semester 2",
-      href: "/tags/2nd-Semester",
-      description: "Click here to view notes for 2nd Semester subjects.",
-    },
-    {
-      title: "Semester 3",
-      href: "/tags/3rd-Semester",
-      description: "Click here to view notes for 3rd Semester subjects.",
-    },
-    {
-      title: "Semester 4",
-      href: "/tags/4th-Semester",
-      description: "Click here to view notes for 4th Semester subjects.",
-    },
-    {
-      title: "Semester 5",
-      href: "/tags/5th-Semester",
-      description: "Click here to view notes for 5th Semester subjects.",
-    },
-    {
-      title: "Semester 6",
-      href: "/tags/6th-Semester",
-      description: "Click here to view notes for 6th Semester subjects.",
-    },
-    {
-      title: "Semester 7",
-      href: "/tags/7th-Semester",
-      description: "Click here to view notes for 7th Semester subjects.",
-    },
-    {
-      title: "Semester 8",
-      href: "/tags/8th-Semester",
-      description: "Click here to view notes for 8th Semester subjects.",
+      title: "Request Notes",
+      href: "/request-notes",
+      description: "Didn't find your notes? Request now",
     },
   ];
+
   const pathname = usePathname();
   return (
     <nav className="flex items-center space-x-4 lg:space-x-6">
@@ -133,6 +104,30 @@ export function MainNav() {
       >
         About us
       </Link>
+      <NavigationMenu className="bg-transparent hidden md:block">
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>Others</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                {others.map((other) => (
+                  <li key={other.title} className="hover:text-gray-900">
+                    <Link
+                      href={other.href}
+                      className="block p-3 hover:bg-gray-100 rounded-md"
+                    >
+                      <div className="font-medium">{other.title}</div>
+                      <p className="text-sm text-gray-500">
+                        {other.description}
+                      </p>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
     </nav>
   );
 }

@@ -8,13 +8,12 @@ import { Button } from "./ui/button";
 import { Menu } from "lucide-react";
 import Link, { LinkProps } from "next/link";
 import { useRouter } from "next/navigation";
-import { Icons } from "./icons";
 import { siteConfig } from "@/config/site";
 import { UserProfile } from "./UserProfile";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
-  const [notesOpen, setNotesOpen] = useState(false); // State for Notes dropdown
+  const [notesOpen, setNotesOpen] = useState(false);
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -60,6 +59,12 @@ export function MobileNav() {
           </MobileLink>
           <MobileLink onOpenChange={setOpen} href="/contributors">
             Top Contributors
+          </MobileLink>
+          <MobileLink onOpenChange={setOpen} href="/request-notes">
+            Request Notes
+          </MobileLink>
+          <MobileLink onOpenChange={setOpen} href="/compiler">
+            Online Compiler
           </MobileLink>
           <Link
             target="_blank"

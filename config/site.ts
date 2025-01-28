@@ -11,69 +11,29 @@ export const siteConfig = {
   },
   notes: [
     {
-      title: "View Notes",
+      title: "View All Notes",
       href: "/notes",
       description: "Click here to view all notes.",
     },
     {
-      title: "First Year Notes",
-      href: "/tags/1st-year",
-      description: "Click here to view notes for the first year.",
+      title: "B.Tech First Year Notes",
+      href: "/tags/1st-Year",
+      description: "Click here to view notes for the first Year.",
     },
     {
-      title: "Second Year Notes",
-      href: "/tags/2nd-year",
-      description: "Click here to view notes for the second year.",
+      title: "B.Tech Second Year Notes",
+      href: "/tags/2nd-Year",
+      description: "Click here to view notes for the second Year.",
     },
     {
-      title: "Third Year Notes",
-      href: "/tags/3rd-year",
-      description: "Click here to view notes for the third year.",
+      title: "B.Tech Third Year Notes",
+      href: "/tags/3rd-Year",
+      description: "Click here to view notes for the third Year.",
     },
     {
-      title: "Fourth Year Notes",
-      href: "/tags/4th-year",
-      description: "Click here to view notes for the fourth year.",
-    },
-    {
-      title: "Semester 1",
-      href: "/tags/1st-semester",
-      description: "Click here to view notes for 1st Semester subjects.",
-    },
-    {
-      title: "Semester 2",
-      href: "/tags/2nd-semester",
-      description: "Click here to view notes for 2nd Semester subjects.",
-    },
-    {
-      title: "Semester 3",
-      href: "/tags/3rd-semester",
-      description: "Click here to view notes for 3rd Semester subjects.",
-    },
-    {
-      title: "Semester 4",
-      href: "/tags/4th-semester",
-      description: "Click here to view notes for 4th Semester subjects.",
-    },
-    {
-      title: "Semester 5",
-      href: "/tags/5th-semester",
-      description: "Click here to view notes for 5th Semester subjects.",
-    },
-    {
-      title: "Semester 6",
-      href: "/tags/6th-semester",
-      description: "Click here to view notes for 6th Semester subjects.",
-    },
-    {
-      title: "Semester 7",
-      href: "/tags/7th-semester",
-      description: "Click here to view notes for 7th Semester subjects.",
-    },
-    {
-      title: "Semester 8",
-      href: "/tags/8th-semester",
-      description: "Click here to view notes for 8th Semester subjects.",
+      title: "B.Tech Fourth Year Notes",
+      href: "/tags/4th-Year",
+      description: "Click here to view notes for the fourth Year.",
     },
   ],
 };
