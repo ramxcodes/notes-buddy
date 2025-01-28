@@ -13,7 +13,7 @@ type Contributor = {
   role: string;
   image: string;
   github: string;
-  linkedin: string;
+  linkedin?: string;
   website?: string;
   contributions?: number;
 };
@@ -30,7 +30,7 @@ const customContributors: Omit<Contributor, "contributions">[] = [
   },
   {
     name: "Ayush Paliwal",
-    description: "Developed Chatbot and notes for 7 subjects.",
+    description: "Developed Chatbot and versatility across platform.",
     role: "AI/ML Developer",
     image: "/profile/pali.jpeg",
     github: "https://github.com/Pali29",
@@ -42,7 +42,13 @@ const customContributors: Omit<Contributor, "contributions">[] = [
     role: "Full Stack Web Developer",
     image: "/profile/Kavyansh.png",
     github: "https://github.com/KavyanshYadav",
-    linkedin: "https://linkedin.com/in/KavyanshYadav",
+  },
+  {
+    name: "Taha Mill Wala",
+    description: "Created notes for a semester.",
+    role: "Web Developer",
+    image: "/profile/taha.png",
+    github: "https://github.com/Taha7838",
   },
   {
     name: "Kuhu Vyas",
@@ -50,15 +56,16 @@ const customContributors: Omit<Contributor, "contributions">[] = [
     role: "Web Developer",
     image: "/profile/kuhu.png",
     github: "https://github.com/KuhuVyas",
-    linkedin: "https://linkedin.com/in/KuhuVyas",
+    linkedin: "https://www.linkedin.com/in/kuhu-vyas-643895288",
   },
+
   {
     name: "Jeet Solanki",
     description: "Created notes for 1 subject.",
     role: "Web Developer",
     image: "/profile/jeet.png",
     github: "https://github.com/Jeet0808",
-    linkedin: "https://linkedin.com/in/Jeet0808",
+    linkedin: "https://www.linkedin.com/in/jeet-solanki-213b52339/",
   },
   {
     name: "Ankit Kashyap",
@@ -66,7 +73,6 @@ const customContributors: Omit<Contributor, "contributions">[] = [
     role: "Full Stack Web Developer",
     image: "/profile/ankit.jpeg",
     github: "https://github.com/Kashyap1ankit",
-    linkedin: "https://linkedin.com/in/Kashyap1ankit",
   },
   {
     name: "Swetabh Tripathy",
@@ -74,7 +80,7 @@ const customContributors: Omit<Contributor, "contributions">[] = [
     role: "Web Developer",
     image: "/profile/swetabh.png",
     github: "https://github.com/Tswetabh",
-    linkedin: "https://linkedin.com/in/Tswetabh",
+    linkedin: "https://www.linkedin.com/in/swetabh-tripathy-49855020b/",
   },
   {
     name: "Divya Vadnere",
@@ -82,7 +88,14 @@ const customContributors: Omit<Contributor, "contributions">[] = [
     role: "Web Developer",
     image: "/profile/divya.jpeg",
     github: "https://github.com/Doinggithub14",
-    linkedin: "https://linkedin.com/in/Doinggithub14",
+    linkedin: "https://www.linkedin.com/in/divya-vadnere-a49692288",
+  },
+  {
+    name: "Srijan Nigam",
+    description: "Created notes for one semester.",
+    role: "Web Developer",
+    image: "/profile/srijan.png",
+    github: "https://github.com/Srophos",
   },
 ];
 
@@ -131,7 +144,7 @@ export default function ContributorComponent() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {contributors.map((contributor, index) => (
-          <BlurFade key={index} delay={0.2 * index} inView>
+          <BlurFade key={index} delay={0.1 * index} inView>
             <MagicCard
               className="cursor-pointer flex flex-col items-center sm:items-start p-6 rounded-lg shadow-md"
               gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"}
