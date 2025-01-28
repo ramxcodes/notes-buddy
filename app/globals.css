@@ -130,7 +130,6 @@ body {
   animation: fade-in 0.3s ease-out;
 }
 
-
 /* Flashcard animation styles */
 .perspective-1000 {
   perspective: 1000px;
@@ -157,11 +156,11 @@ body {
 }
 
 /* Fix for card content positioning */
-.absolute {
+.card-absolute {
   position: absolute;
   inset: 0;
 }
 
-.relative {
+.card-relative {
   position: relative;
 }

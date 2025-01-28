@@ -83,19 +83,19 @@ const FlashcardComponent: React.FC<FlashcardProps> = ({ cards }) => {
       <div className="perspective-1000 w-full max-w-md">
         <Card
           className={cn(
-            "w-full h-64 cursor-pointer relative preserve-3d",
+            "w-full h-64 cursor-pointer card-relative preserve-3d",
             "transition-transform duration-300 ease-in-out",
             isFlipped ? "rotate-y-180" : ""
           )}
           onClick={handleFlip}
         >
           {/* Front Side */}
-          <CardContent className="absolute w-full h-full flex items-center justify-center p-6 backface-hidden rotate-y-0 bg-card">
+          <CardContent className="card-absolute w-full h-full flex items-center justify-center p-6 backface-hidden rotate-y-0 bg-card">
             <div className="text-xl text-center">{currentCard.front}</div>
           </CardContent>
 
           {/* Back Side */}
-          <CardContent className="absolute w-full h-full flex items-center justify-center p-6 backface-hidden rotate-y-180 bg-card">
+          <CardContent className="card-absolute w-full h-full flex items-center justify-center p-6 backface-hidden rotate-y-180 bg-card">
             <div className="text-xl text-center">{currentCard.back}</div>
           </CardContent>
         </Card>
