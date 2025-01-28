@@ -2,28 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
-import { MDXContent } from "@/components/notes-ui/mdx-components";
-import { Tag } from "@/components/tag";
-import { Brush, Flag } from "lucide-react";
 import Head from "next/head";
 import { useHeadingTracker } from "@/hooks/useHeadingTracker";
+import { MDXContent } from "@/components/notes-ui/mdx-components";
+import { Tag } from "@/components/tag";
+
+// Import our new mini-components
+import { MobileOptionsDrawer } from "./mini-comps/MobileOptionsDrawer";
+import { DesktopOptionsDropdown } from "./mini-comps/DesktopOptionsDropdown";
 
 interface DynamicArticleProps {
   title: string;
@@ -50,7 +36,7 @@ export default function DynamicArticle({
   const [isClient, setIsClient] = useState(false);
 
   const storageKey = `last-read-heading-${slug}`;
-  useHeadingTracker(storageKey); 
+  useHeadingTracker(storageKey);
 
   useEffect(() => {
     setIsClient(true);
@@ -92,128 +78,24 @@ export default function DynamicArticle({
           defer
         ></script>
       </Head>
-      {/* Mobile Drawer */}
-      <Drawer>
-        <DrawerTrigger>
-          <Button
-            variant="outline"
-            className="rounded-full p-4 fixed lg:hidden bottom-10 left-10"
-          >
-            <Brush />
-          </Button>
-        </DrawerTrigger>
-        <DrawerContent className="lg:hidden">
-          <DrawerHeader>
-            <DrawerTitle>Options</DrawerTitle>
-            <DrawerDescription>Customize your preferences</DrawerDescription>
-          </DrawerHeader>
-          <div className="p-4">
-            <div className="font-bold mb-2">Change Font</div>
-            {[
-              { name: "Wotfard", className: "font-wotfard" },
-              { name: "Gilroy", className: "font-Gilroy" },
-            ].map((font) => (
-              <button
-                key={font.className}
-                className={`w-full p-2 rounded mb-2 ${
-                  font.className === selectedFont
-                    ? "bg-gray-300 dark:bg-gray-700"
-                    : ""
-                }`}
-                onClick={() => handleFontChange(font.className)}
-              >
-                {font.name}
-              </button>
-            ))}
 
-            <div className="font-bold mb-2">Change Size</div>
-            {[
-              { name: "Small", className: "text-sm" },
-              { name: "Normal", className: "text-base" },
-              { name: "Large", className: "text-lg" },
-              { name: "Extra Large", className: "text-xl" },
-            ].map((size) => (
-              <button
-                key={size.className}
-                className={`w-full p-2 rounded mb-2 ${
-                  size.className === selectedSize
-                    ? "bg-gray-300 dark:bg-gray-700"
-                    : ""
-                }`}
-                onClick={() => handleSizeChange(size.className)}
-              >
-                {size.name}
-              </button>
-            ))}
+      <MobileOptionsDrawer
+        selectedFont={selectedFont}
+        selectedSize={selectedSize}
+        handleFontChange={handleFontChange}
+        handleSizeChange={handleSizeChange}
+        handleReportNote={handleReportNote}
+      />
 
-            <DrawerFooter>
-              <button
-                className="w-full p-2 rounded text-red-500 font-bold"
-                onClick={handleReportNote}
-              >
-                Report
-              </button>
-              <DrawerClose>
-                <Button variant="outline">Close</Button>
-              </DrawerClose>
-            </DrawerFooter>
-          </div>
-        </DrawerContent>
-      </Drawer>
+      <DesktopOptionsDropdown
+        selectedFont={selectedFont}
+        selectedSize={selectedSize}
+        handleFontChange={handleFontChange}
+        handleSizeChange={handleSizeChange}
+        handleReportNote={handleReportNote}
+      />
 
-      {/* Desktop Dropdown Options */}
-      <div className="hidden lg:block fixed right-44 top-24 z-50">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="rounded-full">
-              Options
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-fit p-4 px-8 border rounded-lg shadow-md">
-            <div className="font-bold mb-2">Change Font</div>
-            <hr />
-            {[
-              { name: "Wotfard", className: "font-wotfard" },
-              { name: "Gilroy", className: "font-Gilroy" },
-            ].map((font) => (
-              <DropdownMenuItem
-                className="hover:bg-gray-300 dark:hover:bg-gray-700"
-                key={font.className}
-                onClick={() => handleFontChange(font.className)}
-              >
-                {font.name}
-              </DropdownMenuItem>
-            ))}
-            <div className="font-bold mb-2">Change Size</div>
-            <hr />
-            {[
-              { name: "Small", className: "text-sm" },
-              { name: "Normal", className: "text-base" },
-              { name: "Large", className: "text-lg" },
-              { name: "Extra Large", className: "text-xl" },
-            ].map((size) => (
-              <DropdownMenuItem
-                className="hover:bg-gray-300 dark:hover:bg-gray-700"
-                key={size.className}
-                onClick={() => handleSizeChange(size.className)}
-              >
-                {size.name}
-              </DropdownMenuItem>
-            ))}
-            <hr />
-            <div>
-              <Button
-                onClick={handleReportNote}
-                variant="outline"
-                className="text-red-500 font-bold gap-2 mt-4"
-              >
-                <Flag className="size-4" /> <span>Report</span>
-              </Button>
-            </div>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </div>
-
+      {/* Article Content */}
       <article
         className={`container py-6 prose dark:prose-invert max-w-3xl mx-auto ${selectedFont} ${selectedSize}`}
       >
