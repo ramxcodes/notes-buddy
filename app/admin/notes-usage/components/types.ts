@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface UserEntry {
     name: ReactNode;
     email: string | null;
