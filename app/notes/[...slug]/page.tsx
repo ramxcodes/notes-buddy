@@ -2,7 +2,7 @@ import { posts } from "#site/content";
 import "@/styles/mdx.css";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
-import ScrollProgress from "@/components/notes-ui/ScrollProcess";
+import ScrollProcess from "@/components/notes-ui/ScrollProcess";
 import DynamicArticle from "@/components/notes-ui/DynamicArticle";
 import { Button } from "@/components/ui/button";
 import UpgradePrompt from "@/components/UpgradePrompt";
@@ -12,6 +12,8 @@ import { getServerSession } from "next-auth";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import NoteUsage from "@/models/NoteUsage";
+import { headers } from "next/headers";
 
 interface PostPageProps {
   params: {
@@ -225,12 +227,23 @@ export default async function PostPage({ params }: PostPageProps) {
   }
 
   const slug = post.slug.replace(/^notes\//, "");
+  const session = await getServerSession();
+  const headerList = headers();
+  const forwardedFor = headerList.get("x-forwarded-for") || "";
+  const ip = forwardedFor.split(",")[0] || "UNKNOWN_IP";
+
+  await NoteUsage.create({
+    noteSlug: slug,
+    userEmail: session?.user?.email || null,
+    ip,
+  });
+
   const unitMatch = slug.match(/unit-(\d+)/i);
   const currentUnit = unitMatch ? parseInt(unitMatch[1], 10) : 1;
 
   return (
     <>
-      <ScrollProgress />
+      <ScrollProcess />
       <DynamicArticle
         title={post.title}
         description={post.description}

@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import {
   BarChartBig,
   BookPlusIcon,
+  Eye,
   LucideBookLock,
   NotebookIcon,
 } from "lucide-react";
@@ -36,7 +37,8 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                   : ""
               }`}
             >
-              <LucideBookLock /> <span className="hidden md:block">Blocked Users</span>
+              <LucideBookLock />{" "}
+              <span className="hidden md:block">Blocked Users</span>
             </Link>
             <Link
               href="/admin/notes-requests"
@@ -46,7 +48,8 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                   : ""
               }`}
             >
-              <BookPlusIcon /> <span className="hidden md:block">Notes Requests</span>
+              <BookPlusIcon />{" "}
+              <span className="hidden md:block">Notes Requests</span>
             </Link>
             <Link
               href="/admin/notes-reports"
@@ -56,7 +59,19 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                   : ""
               }`}
             >
-              <NotebookIcon /> <span className="hidden md:block">Notes Reports</span>
+              <NotebookIcon />{" "}
+              <span className="hidden md:block">Notes Reports</span>
+            </Link>
+            <Link
+              href="/admin/notes-usage"
+              className={`px-4 py-2 rounded-md flex gap-2 items-center justify-center ${
+                pathname === "/admin/notes-usage"
+                  ? "border-b-2 border-blue-500"
+                  : ""
+              }`}
+            >
+              <Eye />{" "}
+              <span className="hidden md:block">Notes Analytics</span>
             </Link>
           </nav>
         </div>
