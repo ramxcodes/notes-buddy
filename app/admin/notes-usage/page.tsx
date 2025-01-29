@@ -313,7 +313,6 @@ export default function NotesUsagePage() {
         <NotesUsageTable usageData={paginatedData} />
       )}
 
-      {/* Pagination */}
       <PaginationControl
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}

@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/db";
 import NoteUsage from "@/models/NoteUsage";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function GET() {
   await connectToDatabase();
 
@@ -82,5 +85,13 @@ export async function GET() {
     };
   });
 
-  return NextResponse.json(finalStats);
+  return new NextResponse(JSON.stringify(finalStats), {
+    status: 200,
+    headers: {
+      "Content-Type": "application/json",
+      "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+      Expires: "0",
+      Pragma: "no-cache",
+    },
+  });
 }
