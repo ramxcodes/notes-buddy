@@ -8,15 +8,15 @@ export default function NotesShortcuts() {
     { href: "/tags/1st-year", label: "1st Year Notes" },
     { href: "/tags/2nd-year", label: "2nd Year Notes" },
     { href: "/tags/3rd-year", label: "3rd Year Notes" },
-    { href: "/tags/4th-year", label: "4th Year Notes" },
+    // { href: "/tags/4th-year", label: "4th Year Notes" },
     { href: "/tags/1st-semester", label: "1st Sem notes" },
     { href: "/tags/2nd-semester", label: "2nd Sem notes" },
     { href: "/tags/3rd-semester", label: "3rd Sem notes" },
     { href: "/tags/4th-semester", label: "4th Sem notes" },
     { href: "/tags/5th-semester", label: "5th Sem notes" },
     { href: "/tags/6th-semester", label: "6th Sem notes" },
-    { href: "/tags/7th-semester", label: "7th Sem notes" },
-    { href: "/tags/8th-semester", label: "8th Sem notes" },
+    // { href: "/tags/7th-semester", label: "7th Sem notes" },
+    // { href: "/tags/8th-semester", label: "8th Sem notes" },
   ];
 
   const getRandomColor = () => {
@@ -34,13 +34,13 @@ export default function NotesShortcuts() {
 
   return (
     <section className="container max-w-4xl py-6 lg:py-10 flex flex-col space-y-6 my-20">
-      <BlurFade delay={0.5} inView>
+      <BlurFade delay={0.1} inView>
         <h1 className="text-[2.3rem] md:text-[3.3rem] lg:text-[4.5rem] leading-[1] font-bold dark:bg-gradient-to-b dark:from-[rgba(244,244,255,1)] dark:to-[rgba(181,180,207,1)] dark:text-transparent dark:bg-clip-text py-2 text-center pt-20 md:pt-10">
           Study Smarter<br />Go to Your Notes!{" "}
           <span className="text-white">👇🏻</span>
         </h1>
       </BlurFade>
-      <BlurFade delay={0.7} inView>
+      <BlurFade delay={0.15} inView>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {links.map((link) => (
             <div

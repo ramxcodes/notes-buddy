@@ -3,13 +3,11 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Head from "next/head";
-import { useHeadingTracker } from "@/hooks/useHeadingTracker";
 import { MDXContent } from "@/components/notes-ui/mdx-components";
 import { Tag } from "@/components/tag";
-
-// Import our new mini-components
 import { MobileOptionsDrawer } from "./mini-comps/MobileOptionsDrawer";
 import { DesktopOptionsDropdown } from "./mini-comps/DesktopOptionsDropdown";
+import Script from "next/script";
 
 interface DynamicArticleProps {
   title: string;
@@ -34,9 +32,6 @@ export default function DynamicArticle({
   const [selectedFont, setSelectedFont] = useState("font-wotfard");
   const [selectedSize, setSelectedSize] = useState("text-base");
   const [isClient, setIsClient] = useState(false);
-
-  const storageKey = `last-read-heading-${slug}`;
-  useHeadingTracker(storageKey);
 
   useEffect(() => {
     setIsClient(true);
@@ -69,15 +64,15 @@ export default function DynamicArticle({
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/katex@0.16.19/dist/katex.min.css"
           integrity="sha384-7lU0muIg/i1plk7MgygDUp3/bNRA65orrBub4/OSWHECgwEsY83HaS1x3bljA/XV"
-        />
-        <script
-          src="https://cdn.jsdelivr.net/npm/katex@0.16.19/dist/katex.min.js"
-          integrity="sha384-..."
           crossOrigin="anonymous"
-          async
-          defer
-        ></script>
+        />
       </Head>
+      <Script
+        src="https://cdn.jsdelivr.net/npm/katex@0.16.19/dist/katex.min.js"
+        strategy="lazyOnload"
+        integrity="sha384-..."
+        crossOrigin="anonymous"
+      />
 
       <MobileOptionsDrawer
         selectedFont={selectedFont}

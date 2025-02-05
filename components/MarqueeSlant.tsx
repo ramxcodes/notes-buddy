@@ -89,7 +89,7 @@ const ReviewCard = ({
 const MarqueeSlant = () => {
   return (
     <>
-      <BlurFade delay={0.5} inView>
+      <BlurFade delay={0.1} inView>
         <div className="relative flex h-screen flex-row items-center justify-center overflow-hidden rounded-lg gap-6 w-full">
           <Marquee pauseOnHover vertical className="[--duration:15s]">
             {firstRow.map((review, index) => (

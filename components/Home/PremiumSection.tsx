@@ -7,18 +7,18 @@ export default function PremiumSection() {
     <section className="py-24 lg:pb-32 overflow-hidden text-neutral-800 dark:text-neutral-50 font-wotfard">
       <div className="container px-4 mx-auto">
         <div className="max-w-2xl mx-auto text-center mb-20">
-          <BlurFade delay={0.2} inView>
+          <BlurFade delay={0.12} inView>
             <h1 className="text-[2.3rem] lg:text-[4.5rem] md:text-[3.5rem] leading-[1] font-bold dark:bg-gradient-to-b dark:from-[rgba(244,244,255,1)] dark:to-[rgba(181,180,207,1)] dark:text-transparent dark:bg-clip-text py-2 text-center my-10 md:20">
               Why Study the Hard Way? <span className="text-white">🤔</span>
             </h1>
           </BlurFade>
-          <BlurFade delay={0.3} inView>
+          <BlurFade delay={0.13} inView>
             <p className="text-2xl tracking-tight">
               Unlock the perfect guide to your preparation journey.
             </p>
           </BlurFade>
         </div>
-        <BlurFade delay={0.4} inView>
+        <BlurFade delay={0.14} inView>
           <div className="flex flex-wrap -m-6">
             {/* Tier 1 */}
             <div className="w-full md:w-1/3 p-6">
@@ -41,8 +41,6 @@ export default function PremiumSection() {
                     <FeatureItem checked={true}>
                       Access to Quizzes of all units
                     </FeatureItem>
-                    <FeatureItem checked={true}>Book PDF</FeatureItem>
-                    <FeatureItem checked={false}>Faculty Notes</FeatureItem>
                     <FeatureItem checked={false}>
                       Previous Year Questions with answers
                     </FeatureItem>
@@ -51,7 +49,7 @@ export default function PremiumSection() {
                     <FeatureItem checked={false}>
                       Toppers Handwritten Notes
                     </FeatureItem>
-                    <FeatureItem checked={false}>AI Chatbot</FeatureItem>
+                    <FeatureItem checked={false}>AI Chatbot (Under Development)</FeatureItem>
                   </ul>
                   <PricingButton href="/buy-premium">Buy Now</PricingButton>
                 </div>
@@ -96,8 +94,6 @@ export default function PremiumSection() {
                       <FeatureItem checked={true}>
                         Access to Quizzes of all units
                       </FeatureItem>
-                      <FeatureItem checked={true}>Book PDF</FeatureItem>
-                      <FeatureItem checked={true}>Faculty Notes</FeatureItem>
                       <FeatureItem checked={true}>
                         Previous Year Questions with answers
                       </FeatureItem>
@@ -106,7 +102,7 @@ export default function PremiumSection() {
                       <FeatureItem checked={false}>
                         Toppers Handwritten Notes
                       </FeatureItem>
-                      <FeatureItem checked={false}>AI Chatbot</FeatureItem>
+                      <FeatureItem checked={false}>AI Chatbot (Under Development)</FeatureItem>
                     </ul>
                     <PricingButton href="/buy-premium">Buy Now</PricingButton>
                   </div>
@@ -135,8 +131,6 @@ export default function PremiumSection() {
                     <FeatureItem checked={true}>
                       Access to Quizzes of all units
                     </FeatureItem>
-                    <FeatureItem checked={true}>Book PDF</FeatureItem>
-                    <FeatureItem checked={true}>Faculty Notes</FeatureItem>
                     <FeatureItem checked={true}>
                       Previous Year Questions with answers
                     </FeatureItem>

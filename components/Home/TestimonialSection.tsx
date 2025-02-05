@@ -94,12 +94,12 @@ export default function TestimonialSection() {
   return (
     <>
       <section className="relative container mx-auto pt-16 pb-16">
-        <BlurFade delay={0.5} inView>
+        <BlurFade delay={0.15} inView>
           <h1 className="text-[2.3rem] lg:text-[4.5rem] md:text-[3rem] leading-[1] font-bold dark:bg-gradient-to-b dark:from-[rgba(244,244,255,1)] dark:to-[rgba(181,180,207,1)] dark:text-transparent dark:bg-clip-text py-2 text-center my-8 md:16">
             What People Say about us <span className="text-white">🗣️</span>
           </h1>
         </BlurFade>
-        <BlurFade delay={0.7} inView>
+        <BlurFade delay={0.17} inView>
           <Marquee
             className="[--duration:20s]"
             pauseOnHover
@@ -110,7 +110,7 @@ export default function TestimonialSection() {
             ))}
           </Marquee>
         </BlurFade>
-        <BlurFade delay={0.9} inView>
+        <BlurFade delay={0.19} inView>
           <Marquee
             reverse
             className="[--duration:20s]"

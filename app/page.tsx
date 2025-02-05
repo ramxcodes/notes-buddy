@@ -21,7 +21,7 @@ export default function Home() {
         <PostSection />
         <MarqueeSlant />
         <NotesSection />
-        {/* <PremiumSection /> */}
+        <PremiumSection />
         <TestimonialSection />
         <FooterSection />
         <NotLanding />

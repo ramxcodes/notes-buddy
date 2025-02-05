@@ -36,11 +36,11 @@ export function MainNav() {
       href: "/tags/3rd-Year",
       description: "Click here to view notes for the third Year.",
     },
-    {
-      title: "B.Tech Fourth Year Notes",
-      href: "/tags/4th-Year",
-      description: "Click here to view notes for the fourth Year.",
-    },
+    // {
+    //   title: "B.Tech Fourth Year Notes",
+    //   href: "/tags/4th-Year",
+    //   description: "Click here to view notes for the fourth Year.",
+    // },
   ];
   const others: { title: string; href: string; description?: string }[] = [
     {
@@ -62,7 +62,7 @@ export function MainNav() {
         <img src="/logo.png" alt="logo" className="size-6" />
         <span className="font-bold">{siteConfig.name}</span>
       </Link>
-      <Link
+      <a
         href="/contributors"
         className={cn(
           "text-sm font-medium transition-colors hover:text-primary hidden sm:inline-block",
@@ -70,7 +70,7 @@ export function MainNav() {
         )}
       >
         Top Contributors
-      </Link>
+      </a>
       <NavigationMenu className="bg-transparent hidden md:block">
         <NavigationMenuList>
           <NavigationMenuItem>
@@ -95,7 +95,7 @@ export function MainNav() {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-      <Link
+      <a
         href="/about"
         className={cn(
           "text-sm font-medium transition-colors hover:text-primary hidden sm:inline-block",
@@ -103,7 +103,7 @@ export function MainNav() {
         )}
       >
         About us
-      </Link>
+      </a>
       <NavigationMenu className="bg-transparent hidden md:block">
         <NavigationMenuList>
           <NavigationMenuItem>
@@ -112,7 +112,7 @@ export function MainNav() {
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                 {others.map((other) => (
                   <li key={other.title} className="hover:text-gray-900">
-                    <Link
+                    <a
                       href={other.href}
                       className="block p-3 hover:bg-gray-100 rounded-md"
                     >
@@ -120,7 +120,7 @@ export function MainNav() {
                       <p className="text-sm text-gray-500">
                         {other.description}
                       </p>
-                    </Link>
+                    </a>
                   </li>
                 ))}
               </ul>

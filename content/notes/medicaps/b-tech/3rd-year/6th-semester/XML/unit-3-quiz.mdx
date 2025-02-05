@@ -1,0 +1,221 @@
+---
+title: "Unit 3 Quiz : Programming with XML"
+description: Quiz for Programming with XML unit 3.
+date: 2025-01-21
+tags: ["Programming with XML", "6th Semester", "3rd Year", "medicaps university", "Quiz"]
+published: true
+metadata:
+  university: "Medicaps University"
+  degree: "B Tech"
+  semester: "6th Semester"
+  subject: "Programming with XML"
+  premium: true
+  contentType: "quiz"
+  planTier: "Tier 1"
+---
+
+---
+
+## **Quiz 1: XML Basics & Markup Languages**
+
+<Quiz 
+  questions={[
+    { 
+      question: "What does XML stand for?", 
+      options: ["Extensible Markup Language", "Extra Multi Language", "Extended Meta Language", "Executable Markup Language"], 
+      correctIndex: 0
+    },
+    { 
+      question: "Which of the following best describes XML?", 
+      options: ["A programming language", "A markup language for defining data structure", "A database language", "A styling language"], 
+      correctIndex: 1
+    },
+    { 
+      question: "What is the main purpose of XML?", 
+      options: ["Web page design", "Machine learning", "Data storage and transport", "Database management"], 
+      correctIndex: 2
+    },
+    { 
+      question: "Which of these is NOT a feature of XML?", 
+      options: ["Platform-independent", "Fixed tag structure", "Extensible", "Self-descriptive"], 
+      correctIndex: 1
+    },
+    { 
+      question: "Which markup language is most similar to XML?", 
+      options: ["CSS", "SQL", "HTML", "JavaScript"], 
+      correctIndex: 2
+    },
+    { 
+      question: "What is the difference between XML and HTML?", 
+      options: ["XML is for storing data, HTML is for displaying data", "HTML is case-sensitive, XML is not", "XML does not use attributes", "HTML is stricter than XML"], 
+      correctIndex: 0
+    },
+    { 
+      question: "Which markup language did XML evolve from?", 
+      options: ["SGML", "CSS", "Markdown", "YAML"], 
+      correctIndex: 0
+    }
+  ]}
+/>
+
+---
+
+## **Quiz 2: XML Syntax & Structure**
+
+<Quiz 
+  questions={[
+    { 
+      question: "What is the correct way to declare an XML version?", 
+      options: [
+        "<?xml version='1.0' encoding='UTF-8'?>", 
+        "<xml version='1.0'>", 
+        "<?xml encoding='UTF-8'?>", 
+        "<!DOCTYPE xml version='1.0'>"
+      ], 
+      correctIndex: 0
+    },
+    { 
+      question: "Which of the following is a valid XML element?", 
+      options: ["<1book>", "<@book>", "<book title>", "<book>"], 
+      correctIndex: 3
+    },
+    { 
+      question: "What is an XML attribute?", 
+      options: [
+        "A separate XML file", 
+        "An external link", 
+        "A child element", 
+        "A property within an element’s opening tag"
+      ], 
+      correctIndex: 3
+    },
+    { 
+      question: "Which symbol is used for comments in XML?", 
+      options: [
+        "// This is a comment", 
+        "/* This is a comment */", 
+        "<!-- This is a comment -->", 
+        "-- This is a comment --"
+      ], 
+      correctIndex: 2
+    },
+    { 
+      question: "Which of the following is true about XML elements?", 
+      options: ["They are case-sensitive", "They do not require closing tags", "They must be written in uppercase", "They are predefined like HTML tags"], 
+      correctIndex: 0
+    },
+    { 
+      question: "What must every well-formed XML document have?", 
+      options: ["At least one attribute", "A root element", "A DOCTYPE declaration", "A namespace"], 
+      correctIndex: 1
+    },
+    { 
+      question: "What is the correct way to represent an empty element?", 
+      options: ["<book></book>", "<book>", "<book />", "<book></ />"], 
+      correctIndex: 2
+    }
+  ]}
+/>
+
+---
+
+## **Quiz 3: Creating Notebook XML & Attributes**
+
+<Quiz 
+  questions={[
+    { 
+      question: "What is the root element in a Notebook XML?", 
+      options: ["<notes>", "<root>", "<notebook>", "<document>"], 
+      correctIndex: 2
+    },
+    { 
+      question: "Which of the following best describes XML attributes?", 
+      options: ["They store additional information about an element", "They are always required", "They act as child elements", "They replace elements"], 
+      correctIndex: 0
+    },
+    { 
+      question: "Which of the following is an example of an XML attribute?", 
+      options: [
+        "<note priority='high'>", 
+        "<priority>high</priority>", 
+        "<note>priority='high'</note>", 
+        "<note attribute=priority>"
+      ], 
+      correctIndex: 0
+    },
+    { 
+      question: "Which special character is used for attribute assignment?", 
+      options: ["=", ":", "/", "@"], 
+      correctIndex: 0
+    },
+    { 
+      question: "Where are attributes placed in an XML element?", 
+      options: ["Inside the start tag", "Inside the end tag", "In a separate tag", "Inside a comment"], 
+      correctIndex: 0
+    },
+    { 
+      question: "How should an attribute value be enclosed?", 
+      options: ["Inside square brackets", "Inside curly braces", "Inside double or single quotes", "Without any enclosing symbols"], 
+      correctIndex: 2
+    },
+    { 
+      question: "What is the correct way to represent a note in a Notebook XML?", 
+      options: [
+        "<note id='1'><title>Meeting Notes</title></note>", 
+        "<note><id>1</id><title>Meeting Notes</title></note>", 
+        "<note id=1><title>Meeting Notes</title></note>", 
+        "<note id><title>Meeting Notes</title></note>"
+      ], 
+      correctIndex: 0
+    }
+  ]}
+/>
+
+---
+
+## **Quiz 4: Comments, Predefined Entities & Validation**
+
+<Quiz 
+  questions={[
+    { 
+      question: "How do you write comments in XML?", 
+      options: [
+        "// This is a comment", 
+        "/* This is a comment */", 
+        "<!-- This is a comment -->", 
+        "-- This is a comment --"
+      ], 
+      correctIndex: 2
+    },
+    { 
+      question: "Which of these is NOT a predefined entity in XML?", 
+      options: ["&lt;", "&gt;", "&html;", "&quot;"], 
+      correctIndex: 2
+    },
+    { 
+      question: "What does `&amp;` represent in XML?", 
+      options: ["Less than", "Greater than", "Ampersand (&)", "Quotation mark"], 
+      correctIndex: 2
+    },
+    { 
+      question: "Which of the following is NOT a method of validating XML?", 
+      options: ["DTD", "XSD", "CSS", "Schema"], 
+      correctIndex: 2
+    },
+    { 
+      question: "Why is XML validation important?", 
+      options: ["To define the font styles", "To ensure data consistency", "To increase file size", "To make XML case-insensitive"], 
+      correctIndex: 1
+    },
+    { 
+      question: "Which XML validation method provides the most flexibility?", 
+      options: ["DTD", "XSD", "HTML", "None"], 
+      correctIndex: 1
+    },
+    { 
+      question: "What happens if an XML document is not well-formed?", 
+      options: ["It will not be processed correctly", "It will still work in all cases", "Browsers will fix it automatically", "It will be ignored"], 
+      correctIndex: 0
+    }
+  ]}
+/>

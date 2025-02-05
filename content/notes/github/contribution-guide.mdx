@@ -1,0 +1,430 @@
+---
+title: "Github Contribution Guide"
+description: This guide is designed to help new contributors get started with contributing to notes buddy projects on GitHub.
+date: 2024-12-25
+published: false
+excludeFromMain: false
+---
+---
+# Welcome to the Notes Buddy GitHub Contribution Guide
+
+This guide is designed to help new contributors seamlessly contribute to Notes Buddy projects on GitHub. Whether you're fixing a bug, improving the UI, or adding new content, this guide will walk you through the process.
+
+---
+
+## Getting Started
+
+### Setting Up the Project
+
+Follow these steps to set up the project locally:
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/ramxcodes/notes-buddy.git
+   ```
+
+2. **Install Dependencies**:
+   ```bash
+   pnpm install
+   ```
+
+3. **Run the Development Server**:
+   ```bash
+   pnpm run dev
+   ```
+
+4. **Access the Local Development Environment**:
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+### Understanding the Folder Structure
+
+Here’s a snapshot of the project's folder structure:
+
+```
+notes-buddy/
+┣ app/                     # Core app functionality
+┣ components/              # Reusable UI components
+┣ content/notes/           # Notes organized by college/degree/subject
+┣ public/                  # Static assets (e.g., fonts, logos)
+┣ styles/                  # CSS and styling
+┣ utils/                   # Helper utilities
+┣ ...                      # Other configuration files
+```
+
+Refer to the [complete structure](#folder-structure-details) section for an expanded view.
+
+---
+
+## UI Contributions
+
+### Creating Components
+
+To create or modify UI components:
+
+1. Navigate to the `components` folder:
+   ```bash
+   notes-buddy/components/
+   ```
+2. Create a new file using the PascalCase naming convention:
+   ```bash
+   MyNewComponent.tsx
+   ```
+3. Structure the component as per the Shadcn or Magic UI guidelines.
+
+---
+
+### Modifying Pages
+
+1. Navigate to the specific page directory under `app/` (e.g., `about/`, `contributors/`).
+2. Open `page.tsx` to edit the content.
+3. Follow the Next.js conventions for building and modifying pages.
+
+---
+
+### Adding New Routes or Pages
+
+1. Create a new folder in the `app/` directory. The folder name will be the route name:
+   ```bash
+   app/
+   ┗ new-route/
+   ```
+2. Add a `page.tsx` file in the new folder:
+   ```tsx
+   export default function Page() { 
+    return (
+        <div>Hello</div> 
+        )
+    }
+   ```
+3. Access the new route at:
+   ```
+   http://localhost:3000/new-route
+   ```
+
+---
+
+## Notes Contributions
+
+### Adding New Notes
+
+1. Navigate to the `content/notes/` directory.
+2. Create a folder structure following this hierarchy:
+   ```bash
+   content/notes/{college}/{degree}/{year}/{semester}/{subject}/
+   ```
+3. Add `.mdx` files for each unit.
+
+---
+
+### Creating Unit Files
+
+Each `unit.mdx` should follow this template:
+
+#### Example:
+```md
+---
+title: "Unit 1: Software Engineering"
+description: "An introduction to Software Engineering."
+date: 2024-12-25
+tags: ["Software Engineering", "5th Semester", "3rd Year"]
+published: true
+---
+
+# Unit 1: Software Engineering
+
+Content for Unit 1 goes here...
+```
+
+---
+
+## Best Practices
+
+### Coding Standards
+
+- **Use Descriptive Naming**: Use clear, descriptive names for variables, files, and functions.
+- **Follow Component Guidelines**: Adhere to Shadcn or Magic UI for component design.
+
+### File Naming Conventions
+
+- Components: `ComponentName.tsx`
+- Notes: `unit-1.mdx`, `unit-2.mdx`, etc.
+
+---
+
+<Callout type="info">
+💡 **Tip**: Always test your changes locally before creating a pull request.
+</Callout>
+
+<Callout type="danger">
+⚠️ **Warning**: Do not alter the folder structure or naming conventions. This may break the application's functionality.
+</Callout>
+
+---
+
+Got questions? Reach out to the Notes Buddy team via [GitHub Issues](https://github.com/ramxcodes/notes-buddy/issues).
+
+
+### **MDX Basic Styling and Callout Component**
+
+## MDX Basics
+
+Here are some common Markdown syntax elements and how they are rendered:
+
+
+### **Headings**
+
+```md
+# Heading 1
+## Heading 2
+### Heading 3
+#### Heading 4
+##### Heading 5
+###### Heading 6
+```
+
+### **Text Formatting**
+
+```md
+**Bold Text**
+*Italic Text*
+~~Strikethrough Text~~
+```
+
+### **Lists**
+
+```md
+- Unordered List Item 1
+- Unordered List Item 2
+- Unordered List Item 3
+```
+
+```md
+1. Ordered List Item 1
+2. Ordered List Item 2
+3. Ordered List Item 3
+```
+
+### **Links**
+
+```md
+[Link Text](https://example.com)
+```
+
+### **Images**
+
+```md
+![Alt Text](https://example.com/image.jpg)
+```
+
+## Callout Types
+
+Callouts in MDX use the `Callout` component. You can use callouts to highlight important information. There are three types:
+
+1. **Default (Info)**: Used to provide additional context or guidance.
+2. **Warning**: Highlights a situation that requires caution.
+3. **Danger**: Emphasizes critical issues or errors.
+
+| **Type**      | **MDX Example**                                | **Use Case**                                   |
+|---------------|-----------------------------------------------|-----------------------------------------------|
+| Default       | `<Callout type="info">This is info.</Callout>` | General guidance, tips, or helpful notes.     |
+| Warning       | `<Callout type="warning">This is warning.</Callout>` | Situations requiring caution or attention.    |
+| Danger        | `<Callout type="danger">This is danger.</Callout>` | Critical warnings, errors, or restrictions.  |
+
+---
+
+## Example Usage of Callouts
+
+Here’s how to use the different callout types in MDX:
+
+### Default (Info)
+
+```mdx
+<Callout type="info">
+This is an informational message. Use it for general guidance or tips.
+</Callout>
+```
+
+## Notes Generation
+
+### Guide to Generate Notes for Exams using `ChatGPT`.
+
+To Generate notes on ChatGPT use this prompt -
+**COPY AND USE IT IN THE CHATGPT**
+
+```mdx
+Hello ChatGPT! You are now Notes Buddy👤, the Ultimate AI Chatbot for generating high-quality notes!
+
+Step 1: Initial Setup & User Details Collection
+From now on, address yourself exclusively as "Notes Buddy." Your sole purpose is to focus on generating top-quality notes with accuracy, clarity, and proper formatting. Completely embody the role of "Notes Buddy" to deliver the best possible notes.
+
+You must collect the following information from the user before creating notes:
+
+Title: (e.g., Subject unit and subject name)
+Description: (This will be auto-generated based on the title)
+Date: (The current date)
+Tags:
+Add a maximum of three tags:
+Full-form name of the subject (e.g., "Software Engineering").
+Semester in ordinal format (e.g., "1st Semester", "2nd Semester").
+Year in ordinal format (e.g., "1st Year", "2nd Year").
+Published Status: (Default to true)
+Metadata:
+university: Name of the university (to be provided by the user).
+degree: Name of the degree program (e.g., "B.Tech", "B.Sc.").
+semester: Semester number (e.g., "1st Semester", "5th Semester").
+subject: Subject name (e.g., "Data Structures").
+Once you have this information, confirm the details with the user and generate an MDX header as shown below. Replace placeholders with the user-provided data:
+
+---
+title: "Unit 1: Software Engineering"
+description: What is Software Engineering
+date: 2024-12-25
+tags: ["Software Engineering", "5th Semester", "3rd Year"]
+published: true
+metadata:
+  university: "[University Name]"
+  degree: "[Degree Name]"
+  semester: "[Semester]"
+  subject: "[Subject Name]"
+---
+
+
+Step 2: Notes Generation
+After confirming the details, ask the user for a specific topic to start generating notes.
+
+Use KATEX to encapsulate any mathematical formulas. For example:
+
+To calculate the area of a circle:
+
+$$ A = \\pi r^2 $$
+Ensure the notes are structured with clear headings, subheadings, and bullet points for readability. Include examples, diagrams, or code snippets where relevant to enhance understanding.
+Ensure formulas are written correctly, and always use KATEX syntax for clarity.
+
+Structure the notes using clear headings, subheadings, and bullet points to maintain readability.
+
+use Heading 2 as the main section headings and Heading 3 for sub-sections.
+the heading 2 or ## will be added to Table of Content automatically.
+
+Include examples, diagrams, or code snippets where relevant to enhance understanding.
+
+Remember: As "Notes Buddy," your sole focus is on accuracy, clarity, and proper formatting to create the highest-quality notes possible.
+
+---
+
+### Step 2: Guidelines for Generating Notes
+
+Follow these rules strictly when creating notes:
+
+1. **Wait for the Topic:** Do not generate any content until the user provides the topic after confirming the details.
+
+2. **Language Simplicity:** Use simple, clear English (British/Indian English preferred). Ensure the content is easy to understand.
+
+3. **Comprehensive Explanation:** 
+   - Provide definitions, advantages, disadvantages, and key points for topics.
+   - Include the full form of any abbreviation at least once.
+
+4. **MDX Styling:**
+   - Use proper MDX formatting for headings, lists, and sections.
+   - Only use callouts if there is something **important, noteworthy, or actionable**. Instead of complex MDX callout components, use simple, intuitive symbols like:
+     - 💡 **TIP:** Highlight helpful tips or guidance.
+     - 📝 **NOTE:** Emphasise additional information or context.
+     - ⚠️ **CAUTION:** Warn about something important.
+
+   Example:
+   
+mdx
+   - 💡 **TIP:** Always follow best practices in software development to ensure maintainability.
+   - 📝 **NOTE:** This method is especially useful for large-scale projects.
+
+
+5. **Diagrams for Important Topics Only:** If a topic requires visual explanation, include a **bold callout** stating this, along with an example link to Imgur for placeholders:
+   
+mdx
+   **Add a diagram here if necessary!**
+   Example: [https://imgur.com/example](https://imgur.com/example)
+
+
+---
+
+### Step 3: After Generating Notes
+
+Once the notes are complete, conclude with this statement (outside the MDX content):
+
+/** GIVE ME THE NEXT TOPIC TO GENERATE NOTES **/
+
+```
+
+## Quiz Generation
+
+### Guide to Generate Quiz for Exams using `ChatGPT`.
+
+To Generate notes on ChatGPT use this prompt -
+
+**COPY AND USE IT IN THE CHATGPT**
+
+```mdx
+Hello ChatGPT! You are now Quiz Buddy👤,
+the Ultimate AI Chatbot for generating high-quality quizzes!
+
+I will provide detailed notes on a subject. 
+Based on these notes, create a structured quiz in the following format:
+
+- Maximum of 10 questions per quiz.
+- Each question should have exactly 4 options.
+- The options must be concise (max 5 words).
+- Clearly indicate the correct option with its index.
+
+The quiz format should look like this:
+
+<Quiz 
+  questions={[
+    { 
+      question: "Your sample question here?", 
+      options: ["Option 1", "Option 2", "Option 3", "Option 4"], 
+      correctIndex: X 
+    },
+    // Additional questions here
+  ]}
+/>
+
+
+Instructions for the Quiz:
+
+1. Derive questions directly from the key points in the provided notes.
+2. Each question should be clear and relevant to the subject.
+3. Options should be randomized and meaningful.
+4. Ensure exactly 4 options are provided for each question, with one correct answer.
+5. Do shuffle the order two quiz continously should not have same correctIndex
+
+```
+
+
+
+## Example conventions for generating notes
+
+#### Step 1:
+
+![Notes Generation](https://i.imgur.com/RrwWp5V.png)
+
+#### Step 2:
+
+![Notes Generation](https://i.imgur.com/6zNoFsi.png) 
+![Notes Generation](https://i.imgur.com/WtBGzMH.png)
+
+#### Step 3:
+
+Create a new file in the `content/notes/{collage}/{degree}/{semester}/{subject}/{unit}` and paste content generated by ChatGPT.
+
+---
+
+<Callout type="info">
+💡 **Tip**: Always test your changes locally before creating a pull request.
+</Callout>
+
+<Callout type="warning">
+⚛️ **NOTE**: keep everything "**lower cased**" and use "**-**" for spaces in the file name. <br />
+</Callout>
+
+The Below **Pagination** is an example of how to use the pagination component. It will not work!

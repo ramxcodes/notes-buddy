@@ -12,9 +12,9 @@ export async function POST(request: Request) {
       await request.json();
 
     const pricing: { [key: string]: number } = {
-      "Tier 1": 59,
-      "Tier 2": 129,
-      "Tier 3": 169,
+      "Tier 1": 62,
+      "Tier 2": 134,
+      "Tier 3": 175,
     };
 
     if (!pricing[tier]) {

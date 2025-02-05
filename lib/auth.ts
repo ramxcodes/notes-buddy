@@ -23,7 +23,6 @@ export const authOptions: NextAuthOptions = {
 
       if (user) {
         const email = user.email || token.email;
-
         let dbUser = await usersCollection.findOne({ email });
 
         if (!dbUser) {
@@ -32,14 +31,18 @@ export const authOptions: NextAuthOptions = {
             name: user.name || token.name || "",
             image: user.image || token.picture || "",
             Blocked: false,
+            planTier: "Free",
+            semesters: [],
             createdAt: new Date(),
           });
-          dbUser = { _id: result.insertedId, Blocked: false };
+          dbUser = {
+            _id: result.insertedId,
+            Blocked: false,
+            planTier: "Free",
+            semesters: [],
+          };
         } else {
-          if (
-            account &&
-            (!dbUser.provider || dbUser.provider !== account.provider)
-          ) {
+          if (account?.provider && dbUser.provider !== account.provider) {
             await usersCollection.updateOne(
               { email },
               { $set: { provider: account.provider } }
@@ -47,10 +50,15 @@ export const authOptions: NextAuthOptions = {
           }
         }
 
-        token.id = dbUser._id?.toString() || token.id;
+        token.id = dbUser._id?.toString();
         token.Blocked = dbUser.Blocked ?? false;
         token.email = email;
         token.name = user.name || token.name;
+        token.planTier = dbUser.planTier || "Free";
+        token.subscriptionEndDate =
+          dbUser.subscriptionEndDate?.toISOString() || null;
+        token.semesters = dbUser.semesters || [];
+        token.university = dbUser.university || null;
 
         const adminEmails =
           process.env.ADMIN_EMAILS?.split(",").map((e) => e.trim()) || [];
@@ -68,6 +76,10 @@ export const authOptions: NextAuthOptions = {
         image: token.picture || "",
         Blocked: token.Blocked as boolean,
         isAdmin: token.isAdmin as boolean,
+        planTier: token.planTier as string,
+        subscriptionEndDate: token.subscriptionEndDate as string | undefined,
+        semesters: token.semesters as string[] | [],
+        university: token.university as string | undefined,
       };
       return session;
     },

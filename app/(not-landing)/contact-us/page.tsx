@@ -15,8 +15,8 @@ export default function page() {
         </p>
         <address className="pl-4">
           <p>Notes Buddy</p>
-          <p>+91 6263219134</p>
-          <p>Email: notesbuddymu@gmail.com</p>
+
+          <p>Email: notesbuddy@gmail.com</p>
           <p>Scheme 39, Vijay Nagar, Indore</p>
         </address>
       </section>

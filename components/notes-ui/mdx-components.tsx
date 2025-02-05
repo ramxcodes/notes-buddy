@@ -1,12 +1,11 @@
-import Image from "next/image";
 import * as runtime from "react/jsx-runtime";
-import { TableOfContents } from "./TableOfContents";
 import { Callout } from "./callout";
 import { UnitPagination } from "./unit-pagination";
-import QuizComponent from "./QuizComponent";
-import { PdfViewer } from "./PdfViewer";
 import { isPaginationDisabled } from "@/utils/pagination-config";
-import FlashcardComponent from "./Flashcard";
+import { TableOfContents } from "./TableOfContents";
+import dynamic from "next/dynamic";
+import { PdfViewer } from "./PdfViewer";
+import Picture from "./Picture";
 
 const useMDXComponent = (code: string) => {
   const fn = new Function(code);
@@ -14,11 +13,11 @@ const useMDXComponent = (code: string) => {
 };
 
 const components = {
-  Image,
+  Picture,
   Callout,
-  Quiz: QuizComponent,
   PdfViewer,
-  Flashcard: FlashcardComponent,
+  Quiz: dynamic(() => import("./QuizComponent"), { ssr: false }),
+  Flashcard: dynamic(() => import("./Flashcard"), { ssr: false }),
 };
 
 interface MdxProps {
@@ -34,10 +33,7 @@ export function MDXContent({ code, currentUnit, totalUnits, slug }: MdxProps) {
 
   return (
     <div>
-      {/* Table of Contents */}
       <TableOfContents code={code} />
-
-      {/* Main Content */}
       <Component components={components} />
       {showUnitPagination && currentUnit && totalUnits ? (
         <UnitPagination

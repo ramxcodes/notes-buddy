@@ -14,7 +14,7 @@ export default function HeroSection() {
         fill="purple"
       />
       <div className="text-center space-y-2 container mx-auto px-4 md:px-0">
-        <BlurFade delay={0.25} inView>
+        <BlurFade delay={0.1} inView>
           <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400 select-none border rounded-full">
             <span className="text-xs md:text-base">
               ✨ Welcome to Notes buddy
@@ -22,7 +22,7 @@ export default function HeroSection() {
             <ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
           </AnimatedShinyText>
         </BlurFade>
-        <BlurFade delay={0.3} inView>
+        <BlurFade delay={0.15} inView>
           <h1 className="text-[2.3rem] lg:text-[4.5rem] md:text-[4rem] leading-[1] font-bold dark:bg-gradient-to-b dark:from-[rgba(244,244,255,1)] dark:to-[rgba(181,180,207,1)] dark:text-transparent dark:bg-clip-text py-2 text-center">
             Prepare Fast
             <br />
@@ -51,7 +51,7 @@ export default function HeroSection() {
             </span>
           </h1>
         </BlurFade>
-        <BlurFade delay={0.5} inView>
+        <BlurFade delay={0.2} inView>
           <div className="text-[1rem] lg:text-[1.5rem]">
             Notes Buddy is your one stop solution for{" "}
             <HeroSlideTextEffect interval={1.3} className="font-bold">
@@ -60,7 +60,7 @@ export default function HeroSection() {
           </div>
         </BlurFade>
       </div>
-      <BlurFade delay={0.7} inView>
+      <BlurFade delay={0.25} inView>
         <div className="container lg:px-72 pt-20 flex flex-col md:flex-row items-center justify-between w-full space-y-6">
           <div className="w-1/2 lg:w-3/4 flex items-center justify-center">
             <button className="group relative h-12 rounded-full border-2 dark:border-[#9f65e2] border-[#813981] bg-gradient-to-r dark:from-[#070e41] dark:to-[#9f65e2] from-[#7642a7] to-[#09139b] px-6 text-white whitespace-nowrap">

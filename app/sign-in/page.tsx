@@ -1,4 +1,4 @@
-import SignInComponent from "./components/SignInComponent";
+import SignInComponent from "./SignInComponent";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

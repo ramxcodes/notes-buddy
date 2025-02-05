@@ -6,7 +6,7 @@ function AboutSection() {
   return (
     <>
       <div className="h-[80px] md:h-[150px] lg:h-[500px] grid place-content-center w-fit">
-        <BlurFade delay={0.7}>
+        <BlurFade delay={0.1}>
           <ScrollBaseAnimation
             delay={500}
             baseVelocity={-2}

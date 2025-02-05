@@ -30,11 +30,11 @@ export const siteConfig = {
       href: "/tags/3rd-Year",
       description: "Click here to view notes for the third Year.",
     },
-    {
-      title: "B.Tech Fourth Year Notes",
-      href: "/tags/4th-Year",
-      description: "Click here to view notes for the fourth Year.",
-    },
+    // {
+    //   title: "B.Tech Fourth Year Notes",
+    //   href: "/tags/4th-Year",
+    //   description: "Click here to view notes for the fourth Year.",
+    // },
   ],
 };
 

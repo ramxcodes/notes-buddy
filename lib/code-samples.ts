@@ -1,3 +1,4 @@
+// lib/code-samples.ts
 export const CODE_SAMPLES: Record<string, string> = {
   c: `#include <stdio.h>
   

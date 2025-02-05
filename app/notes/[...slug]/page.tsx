@@ -2,18 +2,20 @@ import { posts } from "#site/content";
 import "@/styles/mdx.css";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
-import ScrollProcess from "@/components/notes-ui/ScrollProcess";
-import DynamicArticle from "@/components/notes-ui/DynamicArticle";
-import { Button } from "@/components/ui/button";
-import UpgradePrompt from "@/components/UpgradePrompt";
 import { hasAccess } from "@/lib/access";
 import clientPromise from "@/lib/db";
 import { getServerSession } from "next-auth";
-import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import NoteUsage from "@/models/NoteUsage";
 import { headers } from "next/headers";
+
+// shadcn components
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import UpgradePrompt from "@/components/UpgradePrompt";
+
+import { SlugArticle } from "./components/SlugArticle";
 
 interface PostPageProps {
   params: {
@@ -21,15 +23,17 @@ interface PostPageProps {
   };
 }
 
+export const revalidate = 3600;
+
 async function getPostFromParams(params: PostPageProps["params"]) {
   const slug = params?.slug?.join("/");
-
   const post =
-    posts.find((post) => post.slugAsParams === slug) ||
-    posts.find((post) => post.slugAsParams === `${slug}/index`);
-
+    posts.find((p) => p.slugAsParams === slug) ||
+    posts.find((p) => p.slugAsParams === `${slug}/index`);
   return post;
 }
+
+// ----------------------------------------
 
 async function validateAccess(requiredTier: string, requiredSemester: string) {
   if (requiredTier === "Free") {
@@ -73,27 +77,31 @@ async function validateAccess(requiredTier: string, requiredSemester: string) {
   }
 
   const userTier = user.planTier || "Free";
-  const userSemesters = user.semesters || [];
+  const userSemesters: string[] = user.semesters || [];
 
   const hasTierAccess = hasAccess(userTier, requiredTier);
   const hasSemesterAccess = userSemesters.includes(requiredSemester);
 
-  if (!hasTierAccess) {
+  const tiers = Object.keys(hasTierAccess);
+  const userTierIndex = tiers.indexOf(userTier);
+  const requiredTierIndex = tiers.indexOf(requiredTier);
+
+  if (!hasSemesterAccess) {
     return {
-      errorMessage: "Access denied. Upgrade your subscription.",
+      errorMessage: `Access denied. You do not have access to the semester: "${requiredSemester}".`,
       userTier,
       userSemesters,
-      hasSemesterAccess,
+      hasSemesterAccess: false,
       isBlocked: false,
     };
   }
 
-  if (!hasSemesterAccess) {
+  if (userTierIndex < requiredTierIndex) {
     return {
-      errorMessage: `Access denied. You do not have access to the "${requiredSemester}".`,
+      errorMessage: `Access denied. Upgrade your subscription to at least ${requiredTier}.`,
       userTier,
       userSemesters,
-      hasSemesterAccess,
+      hasSemesterAccess: true,
       isBlocked: false,
     };
   }
@@ -102,16 +110,17 @@ async function validateAccess(requiredTier: string, requiredSemester: string) {
     errorMessage: null,
     userTier,
     userSemesters,
-    hasSemesterAccess,
+    hasSemesterAccess: true,
     isBlocked: false,
   };
 }
+
+// ----------------------------------------
 
 export async function generateMetadata({
   params,
 }: PostPageProps): Promise<Metadata> {
   const post = await getPostFromParams(params);
-
   if (!post) {
     return {};
   }
@@ -156,7 +165,6 @@ export async function generateStaticParams(): Promise<
 
 export default async function PostPage({ params }: PostPageProps) {
   const post = await getPostFromParams(params);
-
   if (!post || (!post.published && !post.excludeFromMain)) {
     return (
       <div className="flex flex-col items-center justify-center h-screen">
@@ -181,8 +189,10 @@ export default async function PostPage({ params }: PostPageProps) {
   const requiredTier = post.metadata?.planTier || "Free";
   const requiredSemester = post.metadata?.semester || "Unknown";
 
-  const { errorMessage, userTier, userSemesters, hasSemesterAccess } =
-    await validateAccess(requiredTier, requiredSemester);
+  const { errorMessage, userTier, userSemesters } = await validateAccess(
+    requiredTier,
+    requiredSemester
+  );
 
   if (errorMessage) {
     return (
@@ -231,7 +241,6 @@ export default async function PostPage({ params }: PostPageProps) {
   const headerList = headers();
   const forwardedFor = headerList.get("x-forwarded-for") || "";
   const ip = forwardedFor.split(",")[0] || "UNKNOWN_IP";
-
   await NoteUsage.create({
     noteSlug: slug,
     userEmail: session?.user?.email || null,
@@ -242,17 +251,14 @@ export default async function PostPage({ params }: PostPageProps) {
   const currentUnit = unitMatch ? parseInt(unitMatch[1], 10) : 1;
 
   return (
-    <>
-      <ScrollProcess />
-      <DynamicArticle
-        title={post.title}
-        description={post.description}
-        tags={post.tags}
-        body={post.body}
-        slug={slug}
-        currentUnit={currentUnit}
-        totalUnits={5}
-      />
-    </>
+    <SlugArticle
+      title={post.title}
+      description={post.description || "Oops! No description found."}
+      tags={post.tags}
+      body={post.body}
+      slug={slug}
+      currentUnit={currentUnit}
+      totalUnits={5}
+    />
   );
 }

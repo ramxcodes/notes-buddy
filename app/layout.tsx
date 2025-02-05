@@ -6,7 +6,11 @@ import { Providers } from "@/components/providers";
 import { siteConfig } from "@/config/site";
 import { SiteFooter } from "@/components/site-footer";
 import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/react";
 import { ReactLenis } from "@/utils/lenis";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import DisableDevtoolClient from "@/components/Home/DisableDevtoolClient";
 
 const Gilroy = localFont({
   src: [
@@ -142,10 +146,14 @@ export default function RootLayout({
           )}
         >
           <Providers>
+            <DisableDevtoolClient />
             <div className="relative flex min-h-dvh flex-col bg-background">
               <SiteHeader />
               <main className="flex-1">
                 {children}
+                <GoogleAnalytics gaId="G-4NRR52WMZ2" />
+                <SpeedInsights />
+                <Analytics />
               </main>
               <SiteFooter />
             </div>

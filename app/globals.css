@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@media print {
+  body::before {
+    content: "Oops! You're trying to print. To protect our content we are disabling printing.";
+    font-size: 2rem;
+    display: block;
+    color: red;
+  }
+
+  body {
+    display: none !important;
+  }
+
+
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

@@ -47,18 +47,17 @@ const customContributors: Omit<Contributor, "contributions">[] = [
     name: "Taha Mill Wala",
     description: "Created notes for a semester.",
     role: "Web Developer",
-    image: "/profile/taha.png",
+    image: "/profile/taha.jpg",
     github: "https://github.com/Taha7838",
   },
   {
     name: "Kuhu Vyas",
     description: "Created About Us page.",
     role: "Web Developer",
-    image: "/profile/kuhu.png",
+    image: "/profile/kuhu.jpg",
     github: "https://github.com/KuhuVyas",
     linkedin: "https://www.linkedin.com/in/kuhu-vyas-643895288",
   },
-
   {
     name: "Jeet Solanki",
     description: "Created notes for 1 subject.",

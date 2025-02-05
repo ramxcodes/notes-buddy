@@ -8,14 +8,14 @@ import BlurFade from "../ui/blur-fade";
 function FooterSection() {
   return (
     <>
-      <BlurFade delay={0.25} inView>
+      <BlurFade delay={0.15} inView>
         <footer
           className="mt-10 md:mt-20 footer-bg relative border 2xl:h-[550px] h-fit lg:pb-20 w-[95%] mx-auto mb-8 rounded-lg overflow-hidden radial-gradient-bg
                    [--gradient-center:#f3f4f6] [--gradient-edge:#f3f4f6]
                    dark:[--gradient-center:#02081765] dark:[--gradient-edge:#020817]"
         >
           <div className="gap-10 sm:flex justify-between p-5 2xl:py-10 py-5  rounded-sm rounded-b-none">
-            <BlurFade delay={0.35} inView>
+            <BlurFade delay={0.2} inView>
               <div className="flex-col flex justify-center">
                 <Image src="/logo.png" width={120} height={120} alt="logo" />
                 <article className="py-2  2xl:w-80 w-64  space-y-1">
@@ -69,7 +69,7 @@ function FooterSection() {
               </Link>
             </div>
           </div>
-          <BlurFade delay={0.45} inView>
+          <BlurFade delay={0.25} inView>
             <div className="lg:flex hidden">
               <AnimatedText
                 text="NOTES BUDDY"

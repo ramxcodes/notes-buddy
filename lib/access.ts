@@ -14,6 +14,11 @@ const tierAccess = {
 
 export function hasAccess(userTier: string, requiredTier: string): boolean {
   const tiers = Object.keys(tierAccess);
+
+  if (!tiers.includes(userTier) || !tiers.includes(requiredTier)) {
+    return false;
+  }
+
   const userTierIndex = tiers.indexOf(userTier);
   const requiredTierIndex = tiers.indexOf(requiredTier);
 

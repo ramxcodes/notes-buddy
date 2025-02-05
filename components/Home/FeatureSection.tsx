@@ -5,14 +5,14 @@ import BlurFade from "../ui/blur-fade";
 function FeatureSection() {
   return (
     <div className="pt-10 pb-10 lg:pt-20 lg:pb-20">
-      <BlurFade delay={0.5} inView>
+      <BlurFade delay={0.1} inView>
         <h1 className="text-[2.3rem] lg:text-[4.5rem] md:text-[4rem] leading-[1] font-bold dark:bg-gradient-to-b dark:from-[rgba(244,244,255,1)] dark:to-[rgba(181,180,207,1)] dark:text-transparent dark:bg-clip-text py-2 text-center pt-20 md:pt-0 my-4">
           Why Notes Buddy <span className="text-white">🤔</span>?
         </h1>
       </BlurFade>
       <div className="container mx-auto px-10 py-8">
         <section className="grid md:grid-cols-3 gap-6 max-md:max-w-xs mx-auto ">
-          <BlurFade delay={0.7} inView>
+          <BlurFade delay={0.12} inView>
             <div className="group  bg-gradient-to-t from-[#242424] to-[#020202] hover:from-[#182135] hover:to-[#080808] relative before:absolute before:inset-0 before:bg-[url('/noise.gif')] before:opacity-5 rounded-2xl border ">
               <div className="relative">
                 <div className="px-6 py-5">
@@ -51,7 +51,7 @@ function FeatureSection() {
               </div>
             </div>
           </BlurFade>
-          <BlurFade delay={0.8} inView>
+          <BlurFade delay={0.16} inView>
             <div className="group  bg-gradient-to-t from-[#050a0a] to-[#051818] hover:from-[#05070a] hover:to-[#0b1a3b] relative before:absolute before:inset-0 before:bg-[url('/noise.gif')] before:opacity-5 rounded-2xl border ">
               <div className="relative">
                 <div className="px-6 py-5">
@@ -89,7 +89,7 @@ function FeatureSection() {
               </div>
             </div>
           </BlurFade>
-          <BlurFade delay={0.9} inView>
+          <BlurFade delay={0.2} inView>
             <div className="group  bg-gradient-to-t from-[#171c35] to-[#000000] hover:from-[#2b131e] hover:to-[#141414] relative before:absolute before:inset-0 before:bg-[url('/noise.gif')] before:opacity-5  rounded-2xl border ">
               <div className="relative">
                 <div className="px-6 py-5">
