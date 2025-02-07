@@ -180,3 +180,8 @@ body {
 .card-relative {
   position: relative;
 }
+
+::selection {
+  background: #ff91001a;
+  color: #ff9100;
+}

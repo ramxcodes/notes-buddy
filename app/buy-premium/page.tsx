@@ -14,6 +14,7 @@ export default function BuyPremiumPage() {
   const [university, setUniversity] = useState("");
   const [degree, setDegree] = useState("");
   const [year, setYear] = useState("");
+  const [semester, setSemester] = useState("");
   const [phoneNumber, setPhoneNumber] = useState<string | null>(null);
   const [user, setUser] = useState<any>(null);
   const [popupMessage, setPopupMessage] = useState("");
@@ -22,9 +23,25 @@ export default function BuyPremiumPage() {
   const [loading, setLoading] = useState(false);
 
   const universities = ["Medicaps University"];
-  const degrees = ["B Tech"];
-  const years = ["1st Year", "2nd Year", "3rd Year"];
+  const degrees = ["B Tech", "B Tech CSBS"];
   const tierPricing = { "Tier 1": 59, "Tier 2": 129, "Tier 3": 169 };
+
+  const yearOptions =
+    degree === "B Tech"
+      ? ["1st Year", "2nd Year", "3rd Year"]
+      : degree === "B Tech CSBS"
+      ? ["1st Year", "2nd Year", "3rd Year", "4th Year"]
+      : [];
+
+  const semesterOptionsMapping: { [key: string]: string[] } = {
+    "1st Year": ["1st Semester", "2nd Semester"],
+    "2nd Year": ["3rd Semester", "4th Semester"],
+    "3rd Year": ["5th Semester", "6th Semester"],
+    "4th Year": ["7th Semester", "8th Semester"],
+  };
+
+  // Get semester options if a year is selected
+  const semesterOptions = year ? semesterOptionsMapping[year] : [];
 
   useEffect(() => {
     if (status === "authenticated" && session?.user) {
@@ -35,6 +52,17 @@ export default function BuyPremiumPage() {
     }
   }, [session, status]);
 
+  // Reset year and semester if degree changes
+  useEffect(() => {
+    setYear("");
+    setSemester("");
+  }, [degree]);
+
+  // Reset semester if year changes
+  useEffect(() => {
+    setSemester("");
+  }, [year]);
+
   const handleCheckout = async () => {
     if (!user) {
       setPopupMessage("Please log in first!");
@@ -42,7 +70,7 @@ export default function BuyPremiumPage() {
       return;
     }
 
-    if (!university || !degree || !year || !tier) {
+    if (!university || !degree || !year || !semester || !tier) {
       setPopupMessage("Please select all required fields");
       setShowPopup(true);
       return;
@@ -67,6 +95,7 @@ export default function BuyPremiumPage() {
           university,
           degree,
           year,
+          semester,
           amount: tierPricing[tier],
         }),
       });
@@ -84,7 +113,7 @@ export default function BuyPremiumPage() {
         amount: order.amount,
         currency: "INR",
         name: "Notes Buddy Premium",
-        description: `Subscription for ${tier} (${year})`,
+        description: `Subscription for ${tier} (${year} - ${semester})`,
         order_id: order.id,
         handler: async (response: any) => {
           const verification = await fetch("/api/razorpay/verify-payment", {
@@ -97,6 +126,7 @@ export default function BuyPremiumPage() {
               university,
               degree,
               year,
+              semester,
               amount: tierPricing[tier],
             }),
           });
@@ -187,17 +217,29 @@ export default function BuyPremiumPage() {
             selectedOption={degree}
             onSelect={setDegree}
           />
-          <PlanSelector
-            label="Year"
-            options={years}
-            selectedOption={year}
-            onSelect={setYear}
-          />
+          {degree && (
+            <PlanSelector
+              label="Year"
+              options={yearOptions}
+              selectedOption={year}
+              onSelect={setYear}
+            />
+          )}
+          {year && (
+            <PlanSelector
+              label="Semester"
+              options={semesterOptions}
+              selectedOption={semester}
+              onSelect={setSemester}
+            />
+          )}
           <PlanSelector
             label="Plan Tier"
             options={["Tier 1", "Tier 2", "Tier 3"]}
             selectedOption={tier}
-            onSelect={(value) => setTier(value as keyof typeof tierPricing)}
+            onSelect={(value) =>
+              setTier(value as keyof typeof tierPricing)
+            }
           />
           <BlurFade delay={0.3} inView>
             <Button

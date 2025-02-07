@@ -9,8 +9,6 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import NoteUsage from "@/models/NoteUsage";
 import { headers } from "next/headers";
-
-// shadcn components
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import UpgradePrompt from "@/components/UpgradePrompt";
@@ -35,12 +33,17 @@ async function getPostFromParams(params: PostPageProps["params"]) {
 
 // ----------------------------------------
 
-async function validateAccess(requiredTier: string, requiredSemester: string) {
+async function validateAccess(
+  requiredTier: string,
+  requiredSemester: string,
+  requiredDegree: string
+) {
   if (requiredTier === "Free") {
     return {
       errorMessage: null,
       userTier: "Free",
       userSemesters: [],
+      userDegree: null,
       hasSemesterAccess: true,
       isBlocked: false,
     };
@@ -53,6 +56,7 @@ async function validateAccess(requiredTier: string, requiredSemester: string) {
       errorMessage: "You are not signed in.",
       userTier: null,
       userSemesters: [],
+      userDegree: null,
       hasSemesterAccess: false,
       isBlocked: false,
     };
@@ -67,6 +71,7 @@ async function validateAccess(requiredTier: string, requiredSemester: string) {
       errorMessage: "User not found.",
       userTier: null,
       userSemesters: [],
+      userDegree: null,
       hasSemesterAccess: false,
       isBlocked: false,
     };
@@ -76,13 +81,28 @@ async function validateAccess(requiredTier: string, requiredSemester: string) {
     redirect("/blocked");
   }
 
+  const userDegree = user.degree || "Not Set";
+
+  if (requiredDegree && user.degree !== requiredDegree) {
+    return {
+      errorMessage: `Access denied. Your purchased degree (${
+        user.degree || "none"
+      }) does not match the required degree (${requiredDegree}).`,
+      userTier: user.planTier || "Free",
+      userSemesters: user.semesters || [],
+      userDegree,
+      hasSemesterAccess: false,
+      isBlocked: false,
+    };
+  }
+
   const userTier = user.planTier || "Free";
   const userSemesters: string[] = user.semesters || [];
 
-  const hasTierAccess = hasAccess(userTier, requiredTier);
+  const tierCheck = hasAccess(userTier, requiredTier);
   const hasSemesterAccess = userSemesters.includes(requiredSemester);
 
-  const tiers = Object.keys(hasTierAccess);
+  const tiers = Object.keys(tierCheck);
   const userTierIndex = tiers.indexOf(userTier);
   const requiredTierIndex = tiers.indexOf(requiredTier);
 
@@ -91,6 +111,7 @@ async function validateAccess(requiredTier: string, requiredSemester: string) {
       errorMessage: `Access denied. You do not have access to the semester: "${requiredSemester}".`,
       userTier,
       userSemesters,
+      userDegree,
       hasSemesterAccess: false,
       isBlocked: false,
     };
@@ -101,6 +122,7 @@ async function validateAccess(requiredTier: string, requiredSemester: string) {
       errorMessage: `Access denied. Upgrade your subscription to at least ${requiredTier}.`,
       userTier,
       userSemesters,
+      userDegree,
       hasSemesterAccess: true,
       isBlocked: false,
     };
@@ -110,6 +132,7 @@ async function validateAccess(requiredTier: string, requiredSemester: string) {
     errorMessage: null,
     userTier,
     userSemesters,
+    userDegree,
     hasSemesterAccess: true,
     isBlocked: false,
   };
@@ -188,11 +211,10 @@ export default async function PostPage({ params }: PostPageProps) {
 
   const requiredTier = post.metadata?.planTier || "Free";
   const requiredSemester = post.metadata?.semester || "Unknown";
+  const requiredDegree = post.metadata?.degree || "";
 
-  const { errorMessage, userTier, userSemesters } = await validateAccess(
-    requiredTier,
-    requiredSemester
-  );
+  const { errorMessage, userTier, userSemesters, userDegree } =
+    await validateAccess(requiredTier, requiredSemester, requiredDegree);
 
   if (errorMessage) {
     return (
@@ -211,23 +233,33 @@ export default async function PostPage({ params }: PostPageProps) {
             </div>
           ) : (
             <>
-              <h2 className="text-xl font-semibold text-primary mb-4">
-                Access Details
+              <h2 className="text-2xl font-semibold text-primary mb-4">
+                Your Plan Details :
               </h2>
               <p className="text-lg mb-2">
                 <strong>Your Current Plan:</strong> {userTier}
               </p>
               <p className="text-lg mb-2">
+                <strong>Your Purchased Degree:</strong> {userDegree}
+              </p>
+              <p className="text-lg">
                 <strong>Your Semester Access:</strong>{" "}
                 {userSemesters.length > 0
                   ? userSemesters.join(", ")
                   : "No semester access"}
               </p>
+              <hr className="mb-4 mt-4" />
+              <h2 className="text-2xl font-semibold text-primary mb-4">
+                Requirement :
+              </h2>
               <p className="text-lg mb-2">
                 <strong>Required Plan:</strong> {requiredTier}
               </p>
               <p className="text-lg mb-2">
                 <strong>Required Semester:</strong> {requiredSemester}
+              </p>
+              <p className="text-lg mb-2">
+                <strong>Required Degree:</strong> {requiredDegree}
               </p>
             </>
           )}

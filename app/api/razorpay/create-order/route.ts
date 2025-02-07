@@ -1,3 +1,4 @@
+// app/api/razorpay/create-order/route.ts
 import { NextResponse } from "next/server";
 import razorpay from "@/lib/razorpay";
 
@@ -8,8 +9,14 @@ export async function POST(request: Request) {
       university,
       degree,
       year,
-    }: { tier: string; university: string; degree: string; year: string } =
-      await request.json();
+      semester,
+    }: {
+      tier: string;
+      university: string;
+      degree: string;
+      year: string;
+      semester: string;
+    } = await request.json();
 
     const pricing: { [key: string]: number } = {
       "Tier 1": 62,
@@ -32,7 +39,7 @@ export async function POST(request: Request) {
       receipt: `receipt_${Date.now()}`,
     });
 
-    return NextResponse.json({ ...order, university, degree, year });
+    return NextResponse.json({ ...order, university, degree, year, semester });
   } catch (error) {
     console.error("Error Creating Razorpay Order:", error);
     return NextResponse.json(

@@ -19,18 +19,36 @@ export default function PremiumSection() {
           </BlurFade>
         </div>
         <BlurFade delay={0.14} inView>
-          <div className="flex flex-wrap -m-6">
+          <div className="flex flex-wrap -m-6 justify-center">
             {/* Tier 1 */}
-            <div className="w-full md:w-1/3 p-6">
+            <div className="w-full md:w-1/2 lg:w-1/3 p-6">
               <div className="h-full bg-white dark:bg-black/30 border border-neutral-300 dark:border-neutral-600 rounded-2xl transform-gpu hover:-translate-y-2 transition duration-500">
                 <div className="p-12 border-b border-neutral-300 dark:border-neutral-600">
-                  <h4 className="mb-6 text-6xl tracking-tighter">59/-</h4>
-                  <p className="text-xl font-semibold font-gilroy mb-2">
+                  <h4 className="text-4xl md:text-5xl lg:text-6xl tracking-tighter">
+                    ₹59/-{" "}
+                  </h4>
+                  <span className="mb-6">
+                    <span className="text-base tracking-wide">
+                      Original Price :
+                    </span>{" "}
+                    <span className="text-2xl line-through text-red-500">
+                      ₹99/-
+                    </span>
+                  </span>
+                  <p className="text-xl font-semibold font-gilroy mb-2 mt-4">
                     Tier 1 - Noob
                   </p>
                   <p className="tracking-tight">
                     The ideal plan for newbies to start with. <br />
-                    Valid for 1 Year (2 Semester).
+                    Valid for{" "}
+                    <b className="font-gilroy tracking-wider text-lg">
+                      8 Months
+                    </b>{" "}
+                    for{" "}
+                    <b className="font-gilroy tracking-wider text-lg">
+                      1 Semester
+                    </b>{" "}
+                    from the day you purchase.
                   </p>
                 </div>
                 <div className="p-12 pb-11">
@@ -49,7 +67,9 @@ export default function PremiumSection() {
                     <FeatureItem checked={false}>
                       Toppers Handwritten Notes
                     </FeatureItem>
-                    <FeatureItem checked={false}>AI Chatbot (Under Development)</FeatureItem>
+                    <FeatureItem checked={false}>
+                      AI Chatbot (Under Development)
+                    </FeatureItem>
                   </ul>
                   <PricingButton href="/buy-premium">Buy Now</PricingButton>
                 </div>
@@ -57,7 +77,7 @@ export default function PremiumSection() {
             </div>
 
             {/* Tier 2 */}
-            <div className="w-full md:w-1/2 lg:w-1/3 p-6 ">
+            <div className="w-full md:w-1/2 lg:w-1/3 p-6">
               <div
                 className="p-px overflow-hidden rounded-2xl hover:-translate-y-2 transition duration-500 transform-gpu backdrop-blur-sm"
                 style={{
@@ -68,21 +88,39 @@ export default function PremiumSection() {
               >
                 <div className="h-full bg-white dark:bg-black/90 rounded-2xl">
                   <div
-                    className="p-12"
+                    className="p-12 backdrop-blur-sm"
                     style={{
                       backgroundImage: "url('/advanced-gradient.jpg')",
                       backgroundRepeat: "no-repeat",
                       backgroundSize: "cover",
                     }}
                   >
-                    <div className="pr-9">
-                      <h4 className="mb-6 text-6xl tracking-tighter">₹129/-</h4>
-                      <p className="mb-2 text-xl font-semibold text-black font-gilroy">
-                        Tier 2 - Pro
+                    <div>
+                      <h4 className="text-4xl md:text-5xl lg:text-6xl tracking-tighter">
+                        ₹129/-{" "}
+                      </h4>
+                      <span className="mb-6">
+                        <span className="text-base tracking-wide text-black">
+                          Original Price :
+                        </span>{" "}
+                        <span className="text-2xl line-through text-red-900">
+                          ₹159/-
+                        </span>
+                      </span>
+                      <p className="text-xl font-semibold font-gilroy mb-2 mt-4">
+                        Tier 2 - Advanced
                       </p>
                       <p className="tracking-tight text-black">
-                        The ideal plan for last minute preparation.
-                        <br /> Valid for 1 Year (2 Semester).
+                        The ideal plan for newbies to start with. <br />
+                        Valid for{" "}
+                        <b className="font-gilroy tracking-wider text-lg">
+                          8 Months
+                        </b>{" "}
+                        for{" "}
+                        <b className="font-gilroy tracking-wider text-lg">
+                          1 Semester
+                        </b>{" "}
+                        from the day you purchase.
                       </p>
                     </div>
                   </div>
@@ -102,7 +140,9 @@ export default function PremiumSection() {
                       <FeatureItem checked={false}>
                         Toppers Handwritten Notes
                       </FeatureItem>
-                      <FeatureItem checked={false}>AI Chatbot (Under Development)</FeatureItem>
+                      <FeatureItem checked={false}>
+                        AI Chatbot (Under Development)
+                      </FeatureItem>
                     </ul>
                     <PricingButton href="/buy-premium">Buy Now</PricingButton>
                   </div>
@@ -111,16 +151,34 @@ export default function PremiumSection() {
             </div>
 
             {/* Tier 3 */}
-            <div className="w-full md:w-1/3 p-6">
+            <div className="w-full md:w-1/2 lg:w-1/3 p-6">
               <div className="h-full bg-white dark:bg-black/30 border border-neutral-300 dark:border-neutral-600 rounded-2xl transform-gpu hover:-translate-y-2 transition duration-500">
                 <div className="p-12 border-b border-neutral-300 dark:border-neutral-600">
-                  <h4 className="mb-6 text-6xl tracking-tighter">₹169/-</h4>
-                  <p className="text-xl font-semibold font-gilroy mb-2">
+                  <h4 className="text-4xl md:text-5xl lg:text-6xl tracking-tighter">
+                    ₹169/-{" "}
+                  </h4>
+                  <span className="mb-6">
+                    <span className="text-base tracking-wide">
+                      Original Price :
+                    </span>{" "}
+                    <span className="text-2xl line-through text-red-500">
+                      ₹199/-
+                    </span>
+                  </span>
+                  <p className="text-xl font-semibold font-gilroy mb-2 mt-4">
                     Tier 3 - Cracked
                   </p>
                   <p className="tracking-tight">
-                    The ideal plan for absolute cracked students. <br /> Valid
-                    for 1 Year (2 Semester).
+                    The ideal plan for newbies to start with. <br />
+                    Valid for{" "}
+                    <b className="font-gilroy tracking-wider text-lg">
+                      8 Months
+                    </b>{" "}
+                    for{" "}
+                    <b className="font-gilroy tracking-wider text-lg">
+                      1 Semester
+                    </b>{" "}
+                    from the day you purchase.
                   </p>
                 </div>
                 <div className="p-12 pb-11">

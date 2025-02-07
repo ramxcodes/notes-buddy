@@ -37,6 +37,7 @@ export default function SignInComponent() {
                   : undefined
               }
               semesters={user.semesters}
+              degree={user.degree}
             />
           ) : (
             <UpgradePrompt />

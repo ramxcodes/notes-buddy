@@ -15,6 +15,7 @@ export const authOptions: NextAuthOptions = {
   ],
   session: {
     strategy: "jwt",
+    maxAge: 24 * 60 * 60,
   },
   callbacks: {
     async jwt({ token, user, account }) {
@@ -33,6 +34,7 @@ export const authOptions: NextAuthOptions = {
             Blocked: false,
             planTier: "Free",
             semesters: [],
+            degree: "",
             createdAt: new Date(),
           });
           dbUser = {
@@ -40,6 +42,7 @@ export const authOptions: NextAuthOptions = {
             Blocked: false,
             planTier: "Free",
             semesters: [],
+            degree: "",
           };
         } else {
           if (account?.provider && dbUser.provider !== account.provider) {
@@ -59,6 +62,7 @@ export const authOptions: NextAuthOptions = {
           dbUser.subscriptionEndDate?.toISOString() || null;
         token.semesters = dbUser.semesters || [];
         token.university = dbUser.university || null;
+        token.degree = dbUser.degree;
 
         const adminEmails =
           process.env.ADMIN_EMAILS?.split(",").map((e) => e.trim()) || [];
@@ -80,6 +84,8 @@ export const authOptions: NextAuthOptions = {
         subscriptionEndDate: token.subscriptionEndDate as string | undefined,
         semesters: token.semesters as string[] | [],
         university: token.university as string | undefined,
+        degree:
+          typeof token.degree === "string" ? token.degree : "Not specified",
       };
       return session;
     },

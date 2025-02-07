@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "build:scripts": "tsc -p tsconfig.scripts.json",
     "generate-sitemap": "pnpm build:scripts && node dist-scripts/generate-sitemap.js",
     "build": "pnpm generate-sitemap && next build",
