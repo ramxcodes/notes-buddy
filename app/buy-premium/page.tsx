@@ -7,6 +7,7 @@ import { Header } from "./components/Header";
 import BlurFade from "@/components/ui/blur-fade";
 import { Button } from "@/components/ui/button";
 import { Popup } from "./components/Popup";
+import { Input } from "@/components/ui/input";
 
 export default function BuyPremiumPage() {
   const { data: session, status } = useSession();
@@ -21,6 +22,13 @@ export default function BuyPremiumPage() {
   const [showPopup, setShowPopup] = useState(false);
   const [showPhonePrompt, setShowPhonePrompt] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [couponCode, setCouponCode] = useState(""); // coupon code state
+  const [discountPreview, setDiscountPreview] = useState<{
+    originalPrice: number;
+    finalPrice: number;
+    discountAmount: number;
+  } | null>(null);
+  const [couponError, setCouponError] = useState<string>("");
 
   const universities = ["Medicaps University"];
   const degrees = ["B Tech", "B Tech CSBS"];
@@ -63,6 +71,36 @@ export default function BuyPremiumPage() {
     setSemester("");
   }, [year]);
 
+  const handleApplyCoupon = async () => {
+    if (!couponCode.trim()) {
+      setCouponError("Please enter a coupon code");
+      setDiscountPreview(null);
+      return;
+    }
+    try {
+      const response = await fetch("/api/coupons/preview", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          tier,
+          basePrice: tierPricing[tier],
+          couponCode: couponCode.trim(),
+        }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        setCouponError(data.error || "Invalid coupon");
+        setDiscountPreview(null);
+      } else {
+        setCouponError("");
+        setDiscountPreview(data);
+      }
+    } catch (error) {
+      setCouponError("Failed to apply coupon");
+      setDiscountPreview(null);
+    }
+  };
+
   const handleCheckout = async () => {
     if (!user) {
       setPopupMessage("Please log in first!");
@@ -97,13 +135,14 @@ export default function BuyPremiumPage() {
           year,
           semester,
           amount: tierPricing[tier],
+          couponCode: couponCode.trim() ? couponCode.trim() : undefined,
         }),
       });
 
       const order = await response.json();
 
       if (!order.id) {
-        setPopupMessage("Failed to create Razorpay order");
+        setPopupMessage("Failed to create Razorpay order: " + (order.error || ""));
         setShowPopup(true);
         return;
       }
@@ -115,19 +154,20 @@ export default function BuyPremiumPage() {
         name: "Notes Buddy Premium",
         description: `Subscription for ${tier} (${year} - ${semester})`,
         order_id: order.id,
-        handler: async (response: any) => {
+        handler: async (razorpayResponse: any) => {
           const verification = await fetch("/api/razorpay/verify-payment", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-              ...response,
+              ...razorpayResponse,
               userId: user.id,
               tier,
               university,
               degree,
               year,
               semester,
-              amount: tierPricing[tier],
+              amount: order.amount,
+              couponCode: couponCode.trim() ? couponCode.trim() : undefined,
             }),
           });
 
@@ -136,7 +176,7 @@ export default function BuyPremiumPage() {
           setPopupMessage(
             result.success
               ? "Payment successful!"
-              : "Payment verification failed"
+              : "Payment verification failed: " + (result.error || "")
           );
           setShowPopup(true);
         },
@@ -241,16 +281,54 @@ export default function BuyPremiumPage() {
               setTier(value as keyof typeof tierPricing)
             }
           />
-          <BlurFade delay={0.3} inView>
+
+          <BlurFade delay={0.4} inView>
+            <div className="space-y-2">
+              <label className="block text-sm font-medium">
+                Coupon Code (Optional)
+              </label>
+              <div className="flex space-x-2">
+                <Input
+                  type="text"
+                  value={couponCode}
+                  onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
+                  placeholder="Enter coupon code"
+                  className="transition-all duration-300 uppercase"
+                />
+                <Button variant="secondary" onClick={handleApplyCoupon}>
+                  Apply
+                </Button>
+              </div>
+              {couponError && <p className="text-red-500 text-sm">{couponError}</p>}
+              {discountPreview && (
+                <p className="text-green-600 text-sm">
+                  Coupon Applied: You save ₹{discountPreview.discountAmount.toFixed(2)}
+                </p>
+              )}
+            </div>
+          </BlurFade>
+          <BlurFade delay={0.5} inView>
             <Button
               variant={"default"}
               className="w-full py-2 px-4 font-bold rounded-md shadow-md font-wotfard tracking-widest"
               onClick={handleCheckout}
               disabled={loading}
             >
-              {loading
-                ? "Processing..."
-                : `Proceed to Pay ₹${tierPricing[tier]} + GST*`}
+              {loading ? (
+                "Processing..."
+              ) : discountPreview ? (
+                <div className="flex flex-col items-center">
+                  <span className="text-sm">
+                    Proceed to pay{" "}
+                    <span className="line-through text-red-500 mr-1">
+                      ₹{tierPricing[tier]}
+                    </span>{" "}
+                    ₹{discountPreview.finalPrice} + GST
+                  </span>
+                </div>
+              ) : (
+                `Proceed to Pay ₹${tierPricing[tier]} + GST*`
+              )}
             </Button>
           </BlurFade>
         </div>

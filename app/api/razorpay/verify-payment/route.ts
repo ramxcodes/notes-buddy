@@ -1,4 +1,3 @@
-// app/api/razorpay/verify-payment/route.ts
 import { NextResponse } from "next/server";
 import crypto from "crypto";
 import clientPromise from "@/lib/db";
@@ -17,6 +16,7 @@ export async function POST(request: Request) {
       year,
       semester,
       amount,
+      couponCode,
     }: {
       razorpay_order_id: string;
       razorpay_payment_id: string;
@@ -28,6 +28,7 @@ export async function POST(request: Request) {
       year: "1st Year" | "2nd Year" | "3rd Year" | "4th Year";
       semester: string;
       amount: number;
+      couponCode?: string;
     } = await request.json();
 
     const generatedSignature = crypto
@@ -42,18 +43,33 @@ export async function POST(request: Request) {
 
     // Validate university
     if (university !== "Medicaps University") {
-      return NextResponse.json({ error: "Invalid university" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Invalid university" },
+        { status: 400 }
+      );
     }
     // Validate degree
     if (!["B Tech", "B Tech CSBS"].includes(degree)) {
       return NextResponse.json({ error: "Invalid degree" }, { status: 400 });
     }
     // Validate year based on degree
-    if (degree === "B Tech" && !["1st Year", "2nd Year", "3rd Year"].includes(year)) {
-      return NextResponse.json({ error: "Invalid year for B Tech" }, { status: 400 });
+    if (
+      degree === "B Tech" &&
+      !["1st Year", "2nd Year", "3rd Year"].includes(year)
+    ) {
+      return NextResponse.json(
+        { error: "Invalid year for B Tech" },
+        { status: 400 }
+      );
     }
-    if (degree === "B Tech CSBS" && !["1st Year", "2nd Year", "3rd Year", "4th Year"].includes(year)) {
-      return NextResponse.json({ error: "Invalid year for B Tech CSBS" }, { status: 400 });
+    if (
+      degree === "B Tech CSBS" &&
+      !["1st Year", "2nd Year", "3rd Year", "4th Year"].includes(year)
+    ) {
+      return NextResponse.json(
+        { error: "Invalid year for B Tech CSBS" },
+        { status: 400 }
+      );
     }
     // Validate semester
     const validSemesters: { [key: string]: string[] } = {
@@ -103,6 +119,17 @@ export async function POST(request: Request) {
       );
     }
 
+    // Update coupon usage if a coupon was applied
+    if (couponCode) {
+      await db.collection("coupons").updateOne(
+        { code: couponCode },
+        {
+          $inc: { usageCount: 1 },
+          $push: { usedBy: new ObjectId(userId) },
+        }
+      );
+    }
+
     const paymentResult = await db.collection("payments").insertOne({
       userId: new ObjectId(userId),
       email: await db
@@ -112,6 +139,7 @@ export async function POST(request: Request) {
       amount,
       orderId: razorpay_order_id,
       paymentId: razorpay_payment_id,
+      coupon: couponCode ? couponCode : null,
       createdAt: new Date(),
     });
 

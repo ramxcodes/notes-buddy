@@ -9,6 +9,7 @@ import {
   Eye,
   LucideBookLock,
   NotebookIcon,
+  TicketPercent,
 } from "lucide-react";
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
@@ -72,6 +73,17 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
             >
               <Eye />{" "}
               <span className="hidden md:block">Notes Analytics</span>
+            </Link>
+            <Link
+              href="/admin/coupons"
+              className={`px-4 py-2 rounded-md flex gap-2 items-center justify-center ${
+                pathname === "/admin/coupons"
+                  ? "border-b-2 border-blue-500"
+                  : ""
+              }`}
+            >
+              <TicketPercent />{" "}
+              <span className="hidden md:block">Coupon Management</span>
             </Link>
           </nav>
         </div>
