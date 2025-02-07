@@ -5,6 +5,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { UserTable } from "./components/UserTable";
+import { UserSortDropdown } from "./components/UserSortDropdown";
 import { Users, DollarSign, FileText, CheckCircle } from "lucide-react"; // Icons
 
 const BASE_URL = process.env.NEXTAUTH_URL || "";
@@ -41,6 +42,9 @@ export default function AdminDashboard() {
   const [users, setUsers] = useState<User[]>([]);
   const [loadingStats, setLoadingStats] = useState(true);
   const [loadingUsers, setLoadingUsers] = useState(true);
+  const [sortOption, setSortOption] = useState<
+    "all" | "premium" | "nonPremium"
+  >("all");
 
   // Fetch stats
   const fetchStats = async () => {
@@ -122,6 +126,13 @@ export default function AdminDashboard() {
     }
   };
 
+  // Filter users based on the selected sort option
+  const filteredUsers = users.filter((user) => {
+    if (sortOption === "premium") return Boolean(user.planTier);
+    if (sortOption === "nonPremium") return !user.planTier;
+    return true; // "all" option
+  });
+
   const statCards = [
     { title: "Total Users", value: stats?.totalUsers, icon: Users },
     { title: "Premium Users", value: stats?.premiumUsers, icon: CheckCircle },
@@ -185,12 +196,16 @@ export default function AdminDashboard() {
       )}
 
       <h2 className="text-xl font-bold mb-4">All Users</h2>
+      <div className="flex justify-end mb-4">
+        <UserSortDropdown value={sortOption} onChange={setSortOption} />
+      </div>
+
       <Separator className="mb-6" />
 
       {loadingUsers ? (
         <Skeleton className="h-64 w-full" />
       ) : (
-        <UserTable users={users} onToggleBlock={handleToggleBlock} />
+        <UserTable users={filteredUsers} onToggleBlock={handleToggleBlock} />
       )}
     </div>
   );
