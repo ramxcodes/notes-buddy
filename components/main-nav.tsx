@@ -44,6 +44,16 @@ export function MainNav() {
   ];
   const others: { title: string; href: string; description?: string }[] = [
     {
+      title: "Refer & Earn",
+      href: "/refer",
+      description: "Refer your friends and earn rewards",
+    },
+    {
+      title: "Buy premium",
+      href: "/buy-premium",
+      description: "Buy premium to get access to all notes",
+    },
+    {
       title: "Online Compilers",
       href: "/compiler",
       description: "Feature rich online compiler for C, C++, Java, JavaScript, Python",

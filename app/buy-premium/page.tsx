@@ -22,7 +22,7 @@ export default function BuyPremiumPage() {
   const [showPopup, setShowPopup] = useState(false);
   const [showPhonePrompt, setShowPhonePrompt] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [couponCode, setCouponCode] = useState(""); // This field accepts both coupon and referral codes
+  const [couponCode, setCouponCode] = useState("");
   const [discountPreview, setDiscountPreview] = useState<{
     originalPrice: number;
     finalPrice: number;
@@ -245,18 +245,56 @@ export default function BuyPremiumPage() {
   };
 
   const handlePhoneSubmit = async () => {
-    if (!phoneNumber || phoneNumber.trim().length < 10) {
+    const cleanedNumber = (phoneNumber || "").replace(/\D/g, "");
+
+    if (!cleanedNumber || cleanedNumber.length < 10) {
       setPopupMessage("Please enter a valid phone number");
       setShowPopup(true);
       return;
     }
-    await fetch("/api/save-phone", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ userId: user.id, phoneNumber }),
-    });
-    setShowPhonePrompt(false);
-    initiatePayment();
+
+    if (/^(\d)\1+$/.test(cleanedNumber)) {
+      setPopupMessage("Please enter a valid phone number");
+      setShowPopup(true);
+      return;
+    }
+
+    const isSequential = (number: string | any[]) => {
+      let isAscending = true;
+      let isDescending = true;
+
+      for (let i = 1; i < number.length; i++) {
+        const current = parseInt(number[i], 10);
+        const previous = parseInt(number[i - 1], 10);
+
+        if (current !== previous + 1) isAscending = false;
+        if (current !== previous - 1) isDescending = false;
+        if (!isAscending && !isDescending) break;
+      }
+
+      return isAscending || isDescending;
+    };
+
+    if (isSequential(cleanedNumber)) {
+      setPopupMessage("Please enter a valid phone number");
+      setShowPopup(true);
+      return;
+    }
+    try {
+      await fetch("/api/save-phone", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId: user.id,
+          phoneNumber: cleanedNumber,
+        }),
+      });
+      setShowPhonePrompt(false);
+      initiatePayment();
+    } catch (error) {
+      setPopupMessage("Failed to save phone number");
+      setShowPopup(true);
+    }
   };
 
   return (

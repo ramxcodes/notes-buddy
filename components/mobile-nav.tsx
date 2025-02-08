@@ -54,17 +54,29 @@ export function MobileNav() {
               ))}
             </ul>
           )}
+          
+          <MobileLink onOpenChange={setOpen} href="/buy-premium">
+            Buy Premium
+          </MobileLink>
+          <MobileLink onOpenChange={setOpen} href="/refer">
+            Refer & Earn
+          </MobileLink>
+          <hr />
+          <MobileLink onOpenChange={setOpen} href="/request-notes">
+            Request Notes
+          </MobileLink>
+          <MobileLink onOpenChange={setOpen} href="/report-note">
+            Report Notes
+          </MobileLink>
+          <MobileLink onOpenChange={setOpen} href="/compiler">
+            Online Compiler
+          </MobileLink>
+          <hr />
           <MobileLink onOpenChange={setOpen} href="/about">
             About us
           </MobileLink>
           <MobileLink onOpenChange={setOpen} href="/contributors">
             Top Contributors
-          </MobileLink>
-          <MobileLink onOpenChange={setOpen} href="/request-notes">
-            Request Notes
-          </MobileLink>
-          <MobileLink onOpenChange={setOpen} href="/compiler">
-            Online Compiler
           </MobileLink>
           <Link
             target="_blank"

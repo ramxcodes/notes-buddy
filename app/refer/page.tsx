@@ -155,8 +155,14 @@ export default function ReferPage() {
             Referral Dashboard
           </h1>
         </BlurFade>
+        <BlurFade delay={0.25} inView>
+          <p className="text-center text-lg text-muted-foreground">
+            Share your referral code with your friends and get rewards when they purchase from your referral code.
+          </p>
+        </BlurFade>
 
-        {message && <p className="text-sm text-center">{message}</p>}
+
+        {message && <Card className="text-sm text-center py-2 min-w-fit font-bold">{message}</Card>}
 
         {loading ? (
           <Card>

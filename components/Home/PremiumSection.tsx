@@ -111,7 +111,7 @@ export default function PremiumSection() {
                         Tier 2 - Advanced
                       </p>
                       <p className="tracking-tight text-black">
-                        The ideal plan for newbies to start with. <br />
+                        The ideal plan for toppers to start with. <br />
                         Valid for{" "}
                         <b className="font-gilroy tracking-wider text-lg">
                           8 Months
@@ -169,7 +169,7 @@ export default function PremiumSection() {
                     Tier 3 - Cracked
                   </p>
                   <p className="tracking-tight">
-                    The ideal plan for newbies to start with. <br />
+                    The ideal plan for crackers to start with. <br />
                     Valid for{" "}
                     <b className="font-gilroy tracking-wider text-lg">
                       8 Months
