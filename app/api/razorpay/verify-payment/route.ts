@@ -41,18 +41,15 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
     }
 
-    // Validate university
     if (university !== "Medicaps University") {
       return NextResponse.json(
         { error: "Invalid university" },
         { status: 400 }
       );
     }
-    // Validate degree
     if (!["B Tech", "B Tech CSBS"].includes(degree)) {
       return NextResponse.json({ error: "Invalid degree" }, { status: 400 });
     }
-    // Validate year based on degree
     if (
       degree === "B Tech" &&
       !["1st Year", "2nd Year", "3rd Year"].includes(year)
@@ -71,7 +68,6 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
-    // Validate semester
     const validSemesters: { [key: string]: string[] } = {
       "1st Year": ["1st Semester", "2nd Semester"],
       "2nd Year": ["3rd Semester", "4th Semester"],
@@ -100,7 +96,6 @@ export async function POST(request: Request) {
           university,
           degree,
           year,
-          // Store the selected semester as an array with a single element
           semesters: [semester],
           razorpayDetails: {
             orderId: razorpay_order_id,
@@ -119,7 +114,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Update coupon usage if a coupon was applied
     if (couponCode) {
       await db.collection("coupons").updateOne(
         { code: couponCode },
@@ -130,13 +124,15 @@ export async function POST(request: Request) {
       );
     }
 
+    const rupeesAmount = amount / 100;
+
     const paymentResult = await db.collection("payments").insertOne({
       userId: new ObjectId(userId),
       email: await db
         .collection("users")
         .findOne({ _id: new ObjectId(userId) }, { projection: { email: 1 } })
         .then((user) => user?.email),
-      amount,
+      amount: rupeesAmount,
       orderId: razorpay_order_id,
       paymentId: razorpay_payment_id,
       coupon: couponCode ? couponCode : null,

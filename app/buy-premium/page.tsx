@@ -22,11 +22,12 @@ export default function BuyPremiumPage() {
   const [showPopup, setShowPopup] = useState(false);
   const [showPhonePrompt, setShowPhonePrompt] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [couponCode, setCouponCode] = useState(""); // coupon code state
+  const [couponCode, setCouponCode] = useState(""); // This field accepts both coupon and referral codes
   const [discountPreview, setDiscountPreview] = useState<{
     originalPrice: number;
     finalPrice: number;
     discountAmount: number;
+    message: string;
   } | null>(null);
   const [couponError, setCouponError] = useState<string>("");
 
@@ -48,7 +49,7 @@ export default function BuyPremiumPage() {
     "4th Year": ["7th Semester", "8th Semester"],
   };
 
-  // Get semester options if a year is selected
+  // Determine available semesters based on the selected year
   const semesterOptions = year ? semesterOptionsMapping[year] : [];
 
   useEffect(() => {
@@ -73,7 +74,7 @@ export default function BuyPremiumPage() {
 
   const handleApplyCoupon = async () => {
     if (!couponCode.trim()) {
-      setCouponError("Please enter a coupon code");
+      setCouponError("Please enter a coupon/referral code.");
       setDiscountPreview(null);
       return;
     }
@@ -89,14 +90,41 @@ export default function BuyPremiumPage() {
       });
       const data = await response.json();
       if (!response.ok) {
-        setCouponError(data.error || "Invalid coupon");
+        setCouponError(data.error || "Invalid coupon/referral code");
         setDiscountPreview(null);
       } else {
         setCouponError("");
         setDiscountPreview(data);
+        // If the preview message indicates a referral code discount (referee),
+        // then attempt to update the referral document by calling the redeem endpoint.
+        if (
+          data.message &&
+          data.message.toLowerCase().includes("referral code applied")
+        ) {
+          // Call the redemption endpoint; if already redeemed, ignore the error.
+          const redeemRes = await fetch("/api/refer/redeem", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              couponCode: couponCode.trim().toUpperCase(),
+            }),
+          });
+          const redeemData = await redeemRes.json();
+          if (!redeemRes.ok) {
+            // If error is "You have already redeemed a referral code", ignore it.
+            if (
+              !redeemData.error ||
+              !redeemData.error.toLowerCase().includes("already redeemed")
+            ) {
+              setCouponError(
+                redeemData.error || "Failed to record referral redemption"
+              );
+            }
+          }
+        }
       }
     } catch (error) {
-      setCouponError("Failed to apply coupon");
+      setCouponError("Failed to apply coupon/referral code");
       setDiscountPreview(null);
     }
   };
@@ -142,7 +170,9 @@ export default function BuyPremiumPage() {
       const order = await response.json();
 
       if (!order.id) {
-        setPopupMessage("Failed to create Razorpay order: " + (order.error || ""));
+        setPopupMessage(
+          "Failed to create Razorpay order: " + (order.error || "")
+        );
         setShowPopup(true);
         return;
       }
@@ -170,9 +200,7 @@ export default function BuyPremiumPage() {
               couponCode: couponCode.trim() ? couponCode.trim() : undefined,
             }),
           });
-
           const result = await verification.json();
-
           setPopupMessage(
             result.success
               ? "Payment successful!"
@@ -222,13 +250,11 @@ export default function BuyPremiumPage() {
       setShowPopup(true);
       return;
     }
-
     await fetch("/api/save-phone", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId: user.id, phoneNumber }),
     });
-
     setShowPhonePrompt(false);
     initiatePayment();
   };
@@ -240,10 +266,7 @@ export default function BuyPremiumPage() {
           showPopup ? "blur-md" : ""
         }`}
       >
-        <Header
-          isAuthenticated={!!user}
-          userName={session?.user.name || null}
-        />
+        <Header isAuthenticated={!!user} userName={session?.user.name || ""} />
         <div className="max-w-md w-full space-y-4">
           <PlanSelector
             label="University"
@@ -277,32 +300,33 @@ export default function BuyPremiumPage() {
             label="Plan Tier"
             options={["Tier 1", "Tier 2", "Tier 3"]}
             selectedOption={tier}
-            onSelect={(value) =>
-              setTier(value as keyof typeof tierPricing)
-            }
+            onSelect={(value) => setTier(value as keyof typeof tierPricing)}
           />
 
           <BlurFade delay={0.4} inView>
             <div className="space-y-2">
               <label className="block text-sm font-medium">
-                Coupon Code (Optional)
+                Coupon / Referral Code (Optional)
               </label>
               <div className="flex space-x-2">
                 <Input
                   type="text"
                   value={couponCode}
                   onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
-                  placeholder="Enter coupon code"
+                  placeholder="Enter coupon or referral code"
                   className="transition-all duration-300 uppercase"
                 />
                 <Button variant="secondary" onClick={handleApplyCoupon}>
                   Apply
                 </Button>
               </div>
-              {couponError && <p className="text-red-500 text-sm">{couponError}</p>}
+              {couponError && (
+                <p className="text-red-500 text-sm">{couponError}</p>
+              )}
               {discountPreview && (
                 <p className="text-green-600 text-sm">
-                  Coupon Applied: You save ₹{discountPreview.discountAmount.toFixed(2)}
+                  {discountPreview.message}: You save ₹
+                  {discountPreview.discountAmount.toFixed(2)}
                 </p>
               )}
             </div>

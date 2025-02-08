@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
+  ArrowUpRightFromSquare,
   BarChartBig,
   BookPlusIcon,
   Eye,
@@ -84,6 +85,17 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
             >
               <TicketPercent />{" "}
               <span className="hidden md:block">Coupon Management</span>
+            </Link>
+            <Link
+              href="/admin/referrals"
+              className={`px-4 py-2 rounded-md flex gap-2 items-center justify-center ${
+                pathname === "/admin/referrals"
+                  ? "border-b-2 border-blue-500"
+                  : ""
+              }`}
+            >
+              <ArrowUpRightFromSquare />{" "}
+              <span className="hidden md:block">Referrals</span>
             </Link>
           </nav>
         </div>
