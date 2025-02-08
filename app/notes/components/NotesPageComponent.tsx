@@ -1,13 +1,9 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect, Suspense, useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { posts } from "#site/content";
-import { PostItemBox } from "@/components/post-item-box";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import dynamic from "next/dynamic";
-import TagError from "@/components/TagError";
-import BlurFade from "@/components/ui/blur-fade";
 import { NotesSearch } from "@/components/NotesSearch";
 import {
   DropdownMenu,
@@ -16,6 +12,10 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
+import BlurFade from "@/components/ui/blur-fade";
+import TagError from "@/components/TagError";
+import dynamic from "next/dynamic";
+import { PostItemBox } from "@/components/post-item-box";
 
 const QueryPagination = dynamic(
   () =>
@@ -29,6 +29,7 @@ function NotesContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
+  // Filter states
   const [selectedUniversity, setSelectedUniversity] = useState<string>(
     searchParams.get("university") || ""
   );
@@ -41,88 +42,185 @@ function NotesContent() {
   const [selectedSubject, setSelectedSubject] = useState<string>(
     searchParams.get("subject") || ""
   );
-  const [currentPage, setCurrentPage] = useState(
+  const [selectedType, setSelectedType] = useState<string>(
+    searchParams.get("type") || ""
+  );
+  const [currentPage, setCurrentPage] = useState<number>(
     Number(searchParams.get("page")) || 1
   );
 
+  // Update URL parameters when filters change.
   useEffect(() => {
     const params = new URLSearchParams();
-
     if (selectedUniversity) params.set("university", selectedUniversity);
     if (selectedDegree) params.set("degree", selectedDegree);
     if (selectedSemester) params.set("semester", selectedSemester);
     if (selectedSubject) params.set("subject", selectedSubject);
+    if (selectedType) params.set("type", selectedType);
     params.set("page", currentPage.toString());
-
-    const newUrl = `?${params.toString()}`;
-    router.replace(newUrl); // Replace without a full refresh
+    router.replace(`?${params.toString()}`);
   }, [
     selectedUniversity,
     selectedDegree,
     selectedSemester,
     selectedSubject,
+    selectedType,
     currentPage,
     router,
   ]);
 
-  const universities = Array.from(
-    new Set(posts.map((post) => post.metadata?.university).filter(Boolean))
-  );
-  const degrees = Array.from(
-    new Set(
-      posts
-        .filter((post) => post.metadata?.university === selectedUniversity)
-        .map((post) => post.metadata?.degree)
-        .filter(Boolean)
-    )
-  );
-  const semesters = Array.from(
-    new Set(
-      posts
-        .filter(
-          (post) =>
-            post.metadata?.university === selectedUniversity &&
-            post.metadata?.degree === selectedDegree
+  // Reset functions: when a parent filter is changed, clear only the filters that come after it.
+  function resetAfterUniversity() {
+    setSelectedDegree("");
+    setSelectedSemester("");
+    setSelectedSubject("");
+    setSelectedType("");
+  }
+  function resetAfterDegree() {
+    setSelectedSemester("");
+    setSelectedSubject("");
+    setSelectedType("");
+  }
+  function resetAfterSemester() {
+    setSelectedSubject("");
+    setSelectedType("");
+  }
+  function resetAfterSubject() {
+    setSelectedType("");
+  }
+
+  // Compute available options from posts data.
+  const universities = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          posts
+            .map((post) => post.metadata?.university)
+            .filter((u): u is string => !!u)
         )
-        .map((post) => post.metadata?.semester)
-        .filter(Boolean)
-    )
-  );
-  const subjects = Array.from(
-    new Set(
-      posts
-        .filter(
-          (post) =>
-            post.metadata?.university === selectedUniversity &&
-            post.metadata?.degree === selectedDegree &&
-            post.metadata?.semester === selectedSemester
-        )
-        .map((post) => post.metadata?.subject)
-        .filter(Boolean)
-    )
+      ),
+    []
   );
 
-  const filteredPosts = posts.filter((post) => {
-    return (
-      post.published &&
-      !post.excludeFromMain &&
-      (!selectedUniversity ||
-        post.metadata?.university === selectedUniversity) &&
-      (!selectedDegree || post.metadata?.degree === selectedDegree) &&
-      (!selectedSemester || post.metadata?.semester === selectedSemester) &&
-      (!selectedSubject || post.metadata?.subject === selectedSubject)
-    );
-  });
+  const degrees = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          posts
+            .filter((post) => post.metadata?.university === selectedUniversity)
+            .map((post) => post.metadata?.degree)
+            .filter((d): d is string => !!d)
+        )
+      ),
+    [selectedUniversity]
+  );
+
+  const semesters = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          posts
+            .filter(
+              (post) =>
+                post.metadata?.university === selectedUniversity &&
+                post.metadata?.degree === selectedDegree
+            )
+            .map((post) => post.metadata?.semester)
+            .filter((s): s is string => !!s)
+        )
+      ),
+    [selectedUniversity, selectedDegree]
+  );
+
+  const subjects = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          posts
+            .filter(
+              (post) =>
+                post.metadata?.university === selectedUniversity &&
+                post.metadata?.degree === selectedDegree &&
+                post.metadata?.semester === selectedSemester
+            )
+            .map((post) => post.metadata?.subject)
+            .filter((s): s is string => !!s)
+        )
+      ),
+    [selectedUniversity, selectedDegree, selectedSemester]
+  );
+
+  const types: string[] =
+    selectedUniversity && selectedDegree && selectedSemester && selectedSubject
+      ? Array.from(
+          new Set(
+            posts
+              .filter(
+                (post) =>
+                  post.metadata?.university === selectedUniversity &&
+                  post.metadata?.degree === selectedDegree &&
+                  post.metadata?.semester === selectedSemester &&
+                  post.metadata?.subject === selectedSubject
+              )
+              .map((post) =>
+                post.metadata?.contentType
+                  ? post.metadata!.contentType
+                  : "Notes"
+              )
+          )
+        )
+      : [];
+
+  // Filtering logic for posts.
+  const filteredPosts = useMemo(
+    () =>
+      posts.filter((post) => {
+        const matchesUniversity =
+          !selectedUniversity ||
+          post.metadata?.university === selectedUniversity;
+        const matchesDegree =
+          !selectedDegree || post.metadata?.degree === selectedDegree;
+        const matchesSemester =
+          !selectedSemester || post.metadata?.semester === selectedSemester;
+        const matchesSubject =
+          !selectedSubject || post.metadata?.subject === selectedSubject;
+        const matchesType =
+          !selectedType ||
+          (selectedType === "Notes"
+            ? !post.metadata?.contentType
+            : post.metadata?.contentType === selectedType);
+        return (
+          post.published &&
+          !post.excludeFromMain &&
+          matchesUniversity &&
+          matchesDegree &&
+          matchesSemester &&
+          matchesSubject &&
+          matchesType
+        );
+      }),
+    [
+      selectedUniversity,
+      selectedDegree,
+      selectedSemester,
+      selectedSubject,
+      selectedType,
+    ]
+  );
 
   const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
-  const displayPosts = filteredPosts.slice(
-    POSTS_PER_PAGE * (currentPage - 1),
-    POSTS_PER_PAGE * currentPage
+  const displayPosts = useMemo(
+    () =>
+      filteredPosts.slice(
+        POSTS_PER_PAGE * (currentPage - 1),
+        POSTS_PER_PAGE * currentPage
+      ),
+    [filteredPosts, currentPage]
   );
 
   return (
     <div className="container max-w-4xl py-6 lg:py-10 font-wotfard">
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div>Loading...</div>}>
         <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
           <div className="flex-1 space-y-4">
             <h1 className="text-[2.3rem] lg:text-[4.5rem] md:text-[4rem] leading-[1] font-bold dark:bg-gradient-to-b dark:from-[rgba(244,244,255,1)] dark:to-[rgba(181,180,207,1)] dark:text-transparent dark:bg-clip-text py-2 text-center">
@@ -134,13 +232,16 @@ function NotesContent() {
             <NotesSearch DropBox={true} />
           </div>
         </div>
-      </React.Suspense>
+      </Suspense>
+
+      {/* "Search By:" card with primary filters */}
       <Card className="my-10">
         <CardHeader>
           <CardTitle className="font-gilroy">Search By :</CardTitle>
         </CardHeader>
         <CardContent className="flex flex-row gap-4 items-center justify-center">
           <div className="flex flex-col md:flex-row gap-4 w-3/4 font-gilroy font-bold text-pretty tracking-wide dark:text-[#dbdbdb]">
+            {/* University Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button>{selectedUniversity || "Select University"}</Button>
@@ -150,10 +251,8 @@ function NotesContent() {
                   <DropdownMenuItem
                     key={uni}
                     onClick={() => {
-                      setSelectedUniversity(uni!);
-                      setSelectedDegree("");
-                      setSelectedSemester("");
-                      setSelectedSubject("");
+                      setSelectedUniversity(uni);
+                      resetAfterUniversity();
                     }}
                   >
                     {uni}
@@ -161,6 +260,7 @@ function NotesContent() {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
+            {/* Degree Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button disabled={!selectedUniversity}>
@@ -172,9 +272,8 @@ function NotesContent() {
                   <DropdownMenuItem
                     key={deg}
                     onClick={() => {
-                      setSelectedDegree(deg!);
-                      setSelectedSemester("");
-                      setSelectedSubject("");
+                      setSelectedDegree(deg);
+                      resetAfterDegree();
                     }}
                   >
                     {deg}
@@ -182,6 +281,7 @@ function NotesContent() {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
+            {/* Semester Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button disabled={!selectedDegree}>
@@ -193,8 +293,8 @@ function NotesContent() {
                   <DropdownMenuItem
                     key={sem}
                     onClick={() => {
-                      setSelectedSemester(sem!);
-                      setSelectedSubject("");
+                      setSelectedSemester(sem);
+                      resetAfterSemester();
                     }}
                   >
                     {sem}
@@ -202,6 +302,7 @@ function NotesContent() {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
+            {/* Subject Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button disabled={!selectedSemester}>
@@ -212,7 +313,10 @@ function NotesContent() {
                 {subjects.map((sub) => (
                   <DropdownMenuItem
                     key={sub}
-                    onClick={() => setSelectedSubject(sub!)}
+                    onClick={() => {
+                      setSelectedSubject(sub);
+                      resetAfterSubject();
+                    }}
                   >
                     {sub}
                   </DropdownMenuItem>
@@ -222,6 +326,38 @@ function NotesContent() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Type Filter */}
+      {selectedUniversity &&
+        selectedDegree &&
+        selectedSemester &&
+        selectedSubject && (
+          <div className="flex flex-col md:flex-row gap-4 justify-start mb-4">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button>{selectedType || "Select Type"}</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem
+                  key="all-type"
+                  onClick={() => setSelectedType("")}
+                >
+                  All Types
+                </DropdownMenuItem>
+                {types.map((type) => (
+                  <DropdownMenuItem
+                    key={type}
+                    onClick={() => setSelectedType(type)}
+                  >
+                    {type}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        )}
+
+      {/* Posts List */}
       <div className="flex flex-col gap-4">
         <hr />
         {displayPosts.length > 0 ? (
@@ -239,6 +375,7 @@ function NotesContent() {
                       title={title}
                       description={description}
                       tags={tags}
+                      premium={post.metadata?.premium}
                     />
                   </BlurFade>
                 </li>
@@ -259,10 +396,12 @@ function NotesContent() {
   );
 }
 
-export default function NotesPageComponent() {
+function NotesPageComponent() {
   return (
     <Suspense fallback={<div>Loading Notes...</div>}>
       <NotesContent />
     </Suspense>
   );
 }
+
+export default NotesPageComponent;

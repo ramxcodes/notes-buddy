@@ -1,20 +1,27 @@
 import Link from "next/link";
 import { Tag } from "./tag";
+import { Badge } from "@/components/ui/badge";
 
 interface PostItemProps {
   slug: string;
   title: string;
   description?: string;
-  tags?: Array<string>;
+  tags?: string[];
+  premium?: boolean;
 }
 
 const normalizeTag = (tag: string) => tag.toLowerCase().replace(/\s+/g, "-");
 
-export function PostItemBox({ slug, title, description, tags }: PostItemProps) {
+export function PostItemBox({ slug, title, description, tags, premium }: PostItemProps) {
   return (
     <article className="dark:border dark:border-border rounded-xl">
       <div className="max-w-full md:w-[400px] rounded-lg shadow-md hover:shadow-lg transition-shadow flex flex-col h-full">
         <div className="p-6 flex-grow flex flex-col">
+          {premium && (
+            <div className="mb-2">
+              <Badge className="font-gilroy text-yellow-500" variant="outline">Premium</Badge>
+            </div>
+          )}
           <h2 className="text-xl md:text-2xl font-semibold mb-2">
             <Link href={`/${slug}`} className="hover:underline">
               {title}
