@@ -1,7 +1,7 @@
 # Notes Buddy
 
 Welcome to **Notes Buddy**, a web platform designed for students to read and share college notes easily. 
-Built with a modern tech stack, it ensures an easy-to-use, visually appealing, and responsive experience.
+Built with a modern tech stack, it ensures an easy-to-use, visually appealing, and responsive experience. 
 
 ![Notes Buddy](https://i.imgur.com/REQIqc2.jpeg)
 
@@ -43,6 +43,8 @@ Built with a modern tech stack, it ensures an easy-to-use, visually appealing, a
 ## Contributing
 
 Contributions are welcome! Feel free to:
+- Visit Here for Collaboration Guide :
+    https://notes-buddy.ramx.in/notes/github/contribution-guide
 - Open issues for bug reports or feature requests.
 - Fork the repository, make changes, and submit pull requests.
 

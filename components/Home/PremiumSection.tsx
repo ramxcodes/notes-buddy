@@ -240,7 +240,7 @@ const PricingButton = ({
 }) => {
   return (
     <Link
-      className="inline-block px-5 py-4 w-full text-center font-semibold tracking-tight bg-transparent hover:bg-neutral-900 hover: border dark:hover:bg-white dark:hover:text-neutral-800 hover:scale-105 border-neutral-700 rounded-lg transition duration-200"
+      className="inline-block px-5 py-4 w-full text-center font-semibold tracking-tight bg-transparent hover:bg-neutral-900 hover:text-white hover:font-gilroy border  dark:hover:bg-white dark:hover:text-neutral-800 hover:scale-105 border-neutral-700 rounded-lg transition duration-200"
       href={href}
     >
       {children}

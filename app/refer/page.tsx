@@ -16,6 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import BlurFade from "@/components/ui/blur-fade";
 import { Copy } from "lucide-react";
+import { UserProfile } from "@/components/UserProfile";
 
 export interface Redemption {
   userId: string;
@@ -145,7 +146,13 @@ export default function ReferPage() {
     );
   }
   if (status === "unauthenticated") {
-    return <p>Please sign in to access referral features.</p>;
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen p-4 space-y-6">
+        <h1 className="text-[2.3rem] lg:text-[4.5rem] md:text-[4rem] leading-[1] font-bold dark:bg-gradient-to-b dark:from-[rgba(244,244,255,1)] dark:to-[rgba(181,180,207,1)] dark:text-transparent dark:bg-clip-text py-2 text-center">Please Sign In to <br /> access referral dashboard.</h1>
+        <UserProfile />
+
+      </div>
+    );
   }
   return (
     <div className="flex flex-col items-center min-h-screen p-4 space-y-6 justify-center">
@@ -157,12 +164,16 @@ export default function ReferPage() {
         </BlurFade>
         <BlurFade delay={0.25} inView>
           <p className="text-center text-lg text-muted-foreground">
-            Share your referral code with your friends and get rewards when they purchase from your referral code.
+            Share your referral code with your friends and get rewards when they
+            purchase from your referral code.
           </p>
         </BlurFade>
 
-
-        {message && <Card className="text-sm text-center py-2 min-w-fit font-bold">{message}</Card>}
+        {message && (
+          <Card className="text-sm text-center py-2 min-w-fit font-bold">
+            {message}
+          </Card>
+        )}
 
         {loading ? (
           <Card>
@@ -204,7 +215,9 @@ export default function ReferPage() {
                       <div className="space-y-2">
                         <p className="font-medium">Self‑Coupon</p>
                         <div className="flex items-center">
-                          <code className="text-lg">{referral.selfCouponCode}</code>
+                          <code className="text-lg">
+                            {referral.selfCouponCode}
+                          </code>
                           <Copy
                             onClick={() => setCopiedSelf(true)}
                             className="ml-2 cursor-pointer"

@@ -14,6 +14,11 @@ interface User {
   name: string;
   email: string;
   planTier?: string;
+  razorpayDetails?: {
+    amount: number;
+    orderId?: string;
+    paymentId?: string;
+  };
   university?: string;
   degree?: string;
   year?: string;
@@ -40,6 +45,7 @@ export function UserTable({ users, onToggleBlock }: UserTableProps) {
           <TableHead>Name</TableHead>
           <TableHead>Email</TableHead>
           <TableHead>Premium</TableHead>
+          <TableHead>Amount</TableHead>
           <TableHead>Phone</TableHead>
           <TableHead>University</TableHead>
           <TableHead>Year</TableHead>
@@ -60,6 +66,11 @@ export function UserTable({ users, onToggleBlock }: UserTableProps) {
             <TableCell>{user.name || "N/A"}</TableCell>
             <TableCell>{user.email}</TableCell>
             <TableCell>{user.planTier ? "Yes" : "No"}</TableCell>
+            <TableCell>
+              {user.razorpayDetails && user.razorpayDetails.amount
+                ? user.razorpayDetails.amount
+                : "-"}
+            </TableCell>
             <TableCell>{user.phoneNumber || "N/A"}</TableCell>{" "}
             <TableCell>{user.university || "N/A"}</TableCell>
             <TableCell>{user.year || "N/A"}</TableCell>

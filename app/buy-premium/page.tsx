@@ -8,6 +8,8 @@ import BlurFade from "@/components/ui/blur-fade";
 import { Button } from "@/components/ui/button";
 import { Popup } from "./components/Popup";
 import { Input } from "@/components/ui/input";
+import { BillSummaryPopup } from "./components/BillSummaryPopup";
+import { triggerConfetti } from "./utils/triggerConfetti";
 
 export default function BuyPremiumPage() {
   const { data: session, status } = useSession();
@@ -30,10 +32,13 @@ export default function BuyPremiumPage() {
     message: string;
   } | null>(null);
   const [couponError, setCouponError] = useState<string>("");
+  const [showBillSummary, setShowBillSummary] = useState(false);
+
+  // Pricing updated to match create order API pricing
+  const tierPricing = { "Tier 1": 62, "Tier 2": 134, "Tier 3": 174 };
 
   const universities = ["Medicaps University"];
   const degrees = ["B Tech", "B Tech CSBS"];
-  const tierPricing = { "Tier 1": 59, "Tier 2": 129, "Tier 3": 169 };
 
   const yearOptions =
     degree === "B Tech"
@@ -95,13 +100,12 @@ export default function BuyPremiumPage() {
       } else {
         setCouponError("");
         setDiscountPreview(data);
-        // If the preview message indicates a referral code discount (referee),
-        // then attempt to update the referral document by calling the redeem endpoint.
+        // Trigger confetti when coupon is successfully applied
+        triggerConfetti();
         if (
           data.message &&
           data.message.toLowerCase().includes("referral code applied")
         ) {
-          // Call the redemption endpoint; if already redeemed, ignore the error.
           const redeemRes = await fetch("/api/refer/redeem", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -111,7 +115,6 @@ export default function BuyPremiumPage() {
           });
           const redeemData = await redeemRes.json();
           if (!redeemRes.ok) {
-            // If error is "You have already redeemed a referral code", ignore it.
             if (
               !redeemData.error ||
               !redeemData.error.toLowerCase().includes("already redeemed")
@@ -147,7 +150,17 @@ export default function BuyPremiumPage() {
       return;
     }
 
+    // Show the bill summary popup before initiating payment
+    setShowBillSummary(true);
+  };
+
+  const handleConfirmPayment = () => {
+    setShowBillSummary(false);
     initiatePayment();
+  };
+
+  const handleCancelBillSummary = () => {
+    setShowBillSummary(false);
   };
 
   const initiatePayment = async () => {
@@ -201,18 +214,23 @@ export default function BuyPremiumPage() {
             }),
           });
           const result = await verification.json();
-          setPopupMessage(
-            result.success
-              ? "Payment successful!"
-              : "Payment verification failed: " + (result.error || "")
-          );
+          if (result.success) {
+            triggerConfetti();
+            setPopupMessage(
+              "Payment successful now you should re-login to see the changes!"
+            );
+          } else {
+            setPopupMessage(
+              "Payment verification failed: " + (result.error || "")
+            );
+          }
           setShowPopup(true);
         },
         prefill: {
           name: user.name || "",
           email: user.email || "",
         },
-        theme: { color: "#3399cc" },
+        theme: { color: "#cc7d28" },
       };
 
       if (typeof window !== "undefined") {
@@ -290,7 +308,8 @@ export default function BuyPremiumPage() {
         }),
       });
       setShowPhonePrompt(false);
-      initiatePayment();
+      // After saving phone, show bill summary
+      setShowBillSummary(true);
     } catch (error) {
       setPopupMessage("Failed to save phone number");
       setShowPopup(true);
@@ -385,11 +404,11 @@ export default function BuyPremiumPage() {
                     <span className="line-through text-red-500 mr-1">
                       ₹{tierPricing[tier]}
                     </span>{" "}
-                    ₹{discountPreview.finalPrice} + GST
+                    ₹{discountPreview.finalPrice} + Tax
                   </span>
                 </div>
               ) : (
-                `Proceed to Pay ₹${tierPricing[tier]} + GST*`
+                `Proceed to Pay ₹${tierPricing[tier]} + Tax*`
               )}
             </Button>
           </BlurFade>
@@ -427,6 +446,18 @@ export default function BuyPremiumPage() {
           message={popupMessage}
           onClose={() => setShowPopup(false)}
           showLoginButton={popupMessage === "Please log in first!"}
+        />
+      )}
+
+      {showBillSummary && (
+        <BillSummaryPopup
+          originalPrice={tierPricing[tier]}
+          finalPrice={
+            discountPreview ? discountPreview.finalPrice : tierPricing[tier]
+          }
+          discountAmount={discountPreview ? discountPreview.discountAmount : 0}
+          onConfirm={handleConfirmPayment}
+          onClose={handleCancelBillSummary}
         />
       )}
     </div>

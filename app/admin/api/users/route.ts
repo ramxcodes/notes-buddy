@@ -14,6 +14,7 @@ export async function GET(req: NextRequest) {
         name: 1,
         email: 1,
         planTier: 1,
+        razorpayDetails: 1,
         university: 1,
         degree: 1,
         year: 1,

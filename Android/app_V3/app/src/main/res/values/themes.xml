@@ -13,8 +13,4 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
-    <style name="OrangeProgressBar" parent="Widget.AppCompat.ProgressBar.Horizontal">
-        <item name="android:progressTint">#FFA500</item>
-        <item name="android:progressBackgroundTint">#FFA50033</item>
-    </style>
 </resources>

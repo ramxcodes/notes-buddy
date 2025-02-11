@@ -48,7 +48,7 @@ export async function POST(request: Request) {
         originalPrice: originalAmount / 100,
         finalPrice: finalAmount / 100,
         discountAmount: discount / 100,
-        message: "Standard coupon applied",
+        message: "Coupon Code applied successfully 🥳",
       });
     } else {
       const referral = await db.collection("referrals").findOne({

@@ -26,6 +26,9 @@ interface User {
   name: string;
   email: string;
   planTier?: string;
+  razorpayDetails: {
+    amount: number;
+  };
   university?: string;
   degree?: string;
   year?: string;

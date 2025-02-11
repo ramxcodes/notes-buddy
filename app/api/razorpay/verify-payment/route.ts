@@ -84,6 +84,8 @@ export async function POST(request: Request) {
     const client = await clientPromise;
     const db = client.db();
 
+    const rupeesAmount = amount / 100;
+
     const updateResult = await db.collection("users").updateOne(
       { _id: new ObjectId(userId) },
       {
@@ -100,7 +102,7 @@ export async function POST(request: Request) {
           razorpayDetails: {
             orderId: razorpay_order_id,
             paymentId: razorpay_payment_id,
-            amount,
+            amount: rupeesAmount,
           },
         },
       }
@@ -123,8 +125,6 @@ export async function POST(request: Request) {
         }
       );
     }
-
-    const rupeesAmount = amount / 100;
 
     const paymentResult = await db.collection("payments").insertOne({
       userId: new ObjectId(userId),

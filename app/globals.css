@@ -185,3 +185,34 @@ body {
   background: #ff91001a;
   color: #ff9100;
 }
+
+
+/* Custom Scrollbar */
+
+
+@layer base {
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    border-radius: 9999px;
+    background-color: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 9999px;
+    background-color: #ff7f00;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    ::-webkit-scrollbar-track {
+      background-color: #333;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: #ff8c00;
+    }
+  }
+}

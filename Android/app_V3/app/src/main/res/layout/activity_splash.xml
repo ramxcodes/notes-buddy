@@ -19,15 +19,15 @@
 
         android:layout_width="match_parent"
 
-        android:layout_height="294dp"
+        android:layout_height="300dp"
 
-        android:layout_marginTop="220dp"
-
-        android:padding="64dp"
+        android:src="@drawable/logo"
 
         android:scaleType="centerCrop"
 
-        android:src="@drawable/logo" />
+        android:padding="64dp"
+
+        android:layout_marginTop="220dp"/>
 
     <ProgressBar
 
