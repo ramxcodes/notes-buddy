@@ -40,7 +40,12 @@ async function validateAccess(
 
   if (!session) {
     return {
-     
+      errorMessage: "You are not signed in.",
+      userTier: null,
+      userSemesters: [],
+      userDegree: null,
+      hasSemesterAccess: false,
+      isBlocked: false,
     };
   }
 
