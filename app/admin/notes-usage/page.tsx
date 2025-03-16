@@ -18,6 +18,7 @@ interface UsageStats {
   distinctSlugs: number;
   topSlug: string | null;
   topCount: number;
+  totalTimeStudied: number;
 }
 
 interface NoteUsageItem {
@@ -31,6 +32,7 @@ interface NoteUsageItem {
     isBlocked?: boolean;
     viewedAt: string;
     ip?: string;
+    timeSpent?: number;
   }[];
   anonymousCount: number;
   verifiedCount: number;

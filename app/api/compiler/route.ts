@@ -1,4 +1,3 @@
-// app/api/compiler/route.ts
 import { NextResponse } from 'next/server';
 
 const JUDGE0_API_URL = 'https://judge0-ce.p.rapidapi.com';

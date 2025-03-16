@@ -8,6 +8,7 @@ const NoteUsageSchema = new Schema({
   userEmail: { type: String, default: null },
   ip: { type: String, default: null },
   viewedAt: { type: Date, default: Date.now },
+  timeSpent: { type: Number, default: 0 },
 });
 
 const NoteUsage = models.NoteUsage || model("NoteUsage", NoteUsageSchema);

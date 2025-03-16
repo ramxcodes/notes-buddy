@@ -137,6 +137,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-pt-[3.5rem]">
+      <meta name="google-adsense-account" content="ca-pub-8816429827069450" />
       <ReactLenis root>
         <body
           className={cn(

@@ -12,6 +12,7 @@ import {
 import UserCard, { IUser } from "./UserCard";
 import NoteChart from "./NoteChart";
 import PaginationControl from "./PaginationControl";
+import DailyViewsChart from "./DailyViewsChart";
 
 export interface NoteData {
   noteSlug: string;
@@ -23,13 +24,23 @@ export interface NoteData {
 interface UserProfileProps {
   user: IUser;
   notes: NoteData[];
+  totalStudyTime: number;
+  dailyViewsData: Array<{ date: string; views: number }>;
 }
 
-const UserProfile: React.FC<UserProfileProps> = ({ user, notes }) => {
+const UserProfile: React.FC<UserProfileProps> = ({
+  user,
+  notes,
+  totalStudyTime,
+  dailyViewsData,
+}) => {
   const topNote =
     notes.length > 0
       ? notes.reduce((prev, curr) => (curr.count > prev.count ? curr : prev))
       : null;
+
+  const minutes = Math.floor(totalStudyTime / 60);
+  const seconds = Math.round(totalStudyTime % 60);
 
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 5;
@@ -48,10 +59,22 @@ const UserProfile: React.FC<UserProfileProps> = ({ user, notes }) => {
         }
       />
 
+      <div className="p-4 border rounded-md">
+        <h3 className="text-lg font-semibold">Total Study Time</h3>
+        <p className="text-xl font-bold">
+          {minutes}m {seconds}s
+        </p>
+      </div>
+
       <div className="flex flex-col md:flex-row md:space-x-8 space-y-4 md:space-y-0">
         <div className="flex-1">
           <h3 className="text-lg font-semibold mb-2">Notes Visits (Bar Chart)</h3>
-          <NoteChart notes={notes.map(({ noteSlug, count }) => ({ noteSlug, count }))} />
+          <NoteChart
+            notes={notes.map(({ noteSlug, count }) => ({ noteSlug, count }))}
+          />
+        </div>
+        <div className="flex-1">
+          <DailyViewsChart data={dailyViewsData} />
         </div>
       </div>
 

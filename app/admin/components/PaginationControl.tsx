@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { Button } from "@/components/ui/button";
 
 interface PaginationControlProps {
   currentPage: number;
@@ -8,40 +9,30 @@ interface PaginationControlProps {
   onPageChange: (page: number) => void;
 }
 
-const PaginationControl: React.FC<PaginationControlProps> = ({
+export default function PaginationControl({
   currentPage,
   totalPages,
   onPageChange,
-}) => {
-  const handlePrev = () => {
-    if (currentPage > 1) onPageChange(currentPage - 1);
-  };
-
-  const handleNext = () => {
-    if (currentPage < totalPages) onPageChange(currentPage + 1);
-  };
-
+}: PaginationControlProps) {
   return (
-    <div className="flex justify-center items-center space-x-4 mt-4">
-      <button
-        onClick={handlePrev}
+    <div className="flex justify-center items-center gap-4 mt-6">
+      <Button
+        variant="outline"
+        onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="px-3 py-1 border rounded disabled:opacity-50"
       >
-        Prev
-      </button>
-      <span>
+        Previous
+      </Button>
+      <span className="text-sm">
         Page {currentPage} of {totalPages}
       </span>
-      <button
-        onClick={handleNext}
+      <Button
+        variant="outline"
+        onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="px-3 py-1 border rounded disabled:opacity-50"
       >
         Next
-      </button>
+      </Button>
     </div>
   );
-};
-
-export default PaginationControl;
+}

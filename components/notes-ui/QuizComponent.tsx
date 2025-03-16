@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -23,6 +23,8 @@ interface QuizProps {
 }
 
 const Quiz: React.FC<QuizProps> = ({ questions }) => {
+  const [startTime, setStartTime] = useState<number>(Date.now());
+  const [timeTaken, setTimeTaken] = useState<number | null>(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [isAnswered, setIsAnswered] = useState(false);
@@ -48,6 +50,23 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
     }
   };
 
+  const storeQuizData = (finalTime: number) => {
+    const existingData = localStorage.getItem("quizResults");
+    let quizResults: any[] = [];
+    if (existingData) {
+      quizResults = JSON.parse(existingData);
+    }
+    const newResult = {
+      score,
+      totalQuestions: questions.length,
+      timeTaken: finalTime,
+      percentage: ((score / questions.length) * 100).toFixed(2),
+      date: new Date().toISOString(),
+    };
+    quizResults.push(newResult);
+    localStorage.setItem("quizResults", JSON.stringify(quizResults));
+  };
+
   const handleNext = () => {
     setSelectedOption(null);
     setIsAnswered(false);
@@ -55,8 +74,22 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
+      const finalTime = Date.now() - startTime;
+      setTimeTaken(finalTime);
+      storeQuizData(finalTime);
       setShowResult(true);
     }
+  };
+
+  const retestQuiz = () => {
+    setCurrentQuestionIndex(0);
+    setSelectedOption(null);
+    setIsAnswered(false);
+    setIsCorrect(false);
+    setScore(0);
+    setShowResult(false);
+    setTimeTaken(null);
+    setStartTime(Date.now());
   };
 
   const launchConfetti = () => {
@@ -85,20 +118,42 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
             <CardTitle className="text-center">Quiz Result</CardTitle>
           </CardHeader>
           <CardContent className="text-left space-y-4">
-            <p className={`text-xl mt-0`}>
-              Correct: <span className={`text-green-500`}>{score}</span>
+            <p className="text-xl mt-0">
+              Correct: <span className="text-green-500">{score}</span>
             </p>
-            <p className={`text-xl`}>
+            <p className="text-xl">
               Wrong:{" "}
-              <span className={`text-red-500`}>{questions.length - score}</span>
+              <span className="text-red-500">{questions.length - score}</span>
             </p>
-            <p className={`text-xl`}>Total Questions: {questions.length}</p>
-            <p className={`text-xl`}>
+            <p className="text-xl">Total Questions: {questions.length}</p>
+            <p className="text-xl">
               You got:{" "}
-              <span className={`${getResultColor()}`}>
+              <span className={getResultColor()}>
                 {((score / questions.length) * 100).toFixed(2)} %
               </span>
             </p>
+            {timeTaken !== null && (
+              <>
+                <p className="text-xl">
+                  Time Taken:{" "}
+                  <span className="text-blue-500">
+                    {(timeTaken / 1000).toFixed(2)} seconds
+                  </span>
+                </p>
+                <p className="text-xl">
+                  Average Time per Question:{" "}
+                  <span className="text-blue-500">
+                    {(timeTaken / questions.length / 1000).toFixed(2)} seconds
+                  </span>
+                </p>
+              </>
+            )}
+            <Button
+              onClick={retestQuiz}
+              className="w-full rounded-full bg-purple-600 hover:bg-purple-500 text-white mt-4"
+            >
+              Retest
+            </Button>
           </CardContent>
         </Card>
       ) : (
@@ -128,7 +183,7 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
                   onClick={() => handleOptionClick(index)}
                   disabled={isAnswered}
                   className={cn(
-                    "w-full py-2 px-4 transition-transform text-black rounded-full font-gilroy",
+                    "w-full py-2 px-4 transition-transform text-black rounded-full font-gilroy whitespace-normal",
                     selectedOption === index && !isAnswered
                       ? "bg-blue-600 dark:text-white text-black ring-2 ring-[#2C0B8E] dark:ring-[#aa2fe7]"
                       : "",

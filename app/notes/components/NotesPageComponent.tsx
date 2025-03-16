@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, Suspense, useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import Cookies from "js-cookie";
 import { posts } from "#site/content";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { NotesSearch } from "@/components/NotesSearch";
@@ -14,22 +15,20 @@ import {
 import { Button } from "@/components/ui/button";
 import BlurFade from "@/components/ui/blur-fade";
 import TagError from "@/components/TagError";
-import dynamic from "next/dynamic";
 import { PostItemBox } from "@/components/post-item-box";
-
-const QueryPagination = dynamic(
-  () =>
-    import("@/components/query-pagination").then((mod) => mod.QueryPagination),
-  { ssr: false }
-);
+import { sortNotes } from "../utils/sortNotes";
+import { Settings } from "lucide-react";
+import PreferenceSettingsPopup from "./PreferenceSettingsPopup";
+import { QueryPagination } from "@/components/query-pagination";
+import { useSession } from "next-auth/react";
 
 const POSTS_PER_PAGE = 6;
 
 function NotesContent() {
+  const { data: session } = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // Filter states
   const [selectedUniversity, setSelectedUniversity] = useState<string>(
     searchParams.get("university") || ""
   );
@@ -48,8 +47,43 @@ function NotesContent() {
   const [currentPage, setCurrentPage] = useState<number>(
     Number(searchParams.get("page")) || 1
   );
+  const [openPreference, setOpenPreference] = useState<boolean>(false);
 
-  // Update URL parameters when filters change.
+  useEffect(() => {
+    async function loadPreferencesFromDb() {
+      try {
+        const response = await fetch("/api/preferences");
+        if (response.ok) {
+          const data = await response.json();
+          if (data) {
+            setSelectedUniversity(data.university);
+            setSelectedDegree(data.degree);
+            setSelectedSemester(data.semester);
+          }
+        }
+      } catch (error) {
+        console.error("Error loading preferences from DB:", error);
+      }
+    }
+    if (
+      !searchParams.get("university") &&
+      !searchParams.get("degree") &&
+      !searchParams.get("semester")
+    ) {
+      if (session) {
+        loadPreferencesFromDb();
+      } else {
+        const cookieUniversity =
+          Cookies.get("notesPreference_university") || "";
+        const cookieDegree = Cookies.get("notesPreference_degree") || "";
+        const cookieSemester = Cookies.get("notesPreference_semester") || "";
+        setSelectedUniversity(cookieUniversity);
+        setSelectedDegree(cookieDegree);
+        setSelectedSemester(cookieSemester);
+      }
+    }
+  }, [searchParams, session]);
+
   useEffect(() => {
     const params = new URLSearchParams();
     if (selectedUniversity) params.set("university", selectedUniversity);
@@ -69,7 +103,6 @@ function NotesContent() {
     router,
   ]);
 
-  // Reset functions: when a parent filter is changed, clear only the filters that come after it.
   function resetAfterUniversity() {
     setSelectedDegree("");
     setSelectedSemester("");
@@ -89,7 +122,6 @@ function NotesContent() {
     setSelectedType("");
   }
 
-  // Compute available options from posts data.
   const universities = useMemo(
     () =>
       Array.from(
@@ -171,34 +203,39 @@ function NotesContent() {
         )
       : [];
 
-  // Filtering logic for posts.
   const filteredPosts = useMemo(
     () =>
-      posts.filter((post) => {
-        const matchesUniversity =
-          !selectedUniversity ||
-          post.metadata?.university === selectedUniversity;
-        const matchesDegree =
-          !selectedDegree || post.metadata?.degree === selectedDegree;
-        const matchesSemester =
-          !selectedSemester || post.metadata?.semester === selectedSemester;
-        const matchesSubject =
-          !selectedSubject || post.metadata?.subject === selectedSubject;
-        const matchesType =
-          !selectedType ||
-          (selectedType === "Notes"
-            ? !post.metadata?.contentType
-            : post.metadata?.contentType === selectedType);
-        return (
-          post.published &&
-          !post.excludeFromMain &&
-          matchesUniversity &&
-          matchesDegree &&
-          matchesSemester &&
-          matchesSubject &&
-          matchesType
-        );
-      }),
+      posts
+        .filter((post) => {
+          const matchesUniversity =
+            !selectedUniversity ||
+            post.metadata?.university === selectedUniversity;
+          const matchesDegree =
+            !selectedDegree || post.metadata?.degree === selectedDegree;
+          const matchesSemester =
+            !selectedSemester || post.metadata?.semester === selectedSemester;
+          const matchesSubject =
+            !selectedSubject || post.metadata?.subject === selectedSubject;
+          const matchesType =
+            !selectedType ||
+            (selectedType === "Notes"
+              ? !post.metadata?.contentType
+              : post.metadata?.contentType === selectedType);
+          return (
+            post.published &&
+            !post.excludeFromMain &&
+            matchesUniversity &&
+            matchesDegree &&
+            matchesSemester &&
+            matchesSubject &&
+            matchesType
+          );
+        })
+        .map((post) => ({
+          ...post,
+          description: post.description || "",
+          tags: post.tags || [],
+        })),
     [
       selectedUniversity,
       selectedDegree,
@@ -208,14 +245,16 @@ function NotesContent() {
     ]
   );
 
-  const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+  const sortedPosts = useMemo(() => sortNotes(filteredPosts), [filteredPosts]);
+  const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE);
+
   const displayPosts = useMemo(
     () =>
-      filteredPosts.slice(
+      sortedPosts.slice(
         POSTS_PER_PAGE * (currentPage - 1),
         POSTS_PER_PAGE * currentPage
       ),
-    [filteredPosts, currentPage]
+    [sortedPosts, currentPage]
   );
 
   return (
@@ -234,14 +273,17 @@ function NotesContent() {
         </div>
       </Suspense>
 
-      {/* "Search By:" card with primary filters */}
       <Card className="my-10">
         <CardHeader>
-          <CardTitle className="font-gilroy">Search By :</CardTitle>
+          <div className="flex flex-row items-center justify-between">
+            <CardTitle className="font-gilroy">Search By :</CardTitle>
+            <Button variant="ghost" onClick={() => setOpenPreference(true)}>
+              <Settings />
+            </Button>
+          </div>
         </CardHeader>
         <CardContent className="flex flex-row gap-4 items-center justify-center">
           <div className="flex flex-col md:flex-row gap-4 w-3/4 font-gilroy font-bold text-pretty tracking-wide dark:text-[#dbdbdb]">
-            {/* University Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button>{selectedUniversity || "Select University"}</Button>
@@ -260,7 +302,6 @@ function NotesContent() {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            {/* Degree Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button disabled={!selectedUniversity}>
@@ -281,7 +322,6 @@ function NotesContent() {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            {/* Semester Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button disabled={!selectedDegree}>
@@ -302,7 +342,6 @@ function NotesContent() {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            {/* Subject Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button disabled={!selectedSemester}>
@@ -327,7 +366,21 @@ function NotesContent() {
         </CardContent>
       </Card>
 
-      {/* Type Filter */}
+      <PreferenceSettingsPopup
+        open={openPreference}
+        onOpenChange={setOpenPreference}
+        onSave={({ university, degree, semester }) => {
+          setSelectedUniversity(university);
+          setSelectedDegree(degree);
+          setSelectedSemester(semester);
+        }}
+        initialPreferences={{
+          university: selectedUniversity,
+          degree: selectedDegree,
+          semester: selectedSemester,
+        }}
+      />
+
       {selectedUniversity &&
         selectedDegree &&
         selectedSemester &&

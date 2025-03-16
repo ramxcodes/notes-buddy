@@ -2,12 +2,13 @@ import { Tier } from "./access/types";
 
 export const tierAccess: Record<Tier, string[]> = {
   "Tier 1": ["one-shots", "quiz"],
-  "Tier 2": ["one-shots", "quiz", "pyq", "flashcards"],
+  "Tier 2": ["one-shots", "quiz", "pyq", "flashcards", "IMP"],
   "Tier 3": [
     "one-shots",
     "quiz",
     "pyq",
     "flashcards",
+    "IMP",
     "video-material",
     "toppers-handwritten-notes",
     "ai-chatbot",

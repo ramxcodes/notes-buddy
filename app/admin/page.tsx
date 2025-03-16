@@ -1,12 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { UserTable } from "./components/UserTable";
-import { UserSortDropdown } from "./components/UserSortDropdown";
-import { Users, DollarSign, FileText, CheckCircle } from "lucide-react"; // Icons
+import { Users, DollarSign, FileText, CheckCircle, Star } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import * as XLSX from "xlsx";
+import PaginationControl from "./components/PaginationControl";
 
 const BASE_URL = process.env.NEXTAUTH_URL || "";
 
@@ -45,11 +47,11 @@ export default function AdminDashboard() {
   const [users, setUsers] = useState<User[]>([]);
   const [loadingStats, setLoadingStats] = useState(true);
   const [loadingUsers, setLoadingUsers] = useState(true);
-  const [sortOption, setSortOption] = useState<
-    "all" | "premium" | "nonPremium"
-  >("all");
+  const [sortBy, setSortBy] = useState("default");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 100;
 
-  // Fetch stats
   const fetchStats = async () => {
     setLoadingStats(true);
     try {
@@ -68,7 +70,6 @@ export default function AdminDashboard() {
     }
   };
 
-  // Fetch users
   const fetchUsers = async () => {
     setLoadingUsers(true);
     try {
@@ -87,7 +88,6 @@ export default function AdminDashboard() {
     }
   };
 
-  // Poll every 5 minutes
   useEffect(() => {
     fetchStats();
     fetchUsers();
@@ -100,7 +100,6 @@ export default function AdminDashboard() {
     return () => clearInterval(interval);
   }, []);
 
-  // Handle block/unblock
   const handleToggleBlock = async (
     userId: string,
     action: "block" | "unblock"
@@ -129,16 +128,87 @@ export default function AdminDashboard() {
     }
   };
 
-  // Filter users based on the selected sort option
-  const filteredUsers = users.filter((user) => {
-    if (sortOption === "premium") return Boolean(user.planTier);
-    if (sortOption === "nonPremium") return !user.planTier;
-    return true; // "all" option
-  });
+  const filteredAndSortedUsers = useMemo(() => {
+    let result = [...users];
+
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      result = result.filter(
+        (user) =>
+          user.name?.toLowerCase().includes(query) ||
+          user.email.toLowerCase().includes(query) ||
+          user.phoneNumber?.toLowerCase().includes(query)
+      );
+    }
+
+    switch (sortBy) {
+      case "default":
+        break;
+      case "premium":
+        // Filter to only premium users and sort by name
+        result = result.filter((user) => user.planTier);
+        result.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
+        break;
+      case "phone":
+        // Filter to only users with a phone number and sort by phone number
+        result = result.filter(
+          (user) => user.phoneNumber && user.phoneNumber.trim() !== ""
+        );
+        result.sort((a, b) =>
+          (a.phoneNumber || "").localeCompare(b.phoneNumber || "")
+        );
+        break;
+      case "nameAsc":
+        result.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
+        break;
+      case "nameDesc":
+        result.sort((a, b) => (b.name || "").localeCompare(a.name || ""));
+        break;
+      case "newest":
+        result.sort(
+          (a, b) =>
+            new Date(b.subscriptionStartDate || 0).getTime() -
+            new Date(a.subscriptionStartDate || 0).getTime()
+        );
+        break;
+      case "oldest":
+        result.sort(
+          (a, b) =>
+            new Date(a.subscriptionStartDate || 0).getTime() -
+            new Date(b.subscriptionStartDate || 0).getTime()
+        );
+        break;
+    }
+
+    return result;
+  }, [users, searchQuery, sortBy]);
+
+  const totalPages = Math.ceil(filteredAndSortedUsers.length / itemsPerPage);
+
+  const handleExportToExcel = () => {
+    const exportData = filteredAndSortedUsers.map((user) => ({
+      Name: user.name || "N/A",
+      Email: user.email,
+      Phone: user.phoneNumber || "N/A",
+      University: user.university || "N/A",
+      Degree: user.degree || "N/A",
+      Year: user.year || "N/A",
+      Plan: user.planTier || "Free",
+      Amount: user.razorpayDetails?.amount || 0,
+      "Subscription Start": user.subscriptionStartDate || "N/A",
+      "Subscription End": user.subscriptionEndDate || "N/A",
+      Status: user.Blocked ? "Blocked" : "Active",
+    }));
+
+    const ws = XLSX.utils.json_to_sheet(exportData);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Users");
+    XLSX.writeFile(wb, `users-export-${Date.now()}.xlsx`);
+  };
 
   const statCards = [
     { title: "Total Users", value: stats?.totalUsers, icon: Users },
-    { title: "Premium Users", value: stats?.premiumUsers, icon: CheckCircle },
+    { title: "Premium Users", value: stats?.premiumUsers, icon: Star },
     { title: "Blocked Users", value: stats?.blockedUsers, icon: Users },
     {
       title: "Total Revenue (₹)",
@@ -198,9 +268,9 @@ export default function AdminDashboard() {
         <p>Failed to load stats. Please try again later.</p>
       )}
 
-      <h2 className="text-xl font-bold mb-4">All Users</h2>
-      <div className="flex justify-end mb-4">
-        <UserSortDropdown value={sortOption} onChange={setSortOption} />
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-xl font-bold">All Users</h2>
+        <Button onClick={handleExportToExcel}>Export to Excel</Button>
       </div>
 
       <Separator className="mb-6" />
@@ -208,7 +278,24 @@ export default function AdminDashboard() {
       {loadingUsers ? (
         <Skeleton className="h-64 w-full" />
       ) : (
-        <UserTable users={filteredUsers} onToggleBlock={handleToggleBlock} />
+        <>
+          <UserTable
+            users={filteredAndSortedUsers}
+            onToggleBlock={handleToggleBlock}
+            searchQuery={searchQuery}
+            onSearchChange={setSearchQuery}
+            sortBy={sortBy}
+            onSortChange={setSortBy}
+            currentPage={currentPage}
+            itemsPerPage={itemsPerPage}
+          />
+
+          <PaginationControl
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
+        </>
       )}
     </div>
   );

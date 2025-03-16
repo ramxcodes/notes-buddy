@@ -28,6 +28,7 @@
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.7.1",
     "@types/mongoose": "^5.11.97",
+    "@types/xlsx": "^0.0.36",
     "@vercel/analytics": "^1.4.1",
     "@vercel/speed-insights": "^1.1.0",
     "canvas-confetti": "^1.9.3",
@@ -39,8 +40,10 @@
     "dotenv": "^16.4.7",
     "file-loader": "^6.2.0",
     "framer-motion": "^11.15.0",
+    "fuse.js": "^7.1.0",
     "github-slugger": "^2.0.0",
     "glob": "^11.0.1",
+    "js-cookie": "^3.0.5",
     "jwt-decode": "^4.0.0",
     "katex": "^0.16.21",
     "lenis": "^1.1.18",
@@ -66,11 +69,13 @@
     "styled-components": "^6.1.13",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
-    "vaul": "^1.1.2"
+    "vaul": "^1.1.2",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
     "@types/canvas-confetti": "^1.9.0",
+    "@types/js-cookie": "^3.0.6",
     "@types/next-auth": "^3.15.0",
     "@types/node": "^20.11.24",
     "@types/react": "^18.2.63",

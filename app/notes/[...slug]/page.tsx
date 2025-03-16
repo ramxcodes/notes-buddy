@@ -12,7 +12,6 @@ import { headers } from "next/headers";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import UpgradePrompt from "@/components/UpgradePrompt";
-
 import { SlugArticle } from "./components/SlugArticle";
 
 interface PostPageProps {
@@ -32,12 +31,19 @@ async function getPostFromParams(params: PostPageProps["params"]) {
 }
 
 // ----------------------------------------
-
 async function validateAccess(
   requiredTier: string,
   requiredSemester: string,
   requiredDegree: string
 ) {
+  const session = await getServerSession();
+
+  if (!session) {
+    return {
+     
+    };
+  }
+
   if (requiredTier === "Free") {
     return {
       errorMessage: null,
@@ -45,19 +51,6 @@ async function validateAccess(
       userSemesters: [],
       userDegree: null,
       hasSemesterAccess: true,
-      isBlocked: false,
-    };
-  }
-
-  const session = await getServerSession();
-
-  if (!session) {
-    return {
-      errorMessage: "You are not signed in.",
-      userTier: null,
-      userSemesters: [],
-      userDegree: null,
-      hasSemesterAccess: false,
       isBlocked: false,
     };
   }
@@ -81,7 +74,7 @@ async function validateAccess(
     redirect("/blocked");
   }
 
-  const userDegree = user.degree || "Not Set";
+  const userDegree = user.degree || "--";
 
   if (requiredDegree && user.degree !== requiredDegree) {
     return {
@@ -232,7 +225,7 @@ export default async function PostPage({ params }: PostPageProps) {
               </Button>
             </div>
           ) : (
-            <>
+            <div className="flex flex-col">
               <h2 className="text-2xl font-semibold text-primary mb-4">
                 Your Plan Details :
               </h2>
@@ -244,9 +237,7 @@ export default async function PostPage({ params }: PostPageProps) {
               </p>
               <p className="text-lg">
                 <strong>Your Semester Access:</strong>{" "}
-                {userSemesters.length > 0
-                  ? userSemesters.join(", ")
-                  : "No semester access"}
+                {userSemesters.length > 0 ? userSemesters.join(", ") : "--"}
               </p>
               <hr className="mb-4 mt-4" />
               <h2 className="text-2xl font-semibold text-primary mb-4">
@@ -261,7 +252,13 @@ export default async function PostPage({ params }: PostPageProps) {
               <p className="text-lg mb-2">
                 <strong>Required Degree:</strong> {requiredDegree}
               </p>
-            </>
+              <Button
+                variant="outline"
+                className="px-6 py-3 rounded-lg font-gilroy font-semibold hover:bg-black/85 transition-colors duration-300 ease-in-out hover:text-white mt-8"
+              >
+                <Link href="/buy-premium">Purchase Premium to Unlock 🔓</Link>
+              </Button>
+            </div>
           )}
         </Card>
       </div>
@@ -273,6 +270,7 @@ export default async function PostPage({ params }: PostPageProps) {
   const headerList = headers();
   const forwardedFor = headerList.get("x-forwarded-for") || "";
   const ip = forwardedFor.split(",")[0] || "UNKNOWN_IP";
+
   await NoteUsage.create({
     noteSlug: slug,
     userEmail: session?.user?.email || null,
@@ -283,14 +281,44 @@ export default async function PostPage({ params }: PostPageProps) {
   const currentUnit = unitMatch ? parseInt(unitMatch[1], 10) : 1;
 
   return (
-    <SlugArticle
-      title={post.title}
-      description={post.description || "Oops! No description found."}
-      tags={post.tags}
-      body={post.body}
-      slug={slug}
-      currentUnit={currentUnit}
-      totalUnits={5}
-    />
+    <>
+      <SlugArticle
+        title={post.title}
+        description={post.description || "Oops! No description found."}
+        tags={post.tags}
+        body={post.body}
+        slug={slug}
+        currentUnit={currentUnit}
+        totalUnits={5}
+      />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function() {
+              var startTime = Date.now();
+              var totalTime = 0;
+              
+              document.addEventListener("visibilitychange", function() {
+                if (document.hidden) {
+                  totalTime += Date.now() - startTime;
+                } else {
+                  startTime = Date.now();
+                }
+              });
+              window.addEventListener("beforeunload", function() {
+                totalTime += Date.now() - startTime;
+                var secondsSpent = totalTime / 1000;
+                var data = {
+                  noteSlug: ${JSON.stringify(slug)},
+                  userEmail: ${JSON.stringify(session?.user?.email || null)},
+                  timeSpent: secondsSpent
+                };
+                navigator.sendBeacon('/api/track-time', JSON.stringify(data));
+              });
+            })();
+          `,
+        }}
+      />
+    </>
   );
 }

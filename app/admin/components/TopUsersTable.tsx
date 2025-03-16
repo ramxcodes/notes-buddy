@@ -13,6 +13,12 @@ import {
 } from "@/components/ui/table";
 import Link from "next/link";
 
+const formatTime = (seconds: number) => {
+  const minutes = Math.floor(seconds / 60);
+  const sec = Math.round(seconds % 60);
+  return `${minutes}m ${sec}s`;
+};
+
 interface TopUsersTableProps {
   data: LeaderboardUser[];
 }
@@ -30,6 +36,7 @@ const TopUsersTable: React.FC<TopUsersTableProps> = ({ data }) => {
             <TableHead>Email</TableHead>
             <TableHead>Plan</TableHead>
             <TableHead>Total Visits</TableHead>
+            {/* <TableHead>Study Time</TableHead> */}
             <TableHead>Actions</TableHead>
           </TableRow>
         </TableHeader>
@@ -51,6 +58,7 @@ const TopUsersTable: React.FC<TopUsersTableProps> = ({ data }) => {
               <TableCell>{user.email}</TableCell>
               <TableCell>{user.planTier}</TableCell>
               <TableCell>{user.totalVisits}</TableCell>
+              {/* <TableCell>{formatTime(user.totalStudyTime)}</TableCell> */}
               <TableCell>
                 <Link
                   href={`/admin/users/${user._id}`}
@@ -63,7 +71,7 @@ const TopUsersTable: React.FC<TopUsersTableProps> = ({ data }) => {
           ))}
           {top10.length === 0 && (
             <TableRow>
-              <TableCell colSpan={6} className="text-center">
+              <TableCell colSpan={7} className="text-center">
                 No data available.
               </TableCell>
             </TableRow>

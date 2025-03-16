@@ -12,6 +12,12 @@ import {
   TableCell,
 } from "@/components/ui/table";
 
+const formatTime = (seconds: number) => {
+  const minutes = Math.floor(seconds / 60);
+  const sec = Math.round(seconds % 60);
+  return `${minutes}m ${sec}s`;
+};
+
 interface LeaderboardTableProps {
   data: LeaderboardUser[];
 }
@@ -26,6 +32,7 @@ const LeaderboardTable: React.FC<LeaderboardTableProps> = ({ data }) => {
             <TableHead>Email</TableHead>
             <TableHead>Plan</TableHead>
             <TableHead>Total Visits</TableHead>
+            {/* <TableHead>Study Time</TableHead> */}
             <TableHead>Actions</TableHead>
           </TableRow>
         </TableHeader>
@@ -36,6 +43,7 @@ const LeaderboardTable: React.FC<LeaderboardTableProps> = ({ data }) => {
               <TableCell>{user.email}</TableCell>
               <TableCell>{user.planTier}</TableCell>
               <TableCell>{user.totalVisits}</TableCell>
+              {/* <TableCell>{formatTime(user.totalStudyTime)}</TableCell> */}
               <TableCell>
                 <Link
                   href={`/admin/users/${user._id}`}
@@ -48,7 +56,7 @@ const LeaderboardTable: React.FC<LeaderboardTableProps> = ({ data }) => {
           ))}
           {data.length === 0 && (
             <TableRow>
-              <TableCell colSpan={5} className="text-center">
+              <TableCell colSpan={6} className="text-center">
                 No data available.
               </TableCell>
             </TableRow>

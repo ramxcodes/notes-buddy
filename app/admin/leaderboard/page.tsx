@@ -30,6 +30,7 @@ export interface INoteUsage {
     isBlocked: boolean;
     viewedAt: string;
     ip: string;
+    timeSpent?: number;
   }>;
 }
 
@@ -40,6 +41,7 @@ export interface LeaderboardUser {
   planTier: string;
   image?: string;
   totalVisits: number;
+  totalStudyTime: number;
   notes: Array<{
     noteSlug: string;
     count: number;
@@ -100,13 +102,16 @@ const LeaderboardPage = () => {
             planTier: userFromDB.planTier,
             image: userFromDB.image,
             totalVisits: 0,
+            totalStudyTime: 0,
             notes: [],
           });
         }
         const lbUser = leaderboardMap.get(entry.email)!;
         lbUser.totalVisits += 1;
-
-        const existingNote = lbUser.notes.find((n) => n.noteSlug === stat.noteSlug);
+        lbUser.totalStudyTime += entry.timeSpent || 0;
+        const existingNote = lbUser.notes.find(
+          (n) => n.noteSlug === stat.noteSlug
+        );
         if (existingNote) {
           existingNote.count += 1;
           if (new Date(entry.viewedAt) > new Date(existingNote.lastViewed)) {
@@ -150,7 +155,11 @@ const LeaderboardPage = () => {
             ]}
           />
         </div>
-        {loading ? <SkeletonTable /> : <LeaderboardTable data={leaderboardData} />}
+        {loading ? (
+          <SkeletonTable />
+        ) : (
+          <LeaderboardTable data={leaderboardData} />
+        )}
       </div>
     </div>
   );

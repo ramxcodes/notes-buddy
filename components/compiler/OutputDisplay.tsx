@@ -1,9 +1,8 @@
-// components/compiler/OutputDisplay.tsx
-'use client';
+"use client";
 
-import { Card } from '@/components/ui/card';
-import { Skeleton } from '@/components/ui/skeleton';
-import { type FC } from 'react';
+import { Card } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
+import { type FC } from "react";
 
 interface OutputDisplayProps {
   output: string;

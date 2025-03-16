@@ -17,12 +17,23 @@ export async function GET() {
     { $limit: 1 },
   ]);
 
+  const totalTimeAggregation = await NoteUsage.aggregate([
+    {
+      $group: {
+        _id: null,
+        totalTimeStudied: { $sum: "$timeSpent" },
+      },
+    },
+  ]);
+  const totalTimeStudied = totalTimeAggregation[0]?.totalTimeStudied || 0;
+
   return new NextResponse(
     JSON.stringify({
       totalUsageRecords,
       distinctSlugs: distinctSlugs.length,
       topSlug: top?._id ?? null,
       topCount: top?.count ?? 0,
+      totalTimeStudied,
     }),
     {
       status: 200,

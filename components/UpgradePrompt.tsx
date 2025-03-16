@@ -12,12 +12,6 @@ export default function UpgradePrompt({ message }: UpgradePromptProps) {
         Access Denied <span className="text-white">⚠️</span>
       </h1>
       <p className="text-lg mb-6">{message}</p>
-      <Button
-        variant="outline"
-        className="px-6 py-3 rounded-lg font-gilroy font-semibold hover:bg-black/85 transition-colors duration-300 ease-in-out hover:text-white"
-      >
-        <Link href="/buy-premium">Purchase Premium to Unlock 🔓</Link>
-      </Button>
     </div>
   );
 }

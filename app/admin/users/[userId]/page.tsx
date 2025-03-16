@@ -17,6 +17,7 @@ export interface INoteUsage {
     isBlocked: boolean;
     viewedAt: string;
     ip: string;
+    timeSpent?: number;
   }>;
 }
 
@@ -32,6 +33,10 @@ const UserDetailPage = () => {
       lastViewed: string;
       noteLink: string;
     }>
+  >([]);
+  const [totalStudyTime, setTotalStudyTime] = useState<number>(0);
+  const [dailyViewsData, setDailyViewsData] = useState<
+    Array<{ date: string; views: number }>
   >([]);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -62,10 +67,16 @@ const UserDetailPage = () => {
             noteLink: string;
           }
         >();
+        let aggregatedStudyTime = 0;
+        const dailyViewsMap = new Map<string, number>();
 
         notesUsageData.forEach((stat) => {
           stat.userEntries.forEach((entry) => {
             if (entry.email === foundUser.email) {
+              aggregatedStudyTime += entry.timeSpent || 0;
+              const date = new Date(entry.viewedAt).toISOString().split("T")[0];
+              dailyViewsMap.set(date, (dailyViewsMap.get(date) || 0) + 1);
+
               if (!notesMap.has(stat.noteSlug)) {
                 notesMap.set(stat.noteSlug, {
                   noteSlug: stat.noteSlug,
@@ -85,6 +96,13 @@ const UserDetailPage = () => {
         });
 
         setNotes(Array.from(notesMap.values()));
+        setTotalStudyTime(aggregatedStudyTime);
+        setDailyViewsData(
+          Array.from(dailyViewsMap.entries()).map(([date, views]) => ({
+            date,
+            views,
+          }))
+        );
       } catch (error) {
         console.error("Error fetching user details", error);
       } finally {
@@ -98,7 +116,14 @@ const UserDetailPage = () => {
   if (loading) return <SkeletonTable />;
   if (!user) return <p>User not found</p>;
 
-  return <UserProfile user={user} notes={notes} />;
+  return (
+    <UserProfile
+      user={user}
+      notes={notes}
+      totalStudyTime={totalStudyTime}
+      dailyViewsData={dailyViewsData}
+    />
+  );
 };
 
 export default UserDetailPage;

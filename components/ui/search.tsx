@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import { cn, debounce } from "@/lib/utils";
 import { useSearchContext } from "../NotesSearch";
+import { useRouter } from "next/navigation";
 
 export interface SearchInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -14,6 +15,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
 }) => {
   const fc = useSearchContext();
   const inputref = useRef<HTMLInputElement>(null);
+  const router = useRouter();
 
   function handleFocus() {
     inputref.current?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -24,7 +26,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
 
   useEffect(() => {
     const focusInput = (event: KeyboardEvent) => {
-      if (event.ctrlKey && event.key == "k") {
+      if (event.ctrlKey && event.key === "k") {
         event.preventDefault();
         handleFocus();
       }
@@ -33,7 +35,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
     return () => {
       window.removeEventListener("keydown", focusInput);
     };
-  });
+  }, []);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleChange = useCallback(
@@ -46,6 +48,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
     }, 400),
     [fc]
   );
+
   return (
     <div
       className={cn(
@@ -60,8 +63,18 @@ const SearchInput: React.FC<SearchInputProps> = ({
         {...props}
         ref={inputref}
         onFocus={() => fc?.setFocused(true)}
-        // onBlur={()=>fc?.setFocused(false)}
         onChange={() => handleChange()}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            router.push(
+              `/search?query=${encodeURIComponent(
+                inputref.current?.value || ""
+              )}`
+            );
+            fc?.setFocused(false);
+          }
+        }}
       />
       <span className="absolute right-3 text-muted-foreground text-sm">
         <kbd className="bg-muted-foreground/10 px-1 py-0.5 rounded-md">

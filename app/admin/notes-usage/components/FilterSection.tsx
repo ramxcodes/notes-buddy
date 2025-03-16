@@ -138,7 +138,10 @@ export function FilterSection({
         {/* Year */}
         <div className="flex flex-col">
           <label className="text-sm font-medium mb-1">Year</label>
-          <Select value={yearFilter} onValueChange={(val) => setYearFilter(val)}>
+          <Select
+            value={yearFilter}
+            onValueChange={(val) => setYearFilter(val)}
+          >
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="All" />
             </SelectTrigger>
@@ -236,8 +239,8 @@ export function FilterSection({
               <SelectValue placeholder="Desc" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="asc">Ascending</SelectItem>
-              <SelectItem value="desc">Descending</SelectItem>
+              <SelectItem value="desc">Ascending</SelectItem>
+              <SelectItem value="asc">Descending</SelectItem>
             </SelectContent>
           </Select>
         </div>

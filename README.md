@@ -117,5 +117,3 @@ Here’s a brief overview of the folder structure:
 ├── package.json      # Project metadata and scripts
 ├── README.md         # Project documentation
 ```
-
-

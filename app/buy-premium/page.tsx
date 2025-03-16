@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useSession } from "next-auth/react";
 import { PlanSelector } from "./components/PlanSelector";
 import { Header } from "./components/Header";
@@ -10,6 +10,7 @@ import { Popup } from "./components/Popup";
 import { Input } from "@/components/ui/input";
 import { BillSummaryPopup } from "./components/BillSummaryPopup";
 import { triggerConfetti } from "./utils/triggerConfetti";
+import { posts } from "#site/content";
 
 export default function BuyPremiumPage() {
   const { data: session, status } = useSession();
@@ -34,28 +35,61 @@ export default function BuyPremiumPage() {
   const [couponError, setCouponError] = useState<string>("");
   const [showBillSummary, setShowBillSummary] = useState(false);
 
-  // Pricing updated to match create order API pricing
   const tierPricing = { "Tier 1": 62, "Tier 2": 134, "Tier 3": 174 };
 
-  const universities = ["Medicaps University"];
-  const degrees = ["B Tech", "B Tech CSBS"];
+  const universities = useMemo(() => {
+    return Array.from(
+      new Set(
+        posts
+          .map((post) => post.metadata?.university)
+          .filter((u): u is string => !!u)
+      )
+    );
+  }, []);
+
+  const degrees = useMemo(() => {
+    return university
+      ? Array.from(
+          new Set(
+            posts
+              .filter((post) => post.metadata?.university === university)
+              .map((post) => post.metadata?.degree)
+              .filter((d): d is string => !!d)
+          )
+        )
+      : [];
+  }, [university]);
+
+  const semesters = useMemo(() => {
+    if (!university || !degree) return [];
+    const semesterSet = new Set(
+      posts
+        .filter(
+          (post) =>
+            post.metadata?.university === university &&
+            post.metadata?.degree === degree
+        )
+        .map((post) => post.metadata?.semester)
+        .filter((s): s is string => !!s)
+    );
+    const semesterArray = Array.from(semesterSet);
+    return semesterArray.sort((a, b) => {
+      const getNumber = (s: string) => {
+        const match = s.match(/\d+/);
+        return match ? parseInt(match[0], 10) : 0;
+      };
+      return getNumber(a) - getNumber(b);
+    });
+  }, [university, degree]);
 
   const yearOptions =
     degree === "B Tech"
       ? ["1st Year", "2nd Year", "3rd Year"]
       : degree === "B Tech CSBS"
-      ? ["1st Year", "2nd Year", "3rd Year", "4th Year"]
+      ? ["2nd Year"]
       : [];
 
-  const semesterOptionsMapping: { [key: string]: string[] } = {
-    "1st Year": ["1st Semester", "2nd Semester"],
-    "2nd Year": ["3rd Semester", "4th Semester"],
-    "3rd Year": ["5th Semester", "6th Semester"],
-    "4th Year": ["7th Semester", "8th Semester"],
-  };
-
-  // Determine available semesters based on the selected year
-  const semesterOptions = year ? semesterOptionsMapping[year] : [];
+  const semesterOptions = semesters;
 
   useEffect(() => {
     if (status === "authenticated" && session?.user) {
@@ -66,13 +100,11 @@ export default function BuyPremiumPage() {
     }
   }, [session, status]);
 
-  // Reset year and semester if degree changes
   useEffect(() => {
     setYear("");
     setSemester("");
   }, [degree]);
 
-  // Reset semester if year changes
   useEffect(() => {
     setSemester("");
   }, [year]);
@@ -100,7 +132,6 @@ export default function BuyPremiumPage() {
       } else {
         setCouponError("");
         setDiscountPreview(data);
-        // Trigger confetti when coupon is successfully applied
         triggerConfetti();
         if (
           data.message &&
@@ -150,7 +181,6 @@ export default function BuyPremiumPage() {
       return;
     }
 
-    // Show the bill summary popup before initiating payment
     setShowBillSummary(true);
   };
 
@@ -308,7 +338,6 @@ export default function BuyPremiumPage() {
         }),
       });
       setShowPhonePrompt(false);
-      // After saving phone, show bill summary
       setShowBillSummary(true);
     } catch (error) {
       setPopupMessage("Failed to save phone number");
@@ -370,6 +399,12 @@ export default function BuyPremiumPage() {
                   type="text"
                   value={couponCode}
                   onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      handleApplyCoupon();
+                    }
+                  }}
+                  onBlur={handleApplyCoupon}
                   placeholder="Enter coupon or referral code"
                   className="transition-all duration-300 uppercase"
                 />
@@ -426,6 +461,11 @@ export default function BuyPremiumPage() {
                 type="text"
                 value={phoneNumber || ""}
                 onChange={(e) => setPhoneNumber(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handlePhoneSubmit();
+                  }
+                }}
                 className="w-full px-3 py-2 border rounded-md shadow-sm"
               />
               <Button

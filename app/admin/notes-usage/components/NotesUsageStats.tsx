@@ -5,6 +5,7 @@ interface UsageStats {
   distinctSlugs: number;
   topSlug: string | null;
   topCount: number;
+  totalTimeStudied: number;
 }
 
 interface NotesUsageStatsProps {
@@ -12,8 +13,12 @@ interface NotesUsageStatsProps {
 }
 
 export function NotesUsageStats({ stats }: NotesUsageStatsProps) {
+  const hours = Math.floor(stats.totalTimeStudied / 3600);
+  const minutes = Math.floor((stats.totalTimeStudied % 3600) / 60);
+  const seconds = Math.round(stats.totalTimeStudied % 60);
+
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+    <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
       <div className="p-4 border rounded-md text-center">
         <h3 className="text-sm font-medium text-gray-600 mb-1">Total Views</h3>
         <p className="text-xl font-bold">{stats.totalUsageRecords}</p>
@@ -33,6 +38,14 @@ export function NotesUsageStats({ stats }: NotesUsageStatsProps) {
           Top Slug Views
         </h3>
         <p className="text-xl font-bold">{stats.topCount}</p>
+      </div>
+      <div className="p-4 border rounded-md text-center">
+        <h3 className="text-sm font-medium text-gray-600 mb-1">
+          Total Time Studied
+        </h3>
+        <p className="text-xl font-bold">
+          {hours}h {minutes}m {seconds}s
+        </p>
       </div>
     </div>
   );

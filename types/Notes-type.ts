@@ -1,28 +1,22 @@
-
-type NotesFilePath =  {
-    fullPath: string;
-    isAbsolute : boolean;
-    extension : "mdx" | "txt"
-}
-
+type NotesFilePath = {
+  fullPath: string;
+  isAbsolute: boolean;
+  extension: "mdx" | "txt";
+};
 
 interface Notes {
-    title : string
-    tags : Array<Tag>
-    invisibleTags? : Array<Tag>    
-    desc : string | undefined
-    parentGroup ? : string
-    path ?: string 
+  title: string;
+  tags: Array<Tag>;
+  invisibleTags?: Array<Tag>;
+  desc: string | undefined;
+  parentGroup?: string;
+  path?: string;
+  body?: string;
 }
 
-interface Tag{
-    Name: string
-    TagGroup ?: string
+interface Tag {
+  Name: string;
+  TagGroup?: string;
 }
 
-export type {
-    NotesFilePath,
-    Notes,
-    Tag
-    
-}
+export type { NotesFilePath, Notes, Tag };

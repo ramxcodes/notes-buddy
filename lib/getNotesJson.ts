@@ -9,7 +9,8 @@ const _createNote = (
   desc: string | undefined,
   invisibleTags?: Array<Tag>,
   parentGroup?: string,
-  path?: string
+  path?: string,
+  body?: string
 ): Notes => {
   return {
     title,
@@ -18,6 +19,7 @@ const _createNote = (
     invisibleTags,
     parentGroup,
     path,
+    body,
   };
 };
 
@@ -26,6 +28,7 @@ const _createTag = (name: string): Tag => {
     Name: name,
   };
 };
+
 export const getAllNotesFileSyncFileSync = async () => {
   let Notes: Array<Notes> = [];
   const dirPath = path.join(process.cwd(), initPath);
@@ -34,7 +37,6 @@ export const getAllNotesFileSyncFileSync = async () => {
     const entries = fs.readdirSync(currentPath, { withFileTypes: true });
     for (const entry of entries) {
       const entryPath = path.join(currentPath, entry.name);
-
       if (entry.isDirectory()) {
         _recursion(entryPath, result);
       } else if (entry.isFile() && entry.name.endsWith(".mdx")) {
@@ -46,7 +48,6 @@ export const getAllNotesFileSyncFileSync = async () => {
 
   try {
     const Notepaths = _recursion(dirPath);
-
     if (Notepaths.length > 0) {
       Notepaths?.forEach((e) => {
         let n: Array<Tag> = [];
@@ -81,13 +82,10 @@ export const getAllNotesVelite = async () => {
       e.description,
       undefined,
       undefined,
-      e.slug
+      e.slug,
+      e.body
     );
     Notes.push(newNote);
   });
   return Notes;
-};
-const getDir = async (dir: string) => {
-  const f = await fs.readdirSync(dir);
-  return f;
 };

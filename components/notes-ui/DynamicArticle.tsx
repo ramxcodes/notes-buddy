@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Head from "next/head";
 import { MDXContent } from "@/components/notes-ui/mdx-components";
 import { Tag } from "@/components/tag";
 import { MobileOptionsDrawer } from "./mini-comps/MobileOptionsDrawer";
 import { DesktopOptionsDropdown } from "./mini-comps/DesktopOptionsDropdown";
-import Script from "next/script";
+import { ParagraphIndexProvider } from "@/components/notes-ui/ParagraphIndexProvider";
+import CustomParagraph from "@/components/notes-ui/CustomParagraph";
 
 interface DynamicArticleProps {
   title: string;
@@ -29,7 +29,9 @@ export default function DynamicArticle({
   totalUnits,
 }: DynamicArticleProps) {
   const router = useRouter();
-  const [selectedFont, setSelectedFont] = useState("font-wotfard");
+  const [selectedFont, setSelectedFont] = useState(
+    "font-wotfard  tracking-wider"
+  );
   const [selectedSize, setSelectedSize] = useState("text-base");
   const [isClient, setIsClient] = useState(false);
 
@@ -57,23 +59,16 @@ export default function DynamicArticle({
 
   if (!isClient) return null;
 
+  const customMDXComponents = {
+    p: CustomParagraph,
+  };
+
+  const MDXContentWithComponents = MDXContent as React.ComponentType<
+    React.ComponentProps<typeof MDXContent> & { components?: any }
+  >;
+
   return (
     <>
-      <Head>
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/katex@0.16.19/dist/katex.min.css"
-          integrity="sha384-7lU0muIg/i1plk7MgygDUp3/bNRA65orrBub4/OSWHECgwEsY83HaS1x3bljA/XV"
-          crossOrigin="anonymous"
-        />
-      </Head>
-      <Script
-        src="https://cdn.jsdelivr.net/npm/katex@0.16.19/dist/katex.min.js"
-        strategy="lazyOnload"
-        integrity="sha384-..."
-        crossOrigin="anonymous"
-      />
-
       <MobileOptionsDrawer
         selectedFont={selectedFont}
         selectedSize={selectedSize}
@@ -89,8 +84,6 @@ export default function DynamicArticle({
         handleSizeChange={handleSizeChange}
         handleReportNote={handleReportNote}
       />
-
-      {/* Article Content */}
       <article
         className={`container py-6 prose dark:prose-invert max-w-3xl mx-auto ${selectedFont} ${selectedSize}`}
       >
@@ -104,12 +97,15 @@ export default function DynamicArticle({
           <p className="text-xl mt-0 text-muted-foreground">{description}</p>
         )}
         <hr className="my-4" />
-        <MDXContent
-          code={body}
-          currentUnit={currentUnit}
-          totalUnits={totalUnits}
-          slug={slug}
-        />
+        <ParagraphIndexProvider>
+          <MDXContentWithComponents
+            code={body}
+            currentUnit={currentUnit}
+            totalUnits={totalUnits}
+            slug={slug}
+            components={customMDXComponents}
+          />
+        </ParagraphIndexProvider>
       </article>
     </>
   );

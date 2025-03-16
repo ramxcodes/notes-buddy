@@ -1,11 +1,18 @@
 const tierFeatures = {
   Free: [],
   "Tier 1": ["one-shots", "quiz"],
-  "Tier 2": ["one-shots", "quiz", "pyq", "flashcards"],
+  "Tier 2": [
+    "one-shots",
+    "quiz",
+    "pyq",
+    "MST Important questions / MST PYQ With solutions",
+    "flashcards",
+  ],
   "Tier 3": [
     "one-shots",
     "quiz",
     "pyq",
+    "MST Important questions / MST PYQ With solutions",
     "flashcards",
     "video-material",
     "toppers-handwritten-notes",

@@ -177,7 +177,7 @@ const RequestNotesComponent = () => {
                   { label: "Year", name: "year", type: "number" },
                   { label: "Semester", name: "semester" },
                   { label: "Subject", name: "subject" },
-                  { label: "Syllabus", name: "syllabus", textarea: true },
+                  { label: "Syllabus (Attach Google Drive link for syllabus)", name: "syllabus", textarea: true },
                   { label: "Phone Number", name: "phoneNumber" },
                 ].map(({ label, name, type = "text", textarea }) => (
                   <div key={name} className="mb-4">

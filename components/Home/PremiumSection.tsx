@@ -62,6 +62,9 @@ export default function PremiumSection() {
                     <FeatureItem checked={false}>
                       Previous Year Questions with answers
                     </FeatureItem>
+                    <FeatureItem checked={false}>
+                      MST Important questions / MST PYQ With solutions
+                    </FeatureItem>
                     <FeatureItem checked={false}>Flashcards</FeatureItem>
                     <FeatureItem checked={false}>Video Material</FeatureItem>
                     <FeatureItem checked={false}>
@@ -135,6 +138,9 @@ export default function PremiumSection() {
                       <FeatureItem checked={true}>
                         Previous Year Questions with answers
                       </FeatureItem>
+                      <FeatureItem checked={true}>
+                        MST Important questions / MST PYQ With solutions
+                      </FeatureItem>
                       <FeatureItem checked={true}>Flashcards</FeatureItem>
                       <FeatureItem checked={false}>Video Material</FeatureItem>
                       <FeatureItem checked={false}>
@@ -191,6 +197,9 @@ export default function PremiumSection() {
                     </FeatureItem>
                     <FeatureItem checked={true}>
                       Previous Year Questions with answers
+                    </FeatureItem>
+                    <FeatureItem checked={true}>
+                      MST Important questions / MST PYQ With solutions
                     </FeatureItem>
                     <FeatureItem checked={true}>Flashcards</FeatureItem>
                     <FeatureItem checked={true}>Video Material</FeatureItem>
